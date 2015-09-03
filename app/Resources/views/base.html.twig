@@ -1,9 +1,8 @@
-{% extends 'MopaBootstrapBundle::base_less.html.twig' %}
+{% extends 'MopaBootstrapBundle::base.html.twig' %}
 
 {% block title %}{{ main_brand_title }}{% endblock %}
 
 {% block head_style %}
-    {{ parent() }}
     {% stylesheets filter="cssrewrite,less" '@mycss' %}
         <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
     {% endstylesheets %}
@@ -24,15 +23,14 @@
 {% block page_header %}{% endblock %}
 
 {% block footer %}
-    <hr/>
-    <p class="text-center"><a href="mailto:info@espaikowo.cat">info@espaikowo.cat</a></p>
+    <p class="text-center"><a href="mailto:info@espaikowo.cat"><strong>info@espaikowo.cat</strong></a></p>
     <p class="text-center">
         Pl. Ramon Berenguer IV, 1 3B<br>
         43870 Amposta (Tarragona)
     </p>
 {% endblock %}
 
-{% block foot_script_assetic %}
+{% block foot_script %}
     {% javascripts '@myjs' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
