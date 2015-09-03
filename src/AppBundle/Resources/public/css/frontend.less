@@ -7,10 +7,17 @@
 @ek-c-dark-cyan: #5E9B9A;
 
 // Custom Bootstrap vars
-@brand-success: @ek-c-green;
-@brand-danger: @ek-c-magenta;
 
 // Custom elements
+.alert-green {
+  .alert-variant(@ek-c-green; @ek-c-green; @body-bg);
+}
+.alert-violet {
+  .alert-variant(@ek-c-violet; @ek-c-violet; @body-bg);
+}
 .alert-magenta {
-  .alert-variant(@ek-c-magenta; @alert-success-border; @alert-success-text);
+  .alert-variant(@ek-c-magenta; @ek-c-magenta; @body-bg);
+}
+.alert-dark-cyan {
+  .alert-variant(@ek-c-dark-cyan; @ek-c-dark-cyan; @body-bg);
 }
