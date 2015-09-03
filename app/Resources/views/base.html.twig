@@ -1,10 +1,11 @@
-{% extends 'MopaBootstrapBundle::base.html.twig' %}
+{% extends 'MopaBootstrapBundle::base_less.html.twig' %}
 
 {% block title %}{{ main_brand_title }}{% endblock %}
 
 {% block head_style %}
+    {{ parent() }}
     {% stylesheets filter="cssrewrite,less" '@mycss' %}
-    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
     {% endstylesheets %}
 {% endblock %}
 
@@ -14,7 +15,7 @@
             <h1 class="text-hide">{{ main_brand_title }}</h1>
             <h3 class="text-hide">Talent fresc!</h3>
             <p class="text-center">
-                <img src="{{ asset('bundles/app/img/logo-espai-kowo.jpg') }}" alt="{{ main_brand_title }} logo"/>
+                <img src="{{ asset('bundles/app/img/logo-espai-kowo.png') }}" alt="{{ main_brand_title }} logo"/>
             </p>
         </div>
     </div>

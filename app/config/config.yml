@@ -50,14 +50,11 @@ assetic:
         less:
             node:       "%path_node%"
             node_paths: [ "%path_node_modules%" ]
-        #closure:
-        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
-        #yui_css:
-        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
     assets:
         mycss:
             inputs:
                 - "@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle-fa4.less"
+                - "@AppBundle/Resources/public/css/frontend.less"
         myjs:
             inputs:
                 - "%kernel.root_dir%/../vendor/components/jquery/jquery.js"
