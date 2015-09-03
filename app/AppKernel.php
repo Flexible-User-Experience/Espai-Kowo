@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             // vendors
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
             // app
             new AppBundle\AppBundle(),
         );

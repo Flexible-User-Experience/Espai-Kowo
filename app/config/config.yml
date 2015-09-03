@@ -53,12 +53,10 @@ assetic:
     assets:
         mycss:
             inputs:
-#                - "@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle-fa4.less"
                 - "@AppBundle/Resources/public/css/frontend.less"
         myjs:
             inputs:
                 - "%kernel.root_dir%/../vendor/components/jquery/jquery.js"
-                - "@MopaBootstrapBundle/Resources/public/bootstrap/js/tooltip.js"
                 - "@MopaBootstrapBundle/Resources/public/bootstrap/js/*.js"
 
 # Doctrine Configuration
@@ -86,6 +84,5 @@ swiftmailer:
 
 # Mopa Bootstrap
 mopa_bootstrap:
-    form: ~
     icons:
         icon_set: fontawesome4

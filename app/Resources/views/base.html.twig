@@ -3,6 +3,7 @@
 {% block title %}{{ main_brand_title }}{% endblock %}
 
 {% block head_style %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" />
     {% stylesheets filter="cssrewrite,less" '@mycss' %}
         <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
     {% endstylesheets %}

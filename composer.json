@@ -21,6 +21,7 @@
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
         "cypresslab/gitelephant-bundle": "dev-develop",
+        "bmatzner/fontawesome-bundle": "4.*",
         "components/jquery": "2.1.*",
         "mopa/bootstrap-bundle": "dev-master",
         "twbs/bootstrap": "3.3.*"
