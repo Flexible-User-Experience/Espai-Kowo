@@ -1,15 +1,16 @@
 {% extends 'MopaBootstrapBundle::base.html.twig' %}
 
-{#{% block navbar %}#}
-    {#{% embed '@MopaBootstrap/Navbar/navbar.html.twig' with { fixedTop: false } %}#}
-        {#{% block brand %}#}
-            {#<a class="navbar-brand" href="{{ path('front_homepage') }}"><img src="{{ asset('bundles/app/images/logotip-fons-2.png') | imagine_filter('60x60') }}" alt="{{ main_brand_title }}"/></a>#}
-        {#{% endblock %}#}
-        {#{% block menu %}#}
-            {#{{ mopa_bootstrap_menu('AppBundle:MenuBuilder:frontendMenu', { automenu: 'navbar' }) }}#}
-        {#{% endblock %}#}
-    {#{% endembed %}#}
-{#{% endblock %}#}
+{% block navbar %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="text-hide">{{ main_brand_title }}</h1>
+            <h3 class="text-hide">Talent fresc!</h3>
+            <p class="text-center">
+                <img src="{{ asset('bundles/app/img/logo-espai-kowo.jpg') }}" alt="{{ main_brand_title }} logo"/>
+            </p>
+        </div>
+    </div>
+{% endblock %}
 
 {% block title %}{{ main_brand_title }}{% endblock %}
 
@@ -17,15 +18,15 @@
     {% stylesheets filter="cssrewrite,less" '@mycss' %}
         <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
     {% endstylesheets %}
-{% endblock head_style %}
+{% endblock %}
 
 {% block foot_script_assetic %}
     {% javascripts '@myjs' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-{% endblock foot_script_assetic %}
+{% endblock %}
 
-{% block headline %}{{ main_brand_title }}{% endblock headline %}
+{% block page_header %}{% endblock %}
 
 {% block footer %}
     <hr/>
@@ -34,4 +35,4 @@
         Pl. Ramon Berenguer IV, 1 3B<br>
         43870 Amposta (Tarragona)
     </p>
-{% endblock footer %}
+{% endblock %}
