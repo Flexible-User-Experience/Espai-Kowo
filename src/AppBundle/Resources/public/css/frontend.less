@@ -1,4 +1,16 @@
 @import "../../../../../vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/less/mopabootstrapbundle.less";
 
-@body-bg: #F00;
-@navbar-height: 170px;
+// Brand colors
+@ek-c-green:     #A1C548;
+@ek-c-violet:    #40315F;
+@ek-c-magenta:   #AF1F69;
+@ek-c-dark-cyan: #5E9B9A;
+
+// Custom Bootstrap vars
+@brand-success: @ek-c-green;
+@brand-danger: @ek-c-magenta;
+
+// Custom elements
+.alert-magenta {
+  .alert-variant(@ek-c-magenta; @alert-success-border; @alert-success-text);
+}
