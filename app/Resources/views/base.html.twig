@@ -1,13 +1,37 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>
+{% extends 'MopaBootstrapBundle::base.html.twig' %}
+
+{#{% block navbar %}#}
+    {#{% embed '@MopaBootstrap/Navbar/navbar.html.twig' with { fixedTop: false } %}#}
+        {#{% block brand %}#}
+            {#<a class="navbar-brand" href="{{ path('front_homepage') }}"><img src="{{ asset('bundles/app/images/logotip-fons-2.png') | imagine_filter('60x60') }}" alt="{{ main_brand_title }}"/></a>#}
+        {#{% endblock %}#}
+        {#{% block menu %}#}
+            {#{{ mopa_bootstrap_menu('AppBundle:MenuBuilder:frontendMenu', { automenu: 'navbar' }) }}#}
+        {#{% endblock %}#}
+    {#{% endembed %}#}
+{#{% endblock %}#}
+
+{% block title %}{{ main_brand_title }}{% endblock %}
+
+{% block head_style %}
+    {% stylesheets filter="cssrewrite,less" '@mycss' %}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+{% endblock head_style %}
+
+{% block foot_script_assetic %}
+    {% javascripts '@myjs' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock foot_script_assetic %}
+
+{% block headline %}{{ main_brand_title }}{% endblock headline %}
+
+{% block footer %}
+    <hr/>
+    <p class="text-center"><a href="mailto:info@espaikowo.cat">info@espaikowo.cat</a></p>
+    <p class="text-center">
+        Pl. Ramon Berenguer IV, 1 3B<br>
+        43870 Amposta (Tarragona)
+    </p>
+{% endblock footer %}
