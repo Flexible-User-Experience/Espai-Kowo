@@ -12,7 +12,7 @@ before_script:
   - composer install
   - php app/console doctrine:databa:create --no-interaction --env=test
   - php app/console doctrine:schema:create --no-interaction --env=test
-  - php app/console doctrine:fixtures:load --no-interaction --env=test
+#  - php app/console doctrine:fixtures:load --no-interaction --env=test
 
 script:
   - phpunit -c app
