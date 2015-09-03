@@ -5,7 +5,7 @@ imports:
 
 parameters:
     locale: ca
-    main_brand_title: "Espai Kowo"
+    main_brand_title: "espai kowo"
 
 framework:
     #esi:             ~
