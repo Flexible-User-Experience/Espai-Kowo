@@ -10,11 +10,13 @@
 {% endblock %}
 
 {% block navbar %}
-    <div class="row">
-        <div class="col-xs-12">
-            <h1 class="text-hide">{{ main_brand_title }}</h1>
-            <h2 class="text-hide">Talent fresc!</h2>
-            <img class="img-responsive center-block" src="{{ asset('bundles/app/img/logo-espai-kowo.png') }}" alt="{{ main_brand_title }} logo"/>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="text-hide hidden">{{ main_brand_title }}</h1>
+                <h2 class="text-hide hidden">Talent fresc!</h2>
+                <img class="img-responsive center-block" src="{{ asset('bundles/app/img/logo-espai-kowo.png') }}" alt="{{ main_brand_title }} logo"/>
+            </div>
         </div>
     </div>
 {% endblock %}

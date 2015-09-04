@@ -20,27 +20,46 @@
 // Custom margins
 .no-m { margin: 0}
 .extra-m-top { margin-top: @ek-s-base-plus}
-.content { margin: @ek-s-base-plus 0}
+.content {
+  margin: @ek-s-base-plus 0;
+  @media(max-width: @screen-sm-max) { margin: @ek-s-base 0; }
+}
 
 // Custom elements
 .alert-green {
   .alert-variant(@ek-c-green; @ek-c-green; @body-bg);
+  @media(max-width: @screen-xs-max) {
+    h4 { font-size: 1em; }
+  }
 }
 .alert-orange {
   .alert-variant(@ek-c-orange; @ek-c-orange; @body-bg);
+  @media(max-width: @screen-xs-max) {
+    h4 { font-size: 1em; }
+  }
 }
 .alert-violet {
   .alert-variant(@ek-c-violet; @ek-c-violet; @body-bg);
+  @media(max-width: @screen-xs-max) {
+    h4 { font-size: 1em; }
+  }
 }
 .alert-magenta {
   .alert-variant(@ek-c-magenta; @ek-c-magenta; @body-bg);
+  @media(max-width: @screen-xs-max) {
+    h4 { font-size: 1em; }
+  }
 }
 .alert-dark-cyan {
   .alert-variant(@ek-c-dark-cyan; @ek-c-dark-cyan; @body-bg);
+  @media(max-width: @screen-xs-max) {
+    h4 { font-size: 1em; }
+  }
 }
 .fresh-talent-ad {
   color: @ek-c-green;
   -webkit-transform: rotate(352deg);
   -moz-transform: rotate(352deg);
   -o-transform: rotate(352deg);
+  @media(max-width: @screen-xs-max) { font-size: 1.2em; }
 }
