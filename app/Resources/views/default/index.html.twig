@@ -1,24 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <div class="col-xs-3">
-        <div class="alert alert-green" role="alert">
-            <h3 class="text-center no-m"><i class="fa fa-gear fa-spin"></i> sala coworking</h3>
-        </div>
-    </div>
-    <div class="col-xs-3">
-        <div class="alert alert-violet" role="alert">
-            <h3 class="text-center no-m">{{ icon('calendar-check-o') }} events i formació</h3>
-        </div>
-    </div>
-    <div class="col-xs-3">
-        <div class="alert alert-magenta" role="alert">
-            <h3 class="text-center no-m">{{ icon('street-view') }} zona reunió</h3>
-        </div>
-    </div>
-    <div class="col-xs-3">
+    <div class="col-md-3 col-sm-4 col-xs-6">
         <div class="alert alert-dark-cyan" role="alert">
-            <h3 class="text-center no-m">{{ icon('rocket') }} àrea stress-less</h3>
+            <h3 class="no-m"><i class="fa fa-gear fa-spin"></i> sala coworking</h3>
         </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-md-3 col-sm-4 col-xs-6">
+        <div class="alert alert-violet" role="alert">
+            <h3 class="no-m">{{ icon('calendar-check-o') }} events i formació</h3>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-md-3 col-sm-4 col-xs-6">
+        <div class="alert alert-magenta" role="alert">
+            <h3 class="no-m">{{ icon('street-view') }} zona reunió</h3>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-md-3 col-sm-4 col-xs-6">
+        <div class="alert alert-orange" role="alert">
+            <h3 class="no-m">{{ icon('rocket') }} àrea stress-less</h3>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-xs-12">
+        <h2 class="text-center fresh-talent-ad">Propera obertura...</h2>
     </div>
 {% endblock content %}

@@ -57,6 +57,7 @@ assetic:
         myjs:
             inputs:
                 - "%kernel.root_dir%/../vendor/components/jquery/jquery.js"
+                - "@MopaBootstrapBundle/Resources/public/bootstrap/js/tooltip.js"
                 - "@MopaBootstrapBundle/Resources/public/bootstrap/js/*.js"
 
 # Doctrine Configuration
