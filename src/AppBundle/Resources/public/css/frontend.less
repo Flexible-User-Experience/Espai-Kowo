@@ -63,7 +63,10 @@
   -o-transform: rotate(352deg);
   @media(max-width: @screen-xs-max) { font-size: 1.2em; }
 }
-.alert h4 {
-  font-weight: normal;
-  line-height: 1.5;
+.alert {
+  @media(max-width: @screen-xs-max) { min-height: 110px; }
+  h4 {
+    font-weight: normal;
+    line-height: 1.5;
+  }
 }
