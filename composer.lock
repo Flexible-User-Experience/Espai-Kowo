@@ -1205,12 +1205,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phiamo/MopaBootstrapBundle.git",
-                "reference": "c43c1c3b230cccfaa2548b55a7ddca5a5af8eaff"
+                "reference": "cc093b4f10f5598f9c5d77acd365c0e61283e8e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/c43c1c3b230cccfaa2548b55a7ddca5a5af8eaff",
-                "reference": "c43c1c3b230cccfaa2548b55a7ddca5a5af8eaff",
+                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/cc093b4f10f5598f9c5d77acd365c0e61283e8e7",
+                "reference": "cc093b4f10f5598f9c5d77acd365c0e61283e8e7",
                 "shasum": ""
             },
             "require": {
@@ -1268,7 +1268,7 @@
                 "form",
                 "template"
             ],
-            "time": "2015-09-10 17:23:40"
+            "time": "2015-09-15 16:51:21"
         },
         {
             "name": "mopa/composer-bridge",
