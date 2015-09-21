@@ -152,16 +152,16 @@
         },
         {
             "name": "cypresslab/gitelephant",
-            "version": "v1.0.12",
+            "version": "v1.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matteosister/GitElephant.git",
-                "reference": "4bb2ba3551e8b11b713748e1e6b8512ca1b6275a"
+                "reference": "7db4e7fd8bf1819b64a49fef801ac03e33ba6008"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/matteosister/GitElephant/zipball/4bb2ba3551e8b11b713748e1e6b8512ca1b6275a",
-                "reference": "4bb2ba3551e8b11b713748e1e6b8512ca1b6275a",
+                "url": "https://api.github.com/repos/matteosister/GitElephant/zipball/7db4e7fd8bf1819b64a49fef801ac03e33ba6008",
+                "reference": "7db4e7fd8bf1819b64a49fef801ac03e33ba6008",
                 "shasum": ""
             },
             "require": {
@@ -197,7 +197,7 @@
             "keywords": [
                 "git"
             ],
-            "time": "2015-08-02 21:37:27"
+            "time": "2015-09-18 21:25:51"
         },
         {
             "name": "cypresslab/gitelephant-bundle",
