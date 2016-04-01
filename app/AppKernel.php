@@ -17,9 +17,9 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             // vendors
-            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
-            new Craue\FormFlowBundle\CraueFormFlowBundle(),
-            new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
+//            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+//            new Craue\FormFlowBundle\CraueFormFlowBundle(),
+//            new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
             // app
             new AppBundle\AppBundle(),
         );

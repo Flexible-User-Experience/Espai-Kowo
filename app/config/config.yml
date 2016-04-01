@@ -42,7 +42,6 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ MopaBootstrapBundle ]
     java:           "%path_java%"
     node:           "%path_node%"
     filters:
@@ -83,7 +82,3 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-# Mopa Bootstrap
-mopa_bootstrap:
-    icons:
-        icon_set: fontawesome4

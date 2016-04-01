@@ -1,48 +1,64 @@
 {
-    "name": "david/espai.kowo",
+    "name": "flux/hidraulica-disseny",
+    "description": "Hidraulica Disseny Symfony 2 Website",
     "license": "proprietary",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "": "src/",
-            "SymfonyStandard\\": "app/SymfonyStandard/"
-        }
+            "": "src/"
+        },
+        "classmap": [
+            "app/AppKernel.php",
+            "app/AppCache.php"
+        ]
     },
     "require": {
-        "php": ">=5.3.9",
-        "symfony/symfony": "2.7.*",
-        "doctrine/orm": "~2.2,>=2.2.3,<2.5",
-        "doctrine/dbal": "<2.5",
-        "doctrine/doctrine-bundle": "~1.4",
-        "symfony/assetic-bundle": "~2.3",
-        "symfony/swiftmailer-bundle": "~2.3",
-        "symfony/monolog-bundle": "~2.4",
-        "sensio/distribution-bundle": "~4.0",
-        "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
-        "incenteev/composer-parameter-handler": "~2.0",
+        "a2lix/translation-form-bundle": "1.*",
+        "components/font-awesome": "^4.0",
+        "components/jquery": "^2.0",
         "cypresslab/gitelephant-bundle": "dev-develop",
-        "bmatzner/fontawesome-bundle": "4.*",
-        "components/jquery": "2.1.*",
-        "craue/formflow-bundle": "2.1.*",
-        "mopa/bootstrap-bundle": "dev-master",
-        "twbs/bootstrap": "3.3.*"
+        "doctrine/doctrine-bundle": "~1.4",
+        "doctrine/doctrine-fixtures-bundle": "^2.3",
+        "doctrine/doctrine-migrations-bundle": "^1.0",
+        "doctrine/migrations": "^1.0",
+        "doctrine/orm": "^2.4.8",
+        "egeloen/ckeditor-bundle": "^4.0",
+        "egulias/email-validator": "^1.2",
+        "hautelook/alice-bundle": "^1.0",
+        "jms/i18n-routing-bundle": "^2.0",
+        "incenteev/composer-parameter-handler": "~2.0",
+        "ircmaxell/password-compat": "~1.0",
+        "knplabs/knp-menu-bundle": "^2.0",
+        "liip/functional-test-bundle": "^1.0",
+        "liip/imagine-bundle": "^1.0",
+        "php": ">=5.3.9",
+        "presta/sitemap-bundle": "^1.3",
+        "sensio/distribution-bundle": "~5.0",
+        "sensio/framework-extra-bundle": "^3.0.2",
+        "sonata-project/admin-bundle": "2.4.x-dev",
+        "sonata-project/datagrid-bundle": "2.2.x-dev",
+        "sonata-project/doctrine-orm-admin-bundle": "2.4.x-dev",
+        "sonata-project/user-bundle": "2.3.x-dev",
+        "stof/doctrine-extensions-bundle": "^1.2",
+        "symfony/assetic-bundle": "^2.7",
+        "symfony/monolog-bundle": "~2.4",
+        "symfony/symfony": "2.8.*",
+        "symfony/swiftmailer-bundle": "~2.3",
+        "twbs/bootstrap": "^3.0",
+        "twig/extensions": "^1.3",
+        "vich/uploader-bundle": "^0.14.0"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "~3.0"
     },
     "scripts": {
-        "post-root-package-install": [
-            "SymfonyStandard\\Composer::hookRootPackageInstall"
-        ],
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
-            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
@@ -50,9 +66,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
-            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ]
     },
     "config": {
