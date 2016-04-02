@@ -99,7 +99,7 @@ class Coworker extends AbstractBase
      * @param Category $category
      * @return Coworker
      */
-    public function setCategory($category)
+    public function setCategory(Category $category)
     {
         $this->category = $category;
         return $this;
