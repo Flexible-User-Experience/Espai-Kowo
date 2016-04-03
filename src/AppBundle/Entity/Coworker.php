@@ -2,6 +2,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\DescriptionTrait;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**

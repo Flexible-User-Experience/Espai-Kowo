@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 use AppBundle\Entity\Traits\DateTrait;
 use AppBundle\Entity\Traits\DescriptionTrait;
 use AppBundle\Entity\Traits\TitleTrait;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**

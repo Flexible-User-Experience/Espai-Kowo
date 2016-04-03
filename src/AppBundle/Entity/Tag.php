@@ -2,6 +2,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\TitleTrait;
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
