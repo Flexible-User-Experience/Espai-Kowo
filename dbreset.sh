@@ -7,7 +7,7 @@ if [ -z "$1" ]
      php app/console doctrine:schema:update --force
 #    php app/console doctrine:migrations:diff
 #    php app/console doctrine:migrations:mig
-#    php app/console hautelook_alice:doctrine:fixtures:load -n
+    php app/console hautelook_alice:doctrine:fixtures:load -n
   else
     if [ "$1" = "dev" -o "$1" = "test" -o "$1" = "prod" -o "$1" = "remote" ]
       then

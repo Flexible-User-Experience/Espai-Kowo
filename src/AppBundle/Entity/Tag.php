@@ -20,7 +20,7 @@ class Tag extends AbstractBase
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Post", mappedBy="tags")
+     * @ORM\ManyToMany(targetEntity="Post", mappedBy="tags")
      */
     private $posts;
 
@@ -34,11 +34,10 @@ class Tag extends AbstractBase
 
     /**
      * Tag constructor.
-     * @param ArrayCollection $posts
      */
-    public function __construct(ArrayCollection $posts)
+    public function __construct()
     {
-        $this->posts = $posts;
+        $this->posts = new ArrayCollection();
     }
 
     /**
@@ -64,7 +63,7 @@ class Tag extends AbstractBase
      *
      * @param Post $post
      *
-     * @return Category
+     * @return Tag
      */
     public function addPost(Post $post)
     {
@@ -78,7 +77,7 @@ class Tag extends AbstractBase
      *
      * @param Post $post
      *
-     * @return Category
+     * @return Tag
      */
     public function removePost(Post $post)
     {

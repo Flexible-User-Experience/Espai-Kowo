@@ -35,11 +35,10 @@ class Category extends AbstractBase
 
     /**
      * Category constructor.
-     * @param ArrayCollection $coworkers
      */
-    public function __construct(ArrayCollection $coworkers)
+    public function __construct()
     {
-        $this->coworkers = $coworkers;
+        $this->coworkers = new ArrayCollection();
     }
 
     /**

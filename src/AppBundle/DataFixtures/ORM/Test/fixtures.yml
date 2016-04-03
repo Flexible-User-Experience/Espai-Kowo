@@ -16,25 +16,27 @@ AppBundle\Entity\ContactMessage:
 ## Coworkers
 AppBundle\Entity\Coworker:
   coworker{1..12}:
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
     name: <name()>
-    category: @category<numberBetween(1, 5)>
-    description: <city()>
+    description: <paragraph()>
     email: <safeEmail()>
     facebook: <boolean(50)>
     tweeter: <boolean(50)>
     linkedin: <boolean(50)>
     github: <boolean(50)>
+    category: @category<numberBetween(1, 5)>
 
 ## Category
 AppBundle\Entity\Category:
   category{1..5}:
     title: <sentence()>
-    coworkers: @coworkers<numberBetween(1, 12)>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
 
 ## Events
 AppBundle\Entity\Event:
   event{1..10}:
     title: <sentence()>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
     description: <paragraph()>
     type: <word()>
     date: <dateTimeThisMonth()>
@@ -51,12 +53,12 @@ AppBundle\Entity\Post:
     createdAt: <dateTimeBetween('-2 months', '-1 months')>
     updatedAt: <dateTimeThisMonth()>
     enabled: <boolean(70)>
-    tags: @tag<numberBetween(1, 5)
+    tag: @tag<numberBetween(1, 5)>
 
 # Tags
 AppBundle\Entity\Tag:
   tag{1..5}:
-    title: <current()> <word()>
+    title: <sentence()>
     createdAt: <dateTimeBetween('-2 months', '-1 months')>
     updatedAt: <dateTimeThisMonth()>
     enabled: <boolean(70)>
