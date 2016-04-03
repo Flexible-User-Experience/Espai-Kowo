@@ -40,26 +40,30 @@ class Coworker extends AbstractBase
     private $email;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean")
      */
     private $facebook;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean")
      */
     private $tweeter;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean")
      */
     private $linkedin;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean")
      */
     private $github;
 
@@ -126,7 +130,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @return string
+     * @return boolean
      */
     public function getFacebook()
     {
@@ -134,7 +138,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @param string $facebook
+     * @param boolean $facebook
      * @return Coworker
      */
     public function setFacebook($facebook)
@@ -144,7 +148,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @return string
+     * @return boolean
      */
     public function getTweeter()
     {
@@ -152,7 +156,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @param string $tweeter
+     * @param boolean $tweeter
      * @return Coworker
      */
     public function setTweeter($tweeter)
@@ -162,7 +166,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @return string
+     * @return boolean
      */
     public function getLinkedin()
     {
@@ -170,7 +174,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @param string $linkedin
+     * @param boolean $linkedin
      * @return Coworker
      */
     public function setLinkedin($linkedin)
@@ -180,7 +184,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @return string
+     * @return boolean
      */
     public function getGithub()
     {
@@ -188,7 +192,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @param string $github
+     * @param boolean $github
      * @return Coworker
      */
     public function setGithub($github)
