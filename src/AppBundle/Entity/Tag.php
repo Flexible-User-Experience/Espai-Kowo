@@ -19,7 +19,7 @@ class Tag extends AbstractBase
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Post", mappedBy="tag")
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="tags")
      */
     private $posts;
 
@@ -58,11 +58,6 @@ class Tag extends AbstractBase
         return $this;
     }
 
-    public function __toString() {
-
-        return $this->getTitle() ? $this->getTitle() : '---';
-    }
-
     /**
      * Add post
      *
@@ -90,4 +85,15 @@ class Tag extends AbstractBase
 
         return $this;
     }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString() {
+
+        return $this->getTitle() ? $this->getTitle() : '---';
+    }
+
 }

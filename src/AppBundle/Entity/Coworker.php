@@ -2,6 +2,8 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\DescriptionTrait;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Class Coworker
  *

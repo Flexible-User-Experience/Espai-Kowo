@@ -3,6 +3,7 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\TitleTrait;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Category
@@ -50,7 +51,7 @@ class Category extends AbstractBase
 
     /**
      * @param ArrayCollection $coworkers
-     * @return Category
+     * @return $this
      */
     public function setCoworkers(ArrayCollection $coworkers)
     {
