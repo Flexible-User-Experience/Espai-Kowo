@@ -86,6 +86,11 @@ sonata_block:
     blocks:
         sonata.admin.block.admin_list:  ~
 
+sonata_user:
+    security_acl: true
+    manager_type: orm
+
+
 # Stof Doctrine Extensions
 stof_doctrine_extensions:
     default_locale: "%locale%"
@@ -97,3 +102,16 @@ stof_doctrine_extensions:
             translatable:   false
             sortable:       false
             tree:           false
+
+# FOS User
+fos_user:
+    db_driver:      orm
+    firewall_name:  admin
+    user_class:     AppBundle\Entity\User
+    group:
+        group_class:   AppBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager
+    service:
+        user_manager: sonata.user.orm.user_manager
+
+
