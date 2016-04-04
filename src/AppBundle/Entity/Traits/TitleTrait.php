@@ -14,6 +14,13 @@ use Doctrine\ORM\Mapping as ORM;
 Trait TitleTrait
 {
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255)
+     */
+    private $title;
+
+    /**
      * Set title
      *
      * @param string $title

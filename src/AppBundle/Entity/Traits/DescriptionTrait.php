@@ -14,6 +14,13 @@ use Doctrine\ORM\Mapping as ORM;
 Trait DescriptionTrait
 {
     /**
+     * @var string
+     *
+     * @ORM\Column(type="text", length=4000, nullable=true)
+     */
+    private $description;
+
+    /**
      * Set description
      *
      * @param string $description
