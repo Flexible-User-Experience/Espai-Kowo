@@ -8,16 +8,16 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
 /**
- * Class CoworkerAdmin
+ * Class CategoryAdmin
  *
  * @category Admin
  * @package  AppBundle\Admin
  * @author   Anton Serra <aserratorta@gmail.com>
  */
-class CoworkerAdmin extends AbstractBaseAdmin
+class CategoryAdmin extends AbstractBaseAdmin
 {
-    protected $classnameLabel = 'Coworker';
-    protected $baseRoutePattern = 'coworkers/coworker';
+    protected $classnameLabel = 'Category';
+    protected $baseRoutePattern = 'coworker/category';
     protected $datagridValues = array(
         '_sort_by'    => 'name',
         '_sort_order' => 'desc',
@@ -44,17 +44,10 @@ class CoworkerAdmin extends AbstractBaseAdmin
     {
         $formMapper
             ->add(
-                'name',
+                'title',
                 null,
                 array(
-                    'label' => 'backend.admin.coworker.name',
-                )
-            )
-            ->add(
-                'email',
-                null,
-                array(
-                    'label' => 'backend.admin.coworker.email',
+                    'label' => 'backend.admin.category.title',
                 )
             );
     }
@@ -65,17 +58,10 @@ class CoworkerAdmin extends AbstractBaseAdmin
     {
         $datagridMapper
             ->add(
-                'name',
+                'title',
                 null,
                 array(
-                    'label' => 'backend.admin.cart.customer.name',
-                )
-            )
-            ->add(
-                'email',
-                null,
-                array(
-                    'label' => 'backend.admin.cart.customer.address',
+                    'label' => 'backend.admin.category.title',
                 )
             );
     }
@@ -88,17 +74,10 @@ class CoworkerAdmin extends AbstractBaseAdmin
         unset($this->listModes['mosaic']);
         $listMapper
             ->add(
-                'name',
+                'title',
                 null,
                 array(
-                    'label' => 'backend.admin.cart.customer.name',
-                )
-            )
-            ->add(
-                'email',
-                null,
-                array(
-                    'label' => 'backend.admin.cart.customer.address',
+                    'label' => 'backend.admin.category.title',
                 )
             )
             ->add(
