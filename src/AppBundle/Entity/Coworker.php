@@ -28,7 +28,6 @@ class Coworker extends AbstractBase
      * @var Category
      *
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="coworkers")
-     * @ORM\JoinColumn(name="Category_id", referencedColumnName="id")
      */
     private $category;
 
@@ -41,32 +40,60 @@ class Coworker extends AbstractBase
     private $email;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url(checkDNS = true)
      */
     private $facebook;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url(checkDNS = true)
      */
-    private $tweeter;
+    private $twitter;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url(checkDNS = true)
      */
     private $linkedin;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url(checkDNS = true)
      */
     private $github;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url(checkDNS = true)
+     */
+    private $web;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url(checkDNS = true)
+     */
+    private $blog;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url(checkDNS = true)
+     */
+    private $instagram;
 
     /**
      *
@@ -151,18 +178,18 @@ class Coworker extends AbstractBase
     /**
      * @return boolean
      */
-    public function getTweeter()
+    public function getTwitter()
     {
-        return $this->tweeter;
+        return $this->twitter;
     }
 
     /**
-     * @param boolean $tweeter
+     * @param boolean $twitter
      * @return Coworker
      */
-    public function setTweeter($tweeter)
+    public function setTwitter($twitter)
     {
-        $this->tweeter = $tweeter;
+        $this->twitter = $twitter;
         return $this;
     }
 
@@ -202,4 +229,57 @@ class Coworker extends AbstractBase
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getWeb()
+    {
+        return $this->web;
+    }
+
+    /**
+     * @param string $web
+     * @return Coworker
+     */
+    public function setWeb($web)
+    {
+        $this->web = $web;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBlog()
+    {
+        return $this->blog;
+    }
+
+    /**
+     * @param string $blog
+     * @return Coworker
+     */
+    public function setBlog($blog)
+    {
+        $this->blog = $blog;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInstagram()
+    {
+        return $this->instagram;
+    }
+
+    /**
+     * @param string $instagram
+     * @return Coworker
+     */
+    public function setInstagram($instagram)
+    {
+        $this->instagram = $instagram;
+        return $this;
+    }
 }

@@ -29,14 +29,6 @@ class Event extends AbstractBase
     private $type;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255, nullable=true)
-     * @Assert\Email(strict = true, checkMX = true, checkHost = true)
-     */
-    private $email;
-
-    /**
      *
      *
      * Methods
@@ -61,23 +53,4 @@ class Event extends AbstractBase
         $this->type = $type;
         return $this;
     }
-
-    /**
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param string $email
-     * @return Event
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-        return $this;
-    }
-
 }

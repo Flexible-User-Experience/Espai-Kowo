@@ -19,10 +19,13 @@ AppBundle\Entity\Coworker:
     name: <name()>
     description: <paragraph()>
     email: <safeEmail()>
-    facebook: <boolean(50)>
-    tweeter: <boolean(50)>
-    linkedin: <boolean(50)>
-    github: <boolean(50)>
+    facebook: <url()>
+    twitter: <url()>
+    linkedin: <url()>
+    github: <url()>
+    web: <url()>
+    instagram: <url()>
+    blog: <url()>
     category: @category<numberBetween(1, 5)>
 
 ## Category
@@ -37,7 +40,6 @@ AppBundle\Entity\Event:
     description: <paragraph()>
     type: <word()>
     date: <dateTimeThisMonth()>
-    email: <safeEmail()>
 
 # Posts
 AppBundle\Entity\Post:
