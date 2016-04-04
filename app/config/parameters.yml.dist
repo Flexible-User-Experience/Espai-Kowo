@@ -29,3 +29,5 @@ parameters:
     private_admin_test_pass: admin
     private_editor_test_user: user
     private_editor_test_pass: user
+
+    project_web_title: "EspaiKowo"

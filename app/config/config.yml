@@ -116,4 +116,39 @@ fos_user:
     service:
         user_manager: sonata.user.orm.user_manager
 
+# Admin
+sonata_admin:
+    title: "%project_web_title%"
+#    title_logo: "/bundles/app/images/backend-favicon.png"
+    options:
+        html5_validate: true
+        confirm_exit:   true
+        use_select2:    true
+        pager_links:    10
+    persist_filters: true
+#    templates:
+#        layout: "::Admin/layout.html.twig"
+#        show:   "::Admin/show.html.twig"
+    dashboard:
+        groups:
+            Coworkers:
+                icon: "<i class='fa fa-users'></i>"
+            Contacts:
+                icon: "<i class='fa fa-envelope'></i>"
+            Users:
+                icon: "<i class='fa fa-user'></i>"
 
+        blocks:
+            -
+                position: top
+                type: sonata.block.service.text
+                class: col-md-12
+                settings:
+                    content: >
+                        <h1 style="margin-top:0">Content Management System</h1>
+            -
+                position: top
+                type: sonata.admin.block.admin_list
+                class: col-md-6
+                settings:
+                    groups: [ Coworkers ]
