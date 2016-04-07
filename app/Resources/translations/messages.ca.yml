@@ -24,4 +24,7 @@ backend:
             description: Descripció
             user_question: Pregunta del usuari
             your_answer: La teva resposta
-
+        event:
+            title: Títol
+            description: Descripció
+            type: Tipus

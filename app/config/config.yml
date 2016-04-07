@@ -137,6 +137,8 @@ sonata_admin:
         groups:
             Coworkers:
                 icon: "<i class='fa fa-users'></i>"
+            Events:
+                icon: "<i class='fa fa-calendar-times-o'></i>"
             Contacts:
                 icon: "<i class='fa fa-envelope'></i>"
             Users:
@@ -150,6 +152,12 @@ sonata_admin:
                 settings:
                     content: >
                         <h1 style="margin-top:0">Content Management System</h1>
+            -
+                position: top
+                type: sonata.admin.block.admin_list
+                class: col-md-6
+                settings:
+                    groups: [ Events ]
             -
                 position: top
                 type: sonata.admin.block.admin_list
