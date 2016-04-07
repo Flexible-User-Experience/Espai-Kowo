@@ -1,0 +1,13 @@
+backend:
+    admin:
+#        admin: Administrador
+        actions: Accions
+        abstractbase:
+            createdAT: Data creació
+            enabled: Actiu
+        coworker:
+            name: Nom
+            email: cooreu electrònic
+        category:
+            title: Títol
+

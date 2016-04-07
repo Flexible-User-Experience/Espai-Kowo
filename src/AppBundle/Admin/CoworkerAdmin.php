@@ -31,9 +31,6 @@ class CoworkerAdmin extends AbstractBaseAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection
-            ->remove('create')
-            ->remove('edit')
-            ->remove('delete')
             ->remove('batch');
     }
 
@@ -43,6 +40,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(7))
             ->add(
                 'name',
                 null,
@@ -56,7 +54,25 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 array(
                     'label' => 'backend.admin.coworker.email',
                 )
-            );
+            )
+            ->end()
+            ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(5))
+            ->add(
+                'category',
+                null,
+                array(
+                    'label' => 'backend.admin.category',
+                )
+            )
+            ->add(
+                'enabled',
+                'checkbox',
+                array(
+                    'label'    => 'backend.admin.enabled',
+                    'required' => false,
+                )
+            )
+            ->end();
     }
     /**
      * @param DatagridMapper $datagridMapper
@@ -65,17 +81,41 @@ class CoworkerAdmin extends AbstractBaseAdmin
     {
         $datagridMapper
             ->add(
+                'createdAt',
+                'doctrine_orm_date',
+                array(
+                    'label'      => 'backend.admin.created_date',
+                    'field_type' => 'sonata_type_date_picker',
+                    'format'     => 'd-m-Y',
+                )
+            )
+            ->add(
                 'name',
                 null,
                 array(
-                    'label' => 'backend.admin.cart.customer.name',
+                    'label' => 'backend.admin.coworker.name',
                 )
             )
             ->add(
                 'email',
                 null,
                 array(
-                    'label' => 'backend.admin.cart.customer.address',
+                    'label' => 'backend.admin.coworker.email',
+                )
+            )
+            ->add(
+                'category',
+                null,
+                array(
+                    'label' => 'backend.admin.category',
+                )
+            )
+            ->add(
+                'enabled',
+                null,
+                array(
+                    'label'    => 'backend.admin.enabled',
+                    'editable' => true,
                 )
             );
     }
@@ -88,17 +128,43 @@ class CoworkerAdmin extends AbstractBaseAdmin
         unset($this->listModes['mosaic']);
         $listMapper
             ->add(
+                'createdAt',
+                'date',
+                array(
+                    'label'  => 'backend.admin.date',
+                    'format' => 'd/m/Y',
+                    'editable' => true,
+                )
+            )
+            ->add(
                 'name',
                 null,
                 array(
-                    'label' => 'backend.admin.cart.customer.name',
+                    'label' => 'backend.admin.coworker.name',
+                    'editable' => true,
                 )
             )
             ->add(
                 'email',
                 null,
                 array(
-                    'label' => 'backend.admin.cart.customer.address',
+                    'label' => 'backend.admin.coworker.email',
+                    'editable' => true,
+                )
+            )
+            ->add(
+                'category',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.category',
+                )
+            )
+            ->add(
+                'enabled',
+                null,
+                array(
+                    'label' => 'backend.admin.checked',
+                    'editable' => true,
                 )
             )
             ->add(
@@ -107,8 +173,9 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 array(
                     'label'   => 'backend.admin.actions',
                     'actions' => array(
-                        'show' => array(),
-                    ),
+                        'edit'   => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
+                        'delete' => array('template' => '::Admin/Buttons/list__action_delete_button.html.twig'),
+                    )
                 )
             );
     }

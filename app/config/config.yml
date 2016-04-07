@@ -4,7 +4,7 @@ imports:
     - { resource: services.yml }
 
 parameters:
-    locale: ca
+#    locale: ca
     main_brand_title: "espai kowo"
 
 framework:
@@ -87,6 +87,7 @@ sonata_block:
     default_contexts: [ cms ]
     blocks:
         sonata.admin.block.admin_list:  ~
+        sonata.user.block.menu:         ~
         sonata.block.service.text:      ~
 
 sonata_user:
