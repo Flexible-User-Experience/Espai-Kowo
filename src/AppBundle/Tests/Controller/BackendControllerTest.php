@@ -47,9 +47,9 @@ class BackendControllerTest extends AbstractBaseTest
     {
         return array(
             array('/admin/dashboard'),
-//            array('/admin/contact/message/list'),
-//            array('/admin/contact/message/1/show'),
-//            array('/admin/contact/message/1/answer'),
+            array('/admin/contact/message/list'),
+            array('/admin/contact/message/1/show'),
+            array('/admin/contact/message/1/answer'),
             array('/admin/coworkers/category/list'),
             array('/admin/coworkers/category/create'),
             array('/admin/coworkers/category/1/delete'),
