@@ -163,7 +163,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 'enabled',
                 null,
                 array(
-                    'label' => 'backend.admin.checked',
+                    'label' => 'backend.admin.enabled',
                     'editable' => true,
                 )
             )
