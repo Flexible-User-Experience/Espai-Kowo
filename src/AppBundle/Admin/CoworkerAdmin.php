@@ -61,7 +61,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 'category',
                 null,
                 array(
-                    'label' => 'backend.admin.category',
+                    'label' => 'backend.admin.category.title',
                 )
             )
             ->add(
@@ -84,7 +84,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 'createdAt',
                 'doctrine_orm_date',
                 array(
-                    'label'      => 'backend.admin.created_date',
+                    'label'      => 'backend.admin.date',
                     'field_type' => 'sonata_type_date_picker',
                     'format'     => 'd-m-Y',
                 )
@@ -107,7 +107,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 'category',
                 null,
                 array(
-                    'label' => 'backend.admin.category',
+                    'label' => 'backend.admin.category.title',
                 )
             )
             ->add(

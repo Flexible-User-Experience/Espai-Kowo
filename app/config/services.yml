@@ -10,3 +10,13 @@ services:
         arguments: [ ~, AppBundle\Entity\Category, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Category", group: "Coworkers" }
+    admin.contactmessage:
+        class: AppBundle\Admin\ContactMessageAdmin
+        arguments: [ ~, AppBundle\Entity\ContactMessage, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Contact Message", group: "Contacts" }
+    admin.user:
+        class: AppBundle\Admin\UserAdmin
+        arguments: [ ~, AppBundle\Entity\User, ~, "@fos_user.user_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "User", group: "Users" }

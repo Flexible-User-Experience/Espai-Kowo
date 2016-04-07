@@ -48,7 +48,7 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                 'checked',
                 null,
                 array(
-                    'label' => 'backend.admin.checked',
+                    'label' => 'backend.admin.contact.checked',
                 )
             )
             ->add(
@@ -63,42 +63,42 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                 'name',
                 null,
                 array(
-                    'label' => 'backend.admin.name',
+                    'label' => 'backend.admin.contact.name',
                 )
             )
             ->add(
                 'email',
                 null,
                 array(
-                    'label' => 'backend.admin.email',
+                    'label' => 'backend.admin.contact.email',
                 )
             )
             ->add(
                 'subject',
                 null,
                 array(
-                    'label' => 'backend.admin.subject',
+                    'label' => 'backend.admin.contact.subject',
                 )
             )
             ->add(
                 'message',
                 null,
                 array(
-                    'label' => 'backend.admin.message',
+                    'label' => 'backend.admin.contact.message',
                 )
             )
             ->add(
                 'answered',
                 null,
                 array(
-                    'label' => 'backend.admin.answered',
+                    'label' => 'backend.admin.contact.answered',
                 )
             )
             ->add(
                 'description',
                 null,
                 array(
-                    'label' => 'backend.admin.description',
+                    'label' => 'backend.admin.contact.description',
                 )
             );
     }
@@ -156,7 +156,7 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                 'answered',
                 null,
                 array(
-                    'label' => 'backend.admin.answered',
+                    'label' => 'backend.admin.contact.answered',
                 )
             );
         if ($this->getSubject()->getAnswered()) {
@@ -165,7 +165,7 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                     'description',
                     'textarea',
                     array(
-                        'label' => 'backend.admin.answer',
+                        'label' => 'backend.admin.contact.answer',
                     )
                 );
         }
@@ -182,14 +182,14 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                 'checked',
                 null,
                 array(
-                    'label' => 'backend.admin.checked',
+                    'label' => 'backend.admin.contact.checked',
                 )
             )
             ->add(
                 'createdAt',
                 'date',
                 array(
-                    'label'  => 'backend.admin.date',
+                    'label'  => 'backend.admin.contact.date',
                     'format' => 'd/m/Y'
                 )
             )
@@ -197,28 +197,28 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                 'name',
                 null,
                 array(
-                    'label' => 'backend.admin.name',
+                    'label' => 'backend.admin.contact.name',
                 )
             )
             ->add(
                 'email',
                 null,
                 array(
-                    'label' => 'backend.admin.email',
+                    'label' => 'backend.admin.contact.email',
                 )
             )
             ->add(
                 'subject',
                 null,
                 array(
-                    'label' => 'backend.admin.subject',
+                    'label' => 'backend.admin.contact.subject',
                 )
             )
             ->add(
                 'answered',
                 null,
                 array(
-                    'label' => 'backend.admin.answered',
+                    'label' => 'backend.admin.contact.answered',
                 )
             )
             ->add(

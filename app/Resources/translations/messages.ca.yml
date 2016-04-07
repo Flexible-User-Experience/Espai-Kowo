@@ -1,13 +1,23 @@
 backend:
     admin:
-#        admin: Administrador
         actions: Accions
-        abstractbase:
-            createdAT: Data creació
-            enabled: Actiu
+        controls: Controls
+        general: General
+        date: Data creació
+        enabled: Actiu
         coworker:
             name: Nom
-            email: cooreu electrònic
+            email: Correu electrònic
+            category: Dedicació
         category:
             title: Títol
+        contact:
+            name: Nom
+            email: Correu electrònic
+            checked: Llegit
+            date: Data
+            subject: Tema
+            answered: Contestat
+            message: Missatge
+            description: Descripció
 
