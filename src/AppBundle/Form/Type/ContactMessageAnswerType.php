@@ -26,7 +26,7 @@ class ContactMessageAnswerType extends ContactMessageType
                 'description',
                 TextareaType::class,
                 array(
-                    'label'    => 'backend.admin.answer',
+                    'label'    => 'backend.admin.contact.answer',
                     'required' => true,
                     'attr'     => array(
                         'rows' => 6,

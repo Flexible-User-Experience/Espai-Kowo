@@ -5,6 +5,7 @@ backend:
         general: General
         date: Data creació
         enabled: Actiu
+        submit: Enviar
         coworker:
             name: Nom
             email: Correu electrònic
@@ -18,6 +19,9 @@ backend:
             date: Data
             subject: Tema
             answered: Contestat
+            answer: Resposta
             message: Missatge
             description: Descripció
+            user_question: Pregunta del usuari
+            your_answer: La teva resposta
 
