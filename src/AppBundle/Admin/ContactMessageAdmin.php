@@ -113,7 +113,7 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                 'checked',
                 null,
                 array(
-                    'label' => 'backend.admin.checked',
+                    'label' => 'backend.admin.contact.checked',
                 )
             )
             ->add(
@@ -128,28 +128,28 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                 'name',
                 null,
                 array(
-                    'label' => 'backend.admin.name',
+                    'label' => 'backend.admin.contact.name',
                 )
             )
             ->add(
                 'email',
                 null,
                 array(
-                    'label' => 'backend.admin.email',
+                    'label' => 'backend.admin.contact.email',
                 )
             )
             ->add(
                 'subject',
                 null,
                 array(
-                    'label' => 'backend.admin.subject',
+                    'label' => 'backend.admin.contact.subject',
                 )
             )
             ->add(
                 'message',
                 'textarea',
                 array(
-                    'label' => 'backend.admin.message',
+                    'label' => 'backend.admin.contact.message',
                 )
             )
             ->add(
@@ -165,7 +165,7 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                     'description',
                     'textarea',
                     array(
-                        'label' => 'backend.admin.contact.answer',
+                        'label' => 'backend.admin.contact.answered',
                     )
                 );
         }

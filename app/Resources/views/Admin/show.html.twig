@@ -9,7 +9,7 @@
 {% endblock%}
 
 {% block actions %}
-    {{ parent() }}
+    <li>{% include 'SonataAdminBundle:Button:list_button.html.twig' %}</li>
+    <li>{% include 'SonataAdminBundle:Button:create_button.html.twig' %}</li>
     <li>{% include '::Admin/Buttons/answer_button.html.twig' %}</li>
-    <li>{% include '::Admin/Buttons/create_receipt.html.twig' %}</li>
 {% endblock %}

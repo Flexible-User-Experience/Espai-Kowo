@@ -1,0 +1,3 @@
+{% if admin.hasroute('answer') and admin.id(object) %}
+    <a class="sonata-action-element" href="{{ admin.generateObjectUrl('answer', object) }}"><i class="fa fa-envelope-o"></i> {{ "backend.admin.contact.answered" | trans }}</a>
+{% endif %}
