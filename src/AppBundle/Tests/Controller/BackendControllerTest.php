@@ -87,10 +87,10 @@ class BackendControllerTest extends AbstractBaseTest
     public function provideNotFoundUrls()
     {
         return array(
-//            array('/admin/contact/message/create'),
-//            array('/admin/contact/message/1/edit'),
-//            array('/admin/contact/message/1/delete'),
-//            array('/admin/contact/message/batch'),
+            array('/admin/contact/message/create'),
+            array('/admin/contact/message/1/edit'),
+            array('/admin/contact/message/1/delete'),
+            array('/admin/contact/message/batch'),
             array('/admin/coworkers/category/batch'),
             array('/admin/coworkers/coworker/batch'),
             array('/admin/users/show'),
