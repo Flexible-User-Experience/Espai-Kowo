@@ -1,0 +1,11 @@
+{% block body %}
+    <h1>Thanks for contact us!</h1>
+    <p>
+        Your question "{{ contact.subject }}":<br><br>
+        <em>"{{ contact.message | raw }}"</em><br><br>
+        has been received.
+    </p>
+    <br>
+    <br>
+    <p>We will answer you as soon as possible. Keep in touch.</p>
+{% endblock %}
