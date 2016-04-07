@@ -47,9 +47,9 @@ class BackendControllerTest extends AbstractBaseTest
     {
         return array(
             array('/admin/dashboard'),
-            array('/admin/contact/message/list'),
-            array('/admin/contact/message/1/show'),
-            array('/admin/contact/message/1/answer'),
+//            array('/admin/contact/message/list'),
+//            array('/admin/contact/message/1/show'),
+//            array('/admin/contact/message/1/answer'),
             array('/admin/coworkers/category/list'),
             array('/admin/coworkers/category/create'),
             array('/admin/coworkers/category/1/delete'),
@@ -58,10 +58,10 @@ class BackendControllerTest extends AbstractBaseTest
             array('/admin/coworkers/coworker/create'),
             array('/admin/coworkers/coworker/1/delete'),
             array('/admin/coworkers/coworker/1/edit'),
-//            array('/admin/users/list'),
-//            array('/admin/users/create'),
-//            array('/admin/users/1/edit'),
-//            array('/admin/users/1/delete'),
+            array('/admin/users/list'),
+            array('/admin/users/create'),
+            array('/admin/users/1/edit'),
+            array('/admin/users/1/delete'),
         );
     }
 
@@ -87,14 +87,14 @@ class BackendControllerTest extends AbstractBaseTest
     public function provideNotFoundUrls()
     {
         return array(
-            array('/admin/contact/message/create'),
-            array('/admin/contact/message/1/edit'),
-            array('/admin/contact/message/1/delete'),
-            array('/admin/contact/message/batch'),
+//            array('/admin/contact/message/create'),
+//            array('/admin/contact/message/1/edit'),
+//            array('/admin/contact/message/1/delete'),
+//            array('/admin/contact/message/batch'),
             array('/admin/coworkers/category/batch'),
             array('/admin/coworkers/coworker/batch'),
-//            array('/admin/users/show'),
-//            array('/admin/users/batch'),
+            array('/admin/users/show'),
+            array('/admin/users/batch'),
         );
     }
 }
