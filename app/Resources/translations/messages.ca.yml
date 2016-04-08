@@ -38,3 +38,8 @@ backend:
             metakeywords: Paraules clau
             metadescription: Metadescripció
             content: Contingut
+        tag:
+            tag: Etiqueta
+            title: Títol
+            posts_amount: Articles vinculats
+            posts: Articles

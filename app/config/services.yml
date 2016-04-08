@@ -20,6 +20,11 @@ services:
         arguments: [ ~, AppBundle\Entity\Post, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Posts", group: "Web" }
+    admin.tag:
+        class: AppBundle\Admin\TagAdmin
+        arguments: [ ~, AppBundle\Entity\Tag, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Tags", group: "Web" }
     admin.contactmessage:
         class: AppBundle\Admin\ContactMessageAdmin
         arguments: [ ~, AppBundle\Entity\ContactMessage, AppBundle:Admin\ContactMessageAdmin ]
