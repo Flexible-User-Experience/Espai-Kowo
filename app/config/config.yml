@@ -135,6 +135,8 @@ sonata_admin:
         show:   "::Admin/show.html.twig"
     dashboard:
         groups:
+            Web:
+                icon: "<i class='fa fa-chrome'></i>"
             Coworkers:
                 icon: "<i class='fa fa-users'></i>"
             Events:
@@ -164,6 +166,12 @@ sonata_admin:
                 class: col-md-6
                 settings:
                     groups: [ Coworkers ]
+            -
+                position: top
+                type: sonata.admin.block.admin_list
+                class: col-md-6
+                settings:
+                    groups: [ Web ]
             -
                 position: top
                 type: sonata.admin.block.admin_list

@@ -6,6 +6,7 @@ backend:
         date: Data creació
         enabled: Actiu
         submit: Enviar
+        published_date: Data de publicació
         coworker:
             name: Nom
             email: Correu electrònic
@@ -28,3 +29,12 @@ backend:
             title: Títol
             description: Descripció
             type: Tipus
+        post:
+            post: Article
+            image: Imatge
+            title: Títol
+            tags: Etiquetes
+            description: Descripció
+            metakeywords: Paraules clau
+            metadescription: Metadescripció
+            content: Contingut
