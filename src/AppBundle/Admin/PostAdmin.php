@@ -219,7 +219,7 @@ class PostAdmin extends AbstractBaseAdmin
                 'title',
                 null,
                 array(
-                    'label'    => 'backend.admin.title',
+                    'label'    => 'backend.admin.post.title',
                     'editable' => true,
                 )
             )
@@ -244,9 +244,11 @@ class PostAdmin extends AbstractBaseAdmin
                 'actions',
                 array(
                     'actions' => array(
-                        'show'   => array(),
-                        'edit'   => array(),
-                        'delete' => array(),
+                        'show'   => array(
+                            'template' => '::Admin/Buttons/list__action_show_button.html.twig'
+                        ),
+                        'edit'   => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
+                        'delete' => array('template' => '::Admin/Buttons/list__action_delete_button.html.twig'),
                     ),
                     'label'   => 'backend.admin.actions',
                 )
