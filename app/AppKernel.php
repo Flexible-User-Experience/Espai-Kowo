@@ -26,6 +26,7 @@ class AppKernel extends Kernel
 //            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
 //            new Craue\FormFlowBundle\CraueFormFlowBundle(),
 //            new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),

@@ -72,7 +72,7 @@ class PostAdmin extends AbstractBaseAdmin
                 'imageFile',
                 'file',
                 array(
-                    'label'    => 'backend.admin.image',
+                    'label'    => 'backend.admin.post.image',
                     'help'     => $this->getImageHelperFormMapperWithThumbnail(),
                     'required' => false,
                 )

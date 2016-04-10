@@ -184,3 +184,10 @@ sonata_admin:
                 class: col-md-6
                 settings:
                     groups: [ Contacts ]
+
+# CKEditor
+ivory_ck_editor:
+    inline: false
+    configs:
+        my_config:
+            toolbar: standard
