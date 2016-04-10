@@ -43,3 +43,13 @@ backend:
             title: Títol
             posts_amount: Articles vinculats
             posts: Articles
+        user:
+            user: Usuari
+            editor: Editor
+            admin: Administrador
+            superadmin: Superadministrador
+            firstname: Nom
+            username: Nom usuari
+            email: Correu electrònic
+            plain_password: Contrasenya
+            roles: Rols
