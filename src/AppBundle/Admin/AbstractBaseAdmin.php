@@ -16,25 +16,25 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
  */
 abstract class AbstractBaseAdmin extends Admin
 {
-//    /** @var UploaderHelper */
-//    private $vus;
+    /** @var UploaderHelper */
+    private $vus;
 
-//    /** @var CacheManager */
-//    private $lis;
+    /** @var CacheManager */
+    private $lis;
 
-//    /**
-//     * @param string         $code
-//     * @param string         $class
-//     * @param string         $baseControllerName
-//     * @param UploaderHelper $vus
-//     * @param CacheManager   $lis
-//     */
-//    public function __construct($code, $class, $baseControllerName, UploaderHelper $vus, CacheManager $lis)
-//    {
-//        parent::__construct($code, $class, $baseControllerName);
-//        $this->vus = $vus;
-//        $this->lis = $lis;
-//    }
+    /**
+     * @param string         $code
+     * @param string         $class
+     * @param string         $baseControllerName
+     * @param UploaderHelper $vus
+     * @param CacheManager   $lis
+     */
+    public function __construct($code, $class, $baseControllerName, UploaderHelper $vus, CacheManager $lis)
+    {
+        parent::__construct($code, $class, $baseControllerName);
+        $this->vus = $vus;
+        $this->lis = $lis;
+    }
 
     /**
      * @var array

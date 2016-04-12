@@ -1,9 +1,44 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/book/service_container.html
-parameters:
-#    parameter_name: value
-
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+# Sonata Admin
+    admin.coworker:
+        class: AppBundle\Admin\CoworkerAdmin
+        arguments: [ ~ , AppBundle\Entity\Coworker, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Coworker", group: "Coworkers" }
+    admin.category:
+        class: AppBundle\Admin\CategoryAdmin
+        arguments: [ ~, AppBundle\Entity\Category, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Category", group: "Coworkers" }
+    admin.event:
+        class: AppBundle\Admin\EventAdmin
+        arguments: [ ~, AppBundle\Entity\Event, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Events", group: "Events" }
+    admin.post:
+        class: AppBundle\Admin\PostAdmin
+        arguments: [ ~, AppBundle\Entity\Post, AppBundle:Admin\PostAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Posts", group: "Web" }
+    admin.tag:
+        class: AppBundle\Admin\TagAdmin
+        arguments: [ ~, AppBundle\Entity\Tag, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Tags", group: "Web" }
+    admin.contactmessage:
+        class: AppBundle\Admin\ContactMessageAdmin
+        arguments: [ ~, AppBundle\Entity\ContactMessage, AppBundle:Admin\ContactMessageAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Contact Message", group: "Contacts" }
+    admin.user:
+        class: AppBundle\Admin\UserAdmin
+        arguments: [ ~, AppBundle\Entity\User, ~, "@fos_user.user_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "User", group: "Users" }
+# Messaging
+    app.courier:
+        class: AppBundle\Service\CourierService
+        arguments: [ "@swiftmailer.mailer" ]
+    app.notification:
+        class: AppBundle\Service\NotificationService
+        arguments: [ "@app.courier", "@twig", "%mailer_destination%", "%mailer_url_base%" ]

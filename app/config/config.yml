@@ -2,9 +2,10 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: media.yml }
 
 parameters:
-    locale: ca
+#    locale: ca
     main_brand_title: "espai kowo"
 
 framework:
@@ -33,6 +34,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form_themes:
+        - "bootstrap_3_layout.html.twig"
+        - "SonataCoreBundle:Form:datepicker.html.twig"
     globals:
         google_analytics_enabled: %google_analytics_enabled%
         google_analytics_account: "%google_analytics_account%"
@@ -67,6 +71,8 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
@@ -85,6 +91,13 @@ sonata_block:
     default_contexts: [ cms ]
     blocks:
         sonata.admin.block.admin_list:  ~
+        sonata.user.block.menu:         ~
+        sonata.block.service.text:      ~
+
+sonata_user:
+    security_acl: true
+    manager_type: orm
+
 
 # Stof Doctrine Extensions
 stof_doctrine_extensions:
@@ -97,3 +110,86 @@ stof_doctrine_extensions:
             translatable:   false
             sortable:       false
             tree:           false
+
+# FOS User
+fos_user:
+    db_driver:      orm
+    firewall_name:  admin
+    user_class:     AppBundle\Entity\User
+    group:
+        group_class:   AppBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager
+    service:
+        user_manager: sonata.user.orm.user_manager
+
+# Admin
+sonata_admin:
+    title: "%project_web_title%"
+    title_logo: "/bundles/app/img/logo-espai-kowo-backend.png"
+    options:
+        html5_validate: true
+        confirm_exit:   true
+        use_select2:    true
+        pager_links:    10
+    persist_filters: true
+    templates:
+        layout: "::Admin/layout.html.twig"
+        show:   "::Admin/show.html.twig"
+    dashboard:
+        groups:
+            Web:
+                icon: "<i class='fa fa-chrome'></i>"
+            Coworkers:
+                icon: "<i class='fa fa-users'></i>"
+            Events:
+                icon: "<i class='fa fa-calendar-times-o'></i>"
+            Contacts:
+                icon: "<i class='fa fa-envelope'></i>"
+            Users:
+                icon: "<i class='fa fa-user'></i>"
+
+        blocks:
+            -
+                position: top
+                type: sonata.block.service.text
+                class: col-md-12
+                settings:
+                    content: >
+                        <h1 style="margin-top:0">Content Management System</h1>
+            -
+                position: top
+                type: sonata.admin.block.admin_list
+                class: col-md-6
+                settings:
+                    groups: [ Events ]
+            -
+                position: top
+                type: sonata.admin.block.admin_list
+                class: col-md-6
+                settings:
+                    groups: [ Coworkers ]
+            -
+                position: top
+                type: sonata.admin.block.admin_list
+                class: col-md-6
+                settings:
+                    groups: [ Web ]
+            -
+                position: top
+                type: sonata.admin.block.admin_list
+                class: col-md-6
+                settings:
+                    groups: [ Users ]
+            -
+                position: top
+                type: sonata.admin.block.admin_list
+                class: col-md-6
+                settings:
+                    groups: [ Contacts ]
+
+# CKEditor
+ivory_ck_editor:
+    inline: false
+    configs:
+        my_config:
+            toolbar: standard

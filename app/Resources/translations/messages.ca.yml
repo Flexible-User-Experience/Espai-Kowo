@@ -1,0 +1,55 @@
+backend:
+    admin:
+        actions: Accions
+        controls: Controls
+        general: General
+        date: Data creació
+        enabled: Actiu
+        submit: Enviar
+        published_date: Data de publicació
+        coworker:
+            name: Nom
+            email: Correu electrònic
+            category: Dedicació
+        category:
+            title: Títol
+        contact:
+            name: Nom
+            email: Correu electrònic
+            checked: Llegit
+            date: Data
+            subject: Tema
+            answered: Contestat
+            answer: Resposta
+            message: Missatge
+            description: Descripció
+            user_question: Pregunta del usuari
+            your_answer: La teva resposta
+        event:
+            title: Títol
+            description: Descripció
+            type: Tipus
+        post:
+            post: Article
+            image: Imatge
+            title: Títol
+            tags: Etiquetes
+            description: Descripció
+            metakeywords: Paraules clau
+            metadescription: Metadescripció
+            content: Contingut
+        tag:
+            tag: Etiqueta
+            title: Títol
+            posts_amount: Articles vinculats
+            posts: Articles
+        user:
+            user: Usuari
+            editor: Editor
+            admin: Administrador
+            superadmin: Superadministrador
+            firstname: Nom
+            username: Nom usuari
+            email: Correu electrònic
+            plain_password: Contrasenya
+            roles: Rols

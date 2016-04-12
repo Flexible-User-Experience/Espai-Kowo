@@ -1,0 +1,13 @@
+{% extends ':Frontend:base.html.twig' %}
+
+{% block main %}
+    <div class="col-xs-12">
+        <h2 class="text-center fresh-talent-ad">Coworker detail</h2>
+        <h5>{{ coworker.name }}</h5>
+        <h5>{{ coworker.email }}</h5>
+        <h5>{{ coworker.category }}</h5>
+        <h5>{{ coworker.facebook }}</h5>
+        <h5>{{ coworker.linkedin }}</h5>
+        <a href="{{ path('front_coworkers_list') }}">Llista</a>
+    </div>
+{% endblock %}

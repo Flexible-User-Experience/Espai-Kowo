@@ -1,0 +1,13 @@
+{% block body %}
+    <h1>Hello again!</h1>
+    <p>{{ contact.description | raw }}</p>
+    <br>
+    <br>
+    <p>
+        You have received this notification in order to answer your question "{{ contact.subject }}" from {{ contact.createdAt | date('d/m/Y') }} at {{ contact.createdAt | date('H:i') }}:<br>
+        <em>"{{ contact.message | raw }}"</em>
+    </p>
+    <br>
+    <br>
+    <p>Thanks for contact us.</p>
+{% endblock %}
