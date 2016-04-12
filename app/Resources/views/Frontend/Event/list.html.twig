@@ -1,0 +1,10 @@
+{% extends ':Frontend:base.html.twig' %}
+
+{% block main %}
+    <div class="col-xs-12">
+        <h2 class="text-center fresh-talent-ad">Events</h2>
+        {% for event in events %}
+            <h5>{{ event.type }}</h5>
+        {% endfor %}
+    </div>
+{% endblock %}
