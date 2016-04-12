@@ -61,7 +61,14 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 'category',
                 null,
                 array(
-                    'label' => 'backend.admin.category.title',
+                    'label' => 'backend.admin.category.category',
+                )
+            )
+            ->add(
+                'position',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.position',
                 )
             )
             ->add(
@@ -81,15 +88,6 @@ class CoworkerAdmin extends AbstractBaseAdmin
     {
         $datagridMapper
             ->add(
-                'createdAt',
-                'doctrine_orm_date',
-                array(
-                    'label'      => 'backend.admin.date',
-                    'field_type' => 'sonata_type_date_picker',
-                    'format'     => 'd-m-Y',
-                )
-            )
-            ->add(
                 'name',
                 null,
                 array(
@@ -107,7 +105,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 'category',
                 null,
                 array(
-                    'label' => 'backend.admin.category.title',
+                    'label' => 'backend.admin.category.category',
                 )
             )
             ->add(
@@ -128,11 +126,10 @@ class CoworkerAdmin extends AbstractBaseAdmin
         unset($this->listModes['mosaic']);
         $listMapper
             ->add(
-                'createdAt',
-                'date',
+                'position',
+                null,
                 array(
-                    'label'  => 'backend.admin.date',
-                    'format' => 'd/m/Y',
+                    'label' => 'backend.admin.coworker.position',
                     'editable' => true,
                 )
             )
@@ -156,7 +153,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 'category',
                 null,
                 array(
-                    'label' => 'backend.admin.coworker.category',
+                    'label' => 'backend.admin.category.category',
                 )
             )
             ->add(

@@ -10,9 +10,10 @@ backend:
         coworker:
             name: Nom
             email: Correu electrònic
-            category: Dedicació
+            position: Ordre
         category:
             title: Títol
+            category: Categoria
         contact:
             name: Nom
             email: Correu electrònic
