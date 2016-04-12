@@ -15,5 +15,9 @@ class DefaultControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $client->request('GET', '/coworker/1');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $client->request('GET', '/events');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $client->request('GET', '/event/1');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 }

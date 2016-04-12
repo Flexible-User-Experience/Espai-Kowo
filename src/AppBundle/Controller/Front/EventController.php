@@ -24,22 +24,22 @@ class EventController extends Controller
     }
 
     /**
-     * @Route("/coworker/{id}", name="front_coworker_detail")
+     * @Route("/event/{id}", name="front_event_detail")
      *
      * @param $id
      * @return Response
      */
     public function detailAction($id)
     {
-        $coworker = $this->getDoctrine()->getRepository('AppBundle:Coworker')->findOneBy(
+        $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneBy(
             array(
                 'id' => $id,
             )
         );
 
         return $this->render(
-            ':Frontend/Coworker:detail.html.twig',
-            [ 'coworker' => $coworker ]
+            ':Frontend/Event:detail.html.twig',
+            [ 'event' => $event ]
         );
     }
 }
