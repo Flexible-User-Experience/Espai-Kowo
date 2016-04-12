@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div class="col-xs-12">
+        <h2 class="text-center fresh-talent-ad">Coworkers list</h2>
+        {% for coworker in coworkers %}
+            <h5>{{ coworker.name }}</h5>
+            <h5>{{ coworker.email }}</h5>
+        {% endfor %}
+    </div>
+{% endblock %}
