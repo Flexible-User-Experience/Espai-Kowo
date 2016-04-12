@@ -4,8 +4,7 @@
     <div class="col-xs-12">
         <h2 class="text-center fresh-talent-ad">Coworkers list</h2>
         {% for coworker in coworkers %}
-            <h5>{{ coworker.name }}</h5>
-            <h5>{{ coworker.email }}</h5>
+            <h5><a href="{{ path('front_coworker_detail', {id: coworker.id}) }}">{{ coworker.name }}</a></h5>
         {% endfor %}
     </div>
 {% endblock %}
