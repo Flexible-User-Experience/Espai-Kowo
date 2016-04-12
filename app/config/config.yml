@@ -137,7 +137,7 @@ sonata_admin:
         show:   "::Admin/show.html.twig"
     dashboard:
         groups:
-            Web:
+            Blog:
                 icon: "<i class='fa fa-chrome'></i>"
             Coworkers:
                 icon: "<i class='fa fa-users'></i>"
@@ -173,7 +173,7 @@ sonata_admin:
                 type: sonata.admin.block.admin_list
                 class: col-md-6
                 settings:
-                    groups: [ Web ]
+                    groups: [ Blog ]
             -
                 position: top
                 type: sonata.admin.block.admin_list
