@@ -55,6 +55,15 @@ class CoworkerAdmin extends AbstractBaseAdmin
                     'label' => 'backend.admin.coworker.email',
                 )
             )
+            ->add(
+                'imageFile',
+                'file',
+                array(
+                    'label'    => 'backend.admin.post.image',
+                    'help'     => $this->getImageHelperFormMapperWithThumbnail(),
+                    'required' => false,
+                )
+            )
             ->end()
             ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(5))
             ->add(
@@ -125,6 +134,14 @@ class CoworkerAdmin extends AbstractBaseAdmin
     {
         unset($this->listModes['mosaic']);
         $listMapper
+            ->add(
+                'image',
+                null,
+                array(
+                    'label'    => 'backend.admin.event.image',
+                    'template' => '::Admin/Cells/list__cell_image_field.html.twig'
+                )
+            )
             ->add(
                 'position',
                 null,
