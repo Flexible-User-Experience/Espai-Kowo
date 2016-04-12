@@ -35,6 +35,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form_themes:
+        - "bootstrap_3_layout.html.twig"
         - "SonataCoreBundle:Form:datepicker.html.twig"
     globals:
         google_analytics_enabled: %google_analytics_enabled%
@@ -124,7 +125,7 @@ fos_user:
 # Admin
 sonata_admin:
     title: "%project_web_title%"
-#    title_logo: "/bundles/app/images/backend-favicon.png"
+    title_logo: "/bundles/app/img/logo-espai-kowo-backend.png"
     options:
         html5_validate: true
         confirm_exit:   true
