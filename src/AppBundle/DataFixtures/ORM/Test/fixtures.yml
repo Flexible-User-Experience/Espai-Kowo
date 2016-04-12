@@ -16,6 +16,7 @@ AppBundle\Entity\ContactMessage:
 ## Coworkers
 AppBundle\Entity\Coworker:
   coworker{1..12}:
+    position: <numberBetween(1, 12)>
     name: <name()>
     description: <paragraph()>
     email: <safeEmail()>

@@ -56,6 +56,15 @@ class EventAdmin extends AbstractBaseAdmin
                     'label' => 'backend.admin.event.description',
                 )
             )
+            ->add(
+                'imageFile',
+                'file',
+                array(
+                    'label'    => 'backend.admin.post.image',
+                    'help'     => $this->getImageHelperFormMapperWithThumbnail(),
+                    'required' => false,
+                )
+            )
             ->end()
             ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(5))
             ->add(
@@ -63,6 +72,14 @@ class EventAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.event.type',
+                )
+            )
+            ->add(
+                'date',
+                'sonata_type_date_picker',
+                array(
+                    'label'  => 'backend.admin.event.date',
+                    'format' => 'd/M/y',
                 )
             )
             ->add(
@@ -82,10 +99,10 @@ class EventAdmin extends AbstractBaseAdmin
     {
         $datagridMapper
             ->add(
-                'createdAt',
+                'date',
                 'doctrine_orm_date',
                 array(
-                    'label'      => 'backend.admin.date',
+                    'label'      => 'backend.admin.event.date',
                     'field_type' => 'sonata_type_date_picker',
                     'format'     => 'd-m-Y',
                 )
@@ -129,11 +146,19 @@ class EventAdmin extends AbstractBaseAdmin
         unset($this->listModes['mosaic']);
         $listMapper
             ->add(
-                'createdAt',
+                'image',
+                null,
+                array(
+                    'label'    => 'backend.admin.event.image',
+                    'template' => '::Admin/Cells/list__cell_image_field.html.twig'
+                )
+            )
+            ->add(
+                'date',
                 'date',
                 array(
-                    'label'  => 'backend.admin.date',
-                    'format' => 'd/m/Y',
+                    'label'    => 'backend.admin.event.date',
+                    'format'   => 'd/m/Y',
                     'editable' => true,
                 )
             )
