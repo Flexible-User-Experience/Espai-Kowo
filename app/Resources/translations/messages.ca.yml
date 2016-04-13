@@ -10,7 +10,16 @@ backend:
         coworker:
             name: Nom
             email: Correu electrònic
+            description: Descripció
             position: Ordre
+            social_networks: Xarxes Socials
+            facebook: Facebook
+            twitter: Twitter
+            github: Github
+            linkedin: LinkedIn
+            blog: Blog
+            web: Web
+            instagram: Instagram
         category:
             title: Títol
             category: Categoria

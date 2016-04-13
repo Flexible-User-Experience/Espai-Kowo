@@ -13,5 +13,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class CoworkerRepository extends EntityRepository
 {
+    public function findAllEnabledSortedByPosition()
+    {
+        $query = $this->createQueryBuilder('c')
+            ->where('c.enabled = :enabled')
+            ->setParameter('enabled', true)
+            ->orderBy('c.position');
 
+        return $query->getQuery()->getResult();
+    }
 }
