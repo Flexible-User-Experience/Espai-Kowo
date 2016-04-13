@@ -25,7 +25,7 @@ class Coworker extends AbstractBase
     /**
      * @var integer
      *
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $position;
 

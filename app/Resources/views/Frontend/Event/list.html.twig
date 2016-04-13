@@ -4,12 +4,24 @@
     <div class="col-xs-12">
         <h2 class="text-center fresh-talent-ad">Events</h2>
         <table class="table table-bordered">
-            {% for event in events %}
-                {#<a href="{{ path('front_event_detail', {id: event.id}) }}">{{ event.title }}</a>#}
-                {{ event.id }}
-                {{ event.title }}
-                {{ event.type }}
-            {% endfor %}
+            <thead>
+            <tr>
+                <th>Row</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for event in events %}
+                        {#<a href="{{ path('front_event_detail', {id: event.id}) }}">{{ event.title }}</a>#}
+                        {{ event.id }}
+                        {{ event.title }}
+                        {{ event.type }}
+                    {% endfor %}
+                </tr>
+            </tbody>
         </table>
     </div>
 {% endblock %}
