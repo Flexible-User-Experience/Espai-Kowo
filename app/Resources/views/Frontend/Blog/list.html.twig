@@ -1,0 +1,12 @@
+{% extends ':Frontend:base.html.twig' %}
+
+{% block main %}
+<div class="col-xs-12">
+    <h2 class="text-center fresh-talent-ad">Post list</h2>
+    {% for post in posts %}
+        <h5><a href="{{ path('front_blog_detail', {slug: post.slug }) }}">{{ post.title }}</a></h5>
+        <h5>{{ post.publishedAt|date('d/m/Y') }}</h5>
+    {% endfor %}
+    <a href="{{ path('front_homepage') }}">Homepage</a>
+</div>
+{% endblock %}
