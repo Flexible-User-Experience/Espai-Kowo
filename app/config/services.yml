@@ -15,6 +15,11 @@ services:
         arguments: [ ~, AppBundle\Entity\SocialNetworkCategory, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Social Network Category", group: "Coworkers" }
+    admin.socialnetwork:
+        class: AppBundle\Admin\SocialNetworkAdmin
+        arguments: [ ~, AppBundle\Entity\SocialNetwork, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Social Network", group: "Coworkers", show_in_dashboard: false }
     admin.event:
         class: AppBundle\Admin\EventAdmin
         arguments: [ ~, AppBundle\Entity\Event, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
