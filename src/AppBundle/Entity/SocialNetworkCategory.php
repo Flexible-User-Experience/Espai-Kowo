@@ -127,6 +127,28 @@ class SocialNetworkCategory extends AbstractBase
         return $this;
     }
 
+    /* @param SocialNetwork $socialNetwork
+    *
+    * @return $this
+    */
+    public function addUrl(SocialNetwork $socialNetwork)
+    {
+        $socialNetwork->setUrl($this);
+        $this->socialNetworks->add($socialNetwork);
+
+        return $this;
+    }
+
+    /* @param SocialNetwork $socialNetwork
+     *
+     * @return $this
+     */
+    public function removeUrl(SocialNetwork $socialNetwork)
+    {
+        $this->socialNetworks->removeElement($socialNetwork);
+
+        return $this;
+    }
 
     public function __toString() {
 
