@@ -20,6 +20,7 @@ script:
 notifications:
   email:
     -  david@flux.cat
+    -  aserratorta@gmail.com
 
 branches:
   only:

@@ -56,6 +56,13 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'description',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.description',
+                )
+            )
+            ->add(
                 'imageFile',
                 'file',
                 array(
@@ -86,6 +93,57 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 array(
                     'label'    => 'backend.admin.enabled',
                     'required' => false,
+                )
+            )
+            ->end()
+            ->with('backend.admin.coworker.social_networks', $this->getFormMdSuccessBoxArray(5))
+            ->add(
+                'facebook',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.facebook',
+                )
+            )
+            ->add(
+                'twitter',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.twitter',
+                )
+            )
+            ->add(
+                'github',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.github',
+                )
+            )
+            ->add(
+                'linkedin',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.linkedin',
+                )
+            )
+            ->add(
+                'blog',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.blog',
+                )
+            )
+            ->add(
+                'web',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.web',
+                )
+            )
+            ->add(
+                'instagram',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.instagram',
                 )
             )
             ->end();

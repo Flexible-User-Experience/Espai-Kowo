@@ -13,5 +13,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class EventRepository extends EntityRepository
 {
+    public function findAllEnabledSortedByDate()
+    {
+        $query = $this->createQueryBuilder('e')
+            ->where('e.enabled = :enabled')
+            ->setParameter('enabled', true)
+            ->orderBy('e.date');
 
+        return $query->getQuery()->getResult();
+    }
 }

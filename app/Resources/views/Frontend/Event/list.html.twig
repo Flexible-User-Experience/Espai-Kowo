@@ -3,13 +3,10 @@
 {% block main %}
     <div class="col-xs-12">
         <h2 class="text-center fresh-talent-ad">Events</h2>
-        <table class="table table-bordered">
-            {% for event in events %}
-                {#<a href="{{ path('front_event_detail', {id: event.id}) }}">{{ event.title }}</a>#}
-                {{ event.id }}
-                {{ event.title }}
-                {{ event.type }}
-            {% endfor %}
-        </table>
+        {% for event in events %}
+            <h5><a href="{{ path('front_event_detail', {id: event.id}) }}">{{ event.title }}</a></h5>
+            <h5>{{ event.date|date("d/m/Y") }}</h5>
+        {% endfor %}
+        <a href="{{ path('front_homepage') }}">Homepage</a>
     </div>
 {% endblock %}

@@ -15,7 +15,7 @@ class CoworkerController extends Controller
      */
     public function listAction()
     {
-        $coworkers = $this->getDoctrine()->getRepository('AppBundle:Coworker')->findAll();
+        $coworkers = $this->getDoctrine()->getRepository('AppBundle:Coworker')->findAllEnabledSortedByPosition();
 
         return $this->render(
             ':Frontend/Coworker:list.html.twig',

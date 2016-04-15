@@ -27,7 +27,7 @@ class Coworker extends AbstractBase
      *
      * @ORM\Column(type="integer")
      */
-    private $position = 1;
+    private $position;
 
     /**
      * @var string
@@ -260,7 +260,7 @@ class Coworker extends AbstractBase
 
 
     /**
-     * @return boolean
+     * @return string
      */
     public function getFacebook()
     {
@@ -268,7 +268,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @param boolean $facebook
+     * @param string $facebook
      * @return Coworker
      */
     public function setFacebook($facebook)
@@ -278,7 +278,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @return boolean
+     * @return string
      */
     public function getTwitter()
     {
@@ -286,7 +286,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @param boolean $twitter
+     * @param string $twitter
      * @return Coworker
      */
     public function setTwitter($twitter)
@@ -296,7 +296,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @return boolean
+     * @return string
      */
     public function getLinkedin()
     {
@@ -304,7 +304,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @param boolean $linkedin
+     * @param string $linkedin
      * @return Coworker
      */
     public function setLinkedin($linkedin)
@@ -314,7 +314,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @return boolean
+     * @return string
      */
     public function getGithub()
     {
@@ -322,7 +322,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @param boolean $github
+     * @param string $github
      * @return Coworker
      */
     public function setGithub($github)

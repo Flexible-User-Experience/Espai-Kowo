@@ -54,6 +54,16 @@ AppBundle\Entity\Post:
     updatedAt: <dateTimeThisMonth()>
     enabled: <boolean(70)>
     tags: [ @tag1 ]
+  post11:
+    publishedAt: <dateTimeThisMonth()>
+    title: my title
+    description: <paragraph()>
+    metaKeywords: <word()>
+    metaDescription: <sentence()>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: <boolean(70)>
+    tags: [ @tag1 ]
 
 # Tags
 AppBundle\Entity\Tag:

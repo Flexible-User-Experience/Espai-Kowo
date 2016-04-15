@@ -15,7 +15,7 @@ class EventController extends Controller
      */
     public function listAction()
     {
-        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findAll();
+        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findAllEnabledSortedByDate();
 
         return $this->render(
             ':Frontend/Event:list.html.twig',

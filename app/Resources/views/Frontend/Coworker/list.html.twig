@@ -5,6 +5,9 @@
         <h2 class="text-center fresh-talent-ad">Coworkers list</h2>
         {% for coworker in coworkers %}
             <h5><a href="{{ path('front_coworker_detail', {id: coworker.id}) }}">{{ coworker.name }}</a></h5>
+            <h5>{{ coworker.position }}</h5>
+            <h5>{{ coworker.enabled }}</h5>
         {% endfor %}
+        <a href="{{ path('front_homepage') }}">Homepage</a>
     </div>
 {% endblock %}
