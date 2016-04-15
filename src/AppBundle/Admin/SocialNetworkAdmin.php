@@ -43,28 +43,29 @@ class SocialNetworkAdmin extends AbstractBaseAdmin
         $formMapper
             ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(7))
             ->add(
+                'coworker',
+                null,
+                array(
+                    'attr' => array(
+                        'hidden' => true,
+                    ),
+                )
+            )
+            ->add(
                 'url',
                 null,
                 array(
                     'label' => 'backend.admin.social_network.url',
                 )
             )
-            ->add(
-                'category',
-                null,
-                array(
-                    'label' => 'backend.admin.social_network.category',
-                    'editable' => true,
-                )
-            )
-            ->add(
-                'coworker',
-                null,
-                array(
-                    'label' => 'backend.admin.social_network.coworker',
-                    'editable' => true,
-                )
-            )
+//            ->add(
+//                'category',
+//                null,
+//                array(
+//                    'label' => 'backend.admin.social_network.category',
+//                    'editable' => true,
+//                )
+//            )
             ->end()
             ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(5))
             ->add(
@@ -95,14 +96,6 @@ class SocialNetworkAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.social_network.category',
-                    'editable' => true,
-                )
-            )
-            ->add(
-                'coworker',
-                null,
-                array(
-                    'label' => 'backend.admin.social_network.coworker',
                     'editable' => true,
                 )
             )

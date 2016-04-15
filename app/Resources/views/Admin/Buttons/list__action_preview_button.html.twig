@@ -1,3 +1,0 @@
-{% if admin.isGranted('EDIT', object) and admin.hasRoute('preview') %}
-    <a href="{{ admin.generateObjectUrl('preview', object) }}" class="btn btn-sm btn-default edit_link" title="Previsualitza"><i class="fa fa-eye"></i></a>
-{% endif %}
