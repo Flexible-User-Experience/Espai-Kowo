@@ -20,13 +20,6 @@ AppBundle\Entity\Coworker:
     name: <name()>
     description: <paragraph()>
     email: <safeEmail()>
-    facebook: <url()>
-    twitter: <url()>
-    linkedin: <url()>
-    github: <url()>
-    web: <url()>
-    instagram: <url()>
-    blog: <url()>
     category: @category<numberBetween(1, 5)>
 
 ## Category
@@ -64,6 +57,18 @@ AppBundle\Entity\Post:
     updatedAt: <dateTimeThisMonth()>
     enabled: <boolean(70)>
     tags: [ @tag1 ]
+
+#Social Network Category
+AppBundle\Entity\SocialNetworkCategory:
+  socialnetworkcategory{1..5}:
+    title: <word()>
+
+#Social Network
+AppBundle\Entity\SocialNetwork:
+  socialnetwork{1..5}:
+    url: <url()>
+    coworker: @coworker*
+    category: @socialnetworkcategory*
 
 # Tags
 AppBundle\Entity\Tag:
