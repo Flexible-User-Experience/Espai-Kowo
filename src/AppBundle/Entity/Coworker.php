@@ -2,6 +2,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\DescriptionTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
@@ -70,60 +71,10 @@ class Coworker extends AbstractBase
     private $imageName;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url(checkDNS = true)
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="SocialNetwork", mappedBy="coworker")
      */
-    private $facebook;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url(checkDNS = true)
-     */
-    private $twitter;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url(checkDNS = true)
-     */
-    private $linkedin;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url(checkDNS = true)
-     */
-    private $github;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url(checkDNS = true)
-     */
-    private $web;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url(checkDNS = true)
-     */
-    private $blog;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url(checkDNS = true)
-     */
-    private $instagram;
+    private $socialNetworks;
 
     /**
      *
@@ -132,6 +83,14 @@ class Coworker extends AbstractBase
      *
      *
      */
+
+    /**
+     * Coworker constructor.
+     */
+    public function __construct()
+    {
+        $this->socialNetworks = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -258,130 +217,21 @@ class Coworker extends AbstractBase
         return $this->imageName;
     }
 
-
     /**
-     * @return string
+     * @return ArrayCollection
      */
-    public function getFacebook()
+    public function getSocialNetworks()
     {
-        return $this->facebook;
+        return $this->socialNetworks;
     }
 
     /**
-     * @param string $facebook
+     * @param ArrayCollection $socialNetworks
      * @return Coworker
      */
-    public function setFacebook($facebook)
+    public function setSocialNetworks(ArrayCollection $socialNetworks)
     {
-        $this->facebook = $facebook;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTwitter()
-    {
-        return $this->twitter;
-    }
-
-    /**
-     * @param string $twitter
-     * @return Coworker
-     */
-    public function setTwitter($twitter)
-    {
-        $this->twitter = $twitter;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLinkedin()
-    {
-        return $this->linkedin;
-    }
-
-    /**
-     * @param string $linkedin
-     * @return Coworker
-     */
-    public function setLinkedin($linkedin)
-    {
-        $this->linkedin = $linkedin;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGithub()
-    {
-        return $this->github;
-    }
-
-    /**
-     * @param string $github
-     * @return Coworker
-     */
-    public function setGithub($github)
-    {
-        $this->github = $github;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getWeb()
-    {
-        return $this->web;
-    }
-
-    /**
-     * @param string $web
-     * @return Coworker
-     */
-    public function setWeb($web)
-    {
-        $this->web = $web;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBlog()
-    {
-        return $this->blog;
-    }
-
-    /**
-     * @param string $blog
-     * @return Coworker
-     */
-    public function setBlog($blog)
-    {
-        $this->blog = $blog;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getInstagram()
-    {
-        return $this->instagram;
-    }
-
-    /**
-     * @param string $instagram
-     * @return Coworker
-     */
-    public function setInstagram($instagram)
-    {
-        $this->instagram = $instagram;
+        $this->socialNetworks = $socialNetworks;
         return $this;
     }
 }
