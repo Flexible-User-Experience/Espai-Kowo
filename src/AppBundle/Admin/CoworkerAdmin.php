@@ -19,7 +19,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
     protected $classnameLabel = 'Coworker';
     protected $baseRoutePattern = 'coworkers/coworker';
     protected $datagridValues = array(
-        '_sort_by'    => 'name',
+        '_sort_by'    => 'position',
         '_sort_order' => 'desc',
     );
 

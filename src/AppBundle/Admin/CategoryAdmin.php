@@ -20,7 +20,7 @@ class CategoryAdmin extends AbstractBaseAdmin
     protected $baseRoutePattern = 'coworkers/category';
     protected $datagridValues = array(
         '_sort_by'    => 'title',
-        '_sort_order' => 'desc',
+        '_sort_order' => 'asc',
     );
 
     /**
