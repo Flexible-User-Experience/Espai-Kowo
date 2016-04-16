@@ -22,7 +22,7 @@ backend:
             instagram: Instagram
         category:
             title: Títol
-            category: Categoria
+            category: Dedicació
         contact:
             name: Nom
             email: Correu electrònic
@@ -65,3 +65,7 @@ backend:
             email: Correu electrònic
             plain_password: Contrasenya
             roles: Rols
+        social_networks:
+            social_networks: Xarxes Socials
+            url: URL
+            category: Xarxa social

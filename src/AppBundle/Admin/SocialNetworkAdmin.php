@@ -55,11 +55,14 @@ class SocialNetworkAdmin extends AbstractBaseAdmin
                 'url',
                 null,
                 array(
-                    'label' => 'backend.admin.social_network.url',
+                    'label' => 'backend.admin.social_networks.url',
                 )
             )
+
+            //TODO I want to render social network category
+
 //            ->add(
-//                'category',
+//                'title',
 //                null,
 //                array(
 //                    'label' => 'backend.admin.social_network.category',
