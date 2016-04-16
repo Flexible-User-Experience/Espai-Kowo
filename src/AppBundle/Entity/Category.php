@@ -59,6 +59,34 @@ class Category extends AbstractBase
         return $this;
     }
 
+    /**
+     * Add coworker
+     *
+     * @param Coworker $coworker
+     *
+     * @return Category
+     */
+    public function addCoworker(Coworker $coworker)
+    {
+        $this->coworkers[] = $coworker;
+
+        return $this;
+    }
+
+    /**
+     * Remove coworker
+     *
+     * @param Coworker $coworker
+     *
+     * @return Category
+     */
+    public function removeCoworker(Coworker $coworker)
+    {
+        $this->coworkers->removeElement($coworker);
+
+        return $this;
+    }
+
     public function __toString() {
 
         return $this->getTitle() ? $this->getTitle() : '---';

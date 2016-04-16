@@ -150,6 +150,29 @@ class SocialNetworkCategory extends AbstractBase
         return $this;
     }
 
+//    /* @param SocialNetwork $socialNetwork
+//    *
+//    * @return $this
+//    */
+//    public function addCategory(SocialNetwork $socialNetwork)
+//    {
+//        $socialNetwork->setCategory($this);
+//        $this->socialNetworks->add($socialNetwork);
+//
+//        return $this;
+//    }
+//
+//    /* @param SocialNetwork $socialNetwork
+//     *
+//     * @return $this
+//     */
+//    public function removeCategory(SocialNetwork $socialNetwork)
+//    {
+//        $this->socialNetworks->removeElement($socialNetwork);
+//
+//        return $this;
+//    }
+
     public function __toString() {
 
         return $this->getTitle() ? $this->getTitle() : '---';
