@@ -21,7 +21,7 @@ class Category extends AbstractBase
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Coworker", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Coworker", mappedBy="category", cascade={"all"})
      */
     private $coworkers;
 

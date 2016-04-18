@@ -40,7 +40,8 @@ class Coworker extends AbstractBase
      * @var Category
      *
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="coworkers")
-     */
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     **/
     private $category;
 
     /**
@@ -232,6 +233,29 @@ class Coworker extends AbstractBase
     public function setSocialNetworks(ArrayCollection $socialNetworks)
     {
         $this->socialNetworks = $socialNetworks;
+        return $this;
+    }
+
+    /* @param SocialNetwork $socialNetwork
+    *
+    * @return $this
+    */
+    public function addUrl(SocialNetwork $socialNetwork)
+    {
+        $socialNetwork->setUrl($this);
+        $this->socialNetworks->add($socialNetwork);
+
+        return $this;
+    }
+
+    /* @param SocialNetwork $socialNetwork
+     *
+     * @return $this
+     */
+    public function removeUrl(SocialNetwork $socialNetwork)
+    {
+        $this->socialNetworks->removeElement($socialNetwork);
+
         return $this;
     }
 }
