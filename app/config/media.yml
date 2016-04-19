@@ -64,5 +64,13 @@ vich_uploader:
     mappings:
         post:
             uri_prefix:         /uploads/images/post
-            upload_destination: %kernel.root_dir%/../web/uploads/images/post
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/post'
+            namer:              vich_uploader.namer_uniqid
+        social_network_category:
+            uri_prefix:         /uploads/images/social-network
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/social-network'
+            namer:              vich_uploader.namer_uniqid
+        coworker:
+            uri_prefix:         /uploads/images/coworker
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/coworker'
             namer:              vich_uploader.namer_uniqid
