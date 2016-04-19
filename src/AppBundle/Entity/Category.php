@@ -21,7 +21,7 @@ class Category extends AbstractBase
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Coworker", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Coworker", mappedBy="category", cascade={"all"})
      */
     private $coworkers;
 
@@ -56,6 +56,34 @@ class Category extends AbstractBase
     public function setCoworkers(ArrayCollection $coworkers)
     {
         $this->coworkers = $coworkers;
+        return $this;
+    }
+
+    /**
+     * Add coworker
+     *
+     * @param Coworker $coworker
+     *
+     * @return Category
+     */
+    public function addCoworker(Coworker $coworker)
+    {
+        $this->coworkers[] = $coworker;
+
+        return $this;
+    }
+
+    /**
+     * Remove coworker
+     *
+     * @param Coworker $coworker
+     *
+     * @return Category
+     */
+    public function removeCoworker(Coworker $coworker)
+    {
+        $this->coworkers->removeElement($coworker);
+
         return $this;
     }
 

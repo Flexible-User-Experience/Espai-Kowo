@@ -8,16 +8,16 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
 /**
- * Class CategoryAdmin
+ * Class SocialNetworkCategoryAdmin
  *
  * @category Admin
  * @package  AppBundle\Admin
  * @author   Anton Serra <aserratorta@gmail.com>
  */
-class CategoryAdmin extends AbstractBaseAdmin
+class SocialNetworkCategoryAdmin extends AbstractBaseAdmin
 {
-    protected $classnameLabel = 'Category';
-    protected $baseRoutePattern = 'coworkers/category';
+    protected $classnameLabel = 'Social Network';
+    protected $baseRoutePattern = 'coworkers/social-network-category';
     protected $datagridValues = array(
         '_sort_by'    => 'title',
         '_sort_order' => 'asc',
@@ -47,6 +47,15 @@ class CategoryAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.category.title',
+                )
+            )
+            ->add(
+                'imageFile',
+                'file',
+                array(
+                    'label'    => 'backend.admin.post.image',
+                    'help'     => $this->getImageHelperFormMapperWithThumbnail(),
+                    'required' => false,
                 )
             )
             ->end()
@@ -91,6 +100,14 @@ class CategoryAdmin extends AbstractBaseAdmin
     {
         unset($this->listModes['mosaic']);
         $listMapper
+            ->add(
+                'image',
+                null,
+                array(
+                    'label'    => 'backend.admin.post.image',
+                    'template' => '::Admin/Cells/list__cell_image_field.html.twig'
+                )
+            )
             ->add(
                 'title',
                 null,

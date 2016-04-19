@@ -19,7 +19,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
     protected $classnameLabel = 'Coworker';
     protected $baseRoutePattern = 'coworkers/coworker';
     protected $datagridValues = array(
-        '_sort_by'    => 'name',
+        '_sort_by'    => 'position',
         '_sort_order' => 'desc',
     );
 
@@ -57,9 +57,11 @@ class CoworkerAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'description',
-                null,
+                'ckeditor',
                 array(
                     'label' => 'backend.admin.coworker.description',
+                    'config_name' => 'my_config',
+                    'required'    => true,
                 )
             )
             ->add(
@@ -95,59 +97,28 @@ class CoworkerAdmin extends AbstractBaseAdmin
                     'required' => false,
                 )
             )
-            ->end()
-            ->with('backend.admin.coworker.social_networks', $this->getFormMdSuccessBoxArray(5))
-            ->add(
-                'facebook',
-                null,
-                array(
-                    'label' => 'backend.admin.coworker.facebook',
-                )
-            )
-            ->add(
-                'twitter',
-                null,
-                array(
-                    'label' => 'backend.admin.coworker.twitter',
-                )
-            )
-            ->add(
-                'github',
-                null,
-                array(
-                    'label' => 'backend.admin.coworker.github',
-                )
-            )
-            ->add(
-                'linkedin',
-                null,
-                array(
-                    'label' => 'backend.admin.coworker.linkedin',
-                )
-            )
-            ->add(
-                'blog',
-                null,
-                array(
-                    'label' => 'backend.admin.coworker.blog',
-                )
-            )
-            ->add(
-                'web',
-                null,
-                array(
-                    'label' => 'backend.admin.coworker.web',
-                )
-            )
-            ->add(
-                'instagram',
-                null,
-                array(
-                    'label' => 'backend.admin.coworker.instagram',
-                )
-            )
             ->end();
+        if ($this->id($this->getSubject())) { // is edit mode, disable on new subjects
+            $formMapper
+                ->with('backend.admin.social_networks.social_networks', $this->getFormMdSuccessBoxArray(12))
+                ->add(
+                    'socialNetworks',
+                    'sonata_type_collection',
+                    array(
+                        'label'              => ' ',
+                        'required'           => false,
+                        'cascade_validation' => true,
+                    ),
+                    array(
+                        'edit'     => 'inline',
+                        'inline'   => 'table',
+                        'sortable' => 'position',
+                    )
+                )
+                ->end();
+        }
     }
+
     /**
      * @param DatagridMapper $datagridMapper
      */

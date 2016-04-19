@@ -35,7 +35,7 @@ class Event extends AbstractBase
     /**
      * @var File
      *
-     * @Vich\UploadableField(mapping="uploads", fileNameProperty="imageName")
+     * @Vich\UploadableField(mapping="event", fileNameProperty="imageName")
      * @Assert\File(
      *     maxSize = "10M",
      *     mimeTypes = {"image/jpg", "image/jpeg", "image/png", "image/gif"}

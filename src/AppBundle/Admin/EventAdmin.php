@@ -41,7 +41,7 @@ class EventAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(7))
+            ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(8))
             ->add(
                 'title',
                 null,
@@ -51,9 +51,11 @@ class EventAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'description',
-                null,
-                array(
-                    'label' => 'backend.admin.event.description',
+                'ckeditor',
+                    array(
+                        'label' => 'backend.admin.event.description',
+                        'config_name' => 'my_config',
+                        'required'    => true,
                 )
             )
             ->add(
@@ -66,7 +68,7 @@ class EventAdmin extends AbstractBaseAdmin
                 )
             )
             ->end()
-            ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(5))
+            ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(4))
             ->add(
                 'type',
                 null,

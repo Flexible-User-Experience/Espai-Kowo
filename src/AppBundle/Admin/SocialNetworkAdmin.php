@@ -8,18 +8,18 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
 /**
- * Class CategoryAdmin
+ * Class SocialNetworkAdmin
  *
  * @category Admin
  * @package  AppBundle\Admin
  * @author   Anton Serra <aserratorta@gmail.com>
  */
-class CategoryAdmin extends AbstractBaseAdmin
+class SocialNetworkAdmin extends AbstractBaseAdmin
 {
-    protected $classnameLabel = 'Category';
-    protected $baseRoutePattern = 'coworkers/category';
+    protected $classnameLabel = 'Social Network';
+    protected $baseRoutePattern = 'coworkers/social-network';
     protected $datagridValues = array(
-        '_sort_by'    => 'title',
+        '_sort_by'    => 'url',
         '_sort_order' => 'asc',
     );
 
@@ -43,10 +43,27 @@ class CategoryAdmin extends AbstractBaseAdmin
         $formMapper
             ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(7))
             ->add(
-                'title',
+                'coworker',
                 null,
                 array(
-                    'label' => 'backend.admin.category.title',
+                    'attr' => array(
+                        'hidden' => true,
+                    ),
+                )
+            )
+            ->add(
+                'url',
+                null,
+                array(
+                    'label' => 'backend.admin.social_networks.url',
+                )
+            )
+            ->add(
+                'category',
+                null,
+                array(
+                    'label' => 'backend.admin.social_network.category',
+                    'required' => true,
                 )
             )
             ->end()
@@ -68,10 +85,18 @@ class CategoryAdmin extends AbstractBaseAdmin
     {
         $datagridMapper
             ->add(
-                'title',
+                'url',
                 null,
                 array(
-                    'label' => 'backend.admin.category.title',
+                    'label' => 'backend.admin.social_network.url',
+                )
+            )
+            ->add(
+                'category',
+                null,
+                array(
+                    'label' => 'backend.admin.social_network.category',
+                    'editable' => true,
                 )
             )
             ->add(
@@ -92,10 +117,18 @@ class CategoryAdmin extends AbstractBaseAdmin
         unset($this->listModes['mosaic']);
         $listMapper
             ->add(
-                'title',
+                'url',
                 null,
                 array(
-                    'label' => 'backend.admin.category.title',
+                    'label' => 'backend.admin.social_network.url',
+                    'editable' => true,
+                )
+            )
+            ->add(
+                'category',
+                null,
+                array(
+                    'label' => 'backend.admin.social_network.category',
                     'editable' => true,
                 )
             )
