@@ -57,9 +57,11 @@ class CoworkerAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'description',
-                null,
+                'ckeditor',
                 array(
                     'label' => 'backend.admin.coworker.description',
+                    'config_name' => 'my_config',
+                    'required'    => true,
                 )
             )
             ->add(

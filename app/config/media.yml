@@ -74,3 +74,7 @@ vich_uploader:
             uri_prefix:         /uploads/images/coworker
             upload_destination: '%kernel.root_dir%/../web/uploads/images/coworker'
             namer:              vich_uploader.namer_uniqid
+        event:
+            uri_prefix:         /uploads/images/event
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/event'
+            namer:              vich_uploader.namer_uniqid
