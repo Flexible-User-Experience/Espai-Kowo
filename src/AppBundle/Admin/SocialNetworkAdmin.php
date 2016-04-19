@@ -58,17 +58,14 @@ class SocialNetworkAdmin extends AbstractBaseAdmin
                     'label' => 'backend.admin.social_networks.url',
                 )
             )
-
-            //TODO I want to render social network category
-
-//            ->add(
-//                'title',
-//                null,
-//                array(
-//                    'label' => 'backend.admin.social_network.category',
-//                    'editable' => true,
-//                )
-//            )
+            ->add(
+                'category',
+                null,
+                array(
+                    'label' => 'backend.admin.social_network.category',
+                    'required' => true,
+                )
+            )
             ->end()
             ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(5))
             ->add(

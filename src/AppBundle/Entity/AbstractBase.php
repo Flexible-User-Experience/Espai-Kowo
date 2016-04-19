@@ -11,6 +11,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @category Entity
  * @package  AppBundle\Entity
  * @author   David Romaní <david@flux.cat>
+ *
+ * @Gedmo\SoftDeleteable(fieldName="removedAt", timeAware=false)
  */
 abstract class AbstractBase
 {

@@ -16,7 +16,7 @@ use Sonata\AdminBundle\Route\RouteCollection;
  */
 class SocialNetworkCategoryAdmin extends AbstractBaseAdmin
 {
-    protected $classnameLabel = 'Social Network Category';
+    protected $classnameLabel = 'Social Network';
     protected $baseRoutePattern = 'coworkers/social-network-category';
     protected $datagridValues = array(
         '_sort_by'    => 'title',

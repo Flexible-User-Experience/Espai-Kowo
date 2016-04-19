@@ -44,7 +44,7 @@ class SocialNetworkCategory extends AbstractBase
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="SocialNetwork", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="SocialNetwork", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $socialNetworks;
 
@@ -127,55 +127,31 @@ class SocialNetworkCategory extends AbstractBase
         return $this;
     }
 
-    /* @param SocialNetwork $socialNetwork
-    *
-    * @return $this
-    */
-    public function addUrl(SocialNetwork $socialNetwork)
+    /**
+     * @param SocialNetwork $socialNetwork
+     * @return $this
+     */
+    public function addSocialNetwork(SocialNetwork $socialNetwork)
     {
-        $socialNetwork->setUrl($this);
+        $socialNetwork->setCategory($this);
         $this->socialNetworks->add($socialNetwork);
 
         return $this;
     }
 
-    /* @param SocialNetwork $socialNetwork
-     *
+    /**
+     * @param SocialNetwork $socialNetwork
      * @return $this
      */
-    public function removeUrl(SocialNetwork $socialNetwork)
+    public function removeSocialNetwork(SocialNetwork $socialNetwork)
     {
         $this->socialNetworks->removeElement($socialNetwork);
 
         return $this;
     }
 
-//    /* @param SocialNetwork $socialNetwork
-//    *
-//    * @return $this
-//    */
-//    public function addCategory(SocialNetwork $socialNetwork)
-//    {
-//        $socialNetwork->setCategory($this);
-//        $this->socialNetworks->add($socialNetwork);
-//
-//        return $this;
-//    }
-//
-//    /* @param SocialNetwork $socialNetwork
-//     *
-//     * @return $this
-//     */
-//    public function removeCategory(SocialNetwork $socialNetwork)
-//    {
-//        $this->socialNetworks->removeElement($socialNetwork);
-//
-//        return $this;
-//    }
-
     public function __toString() {
 
         return $this->getTitle() ? $this->getTitle() : '---';
     }
-
 }
