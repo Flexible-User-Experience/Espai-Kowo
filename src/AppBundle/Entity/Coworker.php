@@ -169,7 +169,7 @@ class Coworker extends AbstractBase
      *
      * @param File|UploadedFile $imageFile
      *
-     * @return Post
+     * @return $this
      */
     public function setImageFile(File $imageFile = null)
     {

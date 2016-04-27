@@ -77,7 +77,7 @@ class SocialNetworkCategory extends AbstractBase
      *
      * @param File|UploadedFile $imageFile
      *
-     * @return SocialNetworkCategory
+     * @return $this
      */
     public function setImageFile(File $imageFile = null)
     {
