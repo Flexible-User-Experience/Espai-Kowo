@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3c461ad92de14dad5dae5c42ed019baf",
-    "content-hash": "1da94e13f3562c20ba3ebb7c7968e053",
+    "hash": "e0c708a218a5e7259bfadf4e4b16d563",
+    "content-hash": "f4d3ef6b533056e26726770b32ea6270",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -300,17 +300,17 @@
         },
         {
             "name": "cypresslab/gitelephant-bundle",
-            "version": "dev-develop",
+            "version": "v0.0.6",
             "target-dir": "Cypress/GitElephantBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matteosister/GitElephantBundle.git",
-                "reference": "5ae5c0851361e4b7833175c8ac717870e80397f5"
+                "reference": "942775be6d9e265fa39994bc713c6790dec3459f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/matteosister/GitElephantBundle/zipball/5ae5c0851361e4b7833175c8ac717870e80397f5",
-                "reference": "5ae5c0851361e4b7833175c8ac717870e80397f5",
+                "url": "https://api.github.com/repos/matteosister/GitElephantBundle/zipball/942775be6d9e265fa39994bc713c6790dec3459f",
+                "reference": "942775be6d9e265fa39994bc713c6790dec3459f",
                 "shasum": ""
             },
             "require": {
@@ -344,7 +344,7 @@
             "keywords": [
                 "git"
             ],
-            "time": "2015-10-12 20:25:38"
+            "time": "2015-10-12 20:25:28"
         },
         {
             "name": "doctrine/annotations",
@@ -5201,16 +5201,16 @@
         },
         {
             "name": "twbs/bootstrap",
-            "version": "v4.0.0-alpha.3",
+            "version": "v3.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "c7de6107a86ebe65a6f5d5b88884256e5094ca92"
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/c7de6107a86ebe65a6f5d5b88884256e5094ca92",
-                "reference": "c7de6107a86ebe65a6f5d5b88884256e5094ca92",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/0b9c4a4007c44201dce9a6cc1a38407005c26c86",
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86",
                 "shasum": ""
             },
             "replace": {
@@ -5243,12 +5243,12 @@
                 "css",
                 "framework",
                 "front-end",
+                "less",
                 "mobile-first",
                 "responsive",
-                "sass",
                 "web"
             ],
-            "time": "2016-07-27 16:40:40"
+            "time": "2016-07-25 15:51:55"
         },
         {
             "name": "twig/extensions",
@@ -5687,10 +5687,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "cypresslab/gitelephant-bundle": 20,
-        "twbs/bootstrap": 15
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
