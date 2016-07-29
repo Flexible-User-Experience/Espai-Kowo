@@ -39,11 +39,7 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class=""><a href="{{ path('front_blog') }}">BLOG</a></li>
-                    <li class=""><a href="{{ path('front_coworkers_list') }}">COWORKERS</a></li>
-                    <li class=""><a href="{{ path('front_events_list') }}">ESDEVENIMENTS</a></li>
-                </ul>
+                {{ knp_menu_render('top', {currentClass: 'active'}) }}
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
