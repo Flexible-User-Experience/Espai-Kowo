@@ -62,7 +62,7 @@ class SocialNetworkAdmin extends AbstractBaseAdmin
                 'category',
                 null,
                 array(
-                    'label' => 'backend.admin.social_network.category',
+                    'label' => 'backend.admin.social_networks.category',
                     'required' => true,
                 )
             )

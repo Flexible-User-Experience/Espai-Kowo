@@ -40,7 +40,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(7))
+            ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(8))
             ->add(
                 'name',
                 null,
@@ -74,7 +74,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->end()
-            ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(5))
+            ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(4))
             ->add(
                 'category',
                 null,
