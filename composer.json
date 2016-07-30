@@ -1,6 +1,6 @@
 {
-    "name": "flux/hidraulica-disseny",
-    "description": "Hidraulica Disseny Symfony 2 Website",
+    "name": "flux/espai-kowo",
+    "description": "Espai Kowo Symfony 2 Website",
     "license": "proprietary",
     "type": "project",
     "autoload": {
@@ -46,7 +46,7 @@
         "symfony/swiftmailer-bundle": "~2.3",
         "twbs/bootstrap": "^3.0",
         "twig/extensions": "^1.3",
-        "vich/uploader-bundle": "^0.14.0"
+        "vich/uploader-bundle": "^1.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0"
