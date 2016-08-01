@@ -15,7 +15,7 @@
                         {% endif %}
                         <div class="caption">
                             <h3>{{ coworker.name }}</h3>
-                            <p>{{ coworker.description | truncate(5) }}</p>
+                            <p>{{ coworker.description | truncate(5) | raw }}</p>
                             <p><a href="{{ path('front_coworker_detail', {id: coworker.id}) }}" class="btn btn-primary"
                                   role="button">Més</a></p>
                             <ul class="list-inline">
