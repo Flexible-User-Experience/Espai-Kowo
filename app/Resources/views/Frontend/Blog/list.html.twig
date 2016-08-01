@@ -2,7 +2,6 @@
 
 {% block main %}
 <div class="col-xs-12">
-    <h2 class="text-center fresh-talent-ad">Post list</h2>
     {% for post in posts %}
         <h5><a href="{{ path('front_blog_detail', {slug: post.slug, year: post.publishedAt|date('Y'), month: post.publishedAt|date('m'), day: post.publishedAt|date('d') }) }}">{{ post.title }}</a></h5>
         <h5>{{ post.publishedAt|date('d/m/Y') }}</h5>
