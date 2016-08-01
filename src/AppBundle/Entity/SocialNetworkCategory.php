@@ -31,7 +31,7 @@ class SocialNetworkCategory extends AbstractBase
      *     maxSize = "10M",
      *     mimeTypes = {"image/jpg", "image/jpeg", "image/png", "image/gif"}
      * )
-     * @Assert\Image(minWidth = 1200)
+     * @Assert\Image(minWidth = 120)
      */
     private $imageFile;
 

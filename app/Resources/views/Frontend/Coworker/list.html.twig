@@ -22,6 +22,15 @@
                         <p>{{ coworker.description | truncate(5) }}</p>
                         <p><a href="{{ path('front_coworker_detail', {id: coworker.id}) }}" class="btn btn-primary"
                               role="button">Més</a></p>
+                        <ul class="list-inline">
+                            {% for socialNetwork in coworker.socialNetworks %}
+                               <li> <a target="_blank" href="{{ socialNetwork.url }}">
+                                    <img
+                                    src="{{ vich_uploader_asset(socialNetwork.category, 'imageFile') | imagine_filter('60x60') }}"
+                                    alt="{{ socialNetwork.category.imageName }}">
+                                </a></li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
             </div>
