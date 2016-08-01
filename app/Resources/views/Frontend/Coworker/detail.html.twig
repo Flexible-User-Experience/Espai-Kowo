@@ -1,11 +1,47 @@
 {% extends ':Frontend:base.html.twig' %}
 
 {% block main %}
-    <div class="col-xs-12">
-        <h2 class="text-center fresh-talent-ad">Coworker detail</h2>
-        <h5>{{ coworker.name }}</h5>
-        <h5>{{ coworker.email }}</h5>
-        <h5>{{ coworker.category }}</h5>
-        <a href="{{ path('front_coworkers_list') }}">Llista de Coworkers</a>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Coworkers</h1>
+            <h3>{{ coworker.name }} / {{ coworker.category }}</h3>
+            <h5>{{ coworker.description | raw }}</h5>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                {# left side #}
+                {% if coworker.imageName %}
+                    <img
+                        src="{{ vich_uploader_asset(coworker, 'imageFile') | imagine_filter('480xY') }}"
+                        alt="{{ coworker.imageName }}">
+                {% else %}
+                    <img src="{{ asset('bundles/app/img/logo-espai-kowo.png') | imagine_filter('480xY') }}" alt="">
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                {# right side #}
+                <h4>{{ coworker.name }}</h4>
+                <h5>{{ coworker.category }}</h5>
+                <p>{{ coworker.description | raw }}</p>
+                <h5>{{ coworker.email }}</h5>
+                <ul class="list-inline">
+                    {% for socialNetwork in coworker.socialNetworks %}
+                            <li>
+                                <a target="_blank" href="{{ socialNetwork.url }}">
+                                    {% if socialNetwork.category.imageName is not null %}
+                                        <img
+                                                src="{{ vich_uploader_asset(socialNetwork.category, 'imageFile') | imagine_filter('60x60') }}"
+                                                alt="{{ socialNetwork.category.title }}">
+                                    {% else %}
+                                        {{ socialNetwork.category.title }}
+                                    {% endif %}
+                                </a>
+                            </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     </div>
 {% endblock %}
