@@ -1,12 +1,13 @@
 {% extends ':Frontend:base.html.twig' %}
 
 {% block main %}
-    <div class="col-xs-12">
-        <h2 class="text-center fresh-talent-ad">Events</h2>
+    <div class="row">
         {% for event in events %}
+        <div class="col-md4">
             <h5><a href="{{ path('front_event_detail', {id: event.id}) }}">{{ event.title }}</a></h5>
-            <h5>{{ event.date|date("d/m/Y") }}</h5>
-        {% endfor %}
-        <a href="{{ path('front_homepage') }}">Homepage</a>
+            <h5>{{ event.date | date('d/m/Y') }}</h5>
+            {% endfor %}
+            <a href="{{ path('front_homepage') }}">Homepage</a>
+        </div>
     </div>
 {% endblock %}

@@ -2,11 +2,6 @@
 
 {% block main %}
     <div class="row">
-        <div class="col-md-12">
-            <h2 class="text-center fresh-talent-ad">Coworkers list</h2>
-        </div>
-    </div>
-    <div class="row">
         {% if coworkers | length > 0 %}
             {% for coworker in coworkers %}
                 <div class="col-md-4">
@@ -20,16 +15,22 @@
                         {% endif %}
                         <div class="caption">
                             <h3>{{ coworker.name }}</h3>
-                            <p>{{ coworker.description | truncate(5) }}</p>
+                            <p>{{ coworker.description | truncate(5) | raw }}</p>
                             <p><a href="{{ path('front_coworker_detail', {id: coworker.id}) }}" class="btn btn-primary"
                                   role="button">Més</a></p>
                             <ul class="list-inline">
                                 {% for socialNetwork in coworker.socialNetworks %}
-                                    <li> <a target="_blank" href="{{ socialNetwork.url }}">
-                                            <img
-                                                    src="{{ vich_uploader_asset(socialNetwork.category, 'imageFile') | imagine_filter('60x60') }}"
-                                                    alt="{{ socialNetwork.category.imageName }}">
-                                        </a></li>
+                                    <li>
+                                        <a target="_blank" href="{{ socialNetwork.url }}">
+                                            {% if socialNetwork.category.imageName is not null %}
+                                                <img
+                                                        src="{{ vich_uploader_asset(socialNetwork.category, 'imageFile') | imagine_filter('60x60') }}"
+                                                        alt="{{ socialNetwork.category.title }}">
+                                            {% else %}
+                                                {{ socialNetwork.category.title }}
+                                            {% endif %}
+                                        </a>
+                                    </li>
                                 {% endfor %}
                             </ul>
                         </div>
