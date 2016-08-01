@@ -22,18 +22,18 @@
             </div>
             <div class="col-md-6">
                 {# right side #}
-                <h4>{{ coworker.name }}</h4>
-                <h5>{{ coworker.category }}</h5>
+                <h5>{{ coworker.name }}</h5>
+                <h5 style="color: greenyellow">{{ coworker.category | upper}}</h5>
                 <p>{{ coworker.description | raw }}</p>
-                <h5>{{ coworker.email }}</h5>
+                <h6>{{ coworker.email }}</h6>
                 <ul class="list-inline">
                     {% for socialNetwork in coworker.socialNetworks %}
                             <li>
                                 <a target="_blank" href="{{ socialNetwork.url }}">
                                     {% if socialNetwork.category.imageName is not null %}
                                         <img
-                                                src="{{ vich_uploader_asset(socialNetwork.category, 'imageFile') | imagine_filter('60x60') }}"
-                                                alt="{{ socialNetwork.category.title }}">
+                                            src="{{ vich_uploader_asset(socialNetwork.category, 'imageFile') | imagine_filter('60x60') }}"
+                                            alt="{{ socialNetwork.category.title }}">
                                     {% else %}
                                         {{ socialNetwork.category.title }}
                                     {% endif %}
