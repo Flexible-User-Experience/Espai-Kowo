@@ -1,13 +1,30 @@
 {% extends ':Frontend:base.html.twig' %}
 
 {% block main %}
-    <div class="col-xs-12">
-        <h2 class="text-center fresh-talent-ad">Coworkers list</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center fresh-talent-ad">Coworkers list</h2>
+        </div>
+    </div>
+    <div class="row">
         {% for coworker in coworkers %}
-            <h5><a href="{{ path('front_coworker_detail', {id: coworker.id}) }}">{{ coworker.name }}</a></h5>
-            <h5>{{ coworker.position }}</h5>
-            <h5>{{ coworker.enabled }}</h5>
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    {% if coworker.imageName is not null %}
+                        <img
+                                src="{{ vich_uploader_asset(coworker, 'imageFile') | imagine_filter('256xY') }}"
+                                alt="{{ coworker.imageName }}">
+                    {% else %}
+                        <img src="{{ asset('bundles/app/img/logo-espai-kowo.png') | imagine_filter('256xY') }}" alt="">
+                    {% endif %}
+                    <div class="caption">
+                        <h3>{{ coworker.name }}</h3>
+                        <p>{{ coworker.description | truncate(5) }}</p>
+                        <p><a href="{{ path('front_coworker_detail', {id: coworker.id}) }}" class="btn btn-primary"
+                              role="button">Més</a></p>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-        <a href="{{ path('front_homepage') }}">Homepage</a>
     </div>
 {% endblock %}
