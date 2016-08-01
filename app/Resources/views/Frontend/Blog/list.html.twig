@@ -23,7 +23,6 @@
                             <p>{{ post.description | truncate(100) }}</p>
                             <p><a href="{{ path('front_blog_detail', {slug: post.slug, year: post.publishedAt|date('Y'), month: post.publishedAt|date('m'), day: post.publishedAt|date('d') }) }}" class="btn btn-primary"
                                   role="button">Detalls</a></p>
-
                         </div>
                     </div>
                 </div>
