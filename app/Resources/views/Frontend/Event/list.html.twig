@@ -2,7 +2,6 @@
 
 {% block main %}
     <div class="col-xs-12">
-        <h2 class="text-center fresh-talent-ad">Events</h2>
         {% for event in events %}
             <h5><a href="{{ path('front_event_detail', {id: event.id}) }}">{{ event.title }}</a></h5>
             <h5>{{ event.date|date("d/m/Y") }}</h5>
