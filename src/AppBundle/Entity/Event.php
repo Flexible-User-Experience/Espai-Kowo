@@ -5,6 +5,7 @@ use AppBundle\Entity\Traits\DateTrait;
 use AppBundle\Entity\Traits\DescriptionTrait;
 use AppBundle\Entity\Traits\TitleTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -18,7 +19,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @author   Anton Serra <aserratorta@gmail.com>
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EventRepository")
- *  * @Vich\Uploadable
+ * @Vich\Uploadable
+ * @UniqueEntity("title")
  */
 class Event extends AbstractBase
 {

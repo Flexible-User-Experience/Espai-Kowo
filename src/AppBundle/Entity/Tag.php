@@ -1,9 +1,11 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\TitleTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Class Tag
@@ -13,6 +15,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @author   Anton Serra <aserratorta@gmail.com>
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TagRepository")
+ * @UniqueEntity("title")
  */
 class Tag extends AbstractBase
 {

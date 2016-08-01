@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 use AppBundle\Entity\Traits\TitleTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -18,6 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SocialNetworkCategoryRepository")
  * @Vich\Uploadable
+ * @UniqueEntity("title")
  */
 class SocialNetworkCategory extends AbstractBase
 {
