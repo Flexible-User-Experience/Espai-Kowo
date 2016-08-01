@@ -2,11 +2,6 @@
 
 {% block main %}
     <div class="row">
-        <div class="col-md-12">
-            <h2 class="text-center fresh-talent-ad">Post list</h2>
-        </div>
-    </div>
-    <div class="row">
         {% if posts | length > 0 %}
             {% for post in posts %}
                 <div class="col-md-6">
