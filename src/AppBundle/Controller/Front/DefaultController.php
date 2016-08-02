@@ -43,6 +43,31 @@ class DefaultController extends Controller
             $em->persist($contactMessage);
 
             $em->flush();
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Missatge de contacte pàgina web espaikowo.cat')
+                ->setFrom($contactMessage->getEmail())
+                ->setTo('info@espaikowo.cat')
+                ->setBody(
+                    $this->renderView(
+                    // app/Resources/views/Emails/registration.html.twig
+                        ':Mails:contact_form_admin_notification.html.twig',
+                        array('contact' => $contactMessage)
+                    ),
+                    'text/html'
+                )
+
+//                ->addPart(
+//                    $this->renderView(
+//                        ':Mails:',
+//                        array('name' => $name)
+//                    ),
+//                    'text/plain'
+//                )
+
+            ;
+            $this->get('mailer')->send($message);
+
         }
 
         return $this->render(':Frontend:contact.html.twig', array(
