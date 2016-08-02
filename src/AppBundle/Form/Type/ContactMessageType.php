@@ -49,17 +49,6 @@ class ContactMessageType extends AbstractType
                 )
             )
             ->add(
-                'subject',
-                TextType::class,
-                array(
-                    'label'    => false,
-                    'required' => true,
-                    'attr'     => array(
-                        'placeholder' => 'Tema',
-                    ),
-                )
-            )
-            ->add(
                 'message',
                 TextareaType::class,
                 array(
