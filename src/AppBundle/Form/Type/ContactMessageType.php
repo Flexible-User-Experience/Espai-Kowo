@@ -49,6 +49,17 @@ class ContactMessageType extends AbstractType
                 )
             )
             ->add(
+                'phone',
+                TextType::class,
+                array(
+                    'label'    => false,
+                    'required' => false,
+                    'attr'     => array(
+                        'placeholder' => 'Telèfon',
+                    ),
+                )
+            )
+            ->add(
                 'message',
                 TextareaType::class,
                 array(

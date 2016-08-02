@@ -39,6 +39,10 @@ class DefaultController extends Controller
                 'notice',
                 'El teu missatge s\'ha enviat correctament'
             );
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($contactMessage);
+
+            $em->flush();
         }
 
         return $this->render(':Frontend:contact.html.twig', array(
