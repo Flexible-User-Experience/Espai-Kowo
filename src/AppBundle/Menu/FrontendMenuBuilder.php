@@ -87,6 +87,13 @@ class FrontendMenuBuilder
                 'current' => $route == 'front_events_list' || $route == 'front_events_detail',
             )
         );
+        $menu->addChild(
+            'front_contact',
+            array(
+                'label'   => 'CONTACTE',
+                'route'   => 'front_contact',
+            )
+        );
 
         return $menu;
     }

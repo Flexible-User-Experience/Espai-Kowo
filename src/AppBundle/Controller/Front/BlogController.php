@@ -26,12 +26,13 @@ class BlogController extends Controller
 
     /**
      * @Route("/blog/{year}/{month}/{day}/{slug}", name="front_blog_detail")
-     * @param         $year
-     * @param         $month
-     * @param         $day
-     * @param         $slug
+     * @param $year
+     * @param $month
+     * @param $day
+     * @param $slug
      *
      * @return Response
+     * @throws EntityNotFoundException
      */
     public function postDetailAction($year, $month, $day, $slug)
     {
