@@ -8,6 +8,7 @@
             <h5>{{ coworker.description | raw }}</h5>
         </div>
     </div>
+    <br>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -22,7 +23,7 @@
             </div>
             <div class="col-md-6">
                 {# right side #}
-                <h5>{{ coworker.name }}</h5>
+                <h4>{{ coworker.name | upper}}</h4>
                 <h5 style="color: greenyellow">{{ coworker.category | upper}}</h5>
                 <p>{{ coworker.description | raw }}</p>
                 <h6>{{ coworker.email }}</h6>
@@ -32,7 +33,7 @@
                                 <a target="_blank" href="{{ socialNetwork.url }}">
                                     {% if socialNetwork.category.imageName is not null %}
                                         <img
-                                            src="{{ vich_uploader_asset(socialNetwork.category, 'imageFile') | imagine_filter('60x60') }}"
+                                            src="{{ vich_uploader_asset(socialNetwork.category, 'imageFile') | imagine_filter('30x30') }}"
                                             alt="{{ socialNetwork.category.title }}">
                                     {% else %}
                                         {{ socialNetwork.category.title }}
