@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller\Front;
 
+use AppBundle\Entity\ContactMessage;
+use AppBundle\Form\Type\ContactMessageType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,6 +27,11 @@ class DefaultController extends Controller
      */
     public function contactAction()
     {
-        return $this->render(':Frontend:contact.html.twig', array());
+        $contactMessage = new ContactMessage();
+        $form = $this->createForm(ContactMessageType::class, $contactMessage);
+
+        return $this->render(':Frontend:contact.html.twig', array(
+            'formContact' => $form->createView(),
+        ));
     }
 }
