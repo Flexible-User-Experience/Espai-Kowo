@@ -16,7 +16,7 @@ use Sonata\AdminBundle\Route\RouteCollection;
  */
 class EventAdmin extends AbstractBaseAdmin
 {
-    protected $classnameLabel = 'Activitat';
+    protected $classnameLabel = 'Activity';
     protected $baseRoutePattern = 'activitats/activitat';
     protected $datagridValues = array(
         '_sort_by'    => 'date',
