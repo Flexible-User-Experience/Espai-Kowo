@@ -20,61 +20,96 @@ AppBundle\Entity\Coworker:
     imageName: '1.jpeg'
     position: 1
     email: 'sberbis@hotmail.com'
+    description: <paragraph()>
+    category: @category<numberBetween(1, 5)>
   coworker2:
     name: 'Sofia Cabanes'
     imageName: '2.jpeg'
     position: 2
     email: 'sofiacabanes@hotmail.com'
+    description: <paragraph()>
+    category: @category<numberBetween(1, 5)>
   coworker3:
     name: 'Vanesa Cervera'
     imageName: '5.jpeg'
     position: 3
     email: 'info@vanesadesign.com'
+    description: <paragraph()>
+    category: @category<numberBetween(1, 5)>
   coworker4:
     name: 'Jaume Castellà'
     imageName: '4.jpeg'
     position: 4
     email: 'jaume.castella@cresol.com'
+    description: <paragraph()>
+    category: @category<numberBetween(1, 5)>
   coworker5:
     name: 'German Zubeldia'
     imageName: '11.jpeg'
     position: 5
     email: 'sinergia.client@gmail.com'
+    description: <paragraph()>
+    category: @category<numberBetween(1, 5)>
   coworker6:
     name: 'Rubèn Hierro'
     imageName: '9.jpeg'
     position: 6
     email: 'info@rubenhierro.com'
+    description: <paragraph()>
+    category: @category<numberBetween(1, 5)>
   coworker7:
     name: 'Marc Morales'
     imageName: '6.jpeg'
     position: 7
     email: 'info@marcmorales.cat'
+    description: <paragraph()>
+    category: @category<numberBetween(1, 5)>
   coworker8:
     name: 'Juan Carlos Chicón'
     imageName: '8.jpeg'
     position: 8
     email: 'jcchicon@gmail.com'
+    description: <paragraph()>
+    category: @category<numberBetween(1, 5)>
   coworker9:
     name: 'David Romaní'
     imageName: '7.jpeg'
     position: 9
     email: 'david@flux.cat'
+    description: <paragraph()>
+    category: @category<numberBetween(1, 5)>
   coworker10:
     name: 'Wilson Iglesias'
     imageName: '10.jpeg'
     position: 10
     email: 'info@wiglesias.com'
+    description: <paragraph()>
+    category: @category<numberBetween(1, 5)>
   coworker11:
     name: 'Anton Serra'
     imageName: '3.jpeg'
     position: 11
     email: 'aserratorta@gmail.com'
+    description: <paragraph()>
+    category: @category<numberBetween(1, 5)>
 
 #Social Network Category
 AppBundle\Entity\SocialNetworkCategory:
-  socialnetworkcategory{1..5}:
-    title: <word()>
+  socialnetworkcategory1:
+    title: 'facebook'
+    imageName: 'facebook.png'
+  socialnetworkcategory2:
+    title: 'instagram'
+    imageName: 'instagram.png'
+  socialnetworkcategory3:
+    title: 'linkedin'
+    imageName: 'linkedin.png'
+  socialnetworkcategory4:
+    title: 'mail'
+    imageName: 'mail.png'
+  socialnetworkcategory5:
+    title: 'twitter'
+    imageName: 'twitter.png'
 
 #Social Network
 AppBundle\Entity\SocialNetwork:
