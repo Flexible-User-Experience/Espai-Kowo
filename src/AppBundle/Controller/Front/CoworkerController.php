@@ -24,16 +24,17 @@ class CoworkerController extends Controller
     }
 
     /**
-     * @Route("/coworker/{id}", name="front_coworker_detail")
+     * @Route("/coworker/{slug}", name="front_coworker_detail")
      *
-     * @param $id
+     * @param $slug
+     *
      * @return Response
      */
-    public function detailAction($id)
+    public function detailAction($slug)
     {
         $coworker = $this->getDoctrine()->getRepository('AppBundle:Coworker')->findOneBy(
             array(
-                'id' => $id,
+                'slug' => $slug,
             )
         );
 

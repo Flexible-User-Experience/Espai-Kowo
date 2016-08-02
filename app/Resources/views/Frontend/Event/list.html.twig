@@ -1,11 +1,29 @@
 {% extends ':Frontend:base.html.twig' %}
 
 {% block main %}
-    <div class="col-xs-12">
-        {% for event in events %}
-            <h5><a href="{{ path('front_event_detail', {id: event.id}) }}">{{ event.title }}</a></h5>
-            <h5>{{ event.date|date("d/m/Y") }}</h5>
-        {% endfor %}
-        <a href="{{ path('front_homepage') }}">Homepage</a>
+    <div class="row">
+        {% if events | length > 0 %}
+            {% for event in events %}
+                <div class="col-md3">
+                    <div class="thumbnail">
+                        {% if event.imageName is not null %}
+                            <img
+                                    src="{{ vich_uploader_asset(event, 'imageFile') | imagine_filter('256xY') }}"
+                                    alt="{{ event.imageName }}">
+                        {% else %}
+                            <img src="{{ asset('bundles/app/img/logo-espai-kowo.png') | imagine_filter('256xY') }}" alt="">
+                        {% endif %}
+                        <div class="caption">
+                            <h3>{{ event.title }}</h3>
+                            <h4>{{ event.type}}</h4>
+                            <h5>{{ event.description |truncate(100) | raw }}</h5>
+                            <h4>{{ event.date | date('d/m/Y') }}</h4>
+                            <p><a href="{{ path('front_event_detail', {slug: event.slug}) }}" class="btn btn-primary"
+                                  role="button">Detalls</a></p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
 {% endblock %}

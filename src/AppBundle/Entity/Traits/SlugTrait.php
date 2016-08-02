@@ -15,14 +15,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
 Trait SlugTrait
 {
     /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255)
-     * @Gedmo\Slug(fields={"title"})
-     */
-    private $slug;
-
-    /**
      * Set slug
      *
      * @param string $slug
