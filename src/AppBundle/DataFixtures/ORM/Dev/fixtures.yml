@@ -15,12 +15,61 @@ AppBundle\Entity\ContactMessage:
 
 ## Coworkers
 AppBundle\Entity\Coworker:
-  coworker{1..12}:
-    position: <numberBetween(1, 12)>
-    name: <name()>
-    description: <paragraph()>
-    email: <safeEmail()>
-    category: @category<numberBetween(1, 5)>
+  coworker1:
+    name: 'Sílvia Berbís'
+    imageName: '1.jpeg'
+    position: 1
+    email: 'sberbis@hotmail.com'
+  coworker2:
+    name: 'Sofia Cabanes'
+    imageName: '2.jpeg'
+    position: 2
+    email: 'sofiacabanes@hotmail.com'
+  coworker3:
+    name: 'Vanesa Cervera'
+    imageName: '5.jpeg'
+    position: 3
+    email: 'info@vanesadesign.com'
+  coworker4:
+    name: 'Jaume Castellà'
+    imageName: '4.jpeg'
+    position: 4
+    email: 'jaume.castella@cresol.com'
+  coworker5:
+    name: 'German Zubeldia'
+    imageName: '11.jpeg'
+    position: 5
+    email: 'sinergia.client@gmail.com'
+  coworker6:
+    name: 'Rubèn Hierro'
+    imageName: '9.jpeg'
+    position: 6
+    email: 'info@rubenhierro.com'
+  coworker7:
+    name: 'Marc Morales'
+    imageName: '6.jpeg'
+    position: 7
+    email: 'info@marcmorales.cat'
+  coworker8:
+    name: 'Juan Carlos Chicón'
+    imageName: '8.jpeg'
+    position: 8
+    email: 'jcchicon@gmail.com'
+  coworker9:
+    name: 'David Romaní'
+    imageName: '7.jpeg'
+    position: 9
+    email: 'david@flux.cat'
+  coworker10:
+    name: 'Wilson Iglesias'
+    imageName: '10.jpeg'
+    position: 10
+    email: 'info@wiglesias.com'
+  coworker11:
+    name: 'Anton Serra'
+    imageName: '3.jpeg'
+    position: 11
+    email: 'aserratorta@gmail.com'
 
 #Social Network Category
 AppBundle\Entity\SocialNetworkCategory:
