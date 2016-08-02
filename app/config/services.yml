@@ -24,7 +24,7 @@ services:
         class: AppBundle\Admin\EventAdmin
         arguments: [ ~, AppBundle\Entity\Event, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Events", group: "Events" }
+            - { name: sonata.admin, manager_type: orm, label: "Activitats", group: "Activities" }
     admin.post:
         class: AppBundle\Admin\PostAdmin
         arguments: [ ~, AppBundle\Entity\Post, AppBundle:Admin\PostAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
