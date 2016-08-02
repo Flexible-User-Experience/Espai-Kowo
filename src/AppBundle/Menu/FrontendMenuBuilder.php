@@ -82,7 +82,7 @@ class FrontendMenuBuilder
         $menu->addChild(
             'front_events_list',
             array(
-                'label'   => 'ESDEVENIMENTS',
+                'label'   => 'ACTIVITATS',
                 'route'   => 'front_events_list',
                 'current' => $route == 'front_events_list' || $route == 'front_events_detail',
             )

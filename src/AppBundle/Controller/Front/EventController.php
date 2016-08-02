@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 class EventController extends Controller
 {
     /**
-     * @Route("/events", name="front_events_list")
+     * @Route("/activitats", name="front_events_list")
      *
      * @return Response
      */
@@ -24,7 +24,7 @@ class EventController extends Controller
     }
 
     /**
-     * @Route("/event/{slug}", name="front_event_detail")
+     * @Route("/activitat/{slug}", name="front_event_detail")
      *
      * @param $slug
      * @return Response
