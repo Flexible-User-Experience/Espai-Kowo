@@ -47,6 +47,8 @@
 <div class="container">
     {% block main %}{% endblock %}
 </div>
+{#<!-- Scroll-Top effect -->#}
+<div class="scroll-top-wrapper"><span class="scroll-top-inner"><i class="fa fa-2x fa-chevron-up"></i></span></div>
 {#<!-- Footer -->#}
 {% block footer %}
     <footer class="footer">
@@ -66,7 +68,7 @@
 {% endblock %}
 {% block scroll_top %}
     {#<!-- Scroll-Top effect JS -->#}
-    {#{% include ':Frontend/includes:scroll-to-top-js.html.twig' %}#}
+    {% include ':Frontend/includes:scroll-to-top-js.html.twig' %}
 {% endblock %}
 {% block analytics %}
     {#<!-- Google Analytics -->#}
