@@ -4,7 +4,14 @@ namespace AppBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DefaultControllerTest extends WebTestCase
+/**
+ * Class FrontendControllerTest
+ *
+ * @category Test
+ * @package  AppBundle\Tests\Controller
+ * @author   David Romaní <david@flux.cat>
+ */
+class FrontendControllerTest extends WebTestCase
 {
     public function testIndex()
     {
@@ -15,9 +22,9 @@ class DefaultControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 //        $client->request('GET', '/coworker/1');
 //        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $client->request('GET', '/events');
+        $client->request('GET', '/activitats');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $client->request('GET', '/event/1');
+        $client->request('GET', '/activitat/1');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $client->request('GET', '/blog');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
