@@ -33,7 +33,7 @@ class ContactMessageType extends AbstractType
                     'label'    => false,
                     'required' => true,
                     'attr'     => array(
-                        'placeholder' => 'front.contact.form.name',
+                        'placeholder' => 'Nom',
                     ),
                 )
             )
@@ -44,18 +44,18 @@ class ContactMessageType extends AbstractType
                     'label'    => false,
                     'required' => true,
                     'attr'     => array(
-                        'placeholder' => 'front.contact.form.email',
+                        'placeholder' => 'Email',
                     ),
                 )
             )
             ->add(
-                'subject',
+                'phone',
                 TextType::class,
                 array(
                     'label'    => false,
-                    'required' => true,
+                    'required' => false,
                     'attr'     => array(
-                        'placeholder' => 'front.contact.form.subject',
+                        'placeholder' => 'Telèfon',
                     ),
                 )
             )
@@ -67,7 +67,7 @@ class ContactMessageType extends AbstractType
                     'required' => true,
                     'attr'     => array(
                         'rows'        => 5,
-                        'placeholder' => 'front.contact.form.message',
+                        'placeholder' => 'Missatge',
                     ),
                 )
             )
@@ -75,7 +75,7 @@ class ContactMessageType extends AbstractType
                 'send',
                 SubmitType::class,
                 array(
-                    'label' => 'front.contact.form.ok',
+                    'label' => 'Enviar',
                     'attr'  => array(
                         'class' => 'btn-default',
                     ),

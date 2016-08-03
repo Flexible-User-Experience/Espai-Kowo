@@ -2,7 +2,12 @@
 @import "../../../../../vendor/twbs/bootstrap/less/bootstrap.less";
 @import "../../../../../vendor/components/font-awesome/less/font-awesome.less";
 
+// Fonts
+@icon-font-path: "/bundles/app/fonts/";
+@fa-font-path: "/bundles/app/fonts";
+
 // Brand colors
+@ek-c-white:     #FFFFFF;
 @ek-c-green:     #A1C548;
 @ek-c-orange:    #E27436;
 @ek-c-violet:    #40315F;
@@ -17,6 +22,12 @@
 @ek-s-base: 20px;
 @ek-s-base-plus: 60px;
 @ek-s-base-minus: 10px;
+
+// Custom Navbar
+@navbar-height: 80px;
+@navbar-border-radius: 0;
+@navbar-inverse-link-active-color: @ek-c-green;
+@navbar-inverse-link-color: @ek-c-white;
 
 // Custom margins
 .no-m { margin: 0}
@@ -69,5 +80,16 @@
     font-weight: normal;
     line-height: 1.5;
     white-space: nowrap;
+  }
+}
+.navbar-logo {
+  margin-top: -20px;
+}
+footer {
+  color: white;
+  padding: 40px 0;
+  margin: 0;
+  &.footer {
+    background-color: black;
   }
 }

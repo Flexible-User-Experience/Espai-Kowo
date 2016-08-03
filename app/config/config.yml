@@ -41,7 +41,7 @@ twig:
         google_analytics_enabled: %google_analytics_enabled%
         google_analytics_account: "%google_analytics_account%"
         main_brand_title:         "%main_brand_title%"
-        admin_tag_version:        "v0.0.1"
+        admin_tag_version:        "v0.1.0"
 
 # Assetic Configuration
 assetic:
@@ -85,6 +85,8 @@ swiftmailer:
     host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
+    encryption: "ssl"
+    auth_mode: "login"
     spool:     { type: memory }
 
 # Sonata
@@ -142,7 +144,7 @@ sonata_admin:
                 icon: "<i class='fa fa-chrome'></i>"
             Coworkers:
                 icon: "<i class='fa fa-users'></i>"
-            Events:
+            Activities:
                 icon: "<i class='fa fa-calendar-times-o'></i>"
             Contacts:
                 icon: "<i class='fa fa-envelope'></i>"
@@ -162,7 +164,7 @@ sonata_admin:
                 type: sonata.admin.block.admin_list
                 class: col-md-6
                 settings:
-                    groups: [ Events ]
+                    groups: [ Activities ]
             -
                 position: top
                 type: sonata.admin.block.admin_list

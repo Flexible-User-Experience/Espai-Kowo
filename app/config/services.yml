@@ -24,7 +24,7 @@ services:
         class: AppBundle\Admin\EventAdmin
         arguments: [ ~, AppBundle\Entity\Event, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Events", group: "Events" }
+            - { name: sonata.admin, manager_type: orm, label: "Activities", group: "Activities" }
     admin.post:
         class: AppBundle\Admin\PostAdmin
         arguments: [ ~, AppBundle\Entity\Post, AppBundle:Admin\PostAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
@@ -52,3 +52,13 @@ services:
     app.notification:
         class: AppBundle\Service\NotificationService
         arguments: [ "@app.courier", "@twig", "%mailer_destination%", "%mailer_url_base%" ]
+# Menu
+    app.frontend_menu_builder:
+        class: AppBundle\Menu\FrontendMenuBuilder
+        arguments: [ "@knp_menu.factory", "@security.authorization_checker", "@translator" ]
+    app.frontend_top_menu:
+        class: Knp\Menu\MenuItem
+        factory: [ "@app.frontend_menu_builder", createTopMenu ]
+        arguments: [ "@request_stack" ]
+        tags:
+            - { name: knp_menu.menu, alias: top }

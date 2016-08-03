@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 class EventController extends Controller
 {
     /**
-     * @Route("/events", name="front_events_list")
+     * @Route("/activitats", name="front_events_list")
      *
      * @return Response
      */
@@ -24,16 +24,16 @@ class EventController extends Controller
     }
 
     /**
-     * @Route("/event/{id}", name="front_event_detail")
+     * @Route("/activitat/{slug}", name="front_event_detail")
      *
-     * @param $id
+     * @param $slug
      * @return Response
      */
-    public function detailAction($id)
+    public function detailAction($slug)
     {
         $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneBy(
             array(
-                'id' => $id,
+                'slug' => $slug,
             )
         );
 

@@ -2,12 +2,15 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\DescriptionTrait;
+use AppBundle\Entity\Traits\SlugTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class Coworker
@@ -18,10 +21,20 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CoworkerRepository")
  * @Vich\Uploadable
+ * @UniqueEntity("name")
  */
 class Coworker extends AbstractBase
 {
     use DescriptionTrait;
+    use SlugTrait;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"name"})
+     */
+    private $slug;
 
     /**
      * @var integer
@@ -32,7 +45,7 @@ class Coworker extends AbstractBase
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $name;
 
@@ -169,7 +182,7 @@ class Coworker extends AbstractBase
      *
      * @param File|UploadedFile $imageFile
      *
-     * @return Post
+     * @return $this
      */
     public function setImageFile(File $imageFile = null)
     {
