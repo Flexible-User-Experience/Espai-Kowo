@@ -85,6 +85,32 @@
 .navbar-logo {
   margin-top: -20px;
 }
+.scroll-top-wrapper {
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  text-align: center;
+  z-index: 2000;
+  background-color: @ek-c-orange;
+  color: white;
+  width: 50px;
+  height: 48px;
+  line-height: 48px;
+  right: 15px;
+  bottom: 15px;
+  padding-top: 2px;
+  border-radius: 4px;
+  .transition (all 0.5s ease-in-out);
+  &.show {
+    visibility: visible;
+    cursor: pointer;
+    opacity: 0.85;
+  }
+  i.fa {
+    line-height: inherit;
+  }
+}
 footer {
   color: white;
   padding: 40px 0;
