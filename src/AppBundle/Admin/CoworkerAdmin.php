@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -57,7 +58,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'description',
-                'ckeditor',
+                CKEditorType::class,
                 array(
                     'label' => 'backend.admin.coworker.description',
                     'config_name' => 'my_config',
