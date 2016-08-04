@@ -98,18 +98,23 @@ AppBundle\Entity\SocialNetworkCategory:
   socialnetworkcategory1:
     title: 'facebook'
     imageName: 'facebook.png'
+    fontAwesomeClass: 'fa-facebook-official'
   socialnetworkcategory2:
     title: 'instagram'
     imageName: 'instagram.png'
+    fontAwesomeClass: 'fa-instagram'
   socialnetworkcategory3:
     title: 'linkedin'
     imageName: 'linkedin.png'
+    fontAwesomeClass: 'fa-linkedin-square'
   socialnetworkcategory4:
     title: 'mail'
     imageName: 'mail.png'
+    fontAwesomeClass: 'fa-envelope'
   socialnetworkcategory5:
     title: 'twitter'
     imageName: 'twitter.png'
+    fontAwesomeClass: 'fa-twitter-square'
 
 #Social Network
 AppBundle\Entity\SocialNetwork:

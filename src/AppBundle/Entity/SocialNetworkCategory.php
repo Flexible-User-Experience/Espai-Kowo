@@ -45,6 +45,14 @@ class SocialNetworkCategory extends AbstractBase
     private $imageName;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255)
+     */
+    private $fontAwesomeClass;
+
+
+    /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="SocialNetwork", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)
      */
@@ -148,6 +156,26 @@ class SocialNetworkCategory extends AbstractBase
     public function removeSocialNetwork(SocialNetwork $socialNetwork)
     {
         $this->socialNetworks->removeElement($socialNetwork);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFontAwesomeClass()
+    {
+        return $this->fontAwesomeClass;
+    }
+
+    /**
+     * @param string $fontAwesomeClass
+     *
+     * @return SocialNetworkCategory
+     */
+    public function setFontAwesomeClass($fontAwesomeClass)
+    {
+        $this->fontAwesomeClass = $fontAwesomeClass;
 
         return $this;
     }

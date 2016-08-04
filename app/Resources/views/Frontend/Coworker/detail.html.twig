@@ -33,13 +33,7 @@
                     {% for socialNetwork in coworker.socialNetworks %}
                             <li>
                                 <a target="_blank" href="{{ socialNetwork.url }}">
-                                    {% if socialNetwork.category.imageName is not null %}
-                                        <img
-                                            src="{{ vich_uploader_asset(socialNetwork.category, 'imageFile') | imagine_filter('30x30') }}"
-                                            alt="{{ socialNetwork.category.title }}">
-                                    {% else %}
-                                        {{ socialNetwork.category.title }}
-                                    {% endif %}
+                                    <i class="fa {{ socialNetwork.category.fontAwesomeClass }} fa-2x" aria-hidden="true"></i>
                                 </a>
                             </li>
                     {% endfor %}
