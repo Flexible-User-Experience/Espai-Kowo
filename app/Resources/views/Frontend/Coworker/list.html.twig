@@ -6,7 +6,7 @@
     <div class="row">
         {% if coworkers | length > 0 %}
             {% for coworker in coworkers %}
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="thumbnail">
                         {% if coworker.imageName is not null %}
                             <img
@@ -17,7 +17,7 @@
                         {% endif %}
                         <div class="caption">
                             <h3>{{ coworker.name }}</h3>
-                            <p>{{ coworker.description | truncate(5) | raw }}</p>
+                            <p>{{ coworker.description | truncate(100) | raw }}</p>
                             <p><a href="{{ path('front_coworker_detail', {slug: coworker.slug}) }}" class="btn btn-primary"
                                   role="button">Més</a></p>
                             <ul class="list-inline">
@@ -32,6 +32,10 @@
                         </div>
                     </div>
                 </div>
+                {% if loop.index is divisible by(4) %}
+                    </div>
+                    <div class="row">
+                {% endif %}
             {% endfor %}
         {% else %}
             {% include ':Frontend/includes:under_construciton_warning.html.twig' %}
