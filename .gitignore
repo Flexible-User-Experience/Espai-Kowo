@@ -22,4 +22,6 @@
 /.idea
 /Capfile
 /backups/
+/test.sh
+/dbreset.sh
 !.travis.yml
