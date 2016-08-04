@@ -62,6 +62,7 @@ AppBundle\Entity\Post:
 AppBundle\Entity\SocialNetworkCategory:
   socialnetworkcategory{1..2}:
     title: <word()>
+    fontAwesomeClass: 'fa-instagram'
 
 #Social Network
 AppBundle\Entity\SocialNetwork:
