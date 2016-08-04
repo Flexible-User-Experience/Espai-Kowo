@@ -39,7 +39,7 @@ class DefaultController extends Controller
                 'notice',
                 'El teu missatge s\'ha enviat correctament'
             );
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $em->persist($contactMessage);
 
             $em->flush();

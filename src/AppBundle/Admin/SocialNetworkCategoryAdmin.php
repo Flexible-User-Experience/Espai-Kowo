@@ -50,12 +50,11 @@ class SocialNetworkCategoryAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
-                'imageFile',
-                'file',
+                'fontAwesomeClass',
+                null,
                 array(
-                    'label'    => 'backend.admin.post.image',
-                    'help'     => $this->getImageHelperFormMapperWithThumbnail(),
-                    'required' => false,
+                    'label' => 'Icona',
+                    'help'  => 'Classe CSS Font Awesome'
                 )
             )
             ->end()
@@ -101,11 +100,11 @@ class SocialNetworkCategoryAdmin extends AbstractBaseAdmin
         unset($this->listModes['mosaic']);
         $listMapper
             ->add(
-                'image',
+                'fontAwesomeClass',
                 null,
                 array(
-                    'label'    => 'backend.admin.post.image',
-                    'template' => '::Admin/Cells/list__cell_image_field.html.twig'
+                    'label'    => 'Icona',
+                    'template' => '::Admin/Cells/list__cell_fontAwesomeClass_field.html.twig'
                 )
             )
             ->add(

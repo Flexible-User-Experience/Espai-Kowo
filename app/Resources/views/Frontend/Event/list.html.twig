@@ -1,5 +1,7 @@
 {% extends ':Frontend:base.html.twig' %}
 
+{% block title %}Activitats · {{ parent() }}{% endblock %}
+
 {% block main %}
     <div class="row">
         {% if events | length > 0 %}
@@ -24,6 +26,8 @@
                     </div>
                 </div>
             {% endfor %}
+        {% else %}
+            {% include ':Frontend/includes:under_construciton_warning.html.twig' %}
         {% endif %}
     </div>
 {% endblock %}
