@@ -36,7 +36,7 @@
                 </div>
             {% endfor %}
         {% else %}
-            <div class="alert alert-warning" role="alert">En construcció</div>
+            {% include ':Frontend/includes:under_construciton_warning.html.twig' %}
         {% endif %}
     </div>
 {% endblock %}
