@@ -1,5 +1,7 @@
 {% extends ':Frontend:base.html.twig' %}
 
+{% block title %}Coworkers · {{ parent() }}{% endblock %}
+
 {% block main %}
     <div class="row">
         {% if coworkers | length > 0 %}

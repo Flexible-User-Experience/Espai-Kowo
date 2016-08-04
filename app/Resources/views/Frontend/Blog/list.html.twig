@@ -1,5 +1,7 @@
 {% extends ':Frontend:base.html.twig' %}
 
+{% block title %}Blog · {{ parent() }}{% endblock %}
+
 {% block main %}
     <div class="row">
         {% if posts | length > 0 %}

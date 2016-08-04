@@ -1,5 +1,7 @@
 {% extends ':Frontend:base.html.twig' %}
 
+{% block title %}{{ post.title }} · Blog · {{ parent() }}{% endblock %}
+
 {% block main %}
     <div class="col-xs-12">
         <h2 class="text-center fresh-talent-ad">Post detail</h2>
