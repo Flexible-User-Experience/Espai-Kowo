@@ -26,7 +26,7 @@
 {% block header %}
     <nav class="navbar navbar-default navbar-inverse">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
+            {#<!-- Brand and toggle get grouped for better mobile display -->#}
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
@@ -36,12 +36,11 @@
                 </button>
                 <a class="navbar-brand" href="{{ path('front_homepage') }}"><img class="navbar-logo" src="{{ asset('bundles/app/img/logo-espai-kowo.png') | imagine_filter('60x60') }}" alt="Espai Kowo Logo"></a>
             </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
+            {#<!-- Collect the nav links, forms, and other content for toggling -->#}
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 {{ knp_menu_render('top', {currentClass: 'active'}) }}
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
+            </div>
+        </div>
     </nav>
 {% endblock %}
 {#<!-- Main content -->#}
@@ -54,10 +53,18 @@
 {% block footer %}
     <footer class="footer">
         <div class="container">
-            <span class="text-muted">ESPAI KOWO</span><br>
-            C. Primer de maig, 1, 3r B<br>
-            43870 Amposta<br>
-            (Tarragona)
+            <div class="row">
+                <div class="col-md-6">
+                    <span class="text-muted text-title">ESPAI KOWO</span><br>
+                    C. Primer de maig, 1, 3r B<br>
+                    43870 Amposta<br>
+                    (Tarragona)
+                </div>
+                <div class="col-md-6">
+                    <p><a href="#"></a>Social Network1</p>
+                    <p><a href="#"></a>Social Network2</p>
+                </div>
+            </div>
         </div>
     </footer>
 {% endblock %}
@@ -69,7 +76,7 @@
 {% endblock %}
 {% block scroll_top %}
     {#<!-- Scroll-Top effect JS -->#}
-    {#{% include ':Frontend/includes:scroll-to-top-js.html.twig' %}#}
+    {% include ':Frontend/includes:scroll-to-top-js.html.twig' %}
 {% endblock %}
 {% block analytics %}
     {#<!-- Google Analytics -->#}

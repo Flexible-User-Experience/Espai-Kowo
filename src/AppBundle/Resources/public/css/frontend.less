@@ -7,6 +7,7 @@
 @fa-font-path: "/bundles/app/fonts";
 
 // Brand colors
+@ek-c-white:     #FFFFFF;
 @ek-c-green:     #A1C548;
 @ek-c-orange:    #E27436;
 @ek-c-violet:    #40315F;
@@ -25,6 +26,13 @@
 // Custom Navbar
 @navbar-height: 80px;
 @navbar-border-radius: 0;
+@navbar-inverse-link-active-color: @ek-c-green;
+@navbar-inverse-link-color: @ek-c-white;
+
+// Custom body
+body {
+  min-height: 400px;
+}
 
 // Custom margins
 .no-m { margin: 0}
@@ -82,6 +90,32 @@
 .navbar-logo {
   margin-top: -20px;
 }
+.scroll-top-wrapper {
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  text-align: center;
+  z-index: 2000;
+  background-color: @ek-c-orange;
+  color: white;
+  width: 50px;
+  height: 48px;
+  line-height: 48px;
+  right: 15px;
+  bottom: 15px;
+  padding-top: 2px;
+  border-radius: 4px;
+  .transition (all 0.5s ease-in-out);
+  &.show {
+    visibility: visible;
+    cursor: pointer;
+    opacity: 0.85;
+  }
+  i.fa {
+    line-height: inherit;
+  }
+}
 footer {
   color: white;
   padding: 40px 0;
@@ -89,4 +123,7 @@ footer {
   &.footer {
     background-color: black;
   }
+}
+.text-title {
+  color: @ek-c-green;
 }

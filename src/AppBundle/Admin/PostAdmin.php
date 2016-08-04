@@ -4,6 +4,7 @@ namespace AppBundle\Admin;
 
 use AppBundle\Repository\TagRepository;
 use Doctrine\ORM\QueryBuilder;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -123,7 +124,7 @@ class PostAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'description',
-                'ckeditor',
+                CKEditorType::class,
                 array(
                     'label'       => 'backend.admin.post.description',
                     'config_name' => 'my_config',
