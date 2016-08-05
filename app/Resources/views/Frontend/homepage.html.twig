@@ -2,24 +2,97 @@
 
 {% block main %}
     <div class="row">
-        <div class="col-md-3 col-sm-4 col-xs-6">
-            <div class="alert alert-magenta" role="alert">
-                <h4 class="no-m text-center"><i class="fa fa-gear fa-spin"></i><br>sala coworking</h4>
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <div class="container">
+                    <h1>{{ words(1) }}</h1>
+                    <h2>{{ words(2) }}</h2>
+                    <p><a class="btn btn-primary btn-lg" href="#" role="button">Prova-ho 3 dies gratis &raquo;</a></p>
+                    {{ form(formHomepage) }}
+                    {% include ':Frontend/includes:notice_flash.html.twig' %}
+                </div>
             </div>
         </div>
-        <div class="col-md-3 col-sm-4 col-xs-6">
-            <div class="alert alert-dark-cyan" role="alert">
-                <h4 class="no-m text-center"><i class="fa fa-calendar-check-o"></i><br>activitats i formació</h4>
+    </div>
+{% endblock %}
+
+{% block homepage %}
+    <div class="grey-background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="http://placehold.it/350x180?text=IMAGE" alt="...">
+                        <div class="caption">
+                            <h3>{{ words(2) }}</h3>
+                            <p>{{ sentences(1) }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="http://placehold.it/350x180?text=IMAGE" alt="...">
+                        <div class="caption">
+                            <h3>{{ words(2) }}</h3>
+                            <p>{{ sentences(1) }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="http://placehold.it/350x180?text=IMAGE" alt="...">
+                        <div class="caption">
+                            <h3>{{ words(2) }}</h3>
+                            <p>{{ sentences(1) }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-3 col-sm-4 col-xs-6">
-            <div class="alert alert-violet" role="alert">
-                <h4 class="no-m text-center"><i class="fa fa-street-view"></i><br>zona de reunió</h4>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <i class="fa fa-bar-chart fa-3x" aria-hidden="true"></i>
+                <p>{{ words(1) }}</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <i class="fa fa-font-awesome fa-3x" aria-hidden="true"></i>
+                <p>{{ words(1) }}</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <i class="fa fa-balance-scale fa-3x" aria-hidden="true"></i>
+                <p>{{ words(1) }}</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <i class="fa fa-universal-access fa-3x" aria-hidden="true"></i>
+                <p>{{ words(1) }}</p>
             </div>
         </div>
-        <div class="col-md-3 col-sm-4 col-xs-6">
-            <div class="alert alert-orange" role="alert">
-                <h4 class="no-m text-center"><i class="fa fa-rocket"></i><br>àrea stress-less</h4>
+    </div>
+    <div class="grey-background">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                    <div class="alert alert-magenta" role="alert">
+                        <h4 class="no-m text-center"><i class="fa fa-gear fa-spin"></i><br>sala coworking</h4>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                    <div class="alert alert-dark-cyan" role="alert">
+                        <h4 class="no-m text-center"><i class="fa fa-calendar-check-o"></i><br>activitats i formació</h4>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                    <div class="alert alert-violet" role="alert">
+                        <h4 class="no-m text-center"><i class="fa fa-street-view"></i><br>zona de reunió</h4>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                    <div class="alert alert-orange" role="alert">
+                        <h4 class="no-m text-center"><i class="fa fa-rocket"></i><br>àrea stress-less</h4>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
