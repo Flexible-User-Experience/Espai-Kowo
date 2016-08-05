@@ -8,6 +8,8 @@
                     <h1>{{ words(1) }}</h1>
                     <h2>{{ words(2) }}</h2>
                     <p><a class="btn btn-primary btn-lg" href="#" role="button">Prova-ho 3 dies gratis &raquo;</a></p>
+                    {{ form(formHomepage) }}
+                    {% include ':Frontend/includes:notice_flash.html.twig' %}
                 </div>
             </div>
         </div>
