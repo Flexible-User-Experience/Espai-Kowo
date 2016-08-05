@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+            new Apoutchika\LoremIpsumBundle\ApoutchikaLoremIpsumBundle(),
             // App
             new AppBundle\AppBundle(),
         );
