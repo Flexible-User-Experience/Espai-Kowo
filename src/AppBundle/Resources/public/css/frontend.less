@@ -99,7 +99,7 @@
   text-align: center;
   z-index: 2000;
   background-color: @ek-c-orange;
-  color: white;
+  color: @ek-c-white;
   width: 50px;
   height: 48px;
   line-height: 48px;
@@ -118,11 +118,18 @@
   }
 }
 footer {
-  color: white;
+  color: @ek-c-white;
   padding: 40px 0;
-  margin: 0;
+  margin: 40px 0 0 0;
   &.footer {
     background-color: black;
+  }
+  a {
+    color: @ek-c-white;
+    &:hover {
+      text-decoration: none;
+      color: @ek-c-green;
+    }
   }
 }
 .text-title {
