@@ -30,8 +30,8 @@
 @navbar-inverse-link-active-color: @ek-c-green;
 @navbar-inverse-link-color: @ek-c-white;
 
-// Custom body
-body {
+// Custom Container Main
+.container-main {
   min-height: 400px;
 }
 
@@ -99,7 +99,7 @@ body {
   text-align: center;
   z-index: 2000;
   background-color: @ek-c-orange;
-  color: white;
+  color: @ek-c-white;
   width: 50px;
   height: 48px;
   line-height: 48px;
@@ -118,11 +118,18 @@ body {
   }
 }
 footer {
-  color: white;
+  color: @ek-c-white;
   padding: 40px 0;
-  margin: 0;
+  margin: 40px 0 0 0;
   &.footer {
     background-color: black;
+  }
+  a {
+    color: @ek-c-white;
+    &:hover {
+      text-decoration: none;
+      color: @ek-c-green;
+    }
   }
 }
 .text-title {
