@@ -1,5 +1,7 @@
 {% extends ':Frontend:base.html.twig' %}
 
+{% block title %}Blog · {{ parent() }}{% endblock %}
+
 {% block main %}
     <div class="row">
         {% if posts | length > 0 %}
@@ -22,6 +24,8 @@
                     </div>
                 </div>
             {% endfor %}
+        {% else %}
+            {% include ':Frontend/includes:under_construciton_warning.html.twig' %}
         {% endif %}
     </div>
 {% endblock %}

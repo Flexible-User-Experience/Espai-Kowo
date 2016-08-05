@@ -1,5 +1,7 @@
 {% extends ':Frontend:base.html.twig' %}
 
+{% block title %}{{ coworker.name }} · Coworker · {{ parent() }}{% endblock %}
+
 {% block main %}
     <div class="row">
         <div class="col-md-12 text-center">
@@ -13,12 +15,13 @@
         <div class="row">
             <div class="col-md-6">
                 {# left side #}
-                {% if coworker.imageName %}
+                {% if coworker.imageName is not null %}
                     <img
-                        src="{{ vich_uploader_asset(coworker, 'imageFile') | imagine_filter('480xY') }}"
-                        alt="{{ coworker.imageName }}">
+                            src="{{ vich_uploader_asset(coworker, 'imageFile') | imagine_filter('480xY') }}"
+                            alt="{{ coworker.imageName }}">
+
                 {% else %}
-                    <img src="{{ asset('bundles/app/img/logo-espai-kowo.png') | imagine_filter('480xY') }}" alt="">
+                    <img src="{{ asset('bundles/app/img/kiwi-pic.jpg') | imagine_filter('480xY') }}" alt="">
                 {% endif %}
             </div>
             <div class="col-md-6">
@@ -31,13 +34,7 @@
                     {% for socialNetwork in coworker.socialNetworks %}
                             <li>
                                 <a target="_blank" href="{{ socialNetwork.url }}">
-                                    {% if socialNetwork.category.imageName is not null %}
-                                        <img
-                                            src="{{ vich_uploader_asset(socialNetwork.category, 'imageFile') | imagine_filter('30x30') }}"
-                                            alt="{{ socialNetwork.category.title }}">
-                                    {% else %}
-                                        {{ socialNetwork.category.title }}
-                                    {% endif %}
+                                    <i class="fa {{ socialNetwork.category.fontAwesomeClass }} fa-2x" aria-hidden="true"></i>
                                 </a>
                             </li>
                     {% endfor %}
