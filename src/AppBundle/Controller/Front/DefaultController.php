@@ -74,4 +74,14 @@ class DefaultController extends Controller
             'formContact' => $form->createView(),
         ));
     }
+
+    /**
+     * @Route("/politica-de-privacitat", name="front_privacy_policy")
+     *
+     * @return Response
+     */
+    public function privacyPolicyAction()
+    {
+        return $this->render(':Frontend:privacy_policy.html.twig', array());
+    }
 }
