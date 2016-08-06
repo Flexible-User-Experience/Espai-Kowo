@@ -2,8 +2,10 @@
 
 namespace AppBundle\Listener;
 
-use AppBundle\Entity\Category;
+use AppBundle\Entity\Coworker;
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Event;
+use AppBundle\Repository\EventRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Presta\SitemapBundle\Service\SitemapListenerInterface;
@@ -28,24 +30,33 @@ class SitemapListener implements SitemapListenerInterface
     private $em;
 
     /** @var ArrayCollection */
-    private $categories;
+    private $coworkers;
 
     /** @var ArrayCollection */
     private $posts;
+
+//    /** @var EventRepository */
+//    private $er;
+
+//    /** @var array */
+//    private $locales;
 
     /**
      * SitemapListener constructor
      *
      * @param RouterInterface $router
      * @param EntityManager   $em
+     * @param EventRepository $er
+     * @param array           $locales
      */
     public function __construct(RouterInterface $router, EntityManager $em)
     {
         $this->router = $router;
         $this->em = $em;
-        $this->categories = $this->em->getRepository('AppBundle:Category')->getAllEnabledSortedByTitle();
-        $this->posts = $this->em->getRepository('AppBundle:Post')->getAllEnabledSortedByPublishedDateWithJoin(
-        );
+        $this->coworkers = $this->em->getRepository('AppBundle:Coworker')->findAllEnabledSortedByPosition();
+        $this->posts = $this->em->getRepository('AppBundle:Post')->getAllEnabledSortedByPublishedDateWithJoin();
+//        $this->er = $er;
+//        $this->locales = $locales;
     }
 
     /**
@@ -55,30 +66,46 @@ class SitemapListener implements SitemapListenerInterface
     {
         $section = $event->getSection();
         if (is_null($section) || $section == 'default') {
+//            /** @var string $locale */
+//            foreach ($this->locales as $locale) {
             // Homepage
             $event
-                ->getGenerator()
+                ->getUrlContainer()
                 ->addUrl(
                     new UrlConcrete(
-                        $this->router->generate('homepage', array(), UrlGeneratorInterface::ABSOLUTE_URL),
+                        $this->router->generate('front_homepage', array(), UrlGeneratorInterface::ABSOLUTE_URL),
                         new \DateTime(),
                         UrlConcrete::CHANGEFREQ_HOURLY,
                         1
                     ),
                     'default'
                 );
-            // Blog categories list
-            /** @var Category $category */
-            foreach ($this->categories as $category) {
+            // Coworker main view
+            $url = $this->router->generate(
+                'front_coworkers_list', array(), UrlGeneratorInterface::ABSOLUTE_URL
+            );
+            $event
+                ->getUrlContainer()
+                ->addUrl(
+                    new UrlConcrete(
+                        $url,
+                        new \DateTime(),
+                        UrlConcrete::CHANGEFREQ_HOURLY,
+                        1
+                    ),
+                    'default'
+                );
+            // Coworkers detail view list
+            /** @var Coworker $coworker */
+            foreach ($this->coworkers as $coworker) {
                 $url = $this->router->generate(
-                    'category_detail',
-                    array(
-                        'slug' => $category->getSlug(),
+                    'front_coworker_detail',
+                    array( 'slug' => $coworker->getSlug(),
                     ),
                     UrlGeneratorInterface::ABSOLUTE_URL
                 );
                 $event
-                    ->getGenerator()
+                    ->getUrlContainer()
                     ->addUrl(
                         new UrlConcrete(
                             $url,
@@ -91,10 +118,10 @@ class SitemapListener implements SitemapListenerInterface
             }
             // Blog main view
             $url = $this->router->generate(
-                'blog', array(), UrlGeneratorInterface::ABSOLUTE_URL
+                'front_blog', array(), UrlGeneratorInterface::ABSOLUTE_URL
             );
             $event
-                ->getGenerator()
+                ->getUrlContainer()
                 ->addUrl(
                     new UrlConcrete(
                         $url,
@@ -108,7 +135,7 @@ class SitemapListener implements SitemapListenerInterface
             /** @var Post $post */
             foreach ($this->posts as $post) {
                 $url = $this->router->generate(
-                    'blog_detail',
+                    'front_blog_detail',
                     array(
                         'year' => $post->getPublishedAt()->format('Y'),
                         'month' => $post->getPublishedAt()->format('m'),
@@ -118,7 +145,7 @@ class SitemapListener implements SitemapListenerInterface
                     UrlGeneratorInterface::ABSOLUTE_URL
                 );
                 $event
-                    ->getGenerator()
+                    ->getUrlContainer()
                     ->addUrl(
                         new UrlConcrete(
                             $url,
@@ -128,22 +155,32 @@ class SitemapListener implements SitemapListenerInterface
                         ),
                         'default'
                     );
+//                // Events view
+//                $event
+//                    ->getUrlContainer()
+//                    ->addUrl(
+//                        new UrlConcrete(
+//                            $this->router->generate('front_events_list', array( '_locale' => $locale ), UrlGeneratorInterface::ABSOLUTE_URL),
+//                            new \DateTime(),
+//                            UrlConcrete::CHANGEFREQ_HOURLY,
+//                            1
+//                        ),
+//                        'default'
+//                    );
+//                /** @var Event $event */
+//                foreach ($this->er->findAllEnabledSortedByDate() as $event) {
+//                    $event
+//                        ->getUrlContainer()
+//                        ->addUrl(
+//                            new UrlConcrete(
+//                                $this->router->generate('front_event_detail', array( '_locale' => $locale, 'slug' => $event->getSlug()), UrlGeneratorInterface::ABSOLUTE_URL),
+//                                new \DateTime(),
+//                                UrlConcrete::CHANGEFREQ_HOURLY,
+//                                1
+//                            ),
+//                            'default'
+//                        );
             }
-            // Credits view
-            $url = $this->router->generate(
-                'credits', array(), UrlGeneratorInterface::ABSOLUTE_URL
-            );
-            $event
-                ->getGenerator()
-                ->addUrl(
-                    new UrlConcrete(
-                        $url,
-                        new \DateTime(),
-                        UrlConcrete::CHANGEFREQ_HOURLY,
-                        1
-                    ),
-                    'default'
-                );
         }
     }
 }
