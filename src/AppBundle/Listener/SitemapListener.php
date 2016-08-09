@@ -63,28 +63,12 @@ class SitemapListener implements SitemapListenerInterface
             $url = $this->makeUrl('front_homepage');
             $event
                 ->getUrlContainer()
-                ->addUrl(
-                    new UrlConcrete(
-                        $url,
-                        new \DateTime(),
-                        UrlConcrete::CHANGEFREQ_HOURLY,
-                        1
-                    ),
-                    'default'
-                );
+                ->addUrl($this->makeUrlConcrete($url), 'default');
             // Coworker main view
             $url = $this->makeUrl('front_coworkers_list');
             $event
                 ->getUrlContainer()
-                ->addUrl(
-                    new UrlConcrete(
-                        $url,
-                        new \DateTime(),
-                        UrlConcrete::CHANGEFREQ_HOURLY,
-                        1
-                    ),
-                    'default'
-                );
+                ->addUrl($this->makeUrlConcrete($url), 'default');
             // Coworkers detail view list
             /** @var Coworker $coworker */
             foreach ($this->coworkers as $coworker) {
@@ -96,29 +80,13 @@ class SitemapListener implements SitemapListenerInterface
                 );
                 $event
                     ->getUrlContainer()
-                    ->addUrl(
-                        new UrlConcrete(
-                            $url,
-                            new \DateTime(),
-                            UrlConcrete::CHANGEFREQ_HOURLY,
-                            1
-                        ),
-                        'default'
-                    );
+                    ->addUrl($this->makeUrlConcrete($url), 'default');
             }
             // Blog main view
             $url = $this->makeUrl('front_blog');
             $event
                 ->getUrlContainer()
-                ->addUrl(
-                    new UrlConcrete(
-                        $url,
-                        new \DateTime(),
-                        UrlConcrete::CHANGEFREQ_HOURLY,
-                        1
-                    ),
-                    'default'
-                );
+                ->addUrl($this->makeUrlConcrete($url), 'default');
             // Posts detail view list
             /** @var Post $post */
             foreach ($this->posts as $post) {
@@ -134,29 +102,13 @@ class SitemapListener implements SitemapListenerInterface
                 );
                 $event
                     ->getUrlContainer()
-                    ->addUrl(
-                        new UrlConcrete(
-                            $url,
-                            new \DateTime(),
-                            UrlConcrete::CHANGEFREQ_HOURLY,
-                            1
-                        ),
-                        'default'
-                    );
+                    ->addUrl($this->makeUrlConcrete($url), 'default');
             }
             // Events view
             $url = $this->makeUrl('front_events_list');
             $event
                 ->getUrlContainer()
-                ->addUrl(
-                    new UrlConcrete(
-                        $url,
-                        new \DateTime(),
-                        UrlConcrete::CHANGEFREQ_HOURLY,
-                        1
-                    ),
-                    'default'
-                );
+                ->addUrl($this->makeUrlConcrete($url), 'default');
             /** @var Event $activity */
             foreach ($this->events as $activity) {
                 $url = $this->router->generate(
@@ -168,16 +120,18 @@ class SitemapListener implements SitemapListenerInterface
                 );
                 $event
                     ->getUrlContainer()
-                    ->addUrl(
-                        new UrlConcrete(
-                            $url,
-                            new \DateTime(),
-                            UrlConcrete::CHANGEFREQ_HOURLY,
-                            1
-                        ),
-                        'default'
-                    );
+                    ->addUrl($this->makeUrlConcrete($url), 'default');
             }
+            // Contact view
+            $url = $this->makeUrl('front_contact');
+            $event
+                ->getUrlContainer()
+                ->addUrl($this->makeUrlConcrete($url), 'default');
+            // Privacy Policy view
+            $url = $this->makeUrl('front_privacy_policy');
+            $event
+                ->getUrlContainer()
+                ->addUrl($this->makeUrlConcrete($url), 'default');
         }
     }
 
@@ -190,6 +144,21 @@ class SitemapListener implements SitemapListenerInterface
     {
         return $this->router->generate(
             $routeName, array(), UrlGeneratorInterface::ABSOLUTE_URL
+        );
+    }
+
+    /**
+     * @param string $url
+     *
+     * @return UrlConcrete
+     */
+    private function makeUrlConcrete($url)
+    {
+        return new UrlConcrete(
+            $url,
+            new \DateTime(),
+            UrlConcrete::CHANGEFREQ_HOURLY,
+            1
         );
     }
 }
