@@ -55,6 +55,7 @@ assetic:
         myjs:
             inputs:
                 - "%kernel.root_dir%/../vendor/components/jquery/jquery.js"
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js"
 
 # Doctrine
 doctrine:
