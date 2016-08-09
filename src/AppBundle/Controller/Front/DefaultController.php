@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\ContactMessage;
+use AppBundle\Form\Type\ContactHomepageType;
 use AppBundle\Form\Type\ContactMessageType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -14,11 +15,26 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="front_homepage")
      *
+     * @param Request $request
+     *
      * @return Response
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        return $this->render(':Frontend:homepage.html.twig', array());
+        $form = $this->createForm(ContactHomepageType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash(
+                'notice',
+                'Ens posarem en contacte el més aviat possible'
+            );
+        }
+
+
+        return $this->render(':Frontend:homepage.html.twig', array(
+            'formHomepage' => $form->createView(),
+        ));
     }
 
     /**
