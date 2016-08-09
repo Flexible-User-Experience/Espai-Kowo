@@ -4,20 +4,18 @@ imports:
     - { resource: services.yml }
     - { resource: media.yml }
 
+# Symfony
 framework:
-    #esi:             ~
-    translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: [ "%locale%" ] }
     secret:          "%secret%"
     router:
-        resource: "%kernel.root_dir%/config/routing.yml"
+        resource:            "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: true }
-    #serializer:      { enable_annotations: true }
     templating:
-        engines: ['twig']
-        #assets_version: SomeVersionScheme
+        engines: [ "twig" ]
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
@@ -26,7 +24,7 @@ framework:
     fragments:       ~
     http_method_override: true
 
-# Twig Configuration
+# Twig
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
@@ -39,7 +37,7 @@ twig:
         main_brand_title:         "Espai Kowo"
         admin_tag_version:        "v0.1.7"
 
-# Assetic Configuration
+# Assetic
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
@@ -58,7 +56,7 @@ assetic:
             inputs:
                 - "%kernel.root_dir%/../vendor/components/jquery/jquery.js"
 
-# Doctrine Configuration
+# Doctrine
 doctrine:
     dbal:
         driver:   pdo_mysql
@@ -75,7 +73,7 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
-# Swiftmailer Configuration
+# Swiftmailer
 swiftmailer:
     transport: "%mailer_transport%"
     host:      "%mailer_host%"
