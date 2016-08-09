@@ -4,10 +4,6 @@ imports:
     - { resource: services.yml }
     - { resource: media.yml }
 
-parameters:
-#    locale: ca
-    main_brand_title: "Espai Kowo"
-
 framework:
     #esi:             ~
     translator:      { fallbacks: ["%locale%"] }
@@ -38,10 +34,10 @@ twig:
         - "bootstrap_3_layout.html.twig"
         - "SonataCoreBundle:Form:datepicker.html.twig"
     globals:
-        google_analytics_enabled: %google_analytics_enabled%
+        google_analytics_enabled: "%google_analytics_enabled%"
         google_analytics_account: "%google_analytics_account%"
-        main_brand_title:         "%main_brand_title%"
-        admin_tag_version:        "v0.1.6"
+        main_brand_title:         "Espai Kowo"
+        admin_tag_version:        "v0.1.7"
 
 # Assetic Configuration
 assetic:
