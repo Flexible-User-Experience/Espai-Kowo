@@ -2,7 +2,7 @@
 
 namespace AppBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
@@ -14,12 +14,16 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
  * @package  AppBundle\Admin
  * @author   David Romaní <david@flux.cat>
  */
-abstract class AbstractBaseAdmin extends Admin
+abstract class AbstractBaseAdmin extends AbstractAdmin
 {
-    /** @var UploaderHelper */
+    /**
+     * @var UploaderHelper
+     */
     private $vus;
 
-    /** @var CacheManager */
+    /**
+     * @var CacheManager
+     */
     private $lis;
 
     /**

@@ -4,24 +4,18 @@ imports:
     - { resource: services.yml }
     - { resource: media.yml }
 
-parameters:
-#    locale: ca
-    main_brand_title: "Espai Kowo"
-
+# Symfony
 framework:
-    #esi:             ~
-    translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: [ "%locale%" ] }
     secret:          "%secret%"
     router:
-        resource: "%kernel.root_dir%/config/routing.yml"
+        resource:            "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: true }
-    #serializer:      { enable_annotations: true }
     templating:
-        engines: ['twig']
-        #assets_version: SomeVersionScheme
+        engines: [ "twig" ]
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
@@ -30,7 +24,7 @@ framework:
     fragments:       ~
     http_method_override: true
 
-# Twig Configuration
+# Twig
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
@@ -38,12 +32,12 @@ twig:
         - "bootstrap_3_layout.html.twig"
         - "SonataCoreBundle:Form:datepicker.html.twig"
     globals:
-        google_analytics_enabled: %google_analytics_enabled%
+        google_analytics_enabled: "%google_analytics_enabled%"
         google_analytics_account: "%google_analytics_account%"
-        main_brand_title:         "%main_brand_title%"
-        admin_tag_version:        "v0.1.6"
+        main_brand_title:         "%project_web_title%"
+        admin_tag_version:        "v0.1.7"
 
-# Assetic Configuration
+# Assetic
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
@@ -61,8 +55,9 @@ assetic:
         myjs:
             inputs:
                 - "%kernel.root_dir%/../vendor/components/jquery/jquery.js"
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js"
 
-# Doctrine Configuration
+# Doctrine
 doctrine:
     dbal:
         driver:   pdo_mysql
@@ -79,7 +74,7 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
-# Swiftmailer Configuration
+# Swiftmailer
 swiftmailer:
     transport: "%mailer_transport%"
     host:      "%mailer_host%"

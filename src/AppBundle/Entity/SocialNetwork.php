@@ -101,5 +101,4 @@ class SocialNetwork extends AbstractBase
 
         return $this->getUrl() ? $this->getUrl() : '---';
     }
-
 }

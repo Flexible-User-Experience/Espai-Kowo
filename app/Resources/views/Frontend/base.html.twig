@@ -4,7 +4,7 @@
 <!--[if IE 8]>        <html lang="{{ app.request.locale }}" class="no-js lt-ie9"><![endif]-->
 <!--[if gt IE 8]><!--><html lang="{{ app.request.locale }}" class="no-js"><!--<![endif]-->
 <head>
-    <meta name="description" content="{% block metadescription %}{# TODO set metadescription #}{% endblock %}">
+    <meta name="description" content="{% block metadescription %}{% endblock %}">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="author" content="www.flux.cat">
     <meta charset="UTF-8">
@@ -47,6 +47,7 @@
 <div class="container container-main">
     {% block main %}{% endblock %}
 </div>
+{% block homepage %}{% endblock %}
 {#<!-- Scroll-Top effect -->#}
 <div class="scroll-top-wrapper"><span class="scroll-top-inner"><i class="fa fa-2x fa-chevron-up"></i></span></div>
 {#<!-- Footer -->#}

@@ -98,5 +98,4 @@ class Tag extends AbstractBase
 
         return $this->getTitle() ? $this->getTitle() : '---';
     }
-
 }

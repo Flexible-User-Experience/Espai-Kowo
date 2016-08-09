@@ -19,7 +19,6 @@
 !/web/media/.gitkeep
 /web/uploads/*
 !/web/uploads/.gitkeep
-/.idea
 /Capfile
 /backups/
 /test.sh

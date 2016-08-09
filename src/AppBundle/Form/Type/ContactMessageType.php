@@ -17,7 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
  * @package  AppBundle\Form\Type
  * @author   David Romaní <david@flux.cat>
  */
-class ContactMessageType extends AbstractType
+class ContactMessageType extends ContactHomepageType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -25,40 +25,8 @@ class ContactMessageType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        parent::buildForm($builder, $options);
         $builder
-            ->add(
-                'name',
-                TextType::class,
-                array(
-                    'label'    => false,
-                    'required' => true,
-                    'attr'     => array(
-                        'placeholder' => 'Nom',
-                    ),
-                )
-            )
-            ->add(
-                'email',
-                EmailType::class,
-                array(
-                    'label'    => false,
-                    'required' => true,
-                    'attr'     => array(
-                        'placeholder' => 'Email',
-                    ),
-                )
-            )
-            ->add(
-                'phone',
-                TextType::class,
-                array(
-                    'label'    => false,
-                    'required' => false,
-                    'attr'     => array(
-                        'placeholder' => 'Telèfon',
-                    ),
-                )
-            )
             ->add(
                 'message',
                 TextareaType::class,
@@ -68,16 +36,6 @@ class ContactMessageType extends AbstractType
                     'attr'     => array(
                         'rows'        => 5,
                         'placeholder' => 'Missatge',
-                    ),
-                )
-            )
-            ->add(
-                'send',
-                SubmitType::class,
-                array(
-                    'label' => 'Enviar',
-                    'attr'  => array(
-                        'class' => 'btn-default',
                     ),
                 )
             );
