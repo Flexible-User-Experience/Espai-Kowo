@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class ContactHomepageType
@@ -39,11 +40,21 @@ class ContactHomepageType extends AbstractType
                 'email',
                 EmailType::class,
                 array(
-                    'label'    => false,
-                    'required' => true,
-                    'attr'     => array(
+                    'label'       => false,
+                    'required'    => true,
+                    'attr'        => array(
                         'placeholder' => 'Email',
                     ),
+                    'constraints' => array(
+                        new Assert\Email(
+                            array(
+                                'checkMX'   => true,
+                                'checkHost' => true,
+                                'strict'    => true,
+                                'message'   => 'Email invàlid'
+                            )
+                        ),
+                    )
                 )
             )
             ->add(
