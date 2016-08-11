@@ -7,12 +7,11 @@
                 <div class="container">
                     <h1>{{ words(1) }}</h1>
                     <h2>{{ words(2) }}</h2>
-
+                    {#<!-- Button trigger modal -->#}
                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                         Prova-ho 3 dies gratis
                     </button>
-
-                    <!-- Modal -->
+                    {#<!-- Modal -->#}
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -26,8 +25,6 @@
                             </div>
                         </div>
                     </div>
-
-                    {#<p><a class="btn btn-primary btn-lg" href="#" role="button">Prova-ho 3 dies gratis &raquo;</a></p>#}
                     {% include ':Frontend/includes:notice_flash.html.twig' %}
                 </div>
             </div>
