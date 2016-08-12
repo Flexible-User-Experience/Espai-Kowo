@@ -37,7 +37,7 @@ class DefaultController extends Controller
                 ->setTo($this->getParameter('mailer_destination'))
                 ->setBody(
                     $this->renderView(
-                        ':Frontend/Mail/contact_form_admin_notification.html.twig',
+                        ':Frontend/Mail:contact_form_admin_notification.html.twig',
                         array('contact' => $form->getData())
                     ),
                     'text/html'

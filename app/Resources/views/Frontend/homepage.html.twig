@@ -23,7 +23,7 @@
                                     {{ form(formHomepage) }}
                                 </div>
                                 <div class="modal-footer">
-                                    En breu t'ho explicarem tot amb més detall i podràs visitar l'espai.
+                                    En breu t'ho explicarem tot amb més detall i podràs visitar l'espai
                                 </div>
                             </div>
                         </div>
@@ -115,4 +115,15 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if not form.vars.valid %}
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                jQuery('#form_modal').modal('show');
+            });
+        </script>
+    {% endif %}
 {% endblock %}
