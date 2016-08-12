@@ -5,17 +5,16 @@
         <div class="col-md-12">
             <div class="jumbotron">
                 <div class="container">
-                    <h1>{{ words(1) }}</h1>
-                    <h2>{{ words(2) }}</h2>
-
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                        Prova-ho 3 dies gratis
+                    <h2>Molt més que compartir un espai de treball</h2>
+                    {#<h2>{{ words(2) }}</h2>#}
+                    {#<!-- Button trigger modal -->#}
+                    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#form_modal">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Prova-ho gratis 3 dies
                     </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    {#<!-- Modal -->#}
+                    <div class="modal fade" id="form_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
-                            <div class="modal-content">
+                            <div class="modal-content text-left">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     <h4 class="modal-title" id="myModalLabel">Dades de contacte</h4>
@@ -23,11 +22,12 @@
                                 <div class="modal-body">
                                     {{ form(formHomepage) }}
                                 </div>
+                                <div class="modal-footer">
+                                    En breu t'ho explicarem tot amb més detall i podràs visitar l'espai
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    {#<p><a class="btn btn-primary btn-lg" href="#" role="button">Prova-ho 3 dies gratis &raquo;</a></p>#}
                     {% include ':Frontend/includes:notice_flash.html.twig' %}
                 </div>
             </div>
@@ -40,29 +40,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/350x180?text=IMAGE" alt="...">
+                    <div class="thumbnail no-m-bottom">
+                        <img src="http://placehold.it/350x180?text=%20" alt="...">
                         <div class="caption">
-                            <h3>{{ words(2) }}</h3>
-                            <p>{{ sentences(1) }}</p>
+                            <h4>Una nova manera de treballar</h4>
+                            {#<p>{{ sentences(1) }}</p>#}
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/350x180?text=IMAGE" alt="...">
+                    <div class="thumbnail no-m-bottom">
+                        <img src="http://placehold.it/350x180?text=%20" alt="...">
                         <div class="caption">
-                            <h3>{{ words(2) }}</h3>
-                            <p>{{ sentences(1) }}</p>
+                            <h4>Suma't a la comunitat de coworkers</h4>
+                            {#<p>{{ sentences(1) }}</p>#}
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/350x180?text=IMAGE" alt="...">
+                    <div class="thumbnail no-m-bottom">
+                        <img src="http://placehold.it/350x180?text=%20" alt="...">
                         <div class="caption">
-                            <h3>{{ words(2) }}</h3>
-                            <p>{{ sentences(1) }}</p>
+                            <h4>Compartim coneixement</h4>
+                            {#<p>{{ sentences(1) }}</p>#}
                         </div>
                     </div>
                 </div>
@@ -71,48 +71,59 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-3 text-center">
-                <i class="fa fa-bar-chart fa-3x" aria-hidden="true"></i>
-                <p>{{ words(1) }}</p>
+            <div class="col-md-4 text-center">
+                <i class="small-m-bottom c-green fa fa-universal-access fa-3x" aria-hidden="true"></i>
+                <p>12+1 taules de treball</p>
             </div>
-            <div class="col-md-3 text-center">
-                <i class="fa fa-font-awesome fa-3x" aria-hidden="true"></i>
-                <p>{{ words(1) }}</p>
+            <div class="col-md-4 text-center">
+                <i class="small-m-bottom c-green fa fa-sun-o fa-3x" aria-hidden="true"></i>
+                <p>130m<sup>2</sup> amb llum natural</p>
             </div>
-            <div class="col-md-3 text-center">
-                <i class="fa fa-balance-scale fa-3x" aria-hidden="true"></i>
-                <p>{{ words(1) }}</p>
+            <div class="col-md-4 text-center">
+                <i class="small-m-bottom c-green fa fa-wifi fa-3x" aria-hidden="true"></i>
+                <p>Internet ultra-ràpid</p>
             </div>
-            <div class="col-md-3 text-center">
-                <i class="fa fa-universal-access fa-3x" aria-hidden="true"></i>
-                <p>{{ words(1) }}</p>
-            </div>
+            {#<div class="col-md-3 text-center">#}
+                {#<i class="fa fa-balance-scale fa-3x" aria-hidden="true"></i>#}
+                {#<p>{{ words(1) }}</p>#}
+            {#</div>#}
         </div>
     </div>
-    <div class="grey-background">
+    <div class="grey-background" style="margin-bottom:0">
         <div class="container text-center">
-            <div class="row">
+            <div class="row no-m-bottom">
                 <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="alert alert-magenta" role="alert">
+                    <div class="alert alert-magenta no-m-bottom" role="alert">
                         <h4 class="no-m text-center"><i class="fa fa-gear fa-spin"></i><br>sala coworking</h4>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="alert alert-dark-cyan" role="alert">
+                    <div class="alert alert-dark-cyan no-m-bottom" role="alert">
                         <h4 class="no-m text-center"><i class="fa fa-calendar-check-o"></i><br>activitats i formació</h4>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="alert alert-violet" role="alert">
+                    <div class="alert alert-violet no-m-bottom" role="alert">
                         <h4 class="no-m text-center"><i class="fa fa-street-view"></i><br>zona de reunió</h4>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="alert alert-orange" role="alert">
+                    <div class="alert alert-orange no-m-bottom" role="alert">
                         <h4 class="no-m text-center"><i class="fa fa-rocket"></i><br>àrea stress-less</h4>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if not formHomepage.vars.valid %}
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                jQuery('#form_modal').modal('show');
+            });
+        </script>
+    {% endif %}
 {% endblock %}

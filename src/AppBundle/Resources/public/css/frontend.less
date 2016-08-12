@@ -4,7 +4,7 @@
 
 // Fonts
 @icon-font-path: "/bundles/app/fonts/";
-@fa-font-path: "/bundles/app/fonts";
+@fa-font-path:   "/bundles/app/fonts";
 
 // Brand colors
 @ek-c-white:      #FFFFFF;
@@ -15,15 +15,23 @@
 @ek-c-dark-cyan:  #5E9B9A;
 @ek-c-grey:       #808080;
 @ek-c-ligth-grey: #F9F9F9;
+.c-green { color: @ek-c-green; }
+.c-grey  { color: @ek-c-grey; }
 
 // Custom Bootstrap vars
 @link-color: @gray-base;
-@icon-font-path: "/fonts/";
 
 // Custom vars
 @ek-s-base: 20px;
 @ek-s-base-plus: 60px;
 @ek-s-base-minus: 10px;
+@gap-extra-big: @gap-big * 2;
+@gap-big:       @gap-normal * 2;
+@gap-normal:    20px;
+@gap-small:     @gap-normal / 2;
+@ek-font-size-base:  16px;
+@ek-font-size-large: ceil((@font-size-base * 1.25));
+@ek-font-size-small: ceil((@font-size-base * 0.95));
 
 // Custom Navbar
 @navbar-height: 80px;
@@ -38,7 +46,9 @@
 
 // Custom margins
 .no-m { margin: 0}
+.no-m-bottom { margin-bottom: 0}
 .extra-m-top { margin-top: @ek-s-base-plus}
+.small-m-bottom { margin-bottom: @gap-small; }
 .content {
   margin: @ek-s-base-plus 0;
   @media(max-width: @screen-sm-max) { margin: @ek-s-base 0; }
@@ -103,7 +113,7 @@
   color: @ek-c-white;
   width: 50px;
   height: 48px;
-  line-height: 48px;
+  line-height: 42px;
   right: 15px;
   bottom: 15px;
   padding-top: 2px;
@@ -132,7 +142,7 @@
 footer {
   color: @ek-c-white;
   padding: 40px 0;
-  margin: 40px 0 0 0;
+  margin: 0;
   &.footer {
     background-color: black;
   }
@@ -152,7 +162,4 @@ footer {
 }
 .social-networks {
   margin: 5px 0;
-}
-.c-grey {
-  color: @ek-c-grey;
 }
