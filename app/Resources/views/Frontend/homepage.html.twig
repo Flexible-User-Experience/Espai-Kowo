@@ -119,7 +119,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {% if not form.vars.valid %}
+    {% if not formHomepage.vars.valid %}
         <script type="text/javascript">
             jQuery(document).ready(function() {
                 jQuery('#form_modal').modal('show');
