@@ -8,8 +8,8 @@
                     <h1>Molt més que compartir un espai de treball</h1>
                     {#<h2>{{ words(2) }}</h2>#}
                     {#<!-- Button trigger modal -->#}
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                        Prova-ho 3 dies gratis
+                    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Prova-ho gratis 3 dies
                     </button>
                     {#<!-- Modal -->#}
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -68,22 +68,22 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-3 text-center">
-                <i class="fa fa-bar-chart fa-3x" aria-hidden="true"></i>
-                <p>{{ words(1) }}</p>
+            <div class="col-md-4 text-center">
+                <i class="small-m-bottom c-green fa fa-universal-access fa-3x" aria-hidden="true"></i>
+                <p>12+1 taules de treball</p>
             </div>
-            <div class="col-md-3 text-center">
-                <i class="fa fa-font-awesome fa-3x" aria-hidden="true"></i>
-                <p>{{ words(1) }}</p>
+            <div class="col-md-4 text-center">
+                <i class="small-m-bottom c-green fa fa-sun-o fa-3x" aria-hidden="true"></i>
+                <p>130m<sup>2</sup> amb llum natural</p>
             </div>
-            <div class="col-md-3 text-center">
-                <i class="fa fa-balance-scale fa-3x" aria-hidden="true"></i>
-                <p>{{ words(1) }}</p>
+            <div class="col-md-4 text-center">
+                <i class="small-m-bottom c-green fa fa-wifi fa-3x" aria-hidden="true"></i>
+                <p>Internet ultra-ràpid</p>
             </div>
-            <div class="col-md-3 text-center">
-                <i class="fa fa-universal-access fa-3x" aria-hidden="true"></i>
-                <p>{{ words(1) }}</p>
-            </div>
+            {#<div class="col-md-3 text-center">#}
+                {#<i class="fa fa-balance-scale fa-3x" aria-hidden="true"></i>#}
+                {#<p>{{ words(1) }}</p>#}
+            {#</div>#}
         </div>
     </div>
     <div class="grey-background">
