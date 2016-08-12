@@ -1,0 +1,12 @@
+{% block body %}
+    <h1>Has rebut un missatge de contacte de "{{ contact.name }}"</h1>
+    {% if contact.phone %}
+        <p>
+            El seu telèfon de contacte és: {{ contact.phone }}<br>
+        </p>
+    {% endif %}
+    <p>
+        El seu email de contacte és: {{ contact.email }}<br><br><br>
+    </p>
+    <h6>Bona sort!</h6>
+{% endblock %}

@@ -74,7 +74,7 @@ class ContactHomepageType extends AbstractType
                 array(
                     'label' => 'Enviar',
                     'attr'  => array(
-                        'class' => 'btn-default',
+                        'class' => 'btn-success',
                     ),
                 )
             );

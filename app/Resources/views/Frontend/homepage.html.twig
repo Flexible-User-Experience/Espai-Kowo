@@ -8,19 +8,22 @@
                     <h2>Molt més que compartir un espai de treball</h2>
                     {#<h2>{{ words(2) }}</h2>#}
                     {#<!-- Button trigger modal -->#}
-                    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal">
+                    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#form_modal">
                         <i class="fa fa-plus" aria-hidden="true"></i> Prova-ho gratis 3 dies
                     </button>
                     {#<!-- Modal -->#}
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal fade" id="form_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
-                            <div class="modal-content">
+                            <div class="modal-content text-left">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     <h4 class="modal-title" id="myModalLabel">Dades de contacte</h4>
                                 </div>
                                 <div class="modal-body">
                                     {{ form(formHomepage) }}
+                                </div>
+                                <div class="modal-footer">
+                                    En breu t'ho explicarem tot amb més detall i podràs visitar l'espai.
                                 </div>
                             </div>
                         </div>
@@ -40,7 +43,7 @@
                     <div class="thumbnail no-m-bottom">
                         <img src="http://placehold.it/350x180?text=%20" alt="...">
                         <div class="caption">
-                            <h3>Una nova manera de treballar</h3>
+                            <h4>Una nova manera de treballar</h4>
                             {#<p>{{ sentences(1) }}</p>#}
                         </div>
                     </div>
@@ -49,7 +52,7 @@
                     <div class="thumbnail no-m-bottom">
                         <img src="http://placehold.it/350x180?text=%20" alt="...">
                         <div class="caption">
-                            <h3>Suma't a la comunitat de coworkers</h3>
+                            <h4>Suma't a la comunitat de coworkers</h4>
                             {#<p>{{ sentences(1) }}</p>#}
                         </div>
                     </div>
@@ -58,7 +61,7 @@
                     <div class="thumbnail no-m-bottom">
                         <img src="http://placehold.it/350x180?text=%20" alt="...">
                         <div class="caption">
-                            <h3>Compartim coneixement</h3>
+                            <h4>Compartim coneixement</h4>
                             {#<p>{{ sentences(1) }}</p>#}
                         </div>
                     </div>
