@@ -6,8 +6,14 @@
     <div class="container container-main">
         <div class="row">
             <div class="col-md-4">
-                <h1>Contacte</h1>
-                {{ form(formContact) }}
+                <h1 class="no-m-top">Contacte</h1>
+                {{ form_start(formContact) }}
+                {{ form_row(formContact.name) }}
+                {{ form_row(formContact.phone) }}
+                {{ form_row(formContact.email) }}
+                {{ form_row(formContact.message) }}
+                {{ form_rest(formContact) }}
+                {{ form_end(formContact) }}
                 {% include ':Frontend/includes:notice_flash.html.twig' %}
             </div>
             <div class="col-md-8">
