@@ -35,7 +35,7 @@ twig:
         google_analytics_enabled: "%google_analytics_enabled%"
         google_analytics_account: "%google_analytics_account%"
         main_brand_title:         "%project_web_title%"
-        admin_tag_version:        "v0.2.0"
+        admin_tag_version:        "v0.2.1"
 
 # Assetic
 assetic:
@@ -84,7 +84,7 @@ swiftmailer:
     auth_mode: "login"
     spool:     { type: memory }
 
-# Sonata
+# Sonata Block
 sonata_block:
     default_contexts: [ cms ]
     blocks:
@@ -92,10 +92,10 @@ sonata_block:
         sonata.user.block.menu:         ~
         sonata.block.service.text:      ~
 
+# Sonata User
 sonata_user:
     security_acl: true
     manager_type: orm
-
 
 # Stof Doctrine Extensions
 stof_doctrine_extensions:
