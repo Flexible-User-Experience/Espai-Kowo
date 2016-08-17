@@ -8,15 +8,15 @@
         {% if coworkers | length > 0 %}
             {% for coworker in coworkers %}
                 <div class="col-md-3">
-                    <h4 class="text-center">{{ coworker.name | upper }}</h4>
+                    <h4 class="no-m-top text-center">{{ coworker.name | upper }}</h4>
                     <a href="{{ path('front_coworker_detail', {slug: coworker.slug}) }}">
                         {% if coworker.imageName is not null %}
                             <img
                                     src="{{ vich_uploader_asset(coworker, 'imageFile') | imagine_filter('256xY') }}"
-                                    alt="{{ coworker.imageName }}">
+                                    class="img-responsive" alt="{{ coworker.imageName }}">
 
                         {% else %}
-                            <img src="{{ asset('bundles/app/img/kiwi-pic.jpg') | imagine_filter('256xY') }}" alt="">
+                            <img src="{{ asset('bundles/app/img/kiwi-pic.jpg') | imagine_filter('256xY') }}" class="img-responsive" alt="default coworker image">
                         {% endif %}
                     </a>
                     <ul class="list-inline social-networks text-center">
@@ -33,7 +33,7 @@
                 </div>
                 {% if loop.index is divisible by(4) %}
                     </div>
-                    <div class="row">
+                    <div class="row extra-m-top">
                 {% endif %}
             {% endfor %}
         {% else %}
