@@ -3,15 +3,14 @@
 {% block title %}{{ coworker.name }} · Coworker · {{ parent() }}{% endblock %}
 
 {% block main %}
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h1>Coworkers</h1>
-            <h3>{{ coworker.name }} / {{ coworker.category }}</h3>
-            <h5>{{ coworker.description | raw }}</h5>
+    <div class="container container-main">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="no-m-top">Coworkers</h1>
+                <h3>{{ coworker.name }} / {{ coworker.category }}</h3>
+                <h5>{{ coworker.description | raw }}</h5>
+            </div>
         </div>
-    </div>
-    <br>
-    <div class="container">
         <div class="row">
             <div class="col-md-6">
                 {# left side #}
