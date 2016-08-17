@@ -17,6 +17,7 @@
 @ek-c-ligth-grey: #F9F9F9;
 .c-green { color: @ek-c-green; }
 .c-grey  { color: @ek-c-grey; }
+.grey-background { background-color: @ek-c-ligth-grey; }
 
 // Custom Bootstrap vars
 @link-color: @gray-base;
@@ -38,6 +39,9 @@
 @navbar-border-radius: 0;
 @navbar-inverse-link-active-color: @ek-c-green;
 @navbar-inverse-link-color: @ek-c-white;
+.navbar {
+  margin-bottom: 0;
+}
 
 .navbar-logo {
   margin-top: -20px;
@@ -56,6 +60,11 @@
 .content {
   margin: @ek-s-base-plus 0;
   @media(max-width: @screen-sm-max) { margin: @ek-s-base 0; }
+}
+
+// custom paddings
+.p-vertical {
+  padding: 40px 0;
 }
 
 // Custom alters
@@ -140,18 +149,19 @@
 
 // Custom homepage
 .jumbotron {
-  color: @ek-c-white;
-  background: @ek-c-white url("/bundles/app/img/hero3.jpg") no-repeat center center;
-  background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  -webkit-background-size: 100% 100%;
-  -o-background-size: 100% 100%;
-}
-
-.grey-background {
-  background-color: @ek-c-ligth-grey;
-  margin: 40px 0;
-  padding: 40px 0;
+  text-align: right;
+  button {
+    color: @ek-c-white;
+  }
+  padding-top: 690px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  background: @ek-c-white url("/bundles/app/img/hero3-edited.jpg") no-repeat center center;
+  min-height: 800px;
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
 }
 
 // Footer
