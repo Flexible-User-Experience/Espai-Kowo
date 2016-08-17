@@ -3,12 +3,16 @@
 {% block title %}{{ post.title }} · Blog · {{ parent() }}{% endblock %}
 
 {% block main %}
-    <div class="col-xs-12">
-        <h2 class="text-center fresh-talent-ad">Post detail</h2>
-        <h5>{{ post.title }}</h5>
-        <h5>{{ post.slug }}</h5>
-        <h5>{{ post.description }}</h5>
-        <h5>{{ post.publishedAt|date('d/m/Y') }}</h5>
-        <a href="{{ path('front_blog') }}">Llista d'Articles</a>
+    <div class="container container-main">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="text-center fresh-talent-ad">Post detail</h2>
+                <h5>{{ post.title }}</h5>
+                <h5>{{ post.slug }}</h5>
+                <h5>{{ post.description }}</h5>
+                <h5>{{ post.publishedAt|date('d/m/Y') }}</h5>
+                <a href="{{ path('front_blog') }}">Llista d'Articles</a>
+            </div>
+        </div>
     </div>
 {% endblock %}
