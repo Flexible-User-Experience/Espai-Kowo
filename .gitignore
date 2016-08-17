@@ -21,6 +21,8 @@
 !/web/media/.gitkeep
 /web/uploads/*
 !/web/uploads/.gitkeep
+/web/images/*
+!/web/images/.gitkeep
 /Capfile
 /backups/
 /test.sh
