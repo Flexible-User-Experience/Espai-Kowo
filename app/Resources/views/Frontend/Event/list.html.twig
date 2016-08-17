@@ -7,7 +7,7 @@
         <div class="row">
             {% if events | length > 0 %}
                 {% for event in events %}
-                    <div class="col-md3">
+                    <div class="col-md-4">
                         <div class="thumbnail">
                             {% if event.imageName is not null %}
                                 <img
@@ -26,6 +26,10 @@
                             </div>
                         </div>
                     </div>
+                    {% if loop.index is divisible by(3) %}
+                        </div>
+                        <div class="row extra-m-top">
+                    {% endif %}
                 {% endfor %}
             {% else %}
                 {% include ':Frontend/includes:under_construciton_warning.html.twig' %}
