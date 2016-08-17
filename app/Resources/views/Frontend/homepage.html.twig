@@ -8,9 +8,11 @@
                     <h2>Molt més que compartir un espai de treball</h2>
                     {#<h2>{{ words(2) }}</h2>#}
                     {#<!-- Button trigger modal -->#}
-                    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#form_modal">
-                        <i class="fa fa-plus" aria-hidden="true"></i> Prova-ho gratis 3 dies
-                    </button>
+                    <p>
+                        <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#form_modal">
+                            <i class="fa fa-plus" aria-hidden="true"></i> Prova-ho gratis 3 dies
+                        </button>
+                    </p>
                     {#<!-- Modal -->#}
                     <div class="modal fade" id="form_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
@@ -41,7 +43,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="thumbnail no-m-bottom">
-                        <img src="http://placehold.it/350x180?text=%20" alt="...">
+                        <img src="{{ asset('bundles/app/img/hero5.jpg') | imagine_filter('350x180') }}" alt="Una nova manera de treballar">
                         <div class="caption">
                             <h4>Una nova manera de treballar</h4>
                             {#<p>{{ sentences(1) }}</p>#}
@@ -50,7 +52,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="thumbnail no-m-bottom">
-                        <img src="http://placehold.it/350x180?text=%20" alt="...">
+                        <img src="{{ asset('bundles/app/img/hero4.jpg') | imagine_filter('350x180') }}" alt="Suma't a la comunitat de coworkers">
                         <div class="caption">
                             <h4>Suma't a la comunitat de coworkers</h4>
                             {#<p>{{ sentences(1) }}</p>#}
@@ -59,7 +61,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="thumbnail no-m-bottom">
-                        <img src="http://placehold.it/350x180?text=%20" alt="...">
+                        <img src="{{ asset('bundles/app/img/hero1.jpg') | imagine_filter('350x180') }}" alt="Compartim coneixement">
                         <div class="caption">
                             <h4>Compartim coneixement</h4>
                             {#<p>{{ sentences(1) }}</p>#}
