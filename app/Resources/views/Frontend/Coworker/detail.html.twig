@@ -17,10 +17,10 @@
                 {% if coworker.imageName is not null %}
                     <img
                             src="{{ vich_uploader_asset(coworker, 'imageFile') | imagine_filter('480xY') }}"
-                            alt="{{ coworker.imageName }}">
+                            class="img-responsive" alt="{{ coworker.imageName }}">
 
                 {% else %}
-                    <img src="{{ asset('bundles/app/img/kiwi-pic.jpg') | imagine_filter('480xY') }}" alt="">
+                    <img src="{{ asset('bundles/app/img/kiwi-pic.jpg') | imagine_filter('480xY') }}" class="img-responsive" alt="default coworker image">
                 {% endif %}
             </div>
             <div class="col-md-6">
@@ -31,11 +31,11 @@
                 <h6>{{ coworker.email }}</h6>
                 <ul class="list-inline">
                     {% for socialNetwork in coworker.socialNetworks %}
-                            <li>
-                                <a target="_blank" href="{{ socialNetwork.url }}">
-                                    <i class="fa {{ socialNetwork.category.fontAwesomeClass }} fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </li>
+                        <li>
+                            <a target="_blank" href="{{ socialNetwork.url }}">
+                                <i class="fa {{ socialNetwork.category.fontAwesomeClass }} fa-2x" aria-hidden="true"></i>
+                            </a>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>
