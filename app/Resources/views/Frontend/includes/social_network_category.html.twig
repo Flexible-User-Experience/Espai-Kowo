@@ -1,0 +1,15 @@
+{% for socialNetwork in coworker.socialNetworks %}
+    <li>
+        <a class="c-grey" target="_blank" href="{{ socialNetwork.url }}">
+            <i class="fa {{ socialNetwork.category.fontAwesomeClass }} fa-2x"
+               aria-hidden="true"></i>
+        </a>
+    </li>
+{% endfor %}
+{% if coworker.email %}
+    <li>
+        <a class="c-grey" href="mailto:{{ coworker.email }}">
+            <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+        </a>
+    </li>
+{% endif %}

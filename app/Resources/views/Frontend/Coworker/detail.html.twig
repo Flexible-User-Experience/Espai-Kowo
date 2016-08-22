@@ -21,15 +21,8 @@
                 <h2 class="no-m-top">{{ coworker.name | upper}}</h2>
                 <h4 class="c-green">{{ coworker.category | upper}}</h4>
                 <p>{{ coworker.description | raw }}</p>
-                <h6>{{ coworker.email }}</h6>
                 <ul class="list-inline">
-                    {% for socialNetwork in coworker.socialNetworks %}
-                        <li>
-                            <a target="_blank" href="{{ socialNetwork.url }}">
-                                <i class="fa {{ socialNetwork.category.fontAwesomeClass }} fa-2x" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                    {% endfor %}
+                    {% include ":Frontend/includes:social_network_category.html.twig" with {coworker: coworker} %}
                 </ul>
             </div>
         </div>
