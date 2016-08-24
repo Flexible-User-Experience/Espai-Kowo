@@ -5,7 +5,7 @@
 {% block main %}
     <div class="container container-main">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 {# left side #}
                 {% if coworker.imageName is not null %}
                     <img
@@ -16,7 +16,7 @@
                     <img src="{{ asset('bundles/app/img/kiwi-pic.jpg') | imagine_filter('480xY') }}" class="img-responsive" alt="default coworker image">
                 {% endif %}
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 {# right side #}
                 <h2 class="no-m-top">{{ coworker.name | upper}}</h2>
                 <h4 class="c-green">{{ coworker.category | upper}}</h4>
