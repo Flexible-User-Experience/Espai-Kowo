@@ -4,7 +4,7 @@
 
 // Fonts
 @icon-font-path: "/bundles/app/fonts/";
-@fa-font-path: "/bundles/app/fonts";
+@fa-font-path:   "/bundles/app/fonts";
 
 // Brand colors
 @ek-c-white:      #FFFFFF;
@@ -15,66 +15,127 @@
 @ek-c-dark-cyan:  #5E9B9A;
 @ek-c-grey:       #808080;
 @ek-c-ligth-grey: #F9F9F9;
+.c-green { color: @ek-c-green; }
+.c-grey  { color: @ek-c-grey; }
+.grey-background { background-color: @ek-c-ligth-grey; }
 
 // Custom Bootstrap vars
 @link-color: @gray-base;
-@icon-font-path: "/fonts/";
 
 // Custom vars
 @ek-s-base: 20px;
 @ek-s-base-plus: 60px;
 @ek-s-base-minus: 10px;
+@gap-extra-big: @gap-big * 2;
+@gap-big:       @gap-normal * 2;
+@gap-normal:    20px;
+@gap-small:     @gap-normal / 2;
+@ek-font-size-base:  16px;
+@ek-font-size-large: ceil((@font-size-base * 1.25));
+@ek-font-size-small: ceil((@font-size-base * 0.95));
 
 // Custom Navbar
 @navbar-height: 80px;
 @navbar-border-radius: 0;
 @navbar-inverse-link-active-color: @ek-c-green;
 @navbar-inverse-link-color: @ek-c-white;
+.navbar {
+  margin-bottom: 0;
+}
 
-// Custom Container Main
+.navbar-logo {
+  margin-top: -20px;
+}
+
+//Custom buttons
+.btn-kowo {
+  background-color: @ek-c-green;
+  border-color: @ek-c-green;
+  color: @ek-c-white;
+}
+.btn-kowo:hover,
+.btn-kowo:focus,
+.btn-kowo:active,
+.btn-kowo.active {
+  background-color: darken(@ek-c-green, 5%);
+  border-color: darken(@ek-c-green, 10%);
+  color: @ek-c-white;
+}
+.btn-kowo.disabled:hover,
+.btn-kowo.disabled:focus,
+.btn-kowo.disabled:active,
+.btn-kowo.disabled.active,
+.btn-kowo[disabled]:hover,
+.btn-kowo[disabled]:focus,
+.btn-kowo[disabled]:active,
+.btn-kowo[disabled].active,
+fieldset[disabled] .btn-kowo:hover,
+fieldset[disabled] .btn-kowo:focus,
+fieldset[disabled] .btn-kowo:active,
+fieldset[disabled] .btn-kowo.active {
+  background-color: @ek-c-green;
+  border-color: @ek-c-green;
+}
+
+// Custom main container
 .container-main {
   min-height: 400px;
+  padding: 40px 0;
 }
 
 // Custom margins
 .no-m { margin: 0}
-.extra-m-top { margin-top: @ek-s-base-plus}
+.no-m-top { margin-top: 0}
+.no-m-bottom { margin-bottom: 0}
+.extra-m-top { margin-top: @ek-s-base-plus }
+.extra-m-bottom { margin-bottom: @gap-big }
+.small-m-bottom { margin-bottom: @gap-small; }
 .content {
   margin: @ek-s-base-plus 0;
   @media(max-width: @screen-sm-max) { margin: @ek-s-base 0; }
 }
 
-// Custom elements
+// custom paddings
+.p-vertical {
+  padding: 40px 0;
+}
+
+// Custom alters
 .alert-green {
   .alert-variant(@ek-c-green; @ek-c-green; @body-bg);
   @media(max-width: @screen-xs-max) {
     h4 { font-size: 1em; }
   }
 }
+
 .alert-orange {
   .alert-variant(@ek-c-orange; @ek-c-orange; @body-bg);
   @media(max-width: @screen-xs-max) {
     h4 { font-size: 1em; }
   }
 }
+
 .alert-violet {
   .alert-variant(@ek-c-violet; @ek-c-violet; @body-bg);
   @media(max-width: @screen-xs-max) {
     h4 { font-size: 1em; }
   }
 }
+
 .alert-magenta {
   .alert-variant(@ek-c-magenta; @ek-c-magenta; @body-bg);
   @media(max-width: @screen-xs-max) {
     h4 { font-size: 1em; }
   }
 }
+
 .alert-dark-cyan {
   .alert-variant(@ek-c-dark-cyan; @ek-c-dark-cyan; @body-bg);
   @media(max-width: @screen-xs-max) {
     h4 { font-size: 1em; }
   }
 }
+
 .fresh-talent-ad {
   color: @ek-c-green;
   -webkit-transform: rotate(352deg);
@@ -82,6 +143,7 @@
   -o-transform: rotate(352deg);
   @media(max-width: @screen-xs-max) { font-size: 1.2em; }
 }
+
 .alert {
   h4 {
     font-weight: normal;
@@ -89,9 +151,8 @@
     white-space: nowrap;
   }
 }
-.navbar-logo {
-  margin-top: -20px;
-}
+
+// Scroll to top
 .scroll-top-wrapper {
   position: fixed;
   opacity: 0;
@@ -103,7 +164,7 @@
   color: @ek-c-white;
   width: 50px;
   height: 48px;
-  line-height: 48px;
+  line-height: 42px;
   right: 15px;
   bottom: 15px;
   padding-top: 2px;
@@ -119,20 +180,28 @@
   }
 }
 
-// Custom Home Page
+// Custom homepage
 .jumbotron {
-  background-color: @ek-c-white;
-}
-.grey-background {
-  background-color: @ek-c-ligth-grey;
-  margin: 40px 0;
-  padding: 40px 0;
+  text-align: right;
+  button {
+    color: @ek-c-white;
+  }
+  padding-top: 690px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  background: @ek-c-white url("/bundles/app/img/hero3-edited.jpg") no-repeat center center;
+  min-height: 800px;
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
 }
 
+// Footer
 footer {
   color: @ek-c-white;
   padding: 40px 0;
-  margin: 40px 0 0 0;
+  margin: 0;
   &.footer {
     background-color: black;
   }
@@ -144,15 +213,15 @@ footer {
     }
   }
 }
+
 .text-title {
   color: @ek-c-green;
 }
+
 .under-construction-warning {
   margin: 20px;
 }
+
 .social-networks {
   margin: 5px 0;
-}
-.c-grey {
-  color: @ek-c-grey;
 }

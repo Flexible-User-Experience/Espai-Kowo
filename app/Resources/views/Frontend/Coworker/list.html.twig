@@ -3,40 +3,34 @@
 {% block title %}Coworkers · {{ parent() }}{% endblock %}
 
 {% block main %}
-    <div class="row">
-    {% if coworkers | length > 0 %}
-        {% for coworker in coworkers %}
-            <div class="col-md-3">
-                <h4 class="text-center">{{ coworker.name | upper }}</h4>
-                <a href="{{ path('front_coworker_detail', {slug: coworker.slug}) }}">
-                    {% if coworker.imageName is not null %}
-                        <img
-                                src="{{ vich_uploader_asset(coworker, 'imageFile') | imagine_filter('256xY') }}"
-                                alt="{{ coworker.imageName }}">
-
-                    {% else %}
-                        <img src="{{ asset('bundles/app/img/kiwi-pic.jpg') | imagine_filter('256xY') }}" alt="">
-                    {% endif %}
-                </a>
-                <ul class="list-inline social-networks text-center">
-                    {% for socialNetwork in coworker.socialNetworks %}
-                        <li>
-                            <a class="c-grey" target="_blank" href="{{ socialNetwork.url }}">
-                                <i class="fa {{ socialNetwork.category.fontAwesomeClass }} fa-2x"
-                                   aria-hidden="true"></i>
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-                <p class="text-center">{{ coworker.category }}</p>
-            </div>
-            {% if loop.index is divisible by(4) %}
+    <div class="container container-main">
+        <div class="row">
+        {% if coworkers | length > 0 %}
+            {% for coworker in coworkers %}
+                <div class="col-md-3">
+                    <h4 class="no-m-top text-center">{{ coworker.name | upper }}</h4>
+                    <a href="{{ path('front_coworker_detail', {slug: coworker.slug}) }}">
+                        {% if coworker.imageName is not null %}
+                            <img
+                                    src="{{ vich_uploader_asset(coworker, 'imageFile') | imagine_filter('256xY') }}"
+                                    class="img-responsive" alt="{{ coworker.imageName }}">
+                        {% else %}
+                            <img src="{{ asset('bundles/app/img/kiwi-pic.jpg') | imagine_filter('256xY') }}" class="img-responsive" alt="default coworker image">
+                        {% endif %}
+                    </a>
+                    <ul class="list-inline social-networks text-center">
+                        {% include ":Frontend/includes:social_network_category.html.twig" with {coworker: coworker} %}
+                    </ul>
+                    <p class="text-center">{{ coworker.category }}</p>
                 </div>
-                <div class="row">
-            {% endif %}
-        {% endfor %}
-    {% else %}
-        {% include ':Frontend/includes:under_construciton_warning.html.twig' %}
-    {% endif %}
+                {% if loop.index is divisible by(4) %}
+                    </div>
+                    <div class="row extra-m-top">
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% include ':Frontend/includes:under_construciton_warning.html.twig' %}
+        {% endif %}
+        </div>
     </div>
 {% endblock %}
