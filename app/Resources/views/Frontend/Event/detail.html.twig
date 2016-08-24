@@ -5,12 +5,22 @@
 {% block main %}
     <div class="container container-main">
         <div class="row">
-            <div class="col-xs-12">
-                <h2 class="text-center fresh-talent-ad">Event detail</h2>
-                <h5>{{ event.date | date('d/m/Y') }}</h5>
-                <h5>{{ event.title }}</h5>
-                <h5>{{ event.type }}</h5>
-                <h5>{{ event.description }}</h5>
+            <div class="col-md-4">
+                {# left side #}
+                {% if event.imageName is not null %}
+                    <img
+                            src="{{ vich_uploader_asset(event, 'imageFile') | imagine_filter('480xY') }}"
+                            class="img-responsive" alt="{{ event.imageName }}">
+                {% else %}
+                    <img src="{{ asset('bundles/app/img/logo-espai-kowo.png') | imagine_filter('480xY') }}" class="img-responsive" alt="default event image">
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                {# right side #}
+                <h2 class="no-m-top">{{ event.title }}</h2>
+                <h4 class="text-muted">{{ event.date | date('d/m/Y') }}</h4>
+                <h4 class="c-green">{{ event.type }}</h4>
+                <p>{{ event.description | raw }}</p>
             </div>
         </div>
     </div>
