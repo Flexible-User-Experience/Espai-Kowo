@@ -7,13 +7,7 @@
         <div class="row">
             <div class="col-md-4">
                 {# left side #}
-                {% if event.imageName is not null %}
-                    <img
-                            src="{{ vich_uploader_asset(event, 'imageFile') | imagine_filter('480xY') }}"
-                            class="img-responsive" alt="{{ event.imageName }}">
-                {% else %}
-                    <img src="{{ asset('bundles/app/img/logo-espai-kowo.png') | imagine_filter('480xY') }}" class="img-responsive" alt="default event image">
-                {% endif %}
+                {% include ':Frontend/includes:image_detail.html.twig' with {object: event} %}
             </div>
             <div class="col-md-8">
                 {# right side #}
