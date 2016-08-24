@@ -31,11 +31,11 @@
             {% include ':Frontend/includes:notice_flash.html.twig' %}
         </div>
     </div>
-    <div class="p-vertical grey-background">
+    <div class="p-vertical">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="thumbnail no-m-bottom">
+                    <div class="no-m-bottom">
                         <img src="{{ asset('bundles/app/img/hero5.jpg') | imagine_filter('350x180') }}" class="img-responsive" alt="Una nova manera de treballar">
                         <div class="caption">
                             <h4>Una nova manera de treballar</h4>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="thumbnail no-m-bottom">
+                    <div class="no-m-bottom">
                         <img src="{{ asset('bundles/app/img/hero4.jpg') | imagine_filter('350x180') }}" class="img-responsive" alt="Suma't a la comunitat de coworkers">
                         <div class="caption">
                             <h4>Suma't a la comunitat de coworkers</h4>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="thumbnail no-m-bottom">
+                    <div class="no-m-bottom">
                         <img src="{{ asset('bundles/app/img/hero1.jpg') | imagine_filter('350x180') }}" class="img-responsive" alt="Compartim coneixement">
                         <div class="caption">
                             <h4>Compartim coneixement</h4>
@@ -64,6 +64,39 @@
             </div>
         </div>
     </div>
+
+    <div class="p-vertical grey-background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-center no-m-top extra-m-bottom">Tarifa</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-2 col-md-4">
+                    <table class="table table-bordered no-m-bottom">
+                        <tbody>
+                            <tr>
+                                <td>Jornada completa</td>
+                                <td class="text-right">100 <i class="fa fa-euro"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Mitja jornada</td>
+                                <td class="text-right">65 <i class="fa fa-euro"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <ul class="no-m-bottom">
+                        <li>Tarifa plana</li>
+                        <li>Només cal portar el teu ordinador</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="p-vertical container">
         <div class="row">
             <div class="col-md-4 text-center">
