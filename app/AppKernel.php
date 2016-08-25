@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Apoutchika\LoremIpsumBundle\ApoutchikaLoremIpsumBundle(),
+            new Hampe\Bundle\ZurbInkBundle\HampeZurbInkBundle(),
             // App
             new AppBundle\AppBundle(),
         );

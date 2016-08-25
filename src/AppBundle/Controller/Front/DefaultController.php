@@ -114,4 +114,14 @@ class DefaultController extends Controller
     {
         return $this->render(':Frontend:privacy_policy.html.twig', array());
     }
+
+    /**
+     * @Route("/test-email", name="front_test_email")
+     *
+     * @return Response
+     */
+    public function testEmailAction()
+    {
+        return$this->render(':Mails:base.html.twig', array());
+    }
 }
