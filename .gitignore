@@ -28,3 +28,4 @@
 /test.sh
 /dbreset.sh
 !.travis.yml
+/src/AppBundle/Resources/public/img/originals/
