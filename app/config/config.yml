@@ -159,7 +159,7 @@ sonata_admin:
                 type: sonata.admin.block.admin_list
                 class: col-md-6
                 settings:
-                    groups: [ Activities ]
+                    groups: [ Blog ]
             -
                 position: top
                 type: sonata.admin.block.admin_list
@@ -171,19 +171,19 @@ sonata_admin:
                 type: sonata.admin.block.admin_list
                 class: col-md-6
                 settings:
-                    groups: [ Blog ]
-            -
-                position: top
-                type: sonata.admin.block.admin_list
-                class: col-md-6
-                settings:
-                    groups: [ Users ]
+                    groups: [ Activities ]
             -
                 position: top
                 type: sonata.admin.block.admin_list
                 class: col-md-6
                 settings:
                     groups: [ Contacts ]
+            -
+                position: top
+                type: sonata.admin.block.admin_list
+                class: col-md-6
+                settings:
+                    groups: [ Users ]
 
 # CKEditor
 ivory_ck_editor:
