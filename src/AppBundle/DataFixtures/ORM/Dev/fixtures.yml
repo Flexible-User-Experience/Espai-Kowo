@@ -149,8 +149,8 @@ AppBundle\Entity\Tag:
 ## Users
 AppBundle\Entity\User:
     admin:
-        username: <{private_admin_test_user}>
-        plainPassword: <{private_admin_test_pass}>
+        username: <{private_admin_prod_user}>
+        plainPassword: <{private_admin_prod_pass}>
         email: <safeEmail()>
         firstname: <name()>
         lastname: <lastname()>

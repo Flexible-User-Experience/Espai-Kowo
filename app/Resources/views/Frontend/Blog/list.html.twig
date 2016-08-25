@@ -4,7 +4,7 @@
 
 {% block main %}
     <div class="container container-main">
-        <div class="row">
+        <div class="clearfix">
             {% if posts | length > 0 %}
                 {% for post in posts %}
                     <div class="col-md-4">
@@ -21,7 +21,7 @@
                     </div>
                     {% if loop.index is divisible by(3) %}
                         </div>
-                        <div class="row extra-m-top">
+                        <div class="clearfix extra-m-top">
                     {% endif %}
                 {% endfor %}
             {% else %}

@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
@@ -113,5 +114,19 @@ class DefaultController extends Controller
     public function privacyPolicyAction()
     {
         return $this->render(':Frontend:privacy_policy.html.twig', array());
+    }
+
+    /**
+     * @Route("/test-email", name="front_test_email")
+     *
+     * @return Response
+     */
+    public function testEmailAction()
+    {
+        if ($this->container->get('kernel')->getEnvironment() != 'dev') {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->render(':Mails:free_trial_user_notification.html.twig', array());
     }
 }
