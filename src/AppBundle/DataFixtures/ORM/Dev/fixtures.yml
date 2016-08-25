@@ -150,7 +150,7 @@ AppBundle\Entity\Tag:
 AppBundle\Entity\User:
     admin:
         username: <{private_admin_prod_user}>
-        plainPassword: <{private_prod_test_pass}>
+        plainPassword: <{private_admin_prod_pass}>
         email: <safeEmail()>
         firstname: <name()>
         lastname: <lastname()>
