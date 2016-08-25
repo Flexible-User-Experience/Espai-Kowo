@@ -33,10 +33,10 @@ parameters:
     private_admin_test_pass: admin
     private_editor_test_user: user
     private_editor_test_pass: user
-    private_editor_prod_user: user
-    private_editor_prod_pass: pass
-    private_editor_prod_email: email
-    private_editor_prod_firstname: firstname
-    private_editor_prod_lastname: lastname
+    private_admin_prod_user: user
+    private_admin_prod_pass: pass
+    private_admin_prod_email: email
+    private_admin_prod_firstname: firstname
+    private_admin_prod_lastname: lastname
 
     project_web_title: "EspaiKowo"
