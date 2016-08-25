@@ -5,7 +5,7 @@
 {% block main %}
     <div class="container container-main">
         <div class="clearfix">
-            {% if posts | length > 0 %}
+            {% if posts | length < 0 %}
                 {% for post in posts %}
                     <div class="col-md-4">
                         <a href="{{ path('front_blog_detail', {slug: post.slug, year: post.publishedAt | date('Y'), month: post.publishedAt | date('m'), day: post.publishedAt | date('d') }) }}">

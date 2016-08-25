@@ -79,6 +79,14 @@ class UserAdmin extends ParentUserAdmin
                 )
             )
             ->add(
+                'lastname',
+                null,
+                array(
+                    'label'    => 'backend.admin.user.lastname',
+                    'required' => false,
+                )
+            )
+            ->add(
                 'username',
                 null,
                 array(
