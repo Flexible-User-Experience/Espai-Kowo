@@ -2,7 +2,7 @@
 
 namespace AppBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use AppBundle\Tests\AbstractBaseTest;
 
 /**
  * Class FrontendControllerTest
@@ -11,24 +11,66 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * @package  AppBundle\Tests\Controller
  * @author   David Romaní <david@flux.cat>
  */
-class FrontendControllerTest extends WebTestCase
+class FrontendControllerTest extends AbstractBaseTest
 {
-    public function testIndex()
+    /**
+     * Test HTTP request is successful
+     *
+     * @dataProvider provideSuccessfulUrls
+     * @param string $url
+     */
+    public function testPagesAreSuccessful($url)
     {
-        $client = static::createClient();
-        $client->request('GET', '/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $client->request('GET', '/coworkers');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-//        $client->request('GET', '/coworker/1');
-//        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $client->request('GET', '/activitats');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-//        $client->request('GET', '/activitat/1');
-//        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $client->request('GET', '/blog');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-//        $client->request('GET', '/blog/2016/04/10/my-title');
-//        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $client = $this->createClient();
+        $client->request('GET', $url);
+
+        $this->assertStatusCode(200, $client);
     }
+
+    /**
+     * Successful Urls provider
+     *
+     * @return array
+     */
+    public function provideSuccessfulUrls()
+    {
+        return array(
+            array('/'),
+            array('/blog'),
+            array('/coworkers'),
+            array('/contacte'),
+            array('/politica-de-privacitat'),
+//            array('/test-email'),
+            array('/activitats'),
+            array('/sitemap/sitemap.default.xml'),
+        );
+    }
+
+    /**
+     * Test HTTP request is not found
+     *
+     * @dataProvider provideNotFoundUrls
+     * @param string $url
+     */
+//    public function testPagesAreNotFound($url)
+//    {
+//        $client = $this->createClient();         // anonymous user
+//        $client->request('GET', $url);
+//
+//        $this->assertStatusCode(404, $client);
+//    }
+
+    /**
+     * Not found Urls provider
+     *
+     * @return array
+     */
+//    public function provideNotFoundUrls()
+//    {
+//        return array(
+//            array('/ca/pagina-trenacada'),
+//            array('/es/pagina-rota'),
+//            array('/en/broken-page'),
+//        );
+//    }
 }
