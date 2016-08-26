@@ -5,7 +5,6 @@ use AppBundle\Entity\Traits\DescriptionTrait;
 use AppBundle\Entity\Traits\SlugTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -21,7 +20,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CoworkerRepository")
  * @Vich\Uploadable
- * @UniqueEntity("name")
  */
 class Coworker extends AbstractBase
 {
@@ -45,9 +43,15 @@ class Coworker extends AbstractBase
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    private $surname;
 
     /**
      * @var Category
@@ -133,11 +137,33 @@ class Coworker extends AbstractBase
 
     /**
      * @param string $name
+     *
      * @return Coworker
      */
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+
+    /**
+     * @param string $surname
+     *
+     * @return Coworker
+     */
+    public function setSurname($surname)
+    {
+        $this->surname = $surname;
+
         return $this;
     }
 
@@ -174,6 +200,7 @@ class Coworker extends AbstractBase
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 

@@ -73,3 +73,8 @@ services:
         class: AppBundle\Listener\SitemapListener
         arguments: [ "@router", "@doctrine.orm.entity_manager" ]
         tags: [ { name: "presta.sitemap.listener" } ]
+#Twig
+    twig.extension.sortbyfield:
+        class: Snilius\Twig\SortByFieldExtension
+        tags:
+            - { name: twig.extension }

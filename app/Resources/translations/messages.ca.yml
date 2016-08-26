@@ -9,6 +9,7 @@ backend:
         published_date: Data de publicació
         coworker:
             name: Nom
+            surname: Cognom
             email: Correu electrònic
             description: Descripció
             position: Ordre

@@ -6,9 +6,9 @@
     <div class="container container-main">
         <div class="clearfix">
         {% if coworkers | length > 0 %}
-            {% for coworker in coworkers %}
+            {% for coworker in coworkers | sortbyfield('surname') %}
                 <div class="col-md-3">
-                    <h4 class="no-m-top text-center">{{ coworker.name | upper }}</h4>
+                    <h4 class="no-m-top text-center">{{ coworker.name | upper }} {{ coworker.surname | upper }}</h4>
                     <a href="{{ path('front_coworker_detail', {slug: coworker.slug}) }}">
                         {% if coworker.imageName is not null %}
                             <img
