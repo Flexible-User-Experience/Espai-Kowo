@@ -22,4 +22,14 @@ class CoworkerRepository extends EntityRepository
 
         return $query->getQuery()->getResult();
     }
+
+    public function findAllEnabledSortedBySurname()
+    {
+        $query = $this->createQueryBuilder('c')
+            ->where('c.enabled = :enabled')
+            ->setParameter('enabled', true)
+            ->orderBy('c.surname');
+
+        return $query->getQuery()->getResult();
+    }
 }
