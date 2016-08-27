@@ -129,4 +129,14 @@ class DefaultController extends Controller
 
         return $this->render(':Mails:free_trial_user_notification.html.twig', array());
     }
+
+    /**
+     * @Route("/credits", name="front_credits")
+     *
+     * @return Response
+     */
+    public function creditsAction()
+    {
+        return $this->render(':Frontend:credits.html.twig');
+    }
 }
