@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
@@ -25,10 +26,24 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            // Flash
             $this->addFlash(
                 'notice',
-                'Ens posarem en contacte el més aviat possible'
+                'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
+            // Email
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Missatge de contacte pàgina web ' . $this->getParameter('mailer_url_base'))
+                ->setFrom($this->getParameter('mailer_destination'))
+                ->setTo($this->getParameter('mailer_destination'))
+                ->setBody(
+                    $this->renderView(
+                        ':Frontend/Mail:contact_form_admin_notification.html.twig',
+                        array('contact' => $form->getData())
+                    ),
+                    'text/html'
+                );
+            $this->get('mailer')->send($message);
         }
 
 
@@ -99,5 +114,29 @@ class DefaultController extends Controller
     public function privacyPolicyAction()
     {
         return $this->render(':Frontend:privacy_policy.html.twig', array());
+    }
+
+    /**
+     * @Route("/test-email", name="front_test_email")
+     *
+     * @return Response
+     */
+    public function testEmailAction()
+    {
+        if ($this->container->get('kernel')->getEnvironment() != 'dev' Xor 'test') {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->render(':Mails:free_trial_user_notification.html.twig', array());
+    }
+
+    /**
+     * @Route("/credits", name="front_credits")
+     *
+     * @return Response
+     */
+    public function creditsAction()
+    {
+        return $this->render(':Frontend:credits.html.twig');
     }
 }

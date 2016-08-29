@@ -3,41 +3,26 @@
 {% block title %}{{ coworker.name }} · Coworker · {{ parent() }}{% endblock %}
 
 {% block main %}
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h1>Coworkers</h1>
-            <h3>{{ coworker.name }} / {{ coworker.category }}</h3>
-            <h5>{{ coworker.description | raw }}</h5>
-        </div>
-    </div>
-    <br>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
+    <div class="container container-main">
+        <div class="clearfix">
+            <div class="col-md-4">
                 {# left side #}
                 {% if coworker.imageName is not null %}
                     <img
                             src="{{ vich_uploader_asset(coworker, 'imageFile') | imagine_filter('480xY') }}"
-                            alt="{{ coworker.imageName }}">
+                            class="img-responsive" alt="{{ coworker.imageName }}">
 
                 {% else %}
-                    <img src="{{ asset('bundles/app/img/kiwi-pic.jpg') | imagine_filter('480xY') }}" alt="">
+                    <img src="{{ asset('bundles/app/img/kiwi-pic.jpg') | imagine_filter('480xY') }}" class="img-responsive" alt="default coworker image">
                 {% endif %}
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 {# right side #}
-                <h4>{{ coworker.name | upper}}</h4>
-                <h5 style="color: greenyellow">{{ coworker.category | upper}}</h5>
+                <h2 class="no-m-top">{{ coworker.name | upper}}</h2>
+                <h4 class="c-green">{{ coworker.category | upper}}</h4>
                 <p>{{ coworker.description | raw }}</p>
-                <h6>{{ coworker.email }}</h6>
                 <ul class="list-inline">
-                    {% for socialNetwork in coworker.socialNetworks %}
-                            <li>
-                                <a target="_blank" href="{{ socialNetwork.url }}">
-                                    <i class="fa {{ socialNetwork.category.fontAwesomeClass }} fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                    {% endfor %}
+                    {% include ":Frontend/includes:social_network_category.html.twig" with {coworker: coworker} %}
                 </ul>
             </div>
         </div>

@@ -3,14 +3,22 @@
 {% block title %}Contacte · {{ parent() }}{% endblock %}
 
 {% block main %}
-    <div class="row">
-        <div class="col-md-4">
-            <h1>Contacte</h1>
-            {{ form(formContact) }}
-            {% include ':Frontend/includes:notice_flash.html.twig' %}
-        </div>
-        <div class="col-md-8">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2664934498994!2d0.57607581512458!3d40.712149579331815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a0fe75d2322665%3A0x9be67e389b815e42!2sEspai+Kowo!5e0!3m2!1ses!2ses!4v1470407346499" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    <div class="container container-main">
+        <div class="clearfix">
+            <div class="col-md-4">
+                <h1 class="no-m-top">Contacte</h1>
+                {{ form_start(formContact) }}
+                    {{ form_row(formContact.name) }}
+                    {{ form_row(formContact.phone) }}
+                    {{ form_row(formContact.email) }}
+                    {{ form_row(formContact.message) }}
+                    {{ form_rest(formContact) }}
+                {{ form_end(formContact) }}
+                {% include ':Frontend/includes:notice_flash.html.twig' %}
+            </div>
+            <div class="col-md-8">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2664934498994!2d0.57607581512458!3d40.712149579331815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a0fe75d2322665%3A0x9be67e389b815e42!2sEspai+Kowo!5e0!3m2!1ses!2ses!4v1470407346499" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -20,8 +20,8 @@ class CoworkerAdmin extends AbstractBaseAdmin
     protected $classnameLabel = 'Coworker';
     protected $baseRoutePattern = 'coworkers/coworker';
     protected $datagridValues = array(
-        '_sort_by'    => 'position',
-        '_sort_order' => 'desc',
+        '_sort_by'    => 'surname',
+        '_sort_order' => 'asc',
     );
 
     /**
@@ -47,6 +47,13 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.coworker.name',
+                )
+            )
+            ->add(
+                'surname',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.surname',
                 )
             )
             ->add(
@@ -134,6 +141,13 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'surname',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.surname',
+                )
+            )
+            ->add(
                 'email',
                 null,
                 array(
@@ -173,18 +187,18 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
-                'position',
-                null,
-                array(
-                    'label' => 'backend.admin.coworker.position',
-                    'editable' => true,
-                )
-            )
-            ->add(
                 'name',
                 null,
                 array(
                     'label' => 'backend.admin.coworker.name',
+                    'editable' => true,
+                )
+            )
+            ->add(
+                'surname',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.surname',
                     'editable' => true,
                 )
             )

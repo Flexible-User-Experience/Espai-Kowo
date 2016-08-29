@@ -18,6 +18,7 @@ AppBundle\Entity\Coworker:
   coworker{1..2}:
     position: <numberBetween(1, 2)>
     name: <name()>
+    surname: <lastName()>
     description: <paragraph()>
     email: <safeEmail()>
     category: @category<numberBetween(1, 2)>
@@ -90,30 +91,3 @@ AppBundle\Entity\User:
         enabled: true
         roles:
             - ROLE_SUPER_ADMIN
-    editor:
-        username: <{private_editor_test_user}>
-        plainPassword: <{private_editor_test_pass}>
-        email: <safeEmail()>
-        firstname: <name()>
-        lastname: <lastname()>
-        enabled: true
-        roles:
-            - ROLE_CMS
-    cms{1..4}:
-        username: <username()>
-        plainPassword: <password()>
-        email: <safeEmail()>
-        firstname: <name()>
-        lastname: <lastname()>
-        enabled: true
-        roles:
-            - ROLE_CMS
-    manager{1..2}:
-        username: <username()>
-        plainPassword: <password()>
-        email: <safeEmail()>
-        firstname: <name()>
-        lastname: <lastname()>
-        enabled: true
-        roles:
-            - ROLE_ADMIN

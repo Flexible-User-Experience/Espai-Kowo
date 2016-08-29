@@ -93,5 +93,4 @@ class Category extends AbstractBase
 
         return $this->getTitle() ? $this->getTitle() : '---';
     }
-
 }

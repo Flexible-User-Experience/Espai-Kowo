@@ -62,3 +62,14 @@ services:
         arguments: [ "@request_stack" ]
         tags:
             - { name: knp_menu.menu, alias: top }
+## Repository
+#    app.entity_repository.event:
+#        class: AppBundle\Repository\EventRepository
+#        factory: [ "@doctrine", getRepository ]
+#        arguments:
+#            - AppBundle:Event
+# Sitemap
+    app.sitemap:
+        class: AppBundle\Listener\SitemapListener
+        arguments: [ "@router", "@doctrine.orm.entity_manager" ]
+        tags: [ { name: "presta.sitemap.listener" } ]

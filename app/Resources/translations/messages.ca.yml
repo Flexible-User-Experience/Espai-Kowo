@@ -9,6 +9,7 @@ backend:
         published_date: Data de publicació
         coworker:
             name: Nom
+            surname: Cognom
             email: Correu electrònic
             description: Descripció
             position: Ordre
@@ -61,6 +62,7 @@ backend:
             admin: Administrador
             superadmin: Superadministrador
             firstname: Nom
+            lastname: Cognoms
             username: Nom usuari
             email: Correu electrònic
             plain_password: Contrasenya

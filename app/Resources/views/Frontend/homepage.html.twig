@@ -1,78 +1,140 @@
 {% extends ':Frontend:base.html.twig' %}
 
 {% block main %}
-    <div class="row">
-        <div class="col-md-12">
-            <div class="jumbotron">
-                <div class="container">
-                    <h1>{{ words(1) }}</h1>
-                    <h2>{{ words(2) }}</h2>
-                    <p><a class="btn btn-primary btn-lg" href="#" role="button">Prova-ho 3 dies gratis &raquo;</a></p>
-                    {{ form(formHomepage) }}
-                    {% include ':Frontend/includes:notice_flash.html.twig' %}
-                </div>
-            </div>
-        </div>
-    </div>
-{% endblock %}
-
-{% block homepage %}
-    <div class="grey-background">
+    {# Hero section #}
+    <div class="jumbotron">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/350x180?text=IMAGE" alt="...">
-                        <div class="caption">
-                            <h3>{{ words(2) }}</h3>
-                            <p>{{ sentences(1) }}</p>
+            <h2>Molt més que compartir un espai de treball</h2>
+            {#<h2>{{ words(2) }}</h2>#}
+            {#<!-- Button trigger modal -->#}
+            <p>
+                <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#form_modal">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Prova-ho gratis 3 dies
+                </button>
+            </p>
+            {#<!-- Modal -->#}
+            <div class="modal fade" id="form_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content text-left">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Dades de contacte</h4>
+                        </div>
+                        <div class="modal-body">
+                            {{ form(formHomepage) }}
+                        </div>
+                        <div class="modal-footer">
+                            En breu t'ho explicarem tot amb més detall i podràs visitar l'espai
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/350x180?text=IMAGE" alt="...">
+            </div>
+            {% include ':Frontend/includes:notice_flash.html.twig' %}
+        </div>
+    </div>
+    {# Subhero section #}
+    <div class="p-vertical">
+        <div class="container">
+            <div class="row small-m-top">
+                <div class="col-sm-4">
+                    <div class="no-m-bottom">
+                        <img src="{{ asset('bundles/app/img/hero5.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="Una nova manera de treballar">
                         <div class="caption">
-                            <h3>{{ words(2) }}</h3>
-                            <p>{{ sentences(1) }}</p>
+                            <h4 class="text-muted">Una nova manera de treballar</h4>
+                            {#<p>{{ sentences(1) }}</p>#}
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/350x180?text=IMAGE" alt="...">
+                <div class="col-sm-4">
+                    <div class="no-m-bottom">
+                        <img src="{{ asset('bundles/app/img/hero4.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="Suma't a la comunitat de coworkers">
                         <div class="caption">
-                            <h3>{{ words(2) }}</h3>
-                            <p>{{ sentences(1) }}</p>
+                            <h4 class="text-muted">Suma't a la comunitat de coworkers</h4>
+                            {#<p>{{ sentences(1) }}</p>#}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="no-m-bottom">
+                        <img src="{{ asset('bundles/app/img/hero1.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="Compartim coneixement">
+                        <div class="caption">
+                            <h4 class="text-muted">Compartim coneixement</h4>
+                            {#<p>{{ sentences(1) }}</p>#}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
+    {# Pricing section #}
+    <div class="p-vertical grey-background">
+        <div class="container">
+            {#<div class="row">#}
+                {#<div class="col-md-12">#}
+                    {#<h2 class="text-center no-m-top extra-m-bottom">Tarifa</h2>#}
+                {#</div>#}
+            {#</div>#}
+            <div class="row white">
+                <div class="block">
+                    <div class="col-xs-6 col-sm-4 col-sm-offset-2">
+                        <ul class="pricing p-yel white-background no-m-bottom">
+                            <li>
+                                <i class="fa fa-5x fa-star c-orange" aria-hidden="true"></i><br>
+                                <h4 class="no-m-bottom c-orange">Jornada completa</h4>
+                            </li>
+                            <li>taula de treball individual</li>
+                            <li>armariet individual</li>
+                            <li>sala de reunió compartida</li>
+                            <li>accés a internet</li>
+                            <li>
+                                <h3 class="no-m-top">100 <i class="fa fa-euro"></i></h3>
+                                <span>al mes</span>
+                            </li>
+                            {#<li><button>Join Now</button></li>#}
+                        </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-4">
+                        <ul class="pricing p-yel white-background no-m-bottom">
+                            <li>
+                                <i class="fa fa-5x fa-star-half-o c-orange" aria-hidden="true"></i><br>
+                                <h4 class="no-m-bottom c-orange">Mitja jornada</h4>
+                            </li>
+                            <li>taula de treball compartida</li>
+                            <li>armariet compartit</li>
+                            <li>sala de reunió compartida</li>
+                            <li>accés a internet</li>
+                            <li>
+                                <h3 class="no-m-top">65 <i class="fa fa-euro"></i></h3>
+                                <span>al mes</span>
+                            </li>
+                            {#<li><button>Join Now</button></li>#}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {# Detail section #}
+    <div class="p-vertical container">
         <div class="row">
-            <div class="col-md-3 text-center">
-                <i class="fa fa-bar-chart fa-3x" aria-hidden="true"></i>
-                <p>{{ words(1) }}</p>
+            <div class="col-xs-4 text-center">
+                <i class="small-m-bottom c-green fa fa-universal-access fa-3x" aria-hidden="true"></i>
+                <p class="no-m-bottom text-muted">12+1 taules de treball</p>
             </div>
-            <div class="col-md-3 text-center">
-                <i class="fa fa-font-awesome fa-3x" aria-hidden="true"></i>
-                <p>{{ words(1) }}</p>
+            <div class="col-xs-4 text-center">
+                <i class="small-m-bottom c-green fa fa-sun-o fa-3x" aria-hidden="true"></i>
+                <p class="no-m-bottom text-muted">130m<sup>2</sup> amb llum natural</p>
             </div>
-            <div class="col-md-3 text-center">
-                <i class="fa fa-balance-scale fa-3x" aria-hidden="true"></i>
-                <p>{{ words(1) }}</p>
-            </div>
-            <div class="col-md-3 text-center">
-                <i class="fa fa-universal-access fa-3x" aria-hidden="true"></i>
-                <p>{{ words(1) }}</p>
+            <div class="col-xs-4 text-center">
+                <i class="small-m-bottom c-green fa fa-wifi fa-3x" aria-hidden="true"></i>
+                <p class="no-m-bottom text-muted">Internet ultra-ràpid</p>
             </div>
         </div>
     </div>
-    <div class="grey-background">
+    {# Final highlights section #}
+    <div class="p-vertical grey-background">
         <div class="container text-center">
-            <div class="row">
+            <div class="row normal-m-top">
                 <div class="col-md-3 col-sm-4 col-xs-6">
                     <div class="alert alert-magenta" role="alert">
                         <h4 class="no-m text-center"><i class="fa fa-gear fa-spin"></i><br>sala coworking</h4>
@@ -96,4 +158,15 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if not formHomepage.vars.valid %}
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                jQuery('#form_modal').modal('show');
+            });
+        </script>
+    {% endif %}
 {% endblock %}

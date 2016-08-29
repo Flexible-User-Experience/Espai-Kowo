@@ -1,60 +1,60 @@
 ## Coworkers
 AppBundle\Entity\Coworker:
   coworker1:
-    name: 'Sílvia Berbís'
+    name: 'Sílvia'
+    surname: 'Berbís'
     position: 1
     email: 'sberbis@hotmail.com'
-    description: <paragraph()>
   coworker2:
-    name: 'Sofia Cabanes'
+    name: 'Sofia'
+    surname: 'Cabanes'
     position: 2
     email: 'sofiacabanes@hotmail.com'
-    description: <paragraph()>
   coworker3:
-    name: 'Vanesa Cervera'
-    position: 3
-    email: 'info@vanesadesign.com'
-    description: <paragraph()>
-  coworker4:
-    name: 'Jaume Castellà'
+    name: 'Vanesa'
+    surname: 'Cervera'
     position: 4
+    email: 'info@vanesadesign.com'
+  coworker4:
+    name: 'Jaume'
+    surname: 'Castellà'
+    position: 3
     email: 'jaume.castella@cresol.com'
-    description: <paragraph()>
   coworker5:
-    name: 'German Zubeldia'
-    position: 5
+    name: 'German'
+    surname: 'Zubeldia'
+    position: 11
     email: 'sinergia.client@gmail.com'
-    description: <paragraph()>
   coworker6:
-    name: 'Rubèn Hierro'
+    name: 'Rubèn'
+    surname: 'Hierro'
     position: 6
     email: 'info@rubenhierro.com'
-    description: <paragraph()>
   coworker7:
-    name: 'Marc Morales'
-    position: 7
-    email: 'info@marcmorales.cat'
-    description: <paragraph()>
-  coworker8:
-    name: 'Juan Carlos Chicón'
+    name: 'Marc'
+    surname: 'Morales'
     position: 8
+    email: 'info@marcmorales.cat'
+  coworker8:
+    name: 'Juan Carlos'
+    surname: 'Chicón'
+    position: 5
     email: 'jcchicon@gmail.com'
-    description: <paragraph()>
   coworker9:
-    name: 'David Romaní'
+    name: 'David'
+    surname: 'Romaní'
     position: 9
     email: 'david@flux.cat'
-    description: <paragraph()>
   coworker10:
-    name: 'Wilson Iglesias'
-    position: 10
+    name: 'Wilson'
+    surname: 'Iglesias'
+    position: 7
     email: 'info@wiglesias.com'
-    description: <paragraph()>
   coworker11:
-    name: 'Anton Serra'
-    position: 11
+    name: 'Anton'
+    surname: 'Serra'
+    position: 10
     email: 'aserratorta@gmail.com'
-    description: <paragraph()>
 
 #Social Network Category
 AppBundle\Entity\SocialNetworkCategory:
@@ -81,17 +81,25 @@ AppBundle\Entity\SocialNetworkCategory:
 
 ## Category
 AppBundle\Entity\Category:
-  category{1..5}:
-    title: <sentence()>
+  category1:
+    title: disseny gràfic
+  category2:
+    title: programador
+  category3:
+    title: community manager
+  category4:
+    title: enginyer industrial
+  category5:
+    title: freelance
 
 ## Users
 AppBundle\Entity\User:
     admin:
-        username: <{private_admin_test_user}>
-        plainPassword: <{private_admin_test_pass}>
-        email: <safeEmail()>
-        firstname: <name()>
-        lastname: <lastname()>
+        username: <{private_admin_prod_user}>
+        plainPassword: <{private_admin_prod_pass}>
+        email: <{private_admin_prod_email}>
+        firstname: <{private_admin_prod_firstname}>
+        lastname: <{private_admin_prod_lastname}>
         enabled: true
         roles:
             - ROLE_SUPER_ADMIN
