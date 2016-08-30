@@ -132,6 +132,11 @@ class SitemapListener implements SitemapListenerInterface
             $event
                 ->getUrlContainer()
                 ->addUrl($this->makeUrlConcrete($url), 'default');
+            // Credits view
+            $url = $this->makeUrl('front_credits');
+            $event
+                ->getUrlContainer()
+                ->addUrl($this->makeUrlConcrete($url), 'default');
         }
     }
 
