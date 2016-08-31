@@ -38,6 +38,7 @@ class FrontendControllerTest extends AbstractBaseTest
             array('/'),
             array('/blog'),
             array('/coworkers'),
+            array('/coworker/anton'),
             array('/contacte'),
             array('/politica-de-privacitat'),
             array('/credits'),
@@ -53,25 +54,25 @@ class FrontendControllerTest extends AbstractBaseTest
      * @dataProvider provideNotFoundUrls
      * @param string $url
      */
-//    public function testPagesAreNotFound($url)
-//    {
-//        $client = $this->createClient();         // anonymous user
-//        $client->request('GET', $url);
-//
-//        $this->assertStatusCode(404, $client);
-//    }
+    public function testPagesAreNotFound($url)
+    {
+        $client = $this->createClient();         // anonymous user
+        $client->request('GET', $url);
+
+        $this->assertStatusCode(404, $client);
+    }
 
     /**
      * Not found Urls provider
      *
      * @return array
      */
-//    public function provideNotFoundUrls()
-//    {
-//        return array(
-//            array('/ca/pagina-trenacada'),
-//            array('/es/pagina-rota'),
-//            array('/en/broken-page'),
-//        );
-//    }
+    public function provideNotFoundUrls()
+    {
+        return array(
+            array('/ca/pagina-trenacada'),
+            array('/es/pagina-rota'),
+            array('/en/broken-page'),
+        );
+    }
 }

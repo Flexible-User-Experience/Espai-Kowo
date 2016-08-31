@@ -15,9 +15,16 @@ AppBundle\Entity\ContactMessage:
 
 ## Coworkers
 AppBundle\Entity\Coworker:
-  coworker{1..2}:
+  coworker1:
     position: <numberBetween(1, 2)>
     name: <name()>
+    surname: <lastName()>
+    description: <paragraph()>
+    email: <safeEmail()>
+    category: @category<numberBetween(1, 2)>
+  coworker2:
+    position: <numberBetween(1, 2)>
+    name: 'Anton'
     surname: <lastName()>
     description: <paragraph()>
     email: <safeEmail()>
