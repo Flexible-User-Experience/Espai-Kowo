@@ -22,7 +22,7 @@
                 <h4 class="c-green">{{ coworker.category | upper}}</h4>
                 <p>{{ coworker.description | raw }}</p>
                 <ul class="list-inline">
-                    {% include ":Frontend/includes:social_network_category.html.twig" with {coworker: coworker} %}
+                    {% include ":Frontend/includes:social_network_category.html.twig" with {socialNetworks: socialNetworks} %}
                 </ul>
             </div>
         </div>

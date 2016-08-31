@@ -19,7 +19,7 @@ class CoworkerController extends Controller
 
         return $this->render(
             ':Frontend/Coworker:list.html.twig',
-            [ 'coworkers' => $coworkers ]
+            ['coworkers' => $coworkers]
         );
     }
 
@@ -37,10 +37,13 @@ class CoworkerController extends Controller
                 'slug' => $slug,
             )
         );
+        $socialNetworks = $this->getDoctrine()->getRepository('AppBundle:SocialNetwork')->getCoworkerSocialNetworksSortedByTitle($coworker);
 
         return $this->render(
-            ':Frontend/Coworker:detail.html.twig',
-            [ 'coworker' => $coworker ]
+            ':Frontend/Coworker:detail.html.twig', array(
+                'coworker' => $coworker,
+                'socialNetworks' => $socialNetworks,
+            )
         );
     }
 }
