@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Front;
 
+use AppBundle\Entity\Coworker;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,11 @@ class CoworkerController extends Controller
     public function listAction()
     {
         $coworkers = $this->getDoctrine()->getRepository('AppBundle:Coworker')->findAllEnabledSortedBySurname();
+        /** @var Coworker $coworker */
+        foreach ($coworkers as $coworker) {
+            $socialNetworks = $this->getDoctrine()->getRepository('AppBundle:SocialNetwork')->getCoworkerSocialNetworksSortedByTitle($coworker);
+            $coworker->setSocialNetworks($socialNetworks);
+        }
 
         return $this->render(
             ':Frontend/Coworker:list.html.twig',
@@ -38,11 +44,11 @@ class CoworkerController extends Controller
             )
         );
         $socialNetworks = $this->getDoctrine()->getRepository('AppBundle:SocialNetwork')->getCoworkerSocialNetworksSortedByTitle($coworker);
+        $coworker->setSocialNetworks($socialNetworks);
 
         return $this->render(
             ':Frontend/Coworker:detail.html.twig', array(
                 'coworker' => $coworker,
-                'socialNetworks' => $socialNetworks,
             )
         );
     }

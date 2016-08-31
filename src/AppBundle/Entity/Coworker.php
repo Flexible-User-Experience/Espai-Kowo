@@ -266,10 +266,11 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @param ArrayCollection $socialNetworks
+     * @param array $socialNetworks
+     *
      * @return Coworker
      */
-    public function setSocialNetworks(ArrayCollection $socialNetworks)
+    public function setSocialNetworks(array $socialNetworks)
     {
         $this->socialNetworks = $socialNetworks;
         return $this;
