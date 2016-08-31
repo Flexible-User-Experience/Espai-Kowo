@@ -13,6 +13,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class CoworkerRepository extends EntityRepository
 {
+    /**
+     * @return array
+     */
     public function findAllEnabledSortedByPosition()
     {
         $query = $this->createQueryBuilder('c')
@@ -23,6 +26,9 @@ class CoworkerRepository extends EntityRepository
         return $query->getQuery()->getResult();
     }
 
+    /**
+     * @return array
+     */
     public function findAllEnabledSortedBySurname()
     {
         $query = $this->createQueryBuilder('c')
