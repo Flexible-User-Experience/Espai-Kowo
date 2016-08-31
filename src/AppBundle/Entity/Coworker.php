@@ -17,7 +17,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @category Entity
  * @package  AppBundle\Entity
  * @author   Anton Serra <aserratorta@gmail.com>
- * @ORM\Table()
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="name_unique", columns={"name", "surname"})})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CoworkerRepository")
  * @Vich\Uploadable
  */
@@ -30,7 +30,7 @@ class Coworker extends AbstractBase
      * @var string
      *
      * @ORM\Column(type="string", length=255)
-     * @Gedmo\Slug(fields={"name"})
+     * @Gedmo\Slug(fields={"name", "surname"})
      */
     private $slug;
 

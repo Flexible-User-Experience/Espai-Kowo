@@ -25,7 +25,7 @@ AppBundle\Entity\Coworker:
   coworker2:
     position: <numberBetween(1, 2)>
     name: 'Anton'
-    surname: <lastName()>
+    surname: 'Serra'
     description: <paragraph()>
     email: <safeEmail()>
     category: @category<numberBetween(1, 2)>
