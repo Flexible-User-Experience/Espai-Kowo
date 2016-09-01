@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e4924512a4e0a2c7e483fe15a5cc72f8",
-    "content-hash": "49c3e36383930a56ce442e713fd14530",
+    "hash": "7843b15f4c172e4630799ceb931ae325",
+    "content-hash": "27af2b26faf47240a8d53f491ccc65b8",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -1776,16 +1776,16 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.4.21",
+            "version": "v2.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "dcaab46a25e1baeb5142c3e25d5b6fd495ced504"
+                "reference": "b8188801bafc420b86908ee5229a5e92143ce514"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/dcaab46a25e1baeb5142c3e25d5b6fd495ced504",
-                "reference": "dcaab46a25e1baeb5142c3e25d5b6fd495ced504",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/b8188801bafc420b86908ee5229a5e92143ce514",
+                "reference": "b8188801bafc420b86908ee5229a5e92143ce514",
                 "shasum": ""
             },
             "require": {
@@ -1851,24 +1851,24 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2016-08-17 16:52:00"
+            "time": "2016-08-30 18:42:36"
         },
         {
             "name": "hampe/inky",
-            "version": "1.3.6.0",
+            "version": "1.3.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thampe/inky.git",
-                "reference": "fb2554aee6fc7e1edc4e7678e2800f26ddf53a3c"
+                "reference": "257396bb8ea45d970ee352333f4a8716e953d13c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thampe/inky/zipball/fb2554aee6fc7e1edc4e7678e2800f26ddf53a3c",
-                "reference": "fb2554aee6fc7e1edc4e7678e2800f26ddf53a3c",
+                "url": "https://api.github.com/repos/thampe/inky/zipball/257396bb8ea45d970ee352333f4a8716e953d13c",
+                "reference": "257396bb8ea45d970ee352333f4a8716e953d13c",
                 "shasum": ""
             },
             "require": {
-                "paquettg/php-html-parser": "^1.6",
+                "paquettg/php-html-parser": "^1.7",
                 "php": ">=5.4.0"
             },
             "require-dev": {
@@ -1891,7 +1891,7 @@
                 }
             ],
             "description": "PHP Implementation of ZURB's Foundation for Email parser (Inky)",
-            "time": "2016-08-14 13:12:04"
+            "time": "2016-08-30 20:22:09"
         },
         {
             "name": "hampe/zurb-ink-bundle",
@@ -3701,56 +3701,17 @@
             "time": "2015-11-07 08:07:40"
         },
         {
-            "name": "snilius/twig-sort-by-field",
-            "version": "v0.1.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/victorhaggqvist/Twig-sort-by-field.git",
-                "reference": "6d02c6d49f93d78526e24ecf8999d322f291aa44"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/victorhaggqvist/Twig-sort-by-field/zipball/6d02c6d49f93d78526e24ecf8999d322f291aa44",
-                "reference": "6d02c6d49f93d78526e24ecf8999d322f291aa44",
-                "shasum": ""
-            },
-            "require-dev": {
-                "doctrine/collections": "^1.3",
-                "php": ">=5.5.9",
-                "phpunit/phpunit": "~4.5",
-                "twig/extensions": "~1.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Snilius\\Twig\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Victor Häggqvist",
-                    "email": "victor@snilius.com"
-                }
-            ],
-            "description": "A Twig Extension filter to sort an array of entries (objects or arrays) by the specified field",
-            "time": "2016-01-27 00:29:51"
-        },
-        {
             "name": "sonata-project/admin-bundle",
-            "version": "3.4.0",
+            "version": "3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "72d2b3f2af05df81f091cd40b295449ce6c5ce07"
+                "reference": "59e17c9d277b16c467549f86e67d0c50b3452383"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/72d2b3f2af05df81f091cd40b295449ce6c5ce07",
-                "reference": "72d2b3f2af05df81f091cd40b295449ce6c5ce07",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/59e17c9d277b16c467549f86e67d0c50b3452383",
+                "reference": "59e17c9d277b16c467549f86e67d0c50b3452383",
                 "shasum": ""
             },
             "require": {
@@ -3758,8 +3719,8 @@
                 "doctrine/inflector": "^1.0",
                 "knplabs/knp-menu-bundle": "^2.1.1",
                 "php": "^5.3 || ^7.0",
-                "sonata-project/block-bundle": "^3.0",
-                "sonata-project/core-bundle": "^3.0",
+                "sonata-project/block-bundle": "^3.1.1",
+                "sonata-project/core-bundle": "^3.1",
                 "sonata-project/exporter": "^1.0",
                 "symfony/class-loader": "^2.3 || ^3.0",
                 "symfony/config": "^2.3.9 || ^3.0",
@@ -3806,7 +3767,10 @@
             "autoload": {
                 "psr-4": {
                     "Sonata\\AdminBundle\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3831,7 +3795,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2016-07-05 09:21:49"
+            "time": "2016-08-29 08:29:59"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -3970,26 +3934,27 @@
         },
         {
             "name": "sonata-project/core-bundle",
-            "version": "3.0.3",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataCoreBundle.git",
-                "reference": "3f13220be081c05e61aa97c12d3407c9fb47f1f7"
+                "reference": "d0519eb15529a1cbef326e8eea9982b59ad162d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/3f13220be081c05e61aa97c12d3407c9fb47f1f7",
-                "reference": "3f13220be081c05e61aa97c12d3407c9fb47f1f7",
+                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/d0519eb15529a1cbef326e8eea9982b59ad162d7",
+                "reference": "d0519eb15529a1cbef326e8eea9982b59ad162d7",
                 "shasum": ""
             },
             "require": {
                 "cocur/slugify": "^1.4 || ^2.0",
                 "php": "^5.3 || ^7.0",
                 "symfony/config": "^2.3 || ^3.0",
-                "symfony/form": "^2.3 || ^3.0",
+                "symfony/form": "^2.3.5 || ^3.0",
                 "symfony/http-foundation": "^2.3 || ^3.0",
                 "symfony/property-access": "^2.3 || ^3.0",
                 "symfony/translation": "^2.3 || ^3.0",
+                "symfony/twig-bridge": "^2.3.5 || ^3.0",
                 "symfony/validator": "^2.3 || ^3.0",
                 "twig/twig": "^1.23"
             },
@@ -4016,7 +3981,10 @@
             "autoload": {
                 "psr-4": {
                     "Sonata\\CoreBundle\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -4037,7 +4005,7 @@
             "keywords": [
                 "sonata"
             ],
-            "time": "2016-06-17 12:05:02"
+            "time": "2016-08-30 14:59:31"
         },
         {
             "name": "sonata-project/datagrid-bundle",

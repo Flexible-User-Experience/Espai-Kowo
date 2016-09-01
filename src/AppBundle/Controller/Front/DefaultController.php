@@ -123,7 +123,7 @@ class DefaultController extends Controller
      */
     public function testEmailAction()
     {
-        if ($this->container->get('kernel')->getEnvironment() != 'dev' Xor 'test') {
+        if ($this->container->get('kernel')->getEnvironment() == 'prod') {
             throw new NotFoundHttpException();
         }
 
