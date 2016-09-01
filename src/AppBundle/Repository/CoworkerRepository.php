@@ -27,7 +27,7 @@ class CoworkerRepository extends EntityRepository
             ->createQueryBuilder('c')
             ->where('c.enabled = :enabled')
             ->setParameter('enabled', true)
-            ->orderBy('c.position');
+            ->orderBy('c.position', $order);
 
         if (!is_null($limit)) {
             $query->setMaxResults($limit);
