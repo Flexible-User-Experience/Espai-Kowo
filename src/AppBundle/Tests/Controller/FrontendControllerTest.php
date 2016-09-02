@@ -37,6 +37,7 @@ class FrontendControllerTest extends AbstractBaseTest
         return array(
             array('/'),
             array('/blog'),
+            array('/blog/2008/04/25/my-title'),
             array('/coworkers'),
             array('/coworker/anton-serra'),
             array('/contacte'),
@@ -44,6 +45,7 @@ class FrontendControllerTest extends AbstractBaseTest
             array('/credits'),
             array('/test-email'),
             array('/activitats'),
+            array('/activitat/cata-de-vins'),
             array('/sitemap/sitemap.default.xml'),
         );
     }
