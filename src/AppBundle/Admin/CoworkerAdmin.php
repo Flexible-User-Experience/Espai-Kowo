@@ -91,13 +91,6 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
-                'position',
-                null,
-                array(
-                    'label' => 'backend.admin.coworker.position',
-                )
-            )
-            ->add(
                 'enabled',
                 'checkbox',
                 array(
