@@ -34,7 +34,7 @@
                                             <th class="small-3 large-6 first columns white-color vertical-padding">
                                                 <img src="{{ absolute_url(asset('bundles/app/img/logo-espai-kowo.png') | imagine_filter('60x60')) }}">
                                             </th>
-                                            <th class="small-9 large-6 last columns white-color vertical-padding">
+                                            <th class="small-3 large-6 last columns white-color vertical-padding">
                                                 <h2 class="text-right">Espai Kowo</h2>
                                                 {% block subject %}{% endblock %}
                                             </th>
@@ -54,9 +54,12 @@
                                                     (Tarragona)
                                                 </p>
                                             </th>
-                                            <th class="small-3 large-6 last columns text-right vertical-padding">
-                                                <a href="https://www.facebook.com/espaikowo/">facebook</a><br>
+                                            <th class="small-3 large-6 middle columns text-center vertical-padding">
+                                                <a href="https://www.facebook.com/espaikowo/"><img src="{{ absolute_url(asset('bundles/app/img/facebook.png')) | imagine_filter('30x30') }}"></a><br>
                                                 <a href="https://twitter.com/espaikowo">twitter</a>
+                                            </th>
+                                            <th class="small-3 large-6 last columns text-right vertical-padding">
+                                                <img src="{{ absolute_url(asset('bundles/app/img/copyright.png')) | imagine_filter('30x30') }}"> {{ "now" | date("Y") }}
                                             </th>
                                             <th class="expander"></th>
                                         </tr>
