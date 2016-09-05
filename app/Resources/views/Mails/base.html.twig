@@ -21,7 +21,7 @@
     {% inky %}
     <body>
     {% block body %}
-        <table class="body">
+        <table class="body green-background">
             <tr>
                 <td class="center" align="center" valign="top">
                     <center>
@@ -55,11 +55,13 @@
                                                 </p>
                                             </th>
                                             <th class="small-3 large-6 middle columns text-center vertical-padding">
-                                                <a href="https://www.facebook.com/espaikowo/"><img src="{{ absolute_url(asset('bundles/app/img/facebook.png')) | imagine_filter('30x30') }}"></a><br>
+                                                <a href="https://www.facebook.com/espaikowo/">Like us on Facebook</a><br>
                                                 <a href="https://twitter.com/espaikowo">twitter</a>
                                             </th>
-                                            <th class="small-3 large-6 last columns text-right vertical-padding">
-                                                <img src="{{ absolute_url(asset('bundles/app/img/copyright.png')) | imagine_filter('30x30') }}"> {{ "now" | date("Y") }}
+                                            <th class="small-3 large-6 last columns vertical-padding">
+                                                <p class="white-color text-right">
+                                                    &copy; {{ "now" | date("Y") }}
+                                                </p>
                                             </th>
                                             <th class="expander"></th>
                                         </tr>
