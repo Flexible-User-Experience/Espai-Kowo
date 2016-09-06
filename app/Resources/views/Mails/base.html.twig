@@ -21,20 +21,20 @@
     {% inky %}
     <body>
     {% block body %}
-        <table class="body green-background">
-            <tr>
+        <table class="body">
+            <tr class="green-background">
                 <td class="center" align="center" valign="top">
                     <center>
                         <table class="container">
-                            <tr>
+                            <tr class="white-color">
                                 <td>
                                     {# header #}
                                     <table class="row black-background">
                                         <tr>
-                                            <th class="small-3 large-6 first columns white-color vertical-padding">
+                                            <th class="small-12 large-6 first columns white-color vertical-padding">
                                                 <img src="{{ absolute_url(asset('bundles/app/img/logo-espai-kowo.png') | imagine_filter('60x60')) }}">
                                             </th>
-                                            <th class="small-3 large-6 last columns white-color vertical-padding">
+                                            <th class="small-12 large-6 last columns white-color vertical-padding">
                                                 <h2 class="text-right">Espai Kowo</h2>
                                                 {% block subject %}{% endblock %}
                                             </th>
