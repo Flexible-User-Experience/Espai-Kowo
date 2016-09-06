@@ -80,7 +80,7 @@ class SitemapListener implements SitemapListenerInterface
                 );
                 $event
                     ->getUrlContainer()
-                    ->addUrl($this->makeUrlConcrete($url), 'default');
+                    ->addUrl($this->makeUrlConcrete($url, 0.8, $coworker->getUpdatedAt()), 'default');
             }
             // Blog main view
             $url = $this->makeUrl('front_blog');
@@ -102,7 +102,7 @@ class SitemapListener implements SitemapListenerInterface
                 );
                 $event
                     ->getUrlContainer()
-                    ->addUrl($this->makeUrlConcrete($url), 'default');
+                    ->addUrl($this->makeUrlConcrete($url, 0.8, $post->getUpdatedAt()), 'default');
             }
             // Events view
             $url = $this->makeUrl('front_events_list');
@@ -120,23 +120,23 @@ class SitemapListener implements SitemapListenerInterface
                 );
                 $event
                     ->getUrlContainer()
-                    ->addUrl($this->makeUrlConcrete($url), 'default');
+                    ->addUrl($this->makeUrlConcrete($url, 0.8, $activity->getUpdatedAt()), 'default');
             }
             // Contact view
             $url = $this->makeUrl('front_contact');
             $event
                 ->getUrlContainer()
-                ->addUrl($this->makeUrlConcrete($url), 'default');
+                ->addUrl($this->makeUrlConcrete($url, 0.5), 'default');
             // Privacy Policy view
             $url = $this->makeUrl('front_privacy_policy');
             $event
                 ->getUrlContainer()
-                ->addUrl($this->makeUrlConcrete($url), 'default');
+                ->addUrl($this->makeUrlConcrete($url, 0.1), 'default');
             // Credits view
             $url = $this->makeUrl('front_credits');
             $event
                 ->getUrlContainer()
-                ->addUrl($this->makeUrlConcrete($url), 'default');
+                ->addUrl($this->makeUrlConcrete($url, 0.1), 'default');
         }
     }
 
@@ -153,17 +153,19 @@ class SitemapListener implements SitemapListenerInterface
     }
 
     /**
-     * @param string $url
+     * @param string         $url
+     * @param int            $priority
+     * @param \DateTime|null $date
      *
      * @return UrlConcrete
      */
-    private function makeUrlConcrete($url)
+    private function makeUrlConcrete($url, $priority = 1, $date = null)
     {
         return new UrlConcrete(
             $url,
-            new \DateTime(),
-            UrlConcrete::CHANGEFREQ_HOURLY,
-            1
+            $date == null ? new \DateTime() : $date,
+            UrlConcrete::CHANGEFREQ_WEEKLY,
+            $priority
         );
     }
 }
