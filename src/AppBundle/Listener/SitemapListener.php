@@ -64,12 +64,8 @@ class SitemapListener implements SitemapListenerInterface
             $event
                 ->getUrlContainer()
                 ->addUrl($this->makeUrlConcrete($url), 'default');
-            // Coworker main view
-            $url = $this->makeUrl('front_coworkers_list');
-            $event
-                ->getUrlContainer()
-                ->addUrl($this->makeUrlConcrete($url), 'default');
             // Coworkers detail view list
+            $lastUpdatedAtDate = \DateTime::createFromFormat('d-m-Y', '01-01-2000');
             /** @var Coworker $coworker */
             foreach ($this->coworkers as $coworker) {
                 $url = $this->router->generate(
@@ -81,13 +77,17 @@ class SitemapListener implements SitemapListenerInterface
                 $event
                     ->getUrlContainer()
                     ->addUrl($this->makeUrlConcrete($url, 0.8, $coworker->getUpdatedAt()), 'default');
+                if ($coworker->getUpdatedAt() > $lastUpdatedAtDate) {
+                    $lastUpdatedAtDate = $coworker->getUpdatedAt();
+                }
             }
-            // Blog main view
-            $url = $this->makeUrl('front_blog');
+            // Coworker main view
+            $url = $this->makeUrl('front_coworkers_list');
             $event
                 ->getUrlContainer()
-                ->addUrl($this->makeUrlConcrete($url), 'default');
+                ->addUrl($this->makeUrlConcrete($url, 1, $lastUpdatedAtDate), 'default');
             // Posts detail view list
+            $lastUpdatedAtDate = \DateTime::createFromFormat('d-m-Y', '01-01-2000');
             /** @var Post $post */
             foreach ($this->posts as $post) {
                 $url = $this->router->generate(
@@ -103,12 +103,17 @@ class SitemapListener implements SitemapListenerInterface
                 $event
                     ->getUrlContainer()
                     ->addUrl($this->makeUrlConcrete($url, 0.8, $post->getUpdatedAt()), 'default');
+                if ($post->getUpdatedAt() > $lastUpdatedAtDate) {
+                    $lastUpdatedAtDate = $post->getUpdatedAt();
+                }
             }
-            // Events view
-            $url = $this->makeUrl('front_events_list');
+            // Blog main view
+            $url = $this->makeUrl('front_blog');
             $event
                 ->getUrlContainer()
-                ->addUrl($this->makeUrlConcrete($url), 'default');
+                ->addUrl($this->makeUrlConcrete($url, 1, $lastUpdatedAtDate), 'default');
+            // Events detail view list
+            $lastUpdatedAtDate = \DateTime::createFromFormat('d-m-Y', '01-01-2000');
             /** @var Event $activity */
             foreach ($this->events as $activity) {
                 $url = $this->router->generate(
@@ -121,7 +126,15 @@ class SitemapListener implements SitemapListenerInterface
                 $event
                     ->getUrlContainer()
                     ->addUrl($this->makeUrlConcrete($url, 0.8, $activity->getUpdatedAt()), 'default');
+                if ($activity->getUpdatedAt() > $lastUpdatedAtDate) {
+                    $lastUpdatedAtDate = $activity->getUpdatedAt();
+                }
             }
+            // Events main view
+            $url = $this->makeUrl('front_events_list');
+            $event
+                ->getUrlContainer()
+                ->addUrl($this->makeUrlConcrete($url, 1, $lastUpdatedAtDate), 'default');
             // Contact view
             $url = $this->makeUrl('front_contact');
             $event
