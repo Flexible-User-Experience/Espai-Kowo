@@ -47,7 +47,7 @@ class SitemapListener implements SitemapListenerInterface
     {
         $this->router = $router;
         $this->em = $em;
-        $this->coworkers = $this->em->getRepository('AppBundle:Coworker')->findAllEnabledSortedByPosition();
+        $this->coworkers = $this->em->getRepository('AppBundle:Coworker')->findAllEnabledSortedBySurname();
         $this->posts = $this->em->getRepository('AppBundle:Post')->getAllEnabledSortedByPublishedDateWithJoin();
         $this->events = $this->em->getRepository('AppBundle:Event')->findAllEnabledSortedByDate();
     }
