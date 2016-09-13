@@ -195,3 +195,9 @@ ivory_ck_editor:
     configs:
         my_config:
             toolbar: standard
+# reCaptcha
+ewz_recaptcha:
+    public_key:  "%here_is_your_public_key%"
+    private_key: "%here_is_your_private_key%"
+    # Not needed as "%kernel.default_locale%" is the default value for the locale key
+    locale_key:  %kernel.default_locale%
