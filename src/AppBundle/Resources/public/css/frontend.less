@@ -25,10 +25,13 @@
 // Custom Navbar
 @navbar-height: 110px;
 @navbar-border-radius: 0;
-@navbar-inverse-link-active-color: @ek-c-green;
+@navbar-inverse-link-active-color: @ek-c-black;
 @navbar-inverse-link-color: @ek-c-white;
 .navbar {
   margin-bottom: 0;
+  .navbar li a:hover{
+    background-color: @ek-c-black;
+  }
 }
 .navbar-kowo{
   background-color: @ek-c-green;
@@ -176,7 +179,9 @@ fieldset[disabled] .btn-kowo.active {
 
 // Custom homepage
 .jumbotron {
-  text-align: right;
+  h1{
+    text-align: left;
+  }
   button {
     color: @ek-c-white;
   }
