@@ -41,5 +41,5 @@ parameters:
 
     project_web_title: "Espai Kowo"
 
-    here_is_your_public_key: 123456
-    here_is_your_private_key: 654321
+    recaptcha_public_key: 11AAbb22CCdd
+    recaptcha_private_key: 11AAbb22CCff
