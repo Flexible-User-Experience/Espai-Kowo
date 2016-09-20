@@ -176,7 +176,7 @@ class SitemapListener implements SitemapListenerInterface
     {
         return new UrlConcrete(
             $url,
-            $date == null ? new \DateTime() : $date,
+            $date === null ? new \DateTime() : $date,
             UrlConcrete::CHANGEFREQ_WEEKLY,
             $priority
         );
