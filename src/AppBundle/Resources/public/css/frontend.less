@@ -25,6 +25,8 @@
 // Custom Navbar
 @navbar-inverse-bg: @ek-c-green;
 @navbar-inverse-link-active-bg: @ek-c-black;
+@navbar-inverse-link-hover-bg: darken(@ek-c-green, 10%);
+@navbar-inverse-border: none;
 @navbar-height: 110px;
 @navbar-border-radius: 0;
 @navbar-inverse-link-active-color: @ek-c-white;
@@ -179,10 +181,12 @@ fieldset[disabled] .btn-kowo.active {
 .jumbotron {
   h1{
     text-align: left;
-  }
-  button {
     color: @ek-c-white;
   }
+  p{
+    text-align: right;
+  }
+
   padding-top: 660px;
   padding-bottom: 0;
   margin-bottom: 0;
