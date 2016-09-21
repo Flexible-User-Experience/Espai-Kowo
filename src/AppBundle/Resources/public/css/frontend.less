@@ -23,9 +23,13 @@
 @ek-font-size-small: ceil((@font-size-base * 0.95));
 
 // Custom Navbar
+@navbar-inverse-bg: @ek-c-green;
+@navbar-inverse-link-active-bg: @ek-c-black;
+@navbar-inverse-link-hover-bg: darken(@ek-c-green, 10%);
+@navbar-inverse-border: none;
 @navbar-height: 110px;
 @navbar-border-radius: 0;
-@navbar-inverse-link-active-color: @ek-c-black;
+@navbar-inverse-link-active-color: @ek-c-white;
 @navbar-inverse-link-color: @ek-c-white;
 .navbar {
   margin-bottom: 0;
@@ -33,13 +37,9 @@
     background-color: @ek-c-black;
   }
 }
-.navbar-kowo{
-  background-color: @ek-c-green;
-  color: @ek-c-white;
-}
 
 .navbar-logo {
-  margin-top: -20px;
+  margin-top: -25px;
 }
 
 //Custom buttons
@@ -157,7 +157,7 @@ fieldset[disabled] .btn-kowo.active {
   overflow: hidden;
   text-align: center;
   z-index: 2000;
-  background-color: @ek-c-orange;
+  background-color: @ek-c-green;
   color: @ek-c-white;
   width: 50px;
   height: 48px;
@@ -179,16 +179,18 @@ fieldset[disabled] .btn-kowo.active {
 
 // Custom homepage
 .jumbotron {
-  h1{
-    text-align: left;
-  }
-  button {
+  h2{
+    text-align: right;
     color: @ek-c-white;
   }
+  p{
+    text-align: right;
+  }
+
   padding-top: 660px;
   padding-bottom: 0;
   margin-bottom: 0;
-  background: @ek-c-white url("/bundles/app/img/fotoinici.jpg") no-repeat center center;
+  background: @ek-c-white url("/bundles/app/img/photo-home.jpg") no-repeat center center;
   min-height: 800px;
   background-size: cover;
   -moz-background-size: cover;
@@ -255,7 +257,7 @@ fieldset[disabled] .btn-kowo.active {
 /* pricing color */
 .p-yel big,
 .p-yel h3 {
-  color: @ek-c-orange;
+  color: @ek-c-green;
 }
 .p-yel button {
   background: @ek-c-orange;
