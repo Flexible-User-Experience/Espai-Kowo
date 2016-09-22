@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6a7cc2ad732e30e6994f288ccfa0c85c",
-    "content-hash": "dff966659b255bb8e7c955973583c3ae",
+    "hash": "42395f220866feeeb8377a7a7369d5d6",
+    "content-hash": "a0be5d76938561b06492bdf356a3d251",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -1578,21 +1578,21 @@
         },
         {
             "name": "excelwebzone/recaptcha-bundle",
-            "version": "v1.4.1",
+            "version": "2.6.x-dev",
             "target-dir": "EWZ/Bundle/RecaptchaBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/excelwebzone/EWZRecaptchaBundle.git",
-                "reference": "3ebd8fec320c5346814601086894f79c141dd077"
+                "reference": "da2138e23d0338a4679deac96a59d970896c4bda"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/excelwebzone/EWZRecaptchaBundle/zipball/3ebd8fec320c5346814601086894f79c141dd077",
-                "reference": "3ebd8fec320c5346814601086894f79c141dd077",
+                "url": "https://api.github.com/repos/excelwebzone/EWZRecaptchaBundle/zipball/da2138e23d0338a4679deac96a59d970896c4bda",
+                "reference": "da2138e23d0338a4679deac96a59d970896c4bda",
                 "shasum": ""
             },
             "require": {
-                "symfony/framework-bundle": "~2.4"
+                "symfony/framework-bundle": "~2.6"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -1616,7 +1616,7 @@
             "keywords": [
                 "recaptcha"
             ],
-            "time": "2015-07-31 23:57:07"
+            "time": "2016-04-28 18:13:58"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -5996,7 +5996,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "excelwebzone/recaptcha-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
