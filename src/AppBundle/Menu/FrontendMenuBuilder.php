@@ -58,7 +58,7 @@ class FrontendMenuBuilder
             $menu->addChild(
                 'admin',
                 array(
-                    'label' => '[CMS]',
+                    'label' => '[ CMS ]',
                     'route' => 'sonata_admin_dashboard',
                 )
             );

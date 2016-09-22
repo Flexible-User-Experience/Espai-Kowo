@@ -74,11 +74,20 @@ class ContactHomepageType extends AbstractType
                 'recaptcha',
                 RecaptchaType::class,
                 array(
-                    'label' => false,
+                    'label'       => false,
                     'mapped'      => false,
                     'constraints' => array(
-                        new RecaptchaTrue()
-                    )
+                        new RecaptchaTrue(),
+                    ),
+                    'attr' => array(
+                        'options' => array(
+                            'theme' => 'light',
+                            'type'  => 'image',
+                            'size'  => 'normal',
+                            'defer' => true,
+                            'async' => false,
+                        ),
+                    ),
                 )
             )
             ->add(

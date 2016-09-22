@@ -35,7 +35,7 @@ twig:
         google_analytics_enabled: "%google_analytics_enabled%"
         google_analytics_account: "%google_analytics_account%"
         main_brand_title:         "%project_web_title%"
-        admin_tag_version:        "v1.0.09"
+        admin_tag_version:        "v1.0.10"
 
 # Assetic
 assetic:
@@ -195,9 +195,9 @@ ivory_ck_editor:
     configs:
         my_config:
             toolbar: standard
-# reCaptcha
+
+# EWZ Google Recaptcha
 ewz_recaptcha:
     public_key:  "%recaptcha_public_key%"
     private_key: "%recaptcha_private_key%"
-    # Not needed as "%kernel.default_locale%" is the default value for the locale key
-    locale_key:  %kernel.default_locale%
+    locale_key:  "%locale%"
