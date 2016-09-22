@@ -39,7 +39,7 @@ class PostAdminController extends Controller
         if (!$object) {
             throw $this->createNotFoundException(sprintf('unable to find the object with id : %s', $id));
         }
-//            TODO change redirect route
+
         return $this->redirectToRoute(
             'sonata_admin_dashboard',
             array(

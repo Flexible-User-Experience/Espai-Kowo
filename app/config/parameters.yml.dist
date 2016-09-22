@@ -40,3 +40,6 @@ parameters:
     private_admin_prod_lastname: lastname
 
     project_web_title: "Espai Kowo"
+
+    recaptcha_public_key: 11AAbb22CCdd
+    recaptcha_private_key: 11AAbb22CCff

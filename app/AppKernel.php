@@ -34,6 +34,7 @@ class AppKernel extends Kernel
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Apoutchika\LoremIpsumBundle\ApoutchikaLoremIpsumBundle(),
             new Hampe\Bundle\ZurbInkBundle\HampeZurbInkBundle(),
+            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
             // App
             new AppBundle\AppBundle(),
         );
