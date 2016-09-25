@@ -23,6 +23,7 @@ class Tag extends AbstractBase
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Post", mappedBy="tags")
      */
     private $posts;
@@ -53,11 +54,13 @@ class Tag extends AbstractBase
 
     /**
      * @param ArrayCollection $posts
-     * @return Tag
+     *
+     * @return $this
      */
-    public function setPosts(ArrayCollection $posts)
+    public function setPosts($posts)
     {
         $this->posts = $posts;
+
         return $this;
     }
 

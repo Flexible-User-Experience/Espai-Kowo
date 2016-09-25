@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\DateTrait;
@@ -73,6 +74,16 @@ class Event extends AbstractBase
      */
 
     /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * @return string
      */
     public function getType()
@@ -82,11 +93,13 @@ class Event extends AbstractBase
 
     /**
      * @param string $type
+     *
      * @return Event
      */
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -124,7 +137,7 @@ class Event extends AbstractBase
      *
      * @param string $imageName
      *
-     * @return Post
+     * @return $this
      */
     public function setImageName($imageName)
     {

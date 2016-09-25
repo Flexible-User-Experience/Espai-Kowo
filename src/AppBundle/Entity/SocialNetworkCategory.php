@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\TitleTrait;
@@ -54,6 +55,7 @@ class SocialNetworkCategory extends AbstractBase
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="SocialNetwork", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $socialNetworks;
@@ -111,11 +113,13 @@ class SocialNetworkCategory extends AbstractBase
 
     /**
      * @param string $imageName
-     * @return SocialNetworkCategory
+     *
+     * @return $this
      */
     public function setImageName($imageName)
     {
         $this->imageName = $imageName;
+
         return $this;
     }
 
@@ -129,16 +133,19 @@ class SocialNetworkCategory extends AbstractBase
 
     /**
      * @param ArrayCollection $socialNetworks
-     * @return SocialNetworkCategory
+     *
+     * @return $this
      */
     public function setSocialNetworks($socialNetworks)
     {
         $this->socialNetworks = $socialNetworks;
+
         return $this;
     }
 
     /**
      * @param SocialNetwork $socialNetwork
+     *
      * @return $this
      */
     public function addSocialNetwork(SocialNetwork $socialNetwork)
@@ -151,6 +158,7 @@ class SocialNetworkCategory extends AbstractBase
 
     /**
      * @param SocialNetwork $socialNetwork
+     *
      * @return $this
      */
     public function removeSocialNetwork(SocialNetwork $socialNetwork)
@@ -180,6 +188,9 @@ class SocialNetworkCategory extends AbstractBase
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString() {
 
         return $this->getTitle() ? $this->getTitle() : '---';

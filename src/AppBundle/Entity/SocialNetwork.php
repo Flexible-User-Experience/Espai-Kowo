@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -53,11 +54,13 @@ class SocialNetwork extends AbstractBase
 
     /**
      * @param string $url
-     * @return SocialNetwork
+     *
+     * @return $this
      */
     public function setUrl($url)
     {
         $this->url = $url;
+
         return $this;
     }
 
@@ -71,11 +74,13 @@ class SocialNetwork extends AbstractBase
 
     /**
      * @param SocialNetworkCategory $category
-     * @return SocialNetwork
+     *
+     * @return $this
      */
     public function setCategory($category)
     {
         $this->category = $category;
+
         return $this;
     }
 
@@ -89,11 +94,13 @@ class SocialNetwork extends AbstractBase
 
     /**
      * @param Coworker $coworker
-     * @return SocialNetwork
+     *
+     * @return $this
      */
     public function setCoworker($coworker)
     {
         $this->coworker = $coworker;
+
         return $this;
     }
 
