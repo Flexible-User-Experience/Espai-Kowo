@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints as Assert;
+use EWZ\Bundle\RecaptchaBundle\Form\Type\RecaptchaType;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
 
 /**
  * Class ContactHomepageType
@@ -65,6 +67,26 @@ class ContactHomepageType extends AbstractType
                     'required' => false,
                     'attr'     => array(
                         'placeholder' => 'Telèfon',
+                    ),
+                )
+            )
+            ->add(
+                'recaptcha',
+                RecaptchaType::class,
+                array(
+                    'label'       => false,
+                    'mapped'      => false,
+                    'constraints' => array(
+                        new RecaptchaTrue(),
+                    ),
+                    'attr' => array(
+                        'options' => array(
+                            'theme' => 'light',
+                            'type'  => 'image',
+                            'size'  => 'normal',
+                            'defer' => true,
+                            'async' => false,
+                        ),
                     ),
                 )
             )

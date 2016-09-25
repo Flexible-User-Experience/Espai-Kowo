@@ -38,7 +38,7 @@ class ContactMessage extends AbstractBase
      * @var string
      *
      * @ORM\Column(type="string", length=255)
-     * @Assert\Email(strict = true, checkMX = true, checkHost = true)
+     * @Assert\Email(strict=true, checkMX=true, checkHost=true)
      */
     private $email;
 
@@ -83,7 +83,7 @@ class ContactMessage extends AbstractBase
      *
      * @param string $email
      *
-     * @return ContactMessage
+     * @return $this
      */
     public function setEmail($email)
     {
@@ -155,7 +155,7 @@ class ContactMessage extends AbstractBase
      *
      * @param string $message
      *
-     * @return ContactMessage
+     * @return $this
      */
     public function setMessage($message)
     {
@@ -179,7 +179,7 @@ class ContactMessage extends AbstractBase
      *
      * @param boolean $checked
      *
-     * @return ContactMessage
+     * @return $this
      */
     public function setChecked($checked)
     {
@@ -203,7 +203,7 @@ class ContactMessage extends AbstractBase
      *
      * @param boolean $answered
      *
-     * @return ContactMessage
+     * @return $this
      */
     public function setAnswered($answered)
     {
@@ -232,11 +232,13 @@ class ContactMessage extends AbstractBase
 
     /**
      * @param string $phone
-     * @return ContactMessage
+     *
+     * @return $this
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
+
         return $this;
     }
 

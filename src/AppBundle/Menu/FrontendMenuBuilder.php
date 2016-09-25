@@ -6,7 +6,6 @@ use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
-use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Class FrontendMenuBuilder
@@ -28,20 +27,13 @@ class FrontendMenuBuilder
     private $ac;
 
     /**
-     * @var TranslatorInterface
-     */
-    private $ts;
-
-    /**
      * @param FactoryInterface     $factory
      * @param AuthorizationChecker $ac
-     * @param TranslatorInterface  $ts
      */
-    public function __construct(FactoryInterface $factory, AuthorizationChecker $ac, TranslatorInterface $ts)
+    public function __construct(FactoryInterface $factory, AuthorizationChecker $ac)
     {
         $this->factory = $factory;
         $this->ac = $ac;
-        $this->ts = $ts;
     }
 
     /**
@@ -58,7 +50,7 @@ class FrontendMenuBuilder
             $menu->addChild(
                 'admin',
                 array(
-                    'label' => '[CMS]',
+                    'label' => '[ CMS ]',
                     'route' => 'sonata_admin_dashboard',
                 )
             );
