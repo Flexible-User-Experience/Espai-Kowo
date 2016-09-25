@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\DescriptionTrait;
@@ -110,6 +111,16 @@ class Coworker extends AbstractBase
     }
 
     /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * @return int
      */
     public function getPosition()
@@ -119,11 +130,13 @@ class Coworker extends AbstractBase
 
     /**
      * @param int $position
-     * @return Coworker
+     *
+     * @return $this
      */
     public function setPosition($position)
     {
         $this->position = $position;
+
         return $this;
     }
 
@@ -138,7 +151,7 @@ class Coworker extends AbstractBase
     /**
      * @param string $name
      *
-     * @return Coworker
+     * @return $this
      */
     public function setName($name)
     {
@@ -177,11 +190,13 @@ class Coworker extends AbstractBase
 
     /**
      * @param Category $category
-     * @return Coworker
+     *
+     * @return $this
      */
     public function setCategory(Category $category)
     {
         $this->category = $category;
+
         return $this;
     }
 
@@ -195,7 +210,8 @@ class Coworker extends AbstractBase
 
     /**
      * @param string $email
-     * @return Coworker
+     *
+     * @return $this
      */
     public function setEmail($email)
     {
@@ -238,7 +254,7 @@ class Coworker extends AbstractBase
      *
      * @param string $imageName
      *
-     * @return Post
+     * @return $this
      */
     public function setImageName($imageName)
     {
@@ -268,18 +284,20 @@ class Coworker extends AbstractBase
     /**
      * @param array $socialNetworks
      *
-     * @return Coworker
+     * @return $this
      */
     public function setSocialNetworks(array $socialNetworks)
     {
         $this->socialNetworks = $socialNetworks;
+
         return $this;
     }
 
-    /* @param SocialNetwork $socialNetwork
-    *
-    * @return $this
-    */
+    /**
+     * @param SocialNetwork $socialNetwork
+     *
+     * @return $this
+     */
     public function addSocialNetwork(SocialNetwork $socialNetwork)
     {
         $socialNetwork->setCoworker($this);
