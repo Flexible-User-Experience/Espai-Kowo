@@ -37,7 +37,7 @@ class Tag extends AbstractBase
      */
 
     /**
-     * Tag constructor.
+     * Tag constructor
      */
     public function __construct()
     {
@@ -69,7 +69,7 @@ class Tag extends AbstractBase
      *
      * @param Post $post
      *
-     * @return Tag
+     * @return $this
      */
     public function addPost(Post $post)
     {
@@ -83,7 +83,7 @@ class Tag extends AbstractBase
      *
      * @param Post $post
      *
-     * @return Tag
+     * @return $this
      */
     public function removePost(Post $post)
     {

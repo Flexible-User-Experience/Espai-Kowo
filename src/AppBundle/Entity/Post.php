@@ -52,10 +52,10 @@ class Post extends AbstractBase
      *
      * @Vich\UploadableField(mapping="post", fileNameProperty="imageName")
      * @Assert\File(
-     *     maxSize = "10M",
-     *     mimeTypes = {"image/jpg", "image/jpeg", "image/png", "image/gif"}
+     *     maxSize="10M",
+     *     mimeTypes={"image/jpg", "image/jpeg", "image/png", "image/gif"}
      * )
-     * @Assert\Image(minWidth = 1200)
+     * @Assert\Image(minWidth=1200)
      */
     private $imageFile;
 

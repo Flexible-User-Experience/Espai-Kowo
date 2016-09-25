@@ -44,12 +44,14 @@ class Coworker extends AbstractBase
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $surname;
@@ -65,7 +67,7 @@ class Coworker extends AbstractBase
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
-     * @Assert\Email(strict = true, checkMX = true, checkHost = true)
+     * @Assert\Email(strict=true, checkMX=true, checkHost=true)
      */
     private $email;
 
@@ -74,10 +76,10 @@ class Coworker extends AbstractBase
      *
      * @Vich\UploadableField(mapping="coworker", fileNameProperty="imageName")
      * @Assert\File(
-     *     maxSize = "10M",
-     *     mimeTypes = {"image/jpg", "image/jpeg", "image/png", "image/gif"}
+     *     maxSize="10M",
+     *     mimeTypes={"image/jpg", "image/jpeg", "image/png", "image/gif"}
      * )
-     * @Assert\Image(minWidth = 1200)
+     * @Assert\Image(minWidth=1200)
      */
     private $imageFile;
 
@@ -90,6 +92,7 @@ class Coworker extends AbstractBase
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="SocialNetwork", mappedBy="coworker", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $socialNetworks;
@@ -103,7 +106,7 @@ class Coworker extends AbstractBase
      */
 
     /**
-     * Coworker constructor.
+     * Coworker constructor
      */
     public function __construct()
     {
@@ -282,11 +285,11 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @param array $socialNetworks
+     * @param ArrayCollection|array $socialNetworks
      *
      * @return $this
      */
-    public function setSocialNetworks(array $socialNetworks)
+    public function setSocialNetworks($socialNetworks)
     {
         $this->socialNetworks = $socialNetworks;
 

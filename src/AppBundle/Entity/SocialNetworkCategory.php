@@ -31,10 +31,10 @@ class SocialNetworkCategory extends AbstractBase
      *
      * @Vich\UploadableField(mapping="social_network_category", fileNameProperty="imageName")
      * @Assert\File(
-     *     maxSize = "10M",
-     *     mimeTypes = {"image/jpg", "image/jpeg", "image/png", "image/gif"}
+     *     maxSize="10M",
+     *     mimeTypes={"image/jpg", "image/jpeg", "image/png", "image/gif"}
      * )
-     * @Assert\Image(minWidth = 120)
+     * @Assert\Image(minWidth=120)
      */
     private $imageFile;
 
@@ -52,7 +52,6 @@ class SocialNetworkCategory extends AbstractBase
      */
     private $fontAwesomeClass;
 
-
     /**
      * @var ArrayCollection
      *
@@ -69,7 +68,7 @@ class SocialNetworkCategory extends AbstractBase
      */
 
     /**
-     * SocialNetworkCategory constructor.
+     * SocialNetworkCategory constructor
      */
     public function __construct()
     {
@@ -179,7 +178,7 @@ class SocialNetworkCategory extends AbstractBase
     /**
      * @param string $fontAwesomeClass
      *
-     * @return SocialNetworkCategory
+     * @return $this
      */
     public function setFontAwesomeClass($fontAwesomeClass)
     {

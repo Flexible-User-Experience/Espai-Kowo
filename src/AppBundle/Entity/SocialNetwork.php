@@ -26,12 +26,14 @@ class SocialNetwork extends AbstractBase
 
     /**
      * @var SocialNetworkCategory
+     *
      * @ORM\ManyToOne(targetEntity="SocialNetworkCategory", inversedBy="socialNetworks")
      */
     private $category;
 
     /**
      * @var Coworker
+     *
      * @ORM\ManyToOne(targetEntity="Coworker", inversedBy="socialNetworks")
      */
     private $coworker;
@@ -104,6 +106,9 @@ class SocialNetwork extends AbstractBase
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString() {
 
         return $this->getUrl() ? $this->getUrl() : '---';
