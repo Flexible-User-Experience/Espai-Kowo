@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\DescriptionTrait;
@@ -43,12 +44,14 @@ class Coworker extends AbstractBase
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $surname;
@@ -64,7 +67,7 @@ class Coworker extends AbstractBase
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
-     * @Assert\Email(strict = true, checkMX = true, checkHost = true)
+     * @Assert\Email(strict=true, checkMX=true, checkHost=true)
      */
     private $email;
 
@@ -73,10 +76,10 @@ class Coworker extends AbstractBase
      *
      * @Vich\UploadableField(mapping="coworker", fileNameProperty="imageName")
      * @Assert\File(
-     *     maxSize = "10M",
-     *     mimeTypes = {"image/jpg", "image/jpeg", "image/png", "image/gif"}
+     *     maxSize="10M",
+     *     mimeTypes={"image/jpg", "image/jpeg", "image/png", "image/gif"}
      * )
-     * @Assert\Image(minWidth = 1200)
+     * @Assert\Image(minWidth=1200)
      */
     private $imageFile;
 
@@ -89,6 +92,7 @@ class Coworker extends AbstractBase
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="SocialNetwork", mappedBy="coworker", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $socialNetworks;
@@ -102,11 +106,21 @@ class Coworker extends AbstractBase
      */
 
     /**
-     * Coworker constructor.
+     * Coworker constructor
      */
     public function __construct()
     {
         $this->socialNetworks = new ArrayCollection();
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
@@ -119,11 +133,13 @@ class Coworker extends AbstractBase
 
     /**
      * @param int $position
-     * @return Coworker
+     *
+     * @return $this
      */
     public function setPosition($position)
     {
         $this->position = $position;
+
         return $this;
     }
 
@@ -138,7 +154,7 @@ class Coworker extends AbstractBase
     /**
      * @param string $name
      *
-     * @return Coworker
+     * @return $this
      */
     public function setName($name)
     {
@@ -177,11 +193,13 @@ class Coworker extends AbstractBase
 
     /**
      * @param Category $category
-     * @return Coworker
+     *
+     * @return $this
      */
     public function setCategory(Category $category)
     {
         $this->category = $category;
+
         return $this;
     }
 
@@ -195,7 +213,8 @@ class Coworker extends AbstractBase
 
     /**
      * @param string $email
-     * @return Coworker
+     *
+     * @return $this
      */
     public function setEmail($email)
     {
@@ -238,7 +257,7 @@ class Coworker extends AbstractBase
      *
      * @param string $imageName
      *
-     * @return Post
+     * @return $this
      */
     public function setImageName($imageName)
     {
@@ -266,20 +285,22 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @param array $socialNetworks
+     * @param ArrayCollection|array $socialNetworks
      *
-     * @return Coworker
+     * @return $this
      */
-    public function setSocialNetworks(array $socialNetworks)
+    public function setSocialNetworks($socialNetworks)
     {
         $this->socialNetworks = $socialNetworks;
+
         return $this;
     }
 
-    /* @param SocialNetwork $socialNetwork
-    *
-    * @return $this
-    */
+    /**
+     * @param SocialNetwork $socialNetwork
+     *
+     * @return $this
+     */
     public function addSocialNetwork(SocialNetwork $socialNetwork)
     {
         $socialNetwork->setCoworker($this);

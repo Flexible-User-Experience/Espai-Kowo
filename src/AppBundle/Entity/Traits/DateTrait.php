@@ -23,11 +23,11 @@ Trait DateTrait
     /**
      * Set Date
      *
-     * @param string $date
+     * @param \DateTime $date
      *
      * @return $this
      */
-    public function setDate($date)
+    public function setDate(\DateTime $date)
     {
         $this->date = $date;
 
