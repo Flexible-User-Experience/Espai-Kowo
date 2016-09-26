@@ -57,6 +57,11 @@ liip_imagine:
             quality: 80
             filters:
                 thumbnail: { size: [ 256, null ], mode: outbound }
+        256xYxBW:
+            quality: 80
+            filters:
+                thumbnail: { size: [ 256, null ], mode: outbound }
+                grayscale: ~
         128x128:
             quality: 85
             filters:
