@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\DateTrait;
@@ -41,6 +42,7 @@ class Event extends AbstractBase
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $type;
@@ -50,10 +52,10 @@ class Event extends AbstractBase
      *
      * @Vich\UploadableField(mapping="event", fileNameProperty="imageName")
      * @Assert\File(
-     *     maxSize = "10M",
-     *     mimeTypes = {"image/jpg", "image/jpeg", "image/png", "image/gif"}
+     *     maxSize="10M",
+     *     mimeTypes={"image/jpg", "image/jpeg", "image/png", "image/gif"}
      * )
-     * @Assert\Image(minWidth = 1200)
+     * @Assert\Image(minWidth=1200)
      */
     private $imageFile;
 
@@ -73,6 +75,16 @@ class Event extends AbstractBase
      */
 
     /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * @return string
      */
     public function getType()
@@ -82,11 +94,13 @@ class Event extends AbstractBase
 
     /**
      * @param string $type
-     * @return Event
+     *
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -124,7 +138,7 @@ class Event extends AbstractBase
      *
      * @param string $imageName
      *
-     * @return Post
+     * @return $this
      */
     public function setImageName($imageName)
     {

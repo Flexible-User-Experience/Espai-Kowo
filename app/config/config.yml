@@ -20,6 +20,7 @@ framework:
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
+        name:        EKSESSID
         handler_id:  ~
     fragments:       ~
     http_method_override: true
@@ -35,7 +36,7 @@ twig:
         google_analytics_enabled: "%google_analytics_enabled%"
         google_analytics_account: "%google_analytics_account%"
         main_brand_title:         "%project_web_title%"
-        admin_tag_version:        "v1.0.11"
+        admin_tag_version:        "v1.0.13"
 
 # Assetic
 assetic:
@@ -60,12 +61,13 @@ assetic:
 # Doctrine
 doctrine:
     dbal:
-        driver:   pdo_mysql
-        host:     "%database_host%"
-        port:     "%database_port%"
-        dbname:   "%database_name%"
-        user:     "%database_user%"
-        password: "%database_password%"
+        driver:         "pdo_mysql"
+        host:           "%database_host%"
+        port:           "%database_port%"
+        dbname:         "%database_name%"
+        user:           "%database_user%"
+        password:       "%database_password%"
+        server_version: "%database_server_version%"
         charset:  UTF8
         types:
             json: Sonata\Doctrine\Types\JsonType
