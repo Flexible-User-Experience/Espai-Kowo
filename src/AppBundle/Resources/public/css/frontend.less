@@ -82,7 +82,10 @@ fieldset[disabled] .btn-kowo.active {
 }
 
 // Custom margins
-.left-margin-negative { margin-left: -15px; }
+.left-margin-negative {
+  margin-left: -15px;
+  @media(max-width: @screen-sm-min) { margin-left: 0; }
+}
 .no-m { margin: 0; }
 .no-m-top { margin-top: 0; }
 .no-m-bottom { margin-bottom: 0; }
@@ -98,7 +101,8 @@ fieldset[disabled] .btn-kowo.active {
 
 // custom paddings
 .p-vertical {
-  padding: 40px 0;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 // Custom alters
