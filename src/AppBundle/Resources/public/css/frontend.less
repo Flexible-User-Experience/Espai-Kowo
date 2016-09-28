@@ -37,7 +37,9 @@
     background-color: @ek-c-black;
   }
 }
-
+.navbar-brand-logo{
+  padding: 20px 15px;
+}
 .navbar-logo {
   margin-top: -25px;
 }
@@ -80,12 +82,16 @@ fieldset[disabled] .btn-kowo.active {
 }
 
 // Custom margins
-.no-m { margin: 0}
-.no-m-top { margin-top: 0}
-.no-m-bottom { margin-bottom: 0}
-.extra-m-top    { margin-top: @ek-s-base-plus }
-.normal-m-top   { margin-top: @gap-normal }
-.extra-m-bottom { margin-bottom: @gap-big }
+.left-margin-negative {
+  margin-left: -15px;
+  @media(max-width: @screen-sm-min) { margin-left: 0; }
+}
+.no-m { margin: 0; }
+.no-m-top { margin-top: 0; }
+.no-m-bottom { margin-bottom: 0; }
+.extra-m-top    { margin-top: @ek-s-base-plus; }
+.normal-m-top   { margin-top: @gap-normal; }
+.extra-m-bottom { margin-bottom: @gap-big; }
 .small-m-top    { margin-top: @gap-small; }
 .small-m-bottom { margin-bottom: @gap-small; }
 .content {
@@ -95,7 +101,8 @@ fieldset[disabled] .btn-kowo.active {
 
 // custom paddings
 .p-vertical {
-  padding: 40px 0;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 // Custom alters
@@ -267,6 +274,10 @@ fieldset[disabled] .btn-kowo.active {
 }
 .p-yel button {
   background: @ek-c-orange;
+}
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  margin: auto;
 }
 
 // Footer
