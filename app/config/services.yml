@@ -2,7 +2,7 @@ services:
 # Sonata Admin
     admin.coworker:
         class: AppBundle\Admin\CoworkerAdmin
-        arguments: [ ~ , AppBundle\Entity\Coworker, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        arguments: [ ~ , AppBundle\Entity\Coworker, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager",  ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Coworker", group: "Coworkers" }
     admin.category:

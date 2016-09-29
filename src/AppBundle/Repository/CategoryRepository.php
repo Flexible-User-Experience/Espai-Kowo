@@ -13,5 +13,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoryRepository extends EntityRepository
 {
+    public function getAllEnabledCategorySortedByTitle()
+    {
+        $query = $this->createQueryBuilder('cat')
+            ->where('cat.enabled = :enabled')
+            ->setParameter('enabled', true)
+            ->orderBy('cat.title');
 
+        return $query->getQuery()->getResult();
+    }
 }
