@@ -1,5 +1,10 @@
 {% extends ':Frontend:base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('baguetteBox.min.css') }}">
+{% endblock %}
+
 {% block main %}
     {# Hero section #}
     <div class="jumbotron">
@@ -201,6 +206,7 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript" src="{{ asset('baguetteBox.min.js') }}"></script>
     {% if not formHomepage.vars.valid %}
         <script type="text/javascript">
             jQuery(document).ready(function() {
