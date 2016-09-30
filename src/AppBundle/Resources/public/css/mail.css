@@ -5,4 +5,5 @@
 .green-color      { color: #A1C548; }
 
 /*Margins*/
-.vertical-padding { padding: 40px 0; }
+.vertical-padding { padding: 20px 0; }
+.padding-bottom   { padding: 16px 0; }
