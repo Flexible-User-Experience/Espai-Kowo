@@ -57,4 +57,18 @@ class CoworkerRepository extends EntityRepository
     {
         return $this->findAllEnabledSortedBySurnameQ($limit, $order)->getResult();
     }
+
+//    /**
+//     * @return QueryBuilder
+//     */
+//    public function getAllEnabledCurrentBirthdayCoworkersQB()
+//    {
+//        $query = $this->createQueryBuilder('coworker')
+//            ->where('coworker.enabled = :enabled')
+//            ->setParameter('enabled', true)
+//            ->where('birthday = );
+//
+//        return $query;
+//    }
+
 }

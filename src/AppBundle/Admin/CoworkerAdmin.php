@@ -95,7 +95,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 'birthday',
                 'sonata_type_date_picker',
                 array(
-                    'label'    => 'Data inici',
+                    'label'    => 'Aniversari',
                     'format'   => 'd/M/y',
                     'required' => false,
                 )
