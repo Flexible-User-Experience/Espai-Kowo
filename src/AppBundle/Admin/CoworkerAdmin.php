@@ -92,6 +92,15 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'birthday',
+                'sonata_type_date_picker',
+                array(
+                    'label'    => 'Data inici',
+                    'format'   => 'd/M/y',
+                    'required' => false,
+                )
+            )
+            ->add(
                 'enabled',
                 'checkbox',
                 array(
