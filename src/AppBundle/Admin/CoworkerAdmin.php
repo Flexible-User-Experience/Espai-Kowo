@@ -88,7 +88,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.category.category',
-                    'query' => $this-> getAllEnabledCategorySortedByTitle(),
+                    'query_builder' => $this->rm->getCategoryRepository()->getAllEnabledCategorySortedByTitleQB(),
                 )
             )
             ->add(
