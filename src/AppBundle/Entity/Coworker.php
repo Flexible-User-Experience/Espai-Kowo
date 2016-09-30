@@ -6,6 +6,7 @@ use AppBundle\Entity\Traits\DescriptionTrait;
 use AppBundle\Entity\Traits\SlugTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -21,6 +22,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="name_unique", columns={"name", "surname"})})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CoworkerRepository")
  * @Vich\Uploadable
+ * @UniqueEntity({"name", "surname"})
  */
 class Coworker extends AbstractBase
 {
