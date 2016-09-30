@@ -34,7 +34,7 @@ liip_imagine:
             filters:
                 thumbnail: { size: [ 700, null ], mode: outbound }
         480xY:
-            quality: 80
+            quality: 100
             filters:
                 thumbnail: { size: [ 480, null ], mode: outbound }
         360x185:
@@ -45,6 +45,10 @@ liip_imagine:
             quality: 80
             filters:
                 thumbnail: { size: [ 350, 180 ], mode: outbound }
+        240x180:
+            quality: 80
+            filters:
+                thumbnail: { size: [ 240, 180 ], mode: outbound }
         Xx250:
             quality: 80
             filters:
@@ -57,10 +61,24 @@ liip_imagine:
             quality: 80
             filters:
                 thumbnail: { size: [ 256, null ], mode: outbound }
+        263xYxBW:
+            quality: 100
+            filters:
+                thumbnail: { size: [ 263, null ], mode: outbound }
+                grayscale: ~
+        256xYxBW:
+            quality: 80
+            filters:
+                thumbnail: { size: [ 256, null ], mode: outbound }
+                grayscale: ~
         128x128:
             quality: 85
             filters:
                 thumbnail: { size: [ 128, 128 ], mode: outbound }
+        70x70:
+            quality: 95
+            filters:
+                thumbnail: { size: [ 70, 70 ], mode: outbound }
         60x60:
             quality: 95
             filters:

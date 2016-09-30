@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Manager\RepositoriesManager;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
@@ -27,17 +28,24 @@ abstract class AbstractBaseAdmin extends AbstractAdmin
     private $lis;
 
     /**
-     * @param string         $code
-     * @param string         $class
-     * @param string         $baseControllerName
-     * @param UploaderHelper $vus
-     * @param CacheManager   $lis
+     * @var RepositoriesManager
      */
-    public function __construct($code, $class, $baseControllerName, UploaderHelper $vus, CacheManager $lis)
+    protected $rm;
+
+    /**
+     * @param string              $code
+     * @param string              $class
+     * @param string              $baseControllerName
+     * @param UploaderHelper      $vus
+     * @param CacheManager        $lis
+     * @param RepositoriesManager $rm
+     */
+    public function __construct($code, $class, $baseControllerName, UploaderHelper $vus, CacheManager $lis, RepositoriesManager $rm)
     {
         parent::__construct($code, $class, $baseControllerName);
         $this->vus = $vus;
         $this->lis = $lis;
+        $this->rm = $rm;
     }
 
     /**

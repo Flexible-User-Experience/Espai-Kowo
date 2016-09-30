@@ -1,36 +1,43 @@
 {% extends ':Frontend:base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/baguetteBox.min.css') }}">
+{% endblock %}
+
 {% block main %}
     {# Hero section #}
     <div class="jumbotron">
-        <div class="container">
-            <h2>Molt més que compartir un espai de treball</h2>
-            {#<h2>{{ words(2) }}</h2>#}
-            {#<!-- Button trigger modal -->#}
-            <p>
-                <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#form_modal">
-                    <i class="fa fa-plus" aria-hidden="true"></i> Prova-ho gratis 3 dies
-                </button>
-            </p>
-            {#<!-- Modal -->#}
-            <div class="modal fade" id="form_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content text-left">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Dades de contacte</h4>
-                        </div>
-                        <div class="modal-body">
-                            {{ form(formHomepage) }}
-                        </div>
-                        <div class="modal-footer">
-                            En breu t'ho explicarem tot amb més detall i podràs visitar l'espai
-                        </div>
+        <div class="subtitle-background">
+            <div class="container">
+                <h2>Molt més que compartir un espai de treball</h2>
+                {#<h2>{{ words(2) }}</h2>#}
+                {#<!-- Button trigger modal -->#}
+                <p>
+                    <button type="button" class="btn btn-kowo btn-lg" data-toggle="modal" data-target="#form_modal">
+                        <i class="fa fa-heart" aria-hidden="true"></i> Prova-ho gratis 3 dies
+                    </button>
+                </p>
+            </div>
+        </div>
+        {#<!-- Modal -->#}
+        <div class="modal fade" id="form_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content text-left">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Dades de contacte</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ form(formHomepage) }}
+                    </div>
+                    <div class="modal-footer">
+                        En breu t'ho explicarem tot amb més detall i podràs visitar l'espai
                     </div>
                 </div>
             </div>
-            {% include ':Frontend/includes:notice_flash.html.twig' %}
         </div>
+        {% include ':Frontend/includes:notice_flash.html.twig' %}
     </div>
     {# Subhero section #}
     <div class="p-vertical">
@@ -38,7 +45,7 @@
             <div class="row small-m-top">
                 <div class="col-sm-4">
                     <div class="no-m-bottom">
-                        <img src="{{ asset('bundles/app/img/hero5.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="Una nova manera de treballar">
+                        <img src="{{ asset('bundles/app/img/photo-home-mini-1.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="Una nova manera de treballar">
                         <div class="caption">
                             <h4 class="text-muted">Una nova manera de treballar</h4>
                             {#<p>{{ sentences(1) }}</p>#}
@@ -47,7 +54,7 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="no-m-bottom">
-                        <img src="{{ asset('bundles/app/img/hero4.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="Suma't a la comunitat de coworkers">
+                        <img src="{{ asset('bundles/app/img/photo-home-mini-2.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="Suma't a la comunitat de coworkers">
                         <div class="caption">
                             <h4 class="text-muted">Suma't a la comunitat de coworkers</h4>
                             {#<p>{{ sentences(1) }}</p>#}
@@ -56,7 +63,7 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="no-m-bottom">
-                        <img src="{{ asset('bundles/app/img/hero1.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="Compartim coneixement">
+                        <img src="{{ asset('bundles/app/img/photo-home-mini-3.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="Compartim coneixement">
                         <div class="caption">
                             <h4 class="text-muted">Compartim coneixement</h4>
                             {#<p>{{ sentences(1) }}</p>#}
@@ -67,7 +74,7 @@
         </div>
     </div>
     {# Pricing section #}
-    <div class="p-vertical grey-background">
+    <div class="p-vertical green-background-light">
         <div class="container">
             {#<div class="row">#}
                 {#<div class="col-md-12">#}
@@ -117,22 +124,26 @@
     {# Detail section #}
     <div class="p-vertical container">
         <div class="row">
-            <div class="col-xs-4 text-center">
+            <div class="col-xs-3 text-center">
                 <i class="small-m-bottom c-green fa fa-universal-access fa-3x" aria-hidden="true"></i>
                 <p class="no-m-bottom text-muted">12+1 taules de treball</p>
             </div>
-            <div class="col-xs-4 text-center">
+            <div class="col-xs-3 text-center">
                 <i class="small-m-bottom c-green fa fa-sun-o fa-3x" aria-hidden="true"></i>
                 <p class="no-m-bottom text-muted">130m<sup>2</sup> amb llum natural</p>
             </div>
-            <div class="col-xs-4 text-center">
+            <div class="col-xs-3 text-center">
                 <i class="small-m-bottom c-green fa fa-wifi fa-3x" aria-hidden="true"></i>
-                <p class="no-m-bottom text-muted">Internet ultra-ràpid</p>
+                <p class="no-m-bottom text-muted">Internet ultra-ràpida</p>
+            </div>
+            <div class="col-xs-3 text-center">
+                <i class="small-m-bottom c-green fa fa-battery-full fa-3x" aria-hidden="true"></i>
+                <p class="no-m-bottom text-muted">Energia 100% renovable</p>
             </div>
         </div>
     </div>
     {# Final highlights section #}
-    <div class="p-vertical grey-background">
+    <div class="p-vertical green-background-light">
         <div class="container text-center">
             <div class="row normal-m-top">
                 <div class="col-md-3 col-sm-4 col-xs-6">
@@ -158,10 +169,51 @@
             </div>
         </div>
     </div>
+    {# Section carousel #}
+    <div class="p-vertical">
+        <div class="container">
+            <div class="row small-m-top gallery">
+                <div class="col-sm-3">
+                    <div class="no-m-bottom">
+                        <a href="{{ asset('bundles/app/img/photo-home-mini-1.jpg') | imagine_filter('1200xY') }}">
+                            <img src="{{ asset('bundles/app/img/photo-home-mini-1.jpg') | imagine_filter('240x180') }}" class="img-responsive" alt="First image">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="no-m-bottom">
+                        <a href="{{ asset('bundles/app/img/photo-home-mini-2.jpg') | imagine_filter('1200xY') }}">
+                            <img src="{{ asset('bundles/app/img/photo-home-mini-2.jpg') | imagine_filter('240x180') }}" class="img-responsive" alt="Second image">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="no-m-bottom">
+                        <a href="{{ asset('bundles/app/img/photo-home-mini-3.jpg') | imagine_filter('1200xY') }}">
+                            <img src="{{ asset('bundles/app/img/photo-home-mini-3.jpg') | imagine_filter('240x180') }}" class="img-responsive" alt="Second image">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="no-m-bottom">
+                        <a href="{{ asset('bundles/app/img/photo-home-mini-1.jpg') | imagine_filter('1200xY') }}">
+                            <img src="{{ asset('bundles/app/img/photo-home-mini-2.jpg') | imagine_filter('240x180') }}" class="img-responsive" alt="First image">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/app/js/baguetteBox.min.js') }}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            baguetteBox.run('.gallery');
+        });
+    </script>
     {% if not formHomepage.vars.valid %}
         <script type="text/javascript">
             jQuery(document).ready(function() {

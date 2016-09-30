@@ -21,10 +21,10 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body{% block body_class %}{% endblock %}>
 {#<!-- Head content -->#}
 {% block header %}
-    <nav class="navbar navbar-default navbar-inverse">
+    <nav class="navbar navbar-default navbar-inverse" role="navigation">
         <div class="container">
             {#<!-- Brand and toggle get grouped for better mobile display -->#}
             <div class="navbar-header">
@@ -34,7 +34,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ path('front_homepage') }}"><img class="navbar-logo" src="{{ asset('bundles/app/img/logoespaikowo.png') | imagine_filter('60x60') }}" alt="Espai Kowo Logo"></a>
+                <a class="navbar-brand navbar-brand-logo" href="{{ path('front_homepage') }}">
+                    <svg height="70" width="70" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <image height="70" width="70" class="navbar-logo" xlink:href="{{ asset('bundles/app/svg/logoblanc80x80.svg') }}" alt="Espai Kowo Logo"></image>
+                    </svg>
+                </a>
             </div>
             {#<!-- Collect the nav links, forms, and other content for toggling -->#}
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -63,11 +67,11 @@
                     <a href="https://twitter.com/espaikowo"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
                 </div>
                 <div class="col-sm-4 hidden-xs text-right">
-                    <a href="{{ path('front_privacy_policy') }}">política privacitat</a> · <a href="{{ path('front_credits') }}">crèdits</a><br>
+                    <a href="{{ path('front_privacy_policy') }}">privacitat</a> · <a href="{{ path('front_credits') }}">crèdits</a><br>
                     <i class="fa fa-copyright" aria-hidden="true"></i> {{ "now" | date("Y") }}
                 </div>
                 <div class="col-xs-12 visible-xs normal-m-top">
-                    <a href="{{ path('front_privacy_policy') }}">política privacitat</a> · <a href="{{ path('front_credits') }}">crèdits</a><br>
+                    <a href="{{ path('front_privacy_policy') }}">privacitat</a> · <a href="{{ path('front_credits') }}">crèdits</a><br>
                     <i class="fa fa-copyright" aria-hidden="true"></i> {{ "now" | date("Y") }}
                 </div>
             </div>

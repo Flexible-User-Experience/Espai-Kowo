@@ -71,6 +71,26 @@ class ContactHomepageType extends AbstractType
                 )
             )
             ->add(
+                'recaptcha',
+                RecaptchaType::class,
+                array(
+                    'label'       => false,
+                    'mapped'      => false,
+                    'constraints' => array(
+                        new RecaptchaTrue(),
+                    ),
+                    'attr' => array(
+                        'options' => array(
+                            'theme' => 'light',
+                            'type'  => 'image',
+                            'size'  => 'normal',
+                            'defer' => true,
+                            'async' => false,
+                        ),
+                    ),
+                )
+            )
+            ->add(
                 'send',
                 SubmitType::class,
                 array(
@@ -78,16 +98,6 @@ class ContactHomepageType extends AbstractType
                     'attr'  => array(
                         'class' => 'btn-kowo',
                     ),
-                )
-            )
-            ->add(
-                'recaptcha',
-                RecaptchaType::class,
-                array(
-                    'mapped'      => false,
-                    'constraints' => array(
-                        new RecaptchaTrue()
-                    )
                 )
             );
     }

@@ -1,43 +1,46 @@
+imports:
+    - { resource: repositories.yml }
+
 services:
 # Sonata Admin
     admin.coworker:
         class: AppBundle\Admin\CoworkerAdmin
-        arguments: [ ~ , AppBundle\Entity\Coworker, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        arguments: [ ~ , AppBundle\Entity\Coworker, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Coworker", group: "Coworkers" }
     admin.category:
         class: AppBundle\Admin\CategoryAdmin
-        arguments: [ ~, AppBundle\Entity\Category, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        arguments: [ ~, AppBundle\Entity\Category, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Category", group: "Coworkers" }
     admin.socialnetworkcategory:
         class: AppBundle\Admin\SocialNetworkCategoryAdmin
-        arguments: [ ~, AppBundle\Entity\SocialNetworkCategory, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        arguments: [ ~, AppBundle\Entity\SocialNetworkCategory, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Social Network", group: "Coworkers" }
     admin.socialnetwork:
         class: AppBundle\Admin\SocialNetworkAdmin
-        arguments: [ ~, AppBundle\Entity\SocialNetwork, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        arguments: [ ~, AppBundle\Entity\SocialNetwork, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Social Network", group: "Coworkers", show_in_dashboard: false }
     admin.event:
         class: AppBundle\Admin\EventAdmin
-        arguments: [ ~, AppBundle\Entity\Event, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        arguments: [ ~, AppBundle\Entity\Event, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Activities", group: "Activities" }
     admin.post:
         class: AppBundle\Admin\PostAdmin
-        arguments: [ ~, AppBundle\Entity\Post, AppBundle:Admin\PostAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        arguments: [ ~, AppBundle\Entity\Post, AppBundle:Admin\PostAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Posts", group: "Blog" }
     admin.tag:
         class: AppBundle\Admin\TagAdmin
-        arguments: [ ~, AppBundle\Entity\Tag, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        arguments: [ ~, AppBundle\Entity\Tag, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Tags", group: "Blog" }
     admin.contactmessage:
         class: AppBundle\Admin\ContactMessageAdmin
-        arguments: [ ~, AppBundle\Entity\ContactMessage, AppBundle:Admin\ContactMessageAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager" ]
+        arguments: [ ~, AppBundle\Entity\ContactMessage, AppBundle:Admin\ContactMessageAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Contact Message", group: "Contacts" }
     admin.user:
@@ -55,19 +58,13 @@ services:
 # Menu
     app.frontend_menu_builder:
         class: AppBundle\Menu\FrontendMenuBuilder
-        arguments: [ "@knp_menu.factory", "@security.authorization_checker", "@translator" ]
+        arguments: [ "@knp_menu.factory", "@security.authorization_checker" ]
     app.frontend_top_menu:
         class: Knp\Menu\MenuItem
         factory: [ "@app.frontend_menu_builder", createTopMenu ]
         arguments: [ "@request_stack" ]
         tags:
             - { name: knp_menu.menu, alias: top }
-## Repository
-#    app.entity_repository.event:
-#        class: AppBundle\Repository\EventRepository
-#        factory: [ "@doctrine", getRepository ]
-#        arguments:
-#            - AppBundle:Event
 # Sitemap
     app.sitemap:
         class: AppBundle\Listener\SitemapListener
