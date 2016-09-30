@@ -84,7 +84,11 @@ fieldset[disabled] .btn-kowo.active {
 // Custom margins
 .left-margin-negative {
   margin-left: -15px;
-  @media(max-width: @screen-sm-min) { margin-left: 0; }
+  border-right: solid @ek-s-base @ek-c-black;
+  @media(max-width: @screen-sm-min) {
+    margin-left: 0;
+    border-left: none;
+  }
 }
 .no-m { margin: 0; }
 .no-m-top { margin-top: 0; }

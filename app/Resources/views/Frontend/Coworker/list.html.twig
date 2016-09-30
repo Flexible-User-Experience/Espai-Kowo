@@ -13,9 +13,9 @@
                         {% if coworker.imageName is not null %}
                             <img
                                     src="{{ vich_uploader_asset(coworker, 'imageFile') | imagine_filter('263xYxBW') }}"
-                                    class="img-responsive" alt="{{ coworker.imageName }}">
+                                    class="img-responsive center-block" alt="{{ coworker.imageName }}">
                         {% else %}
-                            <img src="{{ asset('bundles/app/img/kiwi-pic.jpg') | imagine_filter('263xYxBW') }}" class="img-responsive" alt="default coworker image">
+                            <img src="{{ asset('bundles/app/img/kiwi-pic.jpg') | imagine_filter('263xYxBW') }}" class="img-responsive center-block" alt="default coworker image">
                         {% endif %}
                     </a>
                     <ul class="list-inline social-networks text-center">
