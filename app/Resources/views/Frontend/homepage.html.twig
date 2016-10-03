@@ -7,38 +7,85 @@
 
 {% block main %}
     {# Hero section #}
-    <div class="jumbotron">
-        <div class="subtitle-background">
-            <div class="container">
-                <h2>Molt més que compartir un espai de treball</h2>
-                {#<h2>{{ words(2) }}</h2>#}
-                {#<!-- Button trigger modal -->#}
-                <p>
-                    <button type="button" class="btn btn-kowo btn-lg" data-toggle="modal" data-target="#form_modal">
-                        <i class="fa fa-heart" aria-hidden="true"></i> Prova-ho gratis 3 dies
-                    </button>
-                </p>
+    <svg class="center-block main-logo-homepage" height="600" width="600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <image height="600" width="600" xlink:href="{{ asset('bundles/app/svg/logo-header.svg') }}" alt="Espai Kowo Logo"></image>
+    </svg>
+    {# Full Page Image Background Carousel Header #}
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide One');"></div>
+                <div class="carousel-caption">
+                    <h2>Caption 1</h2>
+                </div>
             </div>
-        </div>
-        {#<!-- Modal -->#}
-        <div class="modal fade" id="form_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content text-left">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Dades de contacte</h4>
-                    </div>
-                    <div class="modal-body">
-                        {{ form(formHomepage) }}
-                    </div>
-                    <div class="modal-footer">
-                        En breu t'ho explicarem tot amb més detall i podràs visitar l'espai
-                    </div>
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Two');"></div>
+                <div class="carousel-caption">
+                    <h2>Caption 2</h2>
+                </div>
+            </div>
+            <div class="item">
+                <!-- Set the third background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>
+                <div class="carousel-caption">
+                    <h2>Caption 3</h2>
                 </div>
             </div>
         </div>
-        {% include ':Frontend/includes:notice_flash.html.twig' %}
-    </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+
+    </header>
+
+    {#<div class="jumbotron">#}
+        {#<div class="subtitle-background">#}
+            {#<div class="container">#}
+                {#<h2>Molt més que compartir un espai de treball</h2>#}
+                {#<h2>{{ words(2) }}</h2>#}
+                {#<!-- Button trigger modal -->#}
+                {#<p>#}
+                    {#<button type="button" class="btn btn-kowo btn-lg" data-toggle="modal" data-target="#form_modal">#}
+                        {#<i class="fa fa-heart" aria-hidden="true"></i> Prova-ho gratis 3 dies#}
+                    {#</button>#}
+                {#</p>#}
+            {#</div>#}
+        {#</div>#}
+        {#<!-- Modal -->#}
+        {#<div class="modal fade" id="form_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">#}
+            {#<div class="modal-dialog" role="document">#}
+                {#<div class="modal-content text-left">#}
+                    {#<div class="modal-header">#}
+                        {#<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>#}
+                        {#<h4 class="modal-title" id="myModalLabel">Dades de contacte</h4>#}
+                    {#</div>#}
+                    {#<div class="modal-body">#}
+                        {#{{ form(formHomepage) }}#}
+                    {#</div>#}
+                    {#<div class="modal-footer">#}
+                        {#En breu t'ho explicarem tot amb més detall i podràs visitar l'espai#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+        {#{% include ':Frontend/includes:notice_flash.html.twig' %}#}
+    {#</div>#}
     {# Subhero section #}
     <div class="p-vertical">
         <div class="container">
