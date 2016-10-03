@@ -75,6 +75,10 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        dql:
+            datetime_functions:
+                month: DoctrineExtensions\Query\Mysql\Month
+                day: DoctrineExtensions\Query\Mysql\Day
 
 doctrine_migrations:
     dir_name:  "%kernel.root_dir%/../src/AppBundle/DoctrineMigrations"
@@ -151,7 +155,6 @@ sonata_admin:
                 icon: "<i class='fa fa-envelope'></i>"
             Users:
                 icon: "<i class='fa fa-user'></i>"
-
         blocks:
             -
                 position: top

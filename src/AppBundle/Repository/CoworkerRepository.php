@@ -58,17 +58,44 @@ class CoworkerRepository extends EntityRepository
         return $this->findAllEnabledSortedBySurnameQ($limit, $order)->getResult();
     }
 
-//    /**
-//     * @return QueryBuilder
-//     */
-//    public function getAllEnabledCurrentBirthdayCoworkersQB()
-//    {
-//        $query = $this->createQueryBuilder('coworker')
-//            ->where('coworker.enabled = :enabled')
-//            ->setParameter('enabled', true)
-//            ->where('birthday = );
-//
-//        return $query;
-//    }
+    /**
+     * @param int $day
+     * @param int $month
+     *
+     * @return QueryBuilder
+     */
+    public function getAllEnabledCoworkersBirthdayByDayAndMonthQB($day, $month)
+    {
+        $query = $this->createQueryBuilder('coworker')
+            ->where('coworker.enabled = :enabled')
+            ->andWhere('DAY(coworker.birthday) = :day')
+            ->andWhere('MONTH(coworker.birthday) = :month')
+            ->setParameter('enabled', true)
+            ->setParameter('day', $day)
+            ->setParameter('month', $month);
 
+        return $query;
+    }
+
+    /**
+     * @param int $day
+     * @param int $month
+     *
+     * @return Query
+     */
+    public function getAllEnabledCoworkersBirthdayByDayAndMonthQ($day, $month)
+    {
+        return $this->getAllEnabledCoworkersBirthdayByDayAndMonthQB($day, $month)->getQuery();
+    }
+
+    /**
+     * @param int $day
+     * @param int $month
+     *
+     * @return array
+     */
+    public function getAllEnabledCoworkersBirthdayByDayAndMonth($day, $month)
+    {
+        return $this->getAllEnabledCoworkersBirthdayByDayAndMonthQ($day, $month)->getResult();
+    }
 }

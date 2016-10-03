@@ -2,6 +2,7 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Entity\Coworker;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -53,16 +54,11 @@ class SendBirthdayNotificationCommand extends ContainerAwareCommand
         $this->em   = $this->getContainer()->get('doctrine.orm.default_entity_manager');
         $itemsFound = 0;
         $currentDate = new \DateTime();
-//        $birthday = new \DateTime();
 
-        //TODO obtenir la coleccio de coworker que facin el cumple avui
+        $coworkersBirthday = $this->em->getRepository('AppBundle:Coworker')->getAllEnabledCoworkersBirthdayByDayAndMonth($currentDate->format('j'), $currentDate->format('n'));
 
-        $coworkersBirthday = $this->em->getRepository('AppBundle:Coworker')->findBy(array(
-            'birthday' => $currentDate
-        ));
-
+        /** @var Coworker $coworker */
         foreach ($coworkersBirthday as $coworker) {
-            $coworker->getName();
             $output->writeln('Aniversari del/la coworker: ' . $coworker->getName() . ' ' . $coworker->getSurname());
         }
 
