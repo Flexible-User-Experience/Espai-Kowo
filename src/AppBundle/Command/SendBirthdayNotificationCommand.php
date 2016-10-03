@@ -60,6 +60,10 @@ class SendBirthdayNotificationCommand extends ContainerAwareCommand
         /** @var Coworker $coworker */
         foreach ($coworkersBirthday as $coworker) {
             $output->writeln('Aniversari del/la coworker: ' . $coworker->getName() . ' ' . $coworker->getSurname());
+            if ($input->getOption('delivery') === true) {
+                $messenger = $this->getContainer()->get('app.notification');
+                $messenger->sendCoworkerBirthdayNotification($coworker);
+            }
         }
 
         $output->writeln('<comment>END OF FILE.</comment>');
