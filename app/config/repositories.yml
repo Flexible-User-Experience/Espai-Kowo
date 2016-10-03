@@ -1,0 +1,10 @@
+services:
+    app.category_repository:
+        class: AppBundle\Repository\CategoryRepository
+        factory: [ "@doctrine", getRepository ]
+        arguments:
+            - AppBundle:Category
+    app.repositories_manager:
+        class: AppBundle\Manager\RepositoriesManager
+        arguments:
+            - "@app.category_repository"
