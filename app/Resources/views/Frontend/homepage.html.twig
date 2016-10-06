@@ -12,15 +12,15 @@
         <div class="carousel-inner">
             <div class="item active">
                 {#<!-- Set the first background image using inline CSS below. -->#}
-                <div class="fill" style="background-image:url('{{ asset('bundles/app/img/hero1.jpg') }}');"></div>
+                <div class="fill" style="background-image:url('{{ asset('bundles/app/img/hero1.jpg') | imagine_filter('2000x550') }}');"></div>
             </div>
             <div class="item">
                 {#<!-- Set the second background image using inline CSS below. -->#}
-                <div class="fill" style="background-image:url('{{ asset('bundles/app/img/hero2.jpg') }}');"></div>
+                <div class="fill" style="background-image:url('{{ asset('bundles/app/img/hero2.jpg') | imagine_filter('2000x550') }}');"></div>
             </div>
             <div class="item">
                 {#<!-- Set the third background image using inline CSS below. -->#}
-                <div class="fill" style="background-image:url('{{ asset('bundles/app/img/hero3.jpg') }}');"></div>
+                <div class="fill" style="background-image:url('{{ asset('bundles/app/img/hero3.jpg') | imagine_filter('2000x550') }}');"></div>
             </div>
         </div>
         {#<!-- Controls -->#}
