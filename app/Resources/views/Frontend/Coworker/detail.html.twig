@@ -22,7 +22,9 @@
                 {# right side #}
                 <h2 class="no-m-top light-font-weight">{{ coworker.name | upper}} {{ coworker.surname | upper }}</h2>
                 <h4 class="c-green">{{ coworker.category | upper}}</h4>
-                <p>{{ coworker.description | raw }}</p>
+                <div class="p-vertical">
+                    {{ coworker.description | raw }}
+                </div>
                 <ul class="list-inline">
                     {% include ":Frontend/includes:social_network_category.html.twig" with {coworker: coworker} %}
                 </ul>
