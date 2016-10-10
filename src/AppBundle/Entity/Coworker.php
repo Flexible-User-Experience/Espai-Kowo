@@ -93,6 +93,25 @@ class Coworker extends AbstractBase
     private $imageName;
 
     /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="coworker", fileNameProperty="imageNameBW")
+     * @Assert\File(
+     *     maxSize="10M",
+     *     mimeTypes={"image/jpg", "image/jpeg", "image/png", "image/gif"}
+     * )
+     * @Assert\Image(minWidth=1200)
+     */
+    private $imageFileBW;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageNameBW;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="SocialNetwork", mappedBy="coworker", cascade={"persist", "remove"}, orphanRemoval=true)
@@ -276,6 +295,59 @@ class Coworker extends AbstractBase
     public function getImageName()
     {
         return $this->imageName;
+    }
+
+    /**
+     * Set imageFileBW
+     *
+     * @param File|UploadedFile $imageFileBW
+     *
+     * @return $this
+     */
+    public function setImageFileBW(File $imageFileBW = null)
+    {
+        $this->imageFileBW = $imageFileBW;
+        if ($imageFileBW) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get imageFileBW
+     *
+     * @return File|UploadedFile
+     */
+    public function getImageFileBW()
+    {
+        return $this->imageFileBW;
+    }
+
+    /**
+     * Set imageNameBW
+     *
+     * @param string $imageNameBW
+     *
+     * @return $this
+     */
+    public function setImageNameBW($imageNameBW)
+    {
+        $this->imageNameBW = $imageNameBW;
+
+        return $this;
+    }
+
+    /**
+     * Get imageNameBW
+     *
+     * @return string
+     */
+    public function getImageNameBW()
+    {
+        return $this->imageNameBW;
     }
 
     /**
