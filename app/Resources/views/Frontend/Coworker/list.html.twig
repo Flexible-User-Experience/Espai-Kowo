@@ -10,10 +10,10 @@
                 <div class="col-md-3">
                     <h4 class="no-m-top text-center light-font-weight">{{ coworker.name | upper }} {{ coworker.surname | upper }}</h4>
                     <a href="{{ path('front_coworker_detail', {slug: coworker.slug}) }}">
-                        {% if coworker.imageName is not null %}
+                        {% if coworker.imageNameBW is not null %}
                             <img
-                                    src="{{ vich_uploader_asset(coworker, 'imageFile') | imagine_filter('263xYxBW') }}"
-                                    class="img-responsive center-block" alt="{{ coworker.imageName }}">
+                                    src="{{ vich_uploader_asset(coworker, 'imageFileBW') }}"
+                                    class="img-responsive center-block" alt="{{ coworker.imageNameBW }}">
                         {% else %}
                             <img src="{{ asset('bundles/app/img/kiwi-pic.jpg') | imagine_filter('263xYxBW') }}" class="img-responsive center-block" alt="default coworker image">
                         {% endif %}
