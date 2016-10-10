@@ -43,34 +43,35 @@
                                     </table>
                                     {# body #}
                                     {% block content %}{% endblock %}
-                                    {# footer #}
-                                    <table class="row black-background">
-                                        <tr>
-                                            <th class="small-12 large-5 first columns vertical-padding">
-                                                <h6 class="green-color">Espai Kowo</h6>
-                                                <p class="white-color">
-                                                    C. Primer de maig, 1 3r B<br>
-                                                    43870 Amposta<br>
-                                                    (Tarragona)
-                                                </p>
-                                            </th>
-                                            <th class="small-6 large-1 vertical-padding ">
-                                                <a href="https://www.facebook.com/espaikowo/">
-                                                    <img src="{{ absolute_url(asset('bundles/app/img/facebook.png') | imagine_filter('30x30')) }}">
-                                                </a>
-                                            <th class="small-6 large-1 vertical-padding ">
-                                                <a href="https://twitter.com/espaikowo">
-                                                    <img src="{{ absolute_url(asset('bundles/app/img/twitter.png') | imagine_filter('30x30')) }}">
-                                                </a>
-                                            </th>
-                                            <th class="small-12 large-5 last columns vertical-padding">
-                                                <p class="white-color text-right">
-                                                    &copy; {{ "now" | date("Y") }}
-                                                </p>
-                                            </th>
-                                            <th class="expander"></th>
-                                        </tr>
-                                    </table>
+                                    {% block footer %}
+                                        <table class="row black-background">
+                                            <tr>
+                                                <th class="small-12 large-5 first columns vertical-padding">
+                                                    <h6 class="green-color">Espai Kowo</h6>
+                                                    <p class="white-color">
+                                                        C. Primer de maig, 1 3r B<br>
+                                                        43870 Amposta<br>
+                                                        (Tarragona)
+                                                    </p>
+                                                </th>
+                                                <th class="small-6 large-1 vertical-padding ">
+                                                    <a href="https://www.facebook.com/espaikowo/">
+                                                        <img src="{{ absolute_url(asset('bundles/app/img/facebook.png') | imagine_filter('30x30')) }}">
+                                                    </a>
+                                                <th class="small-6 large-1 vertical-padding ">
+                                                    <a href="https://twitter.com/espaikowo">
+                                                        <img src="{{ absolute_url(asset('bundles/app/img/twitter.png') | imagine_filter('30x30')) }}">
+                                                    </a>
+                                                </th>
+                                                <th class="small-12 large-5 last columns vertical-padding">
+                                                    <p class="white-color text-right">
+                                                        &copy; {{ "now" | date("Y") }}
+                                                    </p>
+                                                </th>
+                                                <th class="expander"></th>
+                                            </tr>
+                                        </table>
+                                    {% endblock %}
                                 </td>
                             </tr>
                         </table>
