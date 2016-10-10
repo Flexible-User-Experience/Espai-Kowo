@@ -13,7 +13,9 @@
                 <h2 class="no-m-top">{{ post.title }}</h2>
                 <h4 class="text-muted">{{ post.publishedAt | date('d/m/Y') }}</h4>
                 <h4 class="c-green">{{ post.tags | join(', ')  }}</h4>
-                <p class="underlined-anchors">{{ post.description | raw }}</p>
+                <div class="p-vertical underlined-anchors">
+                    {{ post.description | raw }}
+                </div>
             </div>
         </div>
     </div>
