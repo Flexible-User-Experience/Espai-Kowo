@@ -26,7 +26,7 @@
 @navbar-inverse-bg: @ek-c-green;
 @navbar-inverse-link-active-bg: @ek-c-black;
 @navbar-inverse-link-hover-bg: darken(@ek-c-green, 10%);
-@navbar-inverse-border: none;
+@navbar-inverse-border: @ek-c-green;
 @navbar-height: 110px;
 @navbar-border-radius: 0;
 @navbar-inverse-link-active-color: @ek-c-white;
@@ -44,7 +44,7 @@
   margin-top: -25px;
 }
 
-//Custom buttons
+// Custom buttons
 .btn-kowo {
   background-color: @ek-c-green;
   border-color: @ek-c-green;
@@ -72,6 +72,13 @@ fieldset[disabled] .btn-kowo:active,
 fieldset[disabled] .btn-kowo.active {
   background-color: @ek-c-green;
   border-color: @ek-c-green;
+}
+
+// Custom anchors
+.underlined-anchors {
+  a {
+    text-decoration: underline;
+  }
 }
 
 // Custom main container
@@ -190,7 +197,13 @@ fieldset[disabled] .btn-kowo.active {
 }
 
 // Custom homepage
-.jumbotron {
+.main-logo-homepage {
+  position: absolute;
+  left: 35%;
+  top: 135px;
+}
+
+header#myCarousel {
   h2 {
     text-align: right;
     color: @ek-c-white;
@@ -202,17 +215,14 @@ fieldset[disabled] .btn-kowo.active {
   }
   div.subtitle-background {
     background-color: rgba(0, 0, 0, 0.65);
-    padding: 20px 0px;
+    padding: 20px 0;
+    margin-top: -172px;
+    z-index: 100;
   }
-  padding-top: 660px;
-  padding-bottom: 0;
-  margin-bottom: 0;
-  background: @ek-c-white url("/bundles/app/img/photo-home.jpg") no-repeat center center;
-  min-height: 800px;
-  background-size: cover;
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
+  //padding-top: 660px;
+  //padding-bottom: 0;
+  //margin-bottom: 0;
+  //min-height: 800px;
 }
 
 // Homepage pricing table

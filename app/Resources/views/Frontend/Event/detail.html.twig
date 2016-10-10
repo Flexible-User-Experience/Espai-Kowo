@@ -14,7 +14,9 @@
                 <h2 class="no-m-top">{{ event.title }}</h2>
                 <h4 class="text-muted">{{ event.date | date('d/m/Y') }}</h4>
                 <h4 class="c-green">{{ event.type }}</h4>
-                <p>{{ event.description | raw }}</p>
+                <div class="p-vertical underlined-anchors">
+                    {{ event.description | raw }}
+                </div>
             </div>
         </div>
     </div>
