@@ -44,7 +44,8 @@ backend:
             image: Imatge
         post:
             post: Article
-            image: Imatge
+            image: Imatge color
+            imageBW: Imatge blanc i negre
             title: Títol
             tags: Etiquetes
             description: Descripció
