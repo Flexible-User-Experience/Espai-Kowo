@@ -5,6 +5,10 @@ liip_imagine:
           web_path: ~
     filter_sets:
         cache: ~
+        2400x900:
+            quality: 75
+            filters:
+                thumbnail: { size: [ 2400, 900 ], mode: outbound }
         2000x550:
             quality: 75
             filters:
