@@ -197,17 +197,23 @@ fieldset[disabled] .btn-kowo.active {
 
 // Homepage call to action
 div.subtitle-background {
-  position: absolute;
-  bottom: 0;
   background-color: rgba(0, 0, 0, 0.65);
-  //padding: 20px 0;
-  //margin-top: -172px;
-  z-index: 100;
+  padding: @ek-s-base-minus 0;
   h2 {
     text-align: right;
     color: @ek-c-white;
-    font-size: 55px;
+    font-size: 18px;
     margin-top: 5px;
+  }
+  button.btn-kowo.btn-lg { font-size: 11px; }
+  @media(min-width: @screen-xs-max) {
+    padding: @ek-s-base 0;
+    h2 { font-size: 25px; }
+    button.btn-kowo.btn-lg { font-size: 14px; }
+  }
+  @media(min-width: @screen-sm-max) {
+    h2 { font-size: 45px; }
+    button.btn-kowo.btn-lg { font-size: 18px; }
   }
   p {
     text-align: right;
