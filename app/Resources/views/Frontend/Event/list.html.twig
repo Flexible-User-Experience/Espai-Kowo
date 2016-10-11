@@ -3,6 +3,21 @@
 {% block title %}Activitats · {{ parent() }}{% endblock %}
 
 {% block main %}
+    <div class="p-vertical green-background-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4>Estiguis el dia de les nostres activitats</h4>
+                    {#<!-- Button trigger modal -->#}
+                    <p>
+                        <button type="button" class="btn btn-kowo" data-toggle="modal" data-target="#form_modal">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Subscriu-me al newsletter
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container container-main">
         <div class="row">
             {% if events | length > 0 %}
