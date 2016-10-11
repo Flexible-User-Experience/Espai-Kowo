@@ -152,14 +152,6 @@ fieldset[disabled] .btn-kowo.active {
   }
 }
 
-.fresh-talent-ad {
-  color: @ek-c-green;
-  -webkit-transform: rotate(352deg);
-  -moz-transform: rotate(352deg);
-  -o-transform: rotate(352deg);
-  @media(max-width: @screen-xs-max) { font-size: 1.2em; }
-}
-
 .alert {
   h4 {
     font-weight: normal;
@@ -201,28 +193,6 @@ fieldset[disabled] .btn-kowo.active {
   position: absolute;
   left: 35%;
   top: 135px;
-}
-
-header#myCarousel {
-  h2 {
-    text-align: right;
-    color: @ek-c-white;
-    font-size: 55px;
-    margin-top: 5px;
-  }
-  p {
-    text-align: right;
-  }
-  div.subtitle-background {
-    background-color: rgba(0, 0, 0, 0.65);
-    padding: 20px 0;
-    margin-top: -172px;
-    z-index: 100;
-  }
-  //padding-top: 660px;
-  //padding-bottom: 0;
-  //margin-bottom: 0;
-  //min-height: 800px;
 }
 
 // Homepage pricing table
@@ -333,4 +303,14 @@ footer {
 
 .light-font-weight {
   font-weight: 400;
+}
+
+.carousel-control {
+  .fa-angle-left, .fa-angle-right {
+    position: absolute;
+    top: 50%;
+    margin-top: -10px;
+    z-index: 5;
+    display: inline-block;
+  }
 }
