@@ -1,5 +1,7 @@
+{% extends ':Mails:base.html.twig' %}
+
 {% block body %}
-    <h1>Thanks for contact us!</h1>
+    <h1>Gràcies per contactar amb nosaltres</h1>
     <p>
         Your question "{{ contact.subject }}":<br><br>
         <em>"{{ contact.message | raw }}"</em><br><br>
