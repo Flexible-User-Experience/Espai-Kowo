@@ -34,6 +34,7 @@ class AppExtension extends \Twig_Extension
 
     /**
      * @param int $length length of Random String returned
+     *
      * @return string
      */
     public function randomErrorTextFunction($length = 1024)
@@ -45,6 +46,14 @@ class AppExtension extends \Twig_Extension
         $chrRepeatMax = 30; // Maximum times to repeat the seed string
 
         return substr(str_shuffle(str_repeat($chrList, mt_rand($chrRepeatMin, $chrRepeatMax))), 1, $length);
+    }
+
+    public function ageCalculate(\DateTime $birthday)
+    {
+        $now = new \DateTime();
+        $interval = $now->diff($birthday);
+
+        return $interval->y;
     }
 
     /**
@@ -62,6 +71,7 @@ class AppExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFilter('draw_role_span', array($this, 'drawRoleSpan')),
+            new \Twig_SimpleFilter('age', array($this, 'ageCalculate')),
         );
     }
 
@@ -100,4 +110,5 @@ class AppExtension extends \Twig_Extension
     {
         return 'app_extension';
     }
+
 }

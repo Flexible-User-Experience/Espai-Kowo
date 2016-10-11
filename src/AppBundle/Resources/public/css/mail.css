@@ -7,3 +7,14 @@
 /*Margins*/
 .vertical-padding { padding: 20px 0; }
 .padding-bottom   { padding: 16px 0; }
+
+/*Custom main container*/
+   .container-main {
+       min-height: 400px;
+       padding-top: 40px;
+       padding-bottom: 40px;
+   }
+/*Custom margins*/
+    .left-margin-negative {
+       margin-left: 15px;
+    }
