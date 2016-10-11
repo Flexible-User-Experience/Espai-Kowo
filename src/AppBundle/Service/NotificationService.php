@@ -60,20 +60,38 @@ class NotificationService
         );
     }
 
+//    /**
+//     * Send a contact form notification to web user
+//     *
+//     * @param ContactHomepageType $formType
+//     *
+//     */
+//    public function sendUserNotification(ContactHomepageType $formType)
+//    {
+//        $this->messenger->sendEmail(
+//            $this->amd,
+//            $formType['email'],
+//            'Missatge de contacte pàgina web ' . $this->urlBase,
+//            $this->twig->render(':Mails:contact_form_user_notification.html.twig', array(
+//                'contact' => $formType,
+//            ))
+//        );
+//    }
+
     /**
      * Send a contact form notification to web user
      *
-     * @param ContactHomepageType $formType
+     * @param ContactMessage $contactMessage
      *
      */
-    public function sendUserNotification(ContactHomepageType $formType)
+    public function sendUserNotification(ContactMessage $contactMessage)
     {
         $this->messenger->sendEmail(
             $this->amd,
-            $formType['email'],
+            $contactMessage->getEmail(),
             'Missatge de contacte pàgina web ' . $this->urlBase,
             $this->twig->render(':Mails:contact_form_user_notification.html.twig', array(
-                'contact' => $formType,
+                'contact' => $contactMessage,
             ))
         );
     }

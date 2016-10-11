@@ -22,7 +22,8 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $form = $this->createForm(ContactHomepageType::class);
+        $contact = new ContactMessage();
+        $form = $this->createForm(ContactHomepageType::class, $contact);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -32,23 +33,11 @@ class DefaultController extends Controller
                 'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
             // Email
-            $ns = $this->get('app.notification')->sendUserNotification($form->getData());
-
-
-//            $message = \Swift_Message::newInstance()
-//                ->setSubject('Missatge de contacte pàgina web ' . $this->getParameter('mailer_url_base'))
-//                ->setFrom($this->getParameter('mailer_destination'))
-//                ->setTo($this->getParameter('mailer_destination'))
-//                ->setBody(
-//                    $this->renderView(
-//                        ':Frontend/Mail:contact_form_admin_notification.html.twig',
-//                        array('contact' => $form->getData())
-//                    ),
-//                    'text/html'
-//                );
-//            $this->get('mailer')->send($message);
+//            $ns = $this->get('app.notification')->sendUserNotification($form->getData());
+            $messenger = $this->get('app.notification');
+            $messenger->sendUserNotification($contact);
+//            $messenger->sendAdminNotification($contact);
         }
-
 
         return $this->render(':Frontend:homepage.html.twig', array(
             'formHomepage' => $form->createView(),

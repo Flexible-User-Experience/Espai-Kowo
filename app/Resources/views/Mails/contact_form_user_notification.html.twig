@@ -1,13 +1,14 @@
 {% extends ':Mails:base.html.twig' %}
 
-{% block body %}
-    <h1>Gràcies per contactar amb nosaltres</h1>
-    <p>
-        Your question "{{ contact.subject }}":<br><br>
-        <em>"{{ contact.message | raw }}"</em><br><br>
-        has been received.
-    </p>
-    <br>
-    <br>
-    <p>We will answer you as soon as possible. Keep in touch.</p>
+{% block content %}
+    <table>
+        <tr class="">
+            <th class="vertical-padding">
+                <h1 class="left-margin-negative">Gràcies per contactar amb nosaltres {{ contact.name }}</h1>
+                <br>
+                <br>
+                <p class="left-margin-negative">Et contestarem tan aviat com sigui possible. Estem en contacte.</p>
+            </th>
+        </tr>
+    </table>
 {% endblock %}
