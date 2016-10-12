@@ -1,3 +1,16 @@
+frontend:
+    menu:
+        blog: BLOG
+        coworkers: COWORKERS
+        events: ACTIVITATS
+        contact: CONTACTE
+        cms: "[ CMS ]"
+    forms:
+        name: "Nom *"
+        phone: Telèfon
+        email: "Email *"
+        message: "Missatge *"
+        send: Enviar
 backend:
     admin:
         actions: Accions

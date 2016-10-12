@@ -72,24 +72,6 @@ class CoworkerAdmin extends AbstractBaseAdmin
                     'required'    => true,
                 )
             )
-            ->add(
-                'imageFile',
-                'file',
-                array(
-                    'label'    => 'backend.admin.post.image',
-                    'help'     => $this->getImageHelperFormMapperWithThumbnail(),
-                    'required' => false,
-                )
-            )
-            ->add(
-                'imageFileBW',
-                'file',
-                array(
-                    'label'    => 'backend.admin.post.imageBW',
-                    'help'     => $this->getImageHelperFormMapperWithThumbnail('imageFileBW'),
-                    'required' => false,
-                )
-            )
             ->end()
             ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(4))
             ->add(
@@ -106,6 +88,24 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 array(
                     'label'    => 'Aniversari',
                     'format'   => 'd/M/y',
+                    'required' => false,
+                )
+            )
+            ->add(
+                'imageFile',
+                'file',
+                array(
+                    'label'    => 'backend.admin.post.image',
+                    'help'     => $this->getImageHelperFormMapperWithThumbnail(),
+                    'required' => false,
+                )
+            )
+            ->add(
+                'imageFileBW',
+                'file',
+                array(
+                    'label'    => 'backend.admin.post.imageBW',
+                    'help'     => $this->getImageHelperFormMapperWithThumbnailBW(),
                     'required' => false,
                 )
             )

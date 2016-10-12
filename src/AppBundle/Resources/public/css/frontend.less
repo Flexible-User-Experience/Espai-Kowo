@@ -1,7 +1,8 @@
 // Imports
 @import "../../../../../vendor/twbs/bootstrap/less/bootstrap.less";
 @import "../../../../../vendor/components/font-awesome/less/font-awesome.less";
-@import "color.less";
+@import "colors.less";
+@import "buttons.less";
 
 // Fonts
 @icon-font-path: "/bundles/app/fonts/";
@@ -26,53 +27,30 @@
 @navbar-inverse-bg: @ek-c-green;
 @navbar-inverse-link-active-bg: @ek-c-black;
 @navbar-inverse-link-hover-bg: darken(@ek-c-green, 10%);
-@navbar-inverse-border: @ek-c-green;
 @navbar-height: 110px;
 @navbar-border-radius: 0;
 @navbar-inverse-link-active-color: @ek-c-white;
 @navbar-inverse-link-color: @ek-c-white;
+
 .navbar {
   margin-bottom: 0;
+  border: 0;
   .navbar li a:hover{
     background-color: @ek-c-black;
   }
 }
+
 .navbar-brand-logo{
   padding: 20px 15px;
 }
+
 .navbar-logo {
   margin-top: -25px;
 }
 
 // Custom buttons
-.btn-kowo {
-  background-color: @ek-c-green;
-  border-color: @ek-c-green;
-  color: @ek-c-white;
-}
-.btn-kowo:hover,
-.btn-kowo:focus,
-.btn-kowo:active,
-.btn-kowo.active {
-  background-color: darken(@ek-c-green, 5%);
-  border-color: darken(@ek-c-green, 10%);
-  color: @ek-c-white;
-}
-.btn-kowo.disabled:hover,
-.btn-kowo.disabled:focus,
-.btn-kowo.disabled:active,
-.btn-kowo.disabled.active,
-.btn-kowo[disabled]:hover,
-.btn-kowo[disabled]:focus,
-.btn-kowo[disabled]:active,
-.btn-kowo[disabled].active,
-fieldset[disabled] .btn-kowo:hover,
-fieldset[disabled] .btn-kowo:focus,
-fieldset[disabled] .btn-kowo:active,
-fieldset[disabled] .btn-kowo.active {
-  background-color: @ek-c-green;
-  border-color: @ek-c-green;
-}
+.ek-button-mixin(btn-kowo, @ek-c-white, @ek-c-green);
+.ek-button-mixin(btn-kowo-orange, @ek-c-white, @ek-c-orange);
 
 // Custom anchors
 .underlined-anchors {
@@ -97,6 +75,7 @@ fieldset[disabled] .btn-kowo.active {
     border-right: none;
   }
 }
+
 .no-m { margin: 0; }
 .no-m-top { margin-top: 0; }
 .no-m-bottom { margin-bottom: 0; }
@@ -105,10 +84,6 @@ fieldset[disabled] .btn-kowo.active {
 .extra-m-bottom { margin-bottom: @gap-big; }
 .small-m-top    { margin-top: @gap-small; }
 .small-m-bottom { margin-bottom: @gap-small; }
-.content {
-  margin: @ek-s-base-plus 0;
-  @media(max-width: @screen-sm-max) { margin: @ek-s-base 0; }
-}
 
 // Custom paddings
 .p-vertical {
@@ -204,6 +179,9 @@ fieldset[disabled] .btn-kowo.active {
 div.subtitle-background {
   background-color: rgba(0, 0, 0, 0.65);
   padding: @ek-s-base-minus 0;
+  margin-top: -100px;
+  z-index: 1000;
+  position: relative;
   h2 {
     text-align: right;
     color: @ek-c-white;
@@ -213,10 +191,12 @@ div.subtitle-background {
   button.btn-kowo.btn-lg { font-size: 11px; }
   @media(min-width: @screen-xs-max) {
     padding: @ek-s-base 0;
+    margin-top: -132px;
     h2 { font-size: 25px; }
     button.btn-kowo.btn-lg { font-size: 14px; }
   }
   @media(min-width: @screen-sm-max) {
+    margin-top: -160px;
     h2 { font-size: 45px; }
     button.btn-kowo.btn-lg { font-size: 18px; }
   }
@@ -224,7 +204,6 @@ div.subtitle-background {
     text-align: right;
   }
 }
-
 
 // Homepage pricing table
 .pricing {
@@ -266,10 +245,6 @@ div.subtitle-background {
   font-weight: normal;
 }
 
-//.pricing li:nth-last-child(2) {
-//  padding: 30px 13px;
-//}
-
 .pricing button {
   width: auto;
   margin: auto;
@@ -293,7 +268,6 @@ div.subtitle-background {
   box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* pricing color */
 .p-yel big,
 .p-yel h3 {
   color: @ek-c-orange;
@@ -318,6 +292,12 @@ footer {
       color: @ek-c-green;
     }
   }
+}
+
+// Other customizations
+.content {
+  margin: @ek-s-base-plus 0;
+  @media(max-width: @screen-sm-max) { margin: @ek-s-base 0; }
 }
 
 .text-title {
@@ -345,3 +325,5 @@ footer {
     display: inline-block;
   }
 }
+
+textarea { .resizable(vertical); }
