@@ -71,28 +71,28 @@ class ContactHomepageType extends AbstractType
                     ),
                 )
             )
-            ->add(
-                'recaptcha',
-                RecaptchaType::class,
-                array(
-                    'label'       => false,
-                    'mapped'      => false,
-                    'attr' => array(
-                        'options' => array(
-                            'theme' => 'light',
-                            'type'  => 'image',
-                            'size'  => 'normal',
-                            'defer' => true,
-                            'async' => false,
-                        ),
-                    ),
-                    'constraints' => array(
-                        new RecaptchaTrue(array(
-                            'message' => 'Error',
-                        )),
-                    ),
-                )
-            )
+//            ->add(
+//                'recaptcha',
+//                RecaptchaType::class,
+//                array(
+//                    'label'       => false,
+//                    'mapped'      => false,
+//                    'attr' => array(
+//                        'options' => array(
+//                            'theme' => 'light',
+//                            'type'  => 'image',
+//                            'size'  => 'normal',
+//                            'defer' => true,
+//                            'async' => false,
+//                        ),
+//                    ),
+//                    'constraints' => array(
+//                        new RecaptchaTrue(array(
+//                            'message' => 'Error',
+//                        )),
+//                    ),
+//                )
+//            )
             ->add(
                 'send',
                 SubmitType::class,

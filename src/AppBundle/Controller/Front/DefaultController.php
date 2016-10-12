@@ -71,18 +71,9 @@ class DefaultController extends Controller
             $em->persist($contactMessage);
             $em->flush();
             // Send email notifications
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Missatge de contacte pàgina web espaikowo.cat')
-                ->setFrom($contactMessage->getEmail())
-                ->setTo('info@espaikowo.cat')
-                ->setBody(
-                    $this->renderView(
-                    // app/Resources/views/Emails/registration.html.twig
-                        ':Mails:contact_form_admin_notification.html.twig',
-                        array('contact' => $contactMessage)
-                    ),
-                    'text/html'
-                )
+            $messenger = $this->get('app.notification');
+            $messenger->sendUserNotification($contactMessage);
+//            $messenger->sendAdminNotification($contact);
 
 //                ->addPart(
 //                    $this->renderView(
@@ -92,8 +83,8 @@ class DefaultController extends Controller
 //                    'text/plain'
 //                )
 
-            ;
-            $this->get('mailer')->send($message);
+//            ;
+//            $this->get('mailer')->send($message);
             // Clean up new form
             $contactMessage = new ContactMessage();
             $form = $this->createForm(ContactMessageType::class, $contactMessage);
