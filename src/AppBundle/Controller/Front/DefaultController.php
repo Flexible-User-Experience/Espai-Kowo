@@ -37,7 +37,7 @@ class DefaultController extends Controller
 //            $ns = $this->get('app.notification')->sendUserNotification($form->getData());
             $messenger = $this->get('app.notification');
             $messenger->sendUserNotification($contact);
-//            $messenger->sendAdminNotification($contact);
+            $messenger->sendAdminNotification($contact);
             // Clean up new form
             $form = $this->createForm(ContactHomepageType::class);
         }
