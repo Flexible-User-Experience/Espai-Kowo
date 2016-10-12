@@ -31,10 +31,13 @@ class ContactHomepageType extends AbstractType
                 'name',
                 TextType::class,
                 array(
-                    'label'    => false,
-                    'required' => true,
-                    'attr'     => array(
-                        'placeholder' => 'Nom *',
+                    'label'       => false,
+                    'required'    => true,
+                    'attr'        => array(
+                        'placeholder' => 'frontend.forms.name',
+                    ),
+                    'constraints' => array(
+                        new Assert\NotBlank(),
                     ),
                 )
             )
@@ -45,18 +48,16 @@ class ContactHomepageType extends AbstractType
                     'label'       => false,
                     'required'    => true,
                     'attr'        => array(
-                        'placeholder' => 'Email *',
+                        'placeholder' => 'frontend.forms.email',
                     ),
                     'constraints' => array(
-                        new Assert\Email(
-                            array(
-                                'checkMX'   => true,
-                                'checkHost' => true,
-                                'strict'    => true,
-                                'message'   => 'Email invàlid'
-                            )
-                        ),
-                    )
+                        new Assert\NotBlank(),
+                        new Assert\Email(array(
+                            'strict'    => true,
+                            'checkMX'   => true,
+                            'checkHost' => true,
+                        )),
+                    ),
                 )
             )
             ->add(
@@ -66,7 +67,7 @@ class ContactHomepageType extends AbstractType
                     'label'    => false,
                     'required' => false,
                     'attr'     => array(
-                        'placeholder' => 'Telèfon',
+                        'placeholder' => 'frontend.forms.phone',
                     ),
                 )
             )
@@ -76,9 +77,6 @@ class ContactHomepageType extends AbstractType
                 array(
                     'label'       => false,
                     'mapped'      => false,
-                    'constraints' => array(
-                        new RecaptchaTrue(),
-                    ),
                     'attr' => array(
                         'options' => array(
                             'theme' => 'light',
@@ -88,13 +86,18 @@ class ContactHomepageType extends AbstractType
                             'async' => false,
                         ),
                     ),
+                    'constraints' => array(
+                        new RecaptchaTrue(array(
+                            'message' => 'Error',
+                        )),
+                    ),
                 )
             )
             ->add(
                 'send',
                 SubmitType::class,
                 array(
-                    'label' => 'Enviar',
+                    'label' => 'frontend.forms.send',
                     'attr'  => array(
                         'class' => 'btn-kowo',
                     ),

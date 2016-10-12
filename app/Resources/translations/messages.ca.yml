@@ -1,3 +1,16 @@
+frontend:
+    menu:
+        blog: BLOG
+        coworkers: COWORKERS
+        events: ACTIVITATS
+        contact: CONTACTE
+        cms: "[ CMS ]"
+    forms:
+        name: "Nom *"
+        phone: Telèfon
+        email: "Email *"
+        message: "Missatge *"
+        send: Enviar
 backend:
     admin:
         actions: Accions
@@ -44,7 +57,8 @@ backend:
             image: Imatge
         post:
             post: Article
-            image: Imatge
+            image: Imatge color
+            imageBW: Imatge blanc i negre
             title: Títol
             tags: Etiquetes
             description: Descripció

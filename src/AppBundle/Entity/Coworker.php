@@ -112,6 +112,13 @@ class Coworker extends AbstractBase
     private $imageNameBW;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $birthday;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="SocialNetwork", mappedBy="coworker", cascade={"persist", "remove"}, orphanRemoval=true)
@@ -348,6 +355,26 @@ class Coworker extends AbstractBase
     public function getImageNameBW()
     {
         return $this->imageNameBW;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * @param \DateTime $birthday
+     *
+     * @return $this
+     */
+    public function setBirthday($birthday)
+    {
+        $this->birthday = $birthday;
+
+        return $this;
     }
 
     /**

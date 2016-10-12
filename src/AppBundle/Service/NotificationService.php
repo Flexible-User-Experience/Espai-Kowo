@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\ContactMessage;
+use AppBundle\Entity\Coworker;
 
 /**
  * Class NotificationService
@@ -87,6 +88,23 @@ class NotificationService
             $this->urlBase . ' contact form answer',
             $this->twig->render(':Mails:contact_form_user_backend_notification.html.twig', array(
                 'contact' => $contactMessage,
+            ))
+        );
+    }
+
+    /**
+     * Send coworker birthday notification to web user
+     *
+     * @param Coworker $coworker
+     */
+    public function sendCoworkerBirthdayNotification(Coworker $coworker)
+    {
+        $this->messenger->sendEmail(
+            $this->amd,
+            $coworker->getEmail(),
+            $this->urlBase . ' contact form answer',
+            $this->twig->render(':Mails:coworker_birthday_congratulation_notification.html.twig', array(
+                'coworker' => $coworker,
             ))
         );
     }
