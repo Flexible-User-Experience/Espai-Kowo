@@ -179,6 +179,9 @@
 div.subtitle-background {
   background-color: rgba(0, 0, 0, 0.65);
   padding: @ek-s-base-minus 0;
+  margin-top: -100px;
+  z-index: 1000;
+  position: relative;
   h2 {
     text-align: right;
     color: @ek-c-white;
@@ -188,10 +191,12 @@ div.subtitle-background {
   button.btn-kowo.btn-lg { font-size: 11px; }
   @media(min-width: @screen-xs-max) {
     padding: @ek-s-base 0;
+    margin-top: -132px;
     h2 { font-size: 25px; }
     button.btn-kowo.btn-lg { font-size: 14px; }
   }
   @media(min-width: @screen-sm-max) {
+    margin-top: -160px;
     h2 { font-size: 45px; }
     button.btn-kowo.btn-lg { font-size: 18px; }
   }

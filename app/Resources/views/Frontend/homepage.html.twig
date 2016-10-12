@@ -30,18 +30,17 @@
             <i class="fa fa-2x fa-angle-right" aria-hidden="true"></i>
             <span class="sr-only">Next</span>
         </a>
-
-    </div>
-    {# Call to action #}
-    <div class="subtitle-background">
-        <div class="container">
-            <h2>Molt més que compartir un espai de treball</h2>
-            {#<!-- Button trigger modal -->#}
-            <p>
-                <button type="button" class="btn btn-kowo btn-lg" data-toggle="modal" data-target="#form_modal">
-                    <i class="fa fa-heart" aria-hidden="true"></i> Prova-ho gratis 3 dies
-                </button>
-            </p>
+        {# Call to action #}
+        <div class="subtitle-background">
+            <div class="container">
+                <h2>Molt més que compartir un espai de treball</h2>
+                {#<!-- Button trigger modal -->#}
+                <p>
+                    <button type="button" class="btn btn-kowo btn-lg" data-toggle="modal" data-target="#form_modal">
+                        <i class="fa fa-heart" aria-hidden="true"></i> Prova-ho gratis 3 dies
+                    </button>
+                </p>
+            </div>
         </div>
     </div>
     {#<!-- Modal -->#}
@@ -68,7 +67,6 @@
                         <img src="{{ asset('bundles/app/img/photo-home-mini-1.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="Una nova manera de treballar">
                         <div class="caption">
                             <h4 class="text-muted">Una nova manera de treballar</h4>
-                            {#<p>{{ sentences(1) }}</p>#}
                         </div>
                     </div>
                 </div>
@@ -77,7 +75,6 @@
                         <img src="{{ asset('bundles/app/img/photo-home-mini-2.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="Suma't a la comunitat de coworkers">
                         <div class="caption">
                             <h4 class="text-muted">Suma't a la comunitat de coworkers</h4>
-                            {#<p>{{ sentences(1) }}</p>#}
                         </div>
                     </div>
                 </div>
@@ -86,7 +83,6 @@
                         <img src="{{ asset('bundles/app/img/photo-home-mini-3.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="Compartim coneixement">
                         <div class="caption">
                             <h4 class="text-muted">Compartim coneixement</h4>
-                            {#<p>{{ sentences(1) }}</p>#}
                         </div>
                     </div>
                 </div>
@@ -96,11 +92,6 @@
     {# Pricing section #}
     <div class="p-vertical green-background-light">
         <div class="container">
-            {#<div class="row">#}
-                {#<div class="col-md-12">#}
-                    {#<h2 class="text-center no-m-top extra-m-bottom">Tarifa</h2>#}
-                {#</div>#}
-            {#</div>#}
             <div class="row white">
                 <div class="block">
                     <div class="col-xs-6 col-sm-4 col-sm-offset-2">
@@ -117,7 +108,6 @@
                                 <h3 class="no-m-top">100 <i class="fa fa-euro"></i></h3>
                                 <span>al mes</span>
                             </li>
-                            {#<li><button>Join Now</button></li>#}
                         </ul>
                     </div>
                     <div class="col-xs-6 col-sm-4">
@@ -134,7 +124,6 @@
                                 <h3 class="no-m-top">65 <i class="fa fa-euro"></i></h3>
                                 <span>al mes</span>
                             </li>
-                            {#<li><button>Join Now</button></li>#}
                         </ul>
                     </div>
                 </div>
