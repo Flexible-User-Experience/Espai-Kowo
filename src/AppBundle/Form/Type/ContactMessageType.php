@@ -31,7 +31,7 @@ class ContactMessageType extends ContactHomepageType
                     'required' => true,
                     'attr'     => array(
                         'rows'        => 5,
-                        'placeholder' => 'Missatge',
+                        'placeholder' => 'frontend.forms.message',
                     ),
                 )
             );

@@ -34,7 +34,7 @@ class ContactHomepageType extends AbstractType
                     'label'    => false,
                     'required' => true,
                     'attr'     => array(
-                        'placeholder' => 'Nom *',
+                        'placeholder' => 'frontend.forms.name',
                     ),
                 )
             )
@@ -45,7 +45,7 @@ class ContactHomepageType extends AbstractType
                     'label'       => false,
                     'required'    => true,
                     'attr'        => array(
-                        'placeholder' => 'Email *',
+                        'placeholder' => 'frontend.forms.email',
                     ),
                     'constraints' => array(
                         new Assert\Email(
@@ -53,7 +53,7 @@ class ContactHomepageType extends AbstractType
                                 'checkMX'   => true,
                                 'checkHost' => true,
                                 'strict'    => true,
-                                'message'   => 'Email invàlid'
+                                'message'   => 'rontend.forms.error.email'
                             )
                         ),
                     )
@@ -66,7 +66,7 @@ class ContactHomepageType extends AbstractType
                     'label'    => false,
                     'required' => false,
                     'attr'     => array(
-                        'placeholder' => 'Telèfon',
+                        'placeholder' => 'frontend.forms.phone',
                     ),
                 )
             )
@@ -94,7 +94,7 @@ class ContactHomepageType extends AbstractType
                 'send',
                 SubmitType::class,
                 array(
-                    'label' => 'Enviar',
+                    'label' => 'frontend.forms.send',
                     'attr'  => array(
                         'class' => 'btn-kowo',
                     ),

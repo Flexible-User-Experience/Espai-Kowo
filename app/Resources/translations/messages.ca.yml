@@ -5,6 +5,14 @@ frontend:
         events: ACTIVITATS
         contact: CONTACTE
         cms: "[ CMS ]"
+    forms:
+        name: "Nom *"
+        phone: "Telèfon"
+        email: "Email *"
+        message: "Missatge *"
+        send: Enviar
+        error:
+            email: "Email invàlid"
 backend:
     admin:
         actions: Accions
