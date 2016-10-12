@@ -139,13 +139,6 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
-                'subject',
-                null,
-                array(
-                    'label' => 'backend.admin.contact.subject',
-                )
-            )
-            ->add(
                 'message',
                 'textarea',
                 array(
@@ -205,13 +198,6 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.contact.email',
-                )
-            )
-            ->add(
-                'subject',
-                null,
-                array(
-                    'label' => 'backend.admin.contact.subject',
                 )
             )
             ->add(
