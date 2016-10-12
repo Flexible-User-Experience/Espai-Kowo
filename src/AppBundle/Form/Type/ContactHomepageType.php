@@ -77,11 +77,6 @@ class ContactHomepageType extends AbstractType
                 array(
                     'label'       => false,
                     'mapped'      => false,
-                    'constraints' => array(
-                        new RecaptchaTrue(array(
-                            'message' => 'Error',
-                        )),
-                    ),
                     'attr' => array(
                         'options' => array(
                             'theme' => 'light',
@@ -90,6 +85,11 @@ class ContactHomepageType extends AbstractType
                             'defer' => true,
                             'async' => false,
                         ),
+                    ),
+                    'constraints' => array(
+                        new RecaptchaTrue(array(
+                            'message' => 'Error',
+                        )),
                     ),
                 )
             )

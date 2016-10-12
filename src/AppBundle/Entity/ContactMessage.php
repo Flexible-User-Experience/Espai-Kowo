@@ -52,7 +52,6 @@ class ContactMessage extends AbstractBase
      * @var string
      *
      * @ORM\Column(type="text", length=4000)
-     * @Assert\NotBlank()
      */
     private $message;
 
