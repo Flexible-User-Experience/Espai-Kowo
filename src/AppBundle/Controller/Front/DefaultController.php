@@ -73,7 +73,7 @@ class DefaultController extends Controller
             // Send email notifications
             $messenger = $this->get('app.notification');
             $messenger->sendUserNotification($contactMessage);
-//            $messenger->sendAdminNotification($contact);
+            $messenger->sendAdminNotification($contactMessage);
 
 //                ->addPart(
 //                    $this->renderView(

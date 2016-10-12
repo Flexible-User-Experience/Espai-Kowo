@@ -1,7 +1,16 @@
-{% block body %}
-    <h1>New contact message from "{{ contact.name }}" received</h1>
-    <p>Check it inside your CMS messages list <a href="{{ url('admin_app_contactmessage_list') }}">here</a>, or answer it directly <a
-                href="{{ url('admin_app_contactmessage_answer', { id: contact.id }) }}">here</a></p>
-    <br>
-    <p>Good luck!</p>
+{% extends ':Mails:base.html.twig' %}
+
+{% block content %}
+    <table>
+        <tr>
+            <th class="vertical-padding">
+                <h1>{{ contact.name }} ha emplenat el formulari de contacte.</h1>
+                <br>
+                <p>Comprova-ho a la teva llista de contactes del CMS <a href="{{ url('admin_app_contactmessage_list') }}">aquí</a>, o respon-li directament <a
+                            href="{{ url('admin_app_contactmessage_answer', { id: contact.id }) }}">aquí</a></p>
+                <br>
+                <p>Bona sort!</p>
+            </th>
+        </tr>
+    </table>
 {% endblock %}
