@@ -7,12 +7,10 @@ frontend:
         cms: "[ CMS ]"
     forms:
         name: "Nom *"
-        phone: "Telèfon"
+        phone: Telèfon
         email: "Email *"
         message: "Missatge *"
         send: Enviar
-        error:
-            email: "Email invàlid"
 backend:
     admin:
         actions: Accions

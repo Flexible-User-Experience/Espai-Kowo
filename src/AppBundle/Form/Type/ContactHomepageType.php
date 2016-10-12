@@ -47,16 +47,6 @@ class ContactHomepageType extends AbstractType
                     'attr'        => array(
                         'placeholder' => 'frontend.forms.email',
                     ),
-                    'constraints' => array(
-                        new Assert\Email(
-                            array(
-                                'checkMX'   => true,
-                                'checkHost' => true,
-                                'strict'    => true,
-                                'message'   => 'rontend.forms.error.email'
-                            )
-                        ),
-                    )
                 )
             )
             ->add(
