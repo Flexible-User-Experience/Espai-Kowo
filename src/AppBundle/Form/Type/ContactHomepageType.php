@@ -31,10 +31,13 @@ class ContactHomepageType extends AbstractType
                 'name',
                 TextType::class,
                 array(
-                    'label'    => false,
-                    'required' => true,
-                    'attr'     => array(
+                    'label'       => false,
+                    'required'    => true,
+                    'attr'        => array(
                         'placeholder' => 'frontend.forms.name',
+                    ),
+                    'constraints' => array(
+                        new Assert\NotBlank(),
                     ),
                 )
             )
@@ -46,6 +49,14 @@ class ContactHomepageType extends AbstractType
                     'required'    => true,
                     'attr'        => array(
                         'placeholder' => 'frontend.forms.email',
+                    ),
+                    'constraints' => array(
+                        new Assert\NotBlank(),
+                        new Assert\Email(array(
+                            'strict'    => true,
+                            'checkMX'   => true,
+                            'checkHost' => true,
+                        )),
                     ),
                 )
             )

@@ -23,15 +23,15 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $form = $this->createForm(ContactHomepageType::class);
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
-            // Flash
+            // Set frontend flash message
             $this->addFlash(
                 'notice',
                 'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
-            // Email
+            // Send email notifications
             $message = \Swift_Message::newInstance()
                 ->setSubject('Missatge de contacte pàgina web ' . $this->getParameter('mailer_url_base'))
                 ->setFrom($this->getParameter('mailer_destination'))
@@ -44,8 +44,9 @@ class DefaultController extends Controller
                     'text/html'
                 );
             $this->get('mailer')->send($message);
+            // Clean up new form
+            $form = $this->createForm(ContactHomepageType::class);
         }
-
 
         return $this->render(':Frontend:homepage.html.twig', array(
             'formHomepage' => $form->createView(),
@@ -63,8 +64,8 @@ class DefaultController extends Controller
     {
         $contactMessage = new ContactMessage();
         $form = $this->createForm(ContactMessageType::class, $contactMessage);
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             // Set frontend flash message
             $this->addFlash(
@@ -133,6 +134,7 @@ class DefaultController extends Controller
      * @Route("/test-email", name="front_test_email")
      *
      * @return Response
+     * @throws NotFoundHttpException
      */
     public function testEmailAction()
     {

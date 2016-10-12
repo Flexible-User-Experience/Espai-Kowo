@@ -24,7 +24,6 @@ class ContactMessage extends AbstractBase
      * @var string
      *
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
      */
     private $name;
 
@@ -39,8 +38,6 @@ class ContactMessage extends AbstractBase
      * @var string
      *
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Email(strict=true, checkMX=true, checkHost=true)
      */
     private $email;
 
