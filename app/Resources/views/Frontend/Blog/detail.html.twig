@@ -5,11 +5,12 @@
 {% block main %}
     <div class="container container-main">
         <div class="row">
-            <div class="col-md-4">
-                {# left side #}
+            {# Left side #}
+            <div class="col-sm-4">
                 {% include ':Frontend/includes:image_detail.html.twig' with {object: post} %}
             </div>
-            <div class="col-md-8">
+            {# Right side #}
+            <div class="col-sm-8">
                 <h2 class="no-m-top">{{ post.title }}</h2>
                 <h4 class="text-muted">{{ post.publishedAt | date('d/m/Y') }}</h4>
                 <h4 class="c-green">{{ post.tags | join(', ')  }}</h4>
