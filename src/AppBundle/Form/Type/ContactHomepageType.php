@@ -67,7 +67,9 @@ class ContactHomepageType extends AbstractType
                     'label'       => false,
                     'mapped'      => false,
                     'constraints' => array(
-                        new RecaptchaTrue(),
+                        new RecaptchaTrue(array(
+                            'message' => 'Error',
+                        )),
                     ),
                     'attr' => array(
                         'options' => array(
