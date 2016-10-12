@@ -1,3 +1,10 @@
+frontend:
+    menu:
+        blog: BLOG
+        coworkers: COWORKERS
+        events: ACTIVITATS
+        contact: CONTACTE
+        cms: "[ CMS ]"
 backend:
     admin:
         actions: Accions
