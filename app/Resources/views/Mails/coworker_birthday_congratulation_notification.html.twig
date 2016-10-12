@@ -1,12 +1,17 @@
 {% extends ':Mails:base.html.twig' %}
 
 {% block content %}
-    <div class="container container-main left-margin-negative left-margin-negative">
-        <div class="row">
-            <div class="col-md-4">
-                <h1 class="no-m-top">Feliç {{ coworker.birthday | age }} aniversari {{ coworker.name }} !!!</h1>
-            </div>
-        </div>
-    </div>
+    <table class="container container-main">
+        <tr>
+            <th class="vertical-padding">
+                <img src="{{ absolute_url(asset('bundles/app/img/birthday_notification.jpg') | imagine_filter('480xY')) }}">
+            </th>
+        </tr>
+        <tr>
+            <th class="vertical-padding">
+                <h1 class="left-margin-negative">Feliç {{ coworker.birthday | age }} aniversari {{ coworker.name }} !!!</h1>
+            </th>
+        </tr>
+    </table>
 {% endblock %}
 {% block footer %}{% endblock %}

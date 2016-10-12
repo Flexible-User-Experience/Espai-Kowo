@@ -52,7 +52,6 @@ class SendBirthdayNotificationCommand extends ContainerAwareCommand
 
         // Command Vars
         $this->em   = $this->getContainer()->get('doctrine.orm.default_entity_manager');
-        $itemsFound = 0;
         $currentDate = new \DateTime();
 
         $coworkersBirthday = $this->em->getRepository('AppBundle:Coworker')->getAllEnabledCoworkersBirthdayByDayAndMonth($currentDate->format('j'), $currentDate->format('n'));

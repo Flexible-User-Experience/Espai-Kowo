@@ -67,10 +67,8 @@ class CoworkerRepository extends EntityRepository
     public function getAllEnabledCoworkersBirthdayByDayAndMonthQB($day, $month)
     {
         $query = $this->createQueryBuilder('coworker')
-            ->where('coworker.enabled = :enabled')
-            ->andWhere('DAY(coworker.birthday) = :day')
+            ->where('DAY(coworker.birthday) = :day')
             ->andWhere('MONTH(coworker.birthday) = :month')
-            ->setParameter('enabled', true)
             ->setParameter('day', $day)
             ->setParameter('month', $month);
 
