@@ -69,7 +69,7 @@ class NotificationService
         $this->messenger->sendEmail(
             $this->amd,
             $contactMessage->getEmail(),
-            'Missatge de contacte pàgina web ' . $this->urlBase,
+            'Notificació pàgina web ' . $this->urlBase,
             $this->twig->render(':Mails:common_user_notification.html.twig', array(
                 'contact' => $contactMessage,
             ))
@@ -120,7 +120,7 @@ class NotificationService
         $this->messenger->sendEmail(
             $this->amd,
             $this->amd,
-            'Missatge de contacte pàgina web ' . $this->urlBase,
+            'Resposta pàgina web ' . $this->urlBase,
             $this->twig->render(':Mails:user_backend_answer_notification.html.twig', array(
                 'contact' => $contactMessage,
             ))
