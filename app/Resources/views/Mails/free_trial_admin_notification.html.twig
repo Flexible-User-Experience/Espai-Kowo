@@ -1,16 +1,31 @@
 {% extends ':Mails:base.html.twig' %}
 
+{% block subject %}Notificació prova-ho gratis{% endblock %}
+
 {% block content %}
-    <table>
+    <table class="row">
+        <tbody>
         <tr>
-            <th class="vertical-padding">
-                <h1>{{ contact.name }}, amb correu elèctrònic {{ contact.email }} i telèfon {{ contact.phone }} ha emplenat el formulari 3 dies de prova gratis.</h1>
-                <br>
-                {#<p>Comprova-ho a la teva llista de contactes del CMS <a href="{{ url('admin_app_contactmessage_list') }}">aquí</a>, o respon-li directament <a#}
-                            {#href="{{ url('admin_app_contactmessage_answer', { id: contact.id }) }}">aquí</a></p>#}
-                <br>
-                <p>Bona sort!</p>
+            <th><img src="{{ absolute_url(asset('bundles/app/img/user_notification.jpg')) }}"></th>
+        </tr>
+        </tbody>
+    </table>
+    <table class="row">
+        <tbody>
+        <tr>
+            <th class="small-12 large-12 columns first last vertical-padding">
+                <table>
+                    <tr>
+                        <th>
+                            <h4>Possible coworker interessat en provar-ho 3 dies</h4>
+                            <p class="grey-color">{{ contact.name }}, amb correu elèctrònic <a href="mailto:{{ contact.email }}">{{ contact.email }}</a> {% if contact.phone %}i telèfon {{ contact.phone }} {% endif %}ha emplenat el formulari de prova gratuïta.</p>
+                            <p class="grey-color">Bona sort!</p>
+                        </th>
+                        <th class="expander"></th>
+                    </tr>
+                </table>
             </th>
         </tr>
+        </tbody>
     </table>
 {% endblock %}

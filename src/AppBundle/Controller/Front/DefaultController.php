@@ -37,7 +37,7 @@ class DefaultController extends Controller
             /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
             $messenger->sendCommonUserNotification($contact);
-            $messenger->sendAdminNotification($contact);
+            $messenger->sendFreeTrialAdminNotification($contact);
             // Clean up new form
             $form = $this->createForm(ContactHomepageType::class);
         }
@@ -74,7 +74,7 @@ class DefaultController extends Controller
             /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
             $messenger->sendCommonUserNotification($contactMessage);
-            $messenger->sendAdminNotification($contactMessage);
+            $messenger->sendContactAdminNotification($contactMessage);
             // Clean up new form
             $contactMessage = new ContactMessage();
             $form = $this->createForm(ContactMessageType::class, $contactMessage);
@@ -118,8 +118,7 @@ class DefaultController extends Controller
         }
 
         $contact = new ContactMessage();
-        $contact->setName('Hijack');
 
-        return $this->render(':Mails:coworker_birthday_congratulation_notification.html.twig', array('coworker' => $this->getDoctrine()->getRepository('AppBundle:Coworker')->find(1)));
+        return $this->render(':Mails:free_trial_admin_notification.html.twig', array('contact' => $contact));
     }
 }

@@ -59,42 +59,7 @@ class NotificationService
     }
 
     /**
-     * Send a contact form notification to administrator
-     *
-     * @param ContactMessage $contactMessage
-     */
-    public function sendAdminNotification(ContactMessage $contactMessage)
-    {
-        $this->messenger->sendEmail(
-            $contactMessage->getEmail(),
-            $this->amd,
-            $this->urlBase . ' contact form received',
-            $this->twig->render(':Mails:contact_form_admin_notification.html.twig', array(
-                'contact' => $contactMessage,
-            ))
-        );
-    }
-
-//    /**
-//     * Send a contact form notification to web user
-//     *
-//     * @param ContactHomepageType $formType
-//     *
-//     */
-//    public function sendUserNotification(ContactHomepageType $formType)
-//    {
-//        $this->messenger->sendEmail(
-//            $this->amd,
-//            $formType['email'],
-//            'Missatge de contacte pàgina web ' . $this->urlBase,
-//            $this->twig->render(':Mails:contact_form_user_notification.html.twig', array(
-//                'contact' => $formType,
-//            ))
-//        );
-//    }
-
-    /**
-     * Send a contact form notification to web user
+     * Send a common notification mail to frontend user
      *
      * @param ContactMessage $contactMessage
      *
@@ -112,24 +77,41 @@ class NotificationService
     }
 
     /**
-     * Send backend answer notification to web user
+     * Send free trial notification to admin user
      *
      * @param ContactMessage $contactMessage
      */
-    public function senddUserBackendNotification(ContactMessage $contactMessage)
+    public function sendFreeTrialAdminNotification(ContactMessage $contactMessage)
     {
         $this->messenger->sendEmail(
             $this->amd,
             $contactMessage->getEmail(),
             $this->urlBase . ' contact form answer',
-            $this->twig->render(':Mails:contact_form_user_backend_notification.html.twig', array(
+            $this->twig->render(':Mails:free_trial_admin_notification.html.twigg', array(
                 'contact' => $contactMessage,
             ))
         );
     }
 
     /**
-     * Send coworker birthday notification to web user
+     * Send a contact form notification to admin user
+     *
+     * @param ContactMessage $contactMessage
+     */
+    public function sendContactAdminNotification(ContactMessage $contactMessage)
+    {
+        $this->messenger->sendEmail(
+            $contactMessage->getEmail(),
+            $this->amd,
+            $this->urlBase . ' contact form received',
+            $this->twig->render(':Mails:contact_form_admin_notification.html.twig', array(
+                'contact' => $contactMessage,
+            ))
+        );
+    }
+
+    /**
+     * Send happy birthday notification to coworker
      *
      * @param Coworker $coworker
      */
