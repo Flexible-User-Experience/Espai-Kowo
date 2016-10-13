@@ -4,7 +4,6 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\ContactMessage;
 use AppBundle\Entity\Coworker;
-use AppBundle\Form\Type\ContactHomepageType;
 
 /**
  * Class NotificationService
@@ -15,17 +14,33 @@ use AppBundle\Form\Type\ContactHomepageType;
  */
 class NotificationService
 {
-    /** @var CourierService */
+    /**
+     * @var CourierService
+     */
     private $messenger;
 
-    /** @var \Twig_Environment */
+    /**
+     * @var \Twig_Environment
+     */
     private $twig;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $amd;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $urlBase;
+
+    /**
+     *
+     *
+     * Methods
+     *
+     *
+     */
 
     /**
      * NotificationService constructor
@@ -38,17 +53,52 @@ class NotificationService
     public function __construct(CourierService $messenger, \Twig_Environment $twig, $amd, $urlBase)
     {
         $this->messenger = $messenger;
-        $this->twig = $twig;
-        $this->amd = $amd;
-        $this->urlBase = $urlBase;
+        $this->twig      = $twig;
+        $this->amd       = $amd;
+        $this->urlBase   = $urlBase;
     }
 
     /**
-     * Send a contact form notification to administrator
+     * Send a common notification mail to frontend user
+     *
+     * @param ContactMessage $contactMessage
+     *
+     */
+    public function sendCommonUserNotification(ContactMessage $contactMessage)
+    {
+        $this->messenger->sendEmail(
+            $this->amd,
+            $contactMessage->getEmail(),
+            'Missatge de contacte pàgina web ' . $this->urlBase,
+            $this->twig->render(':Mails:common_user_notification.html.twig', array(
+                'contact' => $contactMessage,
+            ))
+        );
+    }
+
+    /**
+     * Send free trial notification to admin user
      *
      * @param ContactMessage $contactMessage
      */
-    public function sendAdminNotification(ContactMessage $contactMessage)
+    public function sendFreeTrialAdminNotification(ContactMessage $contactMessage)
+    {
+        $this->messenger->sendEmail(
+            $this->amd,
+            $contactMessage->getEmail(),
+            $this->urlBase . ' contact form answer',
+            $this->twig->render(':Mails:free_trial_admin_notification.html.twigg', array(
+                'contact' => $contactMessage,
+            ))
+        );
+    }
+
+    /**
+     * Send a contact form notification to admin user
+     *
+     * @param ContactMessage $contactMessage
+     */
+    public function sendContactAdminNotification(ContactMessage $contactMessage)
     {
         $this->messenger->sendEmail(
             $contactMessage->getEmail(),
@@ -60,61 +110,8 @@ class NotificationService
         );
     }
 
-//    /**
-//     * Send a contact form notification to web user
-//     *
-//     * @param ContactHomepageType $formType
-//     *
-//     */
-//    public function sendUserNotification(ContactHomepageType $formType)
-//    {
-//        $this->messenger->sendEmail(
-//            $this->amd,
-//            $formType['email'],
-//            'Missatge de contacte pàgina web ' . $this->urlBase,
-//            $this->twig->render(':Mails:contact_form_user_notification.html.twig', array(
-//                'contact' => $formType,
-//            ))
-//        );
-//    }
-
     /**
-     * Send a contact form notification to web user
-     *
-     * @param ContactMessage $contactMessage
-     *
-     */
-    public function sendUserNotification(ContactMessage $contactMessage)
-    {
-        $this->messenger->sendEmail(
-            $this->amd,
-            $contactMessage->getEmail(),
-            'Missatge de contacte pàgina web ' . $this->urlBase,
-            $this->twig->render(':Mails:contact_form_user_notification.html.twig', array(
-                'contact' => $contactMessage,
-            ))
-        );
-    }
-
-    /**
-     * Send backend answer notification to web user
-     *
-     * @param ContactMessage $contactMessage
-     */
-    public function senddUserBackendNotification(ContactMessage $contactMessage)
-    {
-        $this->messenger->sendEmail(
-            $this->amd,
-            $contactMessage->getEmail(),
-            $this->urlBase . ' contact form answer',
-            $this->twig->render(':Mails:contact_form_user_backend_notification.html.twig', array(
-                'contact' => $contactMessage,
-            ))
-        );
-    }
-
-    /**
-     * Send coworker birthday notification to web user
+     * Send happy birthday notification to coworker
      *
      * @param Coworker $coworker
      */

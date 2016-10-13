@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Front;
 use AppBundle\Entity\ContactMessage;
 use AppBundle\Form\Type\ContactHomepageType;
 use AppBundle\Form\Type\ContactMessageType;
+use AppBundle\Service\NotificationService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,20 +25,19 @@ class DefaultController extends Controller
     {
         $contact = new ContactMessage();
         $form = $this->createForm(ContactHomepageType::class, $contact);
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             // Set frontend flash message
             $this->addFlash(
                 'notice',
                 'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
-
             // Send email notifications
-//            $ns = $this->get('app.notification')->sendUserNotification($form->getData());
+            /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
-            $messenger->sendUserNotification($contact);
-            $messenger->sendAdminNotification($contact);
+            $messenger->sendCommonUserNotification($contact);
+            $messenger->sendFreeTrialAdminNotification($contact);
             // Clean up new form
             $form = $this->createForm(ContactHomepageType::class);
         }
@@ -71,20 +71,10 @@ class DefaultController extends Controller
             $em->persist($contactMessage);
             $em->flush();
             // Send email notifications
+            /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
-            $messenger->sendUserNotification($contactMessage);
-            $messenger->sendAdminNotification($contactMessage);
-
-//                ->addPart(
-//                    $this->renderView(
-//                        ':Mails:',
-//                        array('name' => $name)
-//                    ),
-//                    'text/plain'
-//                )
-
-//            ;
-//            $this->get('mailer')->send($message);
+            $messenger->sendCommonUserNotification($contactMessage);
+            $messenger->sendContactAdminNotification($contactMessage);
             // Clean up new form
             $contactMessage = new ContactMessage();
             $form = $this->createForm(ContactMessageType::class, $contactMessage);
@@ -127,6 +117,8 @@ class DefaultController extends Controller
             throw new NotFoundHttpException();
         }
 
-        return $this->render(':Mails:free_trial_user_notification.html.twig', array());
+        $contact = $this->getDoctrine()->getRepository('AppBundle:ContactMessage')->find(1);
+
+        return $this->render(':Mails:contact_form_admin_notification.html.twig', array('contact' => $contact));
     }
 }
