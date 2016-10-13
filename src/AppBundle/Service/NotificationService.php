@@ -87,7 +87,7 @@ class NotificationService
             $this->amd,
             $contactMessage->getEmail(),
             $this->urlBase . ' contact form answer',
-            $this->twig->render(':Mails:free_trial_admin_notification.html.twigg', array(
+            $this->twig->render(':Mails:free_trial_admin_notification.html.twig', array(
                 'contact' => $contactMessage,
             ))
         );
