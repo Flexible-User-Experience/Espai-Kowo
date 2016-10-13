@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3b59a684a1cc9b9f6f64745095c0babf",
-    "content-hash": "cbf5c2fbce3d504ffcb49c291da4ff3b",
+    "hash": "70154fe6204eeecf2ca89ecdaedaef28",
+    "content-hash": "8c21bff3cdf2417df9be06689759c90d",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -1640,25 +1640,26 @@
         },
         {
             "name": "excelwebzone/recaptcha-bundle",
-            "version": "2.6.x-dev",
-            "target-dir": "EWZ/Bundle/RecaptchaBundle",
+            "version": "v1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/excelwebzone/EWZRecaptchaBundle.git",
-                "reference": "da2138e23d0338a4679deac96a59d970896c4bda"
+                "reference": "fff64c4fec283c4d2728f75e45cc1042f46b6876"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/excelwebzone/EWZRecaptchaBundle/zipball/da2138e23d0338a4679deac96a59d970896c4bda",
-                "reference": "da2138e23d0338a4679deac96a59d970896c4bda",
+                "url": "https://api.github.com/repos/excelwebzone/EWZRecaptchaBundle/zipball/fff64c4fec283c4d2728f75e45cc1042f46b6876",
+                "reference": "fff64c4fec283c4d2728f75e45cc1042f46b6876",
                 "shasum": ""
             },
             "require": {
-                "symfony/framework-bundle": "~2.6"
+                "symfony/form": "^2.8 || ^3.0",
+                "symfony/framework-bundle": "^2.8 || ^3.0",
+                "symfony/validator": "^2.8 || ^3.0"
             },
             "type": "symfony-bundle",
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "EWZ\\Bundle\\RecaptchaBundle\\": ""
                 }
             },
@@ -1678,7 +1679,7 @@
             "keywords": [
                 "recaptcha"
             ],
-            "time": "2016-04-28 18:13:58"
+            "time": "2016-09-13 16:29:16"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -6059,9 +6060,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "excelwebzone/recaptcha-bundle": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

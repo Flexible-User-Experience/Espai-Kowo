@@ -26,7 +26,7 @@
         "doctrine/orm": "^2.4.8",
         "egeloen/ckeditor-bundle": "^4.0",
         "egulias/email-validator": "^1.2",
-        "excelwebzone/recaptcha-bundle": "2.6.x-dev",
+        "excelwebzone/recaptcha-bundle": "^1.4",
         "hampe/zurb-ink-bundle": "^2.2",
         "hautelook/alice-bundle": "^1.0",
         "jms/i18n-routing-bundle": "^2.0",

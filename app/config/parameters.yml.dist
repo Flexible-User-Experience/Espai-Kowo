@@ -44,3 +44,6 @@ parameters:
 
     recaptcha_public_key: 11AAbb22CCdd
     recaptcha_private_key: 11AAbb22CCff
+
+    facebook_pixel_enabled: false
+    facebook_pixel_id: XXXXXX
