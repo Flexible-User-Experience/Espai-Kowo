@@ -26,23 +26,26 @@
                 <td class="center" align="center" valign="top">
                     <center>
                         <table class="container">
+                            <tbody>
                             <tr class="white-color">
                                 <td>
-                                    {# header #}
+                                    {# Header #}
                                     <table class="row black-background">
+                                        <tbody>
                                         <tr>
                                             <th class="small-12 large-6 first columns white-color padding-bottom">
-                                                <img src="{{ absolute_url(asset('bundles/app/img/logo-espai-kowo.png') | imagine_filter('60x60')) }}">
+                                                <img src="{{ absolute_url(asset('bundles/app/img/logo-espai-kowo-small.png')) }}">
                                             </th>
                                             <th class="small-12 large-6 last columns white-color vertical-padding">
-                                                <h2 class="text-right">Espai Kowo</h2>
-                                                {% block subject %}{% endblock %}
+                                                <h2 class="text-right">{% block subject %}Espai Kowo{% endblock %}</h2>
                                             </th>
                                             <th class="expander"></th>
                                         </tr>
+                                        </tbody>
                                     </table>
-                                    {# body #}
+                                    {# Body #}
                                     {% block content %}{% endblock %}
+                                    {# Footer #}
                                     {% block footer %}
                                         <table class="row black-background">
                                             <tr>
@@ -74,6 +77,7 @@
                                     {% endblock %}
                                 </td>
                             </tr>
+                            </tbody>
                         </table>
                     </center>
                 </td>
