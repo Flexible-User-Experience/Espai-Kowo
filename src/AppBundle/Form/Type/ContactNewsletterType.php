@@ -12,13 +12,13 @@ use EWZ\Bundle\RecaptchaBundle\Form\Type\RecaptchaType;
 use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
 
 /**
- * Class ContactHomepageType
+ * Class ContactNewsletterType
  *
  * @category FormType
  * @package  AppBundle\Form\Type
- * @author   Wilson Iglesias <wiglesias83@gmail.com>
+ * @author   Anton Serra <aserratorta@gmail.com>
  */
-class ContactHomepageType extends ContactNewsletterType
+class ContactNewsletterType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -57,17 +57,6 @@ class ContactHomepageType extends ContactNewsletterType
                             'checkMX'   => true,
                             'checkHost' => true,
                         )),
-                    ),
-                )
-            )
-            ->add(
-                'phone',
-                TextType::class,
-                array(
-                    'label'    => false,
-                    'required' => false,
-                    'attr'     => array(
-                        'placeholder' => 'frontend.forms.phone',
                     ),
                 )
             )
