@@ -8,8 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints as Assert;
-use EWZ\Bundle\RecaptchaBundle\Form\Type\RecaptchaType;
-use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
+//use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
 
 /**
  * Class ContactNewsletterType
@@ -62,7 +62,7 @@ class ContactNewsletterType extends AbstractType
             )
             ->add(
                 'recaptcha',
-                RecaptchaType::class,
+                EWZRecaptchaType::class,
                 array(
                     'label'       => false,
                     'mapped'      => false,
@@ -71,15 +71,15 @@ class ContactNewsletterType extends AbstractType
                             'theme' => 'light',
                             'type'  => 'image',
                             'size'  => 'normal',
-                            'defer' => true,
+                            'defer' => false,
                             'async' => false,
                         ),
                     ),
-                    'constraints' => array(
-                        new RecaptchaTrue(array(
-                            'message' => 'Error',
-                        )),
-                    ),
+//                    'constraints' => array(
+//                        new RecaptchaTrue(array(
+//                            'message' => 'Error',
+//                        )),
+//                    ),
                 )
             )
             ->add(
@@ -99,6 +99,6 @@ class ContactNewsletterType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'contact_homepage';
+        return 'contact_newsletter';
     }
 }

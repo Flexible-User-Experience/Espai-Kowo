@@ -22,9 +22,32 @@
                     </span>
                 </div>
             </div>
+            {#<!-- Modal -->#}
+            <div class="modal fade" id="form_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content text-left">
+                        <div class="modal-header green-background-light">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Subscriu-te al nostre butlletí electrònic</h4>
+                        </div>
+                        <div class="modal-body">
+                            {{ form_start(form) }}
+                                {{ form_row(form.name) }}
+                                {{ form_row(form.email) }}
+                                {{ form_rest(form) }}
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="container container-main">
+        <div class="row">
+            <div class="col-xs-12">
+                {% include ':Frontend/includes:notice_flash.html.twig' %}
+            </div>
+        </div>
         <div class="row">
             {% if events | length > 0 %}
                 {% for event in events %}
@@ -50,4 +73,15 @@
             {% endif %}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if not form.vars.valid %}
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                jQuery('#form_modal').modal('show');
+            });
+        </script>
+    {% endif %}
 {% endblock %}
