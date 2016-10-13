@@ -120,6 +120,6 @@ class DefaultController extends Controller
         $contact = new ContactMessage();
         $contact->setName('Hijack');
 
-        return $this->render(':Mails:common_user_notification.html.twig', array('contact' => $contact));
+        return $this->render(':Mails:coworker_birthday_congratulation_notification.html.twig', array('coworker' => $this->getDoctrine()->getRepository('AppBundle:Coworker')->find(1)));
     }
 }
