@@ -1,16 +1,30 @@
 {% extends ':Mails:base.html.twig' %}
 
+{% block subject %}Happy birthday!{% endblock %}
+
 {% block content %}
-    <table class="container container-main">
+    <table class="row">
+        <tbody>
         <tr>
-            <th class="vertical-padding">
-                <img src="{{ absolute_url(asset('bundles/app/img/birthday_notification.jpg')) }}">
+            <th><img src="{{ absolute_url(asset('bundles/app/img/birthday_notification.jpg')) }}"></th>
+        </tr>
+        </tbody>
+    </table>
+    <table class="row">
+        <tbody>
+        <tr>
+            <th class="small-12 large-12 columns first last vertical-padding">
+                <table>
+                    <tr>
+                        <th>
+                            <h4>Moltes felicitats {{ coworker.name }}!!!</h4>
+                            <p class="grey-color">Avui que fas {{ coworker.birthday | age }} anys, tots els coworkers et desitgem que passes un molt bon dia.</p>
+                        </th>
+                        <th class="expander"></th>
+                    </tr>
+                </table>
             </th>
         </tr>
-        <tr>
-            <th class="vertical-padding">
-                <h1 class="left-margin-negative">Feliç {{ coworker.birthday | age }} aniversari {{ coworker.name }} !!!</h1>
-            </th>
-        </tr>
+        </tbody>
     </table>
 {% endblock %}

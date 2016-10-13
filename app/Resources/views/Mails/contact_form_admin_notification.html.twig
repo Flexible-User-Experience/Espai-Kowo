@@ -1,17 +1,32 @@
 {% extends ':Mails:base.html.twig' %}
 
+{% block subject %}Notificació de contacte{% endblock %}
+
 {% block content %}
-    <table>
+    <table class="row">
+        <tbody>
         <tr>
-            <th class="vertical-padding">
-                <h3>{{ contact.name }}, amb correu elèctrònic {{ contact.email }} i telèfon {{ contact.phone }} ha emplenat el formulari de contacte.</h3>
-                <br>
-                {#<p>Comprova-ho a la teva llista de contactes del CMS <a href="{{ url('admin_app_contactmessage_list') }}">aquí</a>, o respon-li directament <a#}
-                            {#href="{{ url('admin_app_contactmessage_answer', { id: contact.id }) }}">aquí</a></p>#}
-                <br>
-                <p>Bona sort!</p>
+            <th><img src="{{ absolute_url(asset('bundles/app/img/user_notification.jpg')) }}"></th>
+        </tr>
+        </tbody>
+    </table>
+    <table class="row">
+        <tbody>
+        <tr>
+            <th class="small-12 large-12 columns first last vertical-padding">
+                <table>
+                    <tr>
+                        <th>
+                            <h4>Persona interessada en contactar</h4>
+                            <p class="grey-color">{{ contact.name }}, amb correu elèctrònic <a href="mailto:{{ contact.email }}">{{ contact.email }}</a> {% if contact.phone %}i telèfon {{ contact.phone }} {% endif %}ha emplenat el formulari de contacte amb el següent missatge:</p>
+                            <p class="grey-color">"{{ contact.message }}"</p>
+                            <p>Comprova-ho a la teva llista de contactes del CMS <a href="{{ url('admin_app_contactmessage_list') }}">aquí</a>, o respon-li directament clicant <a href="{{ url('admin_app_contactmessage_answer', {id: contact.id }) }}">aquí</a></p>
+                        </th>
+                        <th class="expander"></th>
+                    </tr>
+                </table>
             </th>
         </tr>
+        </tbody>
     </table>
 {% endblock %}
-
