@@ -86,7 +86,7 @@ class NotificationService
         $this->messenger->sendEmail(
             $this->amd,
             $contactMessage->getEmail(),
-            $this->urlBase . ' contact form answer',
+            'Missatge de prova-ho gratis pàgina web ' . $this->urlBase,
             $this->twig->render(':Mails:free_trial_admin_notification.html.twig', array(
                 'contact' => $contactMessage,
             ))
@@ -103,8 +103,25 @@ class NotificationService
         $this->messenger->sendEmail(
             $contactMessage->getEmail(),
             $this->amd,
-            $this->urlBase . ' contact form received',
+            'Missatge de contacte pàgina web ' . $this->urlBase,
             $this->twig->render(':Mails:contact_form_admin_notification.html.twig', array(
+                'contact' => $contactMessage,
+            ))
+        );
+    }
+
+    /**
+     * Send a newsletter subscription form notification to admin user
+     *
+     * @param ContactMessage $contactMessage
+     */
+    public function sendNewsletterSubscriptionAdminNotification(ContactMessage $contactMessage)
+    {
+        $this->messenger->sendEmail(
+            $contactMessage->getEmail(),
+            $this->amd,
+            'Missatge de newsletter pàgina web ' . $this->urlBase,
+            $this->twig->render(':Mails:newsletter_form_admin_notification.html.twig', array(
                 'contact' => $contactMessage,
             ))
         );
@@ -120,7 +137,7 @@ class NotificationService
         $this->messenger->sendEmail(
             $this->amd,
             $coworker->getEmail(),
-            'Feliç aniversari',
+            'Espai Kowo et desitja un Feliç Aniversari',
             $this->twig->render(':Mails:coworker_birthday_congratulation_notification.html.twig', array(
                 'coworker' => $coworker,
             ))

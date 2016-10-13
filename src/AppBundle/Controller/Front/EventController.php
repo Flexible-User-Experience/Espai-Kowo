@@ -32,11 +32,15 @@ class EventController extends Controller
                 'notice',
                 'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
+            // Save Mailchimp or Sendgrid user to list
+
+            // (to do...)
+
             // Send email notifications
             /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
             $messenger->sendCommonUserNotification($contact);
-//            $messenger->sendFreeTrialAdminNotification($contact);
+            $messenger->sendNewsletterSubscriptionAdminNotification($contact);
             // Clean up new form
             $form = $this->createForm(ContactNewsletterType::class);
         }
