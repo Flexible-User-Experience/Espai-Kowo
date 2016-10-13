@@ -149,11 +149,11 @@ sonata_admin:
                 icon: "<i class='fa fa-chrome'></i>"
             Coworkers:
                 icon: "<i class='fa fa-users'></i>"
-            Activities:
+            Activitats:
                 icon: "<i class='fa fa-calendar-times-o'></i>"
-            Contacts:
+            Contactes:
                 icon: "<i class='fa fa-envelope'></i>"
-            Users:
+            Usuaris:
                 icon: "<i class='fa fa-user'></i>"
         blocks:
             -
@@ -180,19 +180,19 @@ sonata_admin:
                 type: sonata.admin.block.admin_list
                 class: col-md-6
                 settings:
-                    groups: [ Activities ]
+                    groups: [ Activitats ]
             -
                 position: top
                 type: sonata.admin.block.admin_list
                 class: col-md-6
                 settings:
-                    groups: [ Contacts ]
+                    groups: [ Contactes ]
             -
                 position: top
                 type: sonata.admin.block.admin_list
                 class: col-md-6
                 settings:
-                    groups: [ Users ]
+                    groups: [ Usuaris ]
 
 # CKEditor
 ivory_ck_editor:
