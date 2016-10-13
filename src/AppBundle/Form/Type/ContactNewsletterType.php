@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints as Assert;
 use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
-use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
+//use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
 
 /**
  * Class ContactNewsletterType
@@ -75,11 +75,11 @@ class ContactNewsletterType extends AbstractType
                             'async' => false,
                         ),
                     ),
-                    'constraints' => array(
-                        new RecaptchaTrue(array(
-                            'message' => 'Error',
-                        )),
-                    ),
+//                    'constraints' => array(
+//                        new RecaptchaTrue(array(
+//                            'message' => 'Error',
+//                        )),
+//                    ),
                 )
             )
             ->add(
