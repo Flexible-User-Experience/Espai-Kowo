@@ -4,7 +4,6 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\ContactMessage;
 use AppBundle\Entity\Coworker;
-use AppBundle\Form\Type\ContactHomepageType;
 
 /**
  * Class NotificationService
@@ -15,17 +14,33 @@ use AppBundle\Form\Type\ContactHomepageType;
  */
 class NotificationService
 {
-    /** @var CourierService */
+    /**
+     * @var CourierService
+     */
     private $messenger;
 
-    /** @var \Twig_Environment */
+    /**
+     * @var \Twig_Environment
+     */
     private $twig;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $amd;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $urlBase;
+
+    /**
+     *
+     *
+     * Methods
+     *
+     *
+     */
 
     /**
      * NotificationService constructor
@@ -38,9 +53,9 @@ class NotificationService
     public function __construct(CourierService $messenger, \Twig_Environment $twig, $amd, $urlBase)
     {
         $this->messenger = $messenger;
-        $this->twig = $twig;
-        $this->amd = $amd;
-        $this->urlBase = $urlBase;
+        $this->twig      = $twig;
+        $this->amd       = $amd;
+        $this->urlBase   = $urlBase;
     }
 
     /**
@@ -84,13 +99,13 @@ class NotificationService
      * @param ContactMessage $contactMessage
      *
      */
-    public function sendUserNotification(ContactMessage $contactMessage)
+    public function sendCommonUserNotification(ContactMessage $contactMessage)
     {
         $this->messenger->sendEmail(
             $this->amd,
             $contactMessage->getEmail(),
             'Missatge de contacte pàgina web ' . $this->urlBase,
-            $this->twig->render(':Mails:contact_form_user_notification.html.twig', array(
+            $this->twig->render(':Mails:common_user_notification.html.twig', array(
                 'contact' => $contactMessage,
             ))
         );
