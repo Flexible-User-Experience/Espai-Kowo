@@ -127,6 +127,8 @@ class DefaultController extends Controller
             throw new NotFoundHttpException();
         }
 
-        return $this->render(':Mails:free_trial_user_notification.html.twig', array());
+        return $this->render(':Mails:coworker_birthday_congratulation_notification.html.twig', array(
+            'coworker' => $this->getDoctrine()->getRepository('AppBundle:Coworker')->find(1),
+        ));
     }
 }
