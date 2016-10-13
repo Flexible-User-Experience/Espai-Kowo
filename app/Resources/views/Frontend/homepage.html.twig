@@ -52,7 +52,12 @@
                     <h4 class="modal-title" id="myModalLabel">Deixa'ns les teves dades i t'ho explicarem tot amb més detall</h4>
                 </div>
                 <div class="modal-body">
-                    {{ form(formHomepage) }}
+                    {{ form_start(formHomepage) }}
+                        {{ form_row(formHomepage.name) }}
+                        {{ form_row(formHomepage.phone) }}
+                        {{ form_row(formHomepage.email) }}
+                        {{ form_rest(formHomepage) }}
+                    {{ form_end(formHomepage) }}
                 </div>
             </div>
         </div>
