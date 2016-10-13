@@ -111,6 +111,23 @@ class NotificationService
     }
 
     /**
+     * Send a contact form notification to admin user
+     *
+     * @param ContactMessage $contactMessage
+     */
+    public function sendUserBackendAnswerNotification(ContactMessage $contactMessage)
+    {
+        $this->messenger->sendEmail(
+            $this->amd,
+            $this->amd,
+            'Missatge de contacte pàgina web ' . $this->urlBase,
+            $this->twig->render(':Mails:user_backend_answer_notification.html.twig', array(
+                'contact' => $contactMessage,
+            ))
+        );
+    }
+
+    /**
      * Send a newsletter subscription form notification to admin user
      *
      * @param ContactMessage $contactMessage
