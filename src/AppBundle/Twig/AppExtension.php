@@ -48,14 +48,6 @@ class AppExtension extends \Twig_Extension
         return substr(str_shuffle(str_repeat($chrList, mt_rand($chrRepeatMin, $chrRepeatMax))), 1, $length);
     }
 
-    public function ageCalculate(\DateTime $birthday)
-    {
-        $now = new \DateTime();
-        $interval = $now->diff($birthday);
-
-        return $interval->y;
-    }
-
     /**
      *
      *
@@ -101,6 +93,19 @@ class AppExtension extends \Twig_Extension
         }
 
         return $span;
+    }
+
+    /**
+     * @param \DateTime $birthday
+     *
+     * @return int
+     */
+    public function ageCalculate(\DateTime $birthday)
+    {
+        $now = new \DateTime();
+        $interval = $now->diff($birthday);
+
+        return $interval->y;
     }
 
     /**

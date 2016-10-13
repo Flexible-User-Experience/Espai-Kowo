@@ -22,28 +22,22 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $form = $this->createForm(ContactHomepageType::class);
-        $form->handleRequest($request);
+        $contact = new ContactMessage();
+        $form = $this->createForm(ContactHomepageType::class, $contact);
 
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // Set frontend flash message
             $this->addFlash(
                 'notice',
                 'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
+
             // Send email notifications
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Missatge de contacte pàgina web ' . $this->getParameter('mailer_url_base'))
-                ->setFrom($this->getParameter('mailer_destination'))
-                ->setTo($this->getParameter('mailer_destination'))
-                ->setBody(
-                    $this->renderView(
-                        ':Frontend/Mail:contact_form_admin_notification.html.twig',
-                        array('contact' => $form->getData())
-                    ),
-                    'text/html'
-                );
-            $this->get('mailer')->send($message);
+//            $ns = $this->get('app.notification')->sendUserNotification($form->getData());
+            $messenger = $this->get('app.notification');
+            $messenger->sendUserNotification($contact);
+            $messenger->sendAdminNotification($contact);
             // Clean up new form
             $form = $this->createForm(ContactHomepageType::class);
         }
@@ -77,18 +71,9 @@ class DefaultController extends Controller
             $em->persist($contactMessage);
             $em->flush();
             // Send email notifications
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Missatge de contacte pàgina web espaikowo.cat')
-                ->setFrom($contactMessage->getEmail())
-                ->setTo('info@espaikowo.cat')
-                ->setBody(
-                    $this->renderView(
-                    // app/Resources/views/Emails/registration.html.twig
-                        ':Mails:contact_form_admin_notification.html.twig',
-                        array('contact' => $contactMessage)
-                    ),
-                    'text/html'
-                )
+            $messenger = $this->get('app.notification');
+            $messenger->sendUserNotification($contactMessage);
+            $messenger->sendAdminNotification($contactMessage);
 
 //                ->addPart(
 //                    $this->renderView(
@@ -98,8 +83,8 @@ class DefaultController extends Controller
 //                    'text/plain'
 //                )
 
-            ;
-            $this->get('mailer')->send($message);
+//            ;
+//            $this->get('mailer')->send($message);
             // Clean up new form
             $contactMessage = new ContactMessage();
             $form = $this->createForm(ContactMessageType::class, $contactMessage);
