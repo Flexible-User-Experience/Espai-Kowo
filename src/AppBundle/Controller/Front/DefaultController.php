@@ -117,8 +117,8 @@ class DefaultController extends Controller
             throw new NotFoundHttpException();
         }
 
-        $contact = $this->getDoctrine()->getRepository('AppBundle:ContactMessage')->find(1);
+        $contactMessage = $this->getDoctrine()->getRepository('AppBundle:ContactMessage')->find(1);
 
-        return $this->render(':Mails:contact_form_admin_notification.html.twig', array('contact' => $contact));
+        return $this->render(':Mails:user_backend_answer_notification.html.twig', array('contact' => $contactMessage));
     }
 }

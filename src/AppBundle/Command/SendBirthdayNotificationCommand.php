@@ -53,6 +53,7 @@ class SendBirthdayNotificationCommand extends ContainerAwareCommand
         // Command Vars
         $this->em   = $this->getContainer()->get('doctrine.orm.default_entity_manager');
         $currentDate = new \DateTime();
+        $messenger = $this->getContainer()->get('app.notification');
 
         $coworkersBirthday = $this->em->getRepository('AppBundle:Coworker')->getAllCoworkersBirthdayByDayAndMonth($currentDate->format('j'), $currentDate->format('n'));
 
@@ -60,7 +61,6 @@ class SendBirthdayNotificationCommand extends ContainerAwareCommand
         foreach ($coworkersBirthday as $coworker) {
             $output->writeln('Aniversari del/la coworker: ' . $coworker->getName() . ' ' . $coworker->getSurname());
             if ($input->getOption('delivery') === true) {
-                $messenger = $this->getContainer()->get('app.notification');
                 $messenger->sendCoworkerBirthdayNotification($coworker);
             }
         }
