@@ -38,7 +38,6 @@ class ContactMessage extends AbstractBase
      * @var string
      *
      * @ORM\Column(type="string", length=255)
-     * @Assert\Email(strict=true, checkMX=true, checkHost=true)
      */
     private $email;
 

@@ -57,4 +57,43 @@ class CoworkerRepository extends EntityRepository
     {
         return $this->findAllEnabledSortedBySurnameQ($limit, $order)->getResult();
     }
+
+    /**
+     * @param int $day
+     * @param int $month
+     *
+     * @return QueryBuilder
+     */
+    public function getAllCoworkersBirthdayByDayAndMonthQB($day, $month)
+    {
+        $query = $this->createQueryBuilder('coworker')
+            ->where('DAY(coworker.birthday) = :day')
+            ->andWhere('MONTH(coworker.birthday) = :month')
+            ->setParameter('day', $day)
+            ->setParameter('month', $month);
+
+        return $query;
+    }
+
+    /**
+     * @param int $day
+     * @param int $month
+     *
+     * @return Query
+     */
+    public function getAllCoworkersBirthdayByDayAndMonthQ($day, $month)
+    {
+        return $this->getAllCoworkersBirthdayByDayAndMonthQB($day, $month)->getQuery();
+    }
+
+    /**
+     * @param int $day
+     * @param int $month
+     *
+     * @return array
+     */
+    public function getAllCoworkersBirthdayByDayAndMonth($day, $month)
+    {
+        return $this->getAllCoworkersBirthdayByDayAndMonthQ($day, $month)->getResult();
+    }
 }

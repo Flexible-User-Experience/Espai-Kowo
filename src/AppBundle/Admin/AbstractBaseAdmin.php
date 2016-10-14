@@ -124,15 +124,26 @@ abstract class AbstractBaseAdmin extends AbstractAdmin
     /**
      * Get image helper form mapper with thumbnail
      *
-     * @param string $imageFile
+     * @return string
+     */
+    protected function getImageHelperFormMapperWithThumbnail()
+    {
+        return ($this->getSubject() ? $this->getSubject()->getImageName() ? '<img src="' . $this->lis->getBrowserPath(
+                $this->vus->asset($this->getSubject(), 'imageFile'),
+                '480xY'
+            ) . '" class="admin-preview img-responsive" alt="thumbnail"/>' : '' : '') . '<span style="width:100%;display:block;">amplada mínima 1200px (màx. 10MB amb JPG o PNG)</span>';
+    }
+
+    /**
+     * Get image helper form mapper with thumbnail for black&white
      *
      * @return string
      */
-    protected function getImageHelperFormMapperWithThumbnail($imageFile = 'imageFile')
+    protected function getImageHelperFormMapperWithThumbnailBW()
     {
-        return ($this->getSubject() ? $this->getSubject()->getImageName() ? '<img src="' . $this->lis->getBrowserPath(
-                $this->vus->asset($this->getSubject(), $imageFile),
+        return ($this->getSubject() ? $this->getSubject()->getImageNameBW() ? '<img src="' . $this->lis->getBrowserPath(
+                $this->vus->asset($this->getSubject(), 'imageFileBW'),
                 '480xY'
-            ) . '" class="admin-preview img-responsive" alt="thumbnail"/>' : '' : '') . '<span style="width:100%;display:block;">up to 10MB with format PNG, JPG or GIF. min. width 120px.</span>';
+            ) . '" class="admin-preview img-responsive" alt="thumbnail"/>' : '' : '') . '<span style="width:100%;display:block;">amplada mínima 1200px (màx. 10MB amb JPG o PNG)</span>';
     }
 }

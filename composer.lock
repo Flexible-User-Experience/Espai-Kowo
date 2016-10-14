@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "42395f220866feeeb8377a7a7369d5d6",
-    "content-hash": "a0be5d76938561b06492bdf356a3d251",
+    "hash": "70154fe6204eeecf2ca89ecdaedaef28",
+    "content-hash": "8c21bff3cdf2417df9be06689759c90d",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -117,6 +117,68 @@
                 "lorem"
             ],
             "time": "2014-10-05 19:11:51"
+        },
+        {
+            "name": "beberlei/DoctrineExtensions",
+            "version": "v1.0.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/beberlei/DoctrineExtensions.git",
+                "reference": "6dbe65e469e8bdcfe165ea16636b7049af479a24"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/beberlei/DoctrineExtensions/zipball/6dbe65e469e8bdcfe165ea16636b7049af479a24",
+                "reference": "6dbe65e469e8bdcfe165ea16636b7049af479a24",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.1",
+                "nesbot/carbon": "*",
+                "phpunit/phpunit": "~4.5",
+                "symfony/yaml": "~2.6",
+                "zf1/zend-date": "~1.12",
+                "zf1/zend-registry": "~1.12"
+            },
+            "suggest": {
+                "nesbot/carbon": "Alternative to DateTime",
+                "zf1/zend-date": "Alternative to DateTime"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DoctrineExtensions\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Steve Lacey",
+                    "email": "steve@stevelacey.net"
+                }
+            ],
+            "description": "A set of extensions to Doctrine 2 that add support for additional query functions available in MySQL and Oracle.",
+            "keywords": [
+                "database",
+                "doctrine",
+                "orm"
+            ],
+            "time": "2016-07-06 17:12:30"
         },
         {
             "name": "behat/transliterator",
@@ -1578,25 +1640,26 @@
         },
         {
             "name": "excelwebzone/recaptcha-bundle",
-            "version": "2.6.x-dev",
-            "target-dir": "EWZ/Bundle/RecaptchaBundle",
+            "version": "v1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/excelwebzone/EWZRecaptchaBundle.git",
-                "reference": "da2138e23d0338a4679deac96a59d970896c4bda"
+                "reference": "fff64c4fec283c4d2728f75e45cc1042f46b6876"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/excelwebzone/EWZRecaptchaBundle/zipball/da2138e23d0338a4679deac96a59d970896c4bda",
-                "reference": "da2138e23d0338a4679deac96a59d970896c4bda",
+                "url": "https://api.github.com/repos/excelwebzone/EWZRecaptchaBundle/zipball/fff64c4fec283c4d2728f75e45cc1042f46b6876",
+                "reference": "fff64c4fec283c4d2728f75e45cc1042f46b6876",
                 "shasum": ""
             },
             "require": {
-                "symfony/framework-bundle": "~2.6"
+                "symfony/form": "^2.8 || ^3.0",
+                "symfony/framework-bundle": "^2.8 || ^3.0",
+                "symfony/validator": "^2.8 || ^3.0"
             },
             "type": "symfony-bundle",
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "EWZ\\Bundle\\RecaptchaBundle\\": ""
                 }
             },
@@ -1616,7 +1679,7 @@
             "keywords": [
                 "recaptcha"
             ],
-            "time": "2016-04-28 18:13:58"
+            "time": "2016-09-13 16:29:16"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -1821,16 +1884,16 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.4.23",
+            "version": "v2.4.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "c2f308fab900090c6c0f5b6f72f34a37b4dd2d84"
+                "reference": "a7f7243a19f79a99ac83a3570444d8795f665eef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/c2f308fab900090c6c0f5b6f72f34a37b4dd2d84",
-                "reference": "c2f308fab900090c6c0f5b6f72f34a37b4dd2d84",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/a7f7243a19f79a99ac83a3570444d8795f665eef",
+                "reference": "a7f7243a19f79a99ac83a3570444d8795f665eef",
                 "shasum": ""
             },
             "require": {
@@ -1896,7 +1959,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2016-09-22 13:45:22"
+            "time": "2016-10-11 18:03:37"
         },
         {
             "name": "hampe/inky",
@@ -5997,9 +6060,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "excelwebzone/recaptcha-bundle": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
