@@ -34,7 +34,9 @@
                                         <tbody>
                                         <tr>
                                             <th class="small-12 large-6 first columns white-color padding-bottom">
-                                                <img src="{{ absolute_url(asset('bundles/app/img/logo-espai-kowo-small.png')) }}">
+                                                <a href="{{ path('front_homepage') }}">
+                                                    <img src="{{ absolute_url(asset('bundles/app/img/logo-espai-kowo-small.png')) }}">
+                                                </a>
                                             </th>
                                             <th class="small-12 large-6 last columns white-color vertical-padding">
                                                 <h2 class="text-right">{% block subject %}Espai Kowo{% endblock %}</h2>

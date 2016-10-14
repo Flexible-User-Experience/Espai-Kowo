@@ -43,6 +43,7 @@ class EventController extends Controller
             $messenger->sendNewsletterSubscriptionAdminNotification($contact);
             // Clean up new form
             $form = $this->createForm(ContactNewsletterType::class);
+            //TODO flashmessage condicionat
         }
 
         return $this->render(
