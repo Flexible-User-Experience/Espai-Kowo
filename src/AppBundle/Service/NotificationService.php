@@ -102,7 +102,7 @@ class NotificationService
     {
         $this->messenger->sendEmail(
             $this->amd,
-            $this->amd,
+            $contactMessage->getEmail(),
             'Missatge de contacte pàgina web ' . $this->urlBase,
             $this->twig->render(':Mails:contact_form_admin_notification.html.twig', array(
                 'contact' => $contactMessage,
