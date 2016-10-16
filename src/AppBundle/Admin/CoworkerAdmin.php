@@ -72,6 +72,25 @@ class CoworkerAdmin extends AbstractBaseAdmin
                     'required'    => true,
                 )
             )
+            ->end()
+            ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(4))
+            ->add(
+                'category',
+                null,
+                array(
+                    'label' => 'backend.admin.category.category',
+                    'query_builder' => $this->rm->getCategoryRepository()->getAllEnabledCategorySortedByTitleQB(),
+                )
+            )
+            ->add(
+                'birthday',
+                'sonata_type_date_picker',
+                array(
+                    'label'    => 'Aniversari',
+                    'format'   => 'd/M/y',
+                    'required' => false,
+                )
+            )
             ->add(
                 'imageFile',
                 'file',
@@ -81,14 +100,13 @@ class CoworkerAdmin extends AbstractBaseAdmin
                     'required' => false,
                 )
             )
-            ->end()
-            ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(4))
             ->add(
-                'category',
-                null,
+                'imageFileBW',
+                'file',
                 array(
-                    'label' => 'backend.admin.category.category',
-                    'query_builder' => $this->rm->getCategoryRepository()->getAllEnabledCategorySortedByTitleQB(),
+                    'label'    => 'backend.admin.post.imageBW',
+                    'help'     => $this->getImageHelperFormMapperWithThumbnailBW(),
+                    'required' => false,
                 )
             )
             ->add(

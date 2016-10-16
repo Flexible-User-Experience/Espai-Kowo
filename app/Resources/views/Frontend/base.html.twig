@@ -20,6 +20,20 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    {% if facebook_pixel_enabled %}
+        <script type="text/javascript">
+            !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+                n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+                    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '{{ facebook_pixel_id }}', {em: 'insert_email_variable,'});
+            fbq('track', 'PageView');
+        </script>
+        <noscript>
+            <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id={{ facebook_pixel_id }}&ev=PageView&noscript=1"/>
+        </noscript>
+    {% endif %}
 </head>
 <body{% block body_class %}{% endblock %}>
 {#<!-- Head content -->#}
@@ -36,7 +50,7 @@
                 </button>
                 <a class="navbar-brand navbar-brand-logo" href="{{ path('front_homepage') }}">
                     <svg height="70" width="70" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <image height="70" width="70" class="navbar-logo" xlink:href="{{ asset('bundles/app/svg/logoblanc80x80.svg') }}" alt="Espai Kowo Logo"></image>
+                        <image height="70" width="70" class="navbar-logo" xlink:href="{{ asset('bundles/app/svg/logo-header.svg') }}" alt="Espai Kowo Logo"></image>
                     </svg>
                 </a>
             </div>

@@ -37,6 +37,14 @@ class FrontendMenuBuilder
     }
 
     /**
+     *
+     *
+     * Methods
+     *
+     *
+     */
+
+    /**
      * @param RequestStack $requestStack
      *
      * @return ItemInterface
@@ -50,7 +58,7 @@ class FrontendMenuBuilder
             $menu->addChild(
                 'admin',
                 array(
-                    'label' => '[ CMS ]',
+                    'label' => 'frontend.menu.cms',
                     'route' => 'sonata_admin_dashboard',
                 )
             );
@@ -58,7 +66,7 @@ class FrontendMenuBuilder
         $menu->addChild(
             'front_blog',
             array(
-                'label' => 'BLOG',
+                'label' => 'frontend.menu.blog',
                 'route' => 'front_blog',
                 'current' => $route == 'front_blog' || $route == 'front_blog_detail',
             )
@@ -66,7 +74,7 @@ class FrontendMenuBuilder
         $menu->addChild(
             'front_coworkers_list',
             array(
-                'label'   => 'COWORKERS',
+                'label'   => 'frontend.menu.coworkers',
                 'route'   => 'front_coworkers_list',
                 'current' => $route == 'front_coworkers_list' || $route == 'front_coworker_detail',
             )
@@ -74,7 +82,7 @@ class FrontendMenuBuilder
         $menu->addChild(
             'front_events_list',
             array(
-                'label'   => 'ACTIVITATS',
+                'label'   => 'frontend.menu.events',
                 'route'   => 'front_events_list',
                 'current' => $route == 'front_events_list' || $route == 'front_event_detail',
             )
@@ -82,7 +90,7 @@ class FrontendMenuBuilder
         $menu->addChild(
             'front_contact',
             array(
-                'label'   => 'CONTACTE',
+                'label'   => 'frontend.menu.contact',
                 'route'   => 'front_contact',
             )
         );

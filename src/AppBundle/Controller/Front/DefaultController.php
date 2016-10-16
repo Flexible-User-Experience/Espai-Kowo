@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Front;
 use AppBundle\Entity\ContactMessage;
 use AppBundle\Form\Type\ContactHomepageType;
 use AppBundle\Form\Type\ContactMessageType;
+use AppBundle\Service\NotificationService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,30 +23,24 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $form = $this->createForm(ContactHomepageType::class);
-
+        $contact = new ContactMessage();
+        $form = $this->createForm(ContactHomepageType::class, $contact);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
-            // Flash
+            // Set frontend flash message
             $this->addFlash(
                 'notice',
                 'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
-            // Email
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Missatge de contacte pàgina web ' . $this->getParameter('mailer_url_base'))
-                ->setFrom($this->getParameter('mailer_destination'))
-                ->setTo($this->getParameter('mailer_destination'))
-                ->setBody(
-                    $this->renderView(
-                        ':Frontend/Mail:contact_form_admin_notification.html.twig',
-                        array('contact' => $form->getData())
-                    ),
-                    'text/html'
-                );
-            $this->get('mailer')->send($message);
+            // Send email notifications
+            /** @var NotificationService $messenger */
+            $messenger = $this->get('app.notification');
+            $messenger->sendCommonUserNotification($contact);
+            $messenger->sendFreeTrialAdminNotification($contact);
+            // Clean up new form
+            $form = $this->createForm(ContactHomepageType::class);
         }
-
 
         return $this->render(':Frontend:homepage.html.twig', array(
             'formHomepage' => $form->createView(),
@@ -63,42 +58,26 @@ class DefaultController extends Controller
     {
         $contactMessage = new ContactMessage();
         $form = $this->createForm(ContactMessageType::class, $contactMessage);
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
+            // Set frontend flash message
             $this->addFlash(
                 'notice',
                 'El teu missatge s\'ha enviat correctament'
             );
+            // Persist new contact message into DB
             $em = $this->getDoctrine()->getManager();
             $em->persist($contactMessage);
-
             $em->flush();
-
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Missatge de contacte pàgina web espaikowo.cat')
-                ->setFrom($contactMessage->getEmail())
-                ->setTo('info@espaikowo.cat')
-                ->setBody(
-                    $this->renderView(
-                    // app/Resources/views/Emails/registration.html.twig
-                        ':Mails:contact_form_admin_notification.html.twig',
-                        array('contact' => $contactMessage)
-                    ),
-                    'text/html'
-                )
-
-//                ->addPart(
-//                    $this->renderView(
-//                        ':Mails:',
-//                        array('name' => $name)
-//                    ),
-//                    'text/plain'
-//                )
-
-            ;
-            $this->get('mailer')->send($message);
-
+            // Send email notifications
+            /** @var NotificationService $messenger */
+            $messenger = $this->get('app.notification');
+            $messenger->sendCommonUserNotification($contactMessage);
+            $messenger->sendContactAdminNotification($contactMessage);
+            // Clean up new form
+            $contactMessage = new ContactMessage();
+            $form = $this->createForm(ContactMessageType::class, $contactMessage);
         }
 
         return $this->render(':Frontend:contact.html.twig', array(
@@ -117,20 +96,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/test-email", name="front_test_email")
-     *
-     * @return Response
-     */
-    public function testEmailAction()
-    {
-        if ($this->container->get('kernel')->getEnvironment() == 'prod') {
-            throw new NotFoundHttpException();
-        }
-
-        return $this->render(':Mails:free_trial_user_notification.html.twig', array());
-    }
-
-    /**
      * @Route("/credits", name="front_credits")
      *
      * @return Response
@@ -138,5 +103,22 @@ class DefaultController extends Controller
     public function creditsAction()
     {
         return $this->render(':Frontend:credits.html.twig');
+    }
+
+    /**
+     * @Route("/test-email", name="front_test_email")
+     *
+     * @return Response
+     * @throws NotFoundHttpException
+     */
+    public function testEmailAction()
+    {
+        if ($this->container->get('kernel')->getEnvironment() == 'prod') {
+            throw new NotFoundHttpException();
+        }
+
+        $contactMessage = $this->getDoctrine()->getRepository('AppBundle:ContactMessage')->find(1);
+
+        return $this->render(':Mails:user_backend_answer_notification.html.twig', array('contact' => $contactMessage));
     }
 }

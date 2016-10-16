@@ -2,8 +2,12 @@
 
 namespace AppBundle\Controller\Front;
 
+use AppBundle\Entity\ContactMessage;
+use AppBundle\Form\Type\ContactNewsletterType;
+use AppBundle\Service\NotificationService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class EventController extends Controller
@@ -11,15 +15,40 @@ class EventController extends Controller
     /**
      * @Route("/activitats", name="front_events_list")
      *
+     * @param Request $request
+     *
      * @return Response
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
         $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findAllEnabledSortedByDate();
+        $contact = new ContactMessage();
+        $form = $this->createForm(ContactNewsletterType::class, $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Set frontend flash message
+            $this->addFlash(
+                'notice',
+                'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
+            );
+            // Save Mailchimp or Sendgrid user to list
+
+            // (to do...)
+
+            // Send email notifications
+            /** @var NotificationService $messenger */
+            $messenger = $this->get('app.notification');
+            $messenger->sendCommonUserNotification($contact);
+            $messenger->sendNewsletterSubscriptionAdminNotification($contact);
+            // Clean up new form
+            $form = $this->createForm(ContactNewsletterType::class);
+            //TODO flashmessage condicionat
+        }
 
         return $this->render(
             ':Frontend/Event:list.html.twig',
-            [ 'events' => $events ]
+            [ 'events' => $events, 'form' => $form->createView(), ]
         );
     }
 

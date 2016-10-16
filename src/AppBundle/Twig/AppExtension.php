@@ -34,6 +34,7 @@ class AppExtension extends \Twig_Extension
 
     /**
      * @param int $length length of Random String returned
+     *
      * @return string
      */
     public function randomErrorTextFunction($length = 1024)
@@ -62,6 +63,7 @@ class AppExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFilter('draw_role_span', array($this, 'drawRoleSpan')),
+            new \Twig_SimpleFilter('age', array($this, 'ageCalculate')),
         );
     }
 
@@ -94,10 +96,24 @@ class AppExtension extends \Twig_Extension
     }
 
     /**
+     * @param \DateTime $birthday
+     *
+     * @return int
+     */
+    public function ageCalculate(\DateTime $birthday)
+    {
+        $now = new \DateTime();
+        $interval = $now->diff($birthday);
+
+        return $interval->y;
+    }
+
+    /**
      * @return string
      */
     public function getName()
     {
         return 'app_extension';
     }
+
 }
