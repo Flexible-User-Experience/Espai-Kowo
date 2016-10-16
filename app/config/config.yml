@@ -209,6 +209,6 @@ ewz_recaptcha:
 
 # MailChimp
 hype_mailchimp:
-    api_key: xxxxxxx-us5
+    api_key: "%mailchimp_api_key%"
     default_list: xxxxxxxx
     ssl: true #optional configuring curl connection
