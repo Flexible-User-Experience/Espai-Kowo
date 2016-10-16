@@ -206,3 +206,9 @@ ewz_recaptcha:
     public_key:  "%recaptcha_public_key%"
     private_key: "%recaptcha_private_key%"
     locale_key:  "%locale%"
+
+# MailChimp
+hype_mailchimp:
+    api_key: "%mailchimp_api_key%"
+    default_list: xxxxxxxx
+    ssl: true #optional configuring curl connection
