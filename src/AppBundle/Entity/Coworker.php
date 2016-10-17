@@ -122,6 +122,7 @@ class Coworker extends AbstractBase
      * @var string
      *
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url()
      */
     private $gif;
 
