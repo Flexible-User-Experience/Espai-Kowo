@@ -208,7 +208,7 @@ ewz_recaptcha:
     locale_key:  "%locale%"
 
 # MailChimp
-hype_mailchimp:
+mz_mail_chimp:
     api_key: "%mailchimp_api_key%"
-    default_list: xxxxxxxx
-    ssl: true #optional configuring curl connection
+    default_list: "%mailchimp_newsletter_list_id%"
+    ssl: false
