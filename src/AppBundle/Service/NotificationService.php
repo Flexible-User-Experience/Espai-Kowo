@@ -119,7 +119,7 @@ class NotificationService
     {
         $this->messenger->sendEmail(
             $this->amd,
-            $this->amd,
+            $contactMessage->getEmail(),
             'Resposta pàgina web ' . $this->urlBase,
             $this->twig->render(':Mails:user_backend_answer_notification.html.twig', array(
                 'contact' => $contactMessage,

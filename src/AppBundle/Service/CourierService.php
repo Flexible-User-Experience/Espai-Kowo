@@ -44,7 +44,7 @@ class CourierService
             ->setBody($body)
             ->setCharset('UTF-8')
             ->setContentType('text/html');
-
+        //TODO try catch exception with return
         $this->mailer->send($message);
     }
 }
