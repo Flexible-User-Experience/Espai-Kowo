@@ -119,6 +119,14 @@ class Coworker extends AbstractBase
     private $birthday;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url()
+     */
+    private $gif;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="SocialNetwork", mappedBy="coworker", cascade={"persist", "remove"}, orphanRemoval=true)
@@ -373,6 +381,26 @@ class Coworker extends AbstractBase
     public function setBirthday($birthday)
     {
         $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGif()
+    {
+        return $this->gif;
+    }
+
+    /**
+     * @param string $gif
+     *
+     * @return Coworker
+     */
+    public function setGif($gif)
+    {
+        $this->gif = $gif;
 
         return $this;
     }
