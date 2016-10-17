@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d72c8320dc5ab85274ff5fee182bee35",
-    "content-hash": "fec6abdd25ce655a7839d25de4c1c294",
+    "hash": "1b93cb018a0a8546c5ffdf73c3182637",
+    "content-hash": "12f1bbf1c2c0bbb114f2f13e94685409",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -68,61 +68,6 @@
                 "translation"
             ],
             "time": "2013-12-17 18:40:49"
-        },
-        {
-            "name": "ahmedsamy/hype-mailchimp-bundle",
-            "version": "v1.2",
-            "target-dir": "Hype/MailchimpBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/AhmedSamy/HypeMailchimpBundle.git",
-                "reference": "25c3c91cd929c58d557888934bf9bf920444a5f8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/AhmedSamy/HypeMailchimpBundle/zipball/25c3c91cd929c58d557888934bf9bf920444a5f8",
-                "reference": "25c3c91cd929c58d557888934bf9bf920444a5f8",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "kriswallsmith/buzz": ">=0.7",
-                "php": ">=5.3.2",
-                "symfony/framework-bundle": "2.*"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Hype\\MailchimpBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ahmed Samy",
-                    "email": "ahmed.samy.cs@gmail.com",
-                    "homepage": "http://www.ahmed-samy.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Mailchimp V2.0 API Object Oriented wrapper",
-            "homepage": "https://github.com/AhmedSamy/hype-mailchimp-api-2.0",
-            "keywords": [
-                "api",
-                "curl",
-                "http client",
-                "mailchimp",
-                "newsletter"
-            ],
-            "time": "2015-02-23 17:20:20"
         },
         {
             "name": "apoutchika/loremipsum-bundle",
@@ -2807,6 +2752,52 @@
                 "imagine"
             ],
             "time": "2016-07-22 14:52:30"
+        },
+        {
+            "name": "mlpz/mailchimp-bundle",
+            "version": "v1.3",
+            "target-dir": "MZ/MailChimpBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/miguel250/MZMailChimpBundle.git",
+                "reference": "5673cd4ac97ddf0aec9723f9b44be41ac06d9148"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/miguel250/MZMailChimpBundle/zipball/5673cd4ac97ddf0aec9723f9b44be41ac06d9148",
+                "reference": "5673cd4ac97ddf0aec9723f9b44be41ac06d9148",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "kriswallsmith/buzz": ">=0.7",
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "2.*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "MZ\\MailChimpBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Miguel Perez",
+                    "email": "miguel@mlpz.mp"
+                }
+            ],
+            "description": "mailchimp bundle",
+            "homepage": "http://www.mlpz.mp",
+            "keywords": [
+                "api",
+                "mailchimp",
+                "newsletter"
+            ],
+            "time": "2014-10-07 05:23:09"
         },
         {
             "name": "monolog/monolog",
