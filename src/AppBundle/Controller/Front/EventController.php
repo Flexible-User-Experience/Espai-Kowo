@@ -29,7 +29,7 @@ class EventController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var MailChimp $mailchimpService */
-            $mailchimpService = $this->get('MailChimp');
+            $mailchimp = $this->get('app.mailchimp');
             /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
 
@@ -39,11 +39,14 @@ class EventController extends Controller
                 'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
             // Save Mailchimp or Sendgrid user to list
-            $mailchimpService->setListID($this->getParameter('mailchimp_newsletter_list_id'));
-            $list = $mailchimpService->getList();
-            $list->setDoubleOptin(false);
-            $result = $list->Subscribe($contact->getEmail());
-            if ($result == false) {
+//            $mailchimpService->setListID($this->getParameter('mailchimp_newsletter_list_id'));
+//            $list = $mailchimpService->getList();
+//            $list->setDoubleOptin(false);
+//            $result = $list->Subscribe($contact->getEmail());
+//            if ($result == false) {
+//                $messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
+//            }
+            if ($mailchimp == false) {
                 $messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
             }
 
@@ -52,7 +55,7 @@ class EventController extends Controller
             $messenger->sendNewsletterSubscriptionAdminNotification($contact);
             // Clean up new form
             $form = $this->createForm(ContactNewsletterType::class);
-            //TODO flashmessage condicionat
+            //TODO flashmessage condicionatS
         }
 
         return $this->render(
