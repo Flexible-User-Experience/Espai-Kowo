@@ -78,5 +78,5 @@ services:
             - { name: twig.extension }
 # Mailchimp Manager
     app.mailchimp:
-      class: AppBundle\Manager\MailchimpManager
-      arguments: ["%mailchimp_test_list_id%"]
+        class: AppBundle\Manager\MailchimpManager
+        arguments: ["@mailchimp"]

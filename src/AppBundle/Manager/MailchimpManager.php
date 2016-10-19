@@ -38,11 +38,12 @@ class MailchimpManager
     /**
      * Mailchimp Service
      *
-     * @param MailChimp $mailChimp
+     * @param ContactMessage $contact
      */
-    public function mailchimpSubscribe($mailChimp)
+    public function mailchimpSubscribe(ContactMessage $contact)
     {
-        $contact = new ContactMessage();
+//        $contact = new ContactMessage();
+        $mailChimp = $this->mailChimp;
 
         $mailChimp->setListID('mailchimp_newsletter_list_id');
         $list = $mailChimp->getList();

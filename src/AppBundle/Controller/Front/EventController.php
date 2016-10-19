@@ -29,7 +29,7 @@ class EventController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var MailChimp $mailchimpService */
-            $mailchimp = $this->get('app.mailchimp');
+            $mailchimpManager = $this->get('app.mailchimp')->mailchimpSubscribe($contact);
             /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
 
@@ -46,7 +46,7 @@ class EventController extends Controller
 //            if ($result == false) {
 //                $messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
 //            }
-            if ($mailchimp == false) {
+            if ($mailchimpManager == false) {
                 $messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
             }
 
