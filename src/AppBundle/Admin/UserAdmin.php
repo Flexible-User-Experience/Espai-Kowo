@@ -125,7 +125,7 @@ class UserAdmin extends ParentUserAdmin
                     'label'    => 'backend.admin.user.roles',
                     'choices'  => UserRolesEnum::getEnumArray(),
                     'multiple' => true,
-                    'expanded' => true
+                    'expanded' => true,
                 )
             )
             ->end();
