@@ -39,12 +39,17 @@ class MailchimpManager
      * Mailchimp Service
      *
      * @param ContactMessage $contact
+     * @param string         $listId
+     *
+     * @return boolean       $email
      */
-    public function subscribeContactToList(ContactMessage $contact)
+    public function subscribeContactToList(ContactMessage $contact, $listId)
     {
-        $this->mailChimp->setListID('ad2298109f');
+        $this->mailChimp->setListID($listId);
         $list = $this->mailChimp->getList();
         $list->setDoubleOptin(false);
         $list->Subscribe($contact->getEmail());
+
+        return $list->Subscribe();
     }
 }
