@@ -209,6 +209,6 @@ ewz_recaptcha:
 
 # MailChimp
 mz_mail_chimp:
-    api_key: "%mailchimp_api_key%"
+    api_key:      "%mailchimp_api_key%"
     default_list: "%mailchimp_newsletter_list_id%"
-    ssl: false
+    ssl:          false
