@@ -38,8 +38,8 @@ class EventController extends Controller
                 'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
             // Check contact to list
-            $mailchimpManager->subscribeContactToList($contact);
-            if ($mailchimpManager == false) {
+            $result= $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
+            if ($result == false) {
                 $messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
             }
             // Send email notifications
@@ -87,8 +87,8 @@ class EventController extends Controller
                 'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
             // Subscribe contact list and check
-            $mailchimpManager->subscribeContactToList($contact);
-            if ($mailchimpManager == false) {
+            $result = $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
+            if ($result == false) {
                 $messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
             }
             // Send email notifications
