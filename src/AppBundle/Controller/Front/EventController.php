@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Front;
 use AppBundle\Entity\ContactMessage;
 use AppBundle\Form\Type\ContactNewsletterType;
 use AppBundle\Service\NotificationService;
+use MZ\MailChimpBundle\Services\MailChimp;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,23 +28,26 @@ class EventController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var MailChimp $mailchimpService */
+            $mailchimpManager = $this->get('app.mailchimp');
+            /** @var NotificationService $messenger */
+            $messenger = $this->get('app.notification');
             // Set frontend flash message
             $this->addFlash(
                 'notice',
                 'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
-            // Save Mailchimp or Sendgrid user to list
-
-            // (to do...)
-
+            // Check contact to list
+            $mailchimpManager->subscribeContactToList($contact);
+            if ($mailchimpManager == false) {
+                $messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
+            }
             // Send email notifications
-            /** @var NotificationService $messenger */
-            $messenger = $this->get('app.notification');
             $messenger->sendCommonUserNotification($contact);
             $messenger->sendNewsletterSubscriptionAdminNotification($contact);
             // Clean up new form
             $form = $this->createForm(ContactNewsletterType::class);
-            //TODO flashmessage condicionat
+            //TODO flashmessage condicionatS
         }
 
         return $this->render(
@@ -73,18 +77,21 @@ class EventController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var MailChimp $mailchimpService */
+            $mailchimpManager = $this->get('app.mailchimp');
+            /** @var NotificationService $messenger */
+            $messenger = $this->get('app.notification');
             // Set frontend flash message
             $this->addFlash(
                 'notice',
                 'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
-            // Save Mailchimp or Sendgrid user to list
-
-            // (to do...)
-
+            // Subscribe contact list and check
+            $mailchimpManager->subscribeContactToList($contact);
+            if ($mailchimpManager == false) {
+                $messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
+            }
             // Send email notifications
-            /** @var NotificationService $messenger */
-            $messenger = $this->get('app.notification');
             $messenger->sendCommonUserNotification($contact);
             $messenger->sendNewsletterSubscriptionAdminNotification($contact);
             // Clean up new form

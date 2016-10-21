@@ -65,6 +65,7 @@ backend:
             description: Descripció
             metakeywords: Paraules clau
             metadescription: Metadescripció
+            metakeywordshelp: separades per coma
             content: Contingut
         tag:
             tag: Etiqueta
