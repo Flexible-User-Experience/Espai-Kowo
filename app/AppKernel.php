@@ -24,18 +24,18 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             // Vendors
+            new Apoutchika\LoremIpsumBundle\ApoutchikaLoremIpsumBundle(),
+            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Hampe\Bundle\ZurbInkBundle\HampeZurbInkBundle(),
             new Hautelook\AliceBundle\HautelookAliceBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new MZ\MailChimpBundle\MZMailChimpBundle(),
             new Presta\SitemapBundle\PrestaSitemapBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
-            new Apoutchika\LoremIpsumBundle\ApoutchikaLoremIpsumBundle(),
-            new Hampe\Bundle\ZurbInkBundle\HampeZurbInkBundle(),
-            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
             // App
             new AppBundle\AppBundle(),
         );

@@ -17,25 +17,43 @@ use Symfony\Component\Routing\RouterInterface;
  * Class SitemapListener
  *
  * @category Listener
- * @package  Acme\DemoBundle\EventListener
+ * @package  AppBundle\Listener
  * @author   Anton Serra <aserratorta@gmail.com>
  */
 class SitemapListener implements SitemapListenerInterface
 {
-    /** @var RouterInterface */
+    /**
+     * @var RouterInterface
+     */
     private $router;
 
-    /** @var EntityManager */
+    /**
+     * @var EntityManager
+     */
     private $em;
 
-    /** @var ArrayCollection */
+    /**
+     * @var ArrayCollection
+     */
     private $coworkers;
 
-    /** @var ArrayCollection */
+    /**
+     * @var ArrayCollection
+     */
     private $posts;
 
-    /** @var ArrayCollection */
+    /**
+     * @var ArrayCollection
+     */
     private $events;
+
+    /**
+     *
+     *
+     * Methods
+     *
+     *
+     */
 
     /**
      * SitemapListener constructor
