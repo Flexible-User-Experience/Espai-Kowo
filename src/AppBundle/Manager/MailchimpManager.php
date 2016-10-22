@@ -41,12 +41,17 @@ class MailchimpManager
      * @param ContactMessage $contact
      * @param string         $listId
      *
-     * @return boolean       $email
+     * @return boolean
      */
     public function subscribeContactToList(ContactMessage $contact, $listId)
     {
         $this->mailChimp->setListID($listId);
         $list = $this->mailChimp->getList();
+        $list->setMerge(array(
+            'FNAME' => implode(explode(" ", $contact->getEmail(), -2)),
+        //TODO    'LNAME' => implode(explode(" ", $nameSurname, -1)),
+            )
+        );
         $list->setDoubleOptin(false);
         $list->Subscribe($contact->getEmail());
 
