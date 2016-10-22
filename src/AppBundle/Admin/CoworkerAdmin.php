@@ -92,6 +92,13 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'gif',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.gif',
+                )
+            )
+            ->add(
                 'imageFile',
                 'file',
                 array(

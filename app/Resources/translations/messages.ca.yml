@@ -34,6 +34,7 @@ backend:
             blog: Blog
             web: Web
             instagram: Instagram
+            gif: Gif
         category:
             title: Títol
             category: Dedicació
@@ -64,6 +65,7 @@ backend:
             description: Descripció
             metakeywords: Paraules clau
             metadescription: Metadescripció
+            metakeywordshelp: separades per coma
             content: Contingut
         tag:
             tag: Etiqueta
