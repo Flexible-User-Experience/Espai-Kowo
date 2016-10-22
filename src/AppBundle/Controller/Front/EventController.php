@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\ContactMessage;
 use AppBundle\Form\Type\ContactNewsletterType;
+use AppBundle\Manager\MailchimpManager;
 use AppBundle\Service\NotificationService;
 use MZ\MailChimpBundle\Services\MailChimp;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -28,8 +29,8 @@ class EventController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var MailChimp $mailchimpService */
-            $mailchimpManager = $this->get('app.mailchimp');
+            /** @var MailchimpManager $mailchimpManager */
+            $mailchimpManager = $this->get('app.mailchimp_manager');
             /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
             // Set frontend flash message

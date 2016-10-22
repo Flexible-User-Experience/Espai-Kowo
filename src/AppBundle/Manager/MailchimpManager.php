@@ -36,7 +36,7 @@ class MailchimpManager
     }
 
     /**
-     * Mailchimp Service
+     * Mailchimp Manager
      *
      * @param ContactMessage $contact
      * @param string         $listId
@@ -48,7 +48,7 @@ class MailchimpManager
         $this->mailChimp->setListID($listId);
         $list = $this->mailChimp->getList();
         $list->setMerge(array(
-            'FNAME' => implode(explode(" ", $contact->getEmail(), -2)),
+            'FNAME' => implode(explode(" ", $contact->getName(), -2)),
         //TODO    'LNAME' => implode(explode(" ", $nameSurname, -1)),
             )
         );
