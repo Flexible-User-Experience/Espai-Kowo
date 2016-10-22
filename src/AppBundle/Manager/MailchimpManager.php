@@ -3,6 +3,7 @@
 namespace AppBundle\Manager;
 
 use AppBundle\Entity\ContactMessage;
+use AppBundle\Service\NotificationService;
 use MZ\MailChimpBundle\Services\MailChimp;
 
 /**
@@ -17,6 +18,9 @@ class MailchimpManager
     /** @var MailChimp $mailchimpService */
      private $mailChimp;
 
+//    /** @var NotificationService*/
+//    private $messenger;
+
     /**
      *
      *
@@ -28,11 +32,13 @@ class MailchimpManager
     /**
      * MailchimpManager constructor.
      *
-     * @param MailChimp $mailChimp
+     * @param MailChimp           $mailChimp
+     * @param NotificationService $messenger
      */
-    public function __construct($mailChimp)
+    public function __construct($mailChimp, NotificationService $messenger)
     {
-        $this->mailChimp = $mailChimp;
+        $this->mailChimp    = $mailChimp;
+        $this->messenger    = $messenger;
     }
 
     /**
@@ -45,6 +51,7 @@ class MailchimpManager
      */
     public function subscribeContactToList(ContactMessage $contact, $listId)
     {
+//        $messenger = $this->messenger;
         $this->mailChimp->setListID($listId);
         $list = $this->mailChimp->getList();
         $list->setMerge(array(
@@ -54,6 +61,14 @@ class MailchimpManager
         );
         $list->setDoubleOptin(false);
         $list->Subscribe($contact->getEmail());
+        // Check contact to list
+//        $result = $this->subscribeContactToList($contact, 'mailchimp_newsletter_list_id');
+//        if ($result == false) {
+//            $messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
+//        }
+        // Send email notifications
+//        $messenger->sendCommonUserNotification($contact);
+//        $messenger->sendNewsletterSubscriptionAdminNotification($contact);
 
         return $list->Subscribe();
     }

@@ -79,7 +79,7 @@ class EventController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var MailChimp $mailchimpService */
-            $mailchimpManager = $this->get('app.mailchimp');
+            $mailchimpManager = $this->get('app.mailchimp_manager');
             /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
             // Set frontend flash message

@@ -79,4 +79,4 @@ services:
 # Mailchimp Manager
     app.mailchimp_manager:
         class: AppBundle\Manager\MailchimpManager
-        arguments: ["@mailchimp"]
+        arguments: ["@mailchimp", "@app.notification"]
