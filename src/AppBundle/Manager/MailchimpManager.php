@@ -51,18 +51,16 @@ class MailchimpManager
      */
     public function subscribeContactToList(ContactMessage $contact, $listId)
     {
-        $messenger = $this->messenger;
         $this->mailChimp->setListID($listId);
         $list = $this->mailChimp->getList();
         //Evaluate contact name
         $explodeName = explode(" ", $contact->getName());
-        $countExplodeName = count($explodeName);
-        if($countExplodeName === 1){
+        if(count($explodeName) === 1){
             $list->setMerge(array(
                 'FNAME' => $explodeName[0]
                 )
             );
-        }else{
+        } else if (count($explodeName) >= 2) {
             $list->setMerge(array(
                 'FNAME' => $explodeName[0],
                 'LNAME' => $explodeName[1]
@@ -73,11 +71,8 @@ class MailchimpManager
         $result = $list->Subscribe($contact->getEmail());
         // Check contact to list
         if ($result == false) {
-            $messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
+            $this->messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
         }
-        // Send email notifications
-        $messenger->sendCommonUserNotification($contact);
-        $messenger->sendNewsletterSubscriptionAdminNotification($contact);
 
         return $result;
     }

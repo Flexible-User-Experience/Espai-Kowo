@@ -5,7 +5,6 @@ namespace AppBundle\Controller\Front;
 use AppBundle\Entity\ContactMessage;
 use AppBundle\Form\Type\ContactHomepageType;
 use AppBundle\Form\Type\ContactMessageType;
-use AppBundle\Manager\MailchimpManager;
 use AppBundle\Service\NotificationService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -29,15 +28,17 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var MailchimpManager $mailchimpManager */
             $this->get('app.mailchimp_manager')->subscribeContactToList($contact, $this->getParameter('mailchimp_free_trial_list_id'));
             /** @var NotificationService $messenger */
-            $this->get('app.notification');
+            $messenger = $this->get('app.notification');
             // Set frontend flash message
             $this->addFlash(
                 'notice',
                 'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
+            // Send email notifications
+            $messenger->sendCommonUserNotification($contact);
+            $messenger->sendNewsletterSubscriptionAdminNotification($contact);
             // Clean up new form
             $form = $this->createForm(ContactHomepageType::class);
         }
