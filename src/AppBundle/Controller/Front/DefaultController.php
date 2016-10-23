@@ -28,16 +28,17 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->get('app.mailchimp_manager')->subscribeContactToList($contact, $this->getParameter('mailchimp_free_trial_list_id'));
+            /** @var NotificationService $messenger */
+            $messenger = $this->get('app.notification');
             // Set frontend flash message
             $this->addFlash(
                 'notice',
                 'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
             // Send email notifications
-            /** @var NotificationService $messenger */
-            $messenger = $this->get('app.notification');
             $messenger->sendCommonUserNotification($contact);
-            $messenger->sendFreeTrialAdminNotification($contact);
+            $messenger->sendNewsletterSubscriptionAdminNotification($contact);
             // Clean up new form
             $form = $this->createForm(ContactHomepageType::class);
         }
