@@ -51,7 +51,6 @@ class MailchimpManager
      */
     public function subscribeContactToList(ContactMessage $contact, $listId)
     {
-        $messenger = $this->messenger;
         $this->mailChimp->setListID($listId);
         $list = $this->mailChimp->getList();
         //Evaluate contact name
@@ -73,11 +72,8 @@ class MailchimpManager
         $result = $list->Subscribe($contact->getEmail());
         // Check contact to list
         if ($result == false) {
-            $messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
+            $this->messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
         }
-        // Send email notifications
-        $messenger->sendCommonUserNotification($contact);
-        $messenger->sendNewsletterSubscriptionAdminNotification($contact);
 
         return $result;
     }
