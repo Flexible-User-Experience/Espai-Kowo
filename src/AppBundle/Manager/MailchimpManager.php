@@ -54,11 +54,21 @@ class MailchimpManager
         $messenger = $this->messenger;
         $this->mailChimp->setListID($listId);
         $list = $this->mailChimp->getList();
-        $list->setMerge(array(
-            'FNAME' => implode(explode(" ", $contact->getName(), -2)),
-        //TODO    'LNAME' => implode(explode(" ", $nameSurname, -1)),
-            )
-        );
+        //Evaluate contact name
+        $explodeName = explode(" ", $contact->getName());
+        $countExplodeName = count($explodeName);
+        if($countExplodeName === 1){
+            $list->setMerge(array(
+                'FNAME' => $explodeName[0]
+                )
+            );
+        }else{
+            $list->setMerge(array(
+                'FNAME' => $explodeName[0],
+                'LNAME' => $explodeName[1]
+                )
+            );
+        }
         $list->setDoubleOptin(false);
         $result = $list->Subscribe($contact->getEmail());
         // Check contact to list
