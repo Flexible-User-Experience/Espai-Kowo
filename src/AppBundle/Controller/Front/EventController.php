@@ -6,7 +6,6 @@ use AppBundle\Entity\ContactMessage;
 use AppBundle\Form\Type\ContactNewsletterType;
 use AppBundle\Manager\MailchimpManager;
 use AppBundle\Service\NotificationService;
-use MZ\MailChimpBundle\Services\MailChimp;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,22 +29,14 @@ class EventController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var MailchimpManager $mailchimpManager */
-            $mailchimpManager = $this->get('app.mailchimp_manager');
+            $this->get('app.mailchimp_manager')->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
             /** @var NotificationService $messenger */
-            $messenger = $this->get('app.notification');
+            $this->get('app.notification');
             // Set frontend flash message
             $this->addFlash(
                 'notice',
                 'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
-            // Check contact to list
-            $result= $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
-            if ($result == false) {
-                $messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
-            }
-            // Send email notifications
-            $messenger->sendCommonUserNotification($contact);
-            $messenger->sendNewsletterSubscriptionAdminNotification($contact);
             // Clean up new form
             $form = $this->createForm(ContactNewsletterType::class);
             //TODO flashmessage condicionatS
@@ -78,8 +69,8 @@ class EventController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var MailChimp $mailchimpService */
-            $mailchimpManager = $this->get('app.mailchimp_manager');
+            /** @var MailchimpManager $mailchimpManager */
+            $mailchimpManager = $this->get('app.mailchimp_manager')->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
             /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
             // Set frontend flash message
@@ -87,14 +78,6 @@ class EventController extends Controller
                 'notice',
                 'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
-            // Subscribe contact list and check
-            $result = $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
-            if ($result == false) {
-                $messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
-            }
-            // Send email notifications
-            $messenger->sendCommonUserNotification($contact);
-            $messenger->sendNewsletterSubscriptionAdminNotification($contact);
             // Clean up new form
             $form = $this->createForm(ContactNewsletterType::class);
             //TODO flashmessage condicionat

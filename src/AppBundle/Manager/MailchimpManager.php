@@ -18,8 +18,8 @@ class MailchimpManager
     /** @var MailChimp $mailchimpService */
      private $mailChimp;
 
-//    /** @var NotificationService*/
-//    private $messenger;
+    /** @var NotificationService*/
+    private $messenger;
 
     /**
      *
@@ -35,7 +35,7 @@ class MailchimpManager
      * @param MailChimp           $mailChimp
      * @param NotificationService $messenger
      */
-    public function __construct($mailChimp, NotificationService $messenger)
+    public function __construct(MailChimp $mailChimp, NotificationService $messenger)
     {
         $this->mailChimp    = $mailChimp;
         $this->messenger    = $messenger;
@@ -47,11 +47,11 @@ class MailchimpManager
      * @param ContactMessage $contact
      * @param string         $listId
      *
-     * @return boolean
+     * @return boolean       $result
      */
     public function subscribeContactToList(ContactMessage $contact, $listId)
     {
-//        $messenger = $this->messenger;
+        $messenger = $this->messenger;
         $this->mailChimp->setListID($listId);
         $list = $this->mailChimp->getList();
         $list->setMerge(array(
@@ -60,16 +60,15 @@ class MailchimpManager
             )
         );
         $list->setDoubleOptin(false);
-        $list->Subscribe($contact->getEmail());
+        $result = $list->Subscribe($contact->getEmail());
         // Check contact to list
-//        $result = $this->subscribeContactToList($contact, 'mailchimp_newsletter_list_id');
-//        if ($result == false) {
-//            $messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
-//        }
+        if ($result == false) {
+            $messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
+        }
         // Send email notifications
-//        $messenger->sendCommonUserNotification($contact);
-//        $messenger->sendNewsletterSubscriptionAdminNotification($contact);
+        $messenger->sendCommonUserNotification($contact);
+        $messenger->sendNewsletterSubscriptionAdminNotification($contact);
 
-        return $list->Subscribe();
+        return $result;
     }
 }

@@ -5,8 +5,8 @@ namespace AppBundle\Controller\Front;
 use AppBundle\Entity\ContactMessage;
 use AppBundle\Form\Type\ContactHomepageType;
 use AppBundle\Form\Type\ContactMessageType;
+use AppBundle\Manager\MailchimpManager;
 use AppBundle\Service\NotificationService;
-use MZ\MailChimpBundle\Services\MailChimp;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +29,7 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var MailChimp $mailchimpService */
+            /** @var MailchimpManager $mailchimpManager */
             $mailchimpManager = $this->get('app.mailchimp_manager');
             /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
