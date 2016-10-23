@@ -55,13 +55,12 @@ class MailchimpManager
         $list = $this->mailChimp->getList();
         //Evaluate contact name
         $explodeName = explode(" ", $contact->getName());
-        $countExplodeName = count($explodeName);
-        if($countExplodeName === 1){
+        if(count($explodeName) === 1){
             $list->setMerge(array(
                 'FNAME' => $explodeName[0]
                 )
             );
-        }else{
+        } else if (count($explodeName) >= 2) {
             $list->setMerge(array(
                 'FNAME' => $explodeName[0],
                 'LNAME' => $explodeName[1]
