@@ -124,7 +124,7 @@ class Coworker extends AbstractBase
      * @Vich\UploadableField(mapping="coworker", fileNameProperty="gifName")
      * @Assert\File(
      *     maxSize="10M",
-     *     mimeTypes={"image/jpg", "image/jpeg", "image/png", "image/gif"}
+     *     mimeTypes={"image/gif"}
      * )
      * @Assert\Image(minWidth="1200")
      */

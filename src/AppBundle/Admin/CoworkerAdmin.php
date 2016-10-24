@@ -92,10 +92,12 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
-                'gif',
-                null,
+                'gifFile',
+                'file',
                 array(
-                    'label' => 'backend.admin.coworker.gif',
+                    'label'     => 'backend.admin.coworker.gif',
+                    'help'      => $this->getImageHelperFormMapperWithThumbnailGif(),
+                    'required'  => false,
                 )
             )
             ->add(
