@@ -126,7 +126,7 @@ class Coworker extends AbstractBase
      *     maxSize="10M",
      *     mimeTypes={"image/gif"}
      * )
-     * @Assert\Image(minWidth="1200")
+     * @Assert\Image(maxWidth="780", minWidth="780", maxHeight="1168", minHeight="1168")
      */
     private $gifFile;
 
