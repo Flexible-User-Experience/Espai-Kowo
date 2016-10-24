@@ -65,6 +65,20 @@ class SendBirthdayNotificationCommand extends ContainerAwareCommand
             }
         }
 
+        $strCurrentDate = $currentDate->format('d-m-Y');
+        $strDayBeforeBirthDayDate = $strCurrentDate ('-1 day');
+        $dayBeforeBirthDayDate = date($strDayBeforeBirthDayDate);
+
+        $coworkersDayBeforeBirthday = $this->em->getRepository('AppBundle:Coworker')->getAllCoworkersBirthdayByDayAndMonth($dayBeforeBirthDayDate->format('j'), $currentDate->format('n'));
+
+        /** @var Coworker $coworker */
+        foreach ($coworkersDayBeforeBirthday as $coworker) {
+            $output->writeln('Demà és l\'aniversari del/la coworker: ' . $coworker->getName() . ' ' . $coworker->getSurname());
+            if ($input->getOption('delivery') === true) {
+                $messenger->sendAdminBirthdayNotification($coworker);
+            }
+        }
+
         $output->writeln('<comment>END OF FILE.</comment>');
 
         return true;
