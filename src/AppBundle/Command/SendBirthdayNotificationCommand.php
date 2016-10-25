@@ -65,11 +65,10 @@ class SendBirthdayNotificationCommand extends ContainerAwareCommand
             }
         }
 
-        $strCurrentDate = $currentDate->format('d-m-Y');
-        $strDayBeforeBirthDayDate = $strCurrentDate ('-1 day');
-        $dayBeforeBirthDayDate = date($strDayBeforeBirthDayDate);
+        $dateInterval = new \DateInterval('P1D');
+        $dayBefore = $currentDate->add($dateInterval);
 
-        $coworkersDayBeforeBirthday = $this->em->getRepository('AppBundle:Coworker')->getAllCoworkersBirthdayByDayAndMonth($dayBeforeBirthDayDate->format('j'), $currentDate->format('n'));
+        $coworkersDayBeforeBirthday = $this->em->getRepository('AppBundle:Coworker')->getAllCoworkersBirthdayByDayAndMonth($dayBefore->format('j'), $dayBefore->format('n'));
 
         /** @var Coworker $coworker */
         foreach ($coworkersDayBeforeBirthday as $coworker) {
