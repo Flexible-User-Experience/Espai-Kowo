@@ -9,8 +9,8 @@
             <div class="col-sm-4 extra-m-bottom">
                 {% if coworker.imageName is not null %}
                     <img id="main-photo" src="{{ vich_uploader_asset(coworker, 'imageFile') | imagine_filter('780xY') }}" class="img-responsive" alt="{{ coworker.imageName }}">
-                    {% if coworker.gif is not null %}
-                        <img id="gif-photo" src="{{ coworker.gif }}" class="img-responsive center-block hidden" alt="animated gif">
+                    {% if coworker.gifName is not null %}
+                        <img id="gif-photo" src="{{ vich_uploader_asset(coworker, 'gifFile') }}" class="img-responsive center-block hidden" alt="animated gif">
                     {% endif %}
                 {% else %}
                     <img src="{{ asset('bundles/app/img/kiwi-pic.jpg') | imagine_filter('780xY') }}" class="img-responsive" alt="default coworker image">
@@ -33,18 +33,18 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {% if coworker.gif is not null %}
+    {% if coworker.gifName is not null %}
         <script type="text/javascript">
             jQuery(document).ready(function() {
-                $( "#main-photo" ).hover(function() {
+                $( "#main-photo" ).mouseenter(function() {
                     $("#gif-photo").removeClass('hidden');
                     $("#main-photo").addClass('hidden');
                 });
-                $( "#gif-photo" ).hover(function() {
+                $( "#gif-photo" ).mouseleave(function() {
                     $("#gif-photo").addClass('hidden');
                     $("#main-photo").removeClass('hidden');
                 });
             });
+        </script>
     {% endif %}
-    </script>
 {% endblock %}

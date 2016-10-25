@@ -5,6 +5,7 @@ namespace AppBundle\Command;
 use AppBundle\Entity\Coworker;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -42,6 +43,10 @@ class SendBirthdayNotificationCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        /** @var Router $router */
+        $router = $this->getContainer()->get('router');
+        $router->getContext()->setHost($this->getContainer()->getParameter('mailer_url_base'));
+
         $output->writeln('<info>Welcome to send a notification command</info>');
 
         if ($input->getOption('delivery') === true) {
@@ -62,6 +67,19 @@ class SendBirthdayNotificationCommand extends ContainerAwareCommand
             $output->writeln('Aniversari del/la coworker: ' . $coworker->getName() . ' ' . $coworker->getSurname());
             if ($input->getOption('delivery') === true) {
                 $messenger->sendCoworkerBirthdayNotification($coworker);
+            }
+        }
+
+        $dateInterval = new \DateInterval('P1D');
+        $dayBefore = $currentDate->add($dateInterval);
+
+        $coworkersDayBeforeBirthday = $this->em->getRepository('AppBundle:Coworker')->getAllCoworkersBirthdayByDayAndMonth($dayBefore->format('j'), $dayBefore->format('n'));
+
+        /** @var Coworker $coworker */
+        foreach ($coworkersDayBeforeBirthday as $coworker) {
+            $output->writeln('Demà és l\'aniversari del/la coworker: ' . $coworker->getName() . ' ' . $coworker->getSurname());
+            if ($input->getOption('delivery') === true) {
+                $messenger->sendAdminBirthdayNotification($coworker);
             }
         }
 

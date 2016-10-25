@@ -38,7 +38,7 @@ twig:
         facebook_pixel_enabled:   "%facebook_pixel_enabled%"
         facebook_pixel_id:        "%facebook_pixel_id%"
         main_brand_title:         "%project_web_title%"
-        admin_tag_version:        "v1.0.30"
+        admin_tag_version:        "v1.0.31"
 
 # Assetic
 assetic:
@@ -209,6 +209,6 @@ ewz_recaptcha:
 
 # MailChimp
 mz_mail_chimp:
-    api_key: "%mailchimp_api_key%"
+    api_key:      "%mailchimp_api_key%"
     default_list: "%mailchimp_newsletter_list_id%"
-    ssl: false
+    ssl:          false

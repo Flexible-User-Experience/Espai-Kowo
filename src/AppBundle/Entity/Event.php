@@ -156,4 +156,14 @@ class Event extends AbstractBase
     {
         return $this->imageName;
     }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->id ? $this->getDate()->format('d/m/Y') . ' · ' . $this->getTitle() : '---';
+    }
 }
