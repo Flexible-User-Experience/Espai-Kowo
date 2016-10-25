@@ -18,7 +18,7 @@ class EventRepository extends EntityRepository
         $query = $this->createQueryBuilder('e')
             ->where('e.enabled = :enabled')
             ->setParameter('enabled', true)
-            ->orderBy('e.date');
+            ->orderBy('e.date', 'DESC');
 
         return $query->getQuery()->getResult();
     }
