@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\ContactMessage;
 use AppBundle\Form\Type\ContactNewsletterType;
+use AppBundle\Manager\MailchimpManager;
 use AppBundle\Service\NotificationService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,20 +28,9 @@ class EventController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->get('app.mailchimp_manager')->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
-            /** @var NotificationService $messenger */
-            $messenger = $this->get('app.notification');
-            // Set frontend flash message
-            $this->addFlash(
-                'notice',
-                'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
-            );
-             // Send email notifications
-            $messenger->sendCommonUserNotification($contact);
-            $messenger->sendNewsletterSubscriptionAdminNotification($contact);
+            $this->setFlashMailchimpSubscribeAndEmailNotifications($contact);
             // Clean up new form
             $form = $this->createForm(ContactNewsletterType::class);
-            //TODO flashmessage condicionatS
         }
 
         return $this->render(
@@ -70,25 +60,35 @@ class EventController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->get('app.mailchimp_manager')->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
-            /** @var NotificationService $messenger */
-            $messenger = $this->get('app.notification');
-            // Set frontend flash message
-            $this->addFlash(
-                'notice',
-                'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
-            );
-            // Send email notifications
-            $messenger->sendCommonUserNotification($contact);
-            $messenger->sendNewsletterSubscriptionAdminNotification($contact);
+            $this->setFlashMailchimpSubscribeAndEmailNotifications($contact);
             // Clean up new form
             $form = $this->createForm(ContactNewsletterType::class);
-            //TODO flashmessage condicionat
         }
 
         return $this->render(
             ':Frontend/Event:detail.html.twig',
             [ 'event' => $event, 'form' => $form->createView(), ]
         );
+    }
+
+    /**
+     * @param ContactMessage $contact
+     */
+    private function setFlashMailchimpSubscribeAndEmailNotifications($contact)
+    {
+        /** @var MailchimpManager $mailchimpManager */
+        $mailchimpManager = $this->get('app.mailchimp_manager');
+        /** @var NotificationService $messenger */
+        $messenger = $this->get('app.notification');
+        // Set frontend flash message
+        $this->addFlash(
+            'notice',
+            'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
+        );
+        // Subscribe contact to free-trial mailchimp list
+        $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_free_trial_list_id'));
+        // Send email notifications
+        $messenger->sendCommonUserNotification($contact);
+        $messenger->sendNewsletterSubscriptionAdminNotification($contact);
     }
 }
