@@ -27,6 +27,14 @@ class FrontendMenuBuilder
     private $ac;
 
     /**
+     *
+     *
+     * Methods
+     *
+     *
+     */
+
+    /**
      * @param FactoryInterface     $factory
      * @param AuthorizationChecker $ac
      */
@@ -35,14 +43,6 @@ class FrontendMenuBuilder
         $this->factory = $factory;
         $this->ac = $ac;
     }
-
-    /**
-     *
-     *
-     * Methods
-     *
-     *
-     */
 
     /**
      * @param RequestStack $requestStack
