@@ -219,6 +219,14 @@ class Coworker extends AbstractBase
     }
 
     /**
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->name . ' ' . $this->surname;
+    }
+
+    /**
      * @param string $surname
      *
      * @return Coworker
@@ -491,5 +499,15 @@ class Coworker extends AbstractBase
         $this->socialNetworks->removeElement($socialNetwork);
 
         return $this;
+    }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->id ? $this->getFullName() : '---';
     }
 }
