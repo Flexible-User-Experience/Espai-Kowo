@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\ContactMessage;
 use AppBundle\Form\Type\ContactNewsletterType;
+use AppBundle\Manager\MailchimpManager;
 use AppBundle\Service\NotificationService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,7 +28,8 @@ class EventController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->get('app.mailchimp_manager')->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
+            /** @var MailchimpManager $mailchimpManager */
+            $mailchimpManager = $this->get('app.mailchimp_manager');
             /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
             // Set frontend flash message
@@ -35,7 +37,9 @@ class EventController extends Controller
                 'notice',
                 'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
             );
-             // Send email notifications
+            // Subscribe contact to free-trial mailchimp list
+            $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_free_trial_list_id'));
+            // Send email notifications
             $messenger->sendCommonUserNotification($contact);
             $messenger->sendNewsletterSubscriptionAdminNotification($contact);
             // Clean up new form
@@ -91,4 +95,5 @@ class EventController extends Controller
             [ 'event' => $event, 'form' => $form->createView(), ]
         );
     }
+    //TODO mètode privat del factor comú d'enviar el formulari i es vàlid.
 }
