@@ -5,6 +5,7 @@ namespace AppBundle\Command;
 use AppBundle\Entity\Coworker;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -42,6 +43,10 @@ class SendBirthdayNotificationCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        /** @var Router $router */
+        $router = $this->getContainer()->get('router');
+        $router->getContext()->setHost($this->getContainer()->getParameter('mailer_url_base'));
+
         $output->writeln('<info>Welcome to send a notification command</info>');
 
         if ($input->getOption('delivery') === true) {
