@@ -119,12 +119,23 @@ class Coworker extends AbstractBase
     private $birthday;
 
     /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="coworker", fileNameProperty="gifName")
+     * @Assert\File(
+     *     maxSize="10M",
+     *     mimeTypes={"image/gif"}
+     * )
+     * @Assert\Image(maxWidth="780", minWidth="780", maxHeight="1168", minHeight="1168")
+     */
+    private $gifFile;
+
+    /**
      * @var string
      *
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url()
      */
-    private $gif;
+    private $gifName;
 
     /**
      * @var ArrayCollection
@@ -205,6 +216,14 @@ class Coworker extends AbstractBase
     public function getSurname()
     {
         return $this->surname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->name . ' ' . $this->surname;
     }
 
     /**
@@ -386,21 +405,54 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @return string
+     * Get gifFile
+     *
+     * @return File|UploadedFile
      */
-    public function getGif()
+    public function getGifFile()
     {
-        return $this->gif;
+        return $this->gifFile;
     }
 
     /**
-     * @param string $gif
+     * Set gifFile
      *
-     * @return Coworker
+     * @param File|UploadedFile $gifFile
+     *
+     * @return $this
      */
-    public function setGif($gif)
+    public function setGifFile(File $gifFile = null)
     {
-        $this->gif = $gif;
+        $this->gifFile = $gifFile;
+        if ($gifFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get gitName
+     *
+     * @return string
+     */
+    public function getGifName()
+    {
+        return $this->gifName;
+    }
+
+    /**
+     * Set gifName
+     *
+     * @param string $gifName
+     *
+     * @return $this
+     */
+    public function setGifName($gifName)
+    {
+        $this->gifName = $gifName;
 
         return $this;
     }
@@ -447,5 +499,15 @@ class Coworker extends AbstractBase
         $this->socialNetworks->removeElement($socialNetwork);
 
         return $this;
+    }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->id ? $this->getFullName() : '---';
     }
 }
