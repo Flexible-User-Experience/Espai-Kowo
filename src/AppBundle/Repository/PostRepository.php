@@ -68,7 +68,8 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * @param Tag $category
+     * @param Tag $tag
+     *
      * @return ArrayCollection
      */
     public function getPostsByTagEnabledSortedByPublishedDate(Tag $tag)
