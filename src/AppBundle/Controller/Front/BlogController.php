@@ -17,7 +17,7 @@ class BlogController extends Controller
      */
     public function indexAction()
     {
-        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findAll();
+        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->getAllEnabledSortedByPublishedDateWithJoinUntilNow();
 
         return $this->render(':Frontend:Blog/list.html.twig',
             [ 'posts' => $posts]
