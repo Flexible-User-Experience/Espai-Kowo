@@ -15,7 +15,7 @@ use MZ\MailChimpBundle\Services\MailChimp;
  */
 class MailchimpManager
 {
-    /** @var MailChimp $mailchimpService */
+    /** @var MailChimp $mailChimp */
      private $mailChimp;
 
     /** @var NotificationService*/
@@ -37,8 +37,8 @@ class MailchimpManager
      */
     public function __construct(MailChimp $mailChimp, NotificationService $messenger)
     {
-        $this->mailChimp    = $mailChimp;
-        $this->messenger    = $messenger;
+        $this->mailChimp = $mailChimp;
+        $this->messenger = $messenger;
     }
 
     /**
