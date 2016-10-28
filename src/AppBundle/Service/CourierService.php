@@ -1,8 +1,7 @@
 <?php
 
 namespace AppBundle\Service;
-
-use \Swift_Message;
+use AppBundle\Entity\ContactMessage;
 
 /**
  * Class CourierService
@@ -33,8 +32,9 @@ class CourierService
      * @param string $to
      * @param string $subject
      * @param string $body
+     * @param string|null $replyAddress
      */
-    public function sendEmail($from, $to, $subject, $body)
+    public function sendEmail($from, $to, $subject, $body, $replyAddress = null)
     {
         $message = new \Swift_Message();
         $message
@@ -44,6 +44,9 @@ class CourierService
             ->setBody($body)
             ->setCharset('UTF-8')
             ->setContentType('text/html');
+        if (!is_null($replyAddress)) {
+            $message->setReplyTo($replyAddress);
+        }
         //TODO try catch exception with return
         $this->mailer->send($message);
     }
