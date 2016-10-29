@@ -1,7 +1,6 @@
 <?php
 
 namespace AppBundle\Service;
-use AppBundle\Entity\ContactMessage;
 
 /**
  * Class CourierService
@@ -12,8 +11,18 @@ use AppBundle\Entity\ContactMessage;
  */
 class CourierService
 {
-    /** @var \Swift_Mailer */
+    /**
+     * @var \Swift_Mailer
+     */
     private $mailer;
+
+    /**
+     *
+     *
+     * Methods
+     *
+     *
+     */
 
     /**
      * CourierService constructor
@@ -33,6 +42,8 @@ class CourierService
      * @param string $subject
      * @param string $body
      * @param string|null $replyAddress
+     *
+     * @return int
      */
     public function sendEmail($from, $to, $subject, $body, $replyAddress = null)
     {
@@ -47,7 +58,7 @@ class CourierService
         if (!is_null($replyAddress)) {
             $message->setReplyTo($replyAddress);
         }
-        //TODO try catch exception with return
-        $this->mailer->send($message);
+
+        return $this->mailer->send($message);
     }
 }
