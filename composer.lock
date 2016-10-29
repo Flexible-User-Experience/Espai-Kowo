@@ -527,16 +527,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.6.0",
+            "version": "v1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "f8af318d14bdb0eff0336795b428b547bd39ccb6"
+                "reference": "b6f544a20f4807e81f7044d31e679ccbb1866dc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/f8af318d14bdb0eff0336795b428b547bd39ccb6",
-                "reference": "f8af318d14bdb0eff0336795b428b547bd39ccb6",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/b6f544a20f4807e81f7044d31e679ccbb1866dc3",
+                "reference": "b6f544a20f4807e81f7044d31e679ccbb1866dc3",
                 "shasum": ""
             },
             "require": {
@@ -593,7 +593,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-12-31 16:37:02"
+            "time": "2016-10-29 11:16:17"
         },
         {
             "name": "doctrine/collections",
@@ -1477,16 +1477,16 @@
         },
         {
             "name": "egeloen/ckeditor-bundle",
-            "version": "4.0.5",
+            "version": "4.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egeloen/IvoryCKEditorBundle.git",
-                "reference": "0c14a1d8ebfe397fe9c499f0aad6ba7b7d37e058"
+                "reference": "c974b85b79ca9186809eb8625e53544b388b0411"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egeloen/IvoryCKEditorBundle/zipball/0c14a1d8ebfe397fe9c499f0aad6ba7b7d37e058",
-                "reference": "0c14a1d8ebfe397fe9c499f0aad6ba7b7d37e058",
+                "url": "https://api.github.com/repos/egeloen/IvoryCKEditorBundle/zipball/c974b85b79ca9186809eb8625e53544b388b0411",
+                "reference": "c974b85b79ca9186809eb8625e53544b388b0411",
                 "shasum": ""
             },
             "require": {
@@ -1531,7 +1531,7 @@
             "keywords": [
                 "CKEditor"
             ],
-            "time": "2016-09-07 17:31:21"
+            "time": "2016-10-28 16:59:01"
         },
         {
             "name": "egeloen/json-builder",
