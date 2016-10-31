@@ -14,6 +14,8 @@ class BlogController extends Controller
     /**
      * @Route("/blog", name="front_blog")
      *
+     * @param Request $request
+     *
      * @return Response
      */
     public function indexAction(Request $request)
@@ -23,8 +25,7 @@ class BlogController extends Controller
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $posts,
-            $request->query->getInt('pagina', 1),
-            4
+            $request->query->getInt('pagina', 1)
         );
 
         return $this->render(':Frontend:Blog/list.html.twig',
