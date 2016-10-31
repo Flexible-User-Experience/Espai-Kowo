@@ -38,7 +38,7 @@ twig:
         facebook_pixel_enabled:   "%facebook_pixel_enabled%"
         facebook_pixel_id:        "%facebook_pixel_id%"
         main_brand_title:         "%project_web_title%"
-        admin_tag_version:        "v1.0.32"
+        admin_tag_version:        "v1.0.33"
 
 # Assetic
 assetic:
@@ -142,6 +142,7 @@ sonata_admin:
     persist_filters: true
     templates:
         layout: "::Admin/layout.html.twig"
+        edit:   "::Admin/edit.html.twig"
         show:   "::Admin/show.html.twig"
     dashboard:
         groups:
@@ -212,3 +213,11 @@ mz_mail_chimp:
     api_key:      "%mailchimp_api_key%"
     default_list: "%mailchimp_newsletter_list_id%"
     ssl:          false
+
+# KNP Paginator
+knp_paginator:
+    page_range: 5
+    default_options:
+        page_name: pagina
+    template:
+        pagination: "::Pagination/custom_pagination.html.twig"

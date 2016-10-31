@@ -66,7 +66,9 @@ class PostAdmin extends AbstractBaseAdmin
                 'publishedAt',
                 'sonata_type_date_picker',
                 array(
-                    'label' => 'backend.admin.published_date',
+                    'label'    => 'backend.admin.published_date',
+                    'format'   => 'd/M/y',
+                    'required' => true,
                 )
             )
             ->add(

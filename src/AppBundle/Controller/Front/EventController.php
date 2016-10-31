@@ -86,7 +86,7 @@ class EventController extends Controller
             'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
         );
         // Subscribe contact to free-trial mailchimp list
-        $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_free_trial_list_id'));
+        $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
         // Send email notifications
         $messenger->sendCommonUserNotification($contact);
         $messenger->sendNewsletterSubscriptionAdminNotification($contact);
