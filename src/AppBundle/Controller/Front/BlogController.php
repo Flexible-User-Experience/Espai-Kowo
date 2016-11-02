@@ -50,8 +50,8 @@ class BlogController extends Controller
         /** @var Post $post */
         $post = $this->getDoctrine()->getRepository('AppBundle:Post')->findOneBy(
             array(
-                'publishedAt'   => $date,
-                'slug'  => $slug,
+                'publishedAt' => $date,
+                'slug'        => $slug,
             )
         );
 
