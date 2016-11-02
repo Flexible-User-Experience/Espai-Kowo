@@ -20,6 +20,7 @@ framework:
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
+        name:        EKSESSID
         handler_id:  ~
     fragments:       ~
     http_method_override: true
@@ -34,8 +35,10 @@ twig:
     globals:
         google_analytics_enabled: "%google_analytics_enabled%"
         google_analytics_account: "%google_analytics_account%"
+        facebook_pixel_enabled:   "%facebook_pixel_enabled%"
+        facebook_pixel_id:        "%facebook_pixel_id%"
         main_brand_title:         "%project_web_title%"
-        admin_tag_version:        "v1.0.06"
+        admin_tag_version:        "v1.0.33"
 
 # Assetic
 assetic:
@@ -60,12 +63,13 @@ assetic:
 # Doctrine
 doctrine:
     dbal:
-        driver:   pdo_mysql
-        host:     "%database_host%"
-        port:     "%database_port%"
-        dbname:   "%database_name%"
-        user:     "%database_user%"
-        password: "%database_password%"
+        driver:         "pdo_mysql"
+        host:           "%database_host%"
+        port:           "%database_port%"
+        dbname:         "%database_name%"
+        user:           "%database_user%"
+        password:       "%database_password%"
+        server_version: "%database_server_version%"
         charset:  UTF8
         types:
             json: Sonata\Doctrine\Types\JsonType
@@ -73,6 +77,10 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        dql:
+            datetime_functions:
+                month: DoctrineExtensions\Query\Mysql\Month
+                day: DoctrineExtensions\Query\Mysql\Day
 
 doctrine_migrations:
     dir_name:  "%kernel.root_dir%/../src/AppBundle/DoctrineMigrations"
@@ -84,8 +92,6 @@ swiftmailer:
     host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
-    encryption: "ssl"
-    auth_mode: "login"
     spool:     { type: memory }
 
 # Sonata Block
@@ -136,6 +142,7 @@ sonata_admin:
     persist_filters: true
     templates:
         layout: "::Admin/layout.html.twig"
+        edit:   "::Admin/edit.html.twig"
         show:   "::Admin/show.html.twig"
     dashboard:
         groups:
@@ -143,13 +150,12 @@ sonata_admin:
                 icon: "<i class='fa fa-chrome'></i>"
             Coworkers:
                 icon: "<i class='fa fa-users'></i>"
-            Activities:
+            Activitats:
                 icon: "<i class='fa fa-calendar-times-o'></i>"
-            Contacts:
+            Contactes:
                 icon: "<i class='fa fa-envelope'></i>"
-            Users:
+            Usuaris:
                 icon: "<i class='fa fa-user'></i>"
-
         blocks:
             -
                 position: top
@@ -175,19 +181,19 @@ sonata_admin:
                 type: sonata.admin.block.admin_list
                 class: col-md-6
                 settings:
-                    groups: [ Activities ]
+                    groups: [ Activitats ]
             -
                 position: top
                 type: sonata.admin.block.admin_list
                 class: col-md-6
                 settings:
-                    groups: [ Contacts ]
+                    groups: [ Contactes ]
             -
                 position: top
                 type: sonata.admin.block.admin_list
                 class: col-md-6
                 settings:
-                    groups: [ Users ]
+                    groups: [ Usuaris ]
 
 # CKEditor
 ivory_ck_editor:
@@ -195,3 +201,23 @@ ivory_ck_editor:
     configs:
         my_config:
             toolbar: standard
+
+# EWZ Google Recaptcha
+ewz_recaptcha:
+    public_key:  "%recaptcha_public_key%"
+    private_key: "%recaptcha_private_key%"
+    locale_key:  "%locale%"
+
+# MailChimp
+mz_mail_chimp:
+    api_key:      "%mailchimp_api_key%"
+    default_list: "%mailchimp_newsletter_list_id%"
+    ssl:          false
+
+# KNP Paginator
+knp_paginator:
+    page_range: 5
+    default_options:
+        page_name: pagina
+    template:
+        pagination: "::Pagination/custom_pagination.html.twig"

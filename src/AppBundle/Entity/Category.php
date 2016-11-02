@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\TitleTrait;
@@ -23,6 +24,7 @@ class Category extends AbstractBase
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Coworker", mappedBy="category", cascade={"all"})
      */
     private $coworkers;
@@ -36,7 +38,7 @@ class Category extends AbstractBase
      */
 
     /**
-     * Category constructor.
+     * Category constructor
      */
     public function __construct()
     {
@@ -53,11 +55,13 @@ class Category extends AbstractBase
 
     /**
      * @param ArrayCollection $coworkers
+     *
      * @return $this
      */
-    public function setCoworkers(ArrayCollection $coworkers)
+    public function setCoworkers($coworkers)
     {
         $this->coworkers = $coworkers;
+
         return $this;
     }
 
@@ -66,7 +70,7 @@ class Category extends AbstractBase
      *
      * @param Coworker $coworker
      *
-     * @return Category
+     * @return $this
      */
     public function addCoworker(Coworker $coworker)
     {
@@ -80,7 +84,7 @@ class Category extends AbstractBase
      *
      * @param Coworker $coworker
      *
-     * @return Category
+     * @return $this
      */
     public function removeCoworker(Coworker $coworker)
     {
@@ -89,6 +93,9 @@ class Category extends AbstractBase
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString() {
 
         return $this->getTitle() ? $this->getTitle() : '---';

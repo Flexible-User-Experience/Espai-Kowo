@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\ContactMessage;
+use AppBundle\Entity\Coworker;
 
 /**
  * Class NotificationService
@@ -13,17 +14,33 @@ use AppBundle\Entity\ContactMessage;
  */
 class NotificationService
 {
-    /** @var CourierService */
+    /**
+     * @var CourierService
+     */
     private $messenger;
 
-    /** @var \Twig_Environment */
+    /**
+     * @var \Twig_Environment
+     */
     private $twig;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $amd;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $urlBase;
+
+    /**
+     *
+     *
+     * Methods
+     *
+     *
+     */
 
     /**
      * NotificationService constructor
@@ -31,26 +48,81 @@ class NotificationService
      * @param CourierService    $messenger
      * @param \Twig_Environment $twig
      * @param string            $amd
+     * @param string            $urlBase
      */
     public function __construct(CourierService $messenger, \Twig_Environment $twig, $amd, $urlBase)
     {
         $this->messenger = $messenger;
-        $this->twig = $twig;
-        $this->amd = $amd;
-        $this->urlBase = $urlBase;
+        $this->twig      = $twig;
+        $this->amd       = $amd;
+        $this->urlBase   = $urlBase;
     }
 
     /**
-     * Send a contact form notification to administrator
+     * Send a common notification mail to frontend user
+     *
+     * @param ContactMessage $contactMessage
+     *
+     */
+    public function sendCommonUserNotification(ContactMessage $contactMessage)
+    {
+        $this->messenger->sendEmail(
+            $this->amd,
+            $contactMessage->getEmail(),
+            'Notificació pàgina web ' . $this->urlBase,
+            $this->twig->render(':Mails:common_user_notification.html.twig', array(
+                'contact' => $contactMessage,
+            ))
+        );
+    }
+
+    /**
+     * Send a common notification mail to admin user
+     *
+     * @param string $text
+     *
+     */
+    public function sendCommonAdminNotification($text)
+    {
+        $this->messenger->sendEmail(
+            $this->amd,
+            $this->amd,
+            'Notificació pàgina web ' . $this->urlBase,
+            $this->twig->render(':Mails:common_admin_notification.html.twig', array(
+                'text' => $text,
+            ))
+        );
+    }
+
+    /**
+     * Send free trial notification to admin user
      *
      * @param ContactMessage $contactMessage
      */
-    public function sendAdminNotification(ContactMessage $contactMessage)
+    public function sendFreeTrialAdminNotification(ContactMessage $contactMessage)
     {
         $this->messenger->sendEmail(
-            $contactMessage->getEmail(),
             $this->amd,
-            $this->urlBase . ' contact form received',
+            $this->amd,
+            'Missatge de prova-ho gratis pàgina web ' . $this->urlBase,
+            $this->twig->render(':Mails:free_trial_admin_notification.html.twig', array(
+                'contact' => $contactMessage,
+            )),
+            $contactMessage->getEmail()
+        );
+    }
+
+    /**
+     * Send a contact form notification to admin user
+     *
+     * @param ContactMessage $contactMessage
+     */
+    public function sendContactAdminNotification(ContactMessage $contactMessage)
+    {
+        $this->messenger->sendEmail(
+            $this->amd,
+            $this->amd,
+            'Missatge de contacte pàgina web ' . $this->urlBase,
             $this->twig->render(':Mails:contact_form_admin_notification.html.twig', array(
                 'contact' => $contactMessage,
             ))
@@ -58,35 +130,70 @@ class NotificationService
     }
 
     /**
-     * Send a contact form notification to web user
+     * Send a contact form notification to admin user
      *
      * @param ContactMessage $contactMessage
      */
-    public function sendUserNotification(ContactMessage $contactMessage)
+    public function sendUserBackendAnswerNotification(ContactMessage $contactMessage)
     {
         $this->messenger->sendEmail(
             $this->amd,
             $contactMessage->getEmail(),
-            $this->urlBase . ' question received',
-            $this->twig->render(':Mails:contact_form_user_notification.html.twig', array(
+            'Resposta pàgina web ' . $this->urlBase,
+            $this->twig->render(':Mails:user_backend_answer_notification.html.twig', array(
                 'contact' => $contactMessage,
             ))
         );
     }
 
     /**
-     * Send backend answer notification to web user
+     * Send a newsletter subscription form notification to admin user
      *
      * @param ContactMessage $contactMessage
      */
-    public function senddUserBackendNotification(ContactMessage $contactMessage)
+    public function sendNewsletterSubscriptionAdminNotification(ContactMessage $contactMessage)
     {
         $this->messenger->sendEmail(
             $this->amd,
-            $contactMessage->getEmail(),
-            $this->urlBase . ' contact form answer',
-            $this->twig->render(':Mails:contact_form_user_backend_notification.html.twig', array(
+            $this->amd,
+            'Missatge de newsletter pàgina web ' . $this->urlBase,
+            $this->twig->render(':Mails:newsletter_form_admin_notification.html.twig', array(
                 'contact' => $contactMessage,
+            )),
+            $contactMessage->getEmail()
+        );
+    }
+
+    /**
+     * Send happy birthday notification to coworker
+     *
+     * @param Coworker $coworker
+     */
+    public function sendCoworkerBirthdayNotification(Coworker $coworker)
+    {
+        $this->messenger->sendEmail(
+            $this->amd,
+            $coworker->getEmail(),
+            'Espai Kowo et desitja un Feliç Aniversari',
+            $this->twig->render(':Mails:coworker_birthday_congratulation_notification.html.twig', array(
+                'coworker' => $coworker,
+            ))
+        );
+    }
+
+    /**
+     * Send happy birthday notification to Admin
+     *
+     * @param Coworker $coworker
+     */
+    public function sendAdminBirthdayNotification(Coworker $coworker)
+    {
+        $this->messenger->sendEmail(
+            $this->amd,
+            $this->amd,
+            'Demà és l\'aniversari de ' . $coworker->getName(),
+            $this->twig->render(':Mails:coworker_birthday_admin_notification.html.twig', array(
+                'coworker' => $coworker,
             ))
         );
     }

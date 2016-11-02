@@ -4,18 +4,18 @@
 
 {% block main %}
     <div class="container container-main">
-        <div class="clearfix">
+        <div class="row">
         {% if coworkers | length > 0 %}
             {% for coworker in coworkers %}
                 <div class="col-md-3">
-                    <h4 class="no-m-top text-center">{{ coworker.name | upper }} {{ coworker.surname | upper }}</h4>
+                    <h4 class="no-m-top text-center light-font-weight">{{ coworker.name | upper }} {{ coworker.surname | upper }}</h4>
                     <a href="{{ path('front_coworker_detail', {slug: coworker.slug}) }}">
                         {% if coworker.imageName is not null %}
                             <img
-                                    src="{{ vich_uploader_asset(coworker, 'imageFile') | imagine_filter('256xY') }}"
-                                    class="img-responsive" alt="{{ coworker.imageName }}">
+                                    src="{{ vich_uploader_asset(coworker, 'imageFile') | imagine_filter('263xYxBW') }}"
+                                    class="img-responsive center-block" alt="{{ coworker.imageNameBW }}">
                         {% else %}
-                            <img src="{{ asset('bundles/app/img/kiwi-pic.jpg') | imagine_filter('256xY') }}" class="img-responsive" alt="default coworker image">
+                            <img src="{{ asset('bundles/app/img/kiwi-pic.jpg') | imagine_filter('263xYxBW') }}" class="img-responsive center-block" alt="default coworker image">
                         {% endif %}
                     </a>
                     <ul class="list-inline social-networks text-center">
@@ -25,7 +25,7 @@
                 </div>
                 {% if loop.index is divisible by(4) %}
                     </div>
-                    <div class="clearfix extra-m-top">
+                    <div class="row extra-m-top">
                 {% endif %}
             {% endfor %}
         {% else %}

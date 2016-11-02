@@ -52,10 +52,10 @@ class Post extends AbstractBase
      *
      * @Vich\UploadableField(mapping="post", fileNameProperty="imageName")
      * @Assert\File(
-     *     maxSize = "10M",
-     *     mimeTypes = {"image/jpg", "image/jpeg", "image/png", "image/gif"}
+     *     maxSize="10M",
+     *     mimeTypes={"image/jpg", "image/jpeg", "image/png", "image/gif"}
      * )
-     * @Assert\Image(minWidth = 1200)
+     * @Assert\Image(minWidth=1200)
      */
     private $imageFile;
 
@@ -90,7 +90,9 @@ class Post extends AbstractBase
 
     /**
      *
+     *
      * Methods
+     *
      *
      */
 
@@ -99,7 +101,17 @@ class Post extends AbstractBase
      */
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
+        $this->tags = new ArrayCollection();
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
@@ -160,7 +172,7 @@ class Post extends AbstractBase
      *
      * @param string $imageName
      *
-     * @return Post
+     * @return $this
      */
     public function setImageName($imageName)
     {
@@ -184,7 +196,7 @@ class Post extends AbstractBase
      *
      * @param string $metaKeywords
      *
-     * @return Post
+     * @return $this
      */
     public function setMetaKeywords($metaKeywords)
     {
@@ -208,7 +220,7 @@ class Post extends AbstractBase
      *
      * @param string $metaDescription
      *
-     * @return Post
+     * @return $this
      */
     public function setMetaDescription($metaDescription)
     {
@@ -232,9 +244,9 @@ class Post extends AbstractBase
      *
      * @param ArrayCollection $tags
      *
-     * @return Post
+     * @return $this
      */
-    public function setTags(ArrayCollection $tags)
+    public function setTags($tags)
     {
         $this->tags = $tags;
 
@@ -256,7 +268,7 @@ class Post extends AbstractBase
      *
      * @param Tag $tag
      *
-     * @return Post
+     * @return $this
      */
     public function addTag(Tag $tag)
     {
@@ -281,8 +293,8 @@ class Post extends AbstractBase
      *
      * @return string
      */
-    public function __toString() {
-
-        return $this->title ? $this->getTitle() : '---';
+    public function __toString()
+    {
+        return $this->id ? $this->getPublishedAt()->format('d/m/Y') . ' · ' . $this->getTitle() : '---';
     }
 }

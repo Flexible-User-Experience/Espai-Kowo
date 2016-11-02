@@ -4,9 +4,9 @@
 
 {% block main %}
     <div class="container container-main">
-        <div class="clearfix">
-            {% if posts | length > 0 %}
-                {% for post in posts %}
+        <div class="row">
+            {% if pagination.getTotalItemCount > 0 %}
+                {% for post in pagination %}
                     <div class="col-md-4">
                         <a href="{{ path('front_blog_detail', {slug: post.slug, year: post.publishedAt | date('Y'), month: post.publishedAt | date('m'), day: post.publishedAt | date('d') }) }}">
                             {% include ':Frontend/includes:image_detail.html.twig' with {object: post} %}
@@ -21,12 +21,13 @@
                     </div>
                     {% if loop.index is divisible by(3) %}
                         </div>
-                        <div class="clearfix extra-m-top">
+                        <div class="row extra-m-top">
                     {% endif %}
                 {% endfor %}
             {% else %}
                 {% include ':Frontend/includes:under_construciton_warning.html.twig' %}
             {% endif %}
         </div>
+        {% include ':Frontend/includes:paginator_buttons_bar.html.twig' %}
     </div>
 {% endblock %}

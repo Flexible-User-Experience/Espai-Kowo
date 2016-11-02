@@ -2,11 +2,8 @@
 
 namespace AppBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -16,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @package  AppBundle\Form\Type
  * @author   Wilson Iglesias <wiglesias83@gmail.com>
  */
-class ContactHomepageType extends AbstractType
+class ContactHomepageType extends ContactNewsletterType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -24,39 +21,8 @@ class ContactHomepageType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        parent::buildForm($builder, $options);
         $builder
-            ->add(
-                'name',
-                TextType::class,
-                array(
-                    'label'    => false,
-                    'required' => true,
-                    'attr'     => array(
-                        'placeholder' => 'Nom *',
-                    ),
-                )
-            )
-            ->add(
-                'email',
-                EmailType::class,
-                array(
-                    'label'       => false,
-                    'required'    => true,
-                    'attr'        => array(
-                        'placeholder' => 'Email *',
-                    ),
-                    'constraints' => array(
-                        new Assert\Email(
-                            array(
-                                'checkMX'   => true,
-                                'checkHost' => true,
-                                'strict'    => true,
-                                'message'   => 'Email invàlid'
-                            )
-                        ),
-                    )
-                )
-            )
             ->add(
                 'phone',
                 TextType::class,
@@ -64,17 +30,7 @@ class ContactHomepageType extends AbstractType
                     'label'    => false,
                     'required' => false,
                     'attr'     => array(
-                        'placeholder' => 'Telèfon',
-                    ),
-                )
-            )
-            ->add(
-                'send',
-                SubmitType::class,
-                array(
-                    'label' => 'Enviar',
-                    'attr'  => array(
-                        'class' => 'btn-kowo',
+                        'placeholder' => 'frontend.forms.phone',
                     ),
                 )
             );

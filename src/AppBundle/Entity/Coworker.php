@@ -1,10 +1,12 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\DescriptionTrait;
 use AppBundle\Entity\Traits\SlugTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -20,6 +22,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="name_unique", columns={"name", "surname"})})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CoworkerRepository")
  * @Vich\Uploadable
+ * @UniqueEntity({"name", "surname"})
  */
 class Coworker extends AbstractBase
 {
@@ -37,18 +40,20 @@ class Coworker extends AbstractBase
     /**
      * @var integer
      *
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true, options={"default"=0})
      */
-    private $position;
+    private $position = 0;
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $surname;
@@ -64,7 +69,7 @@ class Coworker extends AbstractBase
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
-     * @Assert\Email(strict = true, checkMX = true, checkHost = true)
+     * @Assert\Email(strict=true, checkMX=true, checkHost=true)
      */
     private $email;
 
@@ -73,10 +78,10 @@ class Coworker extends AbstractBase
      *
      * @Vich\UploadableField(mapping="coworker", fileNameProperty="imageName")
      * @Assert\File(
-     *     maxSize = "10M",
-     *     mimeTypes = {"image/jpg", "image/jpeg", "image/png", "image/gif"}
+     *     maxSize="10M",
+     *     mimeTypes={"image/jpg", "image/jpeg", "image/png", "image/gif"}
      * )
-     * @Assert\Image(minWidth = 1200)
+     * @Assert\Image(minWidth=1200)
      */
     private $imageFile;
 
@@ -88,7 +93,53 @@ class Coworker extends AbstractBase
     private $imageName;
 
     /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="coworker", fileNameProperty="imageNameBW")
+     * @Assert\File(
+     *     maxSize="10M",
+     *     mimeTypes={"image/jpg", "image/jpeg", "image/png", "image/gif"}
+     * )
+     * @Assert\Image(minWidth=1200)
+     */
+    private $imageFileBW;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageNameBW;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $birthday;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="coworker", fileNameProperty="gifName")
+     * @Assert\File(
+     *     maxSize="10M",
+     *     mimeTypes={"image/gif"}
+     * )
+     * @Assert\Image(maxWidth="780", minWidth="780", maxHeight="1168", minHeight="1168")
+     */
+    private $gifFile;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $gifName;
+
+    /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="SocialNetwork", mappedBy="coworker", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $socialNetworks;
@@ -102,11 +153,21 @@ class Coworker extends AbstractBase
      */
 
     /**
-     * Coworker constructor.
+     * Coworker constructor
      */
     public function __construct()
     {
         $this->socialNetworks = new ArrayCollection();
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
@@ -119,11 +180,13 @@ class Coworker extends AbstractBase
 
     /**
      * @param int $position
-     * @return Coworker
+     *
+     * @return $this
      */
     public function setPosition($position)
     {
         $this->position = $position;
+
         return $this;
     }
 
@@ -138,7 +201,7 @@ class Coworker extends AbstractBase
     /**
      * @param string $name
      *
-     * @return Coworker
+     * @return $this
      */
     public function setName($name)
     {
@@ -153,6 +216,14 @@ class Coworker extends AbstractBase
     public function getSurname()
     {
         return $this->surname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->name . ' ' . $this->surname;
     }
 
     /**
@@ -177,11 +248,13 @@ class Coworker extends AbstractBase
 
     /**
      * @param Category $category
-     * @return Coworker
+     *
+     * @return $this
      */
     public function setCategory(Category $category)
     {
         $this->category = $category;
+
         return $this;
     }
 
@@ -195,7 +268,8 @@ class Coworker extends AbstractBase
 
     /**
      * @param string $email
-     * @return Coworker
+     *
+     * @return $this
      */
     public function setEmail($email)
     {
@@ -238,7 +312,7 @@ class Coworker extends AbstractBase
      *
      * @param string $imageName
      *
-     * @return Post
+     * @return $this
      */
     public function setImageName($imageName)
     {
@@ -258,6 +332,132 @@ class Coworker extends AbstractBase
     }
 
     /**
+     * Set imageFileBW
+     *
+     * @param File|UploadedFile $imageFileBW
+     *
+     * @return $this
+     */
+    public function setImageFileBW(File $imageFileBW = null)
+    {
+        $this->imageFileBW = $imageFileBW;
+        if ($imageFileBW) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get imageFileBW
+     *
+     * @return File|UploadedFile
+     */
+    public function getImageFileBW()
+    {
+        return $this->imageFileBW;
+    }
+
+    /**
+     * Set imageNameBW
+     *
+     * @param string $imageNameBW
+     *
+     * @return $this
+     */
+    public function setImageNameBW($imageNameBW)
+    {
+        $this->imageNameBW = $imageNameBW;
+
+        return $this;
+    }
+
+    /**
+     * Get imageNameBW
+     *
+     * @return string
+     */
+    public function getImageNameBW()
+    {
+        return $this->imageNameBW;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * @param \DateTime $birthday
+     *
+     * @return $this
+     */
+    public function setBirthday($birthday)
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    /**
+     * Get gifFile
+     *
+     * @return File|UploadedFile
+     */
+    public function getGifFile()
+    {
+        return $this->gifFile;
+    }
+
+    /**
+     * Set gifFile
+     *
+     * @param File|UploadedFile $gifFile
+     *
+     * @return $this
+     */
+    public function setGifFile(File $gifFile = null)
+    {
+        $this->gifFile = $gifFile;
+        if ($gifFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get gitName
+     *
+     * @return string
+     */
+    public function getGifName()
+    {
+        return $this->gifName;
+    }
+
+    /**
+     * Set gifName
+     *
+     * @param string $gifName
+     *
+     * @return $this
+     */
+    public function setGifName($gifName)
+    {
+        $this->gifName = $gifName;
+
+        return $this;
+    }
+
+    /**
      * @return ArrayCollection
      */
     public function getSocialNetworks()
@@ -266,20 +466,22 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @param array $socialNetworks
+     * @param ArrayCollection|array $socialNetworks
      *
-     * @return Coworker
+     * @return $this
      */
-    public function setSocialNetworks(array $socialNetworks)
+    public function setSocialNetworks($socialNetworks)
     {
         $this->socialNetworks = $socialNetworks;
+
         return $this;
     }
 
-    /* @param SocialNetwork $socialNetwork
-    *
-    * @return $this
-    */
+    /**
+     * @param SocialNetwork $socialNetwork
+     *
+     * @return $this
+     */
     public function addSocialNetwork(SocialNetwork $socialNetwork)
     {
         $socialNetwork->setCoworker($this);
@@ -297,5 +499,15 @@ class Coworker extends AbstractBase
         $this->socialNetworks->removeElement($socialNetwork);
 
         return $this;
+    }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->id ? $this->getFullName() : '---';
     }
 }

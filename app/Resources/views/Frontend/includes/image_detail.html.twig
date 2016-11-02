@@ -1,5 +1,5 @@
 {% if object.imageName is not null %}
-    <img src="{{ vich_uploader_asset(object, 'imageFile') | imagine_filter('480xY') }}" class="img-responsive" alt="{{ object.imageName }}">
+    <img src="{{ vich_uploader_asset(object, 'imageFile') | imagine_filter('780xY') }}" class="img-responsive" alt="{{ object.imageName }}">
 {% else %}
-    <img src="{{ asset('bundles/app/img/logo-espai-kowo.png') | imagine_filter('480xY') }}" class="img-responsive" alt="default image">
+    <img src="{{ asset('bundles/app/img/logo-espai-kowo.png') | imagine_filter('780xY') }}" class="img-responsive" alt="default image">
 {% endif %}

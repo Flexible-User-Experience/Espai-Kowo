@@ -7,6 +7,7 @@ parameters:
     database_name:     symfony
     database_user:     travis
     database_password: ~
+    database_server_version: 5.5
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 
@@ -18,7 +19,7 @@ parameters:
     mailer_url_base: www.dummy.com
 
     # A secret key that's used to generate certain security-related tokens
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            Th1sT0kenIsNotSoS3cretCh4ngeIt
 
     locale: ca
 
@@ -40,3 +41,13 @@ parameters:
     private_admin_prod_lastname: lastname
 
     project_web_title: "Espai Kowo"
+
+    recaptcha_public_key: 11AAbb22CCdd
+    recaptcha_private_key: 11AAbb22CCff
+
+    facebook_pixel_enabled: false
+    facebook_pixel_id: XXXXXX
+
+    mailchimp_api_key: xxxxxxx-us5
+    mailchimp_newsletter_list_id: xxxxxxx
+    mailchimp_free_trial_list_id: xxxxxxx

@@ -1,0 +1,39 @@
+<div class="p-vertical-small grey-background">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10">
+                <h5>Estigues al dia de les nostres activitats</h5>
+            </div>
+            <div class="col-sm-2">
+                    <span class="hidden-xs pull-right">
+                        <button type="button" class="btn btn-sm btn-kowo-orange" data-toggle="modal" data-target="#form_modal">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Subscriu-me al newsletter
+                        </button>
+                    </span>
+                <span class="visible-xs">
+                        <button type="button" class="btn btn-sm btn-kowo-orange" data-toggle="modal" data-target="#form_modal">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Subscriu-me al newsletter
+                        </button>
+                    </span>
+            </div>
+        </div>
+        {#<!-- Modal -->#}
+        <div class="modal fade" id="form_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content text-left">
+                    <div class="modal-header green-background-light">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Subscriu-te al nostre butlletí electrònic</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ form_start(form) }}
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.email) }}
+                        {{ form_rest(form) }}
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
