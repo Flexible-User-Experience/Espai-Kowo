@@ -32,10 +32,17 @@ class EventController extends Controller
             // Clean up new form
             $form = $this->createForm(ContactNewsletterType::class);
         }
+        //paginator
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $events,
+            $request->query->getInt('pagina', 1)
+        );
+
 
         return $this->render(
             ':Frontend/Event:list.html.twig',
-            [ 'events' => $events, 'form' => $form->createView(), ]
+            [ 'events' => $events, 'form' => $form->createView(), 'pagination' => $pagination ]
         );
     }
 
