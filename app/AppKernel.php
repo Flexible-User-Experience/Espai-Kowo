@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new Hautelook\AliceBundle\HautelookAliceBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new MZ\MailChimpBundle\MZMailChimpBundle(),
             new Presta\SitemapBundle\PrestaSitemapBundle(),

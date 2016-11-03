@@ -11,6 +11,9 @@ frontend:
         email: "Email *"
         message: "Missatge *"
         send: Enviar
+    pagination:
+        previous: anterior
+        next: següent
 backend:
     admin:
         actions: Accions
