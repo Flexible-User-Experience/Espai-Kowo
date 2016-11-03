@@ -12,21 +12,18 @@ use Symfony\Component\HttpFoundation\Response;
 class BlogController extends Controller
 {
     /**
-     * @Route("/blog", name="front_blog")
+     * @Route("/blog/{pagina}", name="front_blog")
      *
-     * @param Request $request
+     * @param int $pagina
      *
      * @return Response
      */
-    public function indexAction(Request $request)
+    public function indexAction($pagina = 1)
     {
         $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->getAllEnabledSortedByPublishedDateWithJoinUntilNow();
 
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $posts,
-            $request->query->getInt('pagina', 1)
-        );
+        $pagination = $paginator->paginate($posts, $pagina);
 
         return $this->render(':Frontend:Blog/list.html.twig',
             [ 'pagination' => $pagination ]

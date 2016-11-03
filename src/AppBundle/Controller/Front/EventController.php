@@ -14,13 +14,14 @@ use Symfony\Component\HttpFoundation\Response;
 class EventController extends Controller
 {
     /**
-     * @Route("/activitats", name="front_events_list")
+     * @Route("/activitats/{pagina}", name="front_events_list")
      *
      * @param Request $request
+     * @param int     $pagina
      *
      * @return Response
      */
-    public function listAction(Request $request)
+    public function listAction(Request $request, $pagina = 1)
     {
         $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findAllEnabledSortedByDate();
         $contact = new ContactMessage();
@@ -32,10 +33,13 @@ class EventController extends Controller
             // Clean up new form
             $form = $this->createForm(ContactNewsletterType::class);
         }
+        //paginator
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($events, $pagina);
 
         return $this->render(
             ':Frontend/Event:list.html.twig',
-            [ 'events' => $events, 'form' => $form->createView(), ]
+            [ 'events' => $events, 'form' => $form->createView(), 'pagination' => $pagination ]
         );
     }
 
