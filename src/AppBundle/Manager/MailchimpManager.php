@@ -15,10 +15,14 @@ use MZ\MailChimpBundle\Services\MailChimp;
  */
 class MailchimpManager
 {
-    /** @var MailChimp $mailChimp */
+    /**
+     * @var MailChimp $mailChimp
+     */
      private $mailChimp;
 
-    /** @var NotificationService*/
+    /**
+     * @var NotificationService
+     */
     private $messenger;
 
     /**
