@@ -6,22 +6,28 @@ use AppBundle\Entity\Post;
 use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class BlogController extends Controller
 {
     /**
-     * @Route("/blog", name="front_blog")
+     * @Route("/blog/{pagina}", name="front_blog")
+     *
+     * @param int $pagina
      *
      * @return Response
      */
-    public function indexAction()
+    public function indexAction($pagina = 1)
     {
-        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findAll();
+        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->getAllEnabledSortedByPublishedDateWithJoinUntilNow();
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($posts, $pagina);
 
         return $this->render(':Frontend:Blog/list.html.twig',
-            [ 'posts' => $posts]
-            );
+            [ 'pagination' => $pagination ]
+        );
     }
 
     /**
@@ -41,8 +47,8 @@ class BlogController extends Controller
         /** @var Post $post */
         $post = $this->getDoctrine()->getRepository('AppBundle:Post')->findOneBy(
             array(
-                'publishedAt'   => $date,
-                'slug'  => $slug,
+                'publishedAt' => $date,
+                'slug'        => $slug,
             )
         );
 

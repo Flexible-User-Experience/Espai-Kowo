@@ -293,8 +293,8 @@ class Post extends AbstractBase
      *
      * @return string
      */
-    public function __toString() {
-
-        return $this->title ? $this->getTitle() : '---';
+    public function __toString()
+    {
+        return $this->id ? $this->getPublishedAt()->format('d/m/Y') . ' · ' . $this->getTitle() : '---';
     }
 }

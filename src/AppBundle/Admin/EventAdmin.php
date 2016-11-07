@@ -53,7 +53,7 @@ class EventAdmin extends AbstractBaseAdmin
                 'description',
                 'ckeditor',
                     array(
-                        'label' => 'Descripció',
+                        'label'       => 'Descripció',
                         'config_name' => 'my_config',
                         'required'    => true,
                 )
@@ -80,8 +80,9 @@ class EventAdmin extends AbstractBaseAdmin
                 'date',
                 'sonata_type_date_picker',
                 array(
-                    'label'  => 'Data',
-                    'format' => 'd/M/y',
+                    'label'    => 'Data',
+                    'format'   => 'd/M/y',
+                    'required' => true,
                 )
             )
             ->add(
