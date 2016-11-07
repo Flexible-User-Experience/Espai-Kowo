@@ -209,10 +209,10 @@ ewz_recaptcha:
     locale_key:  "%locale%"
 
 # MailChimp
-mz_mail_chimp:
+welp_mailchimp:
     api_key:      "%mailchimp_api_key%"
-    default_list: "%mailchimp_newsletter_list_id%"
-    ssl:          false
+#    lists:
+#        listId1
 
 # KNP Paginator
 knp_paginator:

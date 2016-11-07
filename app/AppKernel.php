@@ -33,10 +33,10 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
-            new MZ\MailChimpBundle\MZMailChimpBundle(),
             new Presta\SitemapBundle\PrestaSitemapBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+            new Welp\MailchimpBundle\WelpMailchimpBundle(),
             // App
             new AppBundle\AppBundle(),
         );
