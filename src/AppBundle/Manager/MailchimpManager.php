@@ -4,7 +4,7 @@ namespace AppBundle\Manager;
 
 use AppBundle\Entity\ContactMessage;
 use AppBundle\Service\NotificationService;
-use MZ\MailChimpBundle\Services\MailChimp;
+use \DrewM\MailChimp\MailChimp;
 
 /**
  * Class MailchimpManager
@@ -36,12 +36,12 @@ class MailchimpManager
     /**
      * MailchimpManager constructor.
      *
-     * @param MailChimp           $mailChimp
      * @param NotificationService $messenger
+     * @param string              $apiKey
      */
-    public function __construct(MailChimp $mailChimp, NotificationService $messenger)
+    public function __construct(NotificationService $messenger, $apiKey)
     {
-        $this->mailChimp = $mailChimp;
+        $this->mailChimp = new MailChimp($apiKey);
         $this->messenger = $messenger;
     }
 
@@ -55,26 +55,23 @@ class MailchimpManager
      */
     public function subscribeContactToList(ContactMessage $contact, $listId)
     {
-        $this->mailChimp->setListID($listId);
-        $list = $this->mailChimp->getList();
-        //Evaluate contact name
+        //Evaluate contact name and subscribe
         $explodeName = explode(" ", $contact->getName());
         if(count($explodeName) === 1){
-            $list->setMerge(array(
-                'FNAME' => $explodeName[0]
-                )
-            );
+            $result = $this->mailChimp->post('lists/' . $listId . '/members', array(
+                'email_address' => $contact->getEmail(),
+                'status'        => 'subscribed',
+                'merge_fields'  => ['FNAME' => $explodeName[0]]
+            ));
         } else if (count($explodeName) >= 2) {
-            $list->setMerge(array(
-                'FNAME' => $explodeName[0],
-                'LNAME' => $explodeName[1]
-                )
-            );
+            $result = $this->mailChimp->post('lists/' . $listId . '/members', array(
+                'email_address' => $contact->getEmail(),
+                'status'        => 'subscribed',
+                'merge_fields'  => ['FNAME' => $explodeName[0], 'LNAME'=> $explodeName[1]]
+            ));
         }
-        $list->setDoubleOptin(false);
-        $result = $list->Subscribe($contact->getEmail());
-        // Check contact to list
-        if ($result == false) {
+         //Check contact to list
+        if ($result === false) {
             $this->messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
         }
 

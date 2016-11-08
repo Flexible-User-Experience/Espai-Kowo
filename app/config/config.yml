@@ -38,7 +38,7 @@ twig:
         facebook_pixel_enabled:   "%facebook_pixel_enabled%"
         facebook_pixel_id:        "%facebook_pixel_id%"
         main_brand_title:         "%project_web_title%"
-        admin_tag_version:        "v1.0.33"
+        admin_tag_version:        "v1.0.34"
 
 # Assetic
 assetic:
@@ -207,12 +207,6 @@ ewz_recaptcha:
     public_key:  "%recaptcha_public_key%"
     private_key: "%recaptcha_private_key%"
     locale_key:  "%locale%"
-
-# MailChimp
-mz_mail_chimp:
-    api_key:      "%mailchimp_api_key%"
-    default_list: "%mailchimp_newsletter_list_id%"
-    ssl:          false
 
 # KNP Paginator
 knp_paginator:

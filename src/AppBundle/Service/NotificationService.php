@@ -80,7 +80,6 @@ class NotificationService
      * Send a common notification mail to admin user
      *
      * @param string $text
-     *
      */
     public function sendCommonAdminNotification($text)
     {
