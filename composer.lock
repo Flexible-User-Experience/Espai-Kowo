@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7b2428650cde772ccab764ddf0c6e313",
-    "content-hash": "edbae3f9a6c6c4e73a1c61529f6ec8fc",
+    "hash": "f2a497fb6b0112c3a57d0f42e0680dae",
+    "content-hash": "bfe33f0144af3d691d7895a1547f060e",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -3177,16 +3177,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.3",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "c0125896dbb151380ab47e96c621741e79623beb"
+                "reference": "a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/c0125896dbb151380ab47e96c621741e79623beb",
-                "reference": "c0125896dbb151380ab47e96c621741e79623beb",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e",
+                "reference": "a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e",
                 "shasum": ""
             },
             "require": {
@@ -3221,7 +3221,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-10-17 15:23:22"
+            "time": "2016-11-07 23:38:38"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -5587,57 +5587,6 @@
                 "upload"
             ],
             "time": "2016-08-24 12:22:08"
-        },
-        {
-            "name": "welp/mailchimp-bundle",
-            "version": "1.0.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/welpdev/mailchimp-bundle.git",
-                "reference": "ae4227f0bb372405a322d69bea8209905712bd36"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/welpdev/mailchimp-bundle/zipball/ae4227f0bb372405a322d69bea8209905712bd36",
-                "reference": "ae4227f0bb372405a322d69bea8209905712bd36",
-                "shasum": ""
-            },
-            "require": {
-                "drewm/mailchimp-api": "^2.2",
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "phpspec/phpspec": "~2@dev",
-                "phpunit/phpunit": "~5",
-                "symfony/symfony": "~2.7 | ~3.0"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "Welp\\MailchimpBundle\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Titouan BENOIT",
-                    "email": "titouan@welp.today"
-                }
-            ],
-            "description": "MailChimp API V3 Symfony Bundle",
-            "homepage": "https://github.com/welpdev/mailchimp-bundle",
-            "keywords": [
-                "api",
-                "mailchimp",
-                "subscriber",
-                "symfony",
-                "user",
-                "v3"
-            ],
-            "time": "2016-10-05 17:42:54"
         },
         {
             "name": "zendframework/zend-code",

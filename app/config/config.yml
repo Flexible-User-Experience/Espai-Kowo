@@ -208,12 +208,6 @@ ewz_recaptcha:
     private_key: "%recaptcha_private_key%"
     locale_key:  "%locale%"
 
-# MailChimp
-welp_mailchimp:
-    api_key:      "%mailchimp_api_key%"
-#    lists:
-#        listId1
-
 # KNP Paginator
 knp_paginator:
     page_range: 5
