@@ -59,6 +59,7 @@ class MailchimpManager
             'email_address' => $contact->getEmail(),
             'status'        => 'subscribed'
         ));
+
 //        $list = $this->mailChimp->getList();
 //        //Evaluate contact name
 //        $explodeName = explode(" ", $contact->getName());
@@ -76,10 +77,10 @@ class MailchimpManager
 //        }
 //        $list->setDoubleOptin(false);
 //        $result = $list->Subscribe($contact->getEmail());
-//        // Check contact to list
-//        if ($result == false) {
-//            $this->messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
-//        }
+        // Check contact to list
+        if ($result == false) {
+            $this->messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
+        }
 
         return $result;
     }
