@@ -118,6 +118,15 @@ class PostAdmin extends AbstractBaseAdmin
             ->end()
             ->with('backend.admin.post.content', $this->getFormMdSuccessBoxArray(12))
             ->add(
+                'shortDescription',
+                CKEditorType::class,
+                array(
+                    'label'       => 'backend.admin.post.shortdescription',
+                    'config_name' => 'my_config',
+                    'required'    => true,
+                )
+            )
+            ->add(
                 'title',
                 null,
                 array(
