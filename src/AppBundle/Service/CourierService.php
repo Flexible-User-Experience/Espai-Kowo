@@ -2,8 +2,6 @@
 
 namespace AppBundle\Service;
 
-use \Swift_Message;
-
 /**
  * Class CourierService
  *
@@ -13,8 +11,18 @@ use \Swift_Message;
  */
 class CourierService
 {
-    /** @var \Swift_Mailer */
+    /**
+     * @var \Swift_Mailer
+     */
     private $mailer;
+
+    /**
+     *
+     *
+     * Methods
+     *
+     *
+     */
 
     /**
      * CourierService constructor
@@ -33,8 +41,11 @@ class CourierService
      * @param string $to
      * @param string $subject
      * @param string $body
+     * @param string|null $replyAddress
+     *
+     * @return int
      */
-    public function sendEmail($from, $to, $subject, $body)
+    public function sendEmail($from, $to, $subject, $body, $replyAddress = null)
     {
         $message = new \Swift_Message();
         $message
@@ -44,7 +55,10 @@ class CourierService
             ->setBody($body)
             ->setCharset('UTF-8')
             ->setContentType('text/html');
-        //TODO try catch exception with return
-        $this->mailer->send($message);
+        if (!is_null($replyAddress)) {
+            $message->setReplyTo($replyAddress);
+        }
+
+        return $this->mailer->send($message);
     }
 }

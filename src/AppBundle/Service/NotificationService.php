@@ -80,7 +80,6 @@ class NotificationService
      * Send a common notification mail to admin user
      *
      * @param string $text
-     *
      */
     public function sendCommonAdminNotification($text)
     {
@@ -107,7 +106,8 @@ class NotificationService
             'Missatge de prova-ho gratis pàgina web ' . $this->urlBase,
             $this->twig->render(':Mails:free_trial_admin_notification.html.twig', array(
                 'contact' => $contactMessage,
-            ))
+            )),
+            $contactMessage->getEmail()
         );
     }
 
@@ -158,7 +158,8 @@ class NotificationService
             'Missatge de newsletter pàgina web ' . $this->urlBase,
             $this->twig->render(':Mails:newsletter_form_admin_notification.html.twig', array(
                 'contact' => $contactMessage,
-            ))
+            )),
+            $contactMessage->getEmail()
         );
     }
 
