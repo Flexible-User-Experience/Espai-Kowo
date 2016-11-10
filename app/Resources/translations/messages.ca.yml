@@ -65,6 +65,7 @@ backend:
             imageBW: Imatge blanc i negre
             title: Títol
             tags: Etiquetes
+            shortdescription: Descripció breu
             description: Descripció
             metakeywords: Paraules clau
             metadescription: Metadescripció

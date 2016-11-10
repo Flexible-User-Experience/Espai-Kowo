@@ -14,7 +14,7 @@
                         <div class="caption">
                             <h4>{{ post.title }}</h4>
                             <h6 class="text-muted">{{ post.publishedAt | date('d/m/Y') }}</h6>
-                            <p>{{ post.description | truncate(100) | raw }}</p>
+                            <p>{{ post.shortDescription }}</p>
                             <p><a href="{{ path('front_blog_detail', {slug: post.slug, year: post.publishedAt | date('Y'), month: post.publishedAt | date('m'), day: post.publishedAt | date('d') }) }}" class="btn btn-kowo"
                                   role="button">Llegir més</a></p>
                         </div>
