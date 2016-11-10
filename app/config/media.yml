@@ -33,6 +33,11 @@ liip_imagine:
             quality: 90
             filters:
                 thumbnail: { size: [ 780, null ], mode: outbound }
+        780xYBW:
+            quality: 90
+            filters:
+                thumbnail: { size: [ 780, null ], mode: outbound }
+                grayscale: ~
         700x200:
             quality: 80
             filters:
