@@ -11,9 +11,17 @@
             </div>
         </div>
         <div class="row">
+            {% set firstEventIsNew = false %}
             {% if pagination.getTotalItemCount > 0 %}
+                {% if pagination[0].date | date('Y/m/d') >= 'now' | date('Y/m/d') %}
+                    {% set firstEventIsNew = true %}
+                {% endif %}
                 {% for event in pagination %}
-                    <div class="col-md-4">
+                    {% if event.date | date('Y/m/d') < 'now' | date('Y/m/d') and firstEventIsNew %}
+                        </div><div class="row"><div class="col-xs-12"><h3>Activitats finalitzades</h3></div>
+                        {% set firstEventIsNew = false %}
+                    {% endif %}
+                    <div class="{% if firstEventIsNew %}col-md-4{% else %}col-md-3{% endif %}">
                         <a href="{{ path('front_event_detail', {slug: event.slug}) }}">
                             {% include ':Frontend/includes:image_detail.html.twig' with {object: event} %}
                         </a>
@@ -25,10 +33,10 @@
                                   role="button">Llegir més</a></p>
                         </div>
                     </div>
-                    {% if loop.index is divisible by(3) %}
-                        </div>
-                        <div class="row extra-m-top">
-                    {% endif %}
+                    {#{% if loop.index is divisible by(3) %}#}
+                        {#</div>#}
+                        {#<div class="row extra-m-top">#}
+                    {#{% endif %}#}
                 {% endfor %}
             {% else %}
                 {% include ':Frontend/includes:under_construciton_warning.html.twig' %}
