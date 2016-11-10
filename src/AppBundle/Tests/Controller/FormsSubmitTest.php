@@ -2,6 +2,7 @@
 
 namespace AppBundle\Tests\Controller;
 
+use AppBundle\Entity\ContactMessage;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Form;
 
@@ -17,7 +18,7 @@ class FormsSubmitTest extends WebTestCase
     /**
      * Test Forms Submit
      */
-    public function testFormsSubmit()
+    public function testHomepageFormSubmit()
     {
         $client = $this->createClient();
         $crawler = $client->request('GET', '/');
@@ -40,29 +41,67 @@ class FormsSubmitTest extends WebTestCase
         $crawler = $client->submit($form);
         $this->assertEquals($crawler->filter('html:contains("Aquest valor no és una adreça d\'email vàlida.")')->count(), 1);
 
-        $crawler = $client->request('GET', '/');
-        $sendButton = $crawler->selectButton('Enviar');
-        /** @var Form $form */
-        $form = $sendButton->form();
         $form->setValues(array(
-            'contact_homepage[name]' => '',
+            'contact_homepage[name]'  => 'myName',
             'contact_homepage[phone]' => '',
             'contact_homepage[email]' => '',
         ));
         $crawler = $client->submit($form);
         $this->assertEquals($crawler->filter('html:contains("Aquest valor no hauria d\'estar buit.")')->count(), 1);
 
-        $crawler = $client->request('GET', '/');
-        $sendButton = $crawler->selectButton('Enviar');
-        /** @var Form $form */
-        $form = $sendButton->form();
         $form->setValues(array(
-            'contact_homepage[name]' => 'myName',
+            'contact_homepage[name]'  => 'myName',
             'contact_homepage[phone]' => 'myPhone',
             'contact_homepage[email]' => $this->getContainer()->getParameter('mailer_destination'),
         ));
         $crawler = $client->submit($form);
-        var_dump($crawler);
         $this->assertEquals($crawler->filter('i.fa-check')->count(), 1);
+    }
+
+    /**
+     * Test Contact Form Submit
+     */
+    public function testContactFormSubmit()
+    {
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/contacte');
+        $sendButton = $crawler->selectButton('Enviar');
+        /** @var Form $form */
+        $form = $sendButton->form();
+        $contactHomepage = $form->get('contact_message');
+
+        $this->assertEquals(count($contactHomepage), 6);
+        $this->assertTrue(isset($contactHomepage['name']));
+        $this->assertTrue(isset($contactHomepage['phone']));
+        $this->assertTrue(isset($contactHomepage['email']));
+        $this->assertTrue(isset($contactHomepage['message']));
+        $this->assertTrue(isset($contactHomepage['send']));
+
+        $form->setValues(array(
+            'contact_message[name]' => 'myName',
+            'contact_message[phone]' => 'myPhone',
+            'contact_message[email]' => 'my@slkddfj.sfd',
+            'contact_message[message]' => 'myMessage',
+        ));
+        $crawler = $client->submit($form);
+        $this->assertEquals($crawler->filter('html:contains("Aquest valor no és una adreça d\'email vàlida.")')->count(), 1);
+
+        $form->setValues(array(
+            'contact_message[name]'  => 'myName',
+            'contact_message[phone]' => 'myPhone',
+            'contact_message[message]' => 'myMessage',
+            'contact_message[email]' => $this->getContainer()->getParameter('mailer_destination'),
+        ));
+        $crawler = $client->submit($form);
+        $this->assertEquals($crawler->filter('i.fa-check')->count(), 1);
+
+        $cmr = $this->getContainer()->get('doctrine')->getRepository('AppBundle:ContactMessage');
+        /** @var ContactMessage $contact */
+        $contact = $cmr->findOneBy(array(
+            'email' => $this->getContainer()->getParameter('mailer_destination')
+        ));
+        $this->assertEquals('myName', $contact->getName());
+        $this->assertEquals('myPhone', $contact->getPhone());
+        $this->assertEquals('myMessage', $contact->getMessage());
     }
 }
