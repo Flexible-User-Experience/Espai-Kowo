@@ -125,6 +125,13 @@ class PostAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'shortDescription',
+                null,
+                array(
+                    'label' => 'backend.admin.post.shortdescription',
+                )
+            )
+            ->add(
                 'description',
                 CKEditorType::class,
                 array(

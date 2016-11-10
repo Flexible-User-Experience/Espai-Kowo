@@ -69,6 +69,13 @@ class Post extends AbstractBase
     /**
      * @var string
      *
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $shortDescription;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $metaKeywords;
@@ -189,6 +196,30 @@ class Post extends AbstractBase
     public function getImageName()
     {
         return $this->imageName;
+    }
+
+    /**
+     * Get shortDescription
+     *
+     * @return string
+     */
+    public function getShortDescription()
+    {
+        return $this->shortDescription;
+    }
+
+    /**
+     * Set shortDescription
+     *
+     * @param string $shortDescription
+     *
+     * @return $this
+     */
+    public function setShortDescription($shortDescription)
+    {
+        $this->shortDescription = $shortDescription;
+
+        return $this;
     }
 
     /**
