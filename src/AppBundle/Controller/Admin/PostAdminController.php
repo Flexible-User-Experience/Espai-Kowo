@@ -41,7 +41,7 @@ class PostAdminController extends Controller
         }
 
         return $this->redirectToRoute(
-            'sonata_admin_dashboard',
+            'front_blog_detail',
             array(
                 'year'  => $object->getPublishedAt()->format('Y'),
                 'month' => $object->getPublishedAt()->format('m'),
