@@ -9,7 +9,7 @@
                 {% for post in pagination %}
                     <div class="col-md-4">
                         <a href="{{ path('front_blog_detail', {slug: post.slug, year: post.publishedAt | date('Y'), month: post.publishedAt | date('m'), day: post.publishedAt | date('d') }) }}">
-                            {% include ':Frontend/includes:image_detail.html.twig' with {object: post} %}
+                            {% include ':Frontend/includes:image_detail.html.twig' with {object: post, filter: '780xY'} %}
                         </a>
                         <div class="caption">
                             <h4>{{ post.title }}</h4>
