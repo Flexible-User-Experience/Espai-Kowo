@@ -2,7 +2,6 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\Coworker;
 use Doctrine\ORM\EntityRepository;
 
 /**
