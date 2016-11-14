@@ -54,6 +54,7 @@ backend:
             user_question: Pregunta del usuari
             your_answer: La teva resposta
         event:
+            event: Activitat
             title: Títol
             shortdescription: Descripció breu
             description: Descripció
