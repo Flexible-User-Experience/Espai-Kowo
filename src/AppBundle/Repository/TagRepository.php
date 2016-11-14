@@ -53,6 +53,4 @@ class TagRepository extends EntityRepository
 
         return $query->getResult();
     }
-
-
 }
