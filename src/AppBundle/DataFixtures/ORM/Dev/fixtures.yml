@@ -132,6 +132,7 @@ AppBundle\Entity\Category:
 AppBundle\Entity\Event:
   event{1..10}:
     title: <sentence()>
+    shortDescription: <paragraph()>
     description: <paragraph()>
     type: <word()>
     date: <dateTimeThisMonth()>

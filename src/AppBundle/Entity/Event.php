@@ -67,6 +67,13 @@ class Event extends AbstractBase
     private $imageName;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $shortDescription;
+
+    /**
      *
      *
      * Methods
@@ -155,6 +162,29 @@ class Event extends AbstractBase
     public function getImageName()
     {
         return $this->imageName;
+    }
+    /**
+     * Get shortDescription
+     *
+     * @return string
+     */
+    public function getShortDescription()
+    {
+        return $this->shortDescription;
+    }
+
+    /**
+     * Set shortDescription
+     *
+     * @param string $shortDescription
+     *
+     * @return $this
+     */
+    public function setShortDescription($shortDescription)
+    {
+        $this->shortDescription = $shortDescription;
+
+        return $this;
     }
 
     /**

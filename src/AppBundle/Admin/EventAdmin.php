@@ -49,6 +49,13 @@ class EventAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'shortDescription',
+                null,
+                array(
+                    'label' => 'backend.admin.event.shortdescription',
+                )
+            )
+            ->add(
                 'description',
                 'ckeditor',
                     array(
