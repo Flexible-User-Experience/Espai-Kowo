@@ -136,6 +136,15 @@ AppBundle\Entity\Event:
     description: <paragraph()>
     type: <word()>
     date: <dateTimeThisMonth()>
+    categories: [ @eventcategory* ]
+
+# EventsCategory
+AppBundle\Entity\EventCategory:
+  eventcategory{1..5}:
+    title: <sentence()>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: <boolean(70)>
 
 # Posts
 AppBundle\Entity\Post:

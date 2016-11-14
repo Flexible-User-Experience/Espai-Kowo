@@ -43,12 +43,22 @@ AppBundle\Entity\Event:
     description: <paragraph()>
     type: <word()>
     date: <dateTimeThisMonth()>
+    categories: [ @eventcategory1 ]
   event2:
     title: 'Cata de vins'
     shortDescription: <paragraph()>
     description: <paragraph()>
     type: <word()>
     date: <dateTimeThisMonth()>
+    categories: [ @eventcategory1 ]
+
+# EventsCategory
+AppBundle\Entity\EventCategory:
+  eventcategory{1}:
+    title: <sentence()>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: <boolean(70)>
 
 # Posts
 AppBundle\Entity\Post:
