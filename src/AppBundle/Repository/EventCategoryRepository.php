@@ -15,42 +15,42 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class EventCategoryRepository extends EntityRepository
 {
-//    /**
-//     * @return QueryBuilder
-//     */
-//    public function getAllSortedByTitleQB()
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->orderBy('t.title', 'ASC');
-//    }
-//
-//    /**
-//     * @return ArrayCollection
-//     */
-//    public function getAllEnabledSortedByTitle()
-//    {
-//        $query = $this->createQueryBuilder('t')
-//            ->where('t.enabled = :enabled')
-//            ->setParameter('enabled', true)
-//            ->orderBy('t.title', 'ASC')
-//            ->getQuery();
-//
-//        return $query->getResult();
-//    }
-//
-//    /**
-//     * @return ArrayCollection
-//     */
-//    public function getAllEnabledSortedByTitleWithJoin()
-//    {
-//        $query = $this->createQueryBuilder('t')
-//            ->select('t, p')
-//            ->join('t.posts', 'p')
-//            ->where('t.enabled = :enabled')
-//            ->setParameter('enabled', true)
-//            ->orderBy('t.title', 'ASC')
-//            ->getQuery();
-//
-//        return $query->getResult();
-//    }
+    /**
+     * @return QueryBuilder
+     */
+    public function getAllSortedByTitleQB()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.title', 'ASC');
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAllEnabledSortedByTitle()
+    {
+        $query = $this->createQueryBuilder('c')
+            ->where('c.enabled = :enabled')
+            ->setParameter('enabled', true)
+            ->orderBy('c.title', 'ASC')
+            ->getQuery();
+
+        return $query->getResult();
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAllEnabledSortedByTitleWithJoin()
+    {
+        $query = $this->createQueryBuilder('c')
+            ->select('c, e')
+            ->join('c.events', 'e')
+            ->where('c.enabled = :enabled')
+            ->setParameter('enabled', true)
+            ->orderBy('c.title', 'ASC')
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }

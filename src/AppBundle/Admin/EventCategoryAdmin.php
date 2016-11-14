@@ -60,7 +60,7 @@ class EventCategoryAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('backend.admin.tag.tag', $this->getFormMdSuccessBoxArray(6))
+            ->with('backend.admin.event.category', $this->getFormMdSuccessBoxArray(6))
             ->add(
                 'title',
                 null,
