@@ -52,7 +52,7 @@ class EventAdmin extends AbstractBaseAdmin
                 'shortDescription',
                 null,
                 array(
-                    'label' => 'backend.admin.post.shortdescription',
+                    'label' => 'backend.admin.event.shortdescription',
                 )
             )
             ->add(
