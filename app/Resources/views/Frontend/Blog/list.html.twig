@@ -9,12 +9,12 @@
                 {% for post in pagination %}
                     <div class="col-md-4">
                         <a href="{{ path('front_blog_detail', {slug: post.slug, year: post.publishedAt | date('Y'), month: post.publishedAt | date('m'), day: post.publishedAt | date('d') }) }}">
-                            {% include ':Frontend/includes:image_detail.html.twig' with {object: post} %}
+                            {% include ':Frontend/includes:image_detail.html.twig' with {object: post, filter: '780xY'} %}
                         </a>
                         <div class="caption">
                             <h4>{{ post.title }}</h4>
                             <h6 class="text-muted">{{ post.publishedAt | date('d/m/Y') }}</h6>
-                            <p>{{ post.shortDescription | truncate(100) | raw }}</p>
+                            <p>{{ post.shortDescription }}</p>
                             <p><a href="{{ path('front_blog_detail', {slug: post.slug, year: post.publishedAt | date('Y'), month: post.publishedAt | date('m'), day: post.publishedAt | date('d') }) }}" class="btn btn-kowo"
                                   role="button">Llegir més</a></p>
                         </div>

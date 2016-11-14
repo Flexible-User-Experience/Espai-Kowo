@@ -10,30 +10,61 @@
                 {% include ':Frontend/includes:notice_flash.html.twig' %}
             </div>
         </div>
-        <div class="row">
-            {% if pagination.getTotalItemCount > 0 %}
-                {% for event in pagination %}
-                    <div class="col-md-4">
+        {% if newEvents | length > 0 %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3 class="no-m-top">Activitats pendents</h3>
+                </div>
+            </div>
+            <div class="row row-eq-height extra-m-bottom">
+                {% for event in newEvents %}
+                    <div class="col-sm-4">
                         <a href="{{ path('front_event_detail', {slug: event.slug}) }}">
-                            {% include ':Frontend/includes:image_detail.html.twig' with {object: event} %}
+                            {% include ':Frontend/includes:image_detail.html.twig' with {object: event, filter: '780xY'} %}
                         </a>
                         <div class="caption">
                             <h4>{{ event.title }}</h4>
                             <h6 class="text-muted">{{ event.date | date('d/m/Y') }}</h6>
-                            <p>{{ event.description |truncate(100) | raw }}</p>
-                            <p><a href="{{ path('front_event_detail', {slug: event.slug}) }}" class="btn btn-kowo"
-                                  role="button">Llegir més</a></p>
+                            <p>{{ event.description | truncate(100) | raw }}</p>
+                            <p>
+                                <a href="{{ path('front_event_detail', {slug: event.slug}) }}" class="btn btn-kowo" role="button">Llegir més</a>
+                            </p>
                         </div>
                     </div>
                     {% if loop.index is divisible by(3) %}
                         </div>
-                        <div class="row extra-m-top">
+                        <div class="row row-eq-height extra-m-bottom">
                     {% endif %}
                 {% endfor %}
-            {% else %}
-                {% include ':Frontend/includes:under_construciton_warning.html.twig' %}
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
+        {% if oldEvents | length > 0 %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4 class="no-m-top">Activitats finalitzades</h4>
+                </div>
+            </div>
+            <div class="row row-eq-height extra-m-bottom">
+                {% for event in oldEvents %}
+                    <div class="col-sm-3">
+                        <a href="{{ path('front_event_detail', {slug: event.slug}) }}">
+                            {% include ':Frontend/includes:image_detail.html.twig' with {object: event, filter: '780xYBW'} %}
+                        </a>
+                        <div class="caption">
+                            <h4>{{ event.title }}</h4>
+                            <h6 class="text-muted">{{ event.date | date('d/m/Y') }}</h6>
+                            <p>
+                                <a href="{{ path('front_event_detail', {slug: event.slug}) }}" class="btn btn-kowo" role="button">Llegir més</a>
+                            </p>
+                        </div>
+                    </div>
+                    {% if loop.index is divisible by(4) %}
+                        </div>
+                        <div class="row row-eq-height extra-m-bottom">
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
         {% include ':Frontend/includes:paginator_buttons_bar.html.twig' %}
     </div>
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\ContactMessage;
+use AppBundle\Entity\Event;
 use AppBundle\Form\Type\ContactNewsletterType;
 use AppBundle\Manager\MailchimpManager;
 use AppBundle\Service\NotificationService;
@@ -23,7 +24,7 @@ class EventController extends Controller
      */
     public function listAction(Request $request, $pagina = 1)
     {
-        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findAllEnabledSortedByDate();
+        $allEvents = $this->getDoctrine()->getRepository('AppBundle:Event')->findAllEnabledSortedByDate();
         $contact = new ContactMessage();
         $form = $this->createForm(ContactNewsletterType::class, $contact);
         $form->handleRequest($request);
@@ -33,13 +34,22 @@ class EventController extends Controller
             // Clean up new form
             $form = $this->createForm(ContactNewsletterType::class);
         }
-        //paginator
+
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($events, $pagina);
+        $pagination = $paginator->paginate($allEvents, $pagina);
+        $newEvents = array(); $oldEvents = array(); $now = new \DateTime();
+        /** @var Event $event */
+        foreach ($pagination as $event) {
+            if ($event->getDate()->format('Y-m-d') >= $now->format('Y-m-d')) {
+                $newEvents[] = $event;
+            } else {
+                $oldEvents[] = $event;
+            }
+        }
 
         return $this->render(
             ':Frontend/Event:list.html.twig',
-            [ 'events' => $events, 'form' => $form->createView(), 'pagination' => $pagination ]
+            [ 'form' => $form->createView(), 'pagination' => $pagination, 'oldEvents' => $oldEvents, 'newEvents' => $newEvents ]
         );
     }
 

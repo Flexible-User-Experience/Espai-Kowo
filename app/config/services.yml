@@ -5,7 +5,7 @@ services:
 # Sonata Admin
     admin.coworker:
         class: AppBundle\Admin\CoworkerAdmin
-        arguments: [ ~ , AppBundle\Entity\Coworker, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        arguments: [ ~ , AppBundle\Entity\Coworker, AppBundle:Admin\CoworkerAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Coworker", group: "Coworkers" }
     admin.category:
@@ -25,7 +25,7 @@ services:
             - { name: sonata.admin, manager_type: orm, label: "Xarxes Socials", group: "Coworkers", show_in_dashboard: false }
     admin.event:
         class: AppBundle\Admin\EventAdmin
-        arguments: [ ~, AppBundle\Entity\Event, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        arguments: [ ~, AppBundle\Entity\Event, AppBundle:Admin\EventAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Activitats", group: "Activitats" }
     admin.post:

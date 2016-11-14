@@ -118,19 +118,17 @@ class PostAdmin extends AbstractBaseAdmin
             ->end()
             ->with('backend.admin.post.content', $this->getFormMdSuccessBoxArray(12))
             ->add(
-                'shortDescription',
-                CKEditorType::class,
-                array(
-                    'label'       => 'backend.admin.post.shortdescription',
-                    'config_name' => 'my_config',
-                    'required'    => true,
-                )
-            )
-            ->add(
                 'title',
                 null,
                 array(
                     'label' => 'backend.admin.post.title',
+                )
+            )
+            ->add(
+                'shortDescription',
+                null,
+                array(
+                    'label' => 'backend.admin.post.shortdescription',
                 )
             )
             ->add(
@@ -256,9 +254,7 @@ class PostAdmin extends AbstractBaseAdmin
                 'actions',
                 array(
                     'actions' => array(
-                        'show'   => array(
-                            'template' => '::Admin/Buttons/list__action_show_button.html.twig'
-                        ),
+                        'show'   => array('template' => '::Admin/Buttons/list__action_show_button.html.twig'),
                         'edit'   => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
                         'delete' => array('template' => '::Admin/Buttons/list__action_delete_button.html.twig'),
                     ),
