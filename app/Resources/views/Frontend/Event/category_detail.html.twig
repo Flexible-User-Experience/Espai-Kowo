@@ -1,0 +1,15 @@
+{% extends ':Frontend:base.html.twig' %}
+
+{% block title %}{{ selectedCategory.title }} · {{ parent() }}{% endblock %}
+
+{% block categories %}
+    <ul class="list-unstyled">
+        {% for category in categories %}
+            {% if category.events | length > 0 %}
+                <li{% if category.id == selectedCategory.id %} class="active"{% endif %}>
+                    <a href="{{ path('front_category_event', {slug: category.slug}) }}">{{ category.title }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}
