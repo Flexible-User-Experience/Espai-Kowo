@@ -55,6 +55,7 @@ backend:
             your_answer: La teva resposta
         event:
             event: Activitat
+            category: Categoria
             title: Títol
             shortdescription: Descripció breu
             description: Descripció

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Repository\EventCategoryRepository;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -40,7 +41,7 @@ class EventAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Activitats', $this->getFormMdSuccessBoxArray(8))
+            ->with('backend.admin.event.event', $this->getFormMdSuccessBoxArray(8))
             ->add(
                 'title',
                 null,
@@ -75,6 +76,16 @@ class EventAdmin extends AbstractBaseAdmin
             )
             ->end()
             ->with('Controls', $this->getFormMdSuccessBoxArray(4))
+            ->add(
+                'categories',
+                null,
+                array(
+                    'label' => 'backend.admin.event.category',
+                    'query_builder' => function (EventCategoryRepository $repository) {
+                        return $repository->getAllSortedByTitleQB();
+                    },
+                )
+            )
             ->add(
                 'type',
                 null,

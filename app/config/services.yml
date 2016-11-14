@@ -32,7 +32,7 @@ services:
         class: AppBundle\Admin\EventCategoryAdmin
         arguments: [ ~, AppBundle\Entity\EventCategory, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Category", group: "Activitats" }
+            - { name: sonata.admin, manager_type: orm, label: "Categoria", group: "Activitats" }
     admin.post:
         class: AppBundle\Admin\PostAdmin
         arguments: [ ~, AppBundle\Entity\Post, AppBundle:Admin\PostAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
