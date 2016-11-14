@@ -39,11 +39,13 @@ AppBundle\Entity\Category:
 AppBundle\Entity\Event:
   event1:
     title: <sentence()>
+    shortDescription: <paragraph()>
     description: <paragraph()>
     type: <word()>
     date: <dateTimeThisMonth()>
   event2:
     title: 'Cata de vins'
+    shortDescription: <paragraph()>
     description: <paragraph()>
     type: <word()>
     date: <dateTimeThisMonth()>
