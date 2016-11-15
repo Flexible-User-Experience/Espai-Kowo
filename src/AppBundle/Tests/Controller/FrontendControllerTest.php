@@ -46,6 +46,7 @@ class FrontendControllerTest extends AbstractBaseTest
             array('/test-email'),
             array('/activitats'),
             array('/activitat/cata-de-vins'),
+            array('/activitat/categoria/salut'),
             array('/sitemap/sitemap.default.xml'),
         );
     }
