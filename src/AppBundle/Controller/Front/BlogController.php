@@ -19,13 +19,17 @@ class BlogController extends Controller
      */
     public function indexAction($pagina = 1)
     {
+        $tags = $this->getDoctrine()->getRepository('AppBundle:Tag')->getAllEnabledSortedByTitle();
         $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->getAllEnabledSortedByPublishedDateWithJoinUntilNow();
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($posts, $pagina);
 
         return $this->render(':Frontend:Blog/list.html.twig',
-            [ 'pagination' => $pagination ]
+            [
+                'pagination' => $pagination,
+                'tags'       => $tags,
+            ]
         );
     }
 
