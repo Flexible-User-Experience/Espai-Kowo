@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\EventCategory;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -22,4 +24,28 @@ class EventRepository extends EntityRepository
 
         return $query->getQuery()->getResult();
     }
+
+    /**
+     * @param EventCategory $category
+     * @return ArrayCollection
+     */
+    public function getEventsByCategoryEnabledSortedByDateWithJoinUntilNow(EventCategory $category)
+    {
+        $now = new \DateTime();
+        $query = $this->createQueryBuilder('e')
+            ->select('e, c')
+            ->join('e.categories', 'c')
+            ->where('e.enabled = :enabled')
+            ->andWhere('c.id = :cid')
+            ->andWhere('e.date <= :date')
+            ->setParameter('enabled', true)
+            ->setParameter('date', $now->format('Y-m-d'))
+            ->setParameter('cid', $category->getId())
+            ->orderBy('e.date', 'DESC')
+            ->addOrderBy('e.title', 'ASC')
+            ->getQuery();
+
+        return $query->getResult();
+    }
+
 }

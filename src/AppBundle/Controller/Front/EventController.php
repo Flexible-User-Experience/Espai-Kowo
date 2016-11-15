@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\ContactMessage;
 use AppBundle\Entity\Event;
+use AppBundle\Entity\EventCategory;
 use AppBundle\Form\Type\ContactNewsletterType;
 use AppBundle\Manager\MailchimpManager;
 use AppBundle\Service\NotificationService;
@@ -24,6 +25,7 @@ class EventController extends Controller
      */
     public function listAction(Request $request, $pagina = 1)
     {
+        $categories = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->getAllEnabledSortedByTitle();
         $allEvents = $this->getDoctrine()->getRepository('AppBundle:Event')->findAllEnabledSortedByDate();
         $contact = new ContactMessage();
         $form = $this->createForm(ContactNewsletterType::class, $contact);
@@ -49,7 +51,13 @@ class EventController extends Controller
 
         return $this->render(
             ':Frontend/Event:list.html.twig',
-            [ 'form' => $form->createView(), 'pagination' => $pagination, 'oldEvents' => $oldEvents, 'newEvents' => $newEvents ]
+            [
+                'form'       => $form->createView(),
+                'pagination' => $pagination,
+                'oldEvents'  => $oldEvents,
+                'newEvents'  => $newEvents,
+                'categories' => $categories,
+            ]
         );
     }
 
@@ -104,5 +112,28 @@ class EventController extends Controller
         // Send email notifications
         $messenger->sendCommonUserNotification($contact);
         $messenger->sendNewsletterSubscriptionAdminNotification($contact);
+    }
+
+    /**
+     * @Route("/activitat/categoria/{slug}", name="front_category_event")
+     * @param $slug
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function categoryEventAction($slug)
+    {
+        /** @var EventCategory $category */
+        $category = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->findOneBy($slug);
+        if (!$category || !$category->getEnabled()) {
+            throw $this->createNotFoundException('Unable to find Category entity.');
+        }
+        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->getEventsByCategoryEnabledSortedByDateWithJoinUntilNow($category);
+        $categories = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->getAllEnabledSortedByTitleWithJoin();
+
+        return $this->render(':Frontend/Event:category_detail.html.twig', array(
+            'selectedCategory' => $category,
+            'events' => $events,
+            'categories' => $categories,
+        ));
     }
 }
