@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Tag;
 use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -73,6 +74,21 @@ class BlogController extends Controller
      */
     public function tagDetailAction($slug)
     {
+        $tags = $this->getDoctrine()->getRepository('AppBundle:Tag')->getAllEnabledSortedByTitle();
+        /** @var Tag $tag */
+        $tag = $this->getDoctrine()->getRepository('AppBundle:Tag')->findOneBy(
+            array(
+                'slug' => $slug,
+            )
+        );
 
+        if (!$tag) {
+            throw new EntityNotFoundException();
+        }
+
+        return $this->render(':Frontend/Blog:tag_detail.html.twig', [
+            'tags' => $tags,
+            'tag'  => $tag,
+        ]);
     }
 }
