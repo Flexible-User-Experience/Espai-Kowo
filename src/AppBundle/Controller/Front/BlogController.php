@@ -63,4 +63,16 @@ class BlogController extends Controller
             [ 'post' => $post ]
         );
     }
+
+    /**
+     * @Route("/blog/categoria/{slug}", name="front_blog_tag_detail")
+     * @param string $slug
+     *
+     * @return Response
+     * @throws EntityNotFoundException
+     */
+    public function tagDetailAction($slug)
+    {
+
+    }
 }
