@@ -25,6 +25,7 @@ class EventController extends Controller
      */
     public function listAction(Request $request, $pagina = 1)
     {
+        $categories = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->getAllEnabledSortedByTitle();
         $allEvents = $this->getDoctrine()->getRepository('AppBundle:Event')->findAllEnabledSortedByDate();
         $contact = new ContactMessage();
         $form = $this->createForm(ContactNewsletterType::class, $contact);
@@ -50,7 +51,13 @@ class EventController extends Controller
 
         return $this->render(
             ':Frontend/Event:list.html.twig',
-            [ 'form' => $form->createView(), 'pagination' => $pagination, 'oldEvents' => $oldEvents, 'newEvents' => $newEvents ]
+            [
+                'form'       => $form->createView(),
+                'pagination' => $pagination,
+                'oldEvents'  => $oldEvents,
+                'newEvents'  => $newEvents,
+                'categories' => $categories,
+            ]
         );
     }
 

@@ -4,6 +4,17 @@
 
 {% block main %}
     {% include ':Frontend/includes:newsletter_subscriber.html.twig' %}
+    {% if categories | length > 0 %}
+        <div class="p-vertical-small grey-background">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1>PROVA</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
     <div class="container container-main">
         <div class="row">
             <div class="col-xs-12">
@@ -17,25 +28,26 @@
                 </div>
             </div>
             <div class="row row-eq-height extra-m-bottom">
-                {% for event in newEvents %}
-                    <div class="col-sm-4">
-                        <a href="{{ path('front_event_detail', {slug: event.slug}) }}">
-                            {% include ':Frontend/includes:image_detail.html.twig' with {object: event, filter: '780xY'} %}
-                        </a>
-                        <div class="caption">
-                            <h4>{{ event.title }}</h4>
-                            <h6 class="text-muted">{{ event.date | date('d/m/Y') }}</h6>
-                            <p>{{ event.shortDescription }}</p>
-                            <p>
-                                <a href="{{ path('front_event_detail', {slug: event.slug}) }}" class="btn btn-kowo" role="button">Llegir més</a>
-                            </p>
-                        </div>
+            {% for event in newEvents %}
+                <div class="col-sm-4">
+                    <a href="{{ path('front_event_detail', {slug: event.slug}) }}">
+                        {% include ':Frontend/includes:image_detail.html.twig' with {object: event, filter: '780xY'} %}
+                    </a>
+                    <div class="caption">
+                        <h4>{{ event.title }}</h4>
+                        <h6 class="text-muted">{{ event.date | date('d/m/Y') }}</h6>
+                        <p>{{ event.shortDescription }}</p>
+                        <p>
+                            <a href="{{ path('front_event_detail', {slug: event.slug}) }}" class="btn btn-kowo"
+                               role="button">Llegir més</a>
+                        </p>
                     </div>
-                    {% if loop.index is divisible by(3) %}
-                        </div>
-                        <div class="row row-eq-height extra-m-bottom">
-                    {% endif %}
-                {% endfor %}
+                </div>
+                {% if loop.index is divisible by(3) %}
+                    </div>
+                    <div class="row row-eq-height extra-m-bottom">
+                {% endif %}
+            {% endfor %}
             </div>
         {% endif %}
         {% if oldEvents | length > 0 %}
@@ -45,48 +57,28 @@
                 </div>
             </div>
             <div class="row row-eq-height extra-m-bottom">
-                {% for event in oldEvents %}
-                    <div class="col-sm-3">
-                        <a href="{{ path('front_event_detail', {slug: event.slug}) }}">
-                            {% include ':Frontend/includes:image_detail.html.twig' with {object: event, filter: '780xYBW'} %}
-                        </a>
-                        <div class="caption">
-                            <h4>{{ event.title }}</h4>
-                            <h6 class="text-muted">{{ event.date | date('d/m/Y') }}</h6>
-                            <p>
-                                <a href="{{ path('front_event_detail', {slug: event.slug}) }}" class="btn btn-kowo" role="button">Llegir més</a>
-                            </p>
-                        </div>
+            {% for event in oldEvents %}
+                <div class="col-sm-3">
+                    <a href="{{ path('front_event_detail', {slug: event.slug}) }}">
+                        {% include ':Frontend/includes:image_detail.html.twig' with {object: event, filter: '780xYBW'} %}
+                    </a>
+                    <div class="caption">
+                        <h4>{{ event.title }}</h4>
+                        <h6 class="text-muted">{{ event.date | date('d/m/Y') }}</h6>
+                        <p>
+                            <a href="{{ path('front_event_detail', {slug: event.slug}) }}" class="btn btn-kowo"
+                               role="button">Llegir més</a>
+                        </p>
                     </div>
-                    {% if loop.index is divisible by(4) %}
-                        </div>
-                        <div class="row row-eq-height extra-m-bottom">
-                    {% endif %}
-                {% endfor %}
+                </div>
+                {% if loop.index is divisible by(4) %}
+                    </div>
+                    <div class="row row-eq-height extra-m-bottom">
+                {% endif %}
+            {% endfor %}
             </div>
         {% endif %}
         {% include ':Frontend/includes:paginator_buttons_bar.html.twig' %}
-    </div>
-    <div class="col-sm-4">
-        {# right side #}
-        {% if categories | length > 0 %}
-            <div class="thumbnail blog-categories">
-                <div class="caption">
-                    <h3 class="c-cyan">{{ 'frontend.menu.events' | trans | upper }}</h3>
-                    {% block categories %}
-                        <ul class="list-unstyled">
-                            {% for category in categories %}
-                                {% if category.events | length > 0 %}
-                                    <li>
-                                        <a href="{{ path('front_category_event', {slug: category.slug}) }}">{{ category.title }}</a>
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                    {% endblock %}
-                </div>
-            </div>
-        {% endif %}
     </div>
 {% endblock %}
 
@@ -94,7 +86,7 @@
     {{ parent() }}
     {% if not form.vars.valid %}
         <script type="text/javascript">
-            jQuery(document).ready(function() {
+            jQuery(document).ready(function () {
                 jQuery('#form_modal').modal('show');
             });
         </script>
