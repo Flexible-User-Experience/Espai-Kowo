@@ -3,6 +3,19 @@
 {% block title %}Blog · {{ parent() }}{% endblock %}
 
 {% block main %}
+    <div class="p-vertical-small grey-background">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="list-inline">
+                        {% for tag in tags %}
+                            <li>{{ tag.title }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container container-main">
         <div class="row">
             {% if pagination.getTotalItemCount > 0 %}
