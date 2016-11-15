@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Traits\SlugTrait;
 use AppBundle\Entity\Traits\TitleTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -20,6 +21,15 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class EventCategory extends AbstractBase
 {
     use TitleTrait;
+    use SlugTrait;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"title"})
+     */
+    private $slug;
 
     /**
      * @var ArrayCollection
@@ -37,7 +47,7 @@ class EventCategory extends AbstractBase
      */
 
     /**
-     * Tag constructor
+     * Category constructor
      */
     public function __construct()
     {
