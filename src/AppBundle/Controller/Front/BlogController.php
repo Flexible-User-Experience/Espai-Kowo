@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Tag;
 use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,13 +20,17 @@ class BlogController extends Controller
      */
     public function indexAction($pagina = 1)
     {
+        $tags = $this->getDoctrine()->getRepository('AppBundle:Tag')->getAllEnabledSortedByTitle();
         $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->getAllEnabledSortedByPublishedDateWithJoinUntilNow();
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($posts, $pagina);
 
         return $this->render(':Frontend:Blog/list.html.twig',
-            [ 'pagination' => $pagination ]
+            [
+                'pagination' => $pagination,
+                'tags'       => $tags,
+            ]
         );
     }
 
@@ -58,5 +63,32 @@ class BlogController extends Controller
         return $this->render('Frontend/Blog/detail.html.twig',
             [ 'post' => $post ]
         );
+    }
+
+    /**
+     * @Route("/blog/categoria/{slug}", name="front_blog_tag_detail")
+     * @param string $slug
+     *
+     * @return Response
+     * @throws EntityNotFoundException
+     */
+    public function tagDetailAction($slug)
+    {
+        $tags = $this->getDoctrine()->getRepository('AppBundle:Tag')->getAllEnabledSortedByTitle();
+        /** @var Tag $tag */
+        $tag = $this->getDoctrine()->getRepository('AppBundle:Tag')->findOneBy(
+            array(
+                'slug' => $slug,
+            )
+        );
+
+        if (!$tag) {
+            throw new EntityNotFoundException();
+        }
+
+        return $this->render(':Frontend/Blog:tag_detail.html.twig', [
+            'tags' => $tags,
+            'tag'  => $tag,
+        ]);
     }
 }

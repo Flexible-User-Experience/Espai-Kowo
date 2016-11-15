@@ -65,7 +65,7 @@ class EventCategoryAdmin extends AbstractBaseAdmin
                 'title',
                 null,
                 array(
-                    'label' => 'backend.admin.tag.title',
+                    'label' => 'backend.admin.event.title',
                 )
             )
             ->end()
@@ -91,14 +91,14 @@ class EventCategoryAdmin extends AbstractBaseAdmin
                 'title',
                 null,
                 array(
-                    'label' => 'backend.admin.tag.title',
+                    'label' => 'backend.admin.event.title',
                 )
             )
             ->add(
                 'events',
                 null,
                 array(
-                    'label'    => 'backend.admin.tag.event',
+                    'label'    => 'backend.admin.event.event',
                 )
             )
             ->add(
@@ -128,14 +128,14 @@ class EventCategoryAdmin extends AbstractBaseAdmin
                 'title',
                 null,
                 array(
-                    'label' => 'backend.admin.tag.title',
+                    'label' => 'backend.admin.event.title',
                 )
             )
             ->add(
                 'events',
                 null,
                 array(
-                    'label' => 'backend.admin.tag.event',
+                    'label' => 'backend.admin.event.event',
                 )
             )
             ->add(
@@ -158,7 +158,7 @@ class EventCategoryAdmin extends AbstractBaseAdmin
                 'title',
                 null,
                 array(
-                    'label'    => 'backend.admin.tag.title',
+                    'label'    => 'backend.admin.event.title',
                     'editable' => true,
                 )
             )

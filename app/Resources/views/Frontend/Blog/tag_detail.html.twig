@@ -1,0 +1,28 @@
+{% extends ':Frontend:base.html.twig' %}
+
+{% block title %}Categoria · {{ parent() }}{% endblock %}
+
+{% block main %}
+    <div class="p-vertical-small grey-background">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="list-inline no-m-bottom">
+                        {% for item in tags %}
+                            {% if item.slug == tag %}
+                            {% endif %}
+                            <li><a href="{{ path('front_blog_tag_detail', {slug: item.slug}) }}">{{ item.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>{{ tag.title }}</h1>
+            </div>
+        </div>
+    </div>
+{% endblock %}
