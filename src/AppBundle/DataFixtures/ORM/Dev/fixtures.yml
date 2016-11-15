@@ -163,7 +163,7 @@ AppBundle\Entity\Post:
 # Tags
 AppBundle\Entity\Tag:
   tag{1..5}:
-    title: <sentence()>
+    title: <word()>
     createdAt: <dateTimeBetween('-2 months', '-1 months')>
     updatedAt: <dateTimeThisMonth()>
     enabled: <boolean(70)>
