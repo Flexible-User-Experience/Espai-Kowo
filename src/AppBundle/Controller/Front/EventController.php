@@ -115,25 +115,56 @@ class EventController extends Controller
     }
 
     /**
-     * @Route("/activitat/categoria/{slug}", name="front_category_event")
-     * @param $slug
+     * @Route("/activitat/categoria/{slug}/{pagina}", name="front_category_event")
+     * @param Request $request
+     * @param string  $slug
+     * @param int     $pagina
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function categoryEventAction($slug)
+    public function categoryEventAction(Request $request, $slug, $pagina = 1)
     {
         /** @var EventCategory $category */
-        $category = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->findOneBy($slug);
+        $category = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->findOneBy(
+            array(
+                'slug' => $slug
+            )
+        );
         if (!$category || !$category->getEnabled()) {
             throw $this->createNotFoundException('Unable to find Category entity.');
         }
-        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->getEventsByCategoryEnabledSortedByDateWithJoinUntilNow($category);
-        $categories = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->getAllEnabledSortedByTitleWithJoin();
+        $allEvents = $this->getDoctrine()->getRepository('AppBundle:Event')->getEventsByCategoryEnabledSortedByDateWithJoinUntilNow($category);
+        $categories = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->getAllEnabledSortedByTitle();
+
+        $contact = new ContactMessage();
+        $form = $this->createForm(ContactNewsletterType::class, $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->setFlashMailchimpSubscribeAndEmailNotifications($contact);
+            // Clean up new form
+            $form = $this->createForm(ContactNewsletterType::class);
+        }
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($allEvents, $pagina);
+        $newEvents = array(); $oldEvents = array(); $now = new \DateTime();
+        /** @var Event $event */
+        foreach ($pagination as $event) {
+            if ($event->getDate()->format('Y-m-d') >= $now->format('Y-m-d')) {
+                $newEvents[] = $event;
+            } else {
+                $oldEvents[] = $event;
+            }
+        }
 
         return $this->render(':Frontend/Event:category_detail.html.twig', array(
             'selectedCategory' => $category,
-            'events' => $events,
             'categories' => $categories,
+            'form'       => $form->createView(),
+            'pagination' => $pagination,
+            'oldEvents'  => $oldEvents,
+            'newEvents'  => $newEvents,
         ));
     }
 }
