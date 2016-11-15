@@ -123,12 +123,16 @@ class EventController extends Controller
     public function categoryEventAction($slug)
     {
         /** @var EventCategory $category */
-        $category = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->findOneBy($slug);
+        $category = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->findOneBy(
+            array(
+                'slug' => $slug
+            )
+        );
         if (!$category || !$category->getEnabled()) {
             throw $this->createNotFoundException('Unable to find Category entity.');
         }
         $events = $this->getDoctrine()->getRepository('AppBundle:Event')->getEventsByCategoryEnabledSortedByDateWithJoinUntilNow($category);
-        $categories = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->getAllEnabledSortedByTitleWithJoin();
+        $categories = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->getAllEnabledSortedByTitle();
 
         return $this->render(':Frontend/Event:category_detail.html.twig', array(
             'selectedCategory' => $category,
