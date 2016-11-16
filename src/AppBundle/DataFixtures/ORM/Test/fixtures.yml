@@ -55,10 +55,10 @@ AppBundle\Entity\Event:
 # EventsCategory
 AppBundle\Entity\EventCategory:
   eventcategory{1}:
-    title: <sentence()>
+    title: 'Salut'
     createdAt: <dateTimeBetween('-2 months', '-1 months')>
     updatedAt: <dateTimeThisMonth()>
-    enabled: <boolean(70)>
+    enabled: true
 
 # Posts
 AppBundle\Entity\Post:
