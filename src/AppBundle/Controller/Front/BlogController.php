@@ -66,13 +66,14 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/blog/categoria/{slug}", name="front_blog_tag_detail")
+     * @Route("/blog/categoria/{slug}/{pagina}", name="front_blog_tag_detail")
      * @param string $slug
+     * @param int    $pagina
      *
      * @return Response
      * @throws EntityNotFoundException
      */
-    public function tagDetailAction($slug)
+    public function tagDetailAction($slug, $pagina = 1)
     {
         $tags = $this->getDoctrine()->getRepository('AppBundle:Tag')->getAllEnabledSortedByTitle();
         /** @var Tag $tag */
@@ -85,10 +86,15 @@ class BlogController extends Controller
         if (!$tag) {
             throw new EntityNotFoundException();
         }
+        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->getPostsByTagEnabledSortedByPublishedDate($tag);
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($posts, $pagina);
 
         return $this->render(':Frontend/Blog:tag_detail.html.twig', [
-            'tags' => $tags,
-            'tag'  => $tag,
+            'tags'  => $tags,
+            'tag'   => $tag,
+            'pagination' => $pagination,
         ]);
     }
 }
