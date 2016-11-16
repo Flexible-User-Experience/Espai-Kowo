@@ -9,9 +9,12 @@
                 <div class="col-xs-12">
                     <ul class="list-inline no-m-bottom">
                         {% for item in tags %}
-                            {% if item.slug == tag %}
+                            {% if item.slug != tag.slug %}
+                                <li><a href="{{ path('front_blog_tag_detail', {slug: item.slug}) }}">{{ item.title }}</a></li>
+                            {% else %}
+                                <li>{{ item.title }}</li>
                             {% endif %}
-                            <li><a href="{{ path('front_blog_tag_detail', {slug: item.slug}) }}">{{ item.title }}</a></li>
+
                         {% endfor %}
                     </ul>
                 </div>
