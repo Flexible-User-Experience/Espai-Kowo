@@ -1,6 +1,6 @@
 {% extends ':Frontend:base.html.twig' %}
 
-{% block title %}Categoria · {{ parent() }}{% endblock %}
+{% block title %}Categoria {{ tag.title }} · {{ parent() }}{% endblock %}
 
 {% block main %}
     <div class="p-vertical-small grey-background">
@@ -9,20 +9,41 @@
                 <div class="col-xs-12">
                     <ul class="list-inline no-m-bottom">
                         {% for item in tags %}
-                            {% if item.slug == tag %}
+                            {% if item.slug != tag.slug %}
+                                <li><a href="{{ path('front_blog_tag_detail', {slug: item.slug}) }}">{{ item.title }}</a></li>
+                            {% else %}
+                                <li>{{ item.title }}</li>
                             {% endif %}
-                            <li><a href="{{ path('front_blog_tag_detail', {slug: item.slug}) }}">{{ item.title }}</a></li>
+
                         {% endfor %}
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container container-main">
         <div class="row">
-            <div class="col-xs-12">
-                <h1>{{ tag.title }}</h1>
-            </div>
+            {% if pagination.getTotalItemCount > 0 %}
+                {% for post in pagination %}
+                    <div class="col-md-4">
+                        <a href="{{ path('front_blog_detail', {slug: post.slug, year: post.publishedAt | date('Y'), month: post.publishedAt | date('m'), day: post.publishedAt | date('d') }) }}">
+                            {% include ':Frontend/includes:image_detail.html.twig' with {object: post, filter: '780xY'} %}
+                        </a>
+                        <div class="caption">
+                            <h4>{{ post.title }}</h4>
+                            <h6 class="text-muted">{{ post.publishedAt | date('d/m/Y') }}</h6>
+                            <p>{{ post.shortDescription }}</p>
+                            <p><a href="{{ path('front_blog_detail', {slug: post.slug, year: post.publishedAt | date('Y'), month: post.publishedAt | date('m'), day: post.publishedAt | date('d') }) }}" class="btn btn-kowo"
+                          role="button">Llegir més</a></p>
+                        </div>
+                    </div>
+                    {% if loop.index is divisible by(3) %}
+                        </div>
+                        <div class="row extra-m-top">
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         </div>
+        {% include ':Frontend/includes:paginator_buttons_bar.html.twig' %}
     </div>
 {% endblock %}
