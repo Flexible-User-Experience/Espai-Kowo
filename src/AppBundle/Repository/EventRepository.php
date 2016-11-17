@@ -29,17 +29,14 @@ class EventRepository extends EntityRepository
      * @param EventCategory $category
      * @return ArrayCollection
      */
-    public function getEventsByCategoryEnabledSortedByDateWithJoinUntilNow(EventCategory $category)
+    public function getEventsByCategoryEnabledSortedByDateWithJoin(EventCategory $category)
     {
-        $now = new \DateTime();
         $query = $this->createQueryBuilder('e')
             ->select('e, c')
             ->join('e.categories', 'c')
             ->where('e.enabled = :enabled')
             ->andWhere('c.id = :cid')
-            ->andWhere('e.date <= :date')
             ->setParameter('enabled', true)
-            ->setParameter('date', $now->format('Y-m-d'))
             ->setParameter('cid', $category->getId())
             ->orderBy('e.date', 'DESC')
             ->addOrderBy('e.title', 'ASC')
@@ -47,5 +44,4 @@ class EventRepository extends EntityRepository
 
         return $query->getResult();
     }
-
 }
