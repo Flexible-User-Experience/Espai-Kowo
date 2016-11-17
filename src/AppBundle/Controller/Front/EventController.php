@@ -38,7 +38,7 @@ class EventController extends Controller
         }
 
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($allEvents, $pagina);
+        $pagination = $paginator->paginate($allEvents, $pagina, 9);
         $newEvents = array(); $oldEvents = array(); $now = new \DateTime();
         /** @var Event $event */
         foreach ($pagination as $event) {
@@ -150,7 +150,7 @@ class EventController extends Controller
         }
 
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($allEvents, $pagina);
+        $pagination = $paginator->paginate($allEvents, $pagina, 9);
         $newEvents = array(); $oldEvents = array(); $now = new \DateTime();
         /** @var Event $event */
         foreach ($pagination as $event) {
