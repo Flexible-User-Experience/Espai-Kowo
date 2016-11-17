@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Repository\EventCategoryRepository;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -31,7 +32,6 @@ class EventAdmin extends AbstractBaseAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection
-            ->remove('show')
             ->remove('batch');
     }
 
@@ -41,19 +41,26 @@ class EventAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Activitats', $this->getFormMdSuccessBoxArray(8))
+            ->with('backend.admin.event.event', $this->getFormMdSuccessBoxArray(8))
             ->add(
                 'title',
                 null,
                 array(
-                    'label' => 'Activitat',
+                    'label' => 'backend.admin.event.event',
+                )
+            )
+            ->add(
+                'shortDescription',
+                null,
+                array(
+                    'label' => 'backend.admin.event.shortdescription',
                 )
             )
             ->add(
                 'description',
                 'ckeditor',
                     array(
-                        'label'       => 'Descripció',
+                        'label'       => 'backend.admin.event.description',
                         'config_name' => 'my_config',
                         'required'    => true,
                 )
@@ -62,25 +69,28 @@ class EventAdmin extends AbstractBaseAdmin
                 'imageFile',
                 'file',
                 array(
-                    'label'    => 'Imatge',
+                    'label'    => 'backend.admin.event.image',
                     'help'     => $this->getImageHelperFormMapperWithThumbnail(),
                     'required' => false,
                 )
             )
             ->end()
-            ->with('Controls', $this->getFormMdSuccessBoxArray(4))
+            ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(4))
             ->add(
-                'type',
+                'categories',
                 null,
                 array(
-                    'label' => 'Tipus',
+                    'label' => 'backend.admin.event.category',
+                    'query_builder' => function (EventCategoryRepository $repository) {
+                        return $repository->getAllSortedByTitleQB();
+                    },
                 )
             )
             ->add(
                 'date',
                 'sonata_type_date_picker',
                 array(
-                    'label'    => 'Data',
+                    'label'    => 'backend.admin.event.date',
                     'format'   => 'd/M/y',
                     'required' => true,
                 )
@@ -89,7 +99,7 @@ class EventAdmin extends AbstractBaseAdmin
                 'enabled',
                 'checkbox',
                 array(
-                    'label'    => 'Actiu',
+                    'label'    => 'backend.admin.enabled',
                     'required' => false,
                 )
             )
@@ -105,37 +115,37 @@ class EventAdmin extends AbstractBaseAdmin
                 'date',
                 'doctrine_orm_date',
                 array(
-                    'label'      => 'Data',
+                    'label'      => 'backend.admin.event.date',
                     'field_type' => 'sonata_type_date_picker',
                     'format'     => 'd-m-Y',
-                )
-            )
-            ->add(
-                'type',
-                null,
-                array(
-                    'label' => 'Tipus',
                 )
             )
             ->add(
                 'title',
                 null,
                 array(
-                    'label' => 'Activitat',
+                    'label' => 'backend.admin.event.event',
+                )
+            )
+            ->add(
+                'categories',
+                null,
+                array(
+                    'label' => 'backend.admin.event.category',
                 )
             )
             ->add(
                 'description',
                 null,
                 array(
-                    'label' => 'Descripció',
+                    'label' => 'backend.admin.event.description',
                 )
             )
             ->add(
                 'enabled',
                 null,
                 array(
-                    'label' => 'Actiu',
+                    'label' => 'backend.admin.enabled',
                     'editable' => true,
                 )
             );
@@ -152,7 +162,7 @@ class EventAdmin extends AbstractBaseAdmin
                 'image',
                 null,
                 array(
-                    'label'    => 'Imatge',
+                    'label'    => 'backend.admin.event.image',
                     'template' => '::Admin/Cells/list__cell_image_field.html.twig'
                 )
             )
@@ -160,16 +170,8 @@ class EventAdmin extends AbstractBaseAdmin
                 'date',
                 'date',
                 array(
-                    'label'    => 'Data',
+                    'label'    => 'backend.admin.event.date',
                     'format'   => 'd/m/Y',
-                    'editable' => true,
-                )
-            )
-            ->add(
-                'type',
-                null,
-                array(
-                    'label' => 'Tipus',
                     'editable' => true,
                 )
             )
@@ -177,7 +179,15 @@ class EventAdmin extends AbstractBaseAdmin
                 'title',
                 null,
                 array(
-                    'label' => 'Activitat',
+                    'label' => 'backend.admin.event.event',
+                    'editable' => true,
+                )
+            )
+            ->add(
+                'categories',
+                null,
+                array(
+                    'label'    => 'backend.admin.event.category',
                     'editable' => true,
                 )
             )
@@ -185,7 +195,7 @@ class EventAdmin extends AbstractBaseAdmin
                 'enabled',
                 null,
                 array(
-                    'label' => 'Actiu',
+                    'label' => 'backend.admin.enabled',
                     'editable' => true,
                 )
             )
@@ -193,8 +203,9 @@ class EventAdmin extends AbstractBaseAdmin
                 '_action',
                 'actions',
                 array(
-                    'label'   => 'Accions',
+                    'label'   => 'backend.admin.actions',
                     'actions' => array(
+                        'show'   => array('template' => '::Admin/Buttons/list__action_show_button.html.twig'),
                         'edit'   => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
                         'delete' => array('template' => '::Admin/Buttons/list__action_delete_button.html.twig'),
                     )

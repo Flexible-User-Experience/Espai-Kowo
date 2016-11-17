@@ -68,7 +68,7 @@ class FrontendMenuBuilder
             array(
                 'label' => 'frontend.menu.blog',
                 'route' => 'front_blog',
-                'current' => $route == 'front_blog' || $route == 'front_blog_detail',
+                'current' => $route == 'front_blog' || $route == 'front_blog_detail' || $route == 'front_blog_tag_detail',
             )
         );
         $menu->addChild(
@@ -84,7 +84,7 @@ class FrontendMenuBuilder
             array(
                 'label'   => 'frontend.menu.events',
                 'route'   => 'front_events_list',
-                'current' => $route == 'front_events_list' || $route == 'front_event_detail',
+                'current' => $route == 'front_events_list' || $route == 'front_event_detail' || $route == 'front_category_event',
             )
         );
         $menu->addChild(

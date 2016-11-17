@@ -23,7 +23,9 @@ class SocialNetworkRepository extends EntityRepository
     {
         $query = $this->createQueryBuilder('sn')
             ->where('sn.coworker = :coworker')
+            ->andWhere('sn.enabled = :enabled')
             ->setParameter('coworker', $coworker)
+            ->setParameter('enabled', true)
             ->join('sn.category', 'snc')
             ->orderBy('snc.title');
 

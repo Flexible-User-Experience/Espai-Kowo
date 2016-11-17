@@ -1,6 +1,6 @@
 {% extends ':Frontend:base.html.twig' %}
 
-{% block title %}Activitats · {{ parent() }}{% endblock %}
+{% block title %}{{ selectedCategory.title }} · {{ parent() }}{% endblock %}
 
 {% block main %}
     {% include ':Frontend/includes:newsletter_subscriber.html.twig' %}
@@ -11,7 +11,13 @@
                     <div class="col-sm-12">
                         <ul class="list-inline no-m-bottom categories-selector">
                             {% for category in categories if category.events | length > 0 %}
-                                <li><a href="{{ path('front_category_event', {slug: category.slug}) }}">{{ category.title }}</a></li>
+                                {% if selectedCategory.slug != category.slug %}
+                                    <li>
+                                        <a href="{{ path('front_category_event', {slug: category.slug}) }}">{{ category.title }}</a>
+                                    </li>
+                                {% else %}
+                                    <li class="active">{{ category.title }}</li>
+                                {% endif %}
                             {% endfor %}
                         </ul>
                     </div>
@@ -84,15 +90,4 @@
         {% endif %}
         {% include ':Frontend/includes:paginator_buttons_bar.html.twig' %}
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    {% if not form.vars.valid %}
-        <script type="text/javascript">
-            jQuery(document).ready(function () {
-                jQuery('#form_modal').modal('show');
-            });
-        </script>
-    {% endif %}
 {% endblock %}

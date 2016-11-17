@@ -7,21 +7,21 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Class TagRepository
+ * Class EventCategoryRepository
  *
  * @category Repository
  * @package  AppBundle\Repository
  * @author   Anton Serra <aserratorta@gmail.com>
  */
-class TagRepository extends EntityRepository
+class EventCategoryRepository extends EntityRepository
 {
     /**
      * @return QueryBuilder
      */
     public function getAllSortedByTitleQB()
     {
-        return $this->createQueryBuilder('t')
-            ->orderBy('t.title', 'ASC');
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.title', 'ASC');
     }
 
     /**
@@ -29,10 +29,10 @@ class TagRepository extends EntityRepository
      */
     public function getAllEnabledSortedByTitle()
     {
-        $query = $this->createQueryBuilder('t')
-            ->where('t.enabled = :enabled')
+        $query = $this->createQueryBuilder('c')
+            ->where('c.enabled = :enabled')
             ->setParameter('enabled', true)
-            ->orderBy('t.title', 'ASC')
+            ->orderBy('c.title', 'ASC')
             ->getQuery();
 
         return $query->getResult();
@@ -43,12 +43,12 @@ class TagRepository extends EntityRepository
      */
     public function getAllEnabledSortedByTitleWithJoin()
     {
-        $query = $this->createQueryBuilder('t')
-            ->select('t, p')
-            ->join('t.posts', 'p')
-            ->where('t.enabled = :enabled')
+        $query = $this->createQueryBuilder('c')
+            ->select('c, e')
+            ->join('c.events', 'e')
+            ->where('c.enabled = :enabled')
             ->setParameter('enabled', true)
-            ->orderBy('t.title', 'ASC')
+            ->orderBy('c.title', 'ASC')
             ->getQuery();
 
         return $query->getResult();

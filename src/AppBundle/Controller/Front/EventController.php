@@ -3,6 +3,8 @@
 namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\ContactMessage;
+use AppBundle\Entity\Event;
+use AppBundle\Entity\EventCategory;
 use AppBundle\Form\Type\ContactNewsletterType;
 use AppBundle\Manager\MailchimpManager;
 use AppBundle\Service\NotificationService;
@@ -23,7 +25,8 @@ class EventController extends Controller
      */
     public function listAction(Request $request, $pagina = 1)
     {
-        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findAllEnabledSortedByDate();
+        $categories = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->getAllEnabledSortedByTitle();
+        $allEvents = $this->getDoctrine()->getRepository('AppBundle:Event')->findAllEnabledSortedByDate();
         $contact = new ContactMessage();
         $form = $this->createForm(ContactNewsletterType::class, $contact);
         $form->handleRequest($request);
@@ -33,13 +36,28 @@ class EventController extends Controller
             // Clean up new form
             $form = $this->createForm(ContactNewsletterType::class);
         }
-        //paginator
+
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($events, $pagina);
+        $pagination = $paginator->paginate($allEvents, $pagina);
+        $newEvents = array(); $oldEvents = array(); $now = new \DateTime();
+        /** @var Event $event */
+        foreach ($pagination as $event) {
+            if ($event->getDate()->format('Y-m-d') >= $now->format('Y-m-d')) {
+                $newEvents[] = $event;
+            } else {
+                $oldEvents[] = $event;
+            }
+        }
 
         return $this->render(
             ':Frontend/Event:list.html.twig',
-            [ 'events' => $events, 'form' => $form->createView(), 'pagination' => $pagination ]
+            [
+                'form'       => $form->createView(),
+                'pagination' => $pagination,
+                'oldEvents'  => $oldEvents,
+                'newEvents'  => $newEvents,
+                'categories' => $categories,
+            ]
         );
     }
 
@@ -58,6 +76,7 @@ class EventController extends Controller
                 'slug' => $slug,
             )
         );
+        $categories = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->getAllEnabledSortedByTitle();
 
         $contact = new ContactMessage();
         $form = $this->createForm(ContactNewsletterType::class, $contact);
@@ -69,9 +88,11 @@ class EventController extends Controller
             $form = $this->createForm(ContactNewsletterType::class);
         }
 
-        return $this->render(
-            ':Frontend/Event:detail.html.twig',
-            [ 'event' => $event, 'form' => $form->createView(), ]
+        return $this->render(':Frontend/Event:detail.html.twig', array(
+            'event' => $event,
+            'form' => $form->createView(),
+            'categories' => $categories,
+            )
         );
     }
 
@@ -94,5 +115,59 @@ class EventController extends Controller
         // Send email notifications
         $messenger->sendCommonUserNotification($contact);
         $messenger->sendNewsletterSubscriptionAdminNotification($contact);
+    }
+
+    /**
+     * @Route("/activitat/categoria/{slug}/{pagina}", name="front_category_event")
+     * @param Request $request
+     * @param string  $slug
+     * @param int     $pagina
+     *
+     * @return Response
+     */
+    public function categoryEventAction(Request $request, $slug, $pagina = 1)
+    {
+        /** @var EventCategory $category */
+        $category = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->findOneBy(
+            array(
+                'slug' => $slug
+            )
+        );
+        if (!$category || !$category->getEnabled()) {
+            throw $this->createNotFoundException('Unable to find Category entity.');
+        }
+        $allEvents = $this->getDoctrine()->getRepository('AppBundle:Event')->getEventsByCategoryEnabledSortedByDateWithJoinUntilNow($category);
+        $categories = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->getAllEnabledSortedByTitle();
+
+        $contact = new ContactMessage();
+        $form = $this->createForm(ContactNewsletterType::class, $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->setFlashMailchimpSubscribeAndEmailNotifications($contact);
+            // Clean up new form
+            $form = $this->createForm(ContactNewsletterType::class);
+        }
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($allEvents, $pagina);
+        $newEvents = array(); $oldEvents = array(); $now = new \DateTime();
+        /** @var Event $event */
+        foreach ($pagination as $event) {
+            if ($event->getDate()->format('Y-m-d') >= $now->format('Y-m-d')) {
+                $newEvents[] = $event;
+            } else {
+                $oldEvents[] = $event;
+            }
+        }
+
+        return $this->render(':Frontend/Event:category_detail.html.twig', array(
+            'selectedCategory' => $category,
+            'categories' => $categories,
+            'form'       => $form->createView(),
+            'pagination' => $pagination,
+            'oldEvents'  => $oldEvents,
+            'newEvents'  => $newEvents,
+        ));
     }
 }

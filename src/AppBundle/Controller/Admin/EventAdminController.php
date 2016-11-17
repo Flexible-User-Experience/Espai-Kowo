@@ -2,20 +2,20 @@
 
 namespace AppBundle\Controller\Admin;
 
-use AppBundle\Entity\Post;
+use AppBundle\Entity\Event;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
- * Class PostAdminController
+ * Class EventAdminController
  *
  * @category Controller
  * @package  AppBundle\Controller\Admin
  * @author   David Romaní <david@flux.cat>
  */
-class PostAdminController extends BaseAdminController
+class EventAdminController extends BaseAdminController
 {
     /**
      * Custom show action redirect to public frontend view
@@ -32,7 +32,7 @@ class PostAdminController extends BaseAdminController
         $request = $this->resolveRequest($request);
         $id = $request->get($this->admin->getIdParameter());
 
-        /** @var Post $object */
+        /** @var Event $object */
         $object = $this->admin->getObject($id);
 
         if (!$object) {
@@ -40,11 +40,8 @@ class PostAdminController extends BaseAdminController
         }
 
         return $this->redirectToRoute(
-            'front_blog_detail',
+            'front_event_detail',
             array(
-                'year'  => $object->getPublishedAt()->format('Y'),
-                'month' => $object->getPublishedAt()->format('m'),
-                'day'   => $object->getPublishedAt()->format('d'),
                 'slug'  => $object->getSlug(),
             )
         );

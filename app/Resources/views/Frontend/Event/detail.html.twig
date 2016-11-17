@@ -8,13 +8,17 @@
         <div class="row">
             {# Left side #}
             <div class="col-sm-4 extra-m-bottom">
-                {% include ':Frontend/includes:image_detail.html.twig' with {object: event} %}
+                {% include ':Frontend/includes:image_detail.html.twig' with {object: event, filter: '780xY'} %}
             </div>
             {# Right side #}
             <div class="col-sm-8">
                 <h2 class="no-m-top">{{ event.title }}</h2>
                 <h4 class="text-muted">{{ event.date | date('d/m/Y') }}</h4>
-                <h4 class="c-green">{{ event.type }}</h4>
+                {#{% for category in categories  %}#}
+                {#<a href="{{ path('front_category_event', {slug: category.slug}) }}">#}
+                <h4 class="c-green">{{ event.categories | join(' ') }}</h4>
+                {#</a>#}
+                {#{% endfor %}#}
                 <div class="p-vertical underlined-anchors">
                     {{ event.description | raw }}
                 </div>

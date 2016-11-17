@@ -6,20 +6,20 @@ use AppBundle\Entity\Traits\SlugTrait;
 use AppBundle\Entity\Traits\TitleTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Class Tag
+ * Class EventCategory
  *
  * @category Entity
  * @package  AppBundle\Entity
  * @author   Anton Serra <aserratorta@gmail.com>
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="AppBundle\Repository\TagRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EventCategoryRepository")
  * @UniqueEntity("title")
  */
-class Tag extends AbstractBase
+class EventCategory extends AbstractBase
 {
     use TitleTrait;
     use SlugTrait;
@@ -35,9 +35,9 @@ class Tag extends AbstractBase
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Post", mappedBy="tags")
+     * @ORM\ManyToMany(targetEntity="Event", mappedBy="categories")
      */
-    private $posts;
+    private $events;
 
     /**
      *
@@ -48,57 +48,57 @@ class Tag extends AbstractBase
      */
 
     /**
-     * Tag constructor
+     * Category constructor
      */
     public function __construct()
     {
-        $this->posts = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     /**
      * @return ArrayCollection
      */
-    public function getPosts()
+    public function getEvents()
     {
-        return $this->posts;
+        return $this->events;
     }
 
     /**
-     * @param ArrayCollection $posts
+     * @param ArrayCollection $events
      *
-     * @return $this
+     * @return EventCategory
      */
-    public function setPosts($posts)
+    public function setEvents($events)
     {
-        $this->posts = $posts;
+        $this->events = $events;
 
         return $this;
     }
 
     /**
-     * Add post
+     * Add Event
      *
-     * @param Post $post
+     * @param Event $event
      *
      * @return $this
      */
-    public function addPost(Post $post)
+    public function addEvent(Event $event)
     {
-        $this->posts[] = $post;
+        $this->events[] = $event;
 
         return $this;
     }
 
     /**
-     * Remove post
+     * Remove Event
      *
-     * @param Post $post
+     * @param Event $event
      *
      * @return $this
      */
-    public function removePost(Post $post)
+    public function removeEvent(Event $event)
     {
-        $this->posts->removeElement($post);
+        $this->events->removeElement($event);
 
         return $this;
     }

@@ -6,6 +6,7 @@ use AppBundle\Entity\Traits\DateTrait;
 use AppBundle\Entity\Traits\DescriptionTrait;
 use AppBundle\Entity\Traits\SlugTrait;
 use AppBundle\Entity\Traits\TitleTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -67,12 +68,35 @@ class Event extends AbstractBase
     private $imageName;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $shortDescription;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="EventCategory", inversedBy="events")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $categories;
+
+    /**
      *
      *
      * Methods
      *
      *
      */
+
+    /**
+     * Event constructor
+     */
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
 
     /**
      * Get slug
@@ -155,6 +179,74 @@ class Event extends AbstractBase
     public function getImageName()
     {
         return $this->imageName;
+    }
+    /**
+     * Get shortDescription
+     *
+     * @return string
+     */
+    public function getShortDescription()
+    {
+        return $this->shortDescription;
+    }
+
+    /**
+     * Set shortDescription
+     *
+     * @param string $shortDescription
+     *
+     * @return $this
+     */
+    public function setShortDescription($shortDescription)
+    {
+        $this->shortDescription = $shortDescription;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param ArrayCollection $categories
+     *
+     * @return Event
+     */
+    public function setCategories($categories)
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Add category
+     *
+     * @param EventCategory $category
+     *
+     * @return $this
+     */
+    public function addCategory(EventCategory $category)
+    {
+        $category->addEvent($this);
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param EventCategory $category
+     */
+    public function removeCategory(EventCategory $category)
+    {
+        $this->categories->removeElement($category);
     }
 
     /**

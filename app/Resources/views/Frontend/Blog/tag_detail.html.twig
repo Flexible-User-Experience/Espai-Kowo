@@ -1,6 +1,6 @@
 {% extends ':Frontend:base.html.twig' %}
 
-{% block title %}Blog · {{ parent() }}{% endblock %}
+{% block title %}Categoria {{ tag.title }} · {{ parent() }}{% endblock %}
 
 {% block main %}
     <div class="p-vertical-small grey-background">
@@ -8,8 +8,12 @@
             <div class="row">
                 <div class="col-xs-12">
                     <ul class="list-inline no-m-bottom categories-selector">
-                        {% for tag in tags if tag.posts | length > 0 %}
-                            <li><a href="{{ path('front_blog_tag_detail', {slug: tag.slug}) }}">{{ tag.title }}</a></li>
+                        {% for item in tags if item.posts | length > 0 %}
+                            {% if item.slug != tag.slug %}
+                                <li><a href="{{ path('front_blog_tag_detail', {slug: item.slug}) }}">{{ item.title }}</a></li>
+                            {% else %}
+                                <li class="active">{{ item.title }}</li>
+                            {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
@@ -29,7 +33,7 @@
                             <h6 class="text-muted">{{ post.publishedAt | date('d/m/Y') }}</h6>
                             <p>{{ post.shortDescription }}</p>
                             <p><a href="{{ path('front_blog_detail', {slug: post.slug, year: post.publishedAt | date('Y'), month: post.publishedAt | date('m'), day: post.publishedAt | date('d') }) }}" class="btn btn-kowo"
-                                  role="button">Llegir més</a></p>
+                          role="button">Llegir més</a></p>
                         </div>
                     </div>
                     {% if loop.index is divisible by(3) %}
@@ -37,8 +41,6 @@
                         <div class="row extra-m-top">
                     {% endif %}
                 {% endfor %}
-            {% else %}
-                {% include ':Frontend/includes:under_construciton_warning.html.twig' %}
             {% endif %}
         </div>
         {% include ':Frontend/includes:paginator_buttons_bar.html.twig' %}
