@@ -134,7 +134,6 @@ AppBundle\Entity\Event:
     title: <sentence()>
     shortDescription: <paragraph()>
     description: <paragraph()>
-    type: <word()>
     date: <dateTimeThisMonth()>
     categories: [ @eventcategory* ]
 

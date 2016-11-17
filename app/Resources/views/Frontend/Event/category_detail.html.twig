@@ -1,11 +1,10 @@
 {% extends ':Frontend:base.html.twig' %}
 
-{% block title %}{{ selectedCategory.title }} · {{ parent() }}{% endblock %}
+{% block title %}Activitats · {{ selectedCategory.title }} · {{ parent() }}{% endblock %}
 
 {% block main %}
-    {% include ':Frontend/includes:newsletter_subscriber.html.twig' %}
     {% if categories | length > 0 %}
-        <div class="p-vertical-small green-background-light">
+        <div class="p-vertical-small grey-background">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -25,6 +24,7 @@
             </div>
         </div>
     {% endif %}
+    {% include ':Frontend/includes:newsletter_subscriber.html.twig' %}
     <div class="container container-main">
         <div class="row">
             <div class="col-xs-12">
