@@ -38,6 +38,7 @@ class EventRepository extends EntityRepository
             ->andWhere('c.id = :cid')
             ->setParameter('enabled', true)
             ->setParameter('cid', $category->getId())
+            ->orderBy('e.date', 'DESC')
             ->addOrderBy('e.title', 'ASC')
             ->getQuery();
 

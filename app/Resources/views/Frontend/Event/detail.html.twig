@@ -14,11 +14,11 @@
             <div class="col-sm-8">
                 <h2 class="no-m-top">{{ event.title }}</h2>
                 <h4 class="text-muted">{{ event.date | date('d/m/Y') }}</h4>
-                {#{% for category in categories  %}#}
-                {#<a href="{{ path('front_category_event', {slug: category.slug}) }}">#}
-                <h4 class="c-green">{{ event.categories | join(' ') }}</h4>
-                {#</a>#}
-                {#{% endfor %}#}
+                {% for category in event.categories  %}
+                    <a class="c-green" href="{{ path('front_category_event', {slug: category.slug}) }}">
+                        {{ category.title }}
+                    </a>
+                {% endfor %}
                 <div class="p-vertical underlined-anchors">
                     {{ event.description | raw }}
                 </div>
