@@ -103,13 +103,6 @@ class EventAdmin extends AbstractBaseAdmin
                     'required' => false,
                 )
             )
-            ->add(
-                'type',
-                null,
-                array(
-                    'label'    => 'backend.admin.event.type',
-                )
-            )
             ->end();
     }
     /**
