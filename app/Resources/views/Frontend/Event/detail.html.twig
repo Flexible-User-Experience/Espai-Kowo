@@ -15,9 +15,9 @@
                 <h2 class="no-m-top">{{ event.title }}</h2>
                 <h4 class="text-muted">{{ event.date | date('d/m/Y') }}</h4>
                 {% for category in event.categories  %}
-                    <a class="c-green" href="{{ path('front_category_event', {slug: category.slug}) }}">
-                        {{ category.title }}
-                    </a>
+                    {% spaceless %}
+                        <a class="c-green" href="{{ path('front_category_event', {slug: category.slug}) }}">{{ category.title }}</a>{% if loop.index != loop.last %},&nbsp;{% endif %}
+                    {% endspaceless %}
                 {% endfor %}
                 <div class="p-vertical underlined-anchors">
                     {{ event.description | raw }}
