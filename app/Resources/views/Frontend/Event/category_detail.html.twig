@@ -9,16 +9,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <ul class="list-inline no-m-bottom">
-                            {% for category in categories %}
+                        <ul class="list-inline no-m-bottom categories-selector">
+                            {% for category in categories if category.events | length > 0 %}
                                 {% if selectedCategory.slug != category.slug %}
                                     <li>
                                         <a href="{{ path('front_category_event', {slug: category.slug}) }}">{{ category.title }}</a>
                                     </li>
                                 {% else %}
-                                    <li class="active">
-                                        {{ category.title }}
-                                    </li>
+                                    <li class="active">{{ category.title }}</li>
                                 {% endif %}
                             {% endfor %}
                         </ul>
