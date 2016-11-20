@@ -38,7 +38,7 @@ class EventController extends Controller
         }
 
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($allEvents, $pagina);
+        $pagination = $paginator->paginate($allEvents, $pagina, 9);
         $newEvents = array(); $oldEvents = array(); $now = new \DateTime();
         /** @var Event $event */
         foreach ($pagination as $event) {
@@ -76,6 +76,7 @@ class EventController extends Controller
                 'slug' => $slug,
             )
         );
+        $categories = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->getAllEnabledSortedByTitle();
 
         $contact = new ContactMessage();
         $form = $this->createForm(ContactNewsletterType::class, $contact);
@@ -87,9 +88,11 @@ class EventController extends Controller
             $form = $this->createForm(ContactNewsletterType::class);
         }
 
-        return $this->render(
-            ':Frontend/Event:detail.html.twig',
-            [ 'event' => $event, 'form' => $form->createView(), ]
+        return $this->render(':Frontend/Event:detail.html.twig', array(
+            'event' => $event,
+            'form' => $form->createView(),
+            'categories' => $categories,
+            )
         );
     }
 
@@ -133,7 +136,7 @@ class EventController extends Controller
         if (!$category || !$category->getEnabled()) {
             throw $this->createNotFoundException('Unable to find Category entity.');
         }
-        $allEvents = $this->getDoctrine()->getRepository('AppBundle:Event')->getEventsByCategoryEnabledSortedByDateWithJoinUntilNow($category);
+        $allEvents = $this->getDoctrine()->getRepository('AppBundle:Event')->getEventsByCategoryEnabledSortedByDateWithJoin($category);
         $categories = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->getAllEnabledSortedByTitle();
 
         $contact = new ContactMessage();
@@ -147,7 +150,7 @@ class EventController extends Controller
         }
 
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($allEvents, $pagina);
+        $pagination = $paginator->paginate($allEvents, $pagina, 9);
         $newEvents = array(); $oldEvents = array(); $now = new \DateTime();
         /** @var Event $event */
         foreach ($pagination as $event) {

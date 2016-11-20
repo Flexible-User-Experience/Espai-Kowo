@@ -87,13 +87,6 @@ class EventAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
-                'type',
-                null,
-                array(
-                    'label' => 'backend.admin.event.type',
-                )
-            )
-            ->add(
                 'date',
                 'sonata_type_date_picker',
                 array(
@@ -125,13 +118,6 @@ class EventAdmin extends AbstractBaseAdmin
                     'label'      => 'backend.admin.event.date',
                     'field_type' => 'sonata_type_date_picker',
                     'format'     => 'd-m-Y',
-                )
-            )
-            ->add(
-                'type',
-                null,
-                array(
-                    'label' => 'backend.admin.event.type',
                 )
             )
             ->add(
@@ -186,14 +172,6 @@ class EventAdmin extends AbstractBaseAdmin
                 array(
                     'label'    => 'backend.admin.event.date',
                     'format'   => 'd/m/Y',
-                    'editable' => true,
-                )
-            )
-            ->add(
-                'type',
-                null,
-                array(
-                    'label' => 'backend.admin.event.type',
                     'editable' => true,
                 )
             )

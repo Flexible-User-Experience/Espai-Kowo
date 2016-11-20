@@ -13,7 +13,11 @@
             <div class="col-sm-8">
                 <h2 class="no-m-top">{{ post.title }}</h2>
                 <h4 class="text-muted">{{ post.publishedAt | date('d/m/Y') }}</h4>
-                <h4 class="c-green">{{ post.tags | join(', ')  }}</h4>
+                {% for tag in post.tags %}
+                    {% spaceless %}
+                        <a class="c-green" href="{{ path('front_blog_tag_detail', {slug: tag.slug}) }}">{{ tag.title }}</a>{% if loop.index != loop.last %},&nbsp;{% endif %}
+                    {% endspaceless %}
+                {% endfor %}
                 <div class="p-vertical underlined-anchors">
                     {{ post.description | raw }}
                 </div>
