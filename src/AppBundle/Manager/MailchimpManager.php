@@ -55,20 +55,21 @@ class MailchimpManager
      */
     public function subscribeContactToList(ContactMessage $contact, $listId)
     {
-        //Evaluate contact name and subscribe
+        // evaluate contact name and subscribe
         $explodeName = explode(" ", $contact->getName());
         $mergeFields = array('FNAME' => $explodeName[0]);
         if (count($explodeName) >= 2) {
             $mergeFields['LNAME'] = $explodeName[1];
         }
 
+        // make HTTP API request
         $result = $this->mailChimp->post('lists/' . $listId . '/members', array(
             'email_address' => $contact->getEmail(),
             'status'        => 'subscribed',
             'merge_fields'  => $mergeFields
         ));
 
-         //Check contact to list
+        // check error
         if ($result === false) {
             $this->messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
         }
