@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints as Assert;
-use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
+//use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
 //use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
 
 /**
@@ -60,36 +60,33 @@ class ContactNewsletterType extends AbstractType
                     ),
                 )
             )
-            ->add(
-                'recaptcha',
-                EWZRecaptchaType::class,
-                array(
-                    'label'       => false,
-                    'mapped'      => false,
-                    'attr' => array(
-                        'options' => array(
-                            'theme' => 'light',
-                            'type'  => 'image',
-                            'size'  => 'normal',
-                            'defer' => false,
-                            'async' => false,
-                        ),
-                    ),
+//            ->add(
+//                'recaptcha',
+//                EWZRecaptchaType::class,
+//                array(
+//                    'label'       => false,
+//                    'mapped'      => false,
+//                    'attr' => array(
+//                        'options' => array(
+//                            'theme' => 'light',
+//                            'type'  => 'image',
+//                            'size'  => 'normal',
+//                            'defer' => false,
+//                            'async' => false,
+//                        ),
+//                    ),
 //                    'constraints' => array(
 //                        new RecaptchaTrue(array(
 //                            'message' => 'Error',
 //                        )),
 //                    ),
-                )
-            )
+//                )
+//            )
             ->add(
                 'send',
                 SubmitType::class,
                 array(
-                    'label' => 'frontend.forms.send',
-                    'attr'  => array(
-                        'class' => 'btn-kowo',
-                    ),
+                    'label' => 'frontend.forms.news',
                 )
             );
     }

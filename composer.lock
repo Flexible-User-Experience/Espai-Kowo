@@ -1726,29 +1726,29 @@
         },
         {
             "name": "friendsofsymfony/user-bundle",
-            "version": "v1.3.6",
+            "version": "v1.3.7",
             "target-dir": "FOS/UserBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "2022ac8463a8c50dd631f93a17064bd41795fff2"
+                "reference": "113cc4e48fac19d20fc039cfecae9b41103be706"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/2022ac8463a8c50dd631f93a17064bd41795fff2",
-                "reference": "2022ac8463a8c50dd631f93a17064bd41795fff2",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/113cc4e48fac19d20fc039cfecae9b41103be706",
+                "reference": "113cc4e48fac19d20fc039cfecae9b41103be706",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
-                "symfony/framework-bundle": "~2.1",
-                "symfony/security-bundle": "~2.1"
+                "symfony/framework-bundle": "~2.3",
+                "symfony/security-bundle": "~2.3"
             },
             "require-dev": {
                 "doctrine/doctrine-bundle": "~1.3",
                 "swiftmailer/swiftmailer": "~4.3|~5",
-                "symfony/validator": "~2.1",
-                "symfony/yaml": "~2.1",
+                "symfony/validator": "~2.3",
+                "symfony/yaml": "~2.3",
                 "twig/twig": "~1.5",
                 "willdurand/propel-typehintable-behavior": "~1.0"
             },
@@ -1789,7 +1789,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2015-06-01 00:57:03"
+            "time": "2016-08-12 09:53:32"
         },
         {
             "name": "fzaninotto/faker",
@@ -4462,20 +4462,20 @@
         },
         {
             "name": "symfony/assetic-bundle",
-            "version": "v2.8.0",
+            "version": "v2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/assetic-bundle.git",
-                "reference": "aa5b4f8b712f38745928fa845ddb73300bb2af6d"
+                "reference": "0241b135ff64c6031048c6425cd833a8300da46b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/assetic-bundle/zipball/aa5b4f8b712f38745928fa845ddb73300bb2af6d",
-                "reference": "aa5b4f8b712f38745928fa845ddb73300bb2af6d",
+                "url": "https://api.github.com/repos/symfony/assetic-bundle/zipball/0241b135ff64c6031048c6425cd833a8300da46b",
+                "reference": "0241b135ff64c6031048c6425cd833a8300da46b",
                 "shasum": ""
             },
             "require": {
-                "kriswallsmith/assetic": "~1.3",
+                "kriswallsmith/assetic": "~1.4",
                 "php": ">=5.3.0",
                 "symfony/console": "~2.3|~3.0",
                 "symfony/dependency-injection": "~2.3|~3.0",
@@ -4484,7 +4484,7 @@
             },
             "conflict": {
                 "kriswallsmith/spork": "<=0.2",
-                "twig/twig": "<1.20"
+                "twig/twig": "<1.27"
             },
             "require-dev": {
                 "kriswallsmith/spork": "~0.3",
@@ -4502,7 +4502,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -4528,7 +4528,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2015-12-28 13:12:39"
+            "time": "2016-11-22 11:42:57"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -5163,16 +5163,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.8.13",
+            "version": "v2.8.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "d04e2eb13ae63068fc8862530b403756e3702896"
+                "reference": "6ceca5b4154c80839270c38aa65373de76127df7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/d04e2eb13ae63068fc8862530b403756e3702896",
-                "reference": "d04e2eb13ae63068fc8862530b403756e3702896",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/6ceca5b4154c80839270c38aa65373de76127df7",
+                "reference": "6ceca5b4154c80839270c38aa65373de76127df7",
                 "shasum": ""
             },
             "require": {
@@ -5188,7 +5188,7 @@
                 "symfony/polyfill-php70": "~1.0",
                 "symfony/polyfill-util": "~1.0",
                 "symfony/security-acl": "~2.7|~3.0.0",
-                "twig/twig": "~1.27|~2.0"
+                "twig/twig": "~1.28|~2.0"
             },
             "conflict": {
                 "phpdocumentor/reflection": "<1.0.7"
@@ -5294,7 +5294,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-10-27 02:18:45"
+            "time": "2016-11-21 02:24:51"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -5448,16 +5448,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.27.0",
+            "version": "v1.28.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "3c6c0033fd3b5679c6e1cb60f4f9766c2b424d97"
+                "reference": "fff80c4a7ae1d47a81dfec10c76cbcb939170b45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3c6c0033fd3b5679c6e1cb60f4f9766c2b424d97",
-                "reference": "3c6c0033fd3b5679c6e1cb60f4f9766c2b424d97",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/fff80c4a7ae1d47a81dfec10c76cbcb939170b45",
+                "reference": "fff80c4a7ae1d47a81dfec10c76cbcb939170b45",
                 "shasum": ""
             },
             "require": {
@@ -5470,7 +5470,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.27-dev"
+                    "dev-master": "1.28-dev"
                 }
             },
             "autoload": {
@@ -5505,7 +5505,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-10-25 19:17:17"
+            "time": "2016-11-19 05:52:49"
         },
         {
             "name": "vich/uploader-bundle",
