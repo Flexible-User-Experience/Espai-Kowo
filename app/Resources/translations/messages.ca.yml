@@ -11,6 +11,7 @@ frontend:
         email: "Email *"
         message: "Missatge *"
         send: Enviar
+        news: 'Subscriu-me al newsletter'
     pagination:
         previous: anterior
         next: següent
