@@ -104,4 +104,31 @@ class FormsSubmitTest extends WebTestCase
         $this->assertEquals('myPhone', $contact->getPhone());
         $this->assertEquals('myMessage', $contact->getMessage());
     }
+
+    /**
+     * Test Forms Submit
+     */
+    public function testNewsletterFormSubmit()
+    {
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/activitats');
+        $sendButton = $crawler->selectButton('Subscriu-me al newsletter');
+        /** @var Form $form */
+        $form = $sendButton->form();
+        $contactHomepage = $form->get('contact_newsletter');
+
+        $this->assertEquals(count($contactHomepage), 4);
+        $this->assertTrue(isset($contactHomepage['name']));
+        $this->assertFalse(isset($contactHomepage['phone']));
+        $this->assertTrue(isset($contactHomepage['email']));
+        $this->assertFalse(isset($contactHomepage['message']));
+        $this->assertTrue(isset($contactHomepage['send']));
+
+        $form->setValues(array(
+            'contact_newsletter[name]'  => 'myName',
+            'contact_newsletter[email]' => $this->getContainer()->getParameter('mailer_destination'),
+        ));
+        $crawler = $client->submit($form);
+        $this->assertEquals($crawler->filter('i.fa-check')->count(), 1);
+    }
 }
