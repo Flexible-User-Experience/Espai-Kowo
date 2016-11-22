@@ -86,7 +86,7 @@ class ContactNewsletterType extends AbstractType
                 'send',
                 SubmitType::class,
                 array(
-                    'label' => 'Subscriu-me al newsletter',
+                    'label' => 'frontend.forms.news',
                 )
             );
     }
