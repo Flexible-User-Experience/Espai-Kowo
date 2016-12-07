@@ -190,7 +190,7 @@ class NotificationService
         $this->messenger->sendEmail(
             $this->amd,
             $this->amd,
-            'Demà és l\'aniversari de ' . $coworker->getName() . ' ' . $coworker->getSurname(),
+            'Demà és l\'aniversari de ' . $coworker->getFullName(),
             $this->twig->render(':Mails:coworker_birthday_admin_notification.html.twig', array(
                 'coworker' => $coworker,
             ))
