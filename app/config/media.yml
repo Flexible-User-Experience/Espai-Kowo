@@ -3,6 +3,7 @@ liip_imagine:
     resolvers:
        default:
           web_path: ~
+    cache: default
     filter_sets:
         cache: ~
         2400x1000:
