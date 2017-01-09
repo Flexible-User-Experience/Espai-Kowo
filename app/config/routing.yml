@@ -30,6 +30,6 @@ _presta_sitemap:
     resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
     prefix:   /sitemap
 
-#_redirecting_trailing_slashes:
-#    resource: "@AppBundle/Controller/RedirectingController.php"
-#    type:     annotation
+_redirecting_trailing_slashes:
+    resource: "@AppBundle/Controller/RedirectingController.php"
+    type:     annotation
