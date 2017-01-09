@@ -86,24 +86,24 @@ class FrontendControllerTest extends AbstractBaseTest
      *
      * @param string $url
      */
-    public function testFrontendPagesAreRedirected($url)
-    {
-        $client = $this->createClient();           // anonymous user
-        $client->request('GET', $url);
-
-        $this->assertStatusCode(301, $client);
-    }
+//    public function testFrontendPagesAreRedirected($url)
+//    {
+//        $client = $this->createClient();           // anonymous user
+//        $client->request('GET', $url);
+//
+//        $this->assertStatusCode(301, $client);
+//    }
 
     /**
      * Urls provider.
      *
      * @return array
      */
-    public function provideRedirectedUrls()
-    {
-        return array(
-            array('/blog/'),
-            array('/blog/2008/04/25/my-title/'),
-        );
-    }
+//    public function provideRedirectedUrls()
+//    {
+//        return array(
+//            array('/blog/'),
+//            array('/blog/2008/04/25/my-title/'),
+//        );
+//    }
 }
