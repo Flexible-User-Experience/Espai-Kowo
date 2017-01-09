@@ -46,6 +46,7 @@ assetic:
     use_controller: false
     java:           "%path_java%"
     node:           "%path_node%"
+    bundles:        [ AppBundle ]
     filters:
         cssrewrite: ~
         less:
