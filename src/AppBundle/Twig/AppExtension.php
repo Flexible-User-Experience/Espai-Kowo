@@ -9,7 +9,7 @@ use AppBundle\Enum\UserRolesEnum;
  * Class AppExtension
  *
  * @category Twig
- * @package  AppBundle\Service
+ * @package  AppBundle\Twig
  * @author   David Romaní <david@flux.cat>
  */
 class AppExtension extends \Twig_Extension
