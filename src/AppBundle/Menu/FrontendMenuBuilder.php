@@ -5,7 +5,6 @@ namespace AppBundle\Menu;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 
@@ -18,11 +17,6 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
  */
 class FrontendMenuBuilder
 {
-    /**
-     * @var UrlGeneratorInterface
-     */
-    private $router;
-
     /**
      * @var FactoryInterface
      */
@@ -50,14 +44,12 @@ class FrontendMenuBuilder
      * @param FactoryInterface      $factory
      * @param AuthorizationChecker  $ac
      * @param TokenStorageInterface $ts
-     * @param UrlGeneratorInterface $router
      */
-    public function __construct(FactoryInterface $factory, AuthorizationChecker $ac, TokenStorageInterface $ts, UrlGeneratorInterface $router)
+    public function __construct(FactoryInterface $factory, AuthorizationChecker $ac, TokenStorageInterface $ts)
     {
         $this->factory = $factory;
         $this->ac      = $ac;
         $this->ts      = $ts;
-        $this->router  = $router;
     }
 
     /**
