@@ -25,3 +25,10 @@ monolog:
             level: debug
         console:
             type:  console
+
+# Liip Imagine
+liip_imagine:
+    loaders:
+        default:
+            filesystem:
+                data_root: "%liip_imagine_data_root%"
