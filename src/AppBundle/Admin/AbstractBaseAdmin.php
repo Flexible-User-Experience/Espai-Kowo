@@ -12,7 +12,6 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
  * Class BaseAdmin
  *
  * @category Admin
- *
  * @author   David Romaní <david@flux.cat>
  */
 abstract class AbstractBaseAdmin extends AbstractAdmin
@@ -147,6 +146,9 @@ abstract class AbstractBaseAdmin extends AbstractAdmin
             ) . '" class="admin-preview img-responsive" alt="thumbnail"/>' : '' : '') . '<span style="width:100%;display:block;">amplada mínima 1200px (màx. 10MB amb JPG o PNG)</span>';
     }
 
+    /**
+     * @return string
+     */
     protected function getImageHelperFormMapperWithThumbnailGif()
     {
         return ($this->getSubject() ? $this->getSubject()->getGifName() ? '<img src="' . $this->lis->getBrowserPath(
