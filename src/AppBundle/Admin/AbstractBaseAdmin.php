@@ -12,7 +12,7 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
  * Class BaseAdmin
  *
  * @category Admin
- * @package  AppBundle\Admin
+ *
  * @author   David Romaní <david@flux.cat>
  */
 abstract class AbstractBaseAdmin extends AbstractAdmin
