@@ -61,6 +61,7 @@ class CategoryAdmin extends AbstractBaseAdmin
             )
             ->end();
     }
+
     /**
      * @param DatagridMapper $datagridMapper
      */
