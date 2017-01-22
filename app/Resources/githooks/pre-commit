@@ -1,11 +1,19 @@
 #!/bin/bash
 
 if [ -x "$(command -v php-cs-fixer)" ]; then
-    for x in "$(git diff --name-only)"; do
-       php-cs-fixer fix "$x" --rules=@Symfony
+    FILES=`git diff --name-only`
+    printf '%s\n' "$FILES" | while IFS= read -r FILE
+    do
+        if [[ $FILE == "src/"* ]]; then
+            php-cs-fixer fix "$FILE" --rules=@Symfony
+        fi
     done
-    for y in "$(git diff --name-only --staged)"; do
-       php-cs-fixer fix "$y" --rules=@Symfony
+    FILES=`git diff --name-only --staged`
+    printf '%s\n' "$FILES" | while IFS= read -r FILE
+    do
+        if [[ $FILE == "src/"* ]]; then
+            php-cs-fixer fix "$FILE" --rules=@Symfony
+        fi
     done
 else
     echo "Unable to find php-cs-fixer command. Please, check https://github.com/FriendsOfPHP/PHP-CS-Fixer to install it globally (manual) in your system."
