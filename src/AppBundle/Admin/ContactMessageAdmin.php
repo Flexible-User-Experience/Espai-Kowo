@@ -8,10 +8,10 @@ use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 /**
- * Class ContactMessageAdmin
+ * Class ContactMessageAdmin.
  *
  * @category Admin
- * @package  AppBundle\Admin
+ *
  * @author   Anton Serra <aserratorta@gmail.com>
  */
 class ContactMessageAdmin extends AbstractBaseAdmin
@@ -19,12 +19,12 @@ class ContactMessageAdmin extends AbstractBaseAdmin
     protected $classnameLabel = 'Contact Message';
     protected $baseRoutePattern = 'contact/message';
     protected $datagridValues = array(
-        '_sort_by'    => 'createdAt',
+        '_sort_by' => 'createdAt',
         '_sort_order' => 'desc',
     );
 
     /**
-     * Configure route collection
+     * Configure route collection.
      *
      * @param RouteCollection $collection
      */
@@ -35,7 +35,7 @@ class ContactMessageAdmin extends AbstractBaseAdmin
             ->remove('edit')
             ->remove('delete')
             ->remove('batch')
-            ->add('answer', $this->getRouterIdParameter() . '/answer');
+            ->add('answer', $this->getRouterIdParameter().'/answer');
     }
 
     /**
@@ -55,7 +55,7 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                 'createdAt',
                 'doctrine_orm_date',
                 array(
-                    'label'      => 'backend.admin.date',
+                    'label' => 'backend.admin.date',
                     'field_type' => 'sonata_type_date_picker',
                 )
             )
@@ -120,7 +120,7 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                 'createdAt',
                 'date',
                 array(
-                    'label'  => 'backend.admin.date',
+                    'label' => 'backend.admin.date',
                     'format' => 'd/m/Y H:i',
                 )
             )
@@ -182,8 +182,8 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                 'createdAt',
                 'date',
                 array(
-                    'label'  => 'backend.admin.contact.date',
-                    'format' => 'd/m/Y'
+                    'label' => 'backend.admin.contact.date',
+                    'format' => 'd/m/Y',
                 )
             )
             ->add(
@@ -212,12 +212,12 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                 'actions',
                 array(
                     'actions' => array(
-                        'show'   => array(
-                            'template' => '::Admin/Buttons/list__action_show_button.html.twig'
+                        'show' => array(
+                            'template' => '::Admin/Buttons/list__action_show_button.html.twig',
                         ),
                         'answer' => array(
-                            'template' => '::Admin/Cells/list__action_answer.html.twig'
-                        )
+                            'template' => '::Admin/Cells/list__action_answer.html.twig',
+                        ),
                     ),
                 )
             );
