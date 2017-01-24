@@ -6,7 +6,7 @@ if [ -x "$(command -v php-cs-fixer)" ]; then
     do
         if [[ $FILE == "src/"* ]]; then
             php-cs-fixer fix "$FILE" --rules=@Symfony
-            git add "$FILE"
+            # git add "$FILE"
         fi
     done
     FILES=`git diff --name-only --staged`
