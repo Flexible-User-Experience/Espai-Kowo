@@ -201,10 +201,10 @@ class NotificationService
     {
         $this->messenger->sendEmail(
             $this->amd,
-            $contactMessage->getEmail(),
+            $coworker->getEmail(),
             'Notificació pàgina web '.$this->urlBase,
             $this->twig->render(':Mails:common_user_notification.html.twig', array(
-                'contact' => $contactMessage,
+                'coworker' => $coworker,
             ))
         );
     }
