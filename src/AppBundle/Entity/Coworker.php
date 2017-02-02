@@ -147,6 +147,27 @@ class Coworker extends AbstractBase
     /**
      * @var string
      *
+     * @ORM\Column(type="string", length=5, nullable=true)
+     */
+    private $printerCode;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $bookCode;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $ticketOfficeCode;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=32, nullable=true)
      */
     private $token;
@@ -500,6 +521,66 @@ class Coworker extends AbstractBase
     public function removeSocialNetwork(SocialNetwork $socialNetwork)
     {
         $this->socialNetworks->removeElement($socialNetwork);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrinterCode()
+    {
+        return $this->printerCode;
+    }
+
+    /**
+     * @param string $printerCode
+     *
+     * @return Coworker
+     */
+    public function setPrinterCode($printerCode)
+    {
+        $this->printerCode = $printerCode;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBookCode()
+    {
+        return $this->bookCode;
+    }
+
+    /**
+     * @param int $bookCode
+     *
+     * @return Coworker
+     */
+    public function setBookCode($bookCode)
+    {
+        $this->bookCode = $bookCode;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTicketOfficeCode()
+    {
+        return $this->ticketOfficeCode;
+    }
+
+    /**
+     * @param int $ticketOfficeCode
+     *
+     * @return Coworker
+     */
+    public function setTicketOfficeCode($ticketOfficeCode)
+    {
+        $this->ticketOfficeCode = $ticketOfficeCode;
 
         return $this;
     }
