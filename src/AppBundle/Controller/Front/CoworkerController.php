@@ -3,8 +3,11 @@
 namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Coworker;
+use AppBundle\Form\Type\CoworkerDataFormType;
+use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CoworkerController extends Controller
@@ -56,21 +59,32 @@ class CoworkerController extends Controller
     /**
      * @Route("/registre/{token}", name="front_coworker_register")
      *
+     * @param Request $request
      * @param $token
      *
      * @return Response
+     *
+     * @throws EntityNotFoundException
      */
-    public function registerAction($token)
+    public function registerAction(Request $request, $token)
     {
         $coworker = $this->getDoctrine()->getRepository('AppBundle:Coworker')->findOneBy(
             array(
-                'slug' => $slug,
+                'token' => $token,
             )
         );
+
+        if (!$coworker) {
+            throw new EntityNotFoundException();
+        }
+
+        $form = $this->createForm(CoworkerDataFormType::class, $coworker);
+        $form->handleRequest($request);
 
         return $this->render(
             ':Frontend/Coworker:detail.html.twig', array(
                 'coworker' => $coworker,
+                'form' => $form->createView(),
             )
         );
     }
