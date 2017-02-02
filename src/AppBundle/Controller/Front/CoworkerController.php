@@ -52,4 +52,26 @@ class CoworkerController extends Controller
             )
         );
     }
+
+    /**
+     * @Route("/registre/{token}", name="front_coworker_register")
+     *
+     * @param $token
+     *
+     * @return Response
+     */
+    public function registerAction($token)
+    {
+        $coworker = $this->getDoctrine()->getRepository('AppBundle:Coworker')->findOneBy(
+            array(
+                'slug' => $slug,
+            )
+        );
+
+        return $this->render(
+            ':Frontend/Coworker:detail.html.twig', array(
+                'coworker' => $coworker,
+            )
+        );
+    }
 }

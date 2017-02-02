@@ -203,7 +203,7 @@ class NotificationService
             $this->amd,
             $coworker->getEmail(),
             'Notificació pàgina web '.$this->urlBase,
-            $this->twig->render(':Mails:common_user_notification.html.twig', array(
+            $this->twig->render(':Mails:coworker_data_notification.html.twig', array(
                 'coworker' => $coworker,
             ))
         );

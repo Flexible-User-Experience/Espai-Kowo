@@ -77,6 +77,8 @@ class CoworkerAdminController extends BaseAdminController
         $messenger = $this->get('app.notification');
         $messenger->sendCoworkerDataFormNotification($object);
 
+        //TODO conditional flash message
+
         return $this->redirectToRoute('admin_app_coworker_list');
     }
 }

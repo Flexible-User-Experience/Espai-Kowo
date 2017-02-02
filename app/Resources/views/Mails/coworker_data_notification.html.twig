@@ -18,7 +18,8 @@
                     <tr>
                         <th>
                             <h4>Benvingut/da a l'Espai Kowo<br> {{ coworker.name }}</h4>
-                            <p class="grey-color">Si us plau, fes clic aquí per a completar el formulari següent.</p>
+                            <p class="grey-color">Si us plau, fes clic
+                                <a href="{{ url('front_coworker_register', {token: coworker.token}) }}">aquí</a> per a completar el formulari següent.</p>
                         </th>
                         <th class="expander"></th>
                     </tr>
