@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Coworker;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -9,10 +10,10 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
 /**
- * Class CoworkerAdmin
+ * Class CoworkerAdmin.
  *
  * @category Admin
- * @package  AppBundle\Admin
+ *
  * @author   Anton Serra <aserratorta@gmail.com>
  */
 class CoworkerAdmin extends AbstractBaseAdmin
@@ -20,12 +21,12 @@ class CoworkerAdmin extends AbstractBaseAdmin
     protected $classnameLabel = 'Coworker';
     protected $baseRoutePattern = 'coworkers/coworker';
     protected $datagridValues = array(
-        '_sort_by'    => 'surname',
+        '_sort_by' => 'surname',
         '_sort_order' => 'asc',
     );
 
     /**
-     * Configure route collection
+     * Configure route collection.
      *
      * @param RouteCollection $collection
      */
@@ -61,6 +62,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.coworker.email',
+                    'require' => true,
                 )
             )
             ->add(
@@ -69,7 +71,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 array(
                     'label' => 'backend.admin.coworker.description',
                     'config_name' => 'my_config',
-                    'required'    => true,
+                    'required' => true,
                 )
             )
             ->end()
@@ -86,8 +88,8 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 'birthday',
                 'sonata_type_date_picker',
                 array(
-                    'label'    => 'Aniversari',
-                    'format'   => 'd/M/y',
+                    'label' => 'Aniversari',
+                    'format' => 'd/M/y',
                     'required' => false,
                 )
             )
@@ -95,8 +97,8 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 'imageFile',
                 'file',
                 array(
-                    'label'    => 'backend.admin.post.image',
-                    'help'     => $this->getImageHelperFormMapperWithThumbnail(),
+                    'label' => 'backend.admin.post.image',
+                    'help' => $this->getImageHelperFormMapperWithThumbnail(),
                     'required' => false,
                 )
             )
@@ -104,8 +106,8 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 'imageFileBW',
                 'file',
                 array(
-                    'label'    => 'backend.admin.post.imageBW',
-                    'help'     => $this->getImageHelperFormMapperWithThumbnailBW(),
+                    'label' => 'backend.admin.post.imageBW',
+                    'help' => $this->getImageHelperFormMapperWithThumbnailBW(),
                     'required' => false,
                 )
             )
@@ -113,16 +115,16 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 'gifFile',
                 'file',
                 array(
-                    'label'     => 'backend.admin.coworker.gif',
-                    'help'      => $this->getImageHelperFormMapperWithThumbnailGif(),
-                    'required'  => false,
+                    'label' => 'backend.admin.coworker.gif',
+                    'help' => $this->getImageHelperFormMapperWithThumbnailGif(),
+                    'required' => false,
                 )
             )
             ->add(
                 'enabled',
                 'checkbox',
                 array(
-                    'label'    => 'backend.admin.enabled',
+                    'label' => 'backend.admin.enabled',
                     'required' => false,
                 )
             )
@@ -134,13 +136,13 @@ class CoworkerAdmin extends AbstractBaseAdmin
                     'socialNetworks',
                     'sonata_type_collection',
                     array(
-                        'label'              => ' ',
-                        'required'           => false,
+                        'label' => ' ',
+                        'required' => false,
                         'cascade_validation' => true,
                     ),
                     array(
-                        'edit'     => 'inline',
-                        'inline'   => 'table',
+                        'edit' => 'inline',
+                        'inline' => 'table',
                         'sortable' => 'position',
                     )
                 )
@@ -186,7 +188,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 'enabled',
                 null,
                 array(
-                    'label'    => 'backend.admin.enabled',
+                    'label' => 'backend.admin.enabled',
                     'editable' => true,
                 )
             );
@@ -203,8 +205,8 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 'image',
                 null,
                 array(
-                    'label'    => 'backend.admin.event.image',
-                    'template' => '::Admin/Cells/list__cell_image_field.html.twig'
+                    'label' => 'backend.admin.event.image',
+                    'template' => '::Admin/Cells/list__cell_image_field.html.twig',
                 )
             )
             ->add(
@@ -250,13 +252,21 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 '_action',
                 'actions',
                 array(
-                    'label'   => 'backend.admin.actions',
+                    'label' => 'backend.admin.actions',
                     'actions' => array(
-                        'show'   => array('template' => '::Admin/Buttons/list__action_show_button.html.twig'),
-                        'edit'   => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
+                        'show' => array('template' => '::Admin/Buttons/list__action_show_button.html.twig'),
+                        'edit' => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
                         'delete' => array('template' => '::Admin/Buttons/list__action_delete_button.html.twig'),
-                    )
+                    ),
                 )
             );
+    }
+
+    /**
+     * @param Coworker $coworker
+     */
+    public function prePersist($coworker)
+    {
+        $coworker->setToken(md5(uniqid(rand(), true)));
     }
 }
