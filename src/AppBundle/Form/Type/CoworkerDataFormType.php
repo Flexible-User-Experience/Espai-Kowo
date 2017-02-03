@@ -25,6 +25,17 @@ class CoworkerDataFormType extends AbstractType
     {
         $builder
             ->add(
+                'category',
+                null,
+                array(
+                    'label' => false,
+                    'required' => false,
+                    'attr' => array(
+                        'placeholder' => 'frontend.forms.category',
+                    ),
+                )
+            )
+            ->add(
                 'description',
                 TextareaType::class,
                 array(
@@ -41,6 +52,22 @@ class CoworkerDataFormType extends AbstractType
             )
             ->add(
                 'birthday',
+                null,
+                array(
+                )
+            )
+            ->add(
+                'printerCode',
+                null,
+                array()
+            )
+            ->add(
+                'bookCode',
+                null,
+                array()
+            )
+            ->add(
+                'ticketOfficeCode',
                 null,
                 array()
             )

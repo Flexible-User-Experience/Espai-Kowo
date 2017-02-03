@@ -12,6 +12,7 @@ frontend:
         message: "Missatge *"
         send: Enviar
         news: 'Subscriu-me al newsletter'
+        category: Dedicació
     pagination:
         previous: anterior
         next: següent
