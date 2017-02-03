@@ -82,7 +82,7 @@ class CoworkerController extends Controller
         $form->handleRequest($request);
 
         return $this->render(
-            ':Frontend/Coworker:detail.html.twig', array(
+            ':Frontend/Coworker:register_form.html.twig', array(
                 'coworker' => $coworker,
                 'form' => $form->createView(),
             )
