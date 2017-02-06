@@ -92,17 +92,17 @@ class CoworkerController extends Controller
             $messenger = $this->get('app.notification');
             $messenger->sendCoworkerDataFormAdminNotification($coworker);
             // Flash message
-            if ($messenger->sendCoworkerDataFormAdminNotification($coworker) != 0) {
-                $this->addFlash(
-                    'notice',
-                    'El teu missatge s\'ha enviat correctament'
-                );
-            } else {
-                $this->addFlash(
-                    'danger',
-                    'El teu missatge no s\'ha enviat'
-                );
-            }
+//            if ($messenger->sendCoworkerDataFormAdminNotification($coworker) != 0) {
+//                $this->addFlash(
+//                    'notice',
+//                    'El teu missatge s\'ha enviat correctament'
+//                );
+//            } else {
+//                $this->addFlash(
+//                    'danger',
+//                    'El teu missatge no s\'ha enviat'
+//                );
+//            }
         }
 
         return $this->render(

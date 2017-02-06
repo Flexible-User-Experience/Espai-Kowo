@@ -3,11 +3,13 @@
 namespace AppBundle\Admin;
 
 use AppBundle\Entity\Coworker;
+use AppBundle\Enum\BookCodeEnum;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 /**
  * Class CoworkerAdmin.
@@ -118,6 +120,16 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 array(
                     'label' => 'backend.admin.coworker.gif',
                     'help' => $this->getImageHelperFormMapperWithThumbnailGif(),
+                    'required' => false,
+                )
+            )
+            ->add(
+                'bookCode',
+                ChoiceType::class,
+                array(
+                    'choices' => BookCodeEnum::getEnumArray(),
+                    'multiple' => true,
+                    'expanded' => false,
                     'required' => false,
                 )
             )
