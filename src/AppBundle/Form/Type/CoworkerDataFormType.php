@@ -63,11 +63,6 @@ class CoworkerDataFormType extends AbstractType
                 array()
             )
             ->add(
-                'ticketOfficeCode',
-                null,
-                array()
-            )
-            ->add(
                 'send',
                 SubmitType::class,
                 array(

@@ -4,6 +4,7 @@ namespace AppBundle\Admin;
 
 use AppBundle\Entity\Coworker;
 use AppBundle\Enum\BookCodeEnum;
+use AppBundle\Enum\TicketOfficeCodeEnum;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -128,6 +129,16 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 ChoiceType::class,
                 array(
                     'choices' => BookCodeEnum::getEnumArray(),
+                    'multiple' => true,
+                    'expanded' => false,
+                    'required' => false,
+                )
+            )
+            ->add(
+                'ticketOfficeCode',
+                ChoiceType::class,
+                array(
+                    'choices' => TicketOfficeCodeEnum::getEnumArray(),
                     'multiple' => true,
                     'expanded' => false,
                     'required' => false,
