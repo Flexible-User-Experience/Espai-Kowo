@@ -208,4 +208,21 @@ class NotificationService
             ))
         );
     }
+
+    /**
+     * Send an admin notification once coworker data form is filled.
+     *
+     * @param Coworker $coworker
+     */
+    public function sendCoworkerDataFormAdminNotification(Coworker $coworker)
+    {
+        $this->messenger->sendEmail(
+            $this->amd,
+            $this->amd,
+            'Notificació registre coworker '.$this->urlBase,
+            $this->twig->render(':Mails:coworker_data_admin_notification.html.twig', array(
+                'coworker' => $coworker,
+            ))
+        );
+    }
 }

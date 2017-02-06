@@ -4,6 +4,8 @@ namespace AppBundle\Form\Type;
 
 use AppBundle\Enum\BookCodeEnum;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -64,17 +66,27 @@ class CoworkerDataFormType extends AbstractType
             )
             ->add(
                 'bookCode',
-                null,
+                ChoiceType::class,
                 array(
-                    'data' => BookCodeEnum::getEnumArray(),
-//                    'multiple' => true,
-//                    'expanded' => true,
+                    'choices' => BookCodeEnum::getEnumArray(),
+                    'multiple' => true,
+                    'expanded' => false,
                 )
             )
             ->add(
                 'ticketOfficeCode',
                 null,
                 array()
+            )
+            ->add(
+                'send',
+                SubmitType::class,
+                array(
+                    'label' => 'frontend.forms.send',
+                    'attr' => array(
+                        'class' => 'btn-kowo',
+                    ),
+                )
             )
         ;
     }

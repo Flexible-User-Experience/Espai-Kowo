@@ -1,0 +1,29 @@
+{% extends ':Mails:base.html.twig' %}
+
+{% block subject %}Registre Coworker{% endblock %}
+
+{% block content %}
+    <table class="row">
+        <tbody>
+        <tr>
+            <th><img src="{{ absolute_url(asset('bundles/app/img/user_notification.jpg')) }}"></th>
+        </tr>
+        </tbody>
+    </table>
+    <table class="row">
+        <tbody>
+        <tr>
+            <th class="small-12 large-12 columns first last vertical-padding">
+                <table>
+                    <tr>
+                        <th>
+                            <h4>{{ coworker.name }} ha emplenat les dades del formulari de registre.</h4>
+                        </th>
+                        <th class="expander"></th>
+                    </tr>
+                </table>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Coworker;
 use AppBundle\Form\Type\CoworkerDataFormType;
+use AppBundle\Service\NotificationService;
 use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -80,6 +81,29 @@ class CoworkerController extends Controller
 
         $form = $this->createForm(CoworkerDataFormType::class, $coworker);
         $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Persist register data into DB
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($coworker);
+            $em->flush();
+            // Send email notifications
+            /** @var NotificationService $messenger */
+            $messenger = $this->get('app.notification');
+            $messenger->sendCoworkerDataFormAdminNotification($coworker);
+            // Flash message
+            if ($messenger->sendCoworkerDataFormAdminNotification($coworker) != 0) {
+                $this->addFlash(
+                    'notice',
+                    'El teu missatge s\'ha enviat correctament'
+                );
+            } else {
+                $this->addFlash(
+                    'danger',
+                    'El teu missatge no s\'ha enviat'
+                );
+            }
+        }
 
         return $this->render(
             ':Frontend/Coworker:register_form.html.twig', array(
