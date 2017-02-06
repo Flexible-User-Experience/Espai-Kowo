@@ -11,18 +11,18 @@ namespace AppBundle\Enum;
  */
 class BookCodeEnum
 {
-    const S378 = 0;
-    const S356 = 1;
-    const S359 = 2;
-    const S315 = 3;
-    const S546 = 4;
-    const S058 = 5;
-    const S322 = 6;
-    const S061 = 7;
-    const S180 = 8;
-    const S079 = 9;
-    const S360 = 10;
-    const S320 = 11;
+    const BOOK_CODE_1 = 0;
+    const BOOK_CODE_2 = 1;
+    const BOOK_CODE_3 = 2;
+    const BOOK_CODE_4 = 3;
+    const BOOK_CODE_5 = 4;
+    const BOOK_CODE_6 = 5;
+    const BOOK_CODE_7 = 6;
+    const BOOK_CODE_8 = 7;
+    const BOOK_CODE_9 = 8;
+    const BOOK_CODE_10 = 9;
+    const BOOK_CODE_11 = 10;
+    const BOOK_CODE_12 = 11;
 
     /**
      * @return array
@@ -30,18 +30,18 @@ class BookCodeEnum
     public static function getEnumArray()
     {
         return array(
-            self::S378 => '1',
-            self::S356 => '2',
-            self::S359 => '3',
-            self::S315 => '4',
-            self::S546 => '5',
-            self::S058 => '6',
-            self::S322 => '7',
-            self::S061 => '8',
-            self::S180 => '9',
-            self::S079 => '10',
-            self::S360 => '11',
-            self::S320 => '12',
+            self::BOOK_CODE_1 => '1 (S378)',
+            self::BOOK_CODE_2 => '2 (S356)',
+            self::BOOK_CODE_3 => '3 S(359)',
+            self::BOOK_CODE_4 => '4 (S315)',
+            self::BOOK_CODE_5 => '5 (S546)',
+            self::BOOK_CODE_6 => '6 (S058)',
+            self::BOOK_CODE_7 => '7 (S322)',
+            self::BOOK_CODE_8 => '8 (S061)',
+            self::BOOK_CODE_9 => '9 (S180)',
+            self::BOOK_CODE_10 => '10 (S079)',
+            self::BOOK_CODE_11 => '11 (S360)',
+            self::BOOK_CODE_12 => '12 (S320)',
         );
     }
 }
