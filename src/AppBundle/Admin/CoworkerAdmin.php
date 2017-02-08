@@ -125,9 +125,17 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'printerCode',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.printerCode',
+                )
+            )
+            ->add(
                 'bookCode',
                 ChoiceType::class,
                 array(
+                    'label' => 'backend.admin.coworker.bookCode',
                     'choices' => BookCodeEnum::getEnumArray(),
                     'multiple' => true,
                     'expanded' => false,
@@ -138,6 +146,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 'ticketOfficeCode',
                 ChoiceType::class,
                 array(
+                    'label' => 'backend.admin.coworker.ticketOfficeCode',
                     'choices' => TicketOfficeCodeEnum::getEnumArray(),
                     'multiple' => true,
                     'expanded' => false,

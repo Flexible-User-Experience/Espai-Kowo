@@ -29,22 +29,18 @@ class CoworkerDataFormType extends AbstractType
                 'category',
                 null,
                 array(
-                    'label' => false,
+                    'label' => 'frontend.forms.category',
                     'required' => false,
-                    'attr' => array(
-                        'placeholder' => 'frontend.forms.category',
-                    ),
                 )
             )
             ->add(
                 'description',
                 TextareaType::class,
                 array(
-                    'label' => false,
-                    'required' => true,
+                    'label' => 'frontend.forms.message',
+                    'required' => false,
                     'attr' => array(
                         'rows' => 5,
-                        'placeholder' => 'frontend.forms.message',
                     ),
                     'constraints' => array(
                         new Assert\NotBlank(),

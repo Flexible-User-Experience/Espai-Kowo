@@ -40,6 +40,9 @@ backend:
             web: Web
             instagram: Instagram
             gif: Gif
+            printerCode: Codi impressora
+            bookCode: Codi clau calaixera
+            ticketOfficeCode: Codi clau taquilla
         category:
             title: Títol
             category: Dedicació
