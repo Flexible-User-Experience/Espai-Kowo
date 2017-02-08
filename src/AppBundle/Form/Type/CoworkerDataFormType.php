@@ -4,7 +4,6 @@ namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -28,7 +27,7 @@ class CoworkerDataFormType extends AbstractType
         $builder
             ->add(
                 'category',
-                TextType::class,
+                null,
                 array(
                     'label' => false,
                     'required' => false,
@@ -54,6 +53,12 @@ class CoworkerDataFormType extends AbstractType
             )
             ->add(
                 'birthday',
+                null,
+                array(
+                )
+            )
+            ->add(
+                'printerCode',
                 null,
                 array(
                 )
