@@ -2,7 +2,9 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\Coworker;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -60,6 +62,15 @@ class CoworkerDataFormType extends AbstractType
                 )
             )
             ->add(
+                'socialNetworks',
+                CollectionType::class,
+                array(
+                    'entry_type' => CoworkerDataSocialNetworkFormType::class,
+                    'allow_add' => true,
+                    'by_reference' => false,
+                )
+            )
+            ->add(
                 'send',
                 SubmitType::class,
                 array(
@@ -87,7 +98,7 @@ class CoworkerDataFormType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-                'data_class' => 'AppBundle\Entity\Coworker',
+                'data_class' => Coworker::class,
             )
         );
     }

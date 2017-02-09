@@ -8,8 +8,75 @@
             <div class="col-sm-6 col-sm-offset-3 extra-m-bottom">
                 <h3 class="text-center extra-m-bottom">Benvingut a l'Espai Kowo, {{ coworker.name }}</h3>
                 <h5 class="text-center extra-m-bottom">Omple aquest formulari amb les teves dades, si us plau.</h5>
-                {{ form(form) }}
+                {#{{ form(form) }}#}
+                {{ form_start(form) }}
+                {# render the task's only field: description #}
+                {{ form_row(form.category) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.birthday) }}
+                {{ form_row(form.printerCode) }}
+                <h3>Xarxes Socials</h3>
+                <ul class="socialNetworks" data-prototype="{{ form_widget(form.socialNetworks.vars.prototype)|e('html_attr') }}">
+                    {# iterate over each existing tag and render its only field: name #}
+                    {% for socialNetwork in form.socialNetworks %}
+                        <li>
+                            {{ form_row(socialNetwork.category) }}
+                            {{ form_row(socialNetwork.url) }}
+                      </li>
+                    {% endfor %}
+                </ul>
+                {{ form_end(form) }}
             </div>
         </div>
     </div>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        var collectionHolder;
+
+        // setup an "add a tag" link
+        var addTagLink = jQuery('<a href="#" class="btn btn-info">Afegir</a>');
+        var newLinkLi = jQuery('<li></li>').append(addTagLink);
+
+        jQuery(document).ready(function() {
+            // Get the ul that holds the collection of tags
+            collectionHolder = jQuery('ul.socialNetworks');
+
+            // add the "add a tag" anchor and li to the tags ul
+            collectionHolder.append(newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            collectionHolder.data('index', collectionHolder.find(':input').length);
+
+            addTagLink.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new tag form (see next code block)
+                addTagForm(collectionHolder, newLinkLi);
+            });
+        });
+        function addTagForm(collectionHolder, newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = collectionHolder.data('prototype');
+
+            // get the new index
+            var index = collectionHolder.data('index');
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a tag" link li
+            var newFormLi = $('<li></li>').append(newForm);
+            newLinkLi.before(newFormLi);
+        }
+    </script>
+{% endblock %}
+

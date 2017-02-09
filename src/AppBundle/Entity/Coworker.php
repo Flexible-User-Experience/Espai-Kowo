@@ -148,7 +148,7 @@ class Coworker extends AbstractBase
      * @var string
      *
      * @ORM\Column(type="string", length=5, nullable=true)
-     * @Assert\Regex("/\d{5}/")
+     * @Assert\Regex(pattern="/\d{5}/", htmlPattern=false, message="Només 5 dígits numèrics")
      */
     private $printerCode;
 

@@ -137,7 +137,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 array(
                     'label' => 'backend.admin.coworker.bookCode',
                     'choices' => BookCodeEnum::getEnumArray(),
-                    'multiple' => true,
+                    'multiple' => false,
                     'expanded' => false,
                     'required' => false,
                 )
@@ -148,7 +148,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 array(
                     'label' => 'backend.admin.coworker.ticketOfficeCode',
                     'choices' => TicketOfficeCodeEnum::getEnumArray(),
-                    'multiple' => true,
+                    'multiple' => false,
                     'expanded' => false,
                     'required' => false,
                 )
