@@ -39,7 +39,7 @@ class CoworkerDataFormType extends AbstractType
                 'description',
                 TextareaType::class,
                 array(
-                    'label' => 'frontend.forms.message',
+                    'label' => 'frontend.forms.description',
                     'required' => false,
                     'attr' => array(
                         'rows' => 5,
@@ -53,12 +53,14 @@ class CoworkerDataFormType extends AbstractType
                 'birthday',
                 null,
                 array(
+                    'label' => 'frontend.forms.birthdate',
                 )
             )
             ->add(
                 'printerCode',
                 null,
                 array(
+                    'label' => 'frontend.forms.printercode',
                 )
             )
             ->add(

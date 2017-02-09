@@ -30,7 +30,7 @@ class CoworkerDataSocialNetworkFormType extends AbstractType
                 'category',
                 EntityType::class,
                 array(
-                    'label' => 'frontend.forms.category',
+                    'label' => 'frontend.forms.socialnetwork',
                     'class' => SocialNetworkCategory::class,
                     'required' => true,
                 )
@@ -39,7 +39,7 @@ class CoworkerDataSocialNetworkFormType extends AbstractType
                 'url',
                 UrlType::class,
                 array(
-                    'label' => 'prorjpgjdlñkgj',
+                    'label' => 'frontend.forms.url',
                 )
             )
         ;
