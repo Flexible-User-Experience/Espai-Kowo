@@ -8,10 +8,10 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
 /**
- * Class CategoryAdmin
+ * Class CategoryAdmin.
  *
  * @category Admin
- * @package  AppBundle\Admin
+ *
  * @author   Anton Serra <aserratorta@gmail.com>
  */
 class CategoryAdmin extends AbstractBaseAdmin
@@ -19,12 +19,12 @@ class CategoryAdmin extends AbstractBaseAdmin
     protected $classnameLabel = 'Category';
     protected $baseRoutePattern = 'coworkers/category';
     protected $datagridValues = array(
-        '_sort_by'    => 'title',
+        '_sort_by' => 'title',
         '_sort_order' => 'asc',
     );
 
     /**
-     * Configure route collection
+     * Configure route collection.
      *
      * @param RouteCollection $collection
      */
@@ -55,12 +55,13 @@ class CategoryAdmin extends AbstractBaseAdmin
                 'enabled',
                 'checkbox',
                 array(
-                    'label'    => 'backend.admin.enabled',
+                    'label' => 'backend.admin.enabled',
                     'required' => false,
                 )
             )
             ->end();
     }
+
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -111,11 +112,11 @@ class CategoryAdmin extends AbstractBaseAdmin
                 '_action',
                 'actions',
                 array(
-                    'label'   => 'backend.admin.actions',
+                    'label' => 'backend.admin.actions',
                     'actions' => array(
-                        'edit'   => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
+                        'edit' => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
                         'delete' => array('template' => '::Admin/Buttons/list__action_delete_button.html.twig'),
-                    )
+                    ),
                 )
             );
     }
