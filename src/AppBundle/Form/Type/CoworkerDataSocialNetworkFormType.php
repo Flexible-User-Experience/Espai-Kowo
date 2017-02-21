@@ -33,6 +33,7 @@ class CoworkerDataSocialNetworkFormType extends AbstractType
                     'label' => 'frontend.forms.socialnetwork',
                     'class' => SocialNetworkCategory::class,
                     'required' => true,
+                    'by_reference' => false,
                 )
             )
             ->add(
