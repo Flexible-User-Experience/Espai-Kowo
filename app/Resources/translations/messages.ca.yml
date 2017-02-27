@@ -33,6 +33,7 @@ backend:
         coworker:
             name: Nom
             surname: Cognom
+            gender: Sexe
             email: Correu electrònic
             description: Descripció
             position: Ordre

@@ -62,6 +62,13 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'gender',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.gender',
+                )
+            )
+            ->add(
                 'email',
                 null,
                 array(
