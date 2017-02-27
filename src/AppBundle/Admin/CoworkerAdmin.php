@@ -67,7 +67,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 ChoiceType::class,
                 array(
                     'label' => 'backend.admin.coworker.gender',
-                    'choices' => GenderEnum::class,
+                    'choices' => GenderEnum::getEnumArray(),
                     'multiple' => false,
                     'expanded' => false,
                     'required' => false,

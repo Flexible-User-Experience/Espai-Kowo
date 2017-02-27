@@ -59,9 +59,9 @@ class Coworker extends AbstractBase
     private $surname;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $gender;
 
