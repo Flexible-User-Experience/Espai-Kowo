@@ -4,6 +4,7 @@ namespace AppBundle\Admin;
 
 use AppBundle\Entity\Coworker;
 use AppBundle\Enum\BookCodeEnum;
+use AppBundle\Enum\GenderEnum;
 use AppBundle\Enum\TicketOfficeCodeEnum;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -63,9 +64,13 @@ class CoworkerAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'gender',
-                null,
+                ChoiceType::class,
                 array(
                     'label' => 'backend.admin.coworker.gender',
+                    'choices' => GenderEnum::class,
+                    'multiple' => false,
+                    'expanded' => false,
+                    'required' => false,
                 )
             )
             ->add(
