@@ -14,10 +14,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Class Coworker
+ * Class Coworker.
  *
  * @category Entity
- * @package  AppBundle\Entity
+ *
  * @author   Anton Serra <aserratorta@gmail.com>
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="name_unique", columns={"name", "surname"})})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CoworkerRepository")
@@ -38,7 +38,7 @@ class Coworker extends AbstractBase
     private $slug;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(type="integer", nullable=true, options={"default"=0})
      */
@@ -57,6 +57,13 @@ class Coworker extends AbstractBase
      * @ORM\Column(type="string", length=255)
      */
     private $surname;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $gender;
 
     /**
      * @var Category
@@ -145,15 +152,40 @@ class Coworker extends AbstractBase
     private $socialNetworks;
 
     /**
+     * @var string
      *
+     * @ORM\Column(type="string", length=5, nullable=true)
+     * @Assert\Regex(pattern="/\d{5}/", htmlPattern=false, message="Només 5 dígits numèrics")
+     */
+    private $printerCode;
+
+    /**
+     * @var int
      *
-     * Methods
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $bookCode;
+
+    /**
+     * @var int
      *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $ticketOfficeCode;
+
+    /**
+     * @var string
      *
+     * @ORM\Column(type="string", length=32, nullable=true)
+     */
+    private $token;
+
+    /**
+     * Methods.
      */
 
     /**
-     * Coworker constructor
+     * Coworker constructor.
      */
     public function __construct()
     {
@@ -161,7 +193,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
      * @return string
      */
@@ -223,7 +255,7 @@ class Coworker extends AbstractBase
      */
     public function getFullName()
     {
-        return $this->name . ' ' . $this->surname;
+        return $this->name.' '.$this->surname;
     }
 
     /**
@@ -234,6 +266,26 @@ class Coworker extends AbstractBase
     public function setSurname($surname)
     {
         $this->surname = $surname;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param int $gender
+     *
+     * @return Coworker
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
 
         return $this;
     }
@@ -279,7 +331,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Set imageFile
+     * Set imageFile.
      *
      * @param File|UploadedFile $imageFile
      *
@@ -298,7 +350,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Get imageFile
+     * Get imageFile.
      *
      * @return File|UploadedFile
      */
@@ -308,7 +360,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Set imageName
+     * Set imageName.
      *
      * @param string $imageName
      *
@@ -322,7 +374,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Get imageName
+     * Get imageName.
      *
      * @return string
      */
@@ -332,7 +384,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Set imageFileBW
+     * Set imageFileBW.
      *
      * @param File|UploadedFile $imageFileBW
      *
@@ -351,7 +403,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Get imageFileBW
+     * Get imageFileBW.
      *
      * @return File|UploadedFile
      */
@@ -361,7 +413,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Set imageNameBW
+     * Set imageNameBW.
      *
      * @param string $imageNameBW
      *
@@ -375,7 +427,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Get imageNameBW
+     * Get imageNameBW.
      *
      * @return string
      */
@@ -405,7 +457,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Get gifFile
+     * Get gifFile.
      *
      * @return File|UploadedFile
      */
@@ -415,7 +467,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Set gifFile
+     * Set gifFile.
      *
      * @param File|UploadedFile $gifFile
      *
@@ -434,7 +486,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Get gitName
+     * Get gitName.
      *
      * @return string
      */
@@ -444,7 +496,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Set gifName
+     * Set gifName.
      *
      * @param string $gifName
      *
@@ -502,7 +554,87 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * To string
+     * @return string
+     */
+    public function getPrinterCode()
+    {
+        return $this->printerCode;
+    }
+
+    /**
+     * @param string $printerCode
+     *
+     * @return Coworker
+     */
+    public function setPrinterCode($printerCode)
+    {
+        $this->printerCode = $printerCode;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBookCode()
+    {
+        return $this->bookCode;
+    }
+
+    /**
+     * @param int $bookCode
+     *
+     * @return Coworker
+     */
+    public function setBookCode($bookCode)
+    {
+        $this->bookCode = $bookCode;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTicketOfficeCode()
+    {
+        return $this->ticketOfficeCode;
+    }
+
+    /**
+     * @param int $ticketOfficeCode
+     *
+     * @return Coworker
+     */
+    public function setTicketOfficeCode($ticketOfficeCode)
+    {
+        $this->ticketOfficeCode = $ticketOfficeCode;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     *
+     * @return $this
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * To string.
      *
      * @return string
      */

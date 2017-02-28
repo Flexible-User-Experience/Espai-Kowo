@@ -114,6 +114,7 @@ class DefaultController extends Controller
      * @Route("/test-email", name="front_test_email")
      *
      * @return Response
+     *
      * @throws NotFoundHttpException
      */
     public function testEmailAction()

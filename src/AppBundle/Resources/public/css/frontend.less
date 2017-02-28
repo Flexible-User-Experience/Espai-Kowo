@@ -151,8 +151,10 @@ ul.pagination {
 }
 
 ul.categories-selector {
-  li.active {
-    font-weight: bold;
+  li {
+    &.active { font-weight: bold; }
+    border-right: solid 1px @ek-c-black;
+    &:last-child { border-right: none; }
   }
 }
 

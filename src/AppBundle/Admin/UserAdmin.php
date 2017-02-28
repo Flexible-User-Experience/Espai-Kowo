@@ -11,10 +11,10 @@ use Sonata\AdminBundle\Form\FormMapper;
 use FOS\UserBundle\Model\UserManagerInterface;
 
 /**
- * Class UserAdmin
+ * Class UserAdmin.
  *
  * @category Admin
- * @package  AppBundle\Admin
+ *
  * @author   David Romaní <david@flux.cat>
  */
 class UserAdmin extends ParentUserAdmin
@@ -27,7 +27,7 @@ class UserAdmin extends ParentUserAdmin
     protected $classnameLabel = 'User';
     protected $baseRoutePattern = 'users';
     protected $datagridValues = array(
-        '_sort_by'    => 'username',
+        '_sort_by' => 'username',
         '_sort_order' => 'asc',
     );
 
@@ -38,7 +38,7 @@ class UserAdmin extends ParentUserAdmin
     }
 
     /**
-     * Available routes
+     * Available routes.
      *
      * @param RouteCollection $collection
      */
@@ -50,7 +50,7 @@ class UserAdmin extends ParentUserAdmin
     }
 
     /**
-     * Remove batch action list view first column
+     * Remove batch action list view first column.
      *
      * @return array
      */
@@ -67,14 +67,14 @@ class UserAdmin extends ParentUserAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        /** @var object $formMapper */
+        /* @var object $formMapper */
         $formMapper
             ->with('backend.admin.general', array('class' => 'col-md-6'))
             ->add(
                 'firstname',
                 null,
                 array(
-                    'label'    => 'backend.admin.user.firstname',
+                    'label' => 'backend.admin.user.firstname',
                     'required' => false,
                 )
             )
@@ -82,7 +82,7 @@ class UserAdmin extends ParentUserAdmin
                 'lastname',
                 null,
                 array(
-                    'label'    => 'backend.admin.user.lastname',
+                    'label' => 'backend.admin.user.lastname',
                     'required' => false,
                 )
             )
@@ -104,8 +104,8 @@ class UserAdmin extends ParentUserAdmin
                 'plainPassword',
                 'text',
                 array(
-                    'label'    => 'backend.admin.user.plain_password',
-                    'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
+                    'label' => 'backend.admin.user.plain_password',
+                    'required' => (!$this->getSubject() || is_null($this->getSubject()->getId())),
                 )
             )
             ->end()
@@ -114,7 +114,7 @@ class UserAdmin extends ParentUserAdmin
                 'enabled',
                 'checkbox',
                 array(
-                    'label'    => 'backend.admin.enabled',
+                    'label' => 'backend.admin.enabled',
                     'required' => false,
                 )
             )
@@ -122,8 +122,8 @@ class UserAdmin extends ParentUserAdmin
                 'roles',
                 'choice',
                 array(
-                    'label'    => 'backend.admin.user.roles',
-                    'choices'  => UserRolesEnum::getEnumArray(),
+                    'label' => 'backend.admin.user.roles',
+                    'choices' => UserRolesEnum::getEnumArray(),
                     'multiple' => true,
                     'expanded' => true,
                 )
@@ -151,14 +151,17 @@ class UserAdmin extends ParentUserAdmin
                     'label' => 'backend.admin.user.email',
                 )
             )
-//            ->add(
-//                'roles',
-//                'doctrine_orm_string',
-//                array(
-//                    'choice',
-//                    array('choices' => UserRolesEnum::getEnumArray()),
-//                )
-//            )
+            ->add(
+                'roles',
+                'doctrine_orm_choice',
+                array(
+                    'label' => 'Rols',
+                    'field_type' => 'choice',
+                    'field_options' => array(
+                        'choices' => UserRolesEnum::getEnumArray(),
+                    ),
+                )
+            )
             ->add(
                 'enabled',
                 null,
@@ -179,7 +182,7 @@ class UserAdmin extends ParentUserAdmin
                 'username',
                 null,
                 array(
-                    'label'    => 'backend.admin.user.username',
+                    'label' => 'backend.admin.user.username',
                     'editable' => true,
                 )
             )
@@ -187,7 +190,7 @@ class UserAdmin extends ParentUserAdmin
                 'email',
                 null,
                 array(
-                    'label'    => 'backend.admin.user.email',
+                    'label' => 'backend.admin.user.email',
                     'editable' => true,
                 )
             )
@@ -195,7 +198,7 @@ class UserAdmin extends ParentUserAdmin
                 'roles',
                 null,
                 array(
-                    'label'    => 'backend.admin.user.roles',
+                    'label' => 'backend.admin.user.roles',
                     'template' => '::Admin/Cells/list__cell_user_roles.html.twig',
                 )
             )
@@ -203,7 +206,7 @@ class UserAdmin extends ParentUserAdmin
                 'enabled',
                 null,
                 array(
-                    'label'    => 'backend.admin.enabled',
+                    'label' => 'backend.admin.enabled',
                     'editable' => true,
                 )
             )
@@ -211,9 +214,9 @@ class UserAdmin extends ParentUserAdmin
                 '_action',
                 'actions',
                 array(
-                    'label'   => 'backend.admin.actions',
+                    'label' => 'backend.admin.actions',
                     'actions' => array(
-                        'edit'   => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
+                        'edit' => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
                         'delete' => array('template' => '::Admin/Buttons/list__action_delete_button.html.twig'),
                     ),
                 )
