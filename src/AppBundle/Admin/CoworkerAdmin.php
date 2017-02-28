@@ -63,17 +63,6 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
-                'gender',
-                ChoiceType::class,
-                array(
-                    'label' => 'backend.admin.coworker.gender',
-                    'choices' => GenderEnum::getEnumArray(),
-                    'multiple' => false,
-                    'expanded' => false,
-                    'required' => false,
-                )
-            )
-            ->add(
                 'email',
                 null,
                 array(
@@ -98,6 +87,17 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 array(
                     'label' => 'backend.admin.category.category',
                     'query_builder' => $this->rm->getCategoryRepository()->getAllEnabledCategorySortedByTitleQB(),
+                )
+            )
+            ->add(
+                'gender',
+                ChoiceType::class,
+                array(
+                    'label' => 'backend.admin.coworker.gender',
+                    'choices' => GenderEnum::getEnumArray(),
+                    'multiple' => false,
+                    'expanded' => false,
+                    'required' => true,
                 )
             )
             ->add(
@@ -213,6 +213,17 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.coworker.surname',
+                )
+            )
+            ->add(
+                'gender',
+                'doctrine_orm_choice',
+                array(
+                    'label' => 'backend.admin.coworker.gender',
+                    'field_type' => 'choice',
+                    'field_options' => array(
+                        'choices' => GenderEnum::getEnumArray(),
+                    ),
                 )
             )
             ->add(

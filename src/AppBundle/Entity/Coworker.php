@@ -59,9 +59,9 @@ class Coworker extends AbstractBase
     private $surname;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $gender;
 
@@ -271,7 +271,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getGender()
     {
@@ -279,7 +279,7 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * @param string $gender
+     * @param int $gender
      *
      * @return Coworker
      */
