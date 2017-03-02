@@ -81,6 +81,12 @@ services:
         public: false
         tags:
             - { name: twig.extension }
+    app.twig.disqus_extension:
+        class: AppBundle\Twig\DisqusExtension
+        public: false
+        arguments: ["@twig", "@router.default", "@security.token_storage", "%disqus%"]
+        tags:
+            - { name: twig.extension }
 # Mailchimp Manager
     app.mailchimp_manager:
         class: AppBundle\Manager\MailchimpManager
