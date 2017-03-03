@@ -33,6 +33,7 @@
         "jms/i18n-routing-bundle": "^2.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "ircmaxell/password-compat": "~1.0",
+        "knplabs/knp-disqus-bundle": "^2.2",
         "knplabs/knp-menu-bundle": "^2.0",
         "knplabs/knp-paginator-bundle": "^2.5",
         "liip/functional-test-bundle": "^1.0",

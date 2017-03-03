@@ -51,8 +51,6 @@ parameters:
     mailchimp_api_key: xxxxxxx-us5
     mailchimp_newsletter_list_id: xxxxxxx
     mailchimp_free_trial_list_id: xxxxxxx
-    disqus:
-        shortname: codevate-blog-example
-        api_key: xxxxxxx-us5
-        api_secret: xxxxxxx-us5
 
+    knp_disqus.api_key:    YOUR_PUBLIC_API_KEY
+    knp_disqus.lorem.shortname: "dolor-sid"
