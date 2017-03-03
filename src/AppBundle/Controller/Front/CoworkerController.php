@@ -3,8 +3,10 @@
 namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Coworker;
+use AppBundle\Entity\SocialNetwork;
 use AppBundle\Form\Type\CoworkerDataFormType;
 use AppBundle\Service\NotificationService;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -79,18 +81,48 @@ class CoworkerController extends Controller
             throw new EntityNotFoundException();
         }
 
+        $originalSocialnetworks = new ArrayCollection();
+
+        // Create an ArrayCollection of the current Tag objects in the database
+        foreach ($coworker->getSocialNetworks() as $socialNetwork) {
+            $originalSocialnetworks->add($socialNetwork);
+        }
+
         $form = $this->createForm(CoworkerDataFormType::class, $coworker);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Persist register data into DB
             $em = $this->getDoctrine()->getManager();
-            $em->persist($coworker);
-            $em->flush();
-            // Send email notifications
+//            $em->persist($coworker);
+//            $em->flush();
+            // Send email notificationss
             /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
             $messenger->sendCoworkerDataFormAdminNotification($coworker);
+
+            // remove the relationship between the tag and the Task
+            /** @var SocialNetwork $socialNetwork */
+            foreach ($originalSocialnetworks as $socialNetwork) {
+                if (false === $coworker->getSocialNetworks()->contains($socialNetwork)) {
+                    // remove the Task from the Tag
+//                    $tag->getTasks()->removeElement($task);
+
+                    // if it was a many-to-one relationship, remove the relationship like this
+                    $socialNetwork->setCoworker(null);
+
+                    $em->persist($socialNetwork);
+
+                    // if you wanted to delete the Tag entirely, you can also do that
+                    $em->remove($socialNetwork);
+                }
+            }
+
+            $em->persist($coworker);
+            $em->flush();
+//
+            // redirect back to some edit page
+//            return $this->redirectToRoute('task_edit', array('id' => $id));
             // Flash message
 //            if ($messenger->sendCoworkerDataFormAdminNotification($coworker) != 0) {
 //                $this->addFlash(
