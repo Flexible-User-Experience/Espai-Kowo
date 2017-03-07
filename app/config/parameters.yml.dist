@@ -53,4 +53,4 @@ parameters:
     mailchimp_free_trial_list_id: xxxxxxx
 
     knp_disqus.api_key:    YOUR_PUBLIC_API_KEY
-    knp_disqus.lorem.shortname: "dolor-sid"
+    knp_disqus.blog.shortname: "dolor-sid"
