@@ -93,6 +93,11 @@ liip_imagine:
             filters:
                 thumbnail: { size: [ 263, 350 ], mode: outbound }
                 grayscale: ~
+        263x338xBW:
+            quality: 100
+            filters:
+                thumbnail: { size: [ 263, 338 ], mode: outbound }
+                grayscale: ~
         256xYxBW:
             quality: 80
             filters:
