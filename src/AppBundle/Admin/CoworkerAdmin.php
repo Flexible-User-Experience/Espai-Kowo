@@ -118,15 +118,15 @@ class CoworkerAdmin extends AbstractBaseAdmin
                     'required' => false,
                 )
             )
-            ->add(
-                'imageFileBW',
-                'file',
-                array(
-                    'label' => 'backend.admin.post.imageBW',
-                    'help' => $this->getImageHelperFormMapperWithThumbnailBW(),
-                    'required' => false,
-                )
-            )
+//            ->add(
+//                'imageFileBW',
+//                'file',
+//                array(
+//                    'label' => 'backend.admin.post.imageBW',
+//                    'help' => $this->getImageHelperFormMapperWithThumbnailBW(),
+//                    'required' => false,
+//                )
+//            )
             ->add(
                 'gifFile',
                 'file',
