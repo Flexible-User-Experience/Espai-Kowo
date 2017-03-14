@@ -14,9 +14,8 @@ before_script:
   - php app/console hautelook_alice:doctrine:fixtures:load --no-interaction --env=test
 
 script:
-  - pwd
-  - ../vendor/phpunit/phpunit/phpunit --version
-  - phpunit -c app
+  - vendor/phpunit/phpunit/phpunit -c app
+#  - phpunit -c app
 
 notifications:
   email:
