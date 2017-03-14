@@ -101,19 +101,4 @@ class BlogController extends Controller
             'pagination' => $pagination,
         ]);
     }
-
-    public function myPageAction()
-    {
-        $post = $this->getDoctrine()->getRepository('Post')->find(1);
-
-        $comments = $this->get('knp_disqus.request')->fetch('', array(
-            'identifier' => $post,
-            'limit' => 10, // Default limit is set to max. value for Disqus (100 entries)
-            //    'language'   => 'de_formal', // You can fetch comments only for specific language
-        ));
-
-        return $this->render(':Frontend/Blog:detail.html.twig', array(
-            'comments' => $comments,
-        ));
-    }
 }
