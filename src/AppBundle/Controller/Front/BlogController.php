@@ -29,30 +29,32 @@ class BlogController extends Controller
         return $this->render(':Frontend:Blog/list.html.twig',
             [
                 'pagination' => $pagination,
-                'tags'       => $tags,
+                'tags' => $tags,
             ]
         );
     }
 
     /**
      * @Route("/blog/{year}/{month}/{day}/{slug}", name="front_blog_detail")
+     *
      * @param $year
      * @param $month
      * @param $day
      * @param $slug
      *
      * @return Response
+     *
      * @throws EntityNotFoundException
      */
     public function postDetailAction($year, $month, $day, $slug)
     {
-        $date = \DateTime::createFromFormat('Y-m-d', $year . '-' . $month . '-' . $day);
+        $date = \DateTime::createFromFormat('Y-m-d', $year.'-'.$month.'-'.$day);
 
         /** @var Post $post */
         $post = $this->getDoctrine()->getRepository('AppBundle:Post')->findOneBy(
             array(
                 'publishedAt' => $date,
-                'slug'        => $slug,
+                'slug' => $slug,
             )
         );
 
@@ -61,16 +63,18 @@ class BlogController extends Controller
         }
 
         return $this->render('Frontend/Blog/detail.html.twig',
-            [ 'post' => $post ]
+            ['post' => $post]
         );
     }
 
     /**
      * @Route("/blog/categoria/{slug}/{pagina}", name="front_blog_tag_detail")
+     *
      * @param string $slug
      * @param int    $pagina
      *
      * @return Response
+     *
      * @throws EntityNotFoundException
      */
     public function tagDetailAction($slug, $pagina = 1)
@@ -92,9 +96,24 @@ class BlogController extends Controller
         $pagination = $paginator->paginate($posts, $pagina, 9);
 
         return $this->render(':Frontend/Blog:tag_detail.html.twig', [
-            'tags'  => $tags,
-            'tag'   => $tag,
+            'tags' => $tags,
+            'tag' => $tag,
             'pagination' => $pagination,
         ]);
+    }
+
+    public function myPageAction()
+    {
+        $post = $this->getDoctrine()->getRepository('Post')->find(1);
+
+        $comments = $this->get('knp_disqus.request')->fetch('', array(
+            'identifier' => $post,
+            'limit' => 10, // Default limit is set to max. value for Disqus (100 entries)
+            //    'language'   => 'de_formal', // You can fetch comments only for specific language
+        ));
+
+        return $this->render(':Frontend/Blog:detail.html.twig', array(
+            'comments' => $comments,
+        ));
     }
 }
