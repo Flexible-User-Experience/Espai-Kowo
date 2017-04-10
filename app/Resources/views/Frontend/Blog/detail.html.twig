@@ -21,11 +21,8 @@
                 <div class="p-vertical underlined-anchors">
                     {{ post.description | raw }}
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
-                {{ knp_disqus_render('espaikowo', {identifier: post.slug, url: url('front_blog', {title: post.slug}), limit: 10}) }}
+                <hr>
+                {{ knp_disqus_render('espaikowo', {identifier: post.slug, url: url('front_blog_detail', {slug: post.slug, year: post.publishedAt | date('Y'), month: post.publishedAt | date('m'), day: post.publishedAt | date('d') }), limit: 10}) }}
             </div>
         </div>
     </div>
