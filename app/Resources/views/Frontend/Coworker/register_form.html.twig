@@ -6,24 +6,28 @@
     <div class="container container-main">
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3 extra-m-bottom">
-                <h2 class="text-center extra-m-bottom">Benvingut a l'Espai Kowo</br>{{ coworker.name }}!</h2>
-                <h4 class="text-center extra-m-bottom c-green">Omple aquest formulari amb les teves dades, si us plau.</h4>
+                <h2 class="extra-m-bottom">Benvingut a l'Espai Kowo {{ coworker.name }}!</h2>
+                <h4 class="c-green">Omple aquest formulari amb les teves dades, si us plau.</h4>
                 {{ form_start(form) }}
                 {# render the task's only field: description #}
                 {{ form_row(form.category) }}
                 {{ form_row(form.description) }}
                 {{ form_row(form.birthday) }}
+                {{ form_label(form.printerCode) }}
+                {{ form_widget(form.printerCode) }}
+                <p class="help-block">Codi de 5 dígits [0-9]</p>
+                {{ form_errors(form.printerCode) }} <br>
+                {#{{ form_label(form.socialNetworks) }}#}
                 {#<h3>Xarxes Socials</h3>#}
-                <ul class="socialNetworks list-unstyled" data-prototype="{{ form_widget(form.socialNetworks.vars.prototype)|e('html_attr') }}">
+                {#<ul class="socialNetworks list-unstyled" data-prototype="{{ form_widget(form.socialNetworks.vars.prototype)|e('html_attr') }}">#}
                     {# iterate over each existing tag and render its only field: name #}
-                    {% for socialNetwork in form.socialNetworks %}
-                        <li>
-                            {{ form_row(socialNetwork.category) }}
-                            {{ form_row(socialNetwork.url) }}
-                        </li>
-                    {% endfor %}
-                </ul>
-                {{ form_row(form.printerCode) }}
+                    {#{% for socialNetwork in form.socialNetworks %}#}
+                        {#<li>#}
+                            {#{{ form_row(socialNetwork.category) }}#}
+                            {#{{ form_row(socialNetwork.url) }}#}
+                        {#</li>#}
+                    {#{% endfor %}#}
+                {#</ul>#}
                 {{ form_end(form) }}
             </div>
         </div>

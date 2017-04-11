@@ -62,8 +62,8 @@ class CoworkerController extends Controller
     /**
      * @Route("/registre/{token}", name="front_coworker_register")
      *
-     * @param Request $request
-     * @param $token
+     * @param Request  $request
+     * @param Coworker $token
      *
      * @return Response
      *
@@ -71,6 +71,7 @@ class CoworkerController extends Controller
      */
     public function registerAction(Request $request, $token)
     {
+        $em = $this->getDoctrine()->getManager();
         $coworker = $this->getDoctrine()->getRepository('AppBundle:Coworker')->findOneBy(
             array(
                 'token' => $token,
@@ -94,8 +95,7 @@ class CoworkerController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             // Persist register data into DB
             $em = $this->getDoctrine()->getManager();
-//            $em->persist($coworker);
-//            $em->flush();
+            $em->flush();
             // Send email notificationss
             /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
@@ -135,6 +135,48 @@ class CoworkerController extends Controller
 //                    'El teu missatge no s\'ha enviat'
 //                );
 //            }
+        }
+
+        $originalSocialNetworks = new ArrayCollection();
+
+        // Create an ArrayCollection of the current Tag objects in the database
+        foreach ($coworker->getSocialNetworks() as $socialNetwork) {
+            $originalSocialNetworks->add($socialNetwork);
+        }
+
+        $form = $this->createForm(CoworkerDataFormType::class, $coworker);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            // remove the relationship between the tag and the Task
+            /** @var SocialNetwork $socialNetwork */
+            foreach ($originalSocialNetworks as $socialNetwork) {
+                if (false === $coworker->getSocialNetworks()->contains($socialNetwork)) {
+                    // remove the Task from the Tag
+                    $socialNetwork->setCoworker(null)->removeElement($coworker);
+
+                    // if it was a many-to-one relationship, remove the relationship like this
+//                    $socialNetwork->setCoworker(null);
+
+                    $em->persist($socialNetwork);
+
+                    // if you wanted to delete the Tag entirely, you can also do that
+//                     $em->remove($socialNetwork);
+                }
+            }
+
+            if ($this->get('kernel')->getEnvironment() == 'prod') {
+                $coworker->setToken(null);
+            }
+            $em->flush();
+
+            $this->addFlash(
+                'notice',
+                'Les teves dades s\'han registrat correctament'
+            );
+
+            return $this->redirectToRoute('front_homepage');
         }
 
         return $this->render(
