@@ -22,7 +22,7 @@
                     {{ post.description | raw }}
                 </div>
                 <hr>
-                {{ knp_disqus_render('espaikowo', {identifier: post.slug, url: url('front_blog_detail', {slug: post.slug, year: post.publishedAt | date('Y'), month: post.publishedAt | date('m'), day: post.publishedAt | date('d') }), limit: 10}) }}
+                {{ knp_disqus_render('espaikowo', {identifier: path('front_blog_detail', {slug: post.slug, year: post.publishedAt | date('Y'), month: post.publishedAt | date('m'), day: post.publishedAt | date('d')}), limit: 10}) }}
             </div>
         </div>
     </div>

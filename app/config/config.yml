@@ -38,7 +38,7 @@ twig:
         facebook_pixel_enabled:   "%facebook_pixel_enabled%"
         facebook_pixel_id:        "%facebook_pixel_id%"
         main_brand_title:         "%project_web_title%"
-        admin_tag_version:        "v1.0.59"
+        admin_tag_version:        "v1.0.60"
 
 # Assetic
 assetic:
@@ -222,8 +222,6 @@ knp_paginator:
 # KNP Disqus
 knp_disqus:
     api_key: "%knp_disqus.api_key%"
-#    secret_key: %knp_disqus.secret_key% # optional, for SSO auth only
     forums:
         blog:
             shortname: "%knp_disqus.blog.shortname%"
-#            cache: my_cache_for_lorem # cache template key, usage described below
