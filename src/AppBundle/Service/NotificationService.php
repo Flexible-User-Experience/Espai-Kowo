@@ -196,10 +196,12 @@ class NotificationService
      * Send a notification to fill coworker data form.
      *
      * @param Coworker $coworker
+     *
+     * @return int
      */
     public function sendCoworkerDataFormNotification(Coworker $coworker)
     {
-        $this->messenger->sendEmail(
+        return $this->messenger->sendEmail(
             $this->amd,
             $coworker->getEmail(),
             'Notificació pàgina web '.$this->urlBase,

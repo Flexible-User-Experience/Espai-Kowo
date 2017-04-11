@@ -75,12 +75,12 @@ class CoworkerAdminController extends BaseAdminController
 
         /** @var NotificationService $messenger */
         $messenger = $this->get('app.notification');
-        $messenger->sendCoworkerDataFormNotification($object);
 
         // Flash message
-        if ($messenger->sendCoworkerDataFormNotification($object) != 0) {
+        $result = $messenger->sendCoworkerDataFormNotification($object);
+        if ($result != 0) {
             $this->addFlash(
-                'notice',
+                'success',
                 'El teu missatge s\'ha enviat correctament'
             );
         } else {
