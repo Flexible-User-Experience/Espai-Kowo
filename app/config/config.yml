@@ -222,8 +222,6 @@ knp_paginator:
 # KNP Disqus
 knp_disqus:
     api_key: "%knp_disqus.api_key%"
-#    secret_key: %knp_disqus.secret_key% # optional, for SSO auth only
     forums:
         blog:
             shortname: "%knp_disqus.blog.shortname%"
-#            cache: my_cache_for_lorem # cache template key, usage described below
