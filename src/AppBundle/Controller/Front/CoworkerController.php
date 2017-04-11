@@ -95,8 +95,7 @@ class CoworkerController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             // Persist register data into DB
             $em = $this->getDoctrine()->getManager();
-//            $em->persist($coworker);
-//            $em->flush();
+            $em->flush();
             // Send email notificationss
             /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
@@ -167,11 +166,17 @@ class CoworkerController extends Controller
                 }
             }
 
-            $em->persist($coworker);
+            if ($this->get('kernel')->getEnvironment() == 'prod') {
+                $coworker->setToken(null);
+            }
             $em->flush();
 
-            // redirect back to some edit page
-//            return $this->redirectToRoute('task_edit', array('id' => $id));
+            $this->addFlash(
+                'notice',
+                'Les teves dades s\'han registrat correctament'
+            );
+
+            return $this->redirectToRoute('front_homepage');
         }
 
         return $this->render(

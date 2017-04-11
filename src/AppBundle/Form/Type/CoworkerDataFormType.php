@@ -33,7 +33,7 @@ class CoworkerDataFormType extends AbstractType
                 null,
                 array(
                     'label' => 'frontend.forms.category',
-                    'required' => false,
+                    'required' => true,
                 )
             )
             ->add(
@@ -64,16 +64,16 @@ class CoworkerDataFormType extends AbstractType
                     'label' => 'frontend.forms.printercode',
                 )
             )
-            ->add(
-                'socialNetworks',
-                CollectionType::class,
-                array(
-                    'label' => ' ',
-                    'entry_type' => CoworkerDataSocialNetworkFormType::class,
-                    'allow_add' => true,
-                    'by_reference' => false,
-                )
-            )
+//            ->add(
+//                'socialNetworks',
+//                CollectionType::class,
+//                array(
+//                    'label' => ' ',
+//                    'entry_type' => CoworkerDataSocialNetworkFormType::class,
+//                    'allow_add' => true,
+//                    'by_reference' => false,
+//                )
+//            )
             ->add(
                 'send',
                 SubmitType::class,
