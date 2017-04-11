@@ -13,6 +13,11 @@
                 {{ form_row(form.category) }}
                 {{ form_row(form.description) }}
                 {{ form_row(form.birthday) }}
+                {{ form_label(form.printerCode) }}
+                {{ form_widget(form.printerCode) }}
+                <p class="help-block">Codi de 5 dígits [0-9]</p>
+                {{ form_errors(form.printerCode) }} <br>
+                {#{{ form_label(form.socialNetworks) }}#}
                 {#<h3>Xarxes Socials</h3>#}
                 <ul class="socialNetworks list-unstyled" data-prototype="{{ form_widget(form.socialNetworks.vars.prototype)|e('html_attr') }}">
                     {# iterate over each existing tag and render its only field: name #}
@@ -23,7 +28,6 @@
                         </li>
                     {% endfor %}
                 </ul>
-                {{ form_row(form.printerCode) }}
                 {{ form_end(form) }}
             </div>
         </div>
