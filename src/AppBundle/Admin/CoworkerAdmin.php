@@ -4,6 +4,7 @@ namespace AppBundle\Admin;
 
 use AppBundle\Entity\Coworker;
 use AppBundle\Enum\BookCodeEnum;
+use AppBundle\Enum\GenderEnum;
 use AppBundle\Enum\TicketOfficeCodeEnum;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -89,6 +90,17 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'gender',
+                ChoiceType::class,
+                array(
+                    'label' => 'backend.admin.coworker.gender',
+                    'choices' => GenderEnum::getEnumArray(),
+                    'multiple' => false,
+                    'expanded' => false,
+                    'required' => true,
+                )
+            )
+            ->add(
                 'birthday',
                 'sonata_type_date_picker',
                 array(
@@ -106,15 +118,15 @@ class CoworkerAdmin extends AbstractBaseAdmin
                     'required' => false,
                 )
             )
-            ->add(
-                'imageFileBW',
-                'file',
-                array(
-                    'label' => 'backend.admin.post.imageBW',
-                    'help' => $this->getImageHelperFormMapperWithThumbnailBW(),
-                    'required' => false,
-                )
-            )
+//            ->add(
+//                'imageFileBW',
+//                'file',
+//                array(
+//                    'label' => 'backend.admin.post.imageBW',
+//                    'help' => $this->getImageHelperFormMapperWithThumbnailBW(),
+//                    'required' => false,
+//                )
+//            )
             ->add(
                 'gifFile',
                 'file',
@@ -201,6 +213,17 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.coworker.surname',
+                )
+            )
+            ->add(
+                'gender',
+                'doctrine_orm_choice',
+                array(
+                    'label' => 'backend.admin.coworker.gender',
+                    'field_type' => 'choice',
+                    'field_options' => array(
+                        'choices' => GenderEnum::getEnumArray(),
+                    ),
                 )
             )
             ->add(

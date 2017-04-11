@@ -59,6 +59,13 @@ class Coworker extends AbstractBase
     private $surname;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $gender;
+
+    /**
      * @var Category
      *
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="coworkers")
@@ -259,6 +266,26 @@ class Coworker extends AbstractBase
     public function setSurname($surname)
     {
         $this->surname = $surname;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param int $gender
+     *
+     * @return Coworker
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
 
         return $this;
     }
