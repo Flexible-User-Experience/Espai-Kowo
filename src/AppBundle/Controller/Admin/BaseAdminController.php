@@ -16,6 +16,7 @@ abstract class BaseAdminController extends Controller
 {
     /**
      * @param Request|null $request
+     *
      * @return Request
      */
     protected function resolveRequest(Request $request = null)

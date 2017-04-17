@@ -1,12 +1,12 @@
 {% extends ':Mails:base.html.twig' %}
 
-{% block subject %}Avís d'aniversari!{% endblock %}
+{% block subject %}Notificació{% endblock %}
 
 {% block content %}
     <table class="row">
         <tbody>
         <tr>
-            <th><img src="{{ absolute_url(asset('bundles/app/img/birthday_notification.jpg')) }}"></th>
+            <th><img src="{{ absolute_url(asset('bundles/app/img/user_notification.jpg')) }}"></th>
         </tr>
         </tbody>
     </table>
@@ -17,8 +17,9 @@
                 <table>
                     <tr>
                         <th>
-                            <h4>Demà és l'aniversari de {{ coworker.fullname }}!!!</h4>
-                            <p class="grey-color">Compleix {{ coworker.birthday | age + 1 }} anys. Dona-li una felicitació.</p>
+                            <h4>Benvingut/da a l'Espai Kowo<br> {{ coworker.name }}</h4>
+                            <p class="grey-color">Si us plau, fes clic
+                                <a href="{{ url('front_coworker_register', {token: coworker.token}) }}">aquí</a> per a completar el formulari següent.</p>
                         </th>
                         <th class="expander"></th>
                     </tr>

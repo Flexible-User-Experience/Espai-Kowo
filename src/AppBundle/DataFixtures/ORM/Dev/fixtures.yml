@@ -151,7 +151,7 @@ AppBundle\Entity\Post:
     publishedAt: <dateTimeThisMonth()>
     title: <sentence()>
     description: <paragraph()>
-    shortDescription: <paragraph()>
+    shortDescription: <sentence()>
     metaKeywords: <word()>
     metaDescription: <sentence()>
     createdAt: <dateTimeBetween('-2 months', '-1 months')>

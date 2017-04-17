@@ -8,14 +8,17 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
+            // Symfony
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            // Doctrine
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            // SensioLabs
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             // Sonata
             new Sonata\AdminBundle\SonataAdminBundle(),
@@ -30,6 +33,7 @@ class AppKernel extends Kernel
             new Hampe\Bundle\ZurbInkBundle\HampeZurbInkBundle(),
             new Hautelook\AliceBundle\HautelookAliceBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new Knp\Bundle\DisqusBundle\KnpDisqusBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
@@ -54,6 +58,6 @@ class AppKernel extends Kernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
+        $loader->load($this->getRootDir() . '/config/config_' . $this->getEnvironment() . '.yml');
     }
 }

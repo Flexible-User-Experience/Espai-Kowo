@@ -38,7 +38,7 @@ twig:
         facebook_pixel_enabled:   "%facebook_pixel_enabled%"
         facebook_pixel_id:        "%facebook_pixel_id%"
         main_brand_title:         "%project_web_title%"
-        admin_tag_version:        "v1.0.38"
+        admin_tag_version:        "v1.0.61"
 
 # Assetic
 assetic:
@@ -46,6 +46,7 @@ assetic:
     use_controller: false
     java:           "%path_java%"
     node:           "%path_node%"
+    bundles:        [ AppBundle ]
     filters:
         cssrewrite: ~
         less:
@@ -69,18 +70,18 @@ doctrine:
         dbname:         "%database_name%"
         user:           "%database_user%"
         password:       "%database_password%"
+        charset:        "UTF8"
         server_version: "%database_server_version%"
-        charset:  UTF8
         types:
             json: Sonata\Doctrine\Types\JsonType
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        naming_strategy:             doctrine.orm.naming_strategy.underscore
+        auto_mapping:                true
         dql:
             datetime_functions:
                 month: DoctrineExtensions\Query\Mysql\Month
-                day: DoctrineExtensions\Query\Mysql\Day
+                day:   DoctrineExtensions\Query\Mysql\Day
 
 doctrine_migrations:
     dir_name:  "%kernel.root_dir%/../src/AppBundle/DoctrineMigrations"
@@ -132,7 +133,7 @@ fos_user:
 
 # Admin
 sonata_admin:
-    title: "%project_web_title%"
+    title:      "%project_web_title%"
     title_logo: "/bundles/app/img/logo-espai-kowo-backend.png"
     options:
         html5_validate: true
@@ -140,6 +141,8 @@ sonata_admin:
         use_select2:    true
         pager_links:    10
     persist_filters: true
+    security:
+        handler: sonata.admin.security.handler.role
     templates:
         layout: "::Admin/layout.html.twig"
         edit:   "::Admin/edit.html.twig"
@@ -215,3 +218,10 @@ knp_paginator:
         page_name: pagina
     template:
         pagination: "::Pagination/custom_pagination.html.twig"
+
+# KNP Disqus
+knp_disqus:
+    api_key: "%knp_disqus.api_key%"
+    forums:
+        blog:
+            shortname: "%knp_disqus.blog.shortname%"

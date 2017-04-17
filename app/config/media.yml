@@ -1,8 +1,13 @@
 # Liip Imagine
 liip_imagine:
+    loaders:
+       default:
+          filesystem:
+            locator: filesystem_insecure
     resolvers:
        default:
           web_path: ~
+    cache: default
     filter_sets:
         cache: ~
         2400x1000:
@@ -83,6 +88,16 @@ liip_imagine:
             filters:
                 thumbnail: { size: [ 263, null ], mode: outbound }
                 grayscale: ~
+        263x350xBW:
+            quality: 100
+            filters:
+                thumbnail: { size: [ 263, 350 ], mode: outbound }
+                grayscale: ~
+        263x338xBW:
+            quality: 100
+            filters:
+                thumbnail: { size: [ 263, 338 ], mode: outbound }
+                grayscale: ~
         256xYxBW:
             quality: 80
             filters:
@@ -111,17 +126,17 @@ vich_uploader:
     mappings:
         post:
             uri_prefix:         /uploads/images/post
-            upload_destination: '%kernel.root_dir%/../web/uploads/images/post'
+            upload_destination: "%kernel.root_dir%/../web/uploads/images/post"
             namer:              vich_uploader.namer_uniqid
         social_network_category:
             uri_prefix:         /uploads/images/social-network
-            upload_destination: '%kernel.root_dir%/../web/uploads/images/social-network'
+            upload_destination: "%kernel.root_dir%/../web/uploads/images/social-network"
             namer:              vich_uploader.namer_uniqid
         coworker:
             uri_prefix:         /uploads/images/coworker
-            upload_destination: '%kernel.root_dir%/../web/uploads/images/coworker'
+            upload_destination: "%kernel.root_dir%/../web/uploads/images/coworker"
             namer:              vich_uploader.namer_uniqid
         event:
             uri_prefix:         /uploads/images/event
-            upload_destination: '%kernel.root_dir%/../web/uploads/images/event'
+            upload_destination: "%kernel.root_dir%/../web/uploads/images/event"
             namer:              vich_uploader.namer_uniqid

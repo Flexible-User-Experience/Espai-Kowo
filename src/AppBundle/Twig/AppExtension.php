@@ -6,20 +6,16 @@ use AppBundle\Entity\User;
 use AppBundle\Enum\UserRolesEnum;
 
 /**
- * Class AppExtension
+ * Class AppExtension.
  *
  * @category Twig
- * @package  AppBundle\Service
+ *
  * @author   David Romaní <david@flux.cat>
  */
 class AppExtension extends \Twig_Extension
 {
     /**
-     *
-     *
-     * Twig Functions
-     *
-     *
+     * Twig Functions.
      */
 
     /**
@@ -49,11 +45,7 @@ class AppExtension extends \Twig_Extension
     }
 
     /**
-     *
-     *
-     * Twig Filters
-     *
-     *
+     * Twig Filters.
      */
 
     /**
@@ -80,11 +72,11 @@ class AppExtension extends \Twig_Extension
             foreach ($object->getRoles() as $role) {
                 if ($role == UserRolesEnum::ROLE_USER) {
                     $span .= '<span class="label label-info" style="margin-right:10px">usuari</span>';
-                } else if ($role == UserRolesEnum::ROLE_CMS) {
+                } elseif ($role == UserRolesEnum::ROLE_CMS) {
                     $span .= '<span class="label label-warning" style="margin-right:10px">editor</span>';
-                } else if ($role == UserRolesEnum::ROLE_ADMIN) {
+                } elseif ($role == UserRolesEnum::ROLE_ADMIN) {
                     $span .= '<span class="label label-primary" style="margin-right:10px">administrador</span>';
-                } else if ($role == UserRolesEnum::ROLE_SUPER_ADMIN) {
+                } elseif ($role == UserRolesEnum::ROLE_SUPER_ADMIN) {
                     $span .= '<span class="label label-danger" style="margin-right:10px">superadministrador</span>';
                 }
             }

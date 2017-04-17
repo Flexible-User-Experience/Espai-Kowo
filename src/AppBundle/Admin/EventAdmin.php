@@ -9,10 +9,10 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
 /**
- * Class EventAdmin
+ * Class EventAdmin.
  *
  * @category Admin
- * @package  AppBundle\Admin
+ *
  * @author   Anton Serra <aserratorta@gmail.com>
  */
 class EventAdmin extends AbstractBaseAdmin
@@ -20,12 +20,12 @@ class EventAdmin extends AbstractBaseAdmin
     protected $classnameLabel = 'Activity';
     protected $baseRoutePattern = 'activitats/activitat';
     protected $datagridValues = array(
-        '_sort_by'    => 'date',
+        '_sort_by' => 'date',
         '_sort_order' => 'desc',
     );
 
     /**
-     * Configure route collection
+     * Configure route collection.
      *
      * @param RouteCollection $collection
      */
@@ -60,17 +60,17 @@ class EventAdmin extends AbstractBaseAdmin
                 'description',
                 'ckeditor',
                     array(
-                        'label'       => 'backend.admin.event.description',
+                        'label' => 'backend.admin.event.description',
                         'config_name' => 'my_config',
-                        'required'    => true,
+                        'required' => true,
                 )
             )
             ->add(
                 'imageFile',
                 'file',
                 array(
-                    'label'    => 'backend.admin.event.image',
-                    'help'     => $this->getImageHelperFormMapperWithThumbnail(),
+                    'label' => 'backend.admin.event.image',
+                    'help' => $this->getImageHelperFormMapperWithThumbnail(),
                     'required' => false,
                 )
             )
@@ -90,8 +90,8 @@ class EventAdmin extends AbstractBaseAdmin
                 'date',
                 'sonata_type_date_picker',
                 array(
-                    'label'    => 'backend.admin.event.date',
-                    'format'   => 'd/M/y',
+                    'label' => 'backend.admin.event.date',
+                    'format' => 'd/M/y',
                     'required' => true,
                 )
             )
@@ -99,12 +99,13 @@ class EventAdmin extends AbstractBaseAdmin
                 'enabled',
                 'checkbox',
                 array(
-                    'label'    => 'backend.admin.enabled',
+                    'label' => 'backend.admin.enabled',
                     'required' => false,
                 )
             )
             ->end();
     }
+
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -115,9 +116,9 @@ class EventAdmin extends AbstractBaseAdmin
                 'date',
                 'doctrine_orm_date',
                 array(
-                    'label'      => 'backend.admin.event.date',
+                    'label' => 'backend.admin.event.date',
                     'field_type' => 'sonata_type_date_picker',
-                    'format'     => 'd-m-Y',
+                    'format' => 'd-m-Y',
                 )
             )
             ->add(
@@ -162,16 +163,16 @@ class EventAdmin extends AbstractBaseAdmin
                 'image',
                 null,
                 array(
-                    'label'    => 'backend.admin.event.image',
-                    'template' => '::Admin/Cells/list__cell_image_field.html.twig'
+                    'label' => 'backend.admin.event.image',
+                    'template' => '::Admin/Cells/list__cell_image_field.html.twig',
                 )
             )
             ->add(
                 'date',
                 'date',
                 array(
-                    'label'    => 'backend.admin.event.date',
-                    'format'   => 'd/m/Y',
+                    'label' => 'backend.admin.event.date',
+                    'format' => 'd/m/Y',
                     'editable' => true,
                 )
             )
@@ -187,7 +188,7 @@ class EventAdmin extends AbstractBaseAdmin
                 'categories',
                 null,
                 array(
-                    'label'    => 'backend.admin.event.category',
+                    'label' => 'backend.admin.event.category',
                     'editable' => true,
                 )
             )
@@ -203,12 +204,12 @@ class EventAdmin extends AbstractBaseAdmin
                 '_action',
                 'actions',
                 array(
-                    'label'   => 'backend.admin.actions',
+                    'label' => 'backend.admin.actions',
                     'actions' => array(
-                        'show'   => array('template' => '::Admin/Buttons/list__action_show_button.html.twig'),
-                        'edit'   => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
+                        'show' => array('template' => '::Admin/Buttons/list__action_show_button.html.twig'),
+                        'edit' => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
                         'delete' => array('template' => '::Admin/Buttons/list__action_delete_button.html.twig'),
-                    )
+                    ),
                 )
             );
     }
