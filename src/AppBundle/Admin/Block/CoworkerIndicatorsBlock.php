@@ -3,8 +3,8 @@
 namespace AppBundle\Admin\Block;
 
 use Doctrine\ORM\EntityManager;
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
+use Sonata\BlockBundle\Block\Service\AbstractBlockService;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -16,7 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  *
  * @author   Anton Serra <aserratorta@gmail.com>
  */
-class FrequencyBlock extends BaseBlockService
+class CoworkerIndicatorsBlock extends AbstractBlockService
 {
     /** @var EntityManager */
     private $em;
@@ -49,7 +49,7 @@ class FrequencyBlock extends BaseBlockService
             array(
                 'block' => $blockContext->getBlock(),
                 'settings' => $blockContext->getSettings(),
-                'title' => 'Frequency Block',
+                'title' => 'Coworker Indicators Block',
             ),
             $response
         );
@@ -62,7 +62,7 @@ class FrequencyBlock extends BaseBlockService
      */
     public function getName()
     {
-        return 'coworker_indicators_block';
+        return 'coworker_indicators';
     }
 
     /**
