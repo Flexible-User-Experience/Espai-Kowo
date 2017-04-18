@@ -91,5 +91,5 @@ services:
         class: AppBundle\Admin\Block\CoworkerIndicatorsBlock
         tags:
             - { name: sonata.block }
-        arguments: [ "sonata.admin.block.coworker_indicators", "@templating", "@doctrine.orm.entity_manager" ]
+        arguments: [ "admin.block.coworker_indicators", "@templating", "@doctrine.orm.entity_manager" ]
 

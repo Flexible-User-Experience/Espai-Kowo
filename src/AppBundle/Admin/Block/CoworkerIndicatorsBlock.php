@@ -7,7 +7,7 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\Service\AbstractBlockService;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class CoworkerIndicatorsBlock.
@@ -68,15 +68,15 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
     /**
      * Set defaultSettings.
      *
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    public function configureSettings(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             array(
                 'title' => 'Coworker Indicators Block',
                 'content' => 'Default content',
-                'template' => '::Admin/Blocks/coworker_indicators.html.twig',
+                'template' => ':Admin/Blocks:coworker_indicators.html.twig',
             )
         );
     }
