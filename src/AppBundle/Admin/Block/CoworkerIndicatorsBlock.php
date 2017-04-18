@@ -44,12 +44,17 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
+        $maleAmount = $this->em->getRepository('AppBundle:Coworker')->getEnabledMaleCoworkersAmount();
+        $femaleAmount = $this->em->getRepository('AppBundle:Coworker')->getEnabledFemaleCoworkersAmount();
+
         return $this->renderResponse(
             $blockContext->getTemplate(),
             array(
                 'block' => $blockContext->getBlock(),
                 'settings' => $blockContext->getSettings(),
                 'title' => 'Coworker Indicators Block',
+                'maleAmount' => round(($maleAmount / ($maleAmount + $femaleAmount)) * 100, 0),
+                'femaleAmount' => round(($femaleAmount / ($maleAmount + $femaleAmount)) * 100, 0),
             ),
             $response
         );
