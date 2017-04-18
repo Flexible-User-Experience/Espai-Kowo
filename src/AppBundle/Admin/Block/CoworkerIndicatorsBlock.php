@@ -46,6 +46,19 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
     {
         $maleAmount = $this->em->getRepository('AppBundle:Coworker')->getEnabledMaleCoworkersAmount();
         $femaleAmount = $this->em->getRepository('AppBundle:Coworker')->getEnabledFemaleCoworkersAmount();
+        $januaryAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(1);
+        $februaryAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(2);
+        $marchAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(3);
+        $aprilAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(4);
+        $mayAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(5);
+        $juneAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(6);
+        $julyAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(7);
+        $augustAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(8);
+        $septemberAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(9);
+        $octoberAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(10);
+        $novemberAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(11);
+        $decemberAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(12);
+        $yearAmount = $januaryAmount + $februaryAmount + $marchAmount + $aprilAmount + $mayAmount + $juneAmount + $julyAmount + $augustAmount + $septemberAmount + $octoberAmount + $novemberAmount + $decemberAmount;
 
         return $this->renderResponse(
             $blockContext->getTemplate(),
@@ -55,6 +68,9 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
                 'title' => 'Coworker Indicators Block',
                 'maleAmount' => round(($maleAmount / ($maleAmount + $femaleAmount)) * 100, 0),
                 'femaleAmount' => round(($femaleAmount / ($maleAmount + $femaleAmount)) * 100, 0),
+                'januaryAmount' => round(($januaryAmount / $yearAmount) * 100, 0),
+                'februaryAmount' => round(($februaryAmount / $yearAmount) * 100, 0),
+                'marchAmount' => round(($marchAmount / $yearAmount) * 100, 0),
             ),
             $response
         );

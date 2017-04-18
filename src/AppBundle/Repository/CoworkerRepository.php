@@ -125,4 +125,18 @@ class CoworkerRepository extends EntityRepository
 
         return count($qb->getQuery()->getResult());
     }
+
+    /**
+     * @param $month
+     *
+     * @return int
+     */
+    public function getNewCoworkerAmountByMonth($month)
+    {
+        $qb = $this->createQueryBuilder('coworker')
+            ->where('MONTH(coworker.createdAt) = :month')
+            ->setParameter('month', $month);
+
+        return count($qb->getQuery()->getResult());
+    }
 }
