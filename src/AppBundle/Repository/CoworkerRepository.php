@@ -2,15 +2,16 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Enum\GenderEnum;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 
 /**
- * Class CoworkerRepository
+ * Class CoworkerRepository.
  *
  * @category Repository
- * @package  AppBundle\Repository
+ *
  * @author   Anton Serra <aserratorta@gmail.com>
  */
 class CoworkerRepository extends EntityRepository
@@ -95,5 +96,33 @@ class CoworkerRepository extends EntityRepository
     public function getAllCoworkersBirthdayByDayAndMonth($day, $month)
     {
         return $this->getAllCoworkersBirthdayByDayAndMonthQ($day, $month)->getResult();
+    }
+
+    /**
+     * @return int
+     */
+    public function getEnabledMaleCoworkersAmount()
+    {
+        return $this->getEnabledCoworkersAmountByGender(GenderEnum::MALE);
+    }
+
+    /**
+     * @return int
+     */
+    public function getEnabledFemaleCoworkersAmount()
+    {
+        return $this->getEnabledCoworkersAmountByGender(GenderEnum::FEMALE);
+    }
+
+    /**
+     * @return int
+     */
+    private function getEnabledCoworkersAmountByGender($gender)
+    {
+        $qb = $this->findAllEnabledSortedBySurnameQB();
+        $qb->andWhere('c.gender = :gender')
+            ->setParameter('gender', $gender);
+
+        return count($qb->getQuery()->getResult());
     }
 }
