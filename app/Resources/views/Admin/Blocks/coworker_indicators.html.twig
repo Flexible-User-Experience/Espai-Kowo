@@ -24,6 +24,14 @@
                     Febrer {{ februaryAmount }}%
                 </div>
             </div>
+            <div>
+                <ul class="list-inline">
+                    {% for coworker in coworkersBirthday %}
+                        {#TODO anchor#}
+                        <li>{{ coworker.fullName }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 {% endblock %}

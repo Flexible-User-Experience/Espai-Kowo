@@ -44,6 +44,7 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
+        $currentDate = new \DateTime();
         $maleAmount = $this->em->getRepository('AppBundle:Coworker')->getEnabledMaleCoworkersAmount();
         $femaleAmount = $this->em->getRepository('AppBundle:Coworker')->getEnabledFemaleCoworkersAmount();
         $januaryAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(1);
@@ -59,6 +60,7 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
         $novemberAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(11);
         $decemberAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(12);
         $yearAmount = $januaryAmount + $februaryAmount + $marchAmount + $aprilAmount + $mayAmount + $juneAmount + $julyAmount + $augustAmount + $septemberAmount + $octoberAmount + $novemberAmount + $decemberAmount;
+        $coworkersBirthday = $this->em->getRepository('AppBundle:Coworker')->getAllCoworkersBirthdayByMonth($currentDate->format('n'));
 
         return $this->renderResponse(
             $blockContext->getTemplate(),
@@ -71,6 +73,7 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
                 'januaryAmount' => round(($januaryAmount / $yearAmount) * 100, 0),
                 'februaryAmount' => round(($februaryAmount / $yearAmount) * 100, 0),
                 'marchAmount' => round(($marchAmount / $yearAmount) * 100, 0),
+                'coworkersBirthday' => $coworkersBirthday,
             ),
             $response
         );
