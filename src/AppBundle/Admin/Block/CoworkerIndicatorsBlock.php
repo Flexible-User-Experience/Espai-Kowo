@@ -47,19 +47,32 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
         $currentDate = new \DateTime();
         $maleAmount = $this->em->getRepository('AppBundle:Coworker')->getEnabledMaleCoworkersAmount();
         $femaleAmount = $this->em->getRepository('AppBundle:Coworker')->getEnabledFemaleCoworkersAmount();
-        $januaryAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(1);
-        $februaryAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(2);
-        $marchAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(3);
-        $aprilAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(4);
-        $mayAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(5);
-        $juneAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(6);
-        $julyAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(7);
-        $augustAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(8);
-        $septemberAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(9);
-        $octoberAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(10);
-        $novemberAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(11);
-        $decemberAmount = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(12);
-        $yearAmount = $januaryAmount + $februaryAmount + $marchAmount + $aprilAmount + $mayAmount + $juneAmount + $julyAmount + $augustAmount + $septemberAmount + $octoberAmount + $novemberAmount + $decemberAmount;
+        $januaryTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(1);
+        $februaryTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(2);
+        $marchTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(3);
+        $aprilTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(4);
+        $mayTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(5);
+        $juneTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(6);
+        $julyTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(7);
+        $augustTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(8);
+        $septemberTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(9);
+        $octoberTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(10);
+        $novemberTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(11);
+        $decemberTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(12);
+        $yearTakeUp = $januaryTakeUp + $februaryTakeUp + $marchTakeUp + $aprilTakeUp + $mayTakeUp + $juneTakeUp + $julyTakeUp + $augustTakeUp + $septemberTakeUp + $octoberTakeUp + $novemberTakeUp + $decemberTakeUp;
+        $januaryDischarge = $this->em->getRepository('AppBundle:Coworker')->getDischargeCoworkerAmountByMonth(1);
+        $februaryDischarge = $this->em->getRepository('AppBundle:Coworker')->getDischargeCoworkerAmountByMonth(2);
+        $marchDischarge = $this->em->getRepository('AppBundle:Coworker')->getDischargeCoworkerAmountByMonth(3);
+        $aprilDischarge = $this->em->getRepository('AppBundle:Coworker')->getDischargeCoworkerAmountByMonth(4);
+        $mayDischarge = $this->em->getRepository('AppBundle:Coworker')->getDischargeCoworkerAmountByMonth(5);
+        $juneDischarge = $this->em->getRepository('AppBundle:Coworker')->getDischargeCoworkerAmountByMonth(6);
+        $julyDischarge = $this->em->getRepository('AppBundle:Coworker')->getDischargeCoworkerAmountByMonth(7);
+        $augustDischarge = $this->em->getRepository('AppBundle:Coworker')->getDischargeCoworkerAmountByMonth(8);
+        $septemberDischarge = $this->em->getRepository('AppBundle:Coworker')->getDischargeCoworkerAmountByMonth(9);
+        $octoberDischarge = $this->em->getRepository('AppBundle:Coworker')->getDischargeCoworkerAmountByMonth(10);
+        $novemberDischarge = $this->em->getRepository('AppBundle:Coworker')->getDischargeCoworkerAmountByMonth(11);
+        $decemberDischarge = $this->em->getRepository('AppBundle:Coworker')->getDischargeCoworkerAmountByMonth(12);
+        $yearDischarge = $januaryDischarge + $februaryDischarge + $marchDischarge + $aprilDischarge + $mayDischarge + $juneDischarge + $julyDischarge + $augustDischarge + $septemberDischarge + $octoberDischarge + $novemberDischarge + $decemberDischarge;
         $coworkersBirthday = $this->em->getRepository('AppBundle:Coworker')->getAllCoworkersBirthdayByMonth($currentDate->format('n'));
 
         return $this->renderResponse(
@@ -70,9 +83,12 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
                 'title' => 'Coworker Indicators Block',
                 'maleAmount' => round(($maleAmount / ($maleAmount + $femaleAmount)) * 100, 0),
                 'femaleAmount' => round(($femaleAmount / ($maleAmount + $femaleAmount)) * 100, 0),
-                'januaryAmount' => round(($januaryAmount / $yearAmount) * 100, 0),
-                'februaryAmount' => round(($februaryAmount / $yearAmount) * 100, 0),
-                'marchAmount' => round(($marchAmount / $yearAmount) * 100, 0),
+                'januaryTakeUp' => round(($januaryTakeUp / $yearTakeUp) * 100, 0),
+                'februaryTakeUp' => round(($februaryTakeUp / $yearTakeUp) * 100, 0),
+                'marchTakeUp' => round(($marchTakeUp / $yearTakeUp) * 100, 0),
+                'januaryDischarge' => round(($januaryDischarge / $yearDischarge) * 100, 0),
+                'februaryDischarge' => round(($februaryDischarge / $yearDischarge) * 100, 0),
+                'marchDischarge' => round(($marchDischarge / $yearDischarge) * 100, 0),
                 'coworkersBirthday' => $coworkersBirthday,
             ),
             $response

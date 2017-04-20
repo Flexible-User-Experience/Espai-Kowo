@@ -17,11 +17,21 @@
                 </div>
             </div>
             <div class="progress">
-                <div class="progress-bar progress-bar-success" style="width: {{ januaryAmount }}%">
-                    Gener {{ januaryAmount }}%
+                <div class="progress-bar progress-bar" style="width: 20%">Gener</div>
+                <div class="progress-bar progress-bar-success" style="width: {{ januaryTakeUp }}%">
+                    {{ januaryTakeUp }}%
                 </div>
-                <div class="progress-bar progress-bar-warning" style="width: {{ februaryAmount }}%">
-                    Febrer {{ februaryAmount }}%
+                <div class="progress-bar progress-bar-danger" style="width: {{ januaryDischarge }}%">
+                    {{ januaryDischarge }}%
+                </div>
+            </div>
+            <div class="progress">
+                <div class="progress-bar progress-bar" style="width: 20%">Febrer</div>
+                <div class="progress-bar progress-bar-success" style="width: {{ februaryTakeUp }}%">
+                    {{ februaryTakeUp }}%
+                </div>
+                <div class="progress-bar progress-bar-warning" style="width: {{ februaryDischarge }}%">
+                    {{ februaryDischarge }}%
                 </div>
             </div>
             <div>

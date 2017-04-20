@@ -161,4 +161,18 @@ class CoworkerRepository extends EntityRepository
 
         return count($qb->getQuery()->getResult());
     }
+
+    /**
+     * @param $month
+     *
+     * @return int
+     */
+    public function getDischargeCoworkerAmountByMonth($month)
+    {
+        $qb = $this->createQueryBuilder('coworker')
+            ->where('MONTH(coworker.dischargeDate) = :month')
+            ->setParameter('month', $month);
+
+        return count($qb->getQuery()->getResult());
+    }
 }
