@@ -1,0 +1,47 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <div class="box box-success">
+        <div class="box-header">
+            <h3 class="box-title">
+                Indicadors
+            </h3>
+        </div>
+        <div class="box-body">
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" style="width: {{ maleAmount }}%">
+                    Homes {{ maleAmount }}%
+                </div>
+                <div class="progress-bar progress-bar-warning" style="width: {{ femaleAmount }}%">
+                    Dones {{ femaleAmount }}%
+                </div>
+            </div>
+            <div class="progress">
+                <div class="progress-bar progress-bar" style="width: 20%">Gener</div>
+                <div class="progress-bar progress-bar-success" style="width: {{ januaryTakeUp }}%">
+                    {{ januaryTakeUp }}%
+                </div>
+                <div class="progress-bar progress-bar-danger" style="width: {{ januaryDischarge }}%">
+                    {{ januaryDischarge }}%
+                </div>
+            </div>
+            <div class="progress">
+                <div class="progress-bar progress-bar" style="width: 20%">Febrer</div>
+                <div class="progress-bar progress-bar-success" style="width: {{ februaryTakeUp }}%">
+                    {{ februaryTakeUp }}%
+                </div>
+                <div class="progress-bar progress-bar-warning" style="width: {{ februaryDischarge }}%">
+                    {{ februaryDischarge }}%
+                </div>
+            </div>
+            <div>
+                <ul class="list-inline">
+                    {% for coworker in coworkersBirthday %}
+                        {#TODO anchor#}
+                        <li>{{ coworker.fullName }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -166,6 +166,15 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'dischargeDate',
+                'sonata_type_date_picker',
+                array(
+                    'label' => 'Data baixa',
+                    'format' => 'd/M/y',
+                    'required' => false,
+                )
+            )
+            ->add(
                 'enabled',
                 'checkbox',
                 array(
