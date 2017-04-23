@@ -30,15 +30,43 @@
                 <div class="progress-bar progress-bar-success" style="width: {{ februaryTakeUp }}%">
                     {{ februaryTakeUp }}%
                 </div>
-                <div class="progress-bar progress-bar-warning" style="width: {{ februaryDischarge }}%">
+                <div class="progress-bar progress-bar-danger" style="width: {{ februaryDischarge }}%">
                     {{ februaryDischarge }}%
                 </div>
             </div>
+            <div class="progress">
+                <div class="progress-bar progress-bar" style="width: 20%">Març</div>
+                <div class="progress-bar progress-bar-success" style="width: {{ marchTakeUp }}%">
+                    {{ marchTakeUp }}%
+                </div>
+                <div class="progress-bar progress-bar-danger" style="width: {{ marchDischarge }}%">
+                    {{ marchDischarge }}%
+                </div>
+            </div>
+            <div class="progress">
+                <div class="progress-bar progress-bar" style="width: 20%">Abril</div>
+                <div class="progress-bar progress-bar-success" style="width: {{ aprilTakeUp }}%">
+                    {{ aprilTakeUp }}%
+                </div>
+                <div class="progress-bar progress-bar-danger" style="width: {{ aprilDischarge }}%">
+                    {{ aprilDischarge }}%
+                </div>
+            </div>
+            <div class="progress">
+                <div class="progress-bar progress-bar" style="width: 20%">Maig</div>
+                <div class="progress-bar progress-bar-success" style="width: {{ mayTakeUp }}%">
+                    {{ mayTakeUp }}%
+                </div>
+                <div class="progress-bar progress-bar-danger" style="width: {{ mayDischarge }}%">
+                    {{ mayDischarge }}%
+                </div>
+            </div>
             <div>
-                <ul class="list-inline">
+                <ul class="list-inline">Aniversaris {{ currentDate }}
                     {% for coworker in coworkersBirthday %}
-                        {#TODO anchor#}
-                        <li>{{ coworker.fullName }}</li>
+                        <a href="{{ path('admin_app_coworker_edit', { id: coworker.id}) }}">
+                            <li>{{ coworker.fullName }}</li>
+                        </a>
                     {% endfor %}
                 </ul>
             </div>
