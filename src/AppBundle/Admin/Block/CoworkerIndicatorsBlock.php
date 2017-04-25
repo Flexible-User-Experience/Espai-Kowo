@@ -81,15 +81,34 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
                 'block' => $blockContext->getBlock(),
                 'settings' => $blockContext->getSettings(),
                 'title' => 'Coworker Indicators Block',
-                'maleAmount' => round(($maleAmount / ($maleAmount + $femaleAmount)) * 100, 0),
-                'femaleAmount' => round(($femaleAmount / ($maleAmount + $femaleAmount)) * 100, 0),
-                'januaryTakeUp' => round(($januaryTakeUp / $yearTakeUp) * 100, 0),
-                'februaryTakeUp' => round(($februaryTakeUp / $yearTakeUp) * 100, 0),
-                'marchTakeUp' => round(($marchTakeUp / $yearTakeUp) * 100, 0),
-                'januaryDischarge' => round(($januaryDischarge / $yearDischarge) * 100, 0),
-                'februaryDischarge' => round(($februaryDischarge / $yearDischarge) * 100, 0),
-                'marchDischarge' => round(($marchDischarge / $yearDischarge) * 100, 0),
+                'maleAmount' => $this->solveAverage($maleAmount, $maleAmount + $femaleAmount),
+                'femaleAmount' => $this->solveAverage($femaleAmount, $maleAmount + $femaleAmount),
+                'januaryTakeUp' => $this->solveAverage($januaryTakeUp, $januaryTakeUp + $januaryDischarge),
+                'februaryTakeUp' => $this->solveAverage($februaryTakeUp, $februaryTakeUp + $februaryDischarge),
+                'marchTakeUp' => $this->solveAverage($marchTakeUp, $marchTakeUp + $marchDischarge),
+                'aprilTakeUp' => $this->solveAverage($aprilTakeUp, $aprilTakeUp + $aprilDischarge),
+                'mayTakeUp' => $this->solveAverage($mayTakeUp, $mayTakeUp + $mayDischarge),
+                'juneTakeUp' => $this->solveAverage($juneTakeUp, $juneTakeUp + $juneDischarge),
+                'julyTakeUp' => $this->solveAverage($julyTakeUp, $julyTakeUp + $julyDischarge),
+                'augustTakeUp' => $this->solveAverage($augustTakeUp, $augustTakeUp + $augustDischarge),
+                'septemberTakeUp' => $this->solveAverage($septemberTakeUp, $septemberTakeUp + $septemberDischarge),
+                'octoberTakeUp' => $this->solveAverage($octoberTakeUp, $octoberTakeUp + $octoberDischarge),
+                'novemberTakeUp' => $this->solveAverage($novemberTakeUp, $novemberTakeUp + $novemberDischarge),
+                'decemberTakeUp' => $this->solveAverage($decemberTakeUp, $decemberTakeUp + $decemberDischarge),
+                'januaryDischarge' => $this->solveAverage($januaryDischarge, $januaryTakeUp + $januaryDischarge),
+                'februaryDischarge' => $this->solveAverage($februaryDischarge, $februaryTakeUp + $februaryDischarge),
+                'marchDischarge' => $this->solveAverage($marchDischarge, $marchTakeUp + $marchDischarge),
+                'aprilDischarge' => $this->solveAverage($aprilDischarge, $aprilTakeUp + $aprilDischarge),
+                'mayDischarge' => $this->solveAverage($mayDischarge, $mayTakeUp + $mayDischarge),
+                'juneDischarge' => $this->solveAverage($juneDischarge, $juneTakeUp + $juneDischarge),
+                'julyDischarge' => $this->solveAverage($julyDischarge, $julyTakeUp + $julyDischarge),
+                'augustDischarge' => $this->solveAverage($augustDischarge, $augustTakeUp + $augustDischarge),
+                'septemberDischarge' => $this->solveAverage($septemberDischarge, $septemberTakeUp + $septemberDischarge),
+                'octoberDischarge' => $this->solveAverage($octoberDischarge, $octoberTakeUp + $octoberDischarge),
+                'novemberDischarge' => $this->solveAverage($novemberDischarge, $novemberTakeUp + $novemberDischarge),
+                'decemberDischarge' => $this->solveAverage($decemberDischarge, $decemberTakeUp + $decemberDischarge),
                 'coworkersBirthday' => $coworkersBirthday,
+                'currentDate' => $currentDate->format('F'),
             ),
             $response
         );
@@ -119,5 +138,20 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
                 'template' => ':Admin/Blocks:coworker_indicators.html.twig',
             )
         );
+    }
+
+    /**
+     * @param float|int $dividend
+     * @param float|int $divider
+     *
+     * @return float|int
+     */
+    private function solveAverage($dividend, $divider)
+    {
+        if ($divider == 0) {
+            return 0;
+        }
+
+        return round(($dividend / $divider) * 100, 0);
     }
 }
