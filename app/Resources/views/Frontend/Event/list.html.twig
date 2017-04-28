@@ -37,7 +37,7 @@
                     <a href="{{ path('front_event_detail', {slug: event.slug}) }}">
                         {% include ':Frontend/includes:image_detail.html.twig' with {object: event, filter: '780xY'} %}
                     </a>
-                    <div class="caption">
+                    <div class="caption mobile-m-bottom">
                         <h4>{{ event.title }}</h4>
                         <h6 class="text-muted">{{ event.date | date('d/m/Y') }}</h6>
                         <p>{{ event.shortDescription }}</p>
@@ -66,7 +66,7 @@
                     <a href="{{ path('front_event_detail', {slug: event.slug}) }}">
                         {% include ':Frontend/includes:image_detail.html.twig' with {object: event, filter: '780xYBW'} %}
                     </a>
-                    <div class="caption">
+                    <div class="caption mobile-m-bottom">
                         <h4>{{ event.title }}</h4>
                         <h6 class="text-muted">{{ event.date | date('d/m/Y') }}</h6>
                         <p>
