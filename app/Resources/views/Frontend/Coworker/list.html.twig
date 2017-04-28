@@ -7,7 +7,7 @@
         <div class="row">
         {% if coworkers | length > 0 %}
             {% for coworker in coworkers %}
-                <div class="col-md-3">
+                <div class="col-md-3 mobile-m-bottom">
                     <h4 class="no-m-top text-center light-font-weight">{{ coworker.name | upper }} {{ coworker.surname | upper }}</h4>
                     <a href="{{ path('front_coworker_detail', {slug: coworker.slug}) }}">
                         {% if coworker.imageName is not null %}
