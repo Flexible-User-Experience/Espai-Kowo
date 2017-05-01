@@ -6,7 +6,7 @@
   tasks:
     - name: copy local uploads directory to remote
       copy:
-        src: "{{ ansistrano_deploy_to }}/shared/web/uploads"
+        src: "{{ vhost_path }}/shared/web/uploads"
         dest: "{{ playbook_dir }}/../../web"
         owner: www-data
         group: www-data
