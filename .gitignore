@@ -29,5 +29,8 @@
 /dbreset.sh
 !.travis.yml
 /src/AppBundle/Resources/public/img/originals/
-/app/ansible/config.yml
-/app/ansible/parameters_prod.yml
+
+# Ansible
+/app/ansible/vars/
+!/app/ansible/vars/.gitkeep
+/app/ansible/*.retry
