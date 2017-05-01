@@ -2,15 +2,16 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Enum\GenderEnum;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 
 /**
- * Class CoworkerRepository
+ * Class CoworkerRepository.
  *
  * @category Repository
- * @package  AppBundle\Repository
+ *
  * @author   Anton Serra <aserratorta@gmail.com>
  */
 class CoworkerRepository extends EntityRepository
@@ -59,6 +60,30 @@ class CoworkerRepository extends EntityRepository
     }
 
     /**
+     * @param $month
+     *
+     * @return QueryBuilder
+     */
+    public function getAllCoworkersBirthdayByMonthQB($month)
+    {
+        $qb = $this->createQueryBuilder('coworker')
+            ->where('MONTH(coworker.birthday) = :month')
+            ->setParameter('month', $month);
+
+        return $qb;
+    }
+
+    /**
+     * @param $month
+     *
+     * @return array
+     */
+    public function getAllCoworkersBirthdayByMonth($month)
+    {
+        return $this->getAllCoworkersBirthdayByMonthQB($month)->getQuery()->getResult();
+    }
+
+    /**
      * @param int $day
      * @param int $month
      *
@@ -66,11 +91,9 @@ class CoworkerRepository extends EntityRepository
      */
     public function getAllCoworkersBirthdayByDayAndMonthQB($day, $month)
     {
-        $query = $this->createQueryBuilder('coworker')
-            ->where('DAY(coworker.birthday) = :day')
-            ->andWhere('MONTH(coworker.birthday) = :month')
-            ->setParameter('day', $day)
-            ->setParameter('month', $month);
+        $query = $this->getAllCoworkersBirthdayByMonthQB($month)
+            ->andWhere('DAY(coworker.birthday) = :day')
+            ->setParameter('day', $day);
 
         return $query;
     }
@@ -95,5 +118,61 @@ class CoworkerRepository extends EntityRepository
     public function getAllCoworkersBirthdayByDayAndMonth($day, $month)
     {
         return $this->getAllCoworkersBirthdayByDayAndMonthQ($day, $month)->getResult();
+    }
+
+    /**
+     * @return int
+     */
+    public function getEnabledMaleCoworkersAmount()
+    {
+        return $this->getEnabledCoworkersAmountByGender(GenderEnum::MALE);
+    }
+
+    /**
+     * @return int
+     */
+    public function getEnabledFemaleCoworkersAmount()
+    {
+        return $this->getEnabledCoworkersAmountByGender(GenderEnum::FEMALE);
+    }
+
+    /**
+     * @return int
+     */
+    private function getEnabledCoworkersAmountByGender($gender)
+    {
+        $qb = $this->findAllEnabledSortedBySurnameQB();
+        $qb->andWhere('c.gender = :gender')
+            ->setParameter('gender', $gender);
+
+        return count($qb->getQuery()->getResult());
+    }
+
+    /**
+     * @param $month
+     *
+     * @return int
+     */
+    public function getNewCoworkerAmountByMonth($month)
+    {
+        $qb = $this->createQueryBuilder('coworker')
+            ->where('MONTH(coworker.createdAt) = :month')
+            ->setParameter('month', $month);
+
+        return count($qb->getQuery()->getResult());
+    }
+
+    /**
+     * @param $month
+     *
+     * @return int
+     */
+    public function getDischargeCoworkerAmountByMonth($month)
+    {
+        $qb = $this->createQueryBuilder('coworker')
+            ->where('MONTH(coworker.dischargeDate) = :month')
+            ->setParameter('month', $month);
+
+        return count($qb->getQuery()->getResult());
     }
 }

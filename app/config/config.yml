@@ -38,7 +38,7 @@ twig:
         facebook_pixel_enabled:   "%facebook_pixel_enabled%"
         facebook_pixel_id:        "%facebook_pixel_id%"
         main_brand_title:         "%project_web_title%"
-        admin_tag_version:        "v1.0.61"
+        admin_tag_version:        "v1.0.63"
 
 # Assetic
 assetic:
@@ -99,9 +99,10 @@ swiftmailer:
 sonata_block:
     default_contexts: [ cms ]
     blocks:
-        sonata.admin.block.admin_list:  ~
-        sonata.user.block.menu:         ~
-        sonata.block.service.text:      ~
+        sonata.admin.block.admin_list:   ~
+        sonata.user.block.menu:          ~
+        sonata.block.service.text:       ~
+        admin.block.coworker_indicators: ~
 
 # Sonata User
 sonata_user:
@@ -197,6 +198,10 @@ sonata_admin:
                 class: col-md-6
                 settings:
                     groups: [ Usuaris ]
+            -
+                position: top
+                type: admin.block.coworker_indicators
+                class: col-md-6
 
 # CKEditor
 ivory_ck_editor:

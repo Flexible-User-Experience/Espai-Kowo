@@ -20,11 +20,11 @@
         <div class="row">
             {% if pagination.getTotalItemCount > 0 %}
                 {% for post in pagination %}
-                    <div class="col-md-4">
+                    <div class="col-xs-12 col-md-4">
                         <a href="{{ path('front_blog_detail', {slug: post.slug, year: post.publishedAt | date('Y'), month: post.publishedAt | date('m'), day: post.publishedAt | date('d') }) }}">
                             {% include ':Frontend/includes:image_detail.html.twig' with {object: post, filter: '780xY'} %}
                         </a>
-                        <div class="caption">
+                        <div class="caption mobile-m-bottom">
                             <h4>{{ post.title }}</h4>
                             <h6 class="text-muted">{{ post.publishedAt | date('d/m/Y') }}</h6>
                             <p>{{ post.shortDescription }}</p>

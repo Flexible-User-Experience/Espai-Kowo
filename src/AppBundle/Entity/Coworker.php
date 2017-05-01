@@ -181,6 +181,13 @@ class Coworker extends AbstractBase
     private $token;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $dischargeDate;
+
+    /**
      * Methods.
      */
 
@@ -629,6 +636,26 @@ class Coworker extends AbstractBase
     public function setToken($token)
     {
         $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDischargeDate()
+    {
+        return $this->dischargeDate;
+    }
+
+    /**
+     * @param \DateTime $dischargeDate
+     *
+     * @return $this
+     */
+    public function setDischargeDate($dischargeDate)
+    {
+        $this->dischargeDate = $dischargeDate;
 
         return $this;
     }

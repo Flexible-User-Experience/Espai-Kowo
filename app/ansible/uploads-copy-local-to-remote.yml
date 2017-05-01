@@ -1,0 +1,12 @@
+---
+- hosts: s6
+  gather_facts: false
+  vars_files:
+    - "{{ playbook_dir }}/vars/config.yml"
+  tasks:
+    - name: copy local uploads directory to remote
+      copy:
+        src: "{{ vhost_path }}/shared/web/uploads"
+        dest: "{{ playbook_dir }}/../../web"
+        owner: www-data
+        group: www-data
