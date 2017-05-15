@@ -201,7 +201,7 @@ sonata_admin:
             -
                 position: top
                 type: admin.block.coworker_indicators
-                class: col-md-6
+                class: col-md-12
 
 # CKEditor
 ivory_ck_editor:
