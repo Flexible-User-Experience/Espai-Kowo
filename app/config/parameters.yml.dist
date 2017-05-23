@@ -42,8 +42,8 @@ parameters:
 
     project_web_title: "Espai Kowo"
 
-    recaptcha_public_key: 11AAbb22CCdd
-    recaptcha_private_key: 11AAbb22CCff
+    recaptcha_site_key: MY KEY
+    recaptcha_secret: MY SECRET
 
     facebook_pixel_enabled: false
     facebook_pixel_id: XXXXXX
