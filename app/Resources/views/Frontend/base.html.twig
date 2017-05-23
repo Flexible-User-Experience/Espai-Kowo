@@ -97,6 +97,7 @@
     {% javascripts '@myjs' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+    <script src="//www.google.com/recaptcha/api.js?hl={{ app.request.locale }}"></script>
 {% endblock %}
 {% block scroll_top %}
     {#<!-- Scroll-Top effect JS -->#}

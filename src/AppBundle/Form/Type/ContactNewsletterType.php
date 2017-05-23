@@ -69,6 +69,9 @@ class ContactNewsletterType extends AbstractType
                     'constraints' => array(
                         new Recaptcha2(),
                     ),
+                    'attr' => array(
+                        'data-size' => 'compact'
+                    )
                 )
             )
             ->add(
