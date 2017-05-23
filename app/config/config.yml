@@ -210,12 +210,6 @@ ivory_ck_editor:
         my_config:
             toolbar: standard
 
-# EWZ Google Recaptcha
-ewz_recaptcha:
-    public_key:  "%recaptcha_public_key%"
-    private_key: "%recaptcha_private_key%"
-    locale_key:  "%locale%"
-
 # KNP Paginator
 knp_paginator:
     page_range: 5
@@ -230,3 +224,8 @@ knp_disqus:
     forums:
         blog:
             shortname: "%knp_disqus.blog.shortname%"
+
+# Recaptcha
+beelab_recaptcha2:
+    site_key: "%recaptcha_site_key%"
+    secret:   "%recaptcha_secret%"
