@@ -4,6 +4,7 @@ namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\Coworker;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,7 +33,7 @@ class CoworkerDataFormType extends AbstractType
                 null,
                 array(
                     'label' => 'frontend.forms.category',
-                    'required' => false,
+                    'required' => true,
                 )
             )
             ->add(
@@ -51,7 +52,7 @@ class CoworkerDataFormType extends AbstractType
             )
             ->add(
                 'birthday',
-                null,
+                BirthdayType::class,
                 array(
                     'label' => 'frontend.forms.birthdate',
                 )
@@ -63,15 +64,16 @@ class CoworkerDataFormType extends AbstractType
                     'label' => 'frontend.forms.printercode',
                 )
             )
-            ->add(
-                'socialNetworks',
-                CollectionType::class,
-                array(
-                    'entry_type' => CoworkerDataSocialNetworkFormType::class,
-                    'allow_add' => true,
-                    'by_reference' => false,
-                )
-            )
+//            ->add(
+//                'socialNetworks',
+//                CollectionType::class,
+//                array(
+//                    'label' => ' ',
+//                    'entry_type' => CoworkerDataSocialNetworkFormType::class,
+//                    'allow_add' => true,
+//                    'by_reference' => false,
+//                )
+//            )
             ->add(
                 'send',
                 SubmitType::class,

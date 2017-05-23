@@ -85,3 +85,11 @@ services:
     app.mailchimp_manager:
         class: AppBundle\Manager\MailchimpManager
         arguments: [ "@app.notification", "%mailchimp_api_key%" ]
+
+# Sonata Blocks
+    admin.block.coworker_indicators:
+        class: AppBundle\Admin\Block\CoworkerIndicatorsBlock
+        tags:
+            - { name: sonata.block }
+        arguments: [ "admin.block.coworker_indicators", "@templating", "@doctrine.orm.entity_manager" ]
+

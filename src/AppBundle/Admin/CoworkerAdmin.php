@@ -47,7 +47,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(8))
+            ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(6))
             ->add(
                 'name',
                 null,
@@ -80,35 +80,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->end()
-            ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(4))
-            ->add(
-                'category',
-                null,
-                array(
-                    'label' => 'backend.admin.category.category',
-                    'query_builder' => $this->rm->getCategoryRepository()->getAllEnabledCategorySortedByTitleQB(),
-                )
-            )
-            ->add(
-                'gender',
-                ChoiceType::class,
-                array(
-                    'label' => 'backend.admin.coworker.gender',
-                    'choices' => GenderEnum::getEnumArray(),
-                    'multiple' => false,
-                    'expanded' => false,
-                    'required' => true,
-                )
-            )
-            ->add(
-                'birthday',
-                'sonata_type_date_picker',
-                array(
-                    'label' => 'Aniversari',
-                    'format' => 'd/M/y',
-                    'required' => false,
-                )
-            )
+            ->with('backend.admin.pictures', $this->getFormMdSuccessBoxArray(3))
             ->add(
                 'imageFile',
                 'file',
@@ -134,6 +106,27 @@ class CoworkerAdmin extends AbstractBaseAdmin
                     'label' => 'backend.admin.coworker.gif',
                     'help' => $this->getImageHelperFormMapperWithThumbnailGif(),
                     'required' => false,
+                )
+            )
+            ->end()
+            ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(3))
+            ->add(
+                'category',
+                null,
+                array(
+                    'label' => 'backend.admin.category.category',
+                    'query_builder' => $this->rm->getCategoryRepository()->getAllEnabledCategorySortedByTitleQB(),
+                )
+            )
+            ->add(
+                'gender',
+                ChoiceType::class,
+                array(
+                    'label' => 'backend.admin.coworker.gender',
+                    'choices' => GenderEnum::getEnumArray(),
+                    'multiple' => false,
+                    'expanded' => false,
+                    'required' => true,
                 )
             )
             ->add(
@@ -162,6 +155,24 @@ class CoworkerAdmin extends AbstractBaseAdmin
                     'choices' => TicketOfficeCodeEnum::getEnumArray(),
                     'multiple' => false,
                     'expanded' => false,
+                    'required' => false,
+                )
+            )
+            ->add(
+                'birthday',
+                'sonata_type_date_picker',
+                array(
+                    'label' => 'Aniversari',
+                    'format' => 'd/M/y',
+                    'required' => false,
+                )
+            )
+            ->add(
+                'dischargeDate',
+                'sonata_type_date_picker',
+                array(
+                    'label' => 'Data baixa',
+                    'format' => 'd/M/y',
                     'required' => false,
                 )
             )
