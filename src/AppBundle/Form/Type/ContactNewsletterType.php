@@ -8,14 +8,14 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints as Assert;
-//use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
-//use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
 
 /**
- * Class ContactNewsletterType
+ * Class ContactNewsletterType.
  *
  * @category FormType
- * @package  AppBundle\Form\Type
+ *
  * @author   Anton Serra <aserratorta@gmail.com>
  */
 class ContactNewsletterType extends AbstractType
@@ -31,9 +31,9 @@ class ContactNewsletterType extends AbstractType
                 'name',
                 TextType::class,
                 array(
-                    'label'       => false,
-                    'required'    => true,
-                    'attr'        => array(
+                    'label' => false,
+                    'required' => true,
+                    'attr' => array(
                         'placeholder' => 'frontend.forms.name',
                     ),
                     'constraints' => array(
@@ -45,43 +45,43 @@ class ContactNewsletterType extends AbstractType
                 'email',
                 EmailType::class,
                 array(
-                    'label'       => false,
-                    'required'    => true,
-                    'attr'        => array(
+                    'label' => false,
+                    'required' => true,
+                    'attr' => array(
                         'placeholder' => 'frontend.forms.email',
                     ),
                     'constraints' => array(
                         new Assert\NotBlank(),
                         new Assert\Email(array(
-                            'strict'    => true,
-                            'checkMX'   => true,
+                            'strict' => true,
+                            'checkMX' => true,
                             'checkHost' => true,
                         )),
                     ),
                 )
             )
-//            ->add(
-//                'recaptcha',
-//                EWZRecaptchaType::class,
-//                array(
-//                    'label'       => false,
-//                    'mapped'      => false,
-//                    'attr' => array(
-//                        'options' => array(
-//                            'theme' => 'light',
-//                            'type'  => 'image',
-//                            'size'  => 'normal',
-//                            'defer' => false,
-//                            'async' => false,
-//                        ),
-//                    ),
-//                    'constraints' => array(
-//                        new RecaptchaTrue(array(
-//                            'message' => 'Error',
-//                        )),
-//                    ),
-//                )
-//            )
+            ->add(
+                'recaptcha',
+                EWZRecaptchaType::class,
+                array(
+                    'label' => false,
+                    'mapped' => false,
+                    'attr' => array(
+                        'options' => array(
+                            'theme' => 'light',
+                            'type' => 'image',
+                            'size' => 'normal',
+                            'defer' => false,
+                            'async' => false,
+                        ),
+                    ),
+                    'constraints' => array(
+                        new RecaptchaTrue(array(
+                            'message' => 'Error',
+                        )),
+                    ),
+                )
+            )
             ->add(
                 'send',
                 SubmitType::class,

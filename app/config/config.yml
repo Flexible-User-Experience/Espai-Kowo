@@ -215,6 +215,8 @@ ewz_recaptcha:
     public_key:  "%recaptcha_public_key%"
     private_key: "%recaptcha_private_key%"
     locale_key:  "%locale%"
+    enabled:     true
+    ajax:        false
 
 # KNP Paginator
 knp_paginator:
