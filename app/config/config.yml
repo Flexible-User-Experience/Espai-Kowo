@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: media.yml }
+    - { resource: sonata.yml }
 
 # Symfony
 framework:
@@ -95,20 +96,6 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-# Sonata Block
-sonata_block:
-    default_contexts: [ cms ]
-    blocks:
-        sonata.admin.block.admin_list:   ~
-        sonata.user.block.menu:          ~
-        sonata.block.service.text:       ~
-        admin.block.coworker_indicators: ~
-
-# Sonata User
-sonata_user:
-    security_acl: true
-    manager_type: orm
-
 # Stof Doctrine Extensions
 stof_doctrine_extensions:
     default_locale: "%locale%"
@@ -131,77 +118,6 @@ fos_user:
         group_manager: sonata.user.orm.group_manager
     service:
         user_manager: sonata.user.orm.user_manager
-
-# Admin
-sonata_admin:
-    title:      "%project_web_title%"
-    title_logo: "/bundles/app/img/logo-espai-kowo-backend.png"
-    options:
-        html5_validate: true
-        confirm_exit:   true
-        use_select2:    true
-        pager_links:    10
-    persist_filters: true
-    security:
-        handler: sonata.admin.security.handler.role
-    templates:
-        layout: "::Admin/layout.html.twig"
-        edit:   "::Admin/edit.html.twig"
-        show:   "::Admin/show.html.twig"
-    dashboard:
-        groups:
-            Blog:
-                icon: "<i class='fa fa-chrome'></i>"
-            Coworkers:
-                icon: "<i class='fa fa-users'></i>"
-            Activitats:
-                icon: "<i class='fa fa-calendar-times-o'></i>"
-            Contactes:
-                icon: "<i class='fa fa-envelope'></i>"
-            Usuaris:
-                icon: "<i class='fa fa-user'></i>"
-        blocks:
-            -
-                position: top
-                type: sonata.block.service.text
-                class: col-md-12
-                settings:
-                    content: >
-                        <h1 style="margin-top:0">Content Management System</h1>
-            -
-                position: top
-                type: sonata.admin.block.admin_list
-                class: col-md-6
-                settings:
-                    groups: [ Blog ]
-            -
-                position: top
-                type: sonata.admin.block.admin_list
-                class: col-md-6
-                settings:
-                    groups: [ Coworkers ]
-            -
-                position: top
-                type: sonata.admin.block.admin_list
-                class: col-md-6
-                settings:
-                    groups: [ Activitats ]
-            -
-                position: top
-                type: sonata.admin.block.admin_list
-                class: col-md-6
-                settings:
-                    groups: [ Contactes ]
-            -
-                position: top
-                type: sonata.admin.block.admin_list
-                class: col-md-6
-                settings:
-                    groups: [ Usuaris ]
-            -
-                position: top
-                type: admin.block.coworker_indicators
-                class: col-md-12
 
 # CKEditor
 ivory_ck_editor:
