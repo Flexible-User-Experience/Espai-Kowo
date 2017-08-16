@@ -3,15 +3,14 @@
 namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class ContactMessageType
+ * Class ContactMessageType.
  *
  * @category FormType
- * @package  AppBundle\Form\Type
+ *
  * @author   David Romaní <david@flux.cat>
  */
 class ContactMessageType extends ContactHomepageType
@@ -28,10 +27,10 @@ class ContactMessageType extends ContactHomepageType
                 'message',
                 TextareaType::class,
                 array(
-                    'label'       => false,
-                    'required'    => true,
-                    'attr'        => array(
-                        'rows'        => 5,
+                    'label' => false,
+                    'required' => true,
+                    'attr' => array(
+                        'rows' => 5,
                         'placeholder' => 'frontend.forms.message',
                     ),
                     'constraints' => array(
@@ -47,17 +46,5 @@ class ContactMessageType extends ContactHomepageType
     public function getBlockPrefix()
     {
         return 'contact_message';
-    }
-
-    /**
-     * @param OptionsResolver $resolver
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(
-            array(
-                'data_class' => 'AppBundle\Entity\ContactMessage',
-            )
-        );
     }
 }

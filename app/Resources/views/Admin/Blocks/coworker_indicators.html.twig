@@ -1,209 +1,236 @@
 {% extends sonata_block.templates.block_base %}
 
 {% block block %}
-    <div class="box box-success">
-        <div class="box-header">
-            <h3 class="box-title">
-                Indicadors
-            </h3>
-        </div>
-        <div class="box-body">
-            <h5 class="box-title">Homes/Dones</h5>
-            <div class="progress">
-                <div class="progress-bar progress-bar-success progress-bar-striped" style="width: {{ maleAmount }}%">
-                    {{ maleAmount }}%
-                </div>
-                <div class="progress-bar progress-bar-danger progress-bar-striped" style="width: {{ femaleAmount }}%">
-                    {{ femaleAmount }}%
+    <div class="row">
+    <div class="col-md-4">
+        <div class="box box-success">
+            <div class="box-header">
+                <h3 class="box-title">Explotació</h3>
+            </div>
+            <div class="box-body">
+                <h6 class="box-title">Gener</h6>
+                {% if januaryTakeUp == 0 and januaryDischarge == 0 %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" style="width: {{ januaryTakeUp }}%">
+                            {{ januaryTakeUp }}%
+                        </div>
+                        <div class="progress-bar progress-bar-danger" style="width: {{ januaryDischarge }}%">
+                            {{ januaryDischarge }}%
+                        </div>
+                    </div>
+                {% endif %}
+                <h6 class="box-title">Febrer</h6>
+                {% if februaryTakeUp == 0 and februaryDischarge == 0 %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" style="width: {{ februaryTakeUp }}%">
+                            {{ februaryTakeUp }}%
+                        </div>
+                        <div class="progress-bar progress-bar-danger" style="width: {{ februaryDischarge }}%">
+                            {{ februaryDischarge }}%
+                        </div>
+                    </div>
+                {% endif %}
+                <h6 class="box-title">Març</h6>
+                {% if marchTakeUp == 0 and marchDischarge == 0 %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" style="width: {{ marchTakeUp }}%">
+                            {{ marchTakeUp }}%
+                        </div>
+                        <div class="progress-bar progress-bar-danger" style="width: {{ marchDischarge }}%">
+                            {{ marchDischarge }}%
+                        </div>
+                    </div>
+                {% endif %}
+                <h6 class="box-title">Abril</h6>
+                {% if aprilTakeUp == 0 and aprilDischarge == 0 %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" style="width: {{ aprilTakeUp }}%">
+                            {{ aprilTakeUp }}%
+                        </div>
+                        <div class="progress-bar progress-bar-danger" style="width: {{ aprilDischarge }}%">
+                            {{ aprilDischarge }}%
+                        </div>
+                    </div>
+                {% endif %}
+                <h6 class="box-title">Maig</h6>
+                {% if mayTakeUp == 0 and mayDischarge == 0 %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" style="width: {{ mayTakeUp }}%">
+                            {{ mayTakeUp }}%
+                        </div>
+                        <div class="progress-bar progress-bar-danger" style="width: {{ mayDischarge }}%">
+                            {{ mayDischarge }}%
+                        </div>
+                    </div>
+                {% endif %}
+                <h6 class="box-title">Juny</h6>
+                {% if juneTakeUp == 0 and juneDischarge == 0 %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" style="width: {{ juneTakeUp }}%">
+                            {{ juneTakeUp }}%
+                        </div>
+                        <div class="progress-bar progress-bar-danger" style="width: {{ juneDischarge }}%">
+                            {{ juneDischarge }}%
+                        </div>
+                    </div>
+                {% endif %}
+                <h6 class="box-title">Juliol</h6>
+                {% if julyTakeUp == 0 and julyDischarge == 0 %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" style="width: {{ julyTakeUp }}%">
+                            {{ julyTakeUp }}%
+                        </div>
+                        <div class="progress-bar progress-bar-danger" style="width: {{ julyDischarge }}%">
+                            {{ julyDischarge }}%
+                        </div>
+                    </div>
+                {% endif %}
+                <h6 class="box-title">Agost</h6>
+                {% if augustTakeUp == 0 and augustDischarge == 0 %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" style="width: {{ augustTakeUp }}%">
+                            {{ augustTakeUp }}%
+                        </div>
+                        <div class="progress-bar progress-bar-danger" style="width: {{ augustDischarge }}%">
+                            {{ augustDischarge }}%
+                        </div>
+                    </div>
+                {% endif %}
+                <h6 class="box-title">Setembre</h6>
+                {% if septemberTakeUp == 0 and septemberDischarge == 0 %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" style="width: {{ septemberTakeUp }}%">
+                            {{ septemberTakeUp }}%
+                        </div>
+                        <div class="progress-bar progress-bar-danger" style="width: {{ septemberDischarge }}%">
+                            {{ septemberDischarge }}%
+                        </div>
+                    </div>
+                {% endif %}
+                <h6 class="box-title">Octubre</h6>
+                {% if octoberTakeUp == 0 and octoberDischarge == 0 %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" style="width: {{ octoberTakeUp }}%">
+                            {{ octoberTakeUp }}%
+                        </div>
+                        <div class="progress-bar progress-bar-danger" style="width: {{ octoberDischarge }}%">
+                            {{ octoberDischarge }}%
+                        </div>
+                    </div>
+                {% endif %}
+                <h6 class="box-title">Novembre</h6>
+                {% if novemberTakeUp == 0 and novemberDischarge == 0 %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" style="width: {{ novemberTakeUp }}%">
+                            {{ novemberTakeUp }}%
+                        </div>
+                        <div class="progress-bar progress-bar-danger" style="width: {{ novemberDischarge }}%">
+                            {{ novemberDischarge }}%
+                        </div>
+                    </div>
+                {% endif %}
+                <h6 class="box-title">Desembre</h6>
+                {% if decemberTakeUp == 0 and decemberDischarge == 0 %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" style="width: {{ decemberTakeUp }}%">
+                            {{ decemberTakeUp }}%
+                        </div>
+                        <div class="progress-bar progress-bar-danger" style="width: {{ decemberDischarge }}%">
+                            {{ decemberDischarge }}%
+                        </div>
+                    </div>
+                {% endif %}
+                <div>
+
                 </div>
             </div>
-            <h5 class="box-title">Altes/Baixes</h5>
-            <h6 class="box-title">Gener</h6>
-            {% if januaryTakeUp == 0 and januaryDischarge == 0 %}
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="box box-success">
+            <div class="box-header">
+                <h3 class="box-title">Gènere</h3>
+            </div>
+            <div class="box-body">
                 <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes</div>
-                </div>
-            {% else %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: {{ januaryTakeUp }}%">
-                        {{ januaryTakeUp }}%
+                    <div class="progress-bar progress-bar-success progress-bar-striped"
+                         style="width: {{ maleAmount }}%">
+                        {{ maleAmount }}%
                     </div>
-                    <div class="progress-bar progress-bar-danger" style="width: {{ januaryDischarge }}%">
-                        {{ januaryDischarge }}%
-                    </div>
-                </div>
-            {% endif %}
-            <h6 class="box-title">Febrer</h6>
-            {% if februaryTakeUp == 0 and februaryDischarge == 0 %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes</div>
-                </div>
-            {% else %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: {{ februaryTakeUp }}%">
-                        {{ februaryTakeUp }}%
-                    </div>
-                    <div class="progress-bar progress-bar-danger" style="width: {{ februaryDischarge }}%">
-                        {{ februaryDischarge }}%
+                    <div class="progress-bar progress-bar-danger progress-bar-striped"
+                         style="width: {{ femaleAmount }}%">
+                        {{ femaleAmount }}%
                     </div>
                 </div>
-            {% endif %}
-            <h6 class="box-title">Març</h6>
-            {% if marchTakeUp == 0 and marchDischarge == 0 %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes</div>
-                </div>
-            {% else %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: {{ marchTakeUp }}%">
-                        {{ marchTakeUp }}%
-                    </div>
-                    <div class="progress-bar progress-bar-danger" style="width: {{ marchDischarge }}%">
-                        {{ marchDischarge }}%
-                    </div>
-                </div>
-            {% endif %}
-            <h6 class="box-title">Abril</h6>
-            {% if aprilTakeUp == 0 and aprilDischarge == 0 %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes</div>
-                </div>
-            {% else %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: {{ aprilTakeUp }}%">
-                        {{ aprilTakeUp }}%
-                    </div>
-                    <div class="progress-bar progress-bar-danger" style="width: {{ aprilDischarge }}%">
-                        {{ aprilDischarge }}%
-                    </div>
-                </div>
-            {% endif %}
-            <h6 class="box-title">Maig</h6>
-            {% if mayTakeUp == 0 and mayDischarge == 0 %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes</div>
-                </div>
-            {% else %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: {{ mayTakeUp }}%">
-                        {{ mayTakeUp }}%
-                    </div>
-                    <div class="progress-bar progress-bar-danger" style="width: {{ mayDischarge }}%">
-                        {{ mayDischarge }}%
-                    </div>
-                </div>
-            {% endif %}
-            <h6 class="box-title">Juny</h6>
-            {% if juneTakeUp == 0 and juneDischarge == 0 %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes</div>
-                </div>
-            {% else %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: {{ juneTakeUp }}%">
-                        {{ juneTakeUp }}%
-                    </div>
-                    <div class="progress-bar progress-bar-danger" style="width: {{ juneDischarge }}%">
-                        {{ juneDischarge }}%
-                    </div>
-                </div>
-            {% endif %}
-            <h6 class="box-title">Juliol</h6>
-            {% if julyTakeUp == 0 and julyDischarge == 0 %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes</div>
-                </div>
-            {% else %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: {{ julyTakeUp }}%">
-                        {{ julyTakeUp }}%
-                    </div>
-                    <div class="progress-bar progress-bar-danger" style="width: {{ julyDischarge }}%">
-                        {{ julyDischarge }}%
-                    </div>
-                </div>
-            {% endif %}
-            <h6 class="box-title">Agost</h6>
-            {% if augustTakeUp == 0 and augustDischarge == 0 %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes</div>
-                </div>
-            {% else %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: {{ augustTakeUp }}%">
-                        {{ augustTakeUp }}%
-                    </div>
-                    <div class="progress-bar progress-bar-danger" style="width: {{ augustDischarge }}%">
-                        {{ augustDischarge }}%
-                    </div>
-                </div>
-            {% endif %}
-            <h6 class="box-title">Setembre</h6>
-            {% if septemberTakeUp == 0 and septemberDischarge == 0 %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes</div>
-                </div>
-            {% else %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: {{ septemberTakeUp }}%">
-                        {{ septemberTakeUp }}%
-                    </div>
-                    <div class="progress-bar progress-bar-danger" style="width: {{ septemberDischarge }}%">
-                        {{ septemberDischarge }}%
-                    </div>
-                </div>
-            {% endif %}
-            <h6 class="box-title">Octubre</h6>
-            {% if octoberTakeUp == 0 and octoberDischarge == 0 %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes</div>
-                </div>
-            {% else %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: {{ octoberTakeUp }}%">
-                        {{ octoberTakeUp }}%
-                    </div>
-                    <div class="progress-bar progress-bar-danger" style="width: {{ octoberDischarge }}%">
-                        {{ octoberDischarge }}%
-                    </div>
-                </div>
-            {% endif %}
-            <h6 class="box-title">Novembre</h6>
-            {% if novemberTakeUp == 0 and novemberDischarge == 0 %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes</div>
-                </div>
-            {% else %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: {{ novemberTakeUp }}%">
-                        {{ novemberTakeUp }}%
-                    </div>
-                    <div class="progress-bar progress-bar-danger" style="width: {{ novemberDischarge }}%">
-                        {{ novemberDischarge }}%
-                    </div>
-                </div>
-            {% endif %}
-            <h6 class="box-title">Desembre</h6>
-            {% if decemberTakeUp == 0 and decemberDischarge == 0 %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width: 100%">Ni altes ni baixes</div>
-                </div>
-            {% else %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: {{ decemberTakeUp }}%">
-                        {{ decemberTakeUp }}%
-                    </div>
-                    <div class="progress-bar progress-bar-danger" style="width: {{ decemberDischarge }}%">
-                        {{ decemberDischarge }}%
-                    </div>
-                </div>
-            {% endif %}
-            <div>
-                <div>
-                    <h5 class="box-title">
-                        Aniversaris {{ currentDate }}
-                    </h5>
-                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="box box-success">
+            <div class="box-header">
+                <h3 class="box-title">Aniversaris {{ currentDate }}</h3>
+            </div>
+            <div class="box-body">
                 <ul class="list-inline">
                     {% for coworker in coworkersBirthday %}
                         <li>

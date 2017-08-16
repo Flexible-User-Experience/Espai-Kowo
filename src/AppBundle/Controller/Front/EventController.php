@@ -29,17 +29,21 @@ class EventController extends Controller
         $allEvents = $this->getDoctrine()->getRepository('AppBundle:Event')->findAllEnabledSortedByDate();
         $contact = new ContactMessage();
         $form = $this->createForm(ContactNewsletterType::class, $contact);
+        $form->remove('recaptcha');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->setFlashMailchimpSubscribeAndEmailNotifications($contact);
             // Clean up new form
             $form = $this->createForm(ContactNewsletterType::class);
+            $form->remove('recaptcha');
         }
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($allEvents, $pagina, 9);
-        $newEvents = array(); $oldEvents = array(); $now = new \DateTime();
+        $newEvents = array();
+        $oldEvents = array();
+        $now = new \DateTime();
         /** @var Event $event */
         foreach ($pagination as $event) {
             if ($event->getDate()->format('Y-m-d') >= $now->format('Y-m-d')) {
@@ -52,10 +56,10 @@ class EventController extends Controller
         return $this->render(
             ':Frontend/Event:list.html.twig',
             [
-                'form'       => $form->createView(),
+                'form' => $form->createView(),
                 'pagination' => $pagination,
-                'oldEvents'  => $oldEvents,
-                'newEvents'  => $newEvents,
+                'oldEvents' => $oldEvents,
+                'newEvents' => $newEvents,
                 'categories' => $categories,
             ]
         );
@@ -65,7 +69,7 @@ class EventController extends Controller
      * @Route("/activitat/{slug}", name="front_event_detail")
      *
      * @param Request $request
-     * @param string $slug
+     * @param string  $slug
      *
      * @return Response
      */
@@ -80,12 +84,14 @@ class EventController extends Controller
 
         $contact = new ContactMessage();
         $form = $this->createForm(ContactNewsletterType::class, $contact);
+        $form->remove('recaptcha');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->setFlashMailchimpSubscribeAndEmailNotifications($contact);
             // Clean up new form
             $form = $this->createForm(ContactNewsletterType::class);
+            $form->remove('recaptcha');
         }
 
         return $this->render(':Frontend/Event:detail.html.twig', array(
@@ -119,6 +125,7 @@ class EventController extends Controller
 
     /**
      * @Route("/activitat/categoria/{slug}/{pagina}", name="front_category_event")
+     *
      * @param Request $request
      * @param string  $slug
      * @param int     $pagina
@@ -130,7 +137,7 @@ class EventController extends Controller
         /** @var EventCategory $category */
         $category = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->findOneBy(
             array(
-                'slug' => $slug
+                'slug' => $slug,
             )
         );
         if (!$category || !$category->getEnabled()) {
@@ -141,17 +148,21 @@ class EventController extends Controller
 
         $contact = new ContactMessage();
         $form = $this->createForm(ContactNewsletterType::class, $contact);
+        $form->remove('recaptcha');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->setFlashMailchimpSubscribeAndEmailNotifications($contact);
             // Clean up new form
             $form = $this->createForm(ContactNewsletterType::class);
+            $form->remove('recaptcha');
         }
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($allEvents, $pagina, 9);
-        $newEvents = array(); $oldEvents = array(); $now = new \DateTime();
+        $newEvents = array();
+        $oldEvents = array();
+        $now = new \DateTime();
         /** @var Event $event */
         foreach ($pagination as $event) {
             if ($event->getDate()->format('Y-m-d') >= $now->format('Y-m-d')) {
@@ -164,10 +175,10 @@ class EventController extends Controller
         return $this->render(':Frontend/Event:category_detail.html.twig', array(
             'selectedCategory' => $category,
             'categories' => $categories,
-            'form'       => $form->createView(),
+            'form' => $form->createView(),
             'pagination' => $pagination,
-            'oldEvents'  => $oldEvents,
-            'newEvents'  => $newEvents,
+            'oldEvents' => $oldEvents,
+            'newEvents' => $newEvents,
         ));
     }
 }

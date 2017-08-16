@@ -7,22 +7,22 @@ imports:
 # Symfony
 framework:
     translator:      { fallbacks: [ "%locale%" ] }
+    validation:      { enable_annotations: true }
     secret:          "%secret%"
+    default_locale:  "%locale%"
+    form:            ~
+    csrf_protection: ~
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    fragments:       ~
     router:
         resource:            "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
-    form:            ~
-    csrf_protection: ~
-    validation:      { enable_annotations: true }
     templating:
         engines: [ "twig" ]
-    default_locale:  "%locale%"
-    trusted_hosts:   ~
-    trusted_proxies: ~
     session:
         name:        EKSESSID
         handler_id:  ~
-    fragments:       ~
     http_method_override: true
 
 # Twig
@@ -38,7 +38,7 @@ twig:
         facebook_pixel_enabled:   "%facebook_pixel_enabled%"
         facebook_pixel_id:        "%facebook_pixel_id%"
         main_brand_title:         "%project_web_title%"
-        admin_tag_version:        "v1.0.65"
+        admin_tag_version:        "v1.0.66"
 
 # Assetic
 assetic:
@@ -201,7 +201,7 @@ sonata_admin:
             -
                 position: top
                 type: admin.block.coworker_indicators
-                class: col-md-6
+                class: col-md-12
 
 # CKEditor
 ivory_ck_editor:
@@ -215,6 +215,8 @@ ewz_recaptcha:
     public_key:  "%recaptcha_public_key%"
     private_key: "%recaptcha_private_key%"
     locale_key:  "%locale%"
+    enabled:     true
+    ajax:        false
 
 # KNP Paginator
 knp_paginator:

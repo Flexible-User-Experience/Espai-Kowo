@@ -15,6 +15,7 @@ use \DrewM\MailChimp\MailChimp;
  */
 class MailchimpManager
 {
+    const SUBSCRIBED = 'subscribed';
     /**
      * @var MailChimp $mailChimp
      */
@@ -65,12 +66,12 @@ class MailchimpManager
         // make HTTP API request
         $result = $this->mailChimp->post('lists/' . $listId . '/members', array(
             'email_address' => $contact->getEmail(),
-            'status'        => 'subscribed',
+            'status'        => self::SUBSCRIBED,
             'merge_fields'  => $mergeFields
         ));
 
         // check error
-        if ($result === false) {
+        if (is_array($result) && $result['status'] != self::SUBSCRIBED ) {
             $this->messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
         }
 

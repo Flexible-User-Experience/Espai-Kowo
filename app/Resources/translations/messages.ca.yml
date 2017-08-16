@@ -62,7 +62,7 @@ backend:
             answer: Resposta
             message: Missatge
             description: Descripció
-            user_question: Pregunta del usuari
+            user_question: "Pregunta de l'usuari"
             your_answer: La teva resposta
         event:
             event: Activitat
