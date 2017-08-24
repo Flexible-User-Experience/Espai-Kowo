@@ -10,6 +10,10 @@ Category_delete: Esborrar
 "Social Network_delete": Esborrar
 Activity_list: Activitats
 Activity_delete: Esborrar
+"Contact Message_list": Missatges de Contacte
+"Contact Message_delete": Esborrar
+User_list: Usuaris
+User_delete: Esborrar
 frontend:
     menu:
         blog: BLOG
