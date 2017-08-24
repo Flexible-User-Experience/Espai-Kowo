@@ -1,3 +1,5 @@
+Article_list: Articles
+Tag_list: Etiquetes
 frontend:
     menu:
         blog: BLOG
