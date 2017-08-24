@@ -7,52 +7,52 @@ services:
         class: AppBundle\Admin\CoworkerAdmin
         arguments: [ ~ , AppBundle\Entity\Coworker, AppBundle:Admin\CoworkerAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Coworker", group: "Coworkers" }
+            - { name: sonata.admin, manager_type: orm, label: "Coworker", group: "Coworkers", label_translator_strategy: "sonata.admin.label.strategy.noop" }
     admin.category:
         class: AppBundle\Admin\CategoryAdmin
         arguments: [ ~, AppBundle\Entity\Category, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Categoria", group: "Coworkers" }
+            - { name: sonata.admin, manager_type: orm, label: "Categoria", group: "Coworkers", label_translator_strategy: "sonata.admin.label.strategy.noop" }
     admin.socialnetworkcategory:
         class: AppBundle\Admin\SocialNetworkCategoryAdmin
         arguments: [ ~, AppBundle\Entity\SocialNetworkCategory, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Xarxa Social", group: "Coworkers" }
+            - { name: sonata.admin, manager_type: orm, label: "Xarxa Social", group: "Coworkers", label_translator_strategy: "sonata.admin.label.strategy.noop" }
     admin.socialnetwork:
         class: AppBundle\Admin\SocialNetworkAdmin
         arguments: [ ~, AppBundle\Entity\SocialNetwork, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Xarxes Socials", group: "Coworkers", show_in_dashboard: false }
+            - { name: sonata.admin, manager_type: orm, label: "Xarxes Socials", group: "Coworkers", label_translator_strategy: "sonata.admin.label.strategy.noop", show_in_dashboard: false }
     admin.event:
         class: AppBundle\Admin\EventAdmin
         arguments: [ ~, AppBundle\Entity\Event, AppBundle:Admin\EventAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Activitats", group: "Activitats" }
+            - { name: sonata.admin, manager_type: orm, label: "Activitat", group: "Activitats", label_translator_strategy: "sonata.admin.label.strategy.noop" }
     admin.eventcategory:
         class: AppBundle\Admin\EventCategoryAdmin
         arguments: [ ~, AppBundle\Entity\EventCategory, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Categoria", group: "Activitats" }
+            - { name: sonata.admin, manager_type: orm, label: "Categoria", group: "Activitats", label_translator_strategy: "sonata.admin.label.strategy.noop" }
     admin.post:
         class: AppBundle\Admin\PostAdmin
         arguments: [ ~, AppBundle\Entity\Post, AppBundle:Admin\PostAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Articles", group: "Blog" }
+            - { name: sonata.admin, manager_type: orm, label: "Article", group: "Blog", label_translator_strategy: "sonata.admin.label.strategy.noop" }
     admin.tag:
         class: AppBundle\Admin\TagAdmin
         arguments: [ ~, AppBundle\Entity\Tag, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Etiquetes", group: "Blog" }
+            - { name: sonata.admin, manager_type: orm, label: "Etiqueta", group: "Blog", label_translator_strategy: "sonata.admin.label.strategy.noop" }
     admin.contactmessage:
         class: AppBundle\Admin\ContactMessageAdmin
         arguments: [ ~, AppBundle\Entity\ContactMessage, AppBundle:Admin\ContactMessageAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Missatge de Contacte", group: "Contactes" }
+            - { name: sonata.admin, manager_type: orm, label: "Missatge de Contacte", group: "Contactes", label_translator_strategy: "sonata.admin.label.strategy.noop" }
     admin.user:
         class: AppBundle\Admin\UserAdmin
         arguments: [ ~, AppBundle\Entity\User, ~, "@fos_user.user_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Usuari", group: "Usuaris" }
+            - { name: sonata.admin, manager_type: orm, label: "Usuari", group: "Usuaris", label_translator_strategy: "sonata.admin.label.strategy.noop" }
 # Messaging
     app.courier:
         class: AppBundle\Service\CourierService
@@ -92,4 +92,3 @@ services:
         tags:
             - { name: sonata.block }
         arguments: [ "admin.block.coworker_indicators", "@templating", "@doctrine.orm.entity_manager" ]
-
