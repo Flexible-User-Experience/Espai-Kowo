@@ -1,5 +1,15 @@
 Article_list: Articles
+Article_delete: Esborrar
 Tag_list: Etiquetes
+Tag_delete: Esborrar
+Coworker_list: Coworkers
+Coworker_delete: Esborrar
+Category_list: Categories
+Category_delete: Esborrar
+"Social Network_list": Xarxes Socials
+"Social Network_delete": Esborrar
+Activity_list: Activitats
+Activity_delete: Esborrar
 frontend:
     menu:
         blog: BLOG

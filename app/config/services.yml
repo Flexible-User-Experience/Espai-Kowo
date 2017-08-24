@@ -27,7 +27,7 @@ services:
         class: AppBundle\Admin\EventAdmin
         arguments: [ ~, AppBundle\Entity\Event, AppBundle:Admin\EventAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Activitats", group: "Activitats", label_translator_strategy: "sonata.admin.label.strategy.noop" }
+            - { name: sonata.admin, manager_type: orm, label: "Activitat", group: "Activitats", label_translator_strategy: "sonata.admin.label.strategy.noop" }
     admin.eventcategory:
         class: AppBundle\Admin\EventCategoryAdmin
         arguments: [ ~, AppBundle\Entity\EventCategory, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
@@ -37,12 +37,12 @@ services:
         class: AppBundle\Admin\PostAdmin
         arguments: [ ~, AppBundle\Entity\Post, AppBundle:Admin\PostAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Articles", group: "Blog", label_translator_strategy: "sonata.admin.label.strategy.noop" }
+            - { name: sonata.admin, manager_type: orm, label: "Article", group: "Blog", label_translator_strategy: "sonata.admin.label.strategy.noop" }
     admin.tag:
         class: AppBundle\Admin\TagAdmin
         arguments: [ ~, AppBundle\Entity\Tag, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Etiquetes", group: "Blog", label_translator_strategy: "sonata.admin.label.strategy.noop" }
+            - { name: sonata.admin, manager_type: orm, label: "Etiqueta", group: "Blog", label_translator_strategy: "sonata.admin.label.strategy.noop" }
     admin.contactmessage:
         class: AppBundle\Admin\ContactMessageAdmin
         arguments: [ ~, AppBundle\Entity\ContactMessage, AppBundle:Admin\ContactMessageAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
