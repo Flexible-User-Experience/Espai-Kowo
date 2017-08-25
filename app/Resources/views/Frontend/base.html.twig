@@ -30,7 +30,7 @@
                 t.src=v;s=b.getElementsByTagName(e)[0];
                 s.parentNode.insertBefore(t,s)}(window, document,'script',
                 'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '{{ facebook_pixel_id }}'), {
+            fbq('init', '{{ facebook_pixel_id }}', {
                 em: em,
                 fn: fn,
                 ln: ln,
@@ -38,7 +38,7 @@
                 gb: gb,
                 ct: ct,
                 st: st,
-                zp: zp,
+                zp: zp
             });
             fbq('track', 'PageView');
         </script>
