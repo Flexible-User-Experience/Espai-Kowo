@@ -67,6 +67,13 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'phone',
+                null,
+                array(
+                    'label' => 'backend.admin.contact.phone',
+                )
+            )
+            ->add(
                 'email',
                 null,
                 array(
@@ -132,6 +139,13 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'phone',
+                null,
+                array(
+                    'label' => 'backend.admin.contact.phone',
+                )
+            )
+            ->add(
                 'email',
                 null,
                 array(
@@ -191,6 +205,13 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.contact.name',
+                )
+            )
+            ->add(
+                'phone',
+                null,
+                array(
+                    'label' => 'backend.admin.contact.phone',
                 )
             )
             ->add(

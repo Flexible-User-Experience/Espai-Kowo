@@ -70,6 +70,7 @@ backend:
             category: Dedicació
         contact:
             name: Nom
+            phone: Telèfon
             email: Correu electrònic
             checked: Llegit
             date: Data
