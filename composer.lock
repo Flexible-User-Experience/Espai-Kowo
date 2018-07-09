@@ -119,39 +119,31 @@
         },
         {
             "name": "beberlei/DoctrineExtensions",
-            "version": "v1.0.23",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/beberlei/DoctrineExtensions.git",
-                "reference": "dacd609f1fefb0e59054f2d09be594dfed9a46a6"
+                "reference": "5b1d5e4d97cf908baa353755533f2f3174185769"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/beberlei/DoctrineExtensions/zipball/dacd609f1fefb0e59054f2d09be594dfed9a46a6",
-                "reference": "dacd609f1fefb0e59054f2d09be594dfed9a46a6",
+                "url": "https://api.github.com/repos/beberlei/DoctrineExtensions/zipball/5b1d5e4d97cf908baa353755533f2f3174185769",
+                "reference": "5b1d5e4d97cf908baa353755533f2f3174185769",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2"
+                "php": ">=5.4"
             },
             "require-dev": {
-                "doctrine/orm": "~2.1",
+                "doctrine/orm": "^2.5",
+                "friendsofphp/php-cs-fixer": "^2.2.19",
                 "nesbot/carbon": "*",
-                "phpunit/phpunit": "~4.5",
-                "symfony/yaml": "~2.6",
-                "zf1/zend-date": "~1.12",
-                "zf1/zend-registry": "~1.12"
-            },
-            "suggest": {
-                "nesbot/carbon": "Alternative to DateTime",
-                "zf1/zend-date": "Alternative to DateTime"
+                "phpunit/phpunit": "^4.5",
+                "symfony/yaml": "^2.6",
+                "zf1/zend-date": "^1.12",
+                "zf1/zend-registry": "^1.12"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "DoctrineExtensions\\": "src/"
@@ -177,7 +169,7 @@
                 "doctrine",
                 "orm"
             ],
-            "time": "2018-05-28T08:54:30+00:00"
+            "time": "2018-07-06T10:33:58+00:00"
         },
         {
             "name": "behat/transliterator",
@@ -3475,16 +3467,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.15",
+            "version": "v2.0.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "10bcb46e8f3d365170f6de9d05245aa066b81f09"
+                "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/10bcb46e8f3d365170f6de9d05245aa066b81f09",
-                "reference": "10bcb46e8f3d365170f6de9d05245aa066b81f09",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/29af24f25bab834fcbb38ad2a69fa93b867e070d",
+                "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d",
                 "shasum": ""
             },
             "require": {
@@ -3520,7 +3512,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2018-06-08T15:26:40+00:00"
+            "time": "2018-07-04T16:31:37+00:00"
         },
         {
             "name": "presta/sitemap-bundle",
@@ -4111,16 +4103,16 @@
         },
         {
             "name": "sonata-project/core-bundle",
-            "version": "3.10.0",
+            "version": "3.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataCoreBundle.git",
-                "reference": "352275323c28f921c57312d5fb609b693a8bc8e0"
+                "reference": "08148e007c92fefc4315483eece38acade01614f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/352275323c28f921c57312d5fb609b693a8bc8e0",
-                "reference": "352275323c28f921c57312d5fb609b693a8bc8e0",
+                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/08148e007c92fefc4315483eece38acade01614f",
+                "reference": "08148e007c92fefc4315483eece38acade01614f",
                 "shasum": ""
             },
             "require": {
@@ -4184,7 +4176,7 @@
             "keywords": [
                 "sonata"
             ],
-            "time": "2018-06-13T04:16:25+00:00"
+            "time": "2018-07-07T22:27:10+00:00"
         },
         {
             "name": "sonata-project/datagrid-bundle",
@@ -4438,16 +4430,16 @@
         },
         {
             "name": "sonata-project/exporter",
-            "version": "1.9.0",
+            "version": "1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/exporter.git",
-                "reference": "c20cb476179d6b6e5902859c7be9512198e5a552"
+                "reference": "6dbea3379447f672f46fccd7e29210cc1246aea9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/exporter/zipball/c20cb476179d6b6e5902859c7be9512198e5a552",
-                "reference": "c20cb476179d6b6e5902859c7be9512198e5a552",
+                "url": "https://api.github.com/repos/sonata-project/exporter/zipball/6dbea3379447f672f46fccd7e29210cc1246aea9",
+                "reference": "6dbea3379447f672f46fccd7e29210cc1246aea9",
                 "shasum": ""
             },
             "require": {
@@ -4504,7 +4496,7 @@
                 "export",
                 "xls"
             ],
-            "time": "2018-05-10T11:12:53+00:00"
+            "time": "2018-07-04T16:52:00+00:00"
         },
         {
             "name": "sonata-project/google-authenticator",
