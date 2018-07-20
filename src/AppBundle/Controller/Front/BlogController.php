@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class BlogController
+ *
+ * @category Controller
  */
 class BlogController extends Controller
 {

@@ -15,6 +15,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class CoworkerController
+ *
+ * @category Controller
  */
 class CoworkerController extends Controller
 {

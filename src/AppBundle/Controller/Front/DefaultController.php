@@ -15,6 +15,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class DefaultController
+ *
+ * @category Controller
  */
 class DefaultController extends Controller
 {

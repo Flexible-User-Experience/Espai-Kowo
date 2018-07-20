@@ -15,6 +15,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class EventController
+ *
+ * @category Controller
  */
 class EventController extends Controller
 {

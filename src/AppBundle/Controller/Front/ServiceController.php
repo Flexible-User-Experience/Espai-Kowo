@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ServiceController
+ *
+ * @category Controller
  */
 class ServiceController extends Controller
 {
