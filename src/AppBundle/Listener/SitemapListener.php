@@ -17,8 +17,6 @@ use Symfony\Component\Routing\RouterInterface;
  * Class SitemapListener
  *
  * @category Listener
- * @package  AppBundle\Listener
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class SitemapListener implements SitemapListenerInterface
 {
@@ -48,11 +46,7 @@ class SitemapListener implements SitemapListenerInterface
     private $events;
 
     /**
-     *
-     *
      * Methods
-     *
-     *
      */
 
     /**
@@ -79,6 +73,11 @@ class SitemapListener implements SitemapListenerInterface
         if (is_null($section) || $section == 'default') {
             // Homepage
             $url = $this->makeUrl('front_homepage');
+            $event
+                ->getUrlContainer()
+                ->addUrl($this->makeUrlConcrete($url), 'default');
+            // Services
+            $url = $this->makeUrl('front_services');
             $event
                 ->getUrlContainer()
                 ->addUrl($this->makeUrlConcrete($url), 'default');
