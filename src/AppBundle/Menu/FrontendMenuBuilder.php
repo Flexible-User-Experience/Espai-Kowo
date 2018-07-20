@@ -12,8 +12,6 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
  * Class FrontendMenuBuilder
  *
  * @category Menu
- * @package  AppBundle\Menu
- * @author   David Romaní <david@flux.cat>
  */
 class FrontendMenuBuilder
 {
@@ -33,11 +31,7 @@ class FrontendMenuBuilder
     private $ts;
 
     /**
-     *
-     *
      * Methods
-     *
-     *
      */
 
     /**
@@ -72,11 +66,11 @@ class FrontendMenuBuilder
             );
         }
         $menu->addChild(
-            'front_blog',
+            'front_services',
             array(
-                'label' => 'frontend.menu.blog',
-                'route' => 'front_blog',
-                'current' => $route == 'front_blog' || $route == 'front_blog_detail' || $route == 'front_blog_tag_detail',
+                'label' => 'frontend.menu.services',
+                'route' => 'front_services',
+                'current' => $route == 'front_services',
             )
         );
         $menu->addChild(
@@ -85,6 +79,14 @@ class FrontendMenuBuilder
                 'label'   => 'frontend.menu.coworkers',
                 'route'   => 'front_coworkers_list',
                 'current' => $route == 'front_coworkers_list' || $route == 'front_coworker_detail',
+            )
+        );
+        $menu->addChild(
+            'front_blog',
+            array(
+                'label' => 'frontend.menu.blog',
+                'route' => 'front_blog',
+                'current' => $route == 'front_blog' || $route == 'front_blog_detail' || $route == 'front_blog_tag_detail',
             )
         );
         $menu->addChild(

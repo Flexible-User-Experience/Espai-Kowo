@@ -88,6 +88,7 @@
 .no-m-bottom { margin-bottom: 0; }
 .extra-m-top    { margin-top: @ek-s-base-plus; }
 .normal-m-top   { margin-top: @gap-normal; }
+.normal-m-bottom { margin-bottom: @gap-normal; }
 .extra-m-bottom { margin-bottom: @gap-big; }
 .small-m-top    { margin-top: @gap-small; }
 .small-m-bottom { margin-bottom: @gap-small; }
@@ -230,6 +231,14 @@ div.subtitle-background {
   }
 }
 
+// Homepage values section
+div.values div div.caption h4.text-muted {
+  margin-bottom: @gap-big;
+  @media(min-width: @screen-xs-max) {
+    margin-bottom: 0;
+  }
+}
+
 // Homepage pricing table
 .pricing {
   text-align: center;
@@ -245,8 +254,7 @@ div.subtitle-background {
   width: 32px;
 }
 
-.pricing li:first-child,
-.pricing li:last-child {
+.pricing li:first-child, .pricing li:last-child {
   padding: 20px 13px;
 }
 

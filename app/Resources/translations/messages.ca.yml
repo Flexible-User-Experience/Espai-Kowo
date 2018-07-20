@@ -18,6 +18,7 @@ frontend:
     menu:
         blog: BLOG
         coworkers: COWORKERS
+        services: SERVEIS
         events: ACTIVITATS
         contact: CONTACTE
         cms: "[ CMS ]"
