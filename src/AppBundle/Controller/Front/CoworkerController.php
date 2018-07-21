@@ -2,8 +2,10 @@
 
 namespace AppBundle\Controller\Front;
 
+use AppBundle\Entity\ContactMessage;
 use AppBundle\Entity\Coworker;
 use AppBundle\Entity\SocialNetwork;
+use AppBundle\Form\Type\ContactHomepageType;
 use AppBundle\Form\Type\CoworkerDataFormType;
 use AppBundle\Service\NotificationService;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -23,9 +25,11 @@ class CoworkerController extends Controller
     /**
      * @Route("/coworkers", name="front_coworkers_list")
      *
+     * @param Request $request
+     *
      * @return Response
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
         $coworkers = $this->getDoctrine()->getRepository('AppBundle:Coworker')->findAllEnabledSortedBySurname();
         /** @var Coworker $coworker */
@@ -34,9 +38,16 @@ class CoworkerController extends Controller
             $coworker->setSocialNetworks($socialNetworks);
         }
 
+        $contact = new ContactMessage();
+        $form = $this->createForm(ContactHomepageType::class, $contact);
+        $form->handleRequest($request);
+
         return $this->render(
             ':Frontend/Coworker:list.html.twig',
-            ['coworkers' => $coworkers]
+            [
+                'coworkers' => $coworkers,
+                'form' => $form->createView(),
+            ]
         );
     }
 

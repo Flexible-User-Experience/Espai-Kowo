@@ -3,6 +3,38 @@
 {% block title %}Coworkers · {{ parent() }}{% endblock %}
 
 {% block main %}
+    <div class="p-vertical-small green-background-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    {#<!-- Button trigger modal -->#}
+                    <button type="button" class="btn btn-kowo-orange" data-toggle="modal" data-target="#form_modal">
+                        <i class="fa fa-heart" aria-hidden="true"></i> Vull provar aquest servei
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#<!-- Modal -->#}
+    <div class="modal fade" id="form_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content text-left">
+                <div class="modal-header green-background-light">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Deixa'ns les teves dades i t'ho explicarem tot amb més detall</h4>
+                </div>
+                <div class="modal-body">
+                    {{ form_start(form) }}
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.phone) }}
+                    {{ form_row(form.email) }}
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include ':Frontend/includes:notice_flash.html.twig' %}
     <div class="container container-main">
         <div class="row">
         {% if coworkers | length > 0 %}
