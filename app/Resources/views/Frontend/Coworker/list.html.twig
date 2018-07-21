@@ -3,6 +3,7 @@
 {% block title %}Coworkers · {{ parent() }}{% endblock %}
 
 {% block main %}
+    {% include ':Frontend:Coworker/common_call_to_action_fragment.html.twig' %}
     <div class="container container-main">
         <div class="row">
         {% if coworkers | length > 0 %}
