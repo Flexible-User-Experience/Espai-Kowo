@@ -74,11 +74,12 @@ class CoworkerController extends Controller
     /**
      * @Route("/coworker/{slug}", name="front_coworker_detail")
      *
-     * @param $slug
+     * @param Request $request
+     * @param string  $slug
      *
      * @return Response
      */
-    public function detailAction($slug)
+    public function detailAction(Request $request, $slug)
     {
         $coworker = $this->getDoctrine()->getRepository('AppBundle:Coworker')->findOneBy(
             array(
@@ -88,9 +89,33 @@ class CoworkerController extends Controller
         $socialNetworks = $this->getDoctrine()->getRepository('AppBundle:SocialNetwork')->getCoworkerSocialNetworksSortedByTitle($coworker);
         $coworker->setSocialNetworks($socialNetworks);
 
+        $contact = new ContactMessage();
+        $form = $this->createForm(ContactHomepageType::class, $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var MailchimpManager $mailchimpManager */
+            $mailchimpManager = $this->get('app.mailchimp_manager');
+            /** @var NotificationService $messenger */
+            $messenger = $this->get('app.notification');
+            // Set frontend flash message
+            $this->addFlash(
+                'notice',
+                'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
+            );
+            // Subscribe contact to free-trial mailchimp list
+            $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_free_trial_list_id'));
+            // Send email notifications
+            $messenger->sendCommonUserNotification($contact);
+            $messenger->sendNewsletterSubscriptionAdminNotification($contact);
+            // Clean up new form
+            $form = $this->createForm(ContactHomepageType::class);
+        }
+
         return $this->render(
             ':Frontend/Coworker:detail.html.twig', array(
                 'coworker' => $coworker,
+                'form' => $form->createView(),
             )
         );
     }
