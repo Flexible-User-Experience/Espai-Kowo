@@ -18,7 +18,7 @@
                     <tr>
                         <th>
                             <h4>Persona interessada en contactar</h4>
-                            <p class="grey-color">{{ contact.name }}, amb correu elèctrònic <a href="mailto:{{ contact.email }}">{{ contact.email }}</a> ha emplenat el formulari de la pàgina {{ fromActionText }}.</p>
+                            <p class="grey-color">{{ contact.name }}, amb correu elèctrònic <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>{% if contact.phone is not null %} i telèfon {{ contact.phone }}{% endif %}, ha emplenat el formulari de la pàgina {{ fromActionText }}.</p>
                         </th>
                         <th class="expander"></th>
                     </tr>
