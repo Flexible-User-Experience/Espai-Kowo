@@ -73,11 +73,6 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Set frontend flash message
-            $this->addFlash(
-                'notice',
-                'El teu missatge s\'ha enviat correctament'
-            );
             // Persist new contact message into DB
             $em = $this->getDoctrine()->getManager();
             $em->persist($contactMessage);
@@ -85,8 +80,20 @@ class DefaultController extends Controller
             // Send email notifications
             /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
-            $messenger->sendCommonUserNotification($contactMessage);
-            $messenger->sendContactAdminNotification($contactMessage);
+            $userDeliveryResult = $messenger->sendCommonUserNotification($contactMessage);
+            $adminDeliveryResult = $messenger->sendContactAdminNotification($contactMessage);
+            // Set frontend flash message
+            if ($userDeliveryResult > 0 && $adminDeliveryResult > 0) {
+                $this->addFlash(
+                    'notice',
+                    'El teu missatge s\'ha enviat correctament, ens posarem en contacte amb tu el més aviat possible. Gràcies.'
+                );
+            } else {
+                $this->addFlash(
+                    'danger',
+                    'Ho sentim, s\'ha produït un error a l\'enviar el missatge de contacte. Torna a intentar-ho.'
+                );
+            }
             // Clean up new form
             $contactMessage = new ContactMessage();
             $form = $this->createForm(ContactMessageType::class, $contactMessage);
