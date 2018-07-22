@@ -96,19 +96,21 @@ class NotificationService
      * Send a common notification mail to admin user from contact context.
      *
      * @param ContactMessage $contactMessage
-     * @param string         $text
+     * @param string         $fromActionText
      *
      * @return int messages delivered amount | 0 if failure
      */
-    public function sendCommonContactAdminNotification(ContactMessage $contactMessage, $text)
+    public function sendCommonContactAdminNotification(ContactMessage $contactMessage, $fromActionText = 'homepage')
     {
         return $this->messenger->sendEmail(
             $this->amd,
             $this->amd,
-            'Notificació pàgina web '.$this->urlBase,
-            $this->twig->render(':Mails:common_admin_notification.html.twig', array(
-                'text' => $text,
-            ))
+            'Missatge de '.$fromActionText.' pàgina web '.$this->urlBase,
+            $this->twig->render(':Mails:newsletter_form_contact_admin_notification.html.twig', array(
+                'contact' => $contactMessage,
+                'fromActionText' => $fromActionText
+            )),
+            $contactMessage->getEmail()
         );
     }
 
