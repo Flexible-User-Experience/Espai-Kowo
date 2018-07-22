@@ -125,7 +125,7 @@ class EventController extends Controller
         $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
         // Send email notifications
         $messenger->sendCommonUserNotification($contact);
-        $messenger->sendNewsletterSubscriptionAdminNotification($contact);
+        $messenger->sendNewsletterSubscriptionAdminNotification($contact, 'activitats');
     }
 
     /**

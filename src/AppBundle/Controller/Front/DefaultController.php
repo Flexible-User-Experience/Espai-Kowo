@@ -47,7 +47,7 @@ class DefaultController extends Controller
             $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_free_trial_list_id'));
             // Send email notifications
             $messenger->sendCommonUserNotification($contact);
-            $messenger->sendNewsletterSubscriptionAdminNotification($contact);
+            $messenger->sendNewsletterSubscriptionAdminNotification($contact, 'homepage');
             // Clean up new form
             $form = $this->createForm(ContactHomepageType::class);
         }

@@ -144,13 +144,14 @@ class NotificationService
      * Send a newsletter subscription form notification to admin user.
      *
      * @param ContactMessage $contactMessage
+     * @param string         $fromActionText
      */
-    public function sendNewsletterSubscriptionAdminNotification(ContactMessage $contactMessage)
+    public function sendNewsletterSubscriptionAdminNotification(ContactMessage $contactMessage, $fromActionText = 'newsletter')
     {
         $this->messenger->sendEmail(
             $this->amd,
             $this->amd,
-            'Missatge de newsletter pàgina web '.$this->urlBase,
+            'Missatge de '.$fromActionText.' pàgina web '.$this->urlBase,
             $this->twig->render(':Mails:newsletter_form_admin_notification.html.twig', array(
                 'contact' => $contactMessage,
             )),

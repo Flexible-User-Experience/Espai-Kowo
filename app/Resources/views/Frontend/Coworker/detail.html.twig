@@ -6,6 +6,9 @@
     {% include ':Frontend:Coworker/common_call_to_action_fragment.html.twig' %}
     <div class="container container-main">
         <div class="row">
+            <div class="col-xs-12">
+                {% include ':Frontend/includes:notice_flash.html.twig' %}
+            </div>
             {# Left side #}
             <div class="col-sm-4 extra-m-bottom">
                 {% if coworker.imageName is not null %}
