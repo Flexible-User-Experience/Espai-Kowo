@@ -154,6 +154,7 @@ class NotificationService
             'Missatge de '.$fromActionText.' pàgina web '.$this->urlBase,
             $this->twig->render(':Mails:newsletter_form_admin_notification.html.twig', array(
                 'contact' => $contactMessage,
+                'fromActionText' => $fromActionText
             )),
             $contactMessage->getEmail()
         );
