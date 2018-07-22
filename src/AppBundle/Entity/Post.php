@@ -18,7 +18,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Post
  *
  * @category Entity
- * @package  AppBundle\Entity
  * @author   David Romaní <david@flux.cat>
  *
  * @ORM\Table()
@@ -96,11 +95,7 @@ class Post extends AbstractBase
     private $tags;
 
     /**
-     *
-     *
      * Methods
-     *
-     *
      */
 
     /**
@@ -112,8 +107,6 @@ class Post extends AbstractBase
     }
 
     /**
-     * Get slug
-     *
      * @return string
      */
     public function getSlug()
@@ -122,8 +115,6 @@ class Post extends AbstractBase
     }
 
     /**
-     * Set publishedAt
-     *
      * @param \DateTime $publishedAt
      *
      * @return Post
@@ -136,8 +127,6 @@ class Post extends AbstractBase
     }
 
     /**
-     * Get publishedAt
-     *
      * @return \DateTime
      */
     public function getPublishedAt()
@@ -146,8 +135,6 @@ class Post extends AbstractBase
     }
 
     /**
-     * Set imageFile
-     *
      * @param File|UploadedFile $imageFile
      *
      * @return $this
@@ -165,8 +152,6 @@ class Post extends AbstractBase
     }
 
     /**
-     * Get imageFile
-     *
      * @return File|UploadedFile
      */
     public function getImageFile()
@@ -175,8 +160,6 @@ class Post extends AbstractBase
     }
 
     /**
-     * Set imageName
-     *
      * @param string $imageName
      *
      * @return $this
@@ -189,8 +172,6 @@ class Post extends AbstractBase
     }
 
     /**
-     * Get imageName
-     *
      * @return string
      */
     public function getImageName()
@@ -199,8 +180,6 @@ class Post extends AbstractBase
     }
 
     /**
-     * Get shortDescription
-     *
      * @return string
      */
     public function getShortDescription()
@@ -209,8 +188,6 @@ class Post extends AbstractBase
     }
 
     /**
-     * Set shortDescription
-     *
      * @param string $shortDescription
      *
      * @return $this
@@ -223,8 +200,6 @@ class Post extends AbstractBase
     }
 
     /**
-     * Set MetaKeywords
-     *
      * @param string $metaKeywords
      *
      * @return $this
@@ -237,8 +212,6 @@ class Post extends AbstractBase
     }
 
     /**
-     * Get MetaKeywords
-     *
      * @return string
      */
     public function getMetaKeywords()
@@ -247,8 +220,6 @@ class Post extends AbstractBase
     }
 
     /**
-     * Set MetaDescription
-     *
      * @param string $metaDescription
      *
      * @return $this
@@ -261,8 +232,6 @@ class Post extends AbstractBase
     }
 
     /**
-     * Get MetaDescription
-     *
      * @return string
      */
     public function getMetaDescription()
@@ -271,8 +240,6 @@ class Post extends AbstractBase
     }
 
     /**
-     * Set tags
-     *
      * @param ArrayCollection $tags
      *
      * @return $this
@@ -285,8 +252,6 @@ class Post extends AbstractBase
     }
 
     /**
-     * Get tags
-     *
      * @return ArrayCollection
      */
     public function getTags()
@@ -295,8 +260,6 @@ class Post extends AbstractBase
     }
 
     /**
-     * Add tag
-     *
      * @param Tag $tag
      *
      * @return $this
@@ -310,18 +273,18 @@ class Post extends AbstractBase
     }
 
     /**
-     * Remove tag
-     *
      * @param Tag $tag
+     *
+     * @return $this
      */
     public function removeTag(Tag $tag)
     {
         $this->tags->removeElement($tag);
+
+        return $this;
     }
 
     /**
-     * To string
-     *
      * @return string
      */
     public function __toString()

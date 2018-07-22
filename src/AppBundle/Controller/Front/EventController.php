@@ -116,16 +116,23 @@ class EventController extends Controller
         $mailchimpManager = $this->get('app.mailchimp_manager');
         /** @var NotificationService $messenger */
         $messenger = $this->get('app.notification');
-        // Set frontend flash message
-        $this->addFlash(
-            'notice',
-            'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
-        );
         // Subscribe contact to free-trial mailchimp list
         $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
         // Send email notifications
-        $messenger->sendCommonUserNotification($contact);
-        $messenger->sendNewsletterSubscriptionAdminNotification($contact, 'activitats');
+        $userDeliveryResult = $messenger->sendCommonUserNotification($contact);
+        $adminDeliveryResult = $messenger->sendNewsletterSubscriptionAdminNotification($contact, 'activitats');
+        // Set frontend flash message
+        if ($userDeliveryResult > 0 && $adminDeliveryResult > 0) {
+            $this->addFlash(
+                'notice',
+                'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
+            );
+        } else {
+            $this->addFlash(
+                'danger',
+                'Ho sentim, s\'ha produït un error a l\'enviar el missatge de contacte. Torna a intentar-ho.'
+            );
+        }
     }
 
     /**

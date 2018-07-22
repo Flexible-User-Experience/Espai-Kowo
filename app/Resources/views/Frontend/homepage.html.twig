@@ -71,10 +71,14 @@
             </div>
         </div>
     </div>
-    {% include ':Frontend/includes:notice_flash.html.twig' %}
     {# Subhero section #}
     <div class="p-vertical">
         <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    {% include ':Frontend/includes:notice_flash.html.twig' %}
+                </div>
+            </div>
             <div class="row small-m-top values">
                 <div class="col-xs-12 col-sm-4">
                     <img src="{{ asset('bundles/app/img/photo-home-mini-1.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="Una nova manera de treballar">

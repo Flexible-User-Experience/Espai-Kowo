@@ -6,7 +6,7 @@ namespace AppBundle\Service;
  * Class CourierService
  *
  * @category Service
- * @package  AppBundle\Service
+ *
  * @author   David Romaní <david@flux.cat>
  */
 class CourierService
@@ -17,11 +17,7 @@ class CourierService
     private $mailer;
 
     /**
-     *
-     *
      * Methods
-     *
-     *
      */
 
     /**
@@ -43,7 +39,7 @@ class CourierService
      * @param string $body
      * @param string|null $replyAddress
      *
-     * @return int
+     * @return int messages delivered amount | 0 if failure
      */
     public function sendEmail($from, $to, $subject, $body, $replyAddress = null)
     {

@@ -15,8 +15,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class SocialNetworkCategory
  *
  * @category Entity
- * @package  AppBundle\Entity
  * @author   Anton Serra <aserratorta@gmail.com>
+ *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SocialNetworkCategoryRepository")
  * @Vich\Uploadable
@@ -60,11 +60,7 @@ class SocialNetworkCategory extends AbstractBase
     private $socialNetworks;
 
     /**
-     *
-     *
      * Methods
-     *
-     *
      */
 
     /**
@@ -84,8 +80,6 @@ class SocialNetworkCategory extends AbstractBase
     }
 
     /**
-     * Set imageFile
-     *
      * @param File|UploadedFile $imageFile
      *
      * @return $this

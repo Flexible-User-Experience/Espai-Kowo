@@ -17,8 +17,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Class Coworker.
  *
  * @category Entity
- *
  * @author   Anton Serra <aserratorta@gmail.com>
+ *
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="name_unique", columns={"name", "surname"})})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CoworkerRepository")
  * @Vich\Uploadable
@@ -200,8 +200,6 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Get slug.
-     *
      * @return string
      */
     public function getSlug()
@@ -338,8 +336,6 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Set imageFile.
-     *
      * @param File|UploadedFile $imageFile
      *
      * @return $this
@@ -357,8 +353,6 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Get imageFile.
-     *
      * @return File|UploadedFile
      */
     public function getImageFile()
@@ -367,8 +361,6 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Set imageName.
-     *
      * @param string $imageName
      *
      * @return $this
@@ -381,8 +373,6 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Get imageName.
-     *
      * @return string
      */
     public function getImageName()
@@ -391,8 +381,6 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Set imageFileBW.
-     *
      * @param File|UploadedFile $imageFileBW
      *
      * @return $this
@@ -410,8 +398,6 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Get imageFileBW.
-     *
      * @return File|UploadedFile
      */
     public function getImageFileBW()
@@ -420,8 +406,6 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Set imageNameBW.
-     *
      * @param string $imageNameBW
      *
      * @return $this
@@ -434,8 +418,6 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Get imageNameBW.
-     *
      * @return string
      */
     public function getImageNameBW()
@@ -464,8 +446,6 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Get gifFile.
-     *
      * @return File|UploadedFile
      */
     public function getGifFile()
@@ -474,8 +454,6 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Set gifFile.
-     *
      * @param File|UploadedFile $gifFile
      *
      * @return $this
@@ -493,8 +471,6 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Get gitName.
-     *
      * @return string
      */
     public function getGifName()
@@ -503,8 +479,6 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * Set gifName.
-     *
      * @param string $gifName
      *
      * @return $this
@@ -549,7 +523,8 @@ class Coworker extends AbstractBase
         return $this;
     }
 
-    /* @param SocialNetwork $socialNetwork
+    /**
+     * @param SocialNetwork $socialNetwork
      *
      * @return $this
      */
@@ -661,8 +636,6 @@ class Coworker extends AbstractBase
     }
 
     /**
-     * To string.
-     *
      * @return string
      */
     public function __toString()

@@ -7,7 +7,6 @@ use AppBundle\Entity\Coworker;
 use AppBundle\Entity\SocialNetwork;
 use AppBundle\Form\Type\ContactHomepageType;
 use AppBundle\Form\Type\CoworkerDataFormType;
-use AppBundle\Manager\MailchimpManager;
 use AppBundle\Service\NotificationService;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityNotFoundException;
@@ -44,20 +43,23 @@ class CoworkerController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var MailchimpManager $mailchimpManager */
-            $mailchimpManager = $this->get('app.mailchimp_manager');
             /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
-            // Set frontend flash message
-            $this->addFlash(
-                'notice',
-                'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
-            );
-            // Subscribe contact to free-trial mailchimp list
-            $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_free_trial_list_id'));
             // Send email notifications
-            $messenger->sendCommonUserNotification($contact);
-            $messenger->sendNewsletterSubscriptionAdminNotification($contact, 'coworkers');
+            $userDeliveryResult = $messenger->sendCommonUserNotification($contact);
+            $adminDeliveryResult = $messenger->sendCommonContactAdminNotification($contact, 'coworkers');
+            // Set frontend flash message
+            if ($userDeliveryResult > 0 && $adminDeliveryResult > 0) {
+                $this->addFlash(
+                    'notice',
+                    'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
+                );
+            } else {
+                $this->addFlash(
+                    'danger',
+                    'Ho sentim, s\'ha produït un error a l\'enviar el missatge de contacte. Torna a intentar-ho.'
+                );
+            }
             // Clean up new form
             $form = $this->createForm(ContactHomepageType::class);
         }
@@ -94,20 +96,23 @@ class CoworkerController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var MailchimpManager $mailchimpManager */
-            $mailchimpManager = $this->get('app.mailchimp_manager');
             /** @var NotificationService $messenger */
             $messenger = $this->get('app.notification');
-            // Set frontend flash message
-            $this->addFlash(
-                'notice',
-                'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
-            );
-            // Subscribe contact to free-trial mailchimp list
-            $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_free_trial_list_id'));
             // Send email notifications
-            $messenger->sendCommonUserNotification($contact);
-            $messenger->sendNewsletterSubscriptionAdminNotification($contact, 'coworker');
+            $userDeliveryResult = $messenger->sendCommonUserNotification($contact);
+            $adminDeliveryResult = $messenger->sendCommonContactAdminNotification($contact, 'coworker');
+            // Set frontend flash message
+            if ($userDeliveryResult > 0 && $adminDeliveryResult > 0) {
+                $this->addFlash(
+                    'notice',
+                    'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
+                );
+            } else {
+                $this->addFlash(
+                    'danger',
+                    'Ho sentim, s\'ha produït un error a l\'enviar el missatge de contacte. Torna a intentar-ho.'
+                );
+            }
             // Clean up new form
             $form = $this->createForm(ContactHomepageType::class);
         }

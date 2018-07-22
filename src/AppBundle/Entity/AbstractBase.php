@@ -9,7 +9,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Abstract entities base class
  *
  * @category Entity
- * @package  AppBundle\Entity
  * @author   David Romaní <david@flux.cat>
  *
  * @Gedmo\SoftDeleteable(fieldName="removedAt", timeAware=false)
@@ -56,16 +55,10 @@ abstract class AbstractBase
     protected $enabled = true;
 
     /**
-     *
-     *
      * Methods
-     *
-     *
      */
 
     /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
@@ -74,8 +67,6 @@ abstract class AbstractBase
     }
 
     /**
-     * Set createdAt
-     *
      * @param \DateTime $createdAt
      *
      * @return $this
@@ -88,8 +79,6 @@ abstract class AbstractBase
     }
 
     /**
-     * Get createdAt
-     *
      * @return \DateTime
      */
     public function getCreatedAt()
@@ -98,8 +87,6 @@ abstract class AbstractBase
     }
 
     /**
-     * Set updatedAt
-     *
      * @param \DateTime $updatedAt
      *
      * @return $this
@@ -112,8 +99,6 @@ abstract class AbstractBase
     }
 
     /**
-     * Get updatedAt
-     *
      * @return \DateTime
      */
     public function getUpdatedAt()
@@ -122,8 +107,6 @@ abstract class AbstractBase
     }
 
     /**
-     * Set removedAt
-     *
      * @param \DateTime $removedAt
      *
      * @return $this
@@ -136,8 +119,6 @@ abstract class AbstractBase
     }
 
     /**
-     * Get removedAt
-     *
      * @return \DateTime
      */
     public function getRemovedAt()
@@ -146,8 +127,6 @@ abstract class AbstractBase
     }
 
     /**
-     * Remove (soft delete)
-     *
      * @return $this
      */
     public function remove()
@@ -158,8 +137,6 @@ abstract class AbstractBase
     }
 
     /**
-     * Is deleted?
-     *
      * @return bool
      */
     public function isDeleted()
@@ -168,8 +145,6 @@ abstract class AbstractBase
     }
 
     /**
-     * Set Enabled
-     *
      * @param boolean $enabled
      *
      * @return $this
@@ -182,8 +157,6 @@ abstract class AbstractBase
     }
 
     /**
-     * Get Enabled
-     *
      * @return boolean
      */
     public function getEnabled()
@@ -192,8 +165,6 @@ abstract class AbstractBase
     }
 
     /**
-     * To string
-     *
      * @return string
      */
     public function __toString()

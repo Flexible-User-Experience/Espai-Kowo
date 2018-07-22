@@ -4,13 +4,11 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\DescriptionTrait;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class ContactMessage
  *
  * @category Entity
- * @package  AppBundle\Entity
  * @author   David Romaní <david@flux.cat>
  *
  * @ORM\Table()
@@ -70,16 +68,10 @@ class ContactMessage extends AbstractBase
     private $answered = false;
 
     /**
-     *
-     *
      * Methods
-     *
-     *
      */
 
     /**
-     * Set Email
-     *
      * @param string $email
      *
      * @return $this
@@ -92,8 +84,6 @@ class ContactMessage extends AbstractBase
     }
 
     /**
-     * Get Email
-     *
      * @return string
      */
     public function getEmail()
@@ -102,8 +92,6 @@ class ContactMessage extends AbstractBase
     }
 
     /**
-     * Get Name
-     *
      * @return string
      */
     public function getName()
@@ -112,8 +100,6 @@ class ContactMessage extends AbstractBase
     }
 
     /**
-     * Set Name
-     *
      * @param string $name
      *
      * @return $this
@@ -126,8 +112,6 @@ class ContactMessage extends AbstractBase
     }
 
     /**
-     * Get Subject
-     *
      * @return string
      */
     public function getSubject()
@@ -136,8 +120,6 @@ class ContactMessage extends AbstractBase
     }
 
     /**
-     * Set Subject
-     *
      * @param string $subject
      *
      * @return $this
@@ -150,8 +132,6 @@ class ContactMessage extends AbstractBase
     }
 
     /**
-     * Set Message
-     *
      * @param string $message
      *
      * @return $this
@@ -164,8 +144,6 @@ class ContactMessage extends AbstractBase
     }
 
     /**
-     * Get Message
-     *
      * @return string
      */
     public function getMessage()
@@ -174,8 +152,6 @@ class ContactMessage extends AbstractBase
     }
 
     /**
-     * Set Checked
-     *
      * @param boolean $checked
      *
      * @return $this
@@ -188,8 +164,6 @@ class ContactMessage extends AbstractBase
     }
 
     /**
-     * Get Checked
-     *
      * @return boolean
      */
     public function getChecked()
@@ -198,8 +172,6 @@ class ContactMessage extends AbstractBase
     }
 
     /**
-     * Set Answered
-     *
      * @param boolean $answered
      *
      * @return $this
@@ -212,8 +184,6 @@ class ContactMessage extends AbstractBase
     }
 
     /**
-     * Get Answered
-     *
      * @return boolean
      */
     public function getAnswered()
@@ -242,8 +212,6 @@ class ContactMessage extends AbstractBase
     }
 
     /**
-     * To string
-     *
      * @return string
      */
     public function __toString()

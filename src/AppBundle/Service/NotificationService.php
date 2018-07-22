@@ -58,10 +58,12 @@ class NotificationService
      * Send a common notification mail to frontend user.
      *
      * @param ContactMessage $contactMessage
+     *
+     * @return int messages delivered amount | 0 if failure
      */
     public function sendCommonUserNotification(ContactMessage $contactMessage)
     {
-        $this->messenger->sendEmail(
+        return $this->messenger->sendEmail(
             $this->amd,
             $contactMessage->getEmail(),
             'Notificació pàgina web '.$this->urlBase,
@@ -75,10 +77,12 @@ class NotificationService
      * Send a common notification mail to admin user.
      *
      * @param string $text
+     *
+     * @return int messages delivered amount | 0 if failure
      */
     public function sendCommonAdminNotification($text)
     {
-        $this->messenger->sendEmail(
+        return $this->messenger->sendEmail(
             $this->amd,
             $this->amd,
             'Notificació pàgina web '.$this->urlBase,
@@ -89,13 +93,37 @@ class NotificationService
     }
 
     /**
+     * Send a common notification mail to admin user from contact context.
+     *
+     * @param ContactMessage $contactMessage
+     * @param string         $fromActionText
+     *
+     * @return int messages delivered amount | 0 if failure
+     */
+    public function sendCommonContactAdminNotification(ContactMessage $contactMessage, $fromActionText = 'homepage')
+    {
+        return $this->messenger->sendEmail(
+            $this->amd,
+            $this->amd,
+            'Missatge de '.$fromActionText.' pàgina web '.$this->urlBase,
+            $this->twig->render(':Mails:newsletter_form_contact_admin_notification.html.twig', array(
+                'contact' => $contactMessage,
+                'fromActionText' => $fromActionText
+            )),
+            $contactMessage->getEmail()
+        );
+    }
+
+    /**
      * Send free trial notification to admin user.
      *
      * @param ContactMessage $contactMessage
+     *
+     * @return int messages delivered amount | 0 if failure
      */
     public function sendFreeTrialAdminNotification(ContactMessage $contactMessage)
     {
-        $this->messenger->sendEmail(
+        return $this->messenger->sendEmail(
             $this->amd,
             $this->amd,
             'Missatge de prova-ho gratis pàgina web '.$this->urlBase,
@@ -110,10 +138,12 @@ class NotificationService
      * Send a contact form notification to admin user.
      *
      * @param ContactMessage $contactMessage
+     *
+     * @return int messages delivered amount | 0 if failure
      */
     public function sendContactAdminNotification(ContactMessage $contactMessage)
     {
-        $this->messenger->sendEmail(
+        return $this->messenger->sendEmail(
             $this->amd,
             $this->amd,
             'Missatge de contacte pàgina web '.$this->urlBase,
@@ -127,10 +157,12 @@ class NotificationService
      * Send a contact form notification to admin user.
      *
      * @param ContactMessage $contactMessage
+     *
+     * @return int messages delivered amount | 0 if failure
      */
     public function sendUserBackendAnswerNotification(ContactMessage $contactMessage)
     {
-        $this->messenger->sendEmail(
+        return $this->messenger->sendEmail(
             $this->amd,
             $contactMessage->getEmail(),
             'Resposta pàgina web '.$this->urlBase,
@@ -145,10 +177,12 @@ class NotificationService
      *
      * @param ContactMessage $contactMessage
      * @param string         $fromActionText
+     *
+     * @return int messages delivered amount | 0 if failure
      */
     public function sendNewsletterSubscriptionAdminNotification(ContactMessage $contactMessage, $fromActionText = 'newsletter')
     {
-        $this->messenger->sendEmail(
+        return $this->messenger->sendEmail(
             $this->amd,
             $this->amd,
             'Missatge de '.$fromActionText.' pàgina web '.$this->urlBase,
@@ -164,10 +198,12 @@ class NotificationService
      * Send happy birthday notification to coworker.
      *
      * @param Coworker $coworker
+     *
+     * @return int messages delivered amount | 0 if failure
      */
     public function sendCoworkerBirthdayNotification(Coworker $coworker)
     {
-        $this->messenger->sendEmail(
+        return $this->messenger->sendEmail(
             $this->amd,
             $coworker->getEmail(),
             'Espai Kowo et desitja un Feliç Aniversari',
@@ -181,10 +217,12 @@ class NotificationService
      * Send happy birthday notification to Admin.
      *
      * @param Coworker $coworker
+     *
+     * @return int messages delivered amount | 0 if failure
      */
     public function sendAdminBirthdayNotification(Coworker $coworker)
     {
-        $this->messenger->sendEmail(
+        return $this->messenger->sendEmail(
             $this->amd,
             $this->amd,
             'Demà és l\'aniversari de '.$coworker->getFullName(),
@@ -199,7 +237,7 @@ class NotificationService
      *
      * @param Coworker $coworker
      *
-     * @return int
+     * @return int messages delivered amount | 0 if failure
      */
     public function sendCoworkerDataFormNotification(Coworker $coworker)
     {
@@ -217,10 +255,12 @@ class NotificationService
      * Send an admin notification once coworker data form is filled.
      *
      * @param Coworker $coworker
+     *
+     * @return int messages delivered amount | 0 if failure
      */
     public function sendCoworkerDataFormAdminNotification(Coworker $coworker)
     {
-        $this->messenger->sendEmail(
+        return $this->messenger->sendEmail(
             $this->amd,
             $this->amd,
             'Notificació registre coworker '.$this->urlBase,

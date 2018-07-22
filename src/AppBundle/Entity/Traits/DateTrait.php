@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
  * Date trait
  *
  * @category Trait
- * @package  AppBundle\Entity\Traits
  * @author   David Romaní <david@flux.cat>
  */
 Trait DateTrait
@@ -21,8 +20,6 @@ Trait DateTrait
     private $date;
 
     /**
-     * Set Date
-     *
      * @param \DateTime $date
      *
      * @return $this
@@ -35,8 +32,6 @@ Trait DateTrait
     }
 
     /**
-     * Get Date
-     *
      * @return \DateTime
      */
     public function getDate()
@@ -45,8 +40,6 @@ Trait DateTrait
     }
 
     /**
-     * Get Date
-     *
      * @return string
      */
     public function getDateString()
