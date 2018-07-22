@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
  * Description trait
  *
  * @category Trait
- * @package  AppBundle\Entity\Traits
  * @author   David Romaní <david@flux.cat>
  */
 Trait DescriptionTrait
@@ -21,8 +20,6 @@ Trait DescriptionTrait
     private $description;
 
     /**
-     * Set description
-     *
      * @param string $description
      *
      * @return $this
@@ -35,8 +32,6 @@ Trait DescriptionTrait
     }
 
     /**
-     * Get description
-     *
      * @return string
      */
     public function getDescription()

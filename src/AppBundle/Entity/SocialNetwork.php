@@ -9,8 +9,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class SocialNetwork
  *
  * @category Entity
- * @package  AppBundle\Entity
  * @author   Anton Serra <aserratorta@gmail.com>
+ *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SocialNetworkRepository")
  */
@@ -39,11 +39,7 @@ class SocialNetwork extends AbstractBase
     private $coworker;
 
     /**
-     *
-     *
      * Methods
-     *
-     *
      */
 
     /**

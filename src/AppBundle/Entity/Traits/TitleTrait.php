@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
  * Title trait
  *
  * @category Trait
- * @package  AppBundle\Entity\Traits
  * @author   David Romaní <david@flux.cat>
  */
 Trait TitleTrait
@@ -21,8 +20,6 @@ Trait TitleTrait
     private $title;
 
     /**
-     * Set title
-     *
      * @param string $title
      *
      * @return $this
@@ -35,8 +32,6 @@ Trait TitleTrait
     }
 
     /**
-     * Get title
-     *
      * @return string
      */
     public function getTitle()

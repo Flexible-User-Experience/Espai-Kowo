@@ -6,14 +6,13 @@ use AppBundle\Entity\Traits\TitleTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Category
  *
  * @category Entity
- * @package  AppBundle\Entity
  * @author   Anton Serra <aserratorta@gmail.com>
+ *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
  * @UniqueEntity("title")
@@ -30,11 +29,7 @@ class Category extends AbstractBase
     private $coworkers;
 
     /**
-     *
-     *
      * Methods
-     *
-     *
      */
 
     /**
@@ -66,8 +61,6 @@ class Category extends AbstractBase
     }
 
     /**
-     * Add coworker
-     *
      * @param Coworker $coworker
      *
      * @return $this
@@ -80,8 +73,6 @@ class Category extends AbstractBase
     }
 
     /**
-     * Remove coworker
-     *
      * @param Coworker $coworker
      *
      * @return $this

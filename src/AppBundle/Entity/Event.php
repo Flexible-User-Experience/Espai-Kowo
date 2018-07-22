@@ -19,8 +19,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Class Event
  *
  * @category Entity
- * @package  AppBundle\Entity
  * @author   Anton Serra <aserratorta@gmail.com>
+ *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EventRepository")
  * @Vich\Uploadable
@@ -76,11 +76,7 @@ class Event extends AbstractBase
     private $categories;
 
     /**
-     *
-     *
      * Methods
-     *
-     *
      */
 
     /**
@@ -92,8 +88,6 @@ class Event extends AbstractBase
     }
 
     /**
-     * Get slug
-     *
      * @return string
      */
     public function getSlug()
@@ -102,8 +96,6 @@ class Event extends AbstractBase
     }
 
     /**
-     * Set imageFile
-     *
      * @param File|UploadedFile $imageFile
      *
      * @return $this
@@ -121,8 +113,6 @@ class Event extends AbstractBase
     }
 
     /**
-     * Get imageFile
-     *
      * @return File|UploadedFile
      */
     public function getImageFile()
@@ -131,8 +121,6 @@ class Event extends AbstractBase
     }
 
     /**
-     * Set imageName
-     *
      * @param string $imageName
      *
      * @return $this
@@ -145,8 +133,6 @@ class Event extends AbstractBase
     }
 
     /**
-     * Get imageName
-     *
      * @return string
      */
     public function getImageName()
@@ -154,8 +140,6 @@ class Event extends AbstractBase
         return $this->imageName;
     }
     /**
-     * Get shortDescription
-     *
      * @return string
      */
     public function getShortDescription()
@@ -164,8 +148,6 @@ class Event extends AbstractBase
     }
 
     /**
-     * Set shortDescription
-     *
      * @param string $shortDescription
      *
      * @return $this
@@ -198,8 +180,6 @@ class Event extends AbstractBase
     }
 
     /**
-     * Add category
-     *
      * @param EventCategory $category
      *
      * @return $this
@@ -213,18 +193,18 @@ class Event extends AbstractBase
     }
 
     /**
-     * Remove category
-     *
      * @param EventCategory $category
+     *
+     * @return $this
      */
     public function removeCategory(EventCategory $category)
     {
         $this->categories->removeElement($category);
+
+        return $this;
     }
 
     /**
-     * To string
-     *
      * @return string
      */
     public function __toString()

@@ -13,8 +13,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Class EventCategory
  *
  * @category Entity
- * @package  AppBundle\Entity
  * @author   Anton Serra <aserratorta@gmail.com>
+ *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EventCategoryRepository")
  * @UniqueEntity("title")
@@ -40,11 +40,7 @@ class EventCategory extends AbstractBase
     private $events;
 
     /**
-     *
-     *
      * Methods
-     *
-     *
      */
 
     /**
@@ -76,8 +72,6 @@ class EventCategory extends AbstractBase
     }
 
     /**
-     * Add Event
-     *
      * @param Event $event
      *
      * @return $this
@@ -90,8 +84,6 @@ class EventCategory extends AbstractBase
     }
 
     /**
-     * Remove Event
-     *
      * @param Event $event
      *
      * @return $this
@@ -104,8 +96,6 @@ class EventCategory extends AbstractBase
     }
 
     /**
-     * To string
-     *
      * @return string
      */
     public function __toString() {

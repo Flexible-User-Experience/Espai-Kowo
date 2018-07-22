@@ -13,8 +13,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * Class Tag
  *
  * @category Entity
- * @package  AppBundle\Entity
  * @author   Anton Serra <aserratorta@gmail.com>
+ *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TagRepository")
  * @UniqueEntity("title")
@@ -40,11 +40,7 @@ class Tag extends AbstractBase
     private $posts;
 
     /**
-     *
-     *
      * Methods
-     *
-     *
      */
 
     /**
@@ -76,8 +72,6 @@ class Tag extends AbstractBase
     }
 
     /**
-     * Add post
-     *
      * @param Post $post
      *
      * @return $this
@@ -90,8 +84,6 @@ class Tag extends AbstractBase
     }
 
     /**
-     * Remove post
-     *
      * @param Post $post
      *
      * @return $this
@@ -104,8 +96,6 @@ class Tag extends AbstractBase
     }
 
     /**
-     * To string
-     *
      * @return string
      */
     public function __toString() {
