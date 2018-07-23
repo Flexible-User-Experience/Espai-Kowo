@@ -3,6 +3,7 @@
 {% block title %}Activitats · {{ selectedCategory.title }} · {{ parent() }}{% endblock %}
 
 {% block main %}
+    {# Categories filter section #}
     {% if categories | length > 0 %}
         <div class="p-vertical-small grey-background">
             <div class="container">
@@ -24,7 +25,7 @@
             </div>
         </div>
     {% endif %}
-    {% include ':Frontend/includes:newsletter_subscriber.html.twig' %}
+    {# Events section #}
     <div class="container container-main">
         <div class="row">
             <div class="col-xs-12">
@@ -88,4 +89,6 @@
         {% endif %}
         {% include ':Frontend/includes:paginator_buttons_bar.html.twig' %}
     </div>
+    {# Call to action section #}
+    {% include ':Frontend/includes:newsletter_subscriber.html.twig' %}
 {% endblock %}

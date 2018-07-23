@@ -3,7 +3,7 @@
 {% block title %}{{ event.title }} · Activitat · {{ parent() }}{% endblock %}
 
 {% block main %}
-    {% include ':Frontend/includes:newsletter_subscriber.html.twig' %}
+    {# Event detail section #}
     <div class="container container-main">
         <div class="row">
             {# Left side #}
@@ -25,4 +25,6 @@
             </div>
         </div>
     </div>
+    {# Call to action section #}
+    {% include ':Frontend/includes:newsletter_subscriber.html.twig' %}
 {% endblock %}
