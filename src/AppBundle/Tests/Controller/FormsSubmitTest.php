@@ -125,7 +125,7 @@ class FormsSubmitTest extends WebTestCase
         $this->assertTrue(isset($contactHomepage['send']));
 
         $form->setValues(array(
-            'contact_newsletter[name]'  => 'myName',
+            'contact_newsletter[name]' => 'myName',
             'contact_newsletter[email]' => $this->getContainer()->getParameter('mailer_destination'),
         ));
         $crawler = $client->submit($form);
