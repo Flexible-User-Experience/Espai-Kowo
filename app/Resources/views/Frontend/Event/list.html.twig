@@ -3,8 +3,6 @@
 {% block title %}Activitats · {{ parent() }}{% endblock %}
 
 {% block main %}
-    {# Call to action section #}
-    {% include ':Frontend/includes:newsletter_subscriber.html.twig' %}
     {# Categories filter section #}
     {% if categories | length > 0 %}
         <div class="p-vertical-small grey-background">
@@ -85,6 +83,8 @@
         {% endif %}
         {% include ':Frontend/includes:paginator_buttons_bar.html.twig' %}
     </div>
+    {# Call to action section #}
+    {% include ':Frontend/includes:newsletter_subscriber.html.twig' %}
 {% endblock %}
 
 {% block javascripts %}
