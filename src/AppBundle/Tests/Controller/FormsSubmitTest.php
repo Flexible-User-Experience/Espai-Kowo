@@ -129,6 +129,33 @@ class FormsSubmitTest extends WebTestCase
             'contact_newsletter[email]' => $this->getContainer()->getParameter('mailer_destination'),
         ));
         $crawler = $client->submit($form);
-        $this->assertEquals($crawler->filter('i.fa-check')->count(), 1);
+        $this->assertEquals($crawler->filter('div.alert')->count(), 1);
+    }
+
+    /**
+     * Test Forms Submit
+     */
+    public function testBlogNewsletterFormSubmit()
+    {
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/blog');
+        $sendButton = $crawler->selectButton('Subscriu-me al newsletter');
+        /** @var Form $form */
+        $form = $sendButton->form();
+        $contactHomepage = $form->get('contact_newsletter');
+
+        $this->assertEquals(count($contactHomepage), 4);
+        $this->assertTrue(isset($contactHomepage['name']));
+        $this->assertFalse(isset($contactHomepage['phone']));
+        $this->assertTrue(isset($contactHomepage['email']));
+        $this->assertFalse(isset($contactHomepage['message']));
+        $this->assertTrue(isset($contactHomepage['send']));
+
+        $form->setValues(array(
+            'contact_newsletter[name]' => 'myName',
+            'contact_newsletter[email]' => $this->getContainer()->getParameter('mailer_destination'),
+        ));
+        $crawler = $client->submit($form);
+        $this->assertEquals($crawler->filter('div.alert')->count(), 1);
     }
 }
