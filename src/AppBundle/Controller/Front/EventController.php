@@ -125,12 +125,12 @@ class EventController extends Controller
         if ($userDeliveryResult > 0 && $adminDeliveryResult > 0) {
             $this->addFlash(
                 'notice',
-                'Ens posarem en contacte amb tu el més aviat possible. Gràcies.'
+                'Gràcies per registrar-te al newsletter.'
             );
         } else {
             $this->addFlash(
                 'danger',
-                'Ho sentim, s\'ha produït un error a l\'enviar el missatge de contacte. Torna a intentar-ho.'
+                'Ho sentim, s\'ha produït un error a durant el procés de registre al newsletter. Torna a intentar-ho.'
             );
         }
     }
