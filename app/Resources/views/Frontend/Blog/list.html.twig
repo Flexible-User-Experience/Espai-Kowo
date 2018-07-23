@@ -1,22 +1,30 @@
 {% extends ':Frontend:base.html.twig' %}
 
-{% block title %}Blog · {{ parent() }}{% endblock %}
+{% block title %}{{ 'frontend.menu.blog' | trans | title }} · {{ parent() }}{% endblock %}
 
 {% block main %}
+    {# Main title section #}
     <div class="p-vertical-small grey-background">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <ul class="list-inline no-m-bottom categories-selector">
+                    <h1 class="no-m-top">{{ 'frontend.menu.blog' | trans | title }}</h1>
+                    <div class="btn-group" role="group" aria-label="categories selector">
                         {% for tag in tags if tag.posts | length > 0 %}
-                            <li><a href="{{ path('front_blog_tag_detail', {slug: tag.slug}) }}">{{ tag.title }}</a></li>
+                            <a class="btn btn-default btn-sm" href="{{ path('front_blog_tag_detail', {slug: tag.slug}) }}">{{ tag.title }}</a>
                         {% endfor %}
-                    </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    {# Post list section #}
     <div class="container container-main">
+        <div class="row">
+            <div class="col-xs-12">
+                {% include ':Frontend/includes:notice_flash.html.twig' %}
+            </div>
+        </div>
         <div class="row">
             {% if pagination.getTotalItemCount > 0 %}
                 {% for post in pagination %}
@@ -43,4 +51,6 @@
         </div>
         {% include ':Frontend/includes:paginator_buttons_bar.html.twig' %}
     </div>
+    {# Call to action section #}
+    {% include ':Frontend/includes:newsletter_subscriber.html.twig' %}
 {% endblock %}

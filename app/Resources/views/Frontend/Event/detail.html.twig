@@ -1,10 +1,32 @@
 {% extends ':Frontend:base.html.twig' %}
 
-{% block title %}{{ event.title }} · Activitat · {{ parent() }}{% endblock %}
+{% block title %}{{ event.title }} · {{ 'frontend.menu.events' | trans | title }} · {{ parent() }}{% endblock %}
 
 {% block main %}
+    {# Categories title and filter section #}
+    {% if categories | length > 0 %}
+        <div class="p-vertical-small grey-background">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="no-m-top">{{ 'frontend.menu.events' | trans | title }}</h1>
+                        <div class="btn-group" role="group" aria-label="categories selector">
+                            {% for category in categories if category.events | length > 0 %}
+                                <a class="btn btn-default" href="{{ path('front_category_event', {slug: category.slug}) }}">{{ category.title }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
     {# Event detail section #}
     <div class="container container-main">
+        <div class="row">
+            <div class="col-xs-12">
+                {% include ':Frontend/includes:notice_flash.html.twig' %}
+            </div>
+        </div>
         <div class="row">
             {# Left side #}
             <div class="col-sm-4 extra-m-bottom">

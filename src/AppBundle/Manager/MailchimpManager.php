@@ -14,6 +14,7 @@ use \DrewM\MailChimp\MailChimp;
 class MailchimpManager
 {
     const SUBSCRIBED = 'subscribed';
+
     /**
      * @var MailChimp $mailChimp
      */
@@ -61,12 +62,29 @@ class MailchimpManager
             $mergeFields['LNAME'] = $explodeName[1];
         }
 
-        // make HTTP API request
-        $result = $this->mailChimp->post('lists/' . $listId . '/members', array(
-            'email_address' => $contact->getEmail(),
-            'status'        => self::SUBSCRIBED,
-            'merge_fields'  => $mergeFields
+        // check if user exists
+        $result = $this->mailChimp->get('search-members', array(
+            'list_id' => $listId,
+            'query' => $contact->getEmail(),
         ));
+        $isNew = 0 == intval($result['exact_matches']['total_items']);
+
+        // make HTTP API request
+        if ($isNew) {
+            // new subscriber
+            $result = $this->mailChimp->post('lists/' . $listId . '/members', array(
+                'email_address' => $contact->getEmail(),
+                'status'        => self::SUBSCRIBED,
+                'merge_fields'  => $mergeFields,
+            ));
+        } else {
+            // update record
+            $result = $this->mailChimp->patch('lists/' . $listId . '/members/' . md5(strtolower($contact->getEmail())), array(
+                'email_address' => $contact->getEmail(),
+                'status'        => self::SUBSCRIBED,
+                'merge_fields'  => $mergeFields,
+            ));
+        }
 
         // check error
         if (is_array($result) && $result['status'] != self::SUBSCRIBED ) {
