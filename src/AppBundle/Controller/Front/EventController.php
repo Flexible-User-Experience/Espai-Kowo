@@ -24,9 +24,12 @@ class EventController extends Controller
      * @Route("/activitats/{pagina}", name="front_events_list")
      *
      * @param Request $request
-     * @param int     $pagina
+     * @param int $pagina
      *
      * @return Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function listAction(Request $request, $pagina = 1)
     {
@@ -74,9 +77,12 @@ class EventController extends Controller
      * @Route("/activitat/{slug}", name="front_event_detail")
      *
      * @param Request $request
-     * @param string  $slug
+     * @param string $slug
      *
      * @return Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function detailAction(Request $request, $slug)
     {
@@ -109,6 +115,10 @@ class EventController extends Controller
 
     /**
      * @param ContactMessage $contact
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     private function setFlashMailchimpSubscribeAndEmailNotifications($contact)
     {
@@ -139,10 +149,13 @@ class EventController extends Controller
      * @Route("/activitat/categoria/{slug}/{pagina}", name="front_category_event")
      *
      * @param Request $request
-     * @param string  $slug
-     * @param int     $pagina
+     * @param string $slug
+     * @param int $pagina
      *
      * @return Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function categoryEventAction(Request $request, $slug, $pagina = 1)
     {

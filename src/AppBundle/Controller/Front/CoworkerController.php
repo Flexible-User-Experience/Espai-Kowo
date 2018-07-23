@@ -28,6 +28,9 @@ class CoworkerController extends Controller
      * @param Request $request
      *
      * @return Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function listAction(Request $request)
     {
@@ -77,9 +80,12 @@ class CoworkerController extends Controller
      * @Route("/coworker/{slug}", name="front_coworker_detail")
      *
      * @param Request $request
-     * @param string  $slug
+     * @param string $slug
      *
      * @return Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function detailAction(Request $request, $slug)
     {
@@ -128,12 +134,15 @@ class CoworkerController extends Controller
     /**
      * @Route("/registre/{token}", name="front_coworker_register")
      *
-     * @param Request  $request
+     * @param Request $request
      * @param Coworker $token
      *
      * @return Response
      *
      * @throws EntityNotFoundException
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function registerAction(Request $request, $token)
     {

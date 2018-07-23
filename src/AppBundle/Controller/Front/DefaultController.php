@@ -25,6 +25,9 @@ class DefaultController extends Controller
      * @param Request $request
      *
      * @return Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function indexAction(Request $request)
     {
@@ -65,6 +68,9 @@ class DefaultController extends Controller
      * @param Request $request
      *
      * @return Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function contactAction(Request $request)
     {
