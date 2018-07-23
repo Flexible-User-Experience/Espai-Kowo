@@ -3,6 +3,9 @@
 {% block title %}Activitats · {{ parent() }}{% endblock %}
 
 {% block main %}
+    {# Call to action section #}
+    {% include ':Frontend/includes:newsletter_subscriber.html.twig' %}
+    {# Categories filter section #}
     {% if categories | length > 0 %}
         <div class="p-vertical-small grey-background">
             <div class="container">
@@ -18,7 +21,7 @@
             </div>
         </div>
     {% endif %}
-    {% include ':Frontend/includes:newsletter_subscriber.html.twig' %}
+    {# Events section #}
     <div class="container container-main">
         <div class="row">
             <div class="col-xs-12">
