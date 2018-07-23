@@ -102,46 +102,7 @@
         </div>
     </div>
     {# Pricing section #}
-    <div class="p-vertical green-background-light">
-        <div class="container">
-            <div class="row white">
-                <div class="block">
-                    <div class="col-xs-6 col-sm-4 col-sm-offset-2">
-                        <ul class="pricing p-yel white-background no-m-bottom">
-                            <li class="orange-background">
-                                <i class="fa fa-5x fa-star c-white" aria-hidden="true"></i><br>
-                                <h4 class="no-m-bottom c-white">Jornada completa</h4>
-                            </li>
-                            <li><strong><i class="fa fa-check-circle" aria-hidden="true"></i> Taula de treball individual</strong></li>
-                            <li><strong><i class="fa fa-check-circle" aria-hidden="true"></i> Armariet individual</strong></li>
-                            <li>Accés a Internet amb fibra òptica</li>
-                            <li>Sala de reunions disponible</li>
-                            <li class="orange-background">
-                                <h3 class="no-m-top">120 <i class="fa fa-euro"></i></h3>
-                                <span>+IVA al mes</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-6 col-sm-4">
-                        <ul class="pricing p-yel white-background no-m-bottom">
-                            <li class="orange-background">
-                                <i class="fa fa-5x fa-star-half-o c-white" aria-hidden="true"></i><br>
-                                <h4 class="no-m-bottom c-white">Mitja jornada</h4>
-                            </li>
-                            <li>Taula de treball compartida</li>
-                            <li>Armariet compartit</li>
-                            <li>Accés a Internet amb fibra òptica</li>
-                            <li>Sala de reunions disponible</li>
-                            <li class="orange-background">
-                                <h3 class="no-m-top">75 <i class="fa fa-euro"></i></h3>
-                                <span>+IVA al mes</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include ':Frontend/includes:pricing_tables_fragment.html.twig' %}
     {# Detail section #}
     <div class="p-vertical container">
         <div class="row">
