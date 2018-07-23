@@ -19,6 +19,11 @@
     </div>
     <div class="container container-main">
         <div class="row">
+            <div class="col-xs-12">
+                {% include ':Frontend/includes:notice_flash.html.twig' %}
+            </div>
+        </div>
+        <div class="row">
             {% if pagination.getTotalItemCount > 0 %}
                 {% for post in pagination %}
                     <div class="col-md-4">

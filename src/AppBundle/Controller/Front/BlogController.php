@@ -64,16 +64,20 @@ class BlogController extends Controller
     /**
      * @Route("/blog/{year}/{month}/{day}/{slug}", name="front_blog_detail")
      *
-     * @param $year
-     * @param $month
-     * @param $day
-     * @param $slug
+     * @param Request $request
+     * @param int $year
+     * @param int $month
+     * @param int $day
+     * @param string $slug
      *
      * @return Response
      *
      * @throws EntityNotFoundException
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
-    public function postDetailAction($year, $month, $day, $slug)
+    public function postDetailAction(Request $request, $year, $month, $day, $slug)
     {
         $date = \DateTime::createFromFormat('Y-m-d', $year.'-'.$month.'-'.$day);
 
@@ -89,10 +93,23 @@ class BlogController extends Controller
             throw new EntityNotFoundException();
         }
 
+        $contact = new ContactMessage();
+        $form = $this->createForm(ContactNewsletterType::class, $contact);
+        $form->remove('recaptcha');
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->setFlashMailchimpSubscribeAndEmailNotifications($contact);
+            // Clean up new form
+            $form = $this->createForm(ContactNewsletterType::class);
+            $form->remove('recaptcha');
+        }
+
         return $this->render('Frontend/Blog/detail.html.twig',
             [
                 'post' => $post,
                 'tags' => $this->getDoctrine()->getRepository('AppBundle:Tag')->getAllEnabledSortedByTitle(),
+                'form' => $form->createView(),
             ]
         );
     }
@@ -141,12 +158,14 @@ class BlogController extends Controller
             $form->remove('recaptcha');
         }
 
-        return $this->render(':Frontend/Blog:tag_detail.html.twig', [
-            'tags' => $tags,
-            'tag' => $tag,
-            'pagination' => $pagination,
-            'form' => $form->createView(),
-        ]);
+        return $this->render(':Frontend/Blog:tag_detail.html.twig',
+            [
+                'tags' => $tags,
+                'tag' => $tag,
+                'pagination' => $pagination,
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     /**
