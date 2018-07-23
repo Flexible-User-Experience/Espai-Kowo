@@ -3,18 +3,18 @@
 {% block title %}{{ 'frontend.menu.events' | trans | title }} · {{ parent() }}{% endblock %}
 
 {% block main %}
-    {# Categories filter section #}
+    {# Categories title and filter section #}
     {% if categories | length > 0 %}
         <div class="p-vertical-small grey-background">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
                         <h1 class="no-m-top">{{ 'frontend.menu.events' | trans | title }}</h1>
-                        <ul class="list-inline no-m-bottom categories-selector">
+                        <div class="btn-group" role="group" aria-label="categories selector">
                             {% for category in categories if category.events | length > 0 %}
-                                <li><a href="{{ path('front_category_event', {slug: category.slug}) }}">{{ category.title }}</a></li>
+                                <a class="btn btn-default" href="{{ path('front_category_event', {slug: category.slug}) }}">{{ category.title }}</a>
                             {% endfor %}
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>
