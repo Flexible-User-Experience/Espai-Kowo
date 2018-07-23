@@ -3,6 +3,7 @@
 {% block title %}{{ 'frontend.menu.blog' | trans | title }} · {{ parent() }}{% endblock %}
 
 {% block main %}
+    {# Main title section #}
     <div class="p-vertical-small grey-background">
         <div class="container">
             <div class="row">
@@ -17,6 +18,7 @@
             </div>
         </div>
     </div>
+    {# Post list section #}
     <div class="container container-main">
         <div class="row">
             {% if pagination.getTotalItemCount > 0 %}

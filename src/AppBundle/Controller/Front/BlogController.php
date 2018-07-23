@@ -68,7 +68,10 @@ class BlogController extends Controller
         }
 
         return $this->render('Frontend/Blog/detail.html.twig',
-            ['post' => $post]
+            [
+                'post' => $post,
+                'tags' => $this->getDoctrine()->getRepository('AppBundle:Tag')->getAllEnabledSortedByTitle(),
+            ]
         );
     }
 
