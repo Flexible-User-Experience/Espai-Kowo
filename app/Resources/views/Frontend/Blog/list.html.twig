@@ -1,17 +1,18 @@
 {% extends ':Frontend:base.html.twig' %}
 
-{% block title %}Blog · {{ parent() }}{% endblock %}
+{% block title %}{{ 'frontend.menu.blog' | trans | title }} · {{ parent() }}{% endblock %}
 
 {% block main %}
     <div class="p-vertical-small grey-background">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <ul class="list-inline no-m-bottom categories-selector">
+                    <h1 class="no-m-top">{{ 'frontend.menu.blog' | trans | title }}</h1>
+                    <div class="btn-group" role="group" aria-label="categories selector">
                         {% for tag in tags if tag.posts | length > 0 %}
-                            <li><a href="{{ path('front_blog_tag_detail', {slug: tag.slug}) }}">{{ tag.title }}</a></li>
+                            <a class="btn btn-default btn-sm" href="{{ path('front_blog_tag_detail', {slug: tag.slug}) }}">{{ tag.title }}</a>
                         {% endfor %}
-                    </ul>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 {% extends ':Frontend:base.html.twig' %}
 
-{% block title %}Coworkers · {{ parent() }}{% endblock %}
+{% block title %}{{ 'frontend.menu.coworkers' | trans | title }} · {{ parent() }}{% endblock %}
 
 {% block main %}
     {% include ':Frontend:Coworker/common_call_to_action_fragment.html.twig' %}
