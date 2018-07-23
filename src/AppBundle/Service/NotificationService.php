@@ -9,8 +9,6 @@ use AppBundle\Entity\Coworker;
  * Class NotificationService.
  *
  * @category Service
- *
- * @author   David Romaní <david@flux.cat>
  */
 class NotificationService
 {
@@ -60,6 +58,9 @@ class NotificationService
      * @param ContactMessage $contactMessage
      *
      * @return int messages delivered amount | 0 if failure
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function sendCommonUserNotification(ContactMessage $contactMessage)
     {
@@ -79,6 +80,9 @@ class NotificationService
      * @param string $text
      *
      * @return int messages delivered amount | 0 if failure
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function sendCommonAdminNotification($text)
     {
@@ -96,9 +100,12 @@ class NotificationService
      * Send a common notification mail to admin user from contact context.
      *
      * @param ContactMessage $contactMessage
-     * @param string         $fromActionText
+     * @param string $fromActionText
      *
      * @return int messages delivered amount | 0 if failure
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function sendCommonContactAdminNotification(ContactMessage $contactMessage, $fromActionText = 'homepage')
     {
@@ -120,6 +127,9 @@ class NotificationService
      * @param ContactMessage $contactMessage
      *
      * @return int messages delivered amount | 0 if failure
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function sendFreeTrialAdminNotification(ContactMessage $contactMessage)
     {
@@ -140,6 +150,9 @@ class NotificationService
      * @param ContactMessage $contactMessage
      *
      * @return int messages delivered amount | 0 if failure
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function sendContactAdminNotification(ContactMessage $contactMessage)
     {
@@ -159,6 +172,9 @@ class NotificationService
      * @param ContactMessage $contactMessage
      *
      * @return int messages delivered amount | 0 if failure
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function sendUserBackendAnswerNotification(ContactMessage $contactMessage)
     {
@@ -176,9 +192,12 @@ class NotificationService
      * Send a newsletter subscription form notification to admin user.
      *
      * @param ContactMessage $contactMessage
-     * @param string         $fromActionText
+     * @param string $fromActionText
      *
      * @return int messages delivered amount | 0 if failure
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function sendNewsletterSubscriptionAdminNotification(ContactMessage $contactMessage, $fromActionText = 'newsletter')
     {
@@ -200,6 +219,9 @@ class NotificationService
      * @param Coworker $coworker
      *
      * @return int messages delivered amount | 0 if failure
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function sendCoworkerBirthdayNotification(Coworker $coworker)
     {
@@ -219,6 +241,9 @@ class NotificationService
      * @param Coworker $coworker
      *
      * @return int messages delivered amount | 0 if failure
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function sendAdminBirthdayNotification(Coworker $coworker)
     {
@@ -238,6 +263,9 @@ class NotificationService
      * @param Coworker $coworker
      *
      * @return int messages delivered amount | 0 if failure
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function sendCoworkerDataFormNotification(Coworker $coworker)
     {
@@ -257,6 +285,9 @@ class NotificationService
      * @param Coworker $coworker
      *
      * @return int messages delivered amount | 0 if failure
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function sendCoworkerDataFormAdminNotification(Coworker $coworker)
     {

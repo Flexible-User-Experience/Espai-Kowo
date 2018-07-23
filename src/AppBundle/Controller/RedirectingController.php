@@ -11,8 +11,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * Class RedirectingController
  *
  * @category Controller
- * @package  AppBundle\Controller
- * @author   David Romaní <david@flux.cat>
  */
 class RedirectingController extends Controller
 {
