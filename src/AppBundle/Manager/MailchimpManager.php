@@ -10,8 +10,6 @@ use \DrewM\MailChimp\MailChimp;
  * Class MailchimpManager
  *
  * @category Manager
- * @package  AppBundle\Manager
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class MailchimpManager
 {
@@ -27,18 +25,15 @@ class MailchimpManager
     private $messenger;
 
     /**
-     *
-     *
      * Methods
-     *
-     *
      */
 
     /**
      * MailchimpManager constructor.
      *
      * @param NotificationService $messenger
-     * @param string              $apiKey
+     * @param string $apiKey
+     * @throws \Exception
      */
     public function __construct(NotificationService $messenger, $apiKey)
     {
@@ -50,9 +45,12 @@ class MailchimpManager
      * Mailchimp Manager
      *
      * @param ContactMessage $contact
-     * @param string         $listId
+     * @param string $listId
      *
      * @return boolean       $result
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function subscribeContactToList(ContactMessage $contact, $listId)
     {

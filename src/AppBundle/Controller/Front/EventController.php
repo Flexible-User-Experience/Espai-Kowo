@@ -114,38 +114,6 @@ class EventController extends Controller
     }
 
     /**
-     * @param ContactMessage $contact
-     *
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
-     */
-    private function setFlashMailchimpSubscribeAndEmailNotifications($contact)
-    {
-        /** @var MailchimpManager $mailchimpManager */
-        $mailchimpManager = $this->get('app.mailchimp_manager');
-        /** @var NotificationService $messenger */
-        $messenger = $this->get('app.notification');
-        // Subscribe contact to free-trial mailchimp list
-        $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
-        // Send email notifications
-        $userDeliveryResult = $messenger->sendCommonUserNotification($contact);
-        $adminDeliveryResult = $messenger->sendNewsletterSubscriptionAdminNotification($contact, 'activitats');
-        // Set frontend flash message
-        if ($userDeliveryResult > 0 && $adminDeliveryResult > 0) {
-            $this->addFlash(
-                'notice',
-                'Gràcies per registrar-te al newsletter.'
-            );
-        } else {
-            $this->addFlash(
-                'danger',
-                'Ho sentim, s\'ha produït un error a durant el procés de registre al newsletter. Torna a intentar-ho.'
-            );
-        }
-    }
-
-    /**
      * @Route("/activitat/categoria/{slug}/{pagina}", name="front_category_event")
      *
      * @param Request $request
@@ -205,5 +173,37 @@ class EventController extends Controller
             'oldEvents' => $oldEvents,
             'newEvents' => $newEvents,
         ));
+    }
+
+    /**
+     * @param ContactMessage $contact
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    private function setFlashMailchimpSubscribeAndEmailNotifications($contact)
+    {
+        /** @var MailchimpManager $mailchimpManager */
+        $mailchimpManager = $this->get('app.mailchimp_manager');
+        /** @var NotificationService $messenger */
+        $messenger = $this->get('app.notification');
+        // Subscribe contact to free-trial mailchimp list
+        $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
+        // Send email notifications
+        $userDeliveryResult = $messenger->sendCommonUserNotification($contact);
+        $adminDeliveryResult = $messenger->sendNewsletterSubscriptionAdminNotification($contact, 'activitats');
+        // Set frontend flash message
+        if ($userDeliveryResult > 0 && $adminDeliveryResult > 0) {
+            $this->addFlash(
+                'notice',
+                'Gràcies per registrar-te al newsletter.'
+            );
+        } else {
+            $this->addFlash(
+                'danger',
+                'Ho sentim, s\'ha produït un error a durant el procés de registre al newsletter. Torna a intentar-ho.'
+            );
+        }
     }
 }
