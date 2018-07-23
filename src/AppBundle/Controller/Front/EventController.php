@@ -189,12 +189,11 @@ class EventController extends Controller
         /** @var NotificationService $messenger */
         $messenger = $this->get('app.notification');
         // Subscribe contact to free-trial mailchimp list
-        $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
+        $userSubscriptionResult = $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
         // Send email notifications
-        $userDeliveryResult = $messenger->sendCommonUserNotification($contact);
         $adminDeliveryResult = $messenger->sendNewsletterSubscriptionAdminNotification($contact, 'activitats');
         // Set frontend flash message
-        if ($userDeliveryResult > 0 && $adminDeliveryResult > 0) {
+        if ($userSubscriptionResult === true && $adminDeliveryResult > 0) {
             $this->addFlash(
                 'notice',
                 'Gràcies per registrar-te al newsletter.'

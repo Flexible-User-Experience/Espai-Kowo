@@ -47,7 +47,7 @@ class MailchimpManager
      * @param ContactMessage $contact
      * @param string $listId
      *
-     * @return boolean       $result
+     * @return bool $result true if everything goes well or false otherwise
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
@@ -71,8 +71,10 @@ class MailchimpManager
         // check error
         if (is_array($result) && $result['status'] != self::SUBSCRIBED ) {
             $this->messenger->sendCommonAdminNotification('En ' . $contact->getEmail() . ' no s\'ha pogut registrar a la llista de Mailchimp');
+
+            return false;
         }
 
-        return $result;
+        return true;
     }
 }
