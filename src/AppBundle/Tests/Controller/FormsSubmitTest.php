@@ -5,6 +5,7 @@ namespace AppBundle\Tests\Controller;
 use AppBundle\Entity\ContactMessage;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Form;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class FormsSubmitTest
@@ -128,8 +129,8 @@ class FormsSubmitTest extends WebTestCase
             'contact_newsletter[name]' => 'myName',
             'contact_newsletter[email]' => $this->getContainer()->getParameter('mailer_destination'),
         ));
-        $crawler = $client->submit($form);
-        $this->assertEquals($crawler->filter('div.alert')->count(), 1);
+        $client->submit($form);
+        $this->assertEquals($client->getResponse()->getStatusCode(), Response::HTTP_OK);
     }
 
     /**
@@ -155,7 +156,7 @@ class FormsSubmitTest extends WebTestCase
             'contact_newsletter[name]' => 'myName',
             'contact_newsletter[email]' => $this->getContainer()->getParameter('mailer_destination'),
         ));
-        $crawler = $client->submit($form);
-        $this->assertEquals($crawler->filter('div.alert')->count(), 1);
+        $client->submit($form);
+        $this->assertEquals($client->getResponse()->getStatusCode(), Response::HTTP_OK);
     }
 }
