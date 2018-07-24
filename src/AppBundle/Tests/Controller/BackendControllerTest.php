@@ -50,6 +50,7 @@ class BackendControllerTest extends AbstractBaseTest
             array('/admin/contact/message/list'),
             array('/admin/contact/message/1/show'),
             array('/admin/contact/message/1/answer'),
+            array('/admin/contact/message/1/delete'),
             array('/admin/web/tag/list'),
             array('/admin/web/tag/create'),
             array('/admin/web/tag/1/show'),
@@ -106,7 +107,6 @@ class BackendControllerTest extends AbstractBaseTest
         return array(
             array('/admin/contact/message/create'),
             array('/admin/contact/message/1/edit'),
-            array('/admin/contact/message/1/delete'),
             array('/admin/contact/message/batch'),
             array('/admin/coworkers/category/batch'),
             array('/admin/coworkers/social-network-category/batch'),

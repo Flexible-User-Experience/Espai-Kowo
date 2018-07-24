@@ -184,7 +184,7 @@ class BlogController extends Controller
         // Subscribe contact to free-trial mailchimp list
         $userSubscriptionResult = $mailchimpManager->subscribeContactToList($contact, $this->getParameter('mailchimp_newsletter_list_id'));
         // Send email notifications
-        $adminDeliveryResult = $messenger->sendNewsletterSubscriptionAdminNotification($contact, 'activitats');
+        $adminDeliveryResult = $messenger->sendNewsletterSubscriptionAdminNotification($contact, 'blog');
         // Set frontend flash message
         if ($userSubscriptionResult === true && $adminDeliveryResult > 0) {
             $this->addFlash(

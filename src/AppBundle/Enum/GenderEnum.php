@@ -6,8 +6,6 @@ namespace AppBundle\Enum;
  * GenderEnum class.
  *
  * @category Enum
- *
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class GenderEnum
 {
