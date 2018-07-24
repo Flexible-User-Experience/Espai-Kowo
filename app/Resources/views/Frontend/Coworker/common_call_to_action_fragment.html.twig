@@ -21,11 +21,12 @@
             </div>
             <div class="modal-body">
                 {{ form_start(form) }}
-                {{ form_row(form.name) }}
-                {{ form_row(form.phone) }}
-                {{ form_row(form.email) }}
-                {{ form_row(form.privacy) }}
-                {{ form_rest(form) }}
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.phone) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.recaptcha) }}
+                    {{ form_row(form.privacy) }}
+                    {{ form_rest(form) }}
                 {{ form_end(form) }}
             </div>
         </div>

@@ -6,7 +6,7 @@
     <div class="checkbox ">
         <input type="checkbox" id="privacy_checkbox" {{ block('widget_attributes') }} />
         <label class="control-label my-privacy-label" for="privacy_checkbox">
-            Accepto la <a href="{{ path('front_privacy_policy')}}">política de privacitat</a>
+            Accepto la <a style="text-decoration:underline;" href="{{ path('front_privacy_policy')}}">política de privacitat</a>
         </label>
     </div>
 {% endblock %}
@@ -36,6 +36,7 @@
                     {{ form_row(formContact.phone) }}
                     {{ form_row(formContact.email) }}
                     {{ form_row(formContact.message) }}
+                    {{ form_row(formContact.recaptcha) }}
                     {{ form_row(formContact.privacy) }}
                     {{ form_rest(formContact) }}
                 {{ form_end(formContact) }}

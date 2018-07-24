@@ -1,5 +1,16 @@
 {% extends ':Frontend:base.html.twig' %}
 
+{% form_theme form _self %}
+
+{% block _contact_homepage_privacy_widget %}
+    <div class="checkbox ">
+        <input type="checkbox" id="privacy_checkbox" {{ block('widget_attributes') }} />
+        <label class="control-label my-privacy-label" for="privacy_checkbox">
+            Accepto la <a style="text-decoration:underline;" href="{{ path('front_privacy_policy')}}">política de privacitat</a>
+        </label>
+    </div>
+{% endblock %}
+
 {% block title %}{{ 'frontend.menu.services' | trans | title }} · {{ parent() }}{% endblock %}
 
 {% block main %}
@@ -28,10 +39,12 @@
                 </div>
                 <div class="modal-body">
                     {{ form_start(form) }}
-                    {{ form_row(form.name) }}
-                    {{ form_row(form.phone) }}
-                    {{ form_row(form.email) }}
-                    {{ form_rest(form) }}
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.phone) }}
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.recaptcha) }}
+                        {{ form_row(form.privacy) }}
+                        {{ form_rest(form) }}
                     {{ form_end(form) }}
                 </div>
             </div>
