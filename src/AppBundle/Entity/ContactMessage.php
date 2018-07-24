@@ -225,6 +225,14 @@ class ContactMessage extends AbstractBase
     }
 
     /**
+     * @return bool
+     */
+    public function getPrivacy()
+    {
+        return $this->isPrivacy();
+    }
+
+    /**
      * @param bool $privacy
      *
      * @return $this
@@ -232,6 +240,7 @@ class ContactMessage extends AbstractBase
     public function setPrivacy($privacy)
     {
         $this->privacy = $privacy;
+
         return $this;
     }
 
