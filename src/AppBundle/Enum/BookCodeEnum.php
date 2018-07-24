@@ -6,8 +6,6 @@ namespace AppBundle\Enum;
  * BookCodeEnum class.
  *
  * @category Enum
- *
- * @author   David Romaní <david@flux.cat>
  */
 class BookCodeEnum
 {

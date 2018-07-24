@@ -6,8 +6,6 @@ namespace AppBundle\Enum;
  * TicketOfficeCodeEnum class.
  *
  * @category Enum
- *
- * @author   David Romaní <david@flux.cat>
  */
 class TicketOfficeCodeEnum
 {
