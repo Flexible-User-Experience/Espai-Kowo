@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -59,6 +60,15 @@ class ContactNewsletterType extends AbstractType
                             'checkHost' => true,
                         )),
                     ),
+                )
+            )
+            ->add(
+                'privacy',
+                CheckboxType::class,
+                array(
+                    'required' => true,
+                    'mapped' => false,
+                    'label' => 'frontend.forms.privacy',
                 )
             )
             ->add(

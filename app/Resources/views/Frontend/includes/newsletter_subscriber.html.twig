@@ -6,7 +6,8 @@
                     {{ form_row(form.name) }}
                     {{ form_row(form.email) }}
                     {{ form_widget(form.send, { attr: {class: 'btn-sm btn-kowo-orange no-m-bottom'} }) }}
-                    {{ form_rest(form) }}
+                    {{ form_row(form.privacy) }}
+                {{ form_rest(form) }}
                 {{ form_end(form) }}
             </div>
         </div>
