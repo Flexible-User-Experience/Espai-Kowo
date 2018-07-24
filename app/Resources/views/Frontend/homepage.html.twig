@@ -1,5 +1,16 @@
 {% extends ':Frontend:base.html.twig' %}
 
+{% form_theme formHomepage _self %}
+
+{% block _contact_homepage_privacy_widget %}
+    <div class="checkbox ">
+        <input type="checkbox" id="privacy_checkbox" {{ block('widget_attributes') }} />
+        <label class="control-label my-privacy-label" for="privacy_checkbox">
+            Accepto la <a href="{{ path('front_privacy_policy')}}">política de privacitat</a>
+        </label>
+    </div>
+{% endblock %}
+
 {% block main %}
     {# Carousel Header #}
     <div id="header-homepage-carousel" class="carousel slide" data-ride="carousel">
@@ -65,6 +76,7 @@
                         {{ form_row(formHomepage.name) }}
                         {{ form_row(formHomepage.phone) }}
                         {{ form_row(formHomepage.email) }}
+                        {{ form_row(formHomepage.privacy) }}
                         {{ form_rest(formHomepage) }}
                     {{ form_end(formHomepage) }}
                 </div>

@@ -27,7 +27,7 @@ class FormsSubmitTest extends WebTestCase
         $form = $sendButton->form();
         $contactHomepage = $form->get('contact_homepage');
 
-        $this->assertEquals(count($contactHomepage), 5);
+        $this->assertEquals(count($contactHomepage), 6);
         $this->assertTrue(isset($contactHomepage['name']));
         $this->assertTrue(isset($contactHomepage['phone']));
         $this->assertTrue(isset($contactHomepage['email']));
@@ -70,7 +70,7 @@ class FormsSubmitTest extends WebTestCase
         $form = $sendButton->form();
         $contactHomepage = $form->get('contact_message');
 
-        $this->assertEquals(count($contactHomepage), 6);
+        $this->assertEquals(count($contactHomepage), 7);
         $this->assertTrue(isset($contactHomepage['name']));
         $this->assertTrue(isset($contactHomepage['phone']));
         $this->assertTrue(isset($contactHomepage['email']));
