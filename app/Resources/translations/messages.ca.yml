@@ -27,6 +27,7 @@ frontend:
         phone: Telèfon
         email: "Email *"
         message: "Missatge *"
+        privacy: Accepto la política de privacitat
         send: Enviar
         news: 'Subscriu-me al newsletter'
         category: Dedicació
