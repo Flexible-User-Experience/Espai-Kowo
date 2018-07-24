@@ -240,7 +240,7 @@ class ContactMessageAdmin extends AbstractBaseAdmin
                             'template' => '::Admin/Cells/list__action_answer.html.twig',
                         ),
                         'delete' => array(
-                            'template' => '::Admin/Cells/list__action_delete.html.twig',
+                            'template' => '::Admin/Buttons/list__action_delete_button.html.twig',
                         ),
                     ),
                 )
