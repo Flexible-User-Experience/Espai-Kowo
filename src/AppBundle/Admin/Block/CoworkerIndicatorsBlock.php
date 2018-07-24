@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin\Block;
 
+use AppBundle\Enum\MonthEnum;
 use Doctrine\ORM\EntityManager;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\Service\AbstractBlockService;
@@ -108,7 +109,7 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
                 'novemberDischarge' => $this->solveAverage($novemberDischarge, $novemberTakeUp + $novemberDischarge),
                 'decemberDischarge' => $this->solveAverage($decemberDischarge, $decemberTakeUp + $decemberDischarge),
                 'coworkersBirthday' => $coworkersBirthday,
-                'currentDate' => $currentDate->format('F'),
+                'currentDate' => MonthEnum::getTranslatedMonthEnumArray()[intval($currentDate->format('n'))],
             ),
             $response
         );
