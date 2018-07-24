@@ -40,7 +40,7 @@ class ContactHomepageType extends ContactNewsletterType
                 CheckboxType::class,
                 array(
                     'required' => true,
-                    'label' => 'Accepto la política de privacitat',
+                    'label' => 'frontend.forms.privacy',
                     'mapped' => false,
                 )
             )

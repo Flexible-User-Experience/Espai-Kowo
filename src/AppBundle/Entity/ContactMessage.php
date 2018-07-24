@@ -54,6 +54,11 @@ class ContactMessage extends AbstractBase
     private $message;
 
     /**
+     * @var bool
+     */
+    private $privacy;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(type="boolean")
@@ -208,6 +213,25 @@ class ContactMessage extends AbstractBase
     {
         $this->phone = $phone;
 
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPrivacy()
+    {
+        return $this->privacy;
+    }
+
+    /**
+     * @param bool $privacy
+     *
+     * @return $this
+     */
+    public function setPrivacy($privacy)
+    {
+        $this->privacy = $privacy;
         return $this;
     }
 
