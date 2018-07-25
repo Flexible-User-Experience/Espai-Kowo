@@ -231,15 +231,21 @@
                 <h3 class="box-title">Aniversaris {{ currentDate }}</h3>
             </div>
             <div class="box-body">
-                <ul class="list list-unstyled">
-                    {% for coworker in coworkersBirthday %}
-                        <li>
-                            <a href="{{ path('admin_app_coworker_edit', { id: coworker.id}) }}">
-                                {{ coworker.birthday | date('d/m/Y') }} · {{ coworker.fullName }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
+                {% if coworkersBirthday | length > 0 %}
+                    <ul class="list list-unstyled">
+                        {% for coworker in coworkersBirthday %}
+                            <li>
+                                <a href="{{ path('admin_app_coworker_edit', { id: coworker.id}) }}">
+                                    {{ coworker.birthday | date('d/m/Y') }} · {{ coworker.fullName }} · {{ coworker.yearsOldInCurrentYear }} anys
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="alert alert-warning">
+                        <i class="fa fa-frown-o"></i> Ningú celebra el seu aniversari aquest mes
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
