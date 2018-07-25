@@ -48,6 +48,7 @@ backend:
         enabled: Actiu
         submit: Enviar
         published_date: Data de publicació
+        pictures: Imatges
         coworker:
             name: Nom
             surname: Cognom
