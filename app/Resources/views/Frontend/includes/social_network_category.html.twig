@@ -6,7 +6,7 @@
         </a>
     </li>
 {% endfor %}
-{% if coworker.email %}
+{% if coworker.email and not coworker.hideEmailFromWebpage %}
     <li>
         <a class="c-grey" href="mailto:{{ coworker.email }}">
             <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
