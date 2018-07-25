@@ -236,7 +236,7 @@
                         {% for coworker in coworkersBirthday %}
                             <li>
                                 <a href="{{ path('admin_app_coworker_edit', { id: coworker.id}) }}">
-                                    {{ coworker.birthday | date('d/m/Y') }} · {{ coworker.fullName }}
+                                    {{ coworker.birthday | date('d/m/Y') }} · {{ coworker.fullName }} · {{ coworker.yearsOldInCurrentYear }} anys
                                 </a>
                             </li>
                         {% endfor %}

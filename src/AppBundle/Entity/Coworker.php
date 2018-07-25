@@ -441,6 +441,17 @@ class Coworker extends AbstractBase
     }
 
     /**
+     * @return \DateTime
+     */
+    public function getYearsOldInCurrentYear()
+    {
+        $currentYear = intval((new \DateTime())->format('Y'));
+        $birthYear = intval($this->getBirthday()->format('Y'));
+
+        return $currentYear - $birthYear;
+    }
+
+    /**
      * @param \DateTime $birthday
      *
      * @return $this
