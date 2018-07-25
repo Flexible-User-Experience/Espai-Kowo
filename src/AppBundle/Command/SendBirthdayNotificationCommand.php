@@ -10,12 +10,21 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class SendBirthdayNotificationCommand
+ *
+ * @category Command
+ */
 class SendBirthdayNotificationCommand extends ContainerAwareCommand
 {
     /**
      * @var EntityManager
      */
     protected $em;
+
+    /**
+     * Methods
+     */
 
     /**
      * Configure command
@@ -39,7 +48,12 @@ class SendBirthdayNotificationCommand extends ContainerAwareCommand
      * @param InputInterface $input
      * @param OutputInterface $output
      *
-     * @return int|null|void
+     * @return int|null|bool|void
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     * @throws \Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -84,7 +98,5 @@ class SendBirthdayNotificationCommand extends ContainerAwareCommand
         }
 
         $output->writeln('<comment>END OF FILE.</comment>');
-
-        return true;
     }
 }
