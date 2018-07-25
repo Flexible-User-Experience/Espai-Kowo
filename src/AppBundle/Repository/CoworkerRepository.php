@@ -68,7 +68,9 @@ class CoworkerRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('coworker')
             ->where('MONTH(coworker.birthday) = :month')
-            ->setParameter('month', $month);
+            ->setParameter('month', $month)
+            ->orderBy('DAY(coworker.birthday)', 'ASC')
+        ;
 
         return $qb;
     }
