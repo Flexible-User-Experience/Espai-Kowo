@@ -188,6 +188,13 @@ class Coworker extends AbstractBase
     private $dischargeDate;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean", options={"default"=0})
+     */
+    private $hideEmailFromWebpage = false;
+
+    /**
      * Methods.
      */
 
@@ -631,6 +638,34 @@ class Coworker extends AbstractBase
     public function setDischargeDate($dischargeDate)
     {
         $this->dischargeDate = $dischargeDate;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHideEmailFromWebpage()
+    {
+        return $this->hideEmailFromWebpage;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHideEmailFromWebpage()
+    {
+        return $this->isHideEmailFromWebpage();
+    }
+
+    /**
+     * @param bool $hideEmailFromWebpage
+     *
+     * @return $this
+     */
+    public function setHideEmailFromWebpage($hideEmailFromWebpage)
+    {
+        $this->hideEmailFromWebpage = $hideEmailFromWebpage;
 
         return $this;
     }

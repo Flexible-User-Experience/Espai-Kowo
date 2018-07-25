@@ -67,6 +67,7 @@ backend:
             printerCode: Codi impressora
             bookCode: Codi clau calaixera
             ticketOfficeCode: Codi clau taquilla
+            hide_email_from_webpage: Ocultar email
         category:
             title: Títol
             category: Dedicació

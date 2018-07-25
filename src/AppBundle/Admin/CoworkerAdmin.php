@@ -11,7 +11,11 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\CoreBundle\Form\Type\CollectionType;
+use Sonata\CoreBundle\Form\Type\DatePickerType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 /**
  * Class CoworkerAdmin.
@@ -83,7 +87,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
             ->with('backend.admin.pictures', $this->getFormMdSuccessBoxArray(3))
             ->add(
                 'imageFile',
-                'file',
+                FileType::class,
                 array(
                     'label' => 'backend.admin.post.image',
                     'help' => $this->getImageHelperFormMapperWithThumbnail(),
@@ -101,7 +105,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
 //            )
             ->add(
                 'gifFile',
-                'file',
+                FileType::class,
                 array(
                     'label' => 'backend.admin.coworker.gif',
                     'help' => $this->getImageHelperFormMapperWithThumbnailGif(),
@@ -160,7 +164,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'birthday',
-                'sonata_type_date_picker',
+                DatePickerType::class,
                 array(
                     'label' => 'Aniversari',
                     'format' => 'd/M/y',
@@ -169,7 +173,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'dischargeDate',
-                'sonata_type_date_picker',
+                DatePickerType::class,
                 array(
                     'label' => 'Data baixa',
                     'format' => 'd/M/y',
@@ -177,8 +181,16 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'hideEmailFromWebpage',
+                CheckboxType::class,
+                array(
+                    'label' => 'backend.admin.coworker.hide_email_from_webpage',
+                    'required' => false,
+                )
+            )
+            ->add(
                 'enabled',
-                'checkbox',
+                CheckboxType::class,
                 array(
                     'label' => 'backend.admin.enabled',
                     'required' => false,
@@ -190,7 +202,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 ->with('backend.admin.social_networks.social_networks', $this->getFormMdSuccessBoxArray(12))
                 ->add(
                     'socialNetworks',
-                    'sonata_type_collection',
+                    CollectionType::class,
                     array(
                         'label' => ' ',
                         'required' => false,
@@ -252,13 +264,20 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'hideEmailFromWebpage',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.hide_email_from_webpage',
+                )
+            )
+            ->add(
                 'enabled',
                 null,
                 array(
                     'label' => 'backend.admin.enabled',
-                    'editable' => true,
                 )
-            );
+            )
+        ;
     }
 
     /**
@@ -305,6 +324,14 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.category.category',
+                )
+            )
+            ->add(
+                'hideEmailFromWebpage',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.hide_email_from_webpage',
+                    'editable' => true,
                 )
             )
             ->add(
