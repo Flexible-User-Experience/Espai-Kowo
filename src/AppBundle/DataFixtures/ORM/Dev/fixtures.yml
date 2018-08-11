@@ -205,3 +205,23 @@ AppBundle\Entity\User:
         enabled: true
         roles:
             - ROLE_ADMIN
+
+# Province
+AppBundle\Entity\Province:
+  province{1..10}:
+    code: <postcode()>
+    name: <city()>
+    country: <country()>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: true
+
+# City
+AppBundle\Entity\City:
+  city{1..10}:
+    name: <city()>
+    postalCode: <postcode()>
+    province: @province<numberBetween(1,10)>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: true
