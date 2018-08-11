@@ -3,13 +3,12 @@
 namespace AppBundle\Manager;
 
 use AppBundle\Repository\CategoryRepository;
+use AppBundle\Repository\ProvinceRepository;
 
 /**
  * Class RepositoriesManager
  *
  * @category Manager
- * @package  AppBundle\Manager
- * @author   David Romaní <david@flux.cat>
  */
 class RepositoriesManager
 {
@@ -19,21 +18,24 @@ class RepositoriesManager
     private $categoryRepository;
 
     /**
-     *
-     *
+     * @var ProvinceRepository
+     */
+    private $provinceRepository;
+
+    /**
      * Methods
-     *
-     *
      */
 
     /**
      * RepositoriesManager constructor.
      *
      * @param CategoryRepository $categoryRepository
+     * @param ProvinceRepository $provinceRepository
      */
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(CategoryRepository $categoryRepository, ProvinceRepository $provinceRepository)
     {
         $this->categoryRepository = $categoryRepository;
+        $this->provinceRepository = $provinceRepository;
     }
 
     /**
@@ -42,5 +44,13 @@ class RepositoriesManager
     public function getCategoryRepository()
     {
         return $this->categoryRepository;
+    }
+
+    /**
+     * @return ProvinceRepository
+     */
+    public function getProvinceRepository()
+    {
+        return $this->provinceRepository;
     }
 }

@@ -14,6 +14,12 @@ Activity_delete: Esborrar
 "Contact Message_delete": Esborrar
 User_list: Usuaris
 User_delete: Esborrar
+Province List: Províncies
+Province Create: Crear
+Province Delete: Esborrar
+City List: Ciutats
+City Create: Crear
+City Delete: Esborrar
 frontend:
     menu:
         blog: BLOG
@@ -126,3 +132,11 @@ backend:
             social_networks: Xarxes Socials
             url: URL
             category: Xarxa social
+        province:
+            code: Codi
+            name: Nom
+            country: Pais
+        city:
+            name: Nom
+            postalCode: Codi postal
+            province: Província

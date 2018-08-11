@@ -53,6 +53,17 @@ services:
         arguments: [ ~, AppBundle\Entity\User, ~, "@fos_user.user_manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Usuari", group: "Usuaris", label_translator_strategy: "sonata.admin.label.strategy.noop" }
+    admin.province:
+        class: AppBundle\Admin\ProvinceAdmin
+        arguments: [ ~, AppBundle\Entity\Province, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Província", group: "Facturació" }
+    admin.city:
+        class: AppBundle\Admin\CityAdmin
+        arguments: [ ~, AppBundle\Entity\City, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Ciutat", group: "Facturació" }
+
 # Messaging
     app.courier:
         class: AppBundle\Service\CourierService

@@ -30,10 +30,12 @@ sonata_admin:
         show:   "::Admin/show.html.twig"
     dashboard:
         groups:
-            Blog:
-                icon: "<i class='fa fa-chrome'></i>"
             Coworkers:
                 icon: "<i class='fa fa-users'></i>"
+            Facturació:
+                icon: "<i class='fa fa-eur'></i>"
+            Blog:
+                icon: "<i class='fa fa-chrome'></i>"
             Activitats:
                 icon: "<i class='fa fa-calendar-times-o'></i>"
             Contactes:
@@ -53,13 +55,19 @@ sonata_admin:
                 type: sonata.admin.block.admin_list
                 class: col-md-6
                 settings:
-                    groups: [ Blog ]
+                    groups: [ Coworkers ]
             -
                 position: top
                 type: sonata.admin.block.admin_list
                 class: col-md-6
                 settings:
-                    groups: [ Coworkers ]
+                    groups: [ Facturació ]
+            -
+                position: top
+                type: sonata.admin.block.admin_list
+                class: col-md-6
+                settings:
+                    groups: [ Blog ]
             -
                 position: top
                 type: sonata.admin.block.admin_list
