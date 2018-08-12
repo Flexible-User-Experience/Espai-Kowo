@@ -3,7 +3,7 @@ services:
         class: AppBundle\Repository\ProvinceRepository
         factory: [ "@doctrine", getRepository ]
         arguments:
-            - AppBundle:Category
+            - AppBundle:Province
     app.category_repository:
         class: AppBundle\Repository\CategoryRepository
         factory: [ "@doctrine", getRepository ]
