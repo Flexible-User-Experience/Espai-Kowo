@@ -16,82 +16,93 @@ AppBundle\Entity\ContactMessage:
 ## Coworkers
 AppBundle\Entity\Coworker:
   coworker1:
-    name: 'Sílvia'
-    surname: 'Berbís'
+    name: <name()>
+    surname: <lastName()>
     position: 1
-    email: 'sberbis@hotmail.com'
+    email: <safeEmail()>
     description: <paragraph()>
     category: @category<numberBetween(1, 5)>
+    customer: @customer<numberBetween(1, 5)>
   coworker2:
-    name: 'Sofia'
-    surname: 'Cabanes'
+    name: <name()>
+    surname: <lastName()>
     position: 2
-    email: 'sofiacabanes@hotmail.com'
+    email: <safeEmail()>
     description: <paragraph()>
     category: @category<numberBetween(1, 5)>
+    customer: @customer<numberBetween(1, 5)>
   coworker3:
-    name: 'Vanesa'
-    surname: 'Cervera'
+    name: <name()>
+    surname: <lastName()>
     position: 3
-    email: 'info@vanesadesign.com'
+    email: <safeEmail()>
     description: <paragraph()>
     category: @category<numberBetween(1, 5)>
+    customer: @customer<numberBetween(1, 5)>
   coworker4:
-    name: 'Jaume'
-    surname: 'Castellà'
+    name: <name()>
+    surname: <lastName()>
     position: 4
-    email: 'jaume.castella@cresol.com'
+    email: <safeEmail()>
     description: <paragraph()>
     category: @category<numberBetween(1, 5)>
+    customer: @customer<numberBetween(1, 5)>
   coworker5:
-    name: 'German'
-    surname: 'Zubeldia'
+    name: <name()>
+    surname: <lastName()>
     position: 5
-    email: 'sinergia.client@gmail.com'
+    email: <safeEmail()>
     description: <paragraph()>
     category: @category<numberBetween(1, 5)>
+    customer: @customer<numberBetween(1, 5)>
   coworker6:
-    name: 'Rubèn'
-    surname: 'Hierro'
+    name: <name()>
+    surname: <lastName()>
     position: 6
-    email: 'info@rubenhierro.com'
+    email: <safeEmail()>
     description: <paragraph()>
     category: @category<numberBetween(1, 5)>
+    customer: @customer<numberBetween(1, 5)>
   coworker7:
-    name: 'Marc'
-    surname: 'Morales'
+    name: <name()>
+    surname: <lastName()>
     position: 7
-    email: 'info@marcmorales.cat'
+    email: <safeEmail()>
     description: <paragraph()>
     category: @category<numberBetween(1, 5)>
+    customer: @customer<numberBetween(1, 5)>
   coworker8:
-    name: 'Juan Carlos'
-    surname: 'Chicón'
+    name: <name()>
+    surname: <lastName()>
     position: 8
-    email: 'jcchicon@gmail.com'
+    email: <safeEmail()>
     description: <paragraph()>
     category: @category<numberBetween(1, 5)>
+    customer: @customer<numberBetween(1, 5)>
   coworker9:
-    name: 'David'
-    surname: 'Romaní'
+    name: <name()>
+    surname: <lastName()>
     position: 9
-    email: 'david@flux.cat'
+    email: <safeEmail()>
     description: <paragraph()>
     category: @category<numberBetween(1, 5)>
+    customer: @customer<numberBetween(1, 5)>
   coworker10:
-    name: 'Wilson'
-    surname: 'Iglesias'
+    name: <name()>
+    surname: <lastName()>
     position: 10
-    email: 'info@wiglesias.com'
+    email: <safeEmail()>
     description: <paragraph()>
     category: @category<numberBetween(1, 5)>
+    customer: @customer<numberBetween(1, 5)>
   coworker11:
-    name: 'Anton'
-    surname: 'Serra'
+    name: <name()>
+    surname: <lastName()>
     position: 11
-    email: 'aserratorta@gmail.com'
+    email: <safeEmail()>
     description: <paragraph()>
     category: @category<numberBetween(1, 5)>
+    customer: @customer<numberBetween(1, 5)>
 
 #Social Network Category
 AppBundle\Entity\SocialNetworkCategory:
@@ -222,6 +233,20 @@ AppBundle\Entity\City:
     name: <city()>
     postalCode: <postcode()>
     province: @province<numberBetween(1,10)>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: true
+
+# Customer
+AppBundle\Entity\Customer:
+  customer{1..5}:
+    tic: <word()>
+    name: <word()>
+    address: <word()>
+    city: @city<numberBetween(1, 10)>
+    phone: <word()>
+    email: <safeEmail()>
+    isEnterprise: <boolean(70)>
     createdAt: <dateTimeBetween('-2 months', '-1 months')>
     updatedAt: <dateTimeThisMonth()>
     enabled: true

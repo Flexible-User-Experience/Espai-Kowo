@@ -70,7 +70,7 @@ class Customer extends AbstractBase
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Coworker")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Coworker", mappedBy="customer", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $coworkers;
 
@@ -263,7 +263,7 @@ class Customer extends AbstractBase
     {
         if (!$this->coworkers->contains($coworker)) {
             $this->coworkers->add($coworker);
-            // TODO $coworker->setCustomer($this);
+            $coworker->setCustomer($this);
         }
 
         return $this;

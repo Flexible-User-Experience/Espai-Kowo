@@ -22,6 +22,7 @@ AppBundle\Entity\Coworker:
     description: <paragraph()>
     email: <safeEmail()>
     category: @category<numberBetween(1, 2)>
+    customer: @customer<numberBetween(1, 2)>
   coworker2:
     position: <numberBetween(1, 2)>
     name: 'Anton'
@@ -29,6 +30,7 @@ AppBundle\Entity\Coworker:
     description: <paragraph()>
     email: <safeEmail()>
     category: @category<numberBetween(1, 2)>
+    customer: @customer<numberBetween(1, 2)>
 
 ## Category
 AppBundle\Entity\Category:
@@ -132,6 +134,20 @@ AppBundle\Entity\City:
     name: <city()>
     postalCode: <postcode()>
     province: @province<numberBetween(1, 2)>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: true
+
+# Customer
+AppBundle\Entity\Customer:
+  customer{1..2}:
+    tic: <word()>
+    name: <word()>
+    address: <word()>
+    city: @city<numberBetween(1, 2)>
+    phone: <word()>
+    email: <safeEmail()>
+    isEnterprise: <boolean(70)>
     createdAt: <dateTimeBetween('-2 months', '-1 months')>
     updatedAt: <dateTimeThisMonth()>
     enabled: true
