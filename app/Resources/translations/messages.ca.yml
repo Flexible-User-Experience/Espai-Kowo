@@ -6,11 +6,11 @@ Coworker_list: Coworkers
 Coworker_delete: Esborrar
 Category_list: Categories
 Category_delete: Esborrar
-"Social Network_list": Xarxes Socials
+"Social Network_list": Xarxes socials
 "Social Network_delete": Esborrar
 Activity_list: Activitats
 Activity_delete: Esborrar
-"Contact Message_list": Missatges de Contacte
+"Contact Message_list": Missatges de contacte
 "Contact Message_delete": Esborrar
 User_list: Usuaris
 User_delete: Esborrar
@@ -20,6 +20,9 @@ Province Delete: Esborrar
 City List: Ciutats
 City Create: Crear
 City Delete: Esborrar
+Customer List: Clients
+Customer Create: Crear
+Customer Delete: Esborrar
 frontend:
     menu:
         blog: BLOG
@@ -62,7 +65,7 @@ backend:
             email: Correu electrònic
             description: Descripció
             position: Ordre
-            social_networks: Xarxes Socials
+            social_networks: Xarxes socials
             facebook: Facebook
             twitter: Twitter
             github: Github
@@ -129,7 +132,7 @@ backend:
             plain_password: Contrasenya
             roles: Rols
         social_networks:
-            social_networks: Xarxes Socials
+            social_networks: Xarxes socials
             url: URL
             category: Xarxa social
         province:
@@ -140,3 +143,12 @@ backend:
             name: Nom
             postalCode: Codi postal
             province: Província
+        customer:
+            tic: CIF/NIF
+            name: Nom fiscal
+            address: Adreça
+            city: Població
+            phone: Telèfon
+            email: Email
+            is_enterprise: És empresa
+            coworkers: Coworkers
