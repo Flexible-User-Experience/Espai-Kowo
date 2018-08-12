@@ -3,6 +3,7 @@
 namespace AppBundle\Manager;
 
 use AppBundle\Repository\CategoryRepository;
+use AppBundle\Repository\CityRepository;
 use AppBundle\Repository\ProvinceRepository;
 
 /**
@@ -23,6 +24,11 @@ class RepositoriesManager
     private $provinceRepository;
 
     /**
+     * @var CityRepository
+     */
+    private $cityRepository;
+
+    /**
      * Methods
      */
 
@@ -31,11 +37,13 @@ class RepositoriesManager
      *
      * @param CategoryRepository $categoryRepository
      * @param ProvinceRepository $provinceRepository
+     * @param CityRepository     $cityRepository
      */
-    public function __construct(CategoryRepository $categoryRepository, ProvinceRepository $provinceRepository)
+    public function __construct(CategoryRepository $categoryRepository, ProvinceRepository $provinceRepository, CityRepository $cityRepository)
     {
         $this->categoryRepository = $categoryRepository;
         $this->provinceRepository = $provinceRepository;
+        $this->cityRepository = $cityRepository;
     }
 
     /**
@@ -52,5 +60,13 @@ class RepositoriesManager
     public function getProvinceRepository()
     {
         return $this->provinceRepository;
+    }
+
+    /**
+     * @return CityRepository
+     */
+    public function getCityRepository()
+    {
+        return $this->cityRepository;
     }
 }

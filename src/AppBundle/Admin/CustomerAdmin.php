@@ -2,17 +2,10 @@
 
 namespace AppBundle\Admin;
 
-use AppBundle\Enum\BookCodeEnum;
-use AppBundle\Enum\GenderEnum;
-use AppBundle\Enum\TicketOfficeCodeEnum;
-use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 /**
  * Class CustomerAdmin.
@@ -40,6 +33,7 @@ class CustomerAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.customer.tic',
+                    'required' => true,
                 )
             )
             ->add(
@@ -47,6 +41,7 @@ class CustomerAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.customer.name',
+                    'required' => true,
                 )
             )
             ->add(
@@ -57,124 +52,43 @@ class CustomerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'city',
+                null,
+                array(
+                    'label' => 'backend.admin.customer.city',
+                    'query_builder' => $this->rm->getCityRepository()->getEnabledSortedByNameQB(),
+                    'required' => true,
+                )
+            )
+            ->add(
+                'phone',
+                null,
+                array(
+                    'label' => 'backend.admin.customer.phone',
+                )
+            )
+            ->add(
                 'email',
                 null,
                 array(
-                    'label' => 'backend.admin.coworker.email',
-                    'required' => true,
-                )
-            )
-            ->add(
-                'description',
-                CKEditorType::class,
-                array(
-                    'label' => 'backend.admin.coworker.description',
-                    'config_name' => 'my_config',
-                    'required' => true,
-                )
-            )
-            ->end()
-            ->with('backend.admin.pictures', $this->getFormMdSuccessBoxArray(3))
-            ->add(
-                'imageFile',
-                FileType::class,
-                array(
-                    'label' => 'backend.admin.post.image',
-                    'help' => $this->getImageHelperFormMapperWithThumbnail(),
-                    'required' => false,
-                )
-            )
-//            ->add(
-//                'imageFileBW',
-//                'file',
-//                array(
-//                    'label' => 'backend.admin.post.imageBW',
-//                    'help' => $this->getImageHelperFormMapperWithThumbnailBW(),
-//                    'required' => false,
-//                )
-//            )
-            ->add(
-                'gifFile',
-                FileType::class,
-                array(
-                    'label' => 'backend.admin.coworker.gif',
-                    'help' => $this->getImageHelperFormMapperWithThumbnailGif(),
-                    'required' => false,
+                    'label' => 'backend.admin.customer.email',
                 )
             )
             ->end()
             ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(3))
             ->add(
-                'category',
+                'coworkers',
                 null,
                 array(
-                    'label' => 'backend.admin.category.category',
-                    'query_builder' => $this->rm->getCategoryRepository()->getAllEnabledCategorySortedByTitleQB(),
+                    'label' => 'backend.admin.customer.coworkers',
+                    'disabled' => true,
                 )
             )
             ->add(
-                'gender',
-                ChoiceType::class,
-                array(
-                    'label' => 'backend.admin.coworker.gender',
-                    'choices' => GenderEnum::getEnumArray(),
-                    'multiple' => false,
-                    'expanded' => false,
-                    'required' => true,
-                )
-            )
-            ->add(
-                'printerCode',
-                null,
-                array(
-                    'label' => 'backend.admin.coworker.printerCode',
-                )
-            )
-            ->add(
-                'bookCode',
-                ChoiceType::class,
-                array(
-                    'label' => 'backend.admin.coworker.bookCode',
-                    'choices' => BookCodeEnum::getEnumArray(),
-                    'multiple' => false,
-                    'expanded' => false,
-                    'required' => false,
-                )
-            )
-            ->add(
-                'ticketOfficeCode',
-                ChoiceType::class,
-                array(
-                    'label' => 'backend.admin.coworker.ticketOfficeCode',
-                    'choices' => TicketOfficeCodeEnum::getEnumArray(),
-                    'multiple' => false,
-                    'expanded' => false,
-                    'required' => false,
-                )
-            )
-            ->add(
-                'birthday',
-                DatePickerType::class,
-                array(
-                    'label' => 'Aniversari',
-                    'format' => 'd/M/y',
-                    'required' => false,
-                )
-            )
-            ->add(
-                'dischargeDate',
-                DatePickerType::class,
-                array(
-                    'label' => 'Data baixa',
-                    'format' => 'd/M/y',
-                    'required' => false,
-                )
-            )
-            ->add(
-                'hideEmailFromWebpage',
+                'isEnterprise',
                 CheckboxType::class,
                 array(
-                    'label' => 'backend.admin.coworker.hide_email_from_webpage',
+                    'label' => 'backend.admin.customer.is_enterprise',
                     'required' => false,
                 )
             )

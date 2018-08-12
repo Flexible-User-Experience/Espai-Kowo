@@ -15,6 +15,7 @@ security:
         ROLE_SONATA_MANAGER:
             - ROLE_ADMIN_PROVINCE_ALL
             - ROLE_ADMIN_CITY_ALL
+            - ROLE_ADMIN_CUSTOMER_ALL
             - ROLE_ADMIN_USER_ALL
         ROLE_CMS:
             - ROLE_USER
