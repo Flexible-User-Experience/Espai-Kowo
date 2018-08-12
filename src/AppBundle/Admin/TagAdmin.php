@@ -13,8 +13,6 @@ use Sonata\AdminBundle\Show\ShowMapper;
  * Class TagAdmin
  *
  * @category Admin
- * @package  AppBundle\Admin
- * @author   David Romaní <david@flux.cat>
  */
 class TagAdmin extends AbstractBaseAdmin
 {

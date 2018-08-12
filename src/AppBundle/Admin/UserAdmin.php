@@ -14,8 +14,6 @@ use FOS\UserBundle\Model\UserManagerInterface;
  * Class UserAdmin.
  *
  * @category Admin
- *
- * @author   David Romaní <david@flux.cat>
  */
 class UserAdmin extends ParentUserAdmin
 {

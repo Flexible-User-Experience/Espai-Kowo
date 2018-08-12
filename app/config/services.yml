@@ -63,6 +63,11 @@ services:
         arguments: [ ~, AppBundle\Entity\City, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Ciutat", group: "Facturació" }
+    admin.customer:
+        class: AppBundle\Admin\CustomerAdmin
+        arguments: [ ~, AppBundle\Entity\Customer, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Clients", group: "Facturació" }
 
 # Messaging
     app.courier:

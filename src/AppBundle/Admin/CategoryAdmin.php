@@ -11,8 +11,6 @@ use Sonata\AdminBundle\Route\RouteCollection;
  * Class CategoryAdmin.
  *
  * @category Admin
- *
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class CategoryAdmin extends AbstractBaseAdmin
 {

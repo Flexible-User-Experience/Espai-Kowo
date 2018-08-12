@@ -2,7 +2,6 @@
 
 namespace AppBundle\Admin;
 
-use AppBundle\Entity\Coworker;
 use AppBundle\Enum\BookCodeEnum;
 use AppBundle\Enum\GenderEnum;
 use AppBundle\Enum\TicketOfficeCodeEnum;
@@ -10,38 +9,24 @@ use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
-use Sonata\CoreBundle\Form\Type\CollectionType;
 use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 /**
- * Class CoworkerAdmin.
+ * Class CustomerAdmin.
  *
  * @category Admin
  */
-class CoworkerAdmin extends AbstractBaseAdmin
+class CustomerAdmin extends AbstractBaseAdmin
 {
-    protected $classnameLabel = 'Coworker';
-    protected $baseRoutePattern = 'coworkers/coworker';
+    protected $classnameLabel = 'Customer';
+    protected $baseRoutePattern = 'invoicing/customer';
     protected $datagridValues = array(
-        '_sort_by' => 'surname',
+        '_sort_by' => 'name',
         '_sort_order' => 'asc',
     );
-
-    /**
-     * Configure route collection.
-     *
-     * @param RouteCollection $collection
-     */
-    protected function configureRoutes(RouteCollection $collection)
-    {
-        $collection
-            ->add('data', $this->getRouterIdParameter().'/data')
-            ->remove('batch');
-    }
 
     /**
      * @param FormMapper $formMapper
@@ -51,17 +36,24 @@ class CoworkerAdmin extends AbstractBaseAdmin
         $formMapper
             ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(6))
             ->add(
-                'name',
+                'tic',
                 null,
                 array(
-                    'label' => 'backend.admin.coworker.name',
+                    'label' => 'backend.admin.customer.tic',
                 )
             )
             ->add(
-                'surname',
+                'name',
                 null,
                 array(
-                    'label' => 'backend.admin.coworker.surname',
+                    'label' => 'backend.admin.customer.name',
+                )
+            )
+            ->add(
+                'address',
+                null,
+                array(
+                    'label' => 'backend.admin.customer.address',
                 )
             )
             ->add(
@@ -195,25 +187,6 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->end();
-        if ($this->id($this->getSubject())) { // is edit mode, disable on new subjects
-            $formMapper
-                ->with('backend.admin.social_networks.social_networks', $this->getFormMdSuccessBoxArray(12))
-                ->add(
-                    'socialNetworks',
-                    CollectionType::class,
-                    array(
-                        'label' => ' ',
-                        'required' => false,
-                        'cascade_validation' => true,
-                    ),
-                    array(
-                        'edit' => 'inline',
-                        'inline' => 'table',
-                        'sortable' => 'position',
-                    )
-                )
-                ->end();
-        }
     }
 
     /**
@@ -223,49 +196,59 @@ class CoworkerAdmin extends AbstractBaseAdmin
     {
         $datagridMapper
             ->add(
+                'tic',
+                null,
+                array(
+                    'label' => 'backend.admin.customer.tic',
+                )
+            )
+            ->add(
                 'name',
                 null,
                 array(
-                    'label' => 'backend.admin.coworker.name',
+                    'label' => 'backend.admin.customer.name',
                 )
             )
             ->add(
-                'surname',
+                'address',
                 null,
                 array(
-                    'label' => 'backend.admin.coworker.surname',
+                    'label' => 'backend.admin.customer.address',
                 )
             )
             ->add(
-                'gender',
-                'doctrine_orm_choice',
+                'city',
+                null,
                 array(
-                    'label' => 'backend.admin.coworker.gender',
-                    'field_type' => 'choice',
-                    'field_options' => array(
-                        'choices' => GenderEnum::getEnumArray(),
-                    ),
+                    'label' => 'backend.admin.customer.city',
+                )
+            )
+            ->add(
+                'phone',
+                null,
+                array(
+                    'label' => 'backend.admin.customer.phone',
                 )
             )
             ->add(
                 'email',
                 null,
                 array(
-                    'label' => 'backend.admin.coworker.email',
+                    'label' => 'backend.admin.customer.email',
                 )
             )
             ->add(
-                'category',
+                'isEnterprise',
                 null,
                 array(
-                    'label' => 'backend.admin.category.category',
+                    'label' => 'backend.admin.customer.is_enterprise',
                 )
             )
             ->add(
-                'hideEmailFromWebpage',
+                'coworkers',
                 null,
                 array(
-                    'label' => 'backend.admin.coworker.hide_email_from_webpage',
+                    'label' => 'backend.admin.customer.coworkers',
                 )
             )
             ->add(
@@ -286,26 +269,34 @@ class CoworkerAdmin extends AbstractBaseAdmin
         unset($this->listModes['mosaic']);
         $listMapper
             ->add(
-                'image',
+                'tic',
                 null,
                 array(
-                    'label' => 'backend.admin.event.image',
-                    'template' => '::Admin/Cells/list__cell_image_field.html.twig',
+                    'label' => 'backend.admin.customer.tic',
+                    'editable' => true,
                 )
             )
             ->add(
                 'name',
                 null,
                 array(
-                    'label' => 'backend.admin.coworker.name',
+                    'label' => 'backend.admin.customer.name',
                     'editable' => true,
                 )
             )
             ->add(
-                'surname',
+                'city',
                 null,
                 array(
-                    'label' => 'backend.admin.coworker.surname',
+                    'label' => 'backend.admin.customer.city',
+                    'editable' => true,
+                )
+            )
+            ->add(
+                'phone',
+                null,
+                array(
+                    'label' => 'backend.admin.customer.phone',
                     'editable' => true,
                 )
             )
@@ -313,22 +304,15 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 'email',
                 null,
                 array(
-                    'label' => 'backend.admin.coworker.email',
+                    'label' => 'backend.admin.customer.email',
                     'editable' => true,
                 )
             )
             ->add(
-                'category',
+                'isEnterprise',
                 null,
                 array(
-                    'label' => 'backend.admin.category.category',
-                )
-            )
-            ->add(
-                'hideEmailFromWebpage',
-                null,
-                array(
-                    'label' => 'backend.admin.coworker.hide_email_from_webpage',
+                    'label' => 'backend.admin.customer.is_enterprise',
                     'editable' => true,
                 )
             )
@@ -346,20 +330,10 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 array(
                     'label' => 'backend.admin.actions',
                     'actions' => array(
-                        'show' => array('template' => '::Admin/Buttons/list__action_show_button.html.twig'),
-                        'data' => array('template' => '::Admin/Buttons/list__action_data_button.html.twig'),
                         'edit' => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
                         'delete' => array('template' => '::Admin/Buttons/list__action_delete_button.html.twig'),
                     ),
                 )
             );
-    }
-
-    /**
-     * @param Coworker $coworker
-     */
-    public function prePersist($coworker)
-    {
-        $coworker->setToken(md5(uniqid(rand(), true)));
     }
 }

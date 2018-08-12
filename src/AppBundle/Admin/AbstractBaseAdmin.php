@@ -12,7 +12,6 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
  * Class BaseAdmin
  *
  * @category Admin
- * @author   David Romaní <david@flux.cat>
  */
 abstract class AbstractBaseAdmin extends AbstractAdmin
 {
@@ -30,6 +29,10 @@ abstract class AbstractBaseAdmin extends AbstractAdmin
      * @var RepositoriesManager
      */
     protected $rm;
+
+    /**
+     * Methods
+     */
 
     /**
      * @param string              $code
