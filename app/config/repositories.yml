@@ -14,9 +14,15 @@ services:
         factory: [ "@doctrine", getRepository ]
         arguments:
             - AppBundle:Category
+    app.customer_repository:
+        class: AppBundle\Repository\CustomerRepository
+        factory: [ "@doctrine", getRepository ]
+        arguments:
+            - AppBundle:Customer
     app.repositories_manager:
         class: AppBundle\Manager\RepositoriesManager
         arguments:
             - "@app.category_repository"
             - "@app.province_repository"
             - "@app.city_repository"
+            - "@app.customer_repository"
