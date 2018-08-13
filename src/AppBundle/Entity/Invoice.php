@@ -16,8 +16,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class Invoice extends AbstractBase
 {
-    const TAX_IRPF = 0;
     const TAX_IVA = 21;
+    const TAX_IRPF = 0;
 
     /**
      * @var int
@@ -58,14 +58,14 @@ class Invoice extends AbstractBase
     /**
      * @var float
      *
-     * @ORM\Column(type="float", options={"default"=0})
+     * @ORM\Column(type="float", options={"default"=21})
      */
     private $taxPercentage = self::TAX_IVA;
 
     /**
      * @var float
      *
-     * @ORM\Column(type="float", nullable=true, options={"default"=15})
+     * @ORM\Column(type="float", nullable=true, options={"default"=0})
      */
     private $irpfPercentage = self::TAX_IRPF;
 
@@ -176,7 +176,7 @@ class Invoice extends AbstractBase
      *
      * @return $this
      */
-    public function setDate($date)
+    public function setDate(\DateTime $date)
     {
         $this->date = $date;
 

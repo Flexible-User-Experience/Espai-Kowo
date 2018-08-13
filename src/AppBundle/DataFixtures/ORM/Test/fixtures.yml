@@ -151,3 +151,26 @@ AppBundle\Entity\Customer:
     createdAt: <dateTimeBetween('-2 months', '-1 months')>
     updatedAt: <dateTimeThisMonth()>
     enabled: true
+
+# Invoice
+AppBundle\Entity\Invoice:
+  invoice{1..2}:
+    customer: @customer1
+    date: <date()>
+    isPayed: <boolean()>
+    baseAmount: <randomFloat(1, 5)>
+    taxPercentage: 0
+    irpfPercentage: 15
+    totalAmount: <randomFloat(1, 5)>
+    number: <current()>
+    year: <year()>
+
+# InvoiceLine
+AppBundle\Entity\InvoiceLine:
+  lineInvoice{1..2}:
+    description: <sentence()>
+    units: <numberBetween(1, 100)>
+    priceUnit: <randomFloat(1, 5)>
+    discount: <randomFloat(1, 5)>
+    total: <randomFloat(1, 5)>
+    invoice: @invoice<current()>

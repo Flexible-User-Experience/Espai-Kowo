@@ -68,6 +68,11 @@ services:
         arguments: [ ~, AppBundle\Entity\Customer, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Clients", group: "Facturació" }
+    admin.invoice:
+        class: AppBundle\Admin\InvoiceAdmin
+        arguments: [ ~, AppBundle\Entity\Invoice, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Factures", group: "Facturació" }
 
 # Messaging
     app.courier:
