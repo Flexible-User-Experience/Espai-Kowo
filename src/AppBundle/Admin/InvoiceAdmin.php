@@ -77,7 +77,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 'date',
                 DatePickerType::class,
                 array(
-                    'label' => 'backend.admin.receipt.date',
+                    'label' => 'backend.admin.invoice.date',
                     'format' => 'd/M/y',
                     'required' => $this->id($this->getSubject()) ? false : true,
                     'disabled' => $this->id($this->getSubject()) ? true : false,
@@ -87,7 +87,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 'customer',
                 EntityType::class,
                 array(
-                    'label' => 'backend.admin.invoice.student',
+                    'label' => 'backend.admin.invoice.customer',
                     'required' => true,
                     'class' => Customer::class,
                     'choice_label' => 'alias',
@@ -159,7 +159,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 array(
                     'label' => 'backend.admin.invoice.isPayed',
                     'required' => false,
-                    'disabled' => true,
+                    'disabled' => false,
                 )
             )
             ->add(
@@ -169,7 +169,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
                     'label' => 'backend.admin.invoice.paymentDate',
                     'format' => 'd/M/y',
                     'required' => false,
-                    'disabled' => true,
+                    'disabled' => false,
                 )
             )
             ->end();
@@ -220,7 +220,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 'date',
                 null,
                 array(
-                    'label' => 'backend.admin.receipt.date',
+                    'label' => 'backend.admin.invoice.date',
                 )
             )
             ->add(
@@ -364,6 +364,14 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.invoice.isSended',
+                    'editable' => false,
+                )
+            )
+            ->add(
+                'isPayed',
+                null,
+                array(
+                    'label' => 'backend.admin.invoice.isPayed',
                     'editable' => false,
                 )
             )

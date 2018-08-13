@@ -176,7 +176,7 @@ backend:
             taxPercentage: IVA
             irpfPercentage: IRPF
             totalAmount: Total
-            month: Mes
+            number: Número
             year: Any
             send: Enviar PDF per email
             resend: Tornar a enviar PDF per email
