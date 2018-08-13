@@ -17,6 +17,7 @@ security:
             - ROLE_ADMIN_CITY_ALL
             - ROLE_ADMIN_CUSTOMER_ALL
             - ROLE_ADMIN_INVOICE_ALL
+            - ROLE_ADMIN_INVOICE_LINE_ALL
             - ROLE_ADMIN_USER_ALL
         ROLE_CMS:
             - ROLE_USER

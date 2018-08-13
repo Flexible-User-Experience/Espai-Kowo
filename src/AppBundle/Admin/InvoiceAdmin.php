@@ -2,7 +2,9 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Customer;
 use AppBundle\Entity\Invoice;
+use AppBundle\Enum\YearEnum;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -11,6 +13,7 @@ use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 /**
  * Class InvoiceAdmin.
@@ -41,24 +44,6 @@ class InvoiceAdmin extends AbstractBaseAdmin
     }
 
     /**
-     * Get the list of actions that can be accessed directly from the dashboard.
-     *
-     * @return array
-     */
-//    public function getDashboardActions()
-//    {
-//        $actions = parent::getDashboardActions();
-//        $actions['generate'] = array(
-//            'label' => 'backend.admin.invoice.generate_batch',
-//            'translation_domain' => 'messages',
-//            'url' => $this->generateUrl('generate'),
-//            'icon' => 'inbox',
-//        );
-//
-//        return $actions;
-//    }
-
-    /**
      * @param FormMapper $formMapper
      */
     protected function configureFormFields(FormMapper $formMapper)
@@ -68,6 +53,26 @@ class InvoiceAdmin extends AbstractBaseAdmin
 
         $formMapper
             ->with('backend.admin.invoice.invoice', $this->getFormMdSuccessBoxArray(3))
+            ->add(
+                'number',
+                IntegerType::class,
+                array(
+                    'label' => 'backend.admin.invoice.number',
+                    'required' => $this->id($this->getSubject()) ? false : true,
+                    'disabled' => $this->id($this->getSubject()) ? true : false,
+                )
+            )
+            ->add(
+                'year',
+                ChoiceType::class,
+                array(
+                    'label' => 'backend.admin.invoice.year',
+                    'choices' => YearEnum::getYearEnumArray(),
+                    'preferred_choices' => $currentYear,
+                    'required' => $this->id($this->getSubject()) ? false : true,
+                    'disabled' => $this->id($this->getSubject()) ? true : false,
+                )
+            )
             ->add(
                 'date',
                 DatePickerType::class,
@@ -79,45 +84,14 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
-                'year',
-                ChoiceType::class,
-                array(
-                    'label' => 'backend.admin.invoice.year',
-                    'required' => true,
-                    'choices' => InvoiceYearMonthEnum::getYearEnumArray(),
-                    'preferred_choices' => $currentYear,
-                )
-            )
-            ->add(
-                'month',
-                ChoiceType::class,
-                array(
-                    'label' => 'backend.admin.invoice.month',
-                    'required' => true,
-                    'choices' => InvoiceYearMonthEnum::getMonthEnumArray(),
-                    'choices_as_values' => false,
-                )
-            )
-            ->add(
-                'student',
+                'customer',
                 EntityType::class,
                 array(
                     'label' => 'backend.admin.invoice.student',
                     'required' => true,
-                    'class' => Student::class,
-                    'choice_label' => 'fullCanonicalName',
-                    'query_builder' => $this->getConfigurationPool()->getContainer()->get('app.student_repository')->getEnabledSortedBySurnameValidTariffQB(),
-                )
-            )
-            ->add(
-                'person',
-                EntityType::class,
-                array(
-                    'label' => 'backend.admin.invoice.person',
-                    'required' => false,
-                    'class' => Person::class,
-                    'choice_label' => 'fullCanonicalName',
-                    'query_builder' => $this->getConfigurationPool()->getContainer()->get('app.parent_repository')->getEnabledSortedBySurnameQB(),
+                    'class' => Customer::class,
+                    'choice_label' => 'alias',
+                    'query_builder' => $this->rm->getCustomerRepository()->getEnabledSortedByNameQB(),
                 )
             )
             ->end()
@@ -161,34 +135,6 @@ class InvoiceAdmin extends AbstractBaseAdmin
             ->end()
             ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(3))
             ->add(
-                'receipt',
-                EntityType::class,
-                array(
-                    'label' => 'backend.admin.invoice.receipt',
-                    'required' => false,
-                    'class' => Receipt::class,
-                    'query_builder' => $this->getConfigurationPool()->getContainer()->get('app.receipt_repository')->getAllSortedByNumberDescQB(),
-                )
-            )
-            ->add(
-                'discountApplied',
-                null,
-                array(
-                    'label' => 'backend.admin.invoice.discountApplied',
-                    'required' => false,
-                    'disabled' => true,
-                )
-            )
-            ->add(
-                'isForPrivateLessons',
-                CheckboxType::class,
-                array(
-                    'label' => 'backend.admin.is_for_private_lessons',
-                    'required' => false,
-                    'disabled' => false,
-                )
-            )
-            ->add(
                 'isSended',
                 CheckboxType::class,
                 array(
@@ -202,6 +148,25 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 DatePickerType::class,
                 array(
                     'label' => 'backend.admin.invoice.sendDate',
+                    'format' => 'd/M/y',
+                    'required' => false,
+                    'disabled' => true,
+                )
+            )
+            ->add(
+                'isPayed',
+                CheckboxType::class,
+                array(
+                    'label' => 'backend.admin.invoice.isPayed',
+                    'required' => false,
+                    'disabled' => true,
+                )
+            )
+            ->add(
+                'paymentDate',
+                DatePickerType::class,
+                array(
+                    'label' => 'backend.admin.invoice.paymentDate',
                     'format' => 'd/M/y',
                     'required' => false,
                     'disabled' => true,
@@ -347,8 +312,8 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 'date',
                 null,
                 array(
-                    'label' => 'backend.admin.receipt.date',
-                    'template' => '::Admin/Cells/list__cell_receipt_date.html.twig',
+                    'label' => 'backend.admin.invoice.date',
+                    'template' => '::Admin/Cells/list__cell_invoice_date.html.twig',
                     'editable' => false,
                 )
             )
@@ -408,8 +373,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 array(
                     'actions' => array(
                         'edit' => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
-                        'invoice' => array('template' => '::Admin/Buttons/list__action_invoice_pdf_button.html.twig'),
-                        'send' => array('template' => '::Admin/Buttons/list__action_invoice_send_button.html.twig'),
+//                        'send' => array('template' => '::Admin/Buttons/list__action_invoice_send_button.html.twig'),
                     ),
                     'label' => 'backend.admin.actions',
                 )
