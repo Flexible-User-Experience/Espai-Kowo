@@ -91,6 +91,7 @@ class BackendControllerTest extends AbstractBaseTest
             array('/admin/invoicing/invoice-line/list'),
             array('/admin/invoicing/invoice-line/create'),
             array('/admin/invoicing/invoice-line/1/edit'),
+            array('/admin/invoicing/invoice-line/1/delete'),
             array('/admin/users/list'),
             array('/admin/users/create'),
             array('/admin/users/1/edit'),
@@ -141,7 +142,6 @@ class BackendControllerTest extends AbstractBaseTest
             array('/admin/invoicing/invoice/1/delete'),
             array('/admin/invoicing/invoice-line/batch'),
             array('/admin/invoicing/invoice-line/1/show'),
-            array('/admin/invoicing/invoice-line/1/delete'),
             array('/admin/users/show'),
             array('/admin/users/batch'),
         );
