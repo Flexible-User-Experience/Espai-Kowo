@@ -147,6 +147,7 @@ backend:
         customer:
             tic: CIF/NIF
             name: Nom fiscal
+            alias: Alias
             address: Adreça
             city: Població
             phone: Telèfon

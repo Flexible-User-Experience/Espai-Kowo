@@ -57,6 +57,13 @@ class CustomerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'alias',
+                null,
+                array(
+                    'label' => 'backend.admin.customer.alias',
+                )
+            )
+            ->add(
                 'address',
                 null,
                 array(
@@ -133,6 +140,13 @@ class CustomerAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.customer.name',
+                )
+            )
+            ->add(
+                'alias',
+                null,
+                array(
+                    'label' => 'backend.admin.customer.alias',
                 )
             )
             ->add(

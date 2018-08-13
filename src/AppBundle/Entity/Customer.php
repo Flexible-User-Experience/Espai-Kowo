@@ -36,6 +36,13 @@ class Customer extends AbstractBase
      *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    private $alias;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $address;
 
     /**
@@ -122,6 +129,26 @@ class Customer extends AbstractBase
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+
+    /**
+     * @param string $alias
+     *
+     * @return $this
+     */
+    public function setAlias($alias)
+    {
+        $this->alias = $alias;
 
         return $this;
     }
@@ -288,6 +315,6 @@ class Customer extends AbstractBase
      */
     public function __toString()
     {
-        return $this->id ? $this->getTic().' · '.$this->getName() : '---';
+        return $this->id ? ($this->alias ? $this->getAlias() : $this->getTic().' · '.$this->getName()) : '---';
     }
 }
