@@ -21,8 +21,6 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
  * Class CoworkerAdmin.
  *
  * @category Admin
- *
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class CoworkerAdmin extends AbstractBaseAdmin
 {
@@ -114,6 +112,14 @@ class CoworkerAdmin extends AbstractBaseAdmin
             )
             ->end()
             ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(3))
+            ->add(
+                'customer',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.customer',
+                    'query_builder' => $this->rm->getCustomerRepository()->getEnabledSortedByNameQB(),
+                )
+            )
             ->add(
                 'category',
                 null,
@@ -264,6 +270,13 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'customer',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.customer',
+                )
+            )
+            ->add(
                 'hideEmailFromWebpage',
                 null,
                 array(
@@ -324,6 +337,13 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.category.category',
+                )
+            )
+            ->add(
+                'customer',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.customer',
                 )
             )
             ->add(

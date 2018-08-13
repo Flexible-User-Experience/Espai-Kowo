@@ -17,18 +17,20 @@ AppBundle\Entity\ContactMessage:
 AppBundle\Entity\Coworker:
   coworker1:
     position: <numberBetween(1, 2)>
+    name: name
+    surname: lastname
+    description: <paragraph()>
+    email: <safeEmail()>
+    category: @category<numberBetween(1, 2)>
+    customer: @customer<numberBetween(1, 2)>
+  coworker2:
+    position: <numberBetween(1, 2)>
     name: <name()>
     surname: <lastName()>
     description: <paragraph()>
     email: <safeEmail()>
     category: @category<numberBetween(1, 2)>
-  coworker2:
-    position: <numberBetween(1, 2)>
-    name: 'Anton'
-    surname: 'Serra'
-    description: <paragraph()>
-    email: <safeEmail()>
-    category: @category<numberBetween(1, 2)>
+    customer: @customer<numberBetween(1, 2)>
 
 ## Category
 AppBundle\Entity\Category:
@@ -115,3 +117,60 @@ AppBundle\Entity\User:
         enabled: true
         roles:
             - ROLE_SUPER_ADMIN
+
+# Province
+AppBundle\Entity\Province:
+  province{1..2}:
+    code: <postcode()>
+    name: <city()>
+    country: <country()>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: true
+
+# City
+AppBundle\Entity\City:
+  city{1..2}:
+    name: <city()>
+    postalCode: <postcode()>
+    province: @province<numberBetween(1, 2)>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: true
+
+# Customer
+AppBundle\Entity\Customer:
+  customer{1..2}:
+    tic: <word()>
+    name: <word()>
+    address: <word()>
+    city: @city<numberBetween(1, 2)>
+    phone: <word()>
+    email: <safeEmail()>
+    isEnterprise: <boolean(70)>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    enabled: true
+
+# Invoice
+AppBundle\Entity\Invoice:
+  invoice{1..2}:
+    customer: @customer1
+    date: <date()>
+    isPayed: <boolean()>
+    baseAmount: <randomFloat(1, 5)>
+    taxPercentage: 0
+    irpfPercentage: 15
+    totalAmount: <randomFloat(1, 5)>
+    number: <current()>
+    year: <year()>
+
+# InvoiceLine
+AppBundle\Entity\InvoiceLine:
+  lineInvoice{1..2}:
+    description: <sentence()>
+    units: <numberBetween(1, 100)>
+    priceUnit: <randomFloat(1, 5)>
+    discount: <randomFloat(1, 5)>
+    total: <randomFloat(1, 5)>
+    invoice: @invoice<current()>

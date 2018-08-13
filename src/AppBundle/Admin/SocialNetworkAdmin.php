@@ -11,8 +11,6 @@ use Sonata\AdminBundle\Route\RouteCollection;
  * Class SocialNetworkAdmin
  *
  * @category Admin
- * @package  AppBundle\Admin
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class SocialNetworkAdmin extends AbstractBaseAdmin
 {

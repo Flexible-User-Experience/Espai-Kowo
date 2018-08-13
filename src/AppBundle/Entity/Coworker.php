@@ -195,6 +195,13 @@ class Coworker extends AbstractBase
     private $hideEmailFromWebpage = false;
 
     /**
+     * @var Customer
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer", inversedBy="coworkers")
+     */
+    private $customer;
+
+    /**
      * Methods.
      */
 
@@ -677,6 +684,26 @@ class Coworker extends AbstractBase
     public function setHideEmailFromWebpage($hideEmailFromWebpage)
     {
         $this->hideEmailFromWebpage = $hideEmailFromWebpage;
+
+        return $this;
+    }
+
+    /**
+     * @return Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param Customer $customer
+     *
+     * @return $this
+     */
+    public function setCustomer($customer)
+    {
+        $this->customer = $customer;
 
         return $this;
     }

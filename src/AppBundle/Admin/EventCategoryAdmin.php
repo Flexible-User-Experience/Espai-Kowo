@@ -13,8 +13,6 @@ use Sonata\AdminBundle\Show\ShowMapper;
  * Class EventCategoryAdmin
  *
  * @category Admin
- * @package  AppBundle\Admin
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class EventCategoryAdmin extends AbstractBaseAdmin
 {

@@ -2,22 +2,24 @@
 
 namespace AppBundle\Admin;
 
-use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 
 /**
- * Class CategoryAdmin.
+ * Class ProvinceAdmin.
  *
  * @category Admin
  */
-class CategoryAdmin extends AbstractBaseAdmin
+class ProvinceAdmin extends AbstractBaseAdmin
 {
-    protected $classnameLabel = 'Category';
-    protected $baseRoutePattern = 'coworkers/category';
+    protected $classnameLabel = 'Province';
+    protected $baseRoutePattern = 'invoicing/province';
     protected $datagridValues = array(
-        '_sort_by' => 'title',
+        '_sort_by' => 'name',
         '_sort_order' => 'asc',
     );
 
@@ -28,9 +30,8 @@ class CategoryAdmin extends AbstractBaseAdmin
      */
     protected function configureRoutes(RouteCollection $collection)
     {
-        $collection
-            ->remove('show')
-            ->remove('batch');
+        parent::configureRoutes($collection);
+        $collection->remove('delete');
     }
 
     /**
@@ -39,25 +40,41 @@ class CategoryAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(7))
+            ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(3))
             ->add(
-                'title',
+                'code',
                 null,
                 array(
-                    'label' => 'backend.admin.category.title',
+                    'label' => 'backend.admin.province.code',
+                )
+            )
+            ->add(
+                'name',
+                null,
+                array(
+                    'label' => 'backend.admin.province.name',
+                )
+            )
+            ->add(
+                'country',
+                CountryType::class,
+                array(
+                    'label' => 'backend.admin.province.country',
+                    'preferred_choices' => array('ES'),
                 )
             )
             ->end()
-            ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(5))
+            ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(3))
             ->add(
                 'enabled',
-                'checkbox',
+                CheckboxType::class,
                 array(
                     'label' => 'backend.admin.enabled',
                     'required' => false,
                 )
             )
-            ->end();
+            ->end()
+        ;
     }
 
     /**
@@ -67,10 +84,17 @@ class CategoryAdmin extends AbstractBaseAdmin
     {
         $datagridMapper
             ->add(
-                'title',
+                'code',
                 null,
                 array(
-                    'label' => 'backend.admin.category.title',
+                    'label' => 'backend.admin.province.code',
+                )
+            )
+            ->add(
+                'name',
+                null,
+                array(
+                    'label' => 'backend.admin.province.name',
                 )
             )
             ->add(
@@ -78,9 +102,9 @@ class CategoryAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.enabled',
-                    'editable' => true,
                 )
-            );
+            )
+        ;
     }
 
     /**
@@ -91,11 +115,27 @@ class CategoryAdmin extends AbstractBaseAdmin
         unset($this->listModes['mosaic']);
         $listMapper
             ->add(
-                'title',
+                'code',
                 null,
                 array(
-                    'label' => 'backend.admin.category.title',
+                    'label' => 'backend.admin.province.code',
                     'editable' => true,
+                )
+            )
+            ->add(
+                'name',
+                null,
+                array(
+                    'label' => 'backend.admin.province.name',
+                    'editable' => true,
+                )
+            )
+            ->add(
+                'country',
+                null,
+                array(
+                    'label' => 'backend.admin.province.country',
+                    'editable' => false,
                 )
             )
             ->add(
@@ -110,12 +150,12 @@ class CategoryAdmin extends AbstractBaseAdmin
                 '_action',
                 'actions',
                 array(
-                    'label' => 'backend.admin.actions',
                     'actions' => array(
                         'edit' => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
-                        'delete' => array('template' => '::Admin/Buttons/list__action_delete_button.html.twig'),
                     ),
+                    'label' => 'Accions',
                 )
-            );
+            )
+        ;
     }
 }

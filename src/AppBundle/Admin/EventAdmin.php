@@ -12,8 +12,6 @@ use Sonata\AdminBundle\Route\RouteCollection;
  * Class EventAdmin.
  *
  * @category Admin
- *
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class EventAdmin extends AbstractBaseAdmin
 {

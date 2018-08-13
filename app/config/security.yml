@@ -13,6 +13,11 @@ security:
             - ROLE_ADMIN_POST_ALL
             - ROLE_ADMIN_TAG_ALL
         ROLE_SONATA_MANAGER:
+            - ROLE_ADMIN_PROVINCE_ALL
+            - ROLE_ADMIN_CITY_ALL
+            - ROLE_ADMIN_CUSTOMER_ALL
+            - ROLE_ADMIN_INVOICE_ALL
+            - ROLE_ADMIN_INVOICE_LINE_ALL
             - ROLE_ADMIN_USER_ALL
         ROLE_CMS:
             - ROLE_USER

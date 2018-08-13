@@ -6,14 +6,23 @@ Coworker_list: Coworkers
 Coworker_delete: Esborrar
 Category_list: Categories
 Category_delete: Esborrar
-"Social Network_list": Xarxes Socials
+"Social Network_list": Xarxes socials
 "Social Network_delete": Esborrar
 Activity_list: Activitats
 Activity_delete: Esborrar
-"Contact Message_list": Missatges de Contacte
+"Contact Message_list": Missatges de contacte
 "Contact Message_delete": Esborrar
 User_list: Usuaris
 User_delete: Esborrar
+Province List: Províncies
+Province Create: Crear
+Province Delete: Esborrar
+City List: Ciutats
+City Create: Crear
+City Delete: Esborrar
+Customer List: Clients
+Customer Create: Crear
+Customer Delete: Esborrar
 frontend:
     menu:
         blog: BLOG
@@ -56,7 +65,7 @@ backend:
             email: Correu electrònic
             description: Descripció
             position: Ordre
-            social_networks: Xarxes Socials
+            social_networks: Xarxes socials
             facebook: Facebook
             twitter: Twitter
             github: Github
@@ -69,6 +78,7 @@ backend:
             bookCode: Codi clau calaixera
             ticketOfficeCode: Codi clau taquilla
             hide_email_from_webpage: Ocultar email
+            customer: Client
         category:
             title: Títol
             category: Dedicació
@@ -123,6 +133,75 @@ backend:
             plain_password: Contrasenya
             roles: Rols
         social_networks:
-            social_networks: Xarxes Socials
+            social_networks: Xarxes socials
             url: URL
             category: Xarxa social
+        province:
+            code: Codi
+            name: Nom
+            country: Pais
+        city:
+            name: Nom
+            postalCode: Codi postal
+            province: Província
+        customer:
+            tic: CIF/NIF
+            name: Nom fiscal
+            alias: Alias
+            address: Adreça
+            city: Població
+            phone: Telèfon
+            email: Email
+            is_enterprise: És empresa
+            coworkers: Coworkers
+        invoice:
+            customer: Client
+            download: Descarregar PDF
+            generate: Generar factures
+            items: Ítems
+            preview_invoice: Mostrar factures a generar
+            list: Llistat de factures disponibles a generar
+            generate_batch: Generar facturació mensual
+            invoice: Factura
+            line: Línia
+            lines: Línies de factura
+            detail: Detall
+            date: Data factura
+            isPayed: Pagada
+            paymentDate: Data pagament
+            isSended: Enviada
+            sendDate: Data enviament
+            baseAmount: Base imposable
+            id: Núm. Factura
+            taxPercentage: IVA
+            irpfPercentage: IRPF
+            totalAmount: Total
+            number: Número
+            year: Any
+            send: Enviar PDF per email
+            resend: Tornar a enviar PDF per email
+            generator:
+                flash_success: "S'han generat %amount% factures correctament."
+                no_records_found: "No s'ha trobat cap alumne a les classes realitzades durant el període seleccionat."
+                ready: "{0}factures|{1}factura|]1,Inf]factures"
+                no_records_presisted: "Atenció: no s'ha creat cap factura nova, recorda que has de marcar la casella 'Facturar'."
+            pdf:
+                invoice_data: "Dades factura:"
+                invoice_number: "Núm."
+                invoice_date: "Data:"
+                customer_data: "Dades client:"
+                payment_type: "Modalitat de pagament:"
+                account_number: "Número de compte:"
+        invoiceLine:
+            invoice: Factura
+            description: Descripció
+            units: Unitats
+            priceUnit: Preu Unitat
+            isReadyToGenerate: Facturar
+            isPreviouslyGenerated: Nova
+            isPrivateLessonType: Particular
+            discount: Descompte
+            total: Total
+            generator:
+                group_lessons_line: "Classes en grup realitzades durant el mes de %month% de %year%"
+                private_lessons_line: "Classes particulars realitzades durant el mes de %month% de %year%"

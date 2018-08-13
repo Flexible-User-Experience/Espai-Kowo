@@ -2,6 +2,7 @@
 
 namespace AppBundle\Twig;
 
+use AppBundle\Entity\Invoice;
 use AppBundle\Entity\User;
 use AppBundle\Enum\UserRolesEnum;
 
@@ -9,8 +10,6 @@ use AppBundle\Enum\UserRolesEnum;
  * Class AppExtension.
  *
  * @category Twig
- *
- * @author   David Romaní <david@flux.cat>
  */
 class AppExtension extends \Twig_Extension
 {
@@ -56,6 +55,7 @@ class AppExtension extends \Twig_Extension
         return array(
             new \Twig_SimpleFilter('draw_role_span', array($this, 'drawRoleSpan')),
             new \Twig_SimpleFilter('age', array($this, 'ageCalculate')),
+            new \Twig_SimpleFilter('draw_money', array($this, 'drawMoney')),
         );
     }
 
@@ -97,6 +97,28 @@ class AppExtension extends \Twig_Extension
 
         return $interval->y;
     }
+
+    /**
+     * @param Invoice $object
+     *
+     * @return string
+     */
+    public function drawMoney($object)
+    {
+        $result = '<span class="text text-info">0,00 €</span>';
+        if (is_numeric($object)) {
+            if ($object < 0) {
+                $result = '<span class="text text-danger">'.number_format($object, 2, ',', '.').' €</span>';
+            } elseif ($object > 0) {
+                $result = '<span class="text text-success">'.number_format($object, 2, ',', '.').' €</span>';
+            } else {
+                $result = '<span class="text text-info">0,00 €</span>';
+            }
+        }
+
+        return $result;
+    }
+
 
     /**
      * @return string
