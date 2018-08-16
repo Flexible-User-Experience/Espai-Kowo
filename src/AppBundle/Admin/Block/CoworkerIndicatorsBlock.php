@@ -14,13 +14,17 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * Class CoworkerIndicatorsBlock.
  *
  * @category Block
- *
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class CoworkerIndicatorsBlock extends AbstractBlockService
 {
-    /** @var EntityManager */
+    /**
+     * @var EntityManager
+     */
     private $em;
+
+    /**
+     * Methods
+     */
 
     /**
      * Constructor.
