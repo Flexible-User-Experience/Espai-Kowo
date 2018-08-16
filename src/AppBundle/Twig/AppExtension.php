@@ -75,7 +75,41 @@ class AppExtension extends \Twig_Extension
      */
     public function drawAgesList($agesList)
     {
-        return '';
+        $min = 0;
+        $max = 0;
+        /** @var array $age */
+        foreach ($agesList as $age) {
+            if (!is_null($age['cby'])) {
+                $value = intval($age['cby']);
+                if ($max <= $value) {
+                    $max = $value;
+
+                }
+                if ($min == 0) {
+                    $min = $value;
+                }
+            }
+        }
+        $now = new \DateTime();
+        $currentYear = intval($now->format('Y'));
+        $maxAge = $currentYear - $min;
+        $minAge = $currentYear - $max;
+        $middleAge = round(($maxAge + $minAge) / 2, 1);
+
+        $result = '<h6 class="box-title">Mínima | Mitjana | Màxima</h6>'.
+                    '<div class="progress">'.
+                        '<div class="progress-bar progress-bar-warning" style="width:'.$minAge.'%">'.
+                            $minAge.
+                        '</div>'.
+                        '<div class="progress-bar progress-bar-success progress-bar-striped" style="width:'.($maxAge - $minAge).'%">'.
+                            $middleAge.
+                        '</div>'.
+                        '<div class="progress-bar progress-bar-warning" style="width:'.(100 - $maxAge).'%">'.
+                            $maxAge.
+                        '</div>'.
+                    '</div>';
+
+        return $result;
     }
 
     /**
