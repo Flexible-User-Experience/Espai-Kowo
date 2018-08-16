@@ -78,6 +78,7 @@ backend:
             bookCode: Codi clau calaixera
             ticketOfficeCode: Codi clau taquilla
             hide_email_from_webpage: Ocultar email
+            show_in_webpage: Mostrar al web
             customer: Client
         category:
             title: Títol

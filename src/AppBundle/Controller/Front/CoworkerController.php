@@ -34,7 +34,7 @@ class CoworkerController extends Controller
      */
     public function listAction(Request $request)
     {
-        $coworkers = $this->getDoctrine()->getRepository('AppBundle:Coworker')->findAllEnabledSortedBySurname();
+        $coworkers = $this->getDoctrine()->getRepository('AppBundle:Coworker')->findWebpageEnabledSortedBySurname();
         /** @var Coworker $coworker */
         foreach ($coworkers as $coworker) {
             $socialNetworks = $this->getDoctrine()->getRepository('AppBundle:SocialNetwork')->getCoworkerSocialNetworksSortedByTitle($coworker);

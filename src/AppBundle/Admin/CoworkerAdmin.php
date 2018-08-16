@@ -187,6 +187,14 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'showInWebpage',
+                CheckboxType::class,
+                array(
+                    'label' => 'backend.admin.coworker.show_in_webpage',
+                    'required' => false,
+                )
+            )
+            ->add(
                 'enabled',
                 CheckboxType::class,
                 array(
@@ -276,6 +284,13 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'showInWebpage',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.show_in_webpage',
+                )
+            )
+            ->add(
                 'enabled',
                 null,
                 array(
@@ -343,6 +358,14 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.coworker.hide_email_from_webpage',
+                    'editable' => true,
+                )
+            )
+            ->add(
+                'showInWebpage',
+                null,
+                array(
+                    'label' => 'backend.admin.coworker.show_in_webpage',
                     'editable' => true,
                 )
             )

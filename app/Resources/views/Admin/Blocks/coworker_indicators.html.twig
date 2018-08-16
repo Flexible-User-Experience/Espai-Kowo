@@ -47,7 +47,7 @@
         <div class="col-md-6">
             <div class="box box-success">
                 <div class="box-header">
-                    <h3 class="box-title">Edat coworkers actuals</h3>
+                    <h3 class="box-title">Edat dels {{ currentAgesList | length }} coworkers actuals</h3>
                 </div>
                 <div class="box-body">
                     {{ drawAgesList(currentAgesList) | raw }}
@@ -77,7 +77,7 @@
         <div class="col-md-6">
             <div class="box box-success">
                 <div class="box-header">
-                    <h3 class="box-title">Edat coworkers totals</h3>
+                    <h3 class="box-title">Edat dels {{ allAgesList | length }} coworkers totals</h3>
                 </div>
                 <div class="box-body">
                     {{ drawAgesList(allAgesList) | raw }}
