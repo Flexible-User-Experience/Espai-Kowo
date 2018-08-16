@@ -151,14 +151,41 @@ class CoworkerRepository extends EntityRepository
     }
 
     /**
-     * @return array
+     * @return QueryBuilder
      */
-    public function getCoworkersAgeList()
+    public function getAllCoworkersAgeListQB()
     {
         $qb = $this->createQueryBuilder('coworker')
-            ->select('YEAR(coworker.birthday) as cby')
-//            ->where('cby IS NOT NULL')
+            ->select('coworker.id, coworker.enabled, YEAR(coworker.birthday) as cby')
             ->orderBy('cby', 'ASC');
+
+        return $qb;
+    }
+
+    /**
+     * @return Query
+     */
+    public function getAllCoworkersAgeListQ()
+    {
+        return $this->getAllCoworkersAgeListQB()->getQuery();
+    }
+
+    /**
+     * @return array
+     */
+    public function getAllCoworkersAgeList()
+    {
+        return $this->getAllCoworkersAgeListQ()->getScalarResult();
+    }
+
+    /**
+     * @return array
+     */
+    public function getCurrentCoworkersAgeList()
+    {
+        $qb = $this->getAllCoworkersAgeListQB()
+            ->where('coworker.enabled = :enabled')
+            ->setParameter('enabled', true);
 
         return $qb->getQuery()->getScalarResult();
     }

@@ -5,7 +5,7 @@
         <div class="col-md-2">
             <div class="box box-success">
                 <div class="box-header">
-                    <h3 class="box-title">Distribució {{ yearTakeUp }} altes total</h3>
+                    <h3 class="box-title">Distribució {{ yearTakeUp }} altes totals</h3>
                 </div>
                 <div class="box-body">
                     {{ drawProgress('Gener', januaryTakeUp, yearTakeUp) | raw }}
@@ -26,7 +26,7 @@
         <div class="col-md-2">
             <div class="box box-success">
                 <div class="box-header">
-                    <h3 class="box-title">Distribució {{ yearDischarge }} baixes total</h3>
+                    <h3 class="box-title">Distribució {{ yearDischarge }} baixes totals</h3>
                 </div>
                 <div class="box-body">
                     {{ drawProgress('Gener', januaryDischarge, yearDischarge, false) | raw }}
@@ -44,20 +44,50 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="box box-success">
                 <div class="box-header">
-                    <h3 class="box-title">Edat coworkers</h3>
+                    <h3 class="box-title">Edat coworkers actuals</h3>
                 </div>
                 <div class="box-body">
-                    {{ drawAgesList(agesList) | raw }}
+                    {{ drawAgesList(currentAgesList) | raw }}
                 </div>
             </div>
         </div>
         <div class="col-md-2">
             <div class="box box-success">
                 <div class="box-header">
-                    <h3 class="box-title">Gènere coworkers</h3>
+                    <h3 class="box-title">Gènere coworkers actuals</h3>
+                </div>
+                <div class="box-body">
+                    <h6 class="box-title">Home | Dona</h6>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped"
+                             style="width: {{ maleAmount }}%">
+                            {{ maleAmount }}%
+                        </div>
+                        <div class="progress-bar progress-bar-danger progress-bar-striped"
+                             style="width: {{ femaleAmount }}%">
+                            {{ femaleAmount }}%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-success">
+                <div class="box-header">
+                    <h3 class="box-title">Edat coworkers totals</h3>
+                </div>
+                <div class="box-body">
+                    {{ drawAgesList(allAgesList) | raw }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="box box-success">
+                <div class="box-header">
+                    <h3 class="box-title">Gènere coworkers totals</h3>
                 </div>
                 <div class="box-body">
                     <h6 class="box-title">Home | Dona</h6>
