@@ -137,15 +137,79 @@ class CoworkerRepository extends EntityRepository
     }
 
     /**
+     * @return int
+     */
+    public function getCurrentMaleCoworkersAmount()
+    {
+        return $this->getCurrentCoworkersAmountByGender(GenderEnum::MALE);
+    }
+
+    /**
+     * @return int
+     */
+    public function getCurrentFemaleCoworkersAmount()
+    {
+        return $this->getCurrentCoworkersAmountByGender(GenderEnum::FEMALE);
+    }
+
+    /**
+     * @return int
+     */
+    public function getAllMaleCoworkersAmount()
+    {
+        return $this->getAllCoworkersAmountByGender(GenderEnum::MALE);
+    }
+
+    /**
+     * @return int
+     */
+    public function getAllFemaleCoworkersAmount()
+    {
+        return $this->getAllCoworkersAmountByGender(GenderEnum::FEMALE);
+    }
+
+    /**
      * @param int $gender
      *
      * @return int
      */
     private function getEnabledCoworkersAmountByGender($gender)
     {
-        $qb = $this->findAllEnabledSortedBySurnameQB();
-        $qb->andWhere('c.gender = :gender')
-            ->setParameter('gender', $gender);
+        $qb = $this->findAllEnabledSortedBySurnameQB()
+            ->andWhere('c.gender = :gender')
+            ->setParameter('gender', $gender)
+        ;
+
+        return count($qb->getQuery()->getResult());
+    }
+
+    /**
+     * @param int $gender
+     *
+     * @return int
+     */
+    private function getCurrentCoworkersAmountByGender($gender)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.dischargeDate IS NULL')
+            ->andWhere('c.gender = :gender')
+            ->setParameter('gender', $gender)
+        ;
+
+        return count($qb->getQuery()->getResult());
+    }
+
+    /**
+     * @param int $gender
+     *
+     * @return int
+     */
+    private function getAllCoworkersAmountByGender($gender)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->andWhere('c.gender = :gender')
+            ->setParameter('gender', $gender)
+        ;
 
         return count($qb->getQuery()->getResult());
     }
@@ -184,8 +248,8 @@ class CoworkerRepository extends EntityRepository
     public function getCurrentCoworkersAgeList()
     {
         $qb = $this->getAllCoworkersAgeListQB()
-            ->where('coworker.enabled = :enabled')
-            ->setParameter('enabled', true);
+            ->where('coworker.dischargeDate IS NULL')
+        ;
 
         return $qb->getQuery()->getScalarResult();
     }

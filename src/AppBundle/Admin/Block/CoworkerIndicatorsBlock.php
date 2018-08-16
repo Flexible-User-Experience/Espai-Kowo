@@ -50,8 +50,10 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         $currentDate = new \DateTime();
-        $maleAmount = $this->em->getRepository('AppBundle:Coworker')->getEnabledMaleCoworkersAmount();
-        $femaleAmount = $this->em->getRepository('AppBundle:Coworker')->getEnabledFemaleCoworkersAmount();
+        $currentMaleAmount = $this->em->getRepository('AppBundle:Coworker')->getCurrentMaleCoworkersAmount();
+        $currentFemaleAmount = $this->em->getRepository('AppBundle:Coworker')->getCurrentFemaleCoworkersAmount();
+        $allMaleAmount = $this->em->getRepository('AppBundle:Coworker')->getAllMaleCoworkersAmount();
+        $allFemaleAmount = $this->em->getRepository('AppBundle:Coworker')->getAllFemaleCoworkersAmount();
         $januaryTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(1);
         $februaryTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(2);
         $marchTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(3);
@@ -88,8 +90,10 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
                 'block' => $blockContext->getBlock(),
                 'settings' => $blockContext->getSettings(),
                 'title' => 'Coworker Indicators Block',
-                'maleAmount' => $this->solveAverage($maleAmount, $maleAmount + $femaleAmount),
-                'femaleAmount' => $this->solveAverage($femaleAmount, $maleAmount + $femaleAmount),
+                'currentMaleAmount' => $this->solveAverage($currentMaleAmount, $currentMaleAmount + $currentFemaleAmount),
+                'currentFemaleAmount' => $this->solveAverage($currentFemaleAmount, $currentMaleAmount + $currentFemaleAmount),
+                'allMaleAmount' => $this->solveAverage($allMaleAmount, $allMaleAmount + $allFemaleAmount),
+                'allFemaleAmount' => $this->solveAverage($allFemaleAmount, $allMaleAmount + $allFemaleAmount),
                 'januaryTakeUp' => $januaryTakeUp,
                 'februaryTakeUp' => $februaryTakeUp,
                 'marchTakeUp' => $marchTakeUp,
