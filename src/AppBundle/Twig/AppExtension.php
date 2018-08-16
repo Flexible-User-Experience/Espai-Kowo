@@ -24,6 +24,8 @@ class AppExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFunction('randomErrorText', array($this, 'randomErrorTextFunction')),
+            new \Twig_SimpleFunction('drawProgress', array($this, 'drawProgress')),
+            new \Twig_SimpleFunction('drawAgesList', array($this, 'drawAgesList')),
         );
     }
 
@@ -41,6 +43,73 @@ class AppExtension extends \Twig_Extension
         $chrRepeatMax = 30; // Maximum times to repeat the seed string
 
         return substr(str_shuffle(str_repeat($chrList, mt_rand($chrRepeatMin, $chrRepeatMax))), 1, $length);
+    }
+
+    /**
+     * @param string $month
+     * @param int $takeUp
+     * @param int $discharge
+     * @param bool $isGreenBar
+     *
+     * @return string
+     */
+    public function drawProgress($month, $takeUp, $discharge, $isGreenBar = true)
+    {
+        $color = $isGreenBar ? 'success' : 'danger';
+        $divider = $takeUp + $discharge;
+        $result = '<h6 class="box-title">'.$month.'</h6>'.
+                    '<div class="progress progress-bar-vertical">'.
+                        '<div class="progress-bar progress-bar-'.$color.'" style="width:'.$this->solveAverage($takeUp, $divider).'%">'.
+                            ($takeUp ? $takeUp : '').
+                        '</div>'.
+                    '</div>'
+            ;
+
+        return $result;
+    }
+
+    /**
+     * @param array $agesList["cby"] (string|null) with coworker birthday year value
+     *
+     * @return string
+     */
+    public function drawAgesList($agesList)
+    {
+        $min = 0;
+        $max = 0;
+        /** @var array $age */
+        foreach ($agesList as $age) {
+            if (!is_null($age['cby'])) {
+                $value = intval($age['cby']);
+                if ($max <= $value) {
+                    $max = $value;
+
+                }
+                if ($min == 0) {
+                    $min = $value;
+                }
+            }
+        }
+        $now = new \DateTime();
+        $currentYear = intval($now->format('Y'));
+        $maxAge = $currentYear - $min;
+        $minAge = $currentYear - $max;
+        $middleAge = round(($maxAge + $minAge) / 2, 1);
+
+        $result = '<h6 class="box-title">Mínima | Mitjana | Màxima</h6>'.
+                    '<div class="progress">'.
+                        '<div class="progress-bar progress-bar-warning" style="width:'.$minAge.'%">'.
+                            $minAge.
+                        '</div>'.
+                        '<div class="progress-bar progress-bar-success progress-bar-striped" style="width:'.($maxAge - $minAge).'%">'.
+                            $middleAge.
+                        '</div>'.
+                        '<div class="progress-bar progress-bar-warning" style="width:'.(100 - $maxAge).'%">'.
+                            $maxAge.
+                        '</div>'.
+                    '</div>';
+
+        return $result;
     }
 
     /**
@@ -119,12 +188,26 @@ class AppExtension extends \Twig_Extension
         return $result;
     }
 
-
     /**
      * @return string
      */
     public function getName()
     {
         return 'app_extension';
+    }
+
+    /**
+     * @param float|int $dividend
+     * @param float|int $divider
+     *
+     * @return float|int
+     */
+    private function solveAverage($dividend, $divider)
+    {
+        if ($divider == 0) {
+            return 0;
+        }
+
+        return round(($dividend / $divider) * 100, 0);
     }
 }

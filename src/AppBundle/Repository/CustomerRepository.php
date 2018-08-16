@@ -21,7 +21,7 @@ class CustomerRepository extends EntityRepository
         return $this->createQueryBuilder('c')
             ->where('c.enabled = :enabled')
             ->setParameter('enabled', true)
-            ->orderBy('c.name', 'ASC')
+            ->orderBy('c.alias', 'ASC')
         ;
     }
 

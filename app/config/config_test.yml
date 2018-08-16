@@ -22,6 +22,7 @@ doctrine:
     orm:
         dql:
             datetime_functions:
+                year:  DoctrineExtensions\Query\Sqlite\Year
                 month: DoctrineExtensions\Query\Sqlite\Month
                 day:   DoctrineExtensions\Query\Sqlite\Day
 

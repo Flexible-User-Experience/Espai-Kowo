@@ -14,13 +14,17 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * Class CoworkerIndicatorsBlock.
  *
  * @category Block
- *
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class CoworkerIndicatorsBlock extends AbstractBlockService
 {
-    /** @var EntityManager */
+    /**
+     * @var EntityManager
+     */
     private $em;
+
+    /**
+     * Methods
+     */
 
     /**
      * Constructor.
@@ -46,8 +50,10 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         $currentDate = new \DateTime();
-        $maleAmount = $this->em->getRepository('AppBundle:Coworker')->getEnabledMaleCoworkersAmount();
-        $femaleAmount = $this->em->getRepository('AppBundle:Coworker')->getEnabledFemaleCoworkersAmount();
+        $currentMaleAmount = $this->em->getRepository('AppBundle:Coworker')->getCurrentMaleCoworkersAmount();
+        $currentFemaleAmount = $this->em->getRepository('AppBundle:Coworker')->getCurrentFemaleCoworkersAmount();
+        $allMaleAmount = $this->em->getRepository('AppBundle:Coworker')->getAllMaleCoworkersAmount();
+        $allFemaleAmount = $this->em->getRepository('AppBundle:Coworker')->getAllFemaleCoworkersAmount();
         $januaryTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(1);
         $februaryTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(2);
         $marchTakeUp = $this->em->getRepository('AppBundle:Coworker')->getNewCoworkerAmountByMonth(3);
@@ -75,6 +81,8 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
         $decemberDischarge = $this->em->getRepository('AppBundle:Coworker')->getDischargeCoworkerAmountByMonth(12);
         $yearDischarge = $januaryDischarge + $februaryDischarge + $marchDischarge + $aprilDischarge + $mayDischarge + $juneDischarge + $julyDischarge + $augustDischarge + $septemberDischarge + $octoberDischarge + $novemberDischarge + $decemberDischarge;
         $coworkersBirthday = $this->em->getRepository('AppBundle:Coworker')->getAllCoworkersBirthdayByMonth($currentDate->format('n'));
+        $currentAgesList = $this->em->getRepository('AppBundle:Coworker')->getCurrentCoworkersAgeList();
+        $allAgesList = $this->em->getRepository('AppBundle:Coworker')->getAllCoworkersAgeList();
 
         return $this->renderResponse(
             $blockContext->getTemplate(),
@@ -82,33 +90,39 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
                 'block' => $blockContext->getBlock(),
                 'settings' => $blockContext->getSettings(),
                 'title' => 'Coworker Indicators Block',
-                'maleAmount' => $this->solveAverage($maleAmount, $maleAmount + $femaleAmount),
-                'femaleAmount' => $this->solveAverage($femaleAmount, $maleAmount + $femaleAmount),
-                'januaryTakeUp' => $this->solveAverage($januaryTakeUp, $januaryTakeUp + $januaryDischarge),
-                'februaryTakeUp' => $this->solveAverage($februaryTakeUp, $februaryTakeUp + $februaryDischarge),
-                'marchTakeUp' => $this->solveAverage($marchTakeUp, $marchTakeUp + $marchDischarge),
-                'aprilTakeUp' => $this->solveAverage($aprilTakeUp, $aprilTakeUp + $aprilDischarge),
-                'mayTakeUp' => $this->solveAverage($mayTakeUp, $mayTakeUp + $mayDischarge),
-                'juneTakeUp' => $this->solveAverage($juneTakeUp, $juneTakeUp + $juneDischarge),
-                'julyTakeUp' => $this->solveAverage($julyTakeUp, $julyTakeUp + $julyDischarge),
-                'augustTakeUp' => $this->solveAverage($augustTakeUp, $augustTakeUp + $augustDischarge),
-                'septemberTakeUp' => $this->solveAverage($septemberTakeUp, $septemberTakeUp + $septemberDischarge),
-                'octoberTakeUp' => $this->solveAverage($octoberTakeUp, $octoberTakeUp + $octoberDischarge),
-                'novemberTakeUp' => $this->solveAverage($novemberTakeUp, $novemberTakeUp + $novemberDischarge),
-                'decemberTakeUp' => $this->solveAverage($decemberTakeUp, $decemberTakeUp + $decemberDischarge),
-                'januaryDischarge' => $this->solveAverage($januaryDischarge, $januaryTakeUp + $januaryDischarge),
-                'februaryDischarge' => $this->solveAverage($februaryDischarge, $februaryTakeUp + $februaryDischarge),
-                'marchDischarge' => $this->solveAverage($marchDischarge, $marchTakeUp + $marchDischarge),
-                'aprilDischarge' => $this->solveAverage($aprilDischarge, $aprilTakeUp + $aprilDischarge),
-                'mayDischarge' => $this->solveAverage($mayDischarge, $mayTakeUp + $mayDischarge),
-                'juneDischarge' => $this->solveAverage($juneDischarge, $juneTakeUp + $juneDischarge),
-                'julyDischarge' => $this->solveAverage($julyDischarge, $julyTakeUp + $julyDischarge),
-                'augustDischarge' => $this->solveAverage($augustDischarge, $augustTakeUp + $augustDischarge),
-                'septemberDischarge' => $this->solveAverage($septemberDischarge, $septemberTakeUp + $septemberDischarge),
-                'octoberDischarge' => $this->solveAverage($octoberDischarge, $octoberTakeUp + $octoberDischarge),
-                'novemberDischarge' => $this->solveAverage($novemberDischarge, $novemberTakeUp + $novemberDischarge),
-                'decemberDischarge' => $this->solveAverage($decemberDischarge, $decemberTakeUp + $decemberDischarge),
+                'currentMaleAmount' => $this->solveAverage($currentMaleAmount, $currentMaleAmount + $currentFemaleAmount),
+                'currentFemaleAmount' => $this->solveAverage($currentFemaleAmount, $currentMaleAmount + $currentFemaleAmount),
+                'allMaleAmount' => $this->solveAverage($allMaleAmount, $allMaleAmount + $allFemaleAmount),
+                'allFemaleAmount' => $this->solveAverage($allFemaleAmount, $allMaleAmount + $allFemaleAmount),
+                'januaryTakeUp' => $januaryTakeUp,
+                'februaryTakeUp' => $februaryTakeUp,
+                'marchTakeUp' => $marchTakeUp,
+                'aprilTakeUp' => $aprilTakeUp,
+                'mayTakeUp' => $mayTakeUp,
+                'juneTakeUp' => $juneTakeUp,
+                'julyTakeUp' => $julyTakeUp,
+                'augustTakeUp' => $augustTakeUp,
+                'septemberTakeUp' => $septemberTakeUp,
+                'octoberTakeUp' => $octoberTakeUp,
+                'novemberTakeUp' => $novemberTakeUp,
+                'decemberTakeUp' => $decemberTakeUp,
+                'yearTakeUp' => $yearTakeUp,
+                'januaryDischarge' => $januaryDischarge,
+                'februaryDischarge' => $februaryDischarge,
+                'marchDischarge' => $marchDischarge,
+                'aprilDischarge' => $aprilDischarge,
+                'mayDischarge' => $mayDischarge,
+                'juneDischarge' => $juneDischarge,
+                'julyDischarge' => $julyDischarge,
+                'augustDischarge' => $augustDischarge,
+                'septemberDischarge' => $septemberDischarge,
+                'octoberDischarge' => $octoberDischarge,
+                'novemberDischarge' => $novemberDischarge,
+                'decemberDischarge' => $decemberDischarge,
+                'yearDischarge' => $yearDischarge,
                 'coworkersBirthday' => $coworkersBirthday,
+                'currentAgesList' => $currentAgesList,
+                'allAgesList' => $allAgesList,
                 'currentDate' => MonthEnum::getTranslatedMonthEnumArray()[intval($currentDate->format('n'))],
             ),
             $response
