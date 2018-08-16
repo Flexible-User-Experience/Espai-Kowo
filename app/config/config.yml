@@ -83,6 +83,7 @@ doctrine:
         auto_mapping:                true
         dql:
             datetime_functions:
+                year:  DoctrineExtensions\Query\Mysql\Year
                 month: DoctrineExtensions\Query\Mysql\Month
                 day:   DoctrineExtensions\Query\Mysql\Day
 

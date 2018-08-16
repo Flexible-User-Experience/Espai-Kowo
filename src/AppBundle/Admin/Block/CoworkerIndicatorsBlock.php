@@ -79,6 +79,7 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
         $decemberDischarge = $this->em->getRepository('AppBundle:Coworker')->getDischargeCoworkerAmountByMonth(12);
         $yearDischarge = $januaryDischarge + $februaryDischarge + $marchDischarge + $aprilDischarge + $mayDischarge + $juneDischarge + $julyDischarge + $augustDischarge + $septemberDischarge + $octoberDischarge + $novemberDischarge + $decemberDischarge;
         $coworkersBirthday = $this->em->getRepository('AppBundle:Coworker')->getAllCoworkersBirthdayByMonth($currentDate->format('n'));
+        $agesList = $this->em->getRepository('AppBundle:Coworker')->getCoworkersAgeList();
 
         return $this->renderResponse(
             $blockContext->getTemplate(),
@@ -115,6 +116,7 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
                 'decemberDischarge' => $decemberDischarge,
                 'yearDischarge' => $yearDischarge,
                 'coworkersBirthday' => $coworkersBirthday,
+                'agesList' => $agesList,
                 'currentDate' => MonthEnum::getTranslatedMonthEnumArray()[intval($currentDate->format('n'))],
             ),
             $response

@@ -11,8 +11,6 @@ use Doctrine\ORM\QueryBuilder;
  * Class CoworkerRepository.
  *
  * @category Repository
- *
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class CoworkerRepository extends EntityRepository
 {
@@ -139,6 +137,8 @@ class CoworkerRepository extends EntityRepository
     }
 
     /**
+     * @param int $gender
+     *
      * @return int
      */
     private function getEnabledCoworkersAmountByGender($gender)
@@ -151,7 +151,20 @@ class CoworkerRepository extends EntityRepository
     }
 
     /**
-     * @param $month
+     * @return array
+     */
+    public function getCoworkersAgeList()
+    {
+        $qb = $this->createQueryBuilder('coworker')
+            ->select('YEAR(coworker.birthday) as cby')
+//            ->where('cby IS NOT NULL')
+            ->orderBy('cby', 'ASC');
+
+        return $qb->getQuery()->getScalarResult();
+    }
+
+    /**
+     * @param int $month
      *
      * @return int
      */
@@ -165,7 +178,7 @@ class CoworkerRepository extends EntityRepository
     }
 
     /**
-     * @param $month
+     * @param int $month
      *
      * @return int
      */
