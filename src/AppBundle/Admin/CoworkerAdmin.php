@@ -40,6 +40,7 @@ class CoworkerAdmin extends AbstractBaseAdmin
     {
         $collection
             ->add('data', $this->getRouterIdParameter().'/data')
+            ->remove('delete')
             ->remove('batch');
     }
 
@@ -92,15 +93,6 @@ class CoworkerAdmin extends AbstractBaseAdmin
                     'required' => false,
                 )
             )
-//            ->add(
-//                'imageFileBW',
-//                'file',
-//                array(
-//                    'label' => 'backend.admin.post.imageBW',
-//                    'help' => $this->getImageHelperFormMapperWithThumbnailBW(),
-//                    'required' => false,
-//                )
-//            )
             ->add(
                 'gifFile',
                 FileType::class,
@@ -371,7 +363,6 @@ class CoworkerAdmin extends AbstractBaseAdmin
                         'show' => array('template' => '::Admin/Buttons/list__action_show_button.html.twig'),
                         'data' => array('template' => '::Admin/Buttons/list__action_data_button.html.twig'),
                         'edit' => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
-                        'delete' => array('template' => '::Admin/Buttons/list__action_delete_button.html.twig'),
                     ),
                 )
             );
