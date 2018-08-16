@@ -25,6 +25,7 @@ class AppExtension extends \Twig_Extension
         return array(
             new \Twig_SimpleFunction('randomErrorText', array($this, 'randomErrorTextFunction')),
             new \Twig_SimpleFunction('drawProgress', array($this, 'drawProgress')),
+            new \Twig_SimpleFunction('drawAgesList', array($this, 'drawAgesList')),
         );
     }
 
@@ -65,6 +66,16 @@ class AppExtension extends \Twig_Extension
             ;
 
         return $result;
+    }
+
+    /**
+     * @param array $agesList["cby"] (string|null) with coworker birthday year value
+     *
+     * @return string
+     */
+    public function drawAgesList($agesList)
+    {
+        return '';
     }
 
     /**
