@@ -58,6 +58,49 @@ class CoworkerRepository extends EntityRepository
     }
 
     /**
+     * @param null   $limit
+     * @param string $order
+     *
+     * @return QueryBuilder
+     */
+    public function findWebpageEnabledSortedBySurnameQB($limit = null, $order = 'ASC')
+    {
+        $query = $this
+            ->createQueryBuilder('c')
+            ->where('c.showInWebpage = :enabled')
+            ->setParameter('enabled', true)
+            ->orderBy('c.surname', $order);
+
+        if (!is_null($limit)) {
+            $query->setMaxResults($limit);
+        }
+
+        return $query;
+    }
+
+    /**
+     * @param null   $limit
+     * @param string $order
+     *
+     * @return Query
+     */
+    public function findWebpageEnabledSortedBySurnameQ($limit = null, $order = 'ASC')
+    {
+        return $this->findWebpageEnabledSortedBySurnameQB($limit, $order)->getQuery();
+    }
+
+    /**
+     * @param null   $limit
+     * @param string $order
+     *
+     * @return array
+     */
+    public function findWebpageEnabledSortedBySurname($limit = null, $order = 'ASC')
+    {
+        return $this->findWebpageEnabledSortedBySurnameQ($limit, $order)->getResult();
+    }
+
+    /**
      * @param $month
      *
      * @return QueryBuilder
