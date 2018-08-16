@@ -195,6 +195,13 @@ class Coworker extends AbstractBase
     private $hideEmailFromWebpage = false;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean", options={"default"=0})
+     */
+    private $showInWebpage = false;
+
+    /**
      * @var Customer
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer", inversedBy="coworkers")
@@ -684,6 +691,26 @@ class Coworker extends AbstractBase
     public function setHideEmailFromWebpage($hideEmailFromWebpage)
     {
         $this->hideEmailFromWebpage = $hideEmailFromWebpage;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isShowInWebpage()
+    {
+        return $this->showInWebpage;
+    }
+
+    /**
+     * @param bool $showInWebpage
+     *
+     * @return $this
+     */
+    public function setShowInWebpage($showInWebpage)
+    {
+        $this->showInWebpage = $showInWebpage;
 
         return $this;
     }
