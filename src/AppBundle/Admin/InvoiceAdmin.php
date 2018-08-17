@@ -382,7 +382,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
                     'actions' => array(
                         'edit' => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
                         'pdf' => array('template' => '::Admin/Buttons/list__action_invoice_pdf_button.html.twig'),
-//                        'send' => array('template' => '::Admin/Buttons/list__action_invoice_send_button.html.twig'),
+                        'send' => array('template' => '::Admin/Buttons/list__action_invoice_send_button.html.twig'),
                     ),
                     'label' => 'backend.admin.actions',
                 )

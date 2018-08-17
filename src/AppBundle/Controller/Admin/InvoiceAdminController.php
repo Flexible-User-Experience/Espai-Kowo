@@ -165,16 +165,16 @@ class InvoiceAdminController extends BaseAdminController
         $ibp = $this->container->get('app.invoice_builder_pdf');
         $pdf = $ibp->build($object);
 
-        /** @var NotificationService $messenger */
-        $messenger = $this->container->get('app.notification');
-        $result = $messenger->sendInvoicePdfNotification($object, $pdf);
+        /** @var NotificationService $ns */
+        $ns = $this->container->get('app.notification');
+        $result = $ns->sendInvoicePdfNotification($object, $pdf);
 
         if (0 === $result) {
             /* @var Controller $this */
-            $this->addFlash('danger', 'S\'ha produït un error durant l\'enviament de la factura núm. '.$object->getInvoiceNumber().'. La persona '.$object->getMainEmailName().' no ha rebut cap missatge a la seva bústia.');
+            $this->addFlash('danger', 'S\'ha produït un error durant l\'enviament de la factura núm. '.$object->getInvoiceNumber().'. El client '.$object->getCustomer().' no ha rebut cap missatge a la seva bústia.');
         } else {
             /* @var Controller $this */
-            $this->addFlash('success', 'S\'ha enviat la factura núm. '.$object->getInvoiceNumber().' amb PDF a la bústia '.$object->getMainEmail());
+            $this->addFlash('success', 'S\'ha enviat la factura núm. '.$object->getInvoiceNumber().' amb PDF a la bústia '.$object->getCustomer()->getEmail().' del client '.$object->getCustomer());
         }
 
         return $this->redirectToList();

@@ -4,6 +4,7 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\ContactMessage;
 use AppBundle\Entity\Coworker;
+use AppBundle\Entity\Invoice;
 
 /**
  * Class NotificationService.
@@ -23,12 +24,12 @@ class NotificationService
     private $twig;
 
     /**
-     * @var string
+     * @var string mailer destination parameter
      */
     private $amd;
 
     /**
-     * @var string
+     * @var string mailer URL base parameter
      */
     private $urlBase;
 
@@ -298,6 +299,31 @@ class NotificationService
             $this->twig->render(':Mails:coworker_data_admin_notification.html.twig', array(
                 'coworker' => $coworker,
             ))
+        );
+    }
+
+    /**
+     * Send invoice notification with invoice PDF attachment
+     *
+     * @param Invoice $invoice
+     * @param \TCPDF $pdf
+     *
+     * @return int messages delivered amount | 0 if failure
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function sendInvoicePdfNotification(Invoice $invoice, \TCPDF $pdf)
+    {
+        return $this->messenger->sendEmailWithAttatchment(
+            $this->amd,
+            $invoice->getCustomer()->getEmail(),
+            'Factura '.$invoice->getInvoiceNumberWithF(),
+            $this->twig->render(':Mails:customer_invoice_notification.html.twig', array(
+                'invoice' => $invoice,
+            )),
+            null,
+            $pdf
         );
     }
 }
