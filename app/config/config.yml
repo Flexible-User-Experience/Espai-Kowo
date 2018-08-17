@@ -151,3 +151,7 @@ knp_disqus:
     forums:
         blog:
             shortname: "%knp_disqus.blog.shortname%"
+
+# TCPDF
+white_october_tcpdf:
+    class: AppBundle\Pdf\BaseTcpdf
