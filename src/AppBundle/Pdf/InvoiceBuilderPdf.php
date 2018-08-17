@@ -4,6 +4,7 @@ namespace AppBundle\Pdf;
 
 use AppBundle\Entity\Invoice;
 use AppBundle\Entity\InvoiceLine;
+use AppBundle\Enum\LanguageEnum;
 use AppBundle\Service\SmartAssetsHelperService;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use WhiteOctober\TCPDFBundle\Controller\TCPDFController;
@@ -103,6 +104,7 @@ class InvoiceBuilderPdf
 
         // gaps
         $column2Gap = 114;
+        $interliner = 1;
         $verticalTableGapSmall = 8;
         $verticalTableGap = 14;
         $pdf->setBrandColor();
@@ -119,14 +121,46 @@ class InvoiceBuilderPdf
         $pdf->SetX($column2Gap);
         $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.customer_data'), '', false, 'L', true);
         $pdf->drawInvoiceLineSeparator($pdf->GetY() + 1);
-        $pdf->Ln(BasePdf::MARGIN_VERTICAL_SMALL);
+        $pdf->Ln(BasePdf::MARGIN_VERTICAL_SMALL * 1.5);
 
         // invoice fiscal data
-        $pdf->setFontStyle(null, '', 9);
+        $pdf->setFontStyle(null, 'B', 9);
+        $pdf->setBlackColor();
 
         $pdf->Write(0, $this->ekfd['company_name'], '', false, 'L', false);
         $pdf->SetX($column2Gap);
         $pdf->Write(0, $invoice->getCustomer()->getName(), '', false, 'L', true);
+        $pdf->Ln($interliner);
+
+        $pdf->setFontStyle(null, '', 9);
+        $pdf->setBlackColor();
+
+        $pdf->Write(0, $this->ekfd['vat_number'], '', false, 'L', false);
+        $pdf->SetX($column2Gap);
+        $pdf->Write(0, $invoice->getCustomer()->getTic(), '', false, 'L', true);
+        $pdf->Ln($interliner);
+
+        $pdf->Write(0, $this->ekfd['address'], '', false, 'L', false);
+        $pdf->SetX($column2Gap);
+        $pdf->Write(0, $invoice->getCustomer()->getAddress(), '', false, 'L', true);
+        $pdf->Ln($interliner);
+
+        $pdf->Write(0, $this->ekfd['city'], '', false, 'L', false);
+        $pdf->SetX($column2Gap);
+        $pdf->Write(0, $invoice->getCustomer()->getCity()->getCanonicalPostalString(), '', false, 'L', true);
+        $pdf->Ln($interliner);
+
+        $pdf->Write(0, $this->ekfd['province'], '', false, 'L', false);
+        $pdf->SetX($column2Gap);
+        $pdf->Write(0, $invoice->getCustomer()->getCity()->getProvince()->getSurroundedName(), '', false, 'L', true);
+        $pdf->Ln($interliner);
+
+        if ($invoice->getCustomer()->getCity()->getProvince()->getCountry() == LanguageEnum::EN) {
+            $pdf->Write(0, 'SPAIN', '', false, 'L', false);
+            $pdf->SetX($column2Gap);
+            $pdf->Write(0, $invoice->getCustomer()->getCity()->getProvince()->getCountry(), '', false, 'L', true);
+            $pdf->Ln($interliner);
+        }
 
         /*
         $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.invoice_date').' '.$invoice->getDateString(), '', false, 'L', false);

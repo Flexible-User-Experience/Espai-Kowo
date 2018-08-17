@@ -70,6 +70,14 @@ class Province extends AbstractBase
     }
 
     /**
+     * @return string
+     */
+    public function getSurroundedName()
+    {
+        return '('.$this->name.')';
+    }
+
+    /**
      * @param string $name
      *
      * @return $this

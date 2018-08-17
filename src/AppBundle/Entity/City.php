@@ -106,7 +106,15 @@ class City extends AbstractBase
      */
     public function getCanonicalPostalString()
     {
-        return $this->getPostalCode().' '.$this->getName().' ('.$this->getProvince()->getName().')';
+        return $this->getPostalCode().' '.$this->getName();
+    }
+
+    /**
+     * @return string
+     */
+    public function getCanonicalPostalStringWithProvince()
+    {
+        return $this->getCanonicalPostalString().' '.$this->getProvince()->getSurroundedName();
     }
 
     /**
