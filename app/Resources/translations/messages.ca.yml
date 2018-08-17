@@ -35,9 +35,9 @@ Customer List: Clients
 Customer Create: Crear
 Customer Delete: Esborrar
 Factures: Factures
-"Invoices List": Factures
-"Invoices Create": Crear
-"Invoices Delete": Esborrar
+"Invoice List": Factures
+"Invoice Create": Crear
+"Invoice Delete": Esborrar
 frontend:
     menu:
         blog: BLOG

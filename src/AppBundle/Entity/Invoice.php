@@ -371,6 +371,14 @@ class Invoice extends AbstractBase
     }
 
     /**
+     * @return string
+     */
+    public function getUnderscoredInvoiceNumber()
+    {
+        return $this->year.'_'.$this->number;
+    }
+
+    /**
      * @return float
      */
     public function calculateBaseAmount()
