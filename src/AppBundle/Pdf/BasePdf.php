@@ -74,7 +74,7 @@ class BasePdf extends \TCPDF
             self::PDF_WIDTH - self::PDF_MARGIN_RIGHT,
             $y,
             array(
-                'width' => 5,
+                'width' => 1,
                 'cap' => 'butt',
                 'join' => 'miter',
                 'dash' => 0,

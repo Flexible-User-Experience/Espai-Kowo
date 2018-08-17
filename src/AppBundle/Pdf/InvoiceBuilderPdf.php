@@ -107,7 +107,7 @@ class InvoiceBuilderPdf
         $verticalTableGap = 14;
         $pdf->setBrandColor();
 
-        // invoice header
+        // invoice number & date
         $pdf->setFontStyle(null, 'B', 9);
         $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.invoice_number').' '.$invoice->getInvoiceNumberWithF(), '', false, 'L', true);
         $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.invoice_date').' '.$invoice->getDateString(), '', false, 'L', true);
@@ -118,15 +118,17 @@ class InvoiceBuilderPdf
         $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.invoice_data'), '', false, 'L', false);
         $pdf->SetX($column2Gap);
         $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.customer_data'), '', false, 'L', true);
+        $pdf->drawInvoiceLineSeparator($pdf->GetY() + 1);
         $pdf->Ln(BasePdf::MARGIN_VERTICAL_SMALL);
 
-        /*
+        // invoice fiscal data
         $pdf->setFontStyle(null, '', 9);
 
-        $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.invoice_number').' '.$invoice->getInvoiceNumber(), '', false, 'L', false);
+        $pdf->Write(0, $this->ekfd['company_name'], '', false, 'L', false);
         $pdf->SetX($column2Gap);
-        $pdf->Write(0, $invoice->getStudent()->getFullName(), '', false, 'L', true);
+        $pdf->Write(0, $invoice->getCustomer()->getName(), '', false, 'L', true);
 
+        /*
         $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.invoice_date').' '.$invoice->getDateString(), '', false, 'L', false);
         $pdf->SetX($column2Gap);
         $pdf->Write(0, $invoice->getStudent()->getDni(), '', false, 'L', true);
