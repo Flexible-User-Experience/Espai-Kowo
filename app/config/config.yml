@@ -154,4 +154,4 @@ knp_disqus:
 
 # TCPDF
 white_october_tcpdf:
-    class: AppBundle\Pdf\BaseTcpdf
+    class: AppBundle\Pdf\BasePdf

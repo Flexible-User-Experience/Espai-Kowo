@@ -5,11 +5,11 @@ namespace AppBundle\Pdf;
 use AppBundle\Service\SmartAssetsHelperService;
 
 /**
- * Class BaseTcpdf.
+ * Class BasePdf.
  *
  * @category Pdf
  */
-class BaseTcpdf extends \TCPDF
+class BasePdf extends \TCPDF
 {
     const PDF_WIDTH = 210;
     const PDF_MARGIN_LEFT = 30;
@@ -29,7 +29,7 @@ class BaseTcpdf extends \TCPDF
      */
 
     /**
-     * BaseTcpdf constructor.
+     * BasePdf constructor.
      *
      * @param SmartAssetsHelperService $sahs
      */
@@ -45,7 +45,7 @@ class BaseTcpdf extends \TCPDF
     public function header()
     {
         // logo
-        $this->Image($this->sahs->getAbsoluteAssetPathByContext('/bundles/app/img/logo-pdf.png'), 75, 20, 60);
+        $this->Image($this->sahs->getAbsoluteAssetPathByContext('/bundles/app/img/logo-espai-kowo.png'), 75, 20, 60);
         $this->SetXY(self::PDF_MARGIN_LEFT, 11);
         $this->setFontStyle(null, 'I', 8);
     }
@@ -91,6 +91,6 @@ class BaseTcpdf extends \TCPDF
      */
     public function drawSvg($x, $y, $w, $h)
     {
-        $this->ImageSVG($this->sahs->getAbsoluteAssetPathByContext('/bundles/app/svg/compass.svg'), $x, $y, $w, $h, '', '', '', 0, false);
+        $this->ImageSVG($this->sahs->getAbsoluteAssetPathByContext('/bundles/app/svg/logo-main-homepage-green.svg'), $x, $y, $w, $h, '', '', '', 0, false);
     }
 }
