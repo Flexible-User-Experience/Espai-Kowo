@@ -162,36 +162,34 @@ class InvoiceBuilderPdf
             $pdf->Ln($interliner);
         }
 
-        /*
-        $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.invoice_date').' '.$invoice->getDateString(), '', false, 'L', false);
-        $pdf->SetX($column2Gap);
-        $pdf->Write(0, $invoice->getStudent()->getDni(), '', false, 'L', true);
-
-        $pdf->SetY($pdf->GetY() + 2);
-        $pdf->Write(0, $this->bn, '', false, 'L', false);
-        $pdf->SetX($column2Gap);
-        $pdf->Write(0, $invoice->getStudent()->getAddress(), '', false, 'L', true);
-
-        $pdf->Write(0, $this->bd, '', false, 'L', false);
-        $pdf->SetX($column2Gap);
-        $pdf->Write(0, $invoice->getStudent()->getCity()->getCanonicalPostalString(), '', false, 'L', true);
-
-        $pdf->Write(0, $this->ba, '', false, 'L', true);
-        $pdf->Write(0, $this->bc, '', false, 'L', true);
-
-        // horitzonal divider
-        $pdf->Ln(BasePdf::MARGIN_VERTICAL_BIG * 3);
-        $pdf->drawInvoiceLineSeparator($pdf->GetY());
+        // invoice lines table header
+        $pdf->setBrandColor();
+        $pdf->setFontStyle(null, '', 14);
         $pdf->Ln(BasePdf::MARGIN_VERTICAL_BIG);
+        $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.table_header'), '', false, 'L', true);
+        $pdf->drawInvoiceLineSeparator($pdf->GetY() + 1);
+        $pdf->Ln(BasePdf::MARGIN_VERTICAL_SMALL);
 
-        // invoice table header
         $pdf->setFontStyle(null, 'B', 9);
-        $pdf->Cell(80, $verticalTableGap, $this->ts->trans('backend.admin.invoiceLine.description'), false, 0, 'L');
-        $pdf->Cell(15, $verticalTableGap, $this->ts->trans('backend.admin.invoiceLine.units'), false, 0, 'R');
-        $pdf->Cell(20, $verticalTableGap, $this->ts->trans('backend.admin.invoiceLine.priceUnit'), false, 0, 'R');
-        $pdf->Cell(20, $verticalTableGap, $this->ts->trans('backend.admin.invoiceLine.discount'), false, 0, 'R');
-        $pdf->Cell(15, $verticalTableGap, $this->ts->trans('backend.admin.invoiceLine.total'), false, 1, 'R');
+        $pdf->Cell(110, $verticalTableGapSmall, $this->ts->trans('backend.admin.invoiceLine.description'), false, 0, 'L');
+        $pdf->Cell(15, $verticalTableGapSmall, $this->ts->trans('backend.admin.invoiceLine.units'), false, 0, 'R');
+        $pdf->Cell(25, $verticalTableGapSmall, $this->ts->trans('backend.admin.invoiceLine.priceUnit'), false, 0, 'R');
+        $pdf->Cell(20, $verticalTableGapSmall, $this->ts->trans('backend.admin.invoiceLine.total'), false, 1, 'R');
+
+        // invoice lines table rows
+        $pdf->setBlackColor();
         $pdf->setFontStyle(null, '', 9);
+        /** @var InvoiceLine $line */
+        foreach ($invoice->getLines() as $line) {
+            // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
+            $pdf->MultiCell(110, $verticalTableGapSmall, $line->getDescription(), 0, 'L', 0, 0, '', '', true, 0, false, true, 0, 'M');
+            $pdf->MultiCell(15, $verticalTableGapSmall, $pdf->floatStringFormat($line->getUnits()), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
+            $pdf->MultiCell(25, $verticalTableGapSmall, $pdf->floatMoneyFormat($line->getPriceUnit()), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
+            $pdf->MultiCell(20, $verticalTableGapSmall, $pdf->floatMoneyFormat($line->calculateBaseAmount()), 0, 'R', 0, 1, '', '', true, 0, false, true, 0, 'M');
+        }
+
+
+        /*
 
         // invoice lines table rows
         /** @var InvoiceLine $line *
