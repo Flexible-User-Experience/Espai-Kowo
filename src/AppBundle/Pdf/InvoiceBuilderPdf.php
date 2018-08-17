@@ -105,7 +105,7 @@ class InvoiceBuilderPdf
         // gaps
         $column2Gap = 114;
         $interliner = 1;
-        $verticalTableGapSmall = 8;
+        $verticalTableGapSmall = 5.5;
         $verticalTableGap = 14;
         $pdf->setBrandColor();
 
@@ -183,44 +183,35 @@ class InvoiceBuilderPdf
         foreach ($invoice->getLines() as $line) {
             // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
             $pdf->MultiCell(110, $verticalTableGapSmall, $line->getDescription(), 0, 'L', 0, 0, '', '', true, 0, false, true, 0, 'M');
-            $pdf->MultiCell(15, $verticalTableGapSmall, $pdf->floatStringFormat($line->getUnits()), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
-            $pdf->MultiCell(25, $verticalTableGapSmall, $pdf->floatMoneyFormat($line->getPriceUnit()), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
-            $pdf->MultiCell(20, $verticalTableGapSmall, $pdf->floatMoneyFormat($line->calculateBaseAmount()), 0, 'R', 0, 1, '', '', true, 0, false, true, 0, 'M');
-        }
-
-
-        /*
-
-        // invoice lines table rows
-        /** @var InvoiceLine $line *
-        foreach ($invoice->getLines() as $line) {
-            // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
-            $pdf->MultiCell(80, $verticalTableGapSmall, $line->getDescription(), 0, 'L', 0, 0, '', '', true, 0, false, true, 0, 'M');
-            $pdf->MultiCell(15, $verticalTableGapSmall, $this->floatStringFormat($line->getUnits()), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
-            $pdf->MultiCell(20, $verticalTableGapSmall, $this->floatStringFormat($line->getPriceUnit()), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
-            $pdf->MultiCell(20, $verticalTableGapSmall, $this->floatStringFormat($line->getDiscount()), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
-            $pdf->MultiCell(15, $verticalTableGapSmall, $this->floatStringFormat($line->getTotal()), 0, 'R', 0, 1, '', '', true, 0, false, true, 0, 'M');
+            $pdf->MultiCell(15, $verticalTableGapSmall, ($line->getUnits() ? $pdf->floatStringFormat($line->getUnits()) : ''), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
+            $pdf->MultiCell(25, $verticalTableGapSmall, ($line->getUnits() ? $pdf->floatMoneyFormat($line->getPriceUnit()) : ''), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
+            $pdf->MultiCell(20, $verticalTableGapSmall, ($line->getUnits() ? $pdf->floatMoneyFormat($line->calculateBaseAmount()) : ''), 0, 'R', 0, 1, '', '', true, 0, false, true, 0, 'M');
         }
 
         // horitzonal divider
-        $pdf->Ln(BasePdf::MARGIN_VERTICAL_BIG);
+        $pdf->Ln(BasePdf::MARGIN_VERTICAL_SMALL);
         $pdf->drawInvoiceLineSeparator($pdf->GetY());
-        $pdf->Ln(BasePdf::MARGIN_VERTICAL_BIG);
+        $pdf->Ln(BasePdf::MARGIN_VERTICAL_SMALL);
 
         // invoice table footer
         // base
-        $pdf->MultiCell(135, $verticalTableGapSmall, $this->ts->trans('backend.admin.invoice.baseAmount'), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
-        $pdf->MultiCell(15, $verticalTableGapSmall, $this->floatMoneyFormat($invoice->calculateBaseAmount()), 0, 'R', 0, 1, '', '', true, 0, false, true, 0, 'M');
+        $pdf->MultiCell(150, $verticalTableGapSmall, $this->ts->trans('backend.admin.invoice.baseAmount'), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
+        $pdf->MultiCell(20, $verticalTableGapSmall, $pdf->floatMoneyFormat($invoice->calculateBaseAmount()), 0, 'R', 0, 1, '', '', true, 0, false, true, 0, 'M');
         // iva tax
-        $pdf->MultiCell(135, $verticalTableGapSmall, '+'.$invoice->getTaxPercentage().'% IVA', 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
-        $pdf->MultiCell(15, $verticalTableGapSmall, $this->floatMoneyFormat($invoice->calculateTaxPercentage()), 0, 'R', 0, 1, '', '', true, 0, false, true, 0, 'M');
-        // irpf
-        $pdf->MultiCell(135, $verticalTableGapSmall, '-'.$invoice->getIrpfPercentage().'% IRPF', 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
-        $pdf->MultiCell(15, $verticalTableGapSmall, $this->floatMoneyFormat($invoice->calculateIrpfPercentatge()), 0, 'R', 0, 1, '', '', true, 0, false, true, 0, 'M');
+        $pdf->MultiCell(150, $verticalTableGapSmall, '+'.$invoice->getTaxPercentage().'% IVA', 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
+        $pdf->MultiCell(20, $verticalTableGapSmall, $pdf->floatMoneyFormat($invoice->calculateTaxPercentage()), 0, 'R', 0, 1, '', '', true, 0, false, true, 0, 'M');
+
+        // horitzonal divider
+        $pdf->Ln(BasePdf::MARGIN_VERTICAL_SMALL);
+        $pdf->drawInvoiceLineSeparator($pdf->GetY());
+        $pdf->Ln(BasePdf::MARGIN_VERTICAL_SMALL);
+
         // total
         $pdf->setFontStyle(null, 'B', 9);
-        $pdf->MultiCell(135, $verticalTableGapSmall, strtoupper($this->ts->trans('backend.admin.invoiceLine.total')), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
-        $pdf->MultiCell(15, $verticalTableGapSmall, $this->floatMoneyFormat($invoice->getTotalAmount()), 0, 'R', 0, 1, '', '', true, 0, false, true, 0, 'M');
+        $pdf->MultiCell(150, $verticalTableGapSmall, strtoupper($this->ts->trans('backend.admin.invoiceLine.total')), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
+        $pdf->MultiCell(20, $verticalTableGapSmall, $pdf->floatMoneyFormat($invoice->getTotalAmount()), 0, 'R', 0, 1, '', '', true, 0, false, true, 0, 'M');
+
+        /*
         $pdf->setFontStyle(null, '', 9);
 
         // horitzonal divider
