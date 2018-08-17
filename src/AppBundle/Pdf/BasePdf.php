@@ -12,12 +12,13 @@ use AppBundle\Service\SmartAssetsHelperService;
 class BasePdf extends \TCPDF
 {
     const PDF_WIDTH = 210;
-    const PDF_MARGIN_LEFT = 30;
-    const PDF_MARGIN_RIGHT = 30;
-    const PDF_MARGIN_TOP = 70;
-    const PDF_MARGIN_BOTTOM = 25;
+    const PDF_MARGIN_LEFT = 20;
+    const PDF_MARGIN_RIGHT = 20;
+    const PDF_MARGIN_TOP = 20;
+    const PDF_MARGIN_BOTTOM = 20;
     const MARGIN_VERTICAL_SMALL = 3;
     const MARGIN_VERTICAL_BIG = 8;
+    const BRAND_COLOR = array(168, 208, 25);
 
     /**
      * @var SmartAssetsHelperService
@@ -45,8 +46,7 @@ class BasePdf extends \TCPDF
     public function header()
     {
         // logo
-        $this->Image($this->sahs->getAbsoluteAssetPathByContext('/bundles/app/img/logo-espai-kowo.png'), 75, 20, 60);
-        $this->SetXY(self::PDF_MARGIN_LEFT, 11);
+        $this->Image($this->sahs->getAbsoluteAssetPathByContext('/bundles/app/img/logo-espai-kowo.png'), self::PDF_MARGIN_LEFT, self::PDF_MARGIN_TOP, 30);
         $this->setFontStyle(null, 'I', 8);
     }
 
@@ -78,9 +78,29 @@ class BasePdf extends \TCPDF
                 'cap' => 'butt',
                 'join' => 'miter',
                 'dash' => 0,
-                'color' => array(125, 20, 126),
+                'color' => self::BRAND_COLOR,
             )
         );
+    }
+
+    /**
+     * Set brand color
+     */
+    public function setBrandColor()
+    {
+        $this->setColor('draw', self::BRAND_COLOR[0], self::BRAND_COLOR[1], self::BRAND_COLOR[2]);
+        $this->setColor('fill', self::BRAND_COLOR[0], self::BRAND_COLOR[1], self::BRAND_COLOR[2]);
+        $this->setColor('text', self::BRAND_COLOR[0], self::BRAND_COLOR[1], self::BRAND_COLOR[2]);
+    }
+
+    /**
+     * Set brand color
+     */
+    public function setBlackColor()
+    {
+        $this->setColor('draw', 0, 0, 0);
+        $this->setColor('fill', 0, 0, 0);
+        $this->setColor('text', 0, 0, 0);
     }
 
     /**
@@ -92,5 +112,25 @@ class BasePdf extends \TCPDF
     public function drawSvg($x, $y, $w, $h)
     {
         $this->ImageSVG($this->sahs->getAbsoluteAssetPathByContext('/bundles/app/svg/logo-main-homepage-green.svg'), $x, $y, $w, $h, '', '', '', 0, false);
+    }
+
+    /**
+     * @param float $val
+     *
+     * @return string
+     */
+    public function floatStringFormat($val)
+    {
+        return number_format($val, 2, ',', '.');
+    }
+
+    /**
+     * @param float $val
+     *
+     * @return string
+     */
+    public function floatMoneyFormat($val)
+    {
+        return $this->floatStringFormat($val).' €';
     }
 }

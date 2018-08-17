@@ -99,15 +99,22 @@ class InvoiceBuilderPdf
         // Add start page
         $pdf->AddPage(PDF_PAGE_ORIENTATION, PDF_PAGE_FORMAT, true, true);
         $pdf->setPrintFooter(true);
-        $pdf->SetXY(BasePdf::PDF_MARGIN_LEFT, BasePdf::PDF_MARGIN_TOP);
+        $pdf->SetXY(BasePdf::PDF_MARGIN_LEFT, BasePdf::PDF_MARGIN_TOP + BasePdf::MARGIN_VERTICAL_BIG * 4);
 
         // gaps
         $column2Gap = 114;
         $verticalTableGapSmall = 8;
         $verticalTableGap = 14;
+        $pdf->setBrandColor();
 
         // invoice header
         $pdf->setFontStyle(null, 'B', 9);
+        $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.invoice_number').' '.$invoice->getInvoiceNumberWithF(), '', false, 'L', true);
+        $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.invoice_date').' '.$invoice->getDateString(), '', false, 'L', true);
+        $pdf->Ln(BasePdf::MARGIN_VERTICAL_BIG);
+
+        // invoice header
+        $pdf->setFontStyle(null, '', 14);
         $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.invoice_data'), '', false, 'L', false);
         $pdf->SetX($column2Gap);
         $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.customer_data'), '', false, 'L', true);
