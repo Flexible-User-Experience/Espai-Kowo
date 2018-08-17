@@ -17,7 +17,7 @@ class BasePdf extends \TCPDF
     const PDF_MARGIN_TOP = 20;
     const PDF_MARGIN_BOTTOM = 20;
     const MARGIN_VERTICAL_SMALL = 3;
-    const MARGIN_VERTICAL_BIG = 8;
+    const MARGIN_VERTICAL_BIG = 12;
     const BRAND_COLOR = array(168, 208, 25);
 
     /**

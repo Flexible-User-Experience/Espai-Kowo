@@ -100,13 +100,12 @@ class InvoiceBuilderPdf
         // Add start page
         $pdf->AddPage(PDF_PAGE_ORIENTATION, PDF_PAGE_FORMAT, true, true);
         $pdf->setPrintFooter(true);
-        $pdf->SetXY(BasePdf::PDF_MARGIN_LEFT, BasePdf::PDF_MARGIN_TOP + BasePdf::MARGIN_VERTICAL_BIG * 4);
+        $pdf->SetXY(BasePdf::PDF_MARGIN_LEFT, BasePdf::PDF_MARGIN_TOP + BasePdf::MARGIN_VERTICAL_SMALL * 11);
 
         // gaps
         $column2Gap = 114;
         $interliner = 1;
         $verticalTableGapSmall = 5.5;
-        $verticalTableGap = 14;
         $pdf->setBrandColor();
 
         // invoice number & date
@@ -211,20 +210,20 @@ class InvoiceBuilderPdf
         $pdf->MultiCell(150, $verticalTableGapSmall, strtoupper($this->ts->trans('backend.admin.invoiceLine.total')), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
         $pdf->MultiCell(20, $verticalTableGapSmall, $pdf->floatMoneyFormat($invoice->getTotalAmount()), 0, 'R', 0, 1, '', '', true, 0, false, true, 0, 'M');
 
-        /*
-        $pdf->setFontStyle(null, '', 9);
-
-        // horitzonal divider
-        $pdf->Ln(BasePdf::MARGIN_VERTICAL_SMALL + 1);
-        $pdf->drawInvoiceLineSeparator($pdf->GetY());
-        $pdf->Ln(BasePdf::MARGIN_VERTICAL_BIG + $verticalTableGapSmall);
+        // invoice payment type section
+        $pdf->setBrandColor();
+        $pdf->setFontStyle(null, '', 14);
+        $pdf->Ln(BasePdf::MARGIN_VERTICAL_BIG);
+        $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.payment_type'), '', false, 'L', true);
+        $pdf->drawInvoiceLineSeparator($pdf->GetY() + 1);
+        $pdf->Ln(BasePdf::MARGIN_VERTICAL_SMALL);
 
         // payment method
-        $pdf->Write(7, $this->ts->trans('backend.admin.invoice.pdf.payment_type').' '.strtoupper($this->ts->trans(StudentPaymentEnum::getEnumArray()[$invoice->getStudent()->getPayment()])), '', false, 'L', true);
-        if (StudentPaymentEnum::BANK_ACCOUNT_NUMBER == $invoice->getStudent()->getPayment()) {
-            $pdf->Write(7, $this->ts->trans('backend.admin.invoice.pdf.account_number').' '.$this->ib, '', false, 'L', true);
-        }
-        */
+        $pdf->setFontStyle(null, '', 9);
+        $pdf->setBlackColor();
+        $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.account_number'), '', false, 'L', true);
+        $pdf->Ln($interliner);
+        $pdf->Write(0, $this->ekfd['bank_account'], '', false, 'L', true);
 
         return $pdf;
     }

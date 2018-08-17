@@ -206,8 +206,8 @@ backend:
                 invoice_number: "Factura núm."
                 invoice_date: "Data"
                 customer_data: "Dades del client"
-                payment_type: "Modalitat de pagament:"
-                account_number: "Número de compte:"
+                payment_type: "Forma de pagament"
+                account_number: "Mitjançant transferència bancària al número de compte:"
                 table_header: "Valoració econòmica"
         invoiceLine:
             invoice: Factura
