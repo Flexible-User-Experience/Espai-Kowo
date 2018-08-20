@@ -340,13 +340,6 @@ class CoworkerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
-                'category',
-                null,
-                array(
-                    'label' => 'backend.admin.category.category',
-                )
-            )
-            ->add(
                 'customer',
                 null,
                 array(
