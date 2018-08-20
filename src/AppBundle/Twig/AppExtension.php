@@ -3,11 +3,10 @@
 namespace AppBundle\Twig;
 
 use AppBundle\Entity\Category;
-use AppBundle\Entity\Coworker;
 use AppBundle\Entity\Invoice;
 use AppBundle\Entity\User;
 use AppBundle\Enum\UserRolesEnum;
-use AppBundle\Model\CategoryHistogramHelperModel;
+use AppBundle\Repository\CoworkerRepository;
 
 /**
  * Class AppExtension.
@@ -16,6 +15,25 @@ use AppBundle\Model\CategoryHistogramHelperModel;
  */
 class AppExtension extends \Twig_Extension
 {
+    /**
+     * @var CoworkerRepository
+     */
+    private $cr;
+
+    /**
+     * Methods
+     */
+
+    /**
+     * AppExtension constructor.
+     *
+     * @param CoworkerRepository $cr
+     */
+    public function __construct(CoworkerRepository $cr)
+    {
+        $this->cr = $cr;
+    }
+
     /**
      * Twig Functions.
      */
@@ -128,27 +146,16 @@ class AppExtension extends \Twig_Extension
         $result = '';
         /** @var Category $item */
         foreach ($items as $item) {
-            $amount = 0;
-            if ($onlyEnabled) {
-                /** @var Coworker $coworker */
-                foreach ($item->getCoworkers() as $coworker) {
-                    if ($coworker->getEnabled()) {
-                        $amount++;
-                    }
-                }
-            } else {
-                $amount = count($item->getCoworkers());
-            }
+            $amount = $this->cr->getCoworkersAmountByCategoryId($item, $onlyEnabled);
             if ($amount) {
                 $result .= '<h6 class="box-title">'.$item->getTitle().'</h6>'.
-                    '<div class="progress progress-bar-vertical">'.
-                        '<div class="progress-bar progress-bar-success" style="width:'.$this->solveAverage($amount, $divider).'%">'.
+                    '<div class="progress">'.
+                        '<div class="progress-bar progress-bar-info" style="width:'.$this->solveAverage($amount, $divider).'%">'.
                             $amount.
                         '</div>'.
                     '</div>'
                 ;
             }
-
         }
 
         return $result;
