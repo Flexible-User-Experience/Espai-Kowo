@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d814b0daa2b4f5cb78486e4d5d53b56a",
+    "content-hash": "b4d41f0bee6415dcb33b084213bd5b39",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -3833,16 +3833,16 @@
         },
         {
             "name": "sonata-project/admin-bundle",
-            "version": "3.37.0",
+            "version": "3.38.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "3f4ae4285f277251adad9bf8e47ff74ff9600aae"
+                "reference": "02be77afb4b09e36352f3c45c2cffebcc5204957"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/3f4ae4285f277251adad9bf8e47ff74ff9600aae",
-                "reference": "3f4ae4285f277251adad9bf8e47ff74ff9600aae",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/02be77afb4b09e36352f3c45c2cffebcc5204957",
+                "reference": "02be77afb4b09e36352f3c45c2cffebcc5204957",
                 "shasum": ""
             },
             "require": {
@@ -3934,7 +3934,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2018-07-26T19:29:16+00:00"
+            "time": "2018-08-17T12:23:45+00:00"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -5658,6 +5658,68 @@
             "time": "2018-08-01T14:12:49+00:00"
         },
         {
+            "name": "tecnickcom/tcpdf",
+            "version": "6.2.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tecnickcom/TCPDF.git",
+                "reference": "64fc19439863e1b1314487a72a74d9bfd0b55a53"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/64fc19439863e1b1314487a72a74d9bfd0b55a53",
+                "reference": "64fc19439863e1b1314487a72a74d9bfd0b55a53",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "config",
+                    "include",
+                    "tcpdf.php",
+                    "tcpdf_parser.php",
+                    "tcpdf_import.php",
+                    "tcpdf_barcodes_1d.php",
+                    "tcpdf_barcodes_2d.php",
+                    "include/tcpdf_colors.php",
+                    "include/tcpdf_filters.php",
+                    "include/tcpdf_font_data.php",
+                    "include/tcpdf_fonts.php",
+                    "include/tcpdf_images.php",
+                    "include/tcpdf_static.php",
+                    "include/barcodes/datamatrix.php",
+                    "include/barcodes/pdf417.php",
+                    "include/barcodes/qrcode.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Nicola Asuni",
+                    "email": "info@tecnick.com",
+                    "role": "lead"
+                }
+            ],
+            "description": "TCPDF is a PHP class for generating PDF documents and barcodes.",
+            "homepage": "http://www.tcpdf.org/",
+            "keywords": [
+                "PDFD32000-2008",
+                "TCPDF",
+                "barcodes",
+                "datamatrix",
+                "pdf",
+                "pdf417",
+                "qrcode"
+            ],
+            "time": "2018-02-24T11:48:20+00:00"
+        },
+        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "1.5.5",
             "source": {
@@ -5963,6 +6025,50 @@
                 "upload"
             ],
             "time": "2017-12-09T13:34:29+00:00"
+        },
+        {
+            "name": "whiteoctober/tcpdf-bundle",
+            "version": "1.1.0",
+            "target-dir": "WhiteOctober/TCPDFBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/whiteoctober/WhiteOctoberTCPDFBundle.git",
+                "reference": "ed0fb15674d634e9e6bd9f15bb66c2a43e23e527"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/whiteoctober/WhiteOctoberTCPDFBundle/zipball/ed0fb15674d634e9e6bd9f15bb66c2a43e23e527",
+                "reference": "ed0fb15674d634e9e6bd9f15bb66c2a43e23e527",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": ">=2.0",
+                "tecnickcom/tcpdf": "*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "WhiteOctober\\TCPDFBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rich Sage",
+                    "email": "rich.sage@gmail.com"
+                }
+            ],
+            "description": "A bundle to easily integrate TCPDF into Symfony2",
+            "homepage": "https://github.com/whiteoctober/WhiteOctoberTCPDFBundle",
+            "keywords": [
+                "TCPDF",
+                "pdf"
+            ],
+            "time": "2018-06-21T14:45:02+00:00"
         },
         {
             "name": "zendframework/zend-code",

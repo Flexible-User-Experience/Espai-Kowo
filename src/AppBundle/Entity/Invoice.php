@@ -172,6 +172,14 @@ class Invoice extends AbstractBase
     }
 
     /**
+     * @return string
+     */
+    public function getDateString()
+    {
+        return $this->getDate()->format('d/m/Y');
+    }
+
+    /**
      * @param \DateTime $date
      *
      * @return $this
@@ -365,9 +373,25 @@ class Invoice extends AbstractBase
     /**
      * @return string
      */
+    public function getInvoiceNumberWithF()
+    {
+        return 'F'.$this->getInvoiceNumber();
+    }
+
+    /**
+     * @return string
+     */
     public function getSluggedInvoiceNumber()
     {
         return $this->year.'-'.$this->number;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUnderscoredInvoiceNumber()
+    {
+        return $this->year.'_'.$this->number;
     }
 
     /**

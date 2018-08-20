@@ -1,0 +1,77 @@
+services:
+# Sonata Admin
+    admin.coworker:
+        class: AppBundle\Admin\CoworkerAdmin
+        arguments: [ ~ , AppBundle\Entity\Coworker, AppBundle:Admin\CoworkerAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Coworker", group: "Coworkers", label_translator_strategy: "sonata.admin.label.strategy.noop" }
+    admin.category:
+        class: AppBundle\Admin\CategoryAdmin
+        arguments: [ ~, AppBundle\Entity\Category, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Categoria", group: "Coworkers", label_translator_strategy: "sonata.admin.label.strategy.noop" }
+    admin.socialnetworkcategory:
+        class: AppBundle\Admin\SocialNetworkCategoryAdmin
+        arguments: [ ~, AppBundle\Entity\SocialNetworkCategory, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Xarxa Social", group: "Coworkers", label_translator_strategy: "sonata.admin.label.strategy.noop" }
+    admin.socialnetwork:
+        class: AppBundle\Admin\SocialNetworkAdmin
+        arguments: [ ~, AppBundle\Entity\SocialNetwork, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Xarxes Socials", group: "Coworkers", label_translator_strategy: "sonata.admin.label.strategy.noop", show_in_dashboard: false }
+    admin.event:
+        class: AppBundle\Admin\EventAdmin
+        arguments: [ ~, AppBundle\Entity\Event, AppBundle:Admin\EventAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Activitat", group: "Activitats", label_translator_strategy: "sonata.admin.label.strategy.noop" }
+    admin.eventcategory:
+        class: AppBundle\Admin\EventCategoryAdmin
+        arguments: [ ~, AppBundle\Entity\EventCategory, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Categoria", group: "Activitats", label_translator_strategy: "sonata.admin.label.strategy.noop" }
+    admin.post:
+        class: AppBundle\Admin\PostAdmin
+        arguments: [ ~, AppBundle\Entity\Post, AppBundle:Admin\PostAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Article", group: "Blog", label_translator_strategy: "sonata.admin.label.strategy.noop" }
+    admin.tag:
+        class: AppBundle\Admin\TagAdmin
+        arguments: [ ~, AppBundle\Entity\Tag, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Etiqueta", group: "Blog", label_translator_strategy: "sonata.admin.label.strategy.noop" }
+    admin.contactmessage:
+        class: AppBundle\Admin\ContactMessageAdmin
+        arguments: [ ~, AppBundle\Entity\ContactMessage, AppBundle:Admin\ContactMessageAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Missatge de Contacte", group: "Contactes", label_translator_strategy: "sonata.admin.label.strategy.noop" }
+    admin.user:
+        class: AppBundle\Admin\UserAdmin
+        arguments: [ ~, AppBundle\Entity\User, ~, "@fos_user.user_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Usuari", group: "Usuaris", label_translator_strategy: "sonata.admin.label.strategy.noop" }
+    admin.province:
+        class: AppBundle\Admin\ProvinceAdmin
+        arguments: [ ~, AppBundle\Entity\Province, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Província", group: "Facturació" }
+    admin.city:
+        class: AppBundle\Admin\CityAdmin
+        arguments: [ ~, AppBundle\Entity\City, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Ciutat", group: "Facturació" }
+    admin.customer:
+        class: AppBundle\Admin\CustomerAdmin
+        arguments: [ ~, AppBundle\Entity\Customer, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Clients", group: "Facturació" }
+    admin.invoice:
+        class: AppBundle\Admin\InvoiceAdmin
+        arguments: [ ~, AppBundle\Entity\Invoice, AppBundle:Admin\InvoiceAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Factures", group: "Facturació" }
+    admin.invoice_line:
+        class: AppBundle\Admin\InvoiceLineAdmin
+        arguments: [ ~, AppBundle\Entity\InvoiceLine, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Linies Factura", group: "Facturació", show_in_dashboard: false }

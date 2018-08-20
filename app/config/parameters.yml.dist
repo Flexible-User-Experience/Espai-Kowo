@@ -39,6 +39,7 @@ parameters:
     private_admin_prod_lastname:  lastname
 
     project_web_title: "Espai Kowo"
+    espai_kowo_fiscal_data: { company_name: "", vat_number: "", address: "", city: "", province: "", country: "", bank_account: "" }
 
     recaptcha_public_key:  11AAbb22CCdd
     recaptcha_private_key: 11AAbb22CCff
