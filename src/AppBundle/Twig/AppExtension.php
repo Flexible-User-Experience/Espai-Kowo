@@ -2,9 +2,12 @@
 
 namespace AppBundle\Twig;
 
+use AppBundle\Entity\Category;
+use AppBundle\Entity\Coworker;
 use AppBundle\Entity\Invoice;
 use AppBundle\Entity\User;
 use AppBundle\Enum\UserRolesEnum;
+use AppBundle\Model\CategoryHistogramHelperModel;
 
 /**
  * Class AppExtension.
@@ -26,6 +29,7 @@ class AppExtension extends \Twig_Extension
             new \Twig_SimpleFunction('randomErrorText', array($this, 'randomErrorTextFunction')),
             new \Twig_SimpleFunction('drawProgress', array($this, 'drawProgress')),
             new \Twig_SimpleFunction('drawAgesList', array($this, 'drawAgesList')),
+            new \Twig_SimpleFunction('drawCategoryProgress', array($this, 'drawCategoryProgress')),
         );
     }
 
@@ -58,7 +62,7 @@ class AppExtension extends \Twig_Extension
         $color = $isGreenBar ? 'success' : 'danger';
         $divider = $takeUp + $discharge;
         $result = '<h6 class="box-title">'.$month.'</h6>'.
-                    '<div class="progress progress-bar-vertical">'.
+                    '<div class="progress">'.
                         '<div class="progress-bar progress-bar-'.$color.'" style="width:'.$this->solveAverage($takeUp, $divider).'%">'.
                             ($takeUp ? $takeUp : '').
                         '</div>'.
@@ -108,6 +112,44 @@ class AppExtension extends \Twig_Extension
                             $maxAge.
                         '</div>'.
                     '</div>';
+
+        return $result;
+    }
+
+    /**
+     * @param Category[]|array $items
+     * @param int $divider amount to solve histogram value
+     * @param bool $onlyEnabled filter by current or all coworkers
+     *
+     * @return string
+     */
+    public function drawCategoryProgress($items, $divider, $onlyEnabled = false)
+    {
+        $result = '';
+        /** @var Category $item */
+        foreach ($items as $item) {
+            $amount = 0;
+            if ($onlyEnabled) {
+                /** @var Coworker $coworker */
+                foreach ($item->getCoworkers() as $coworker) {
+                    if ($coworker->getEnabled()) {
+                        $amount++;
+                    }
+                }
+            } else {
+                $amount = count($item->getCoworkers());
+            }
+            if ($amount) {
+                $result .= '<h6 class="box-title">'.$item->getTitle().'</h6>'.
+                    '<div class="progress progress-bar-vertical">'.
+                        '<div class="progress-bar progress-bar-success" style="width:'.$this->solveAverage($amount, $divider).'%">'.
+                            $amount.
+                        '</div>'.
+                    '</div>'
+                ;
+            }
+
+        }
 
         return $result;
     }

@@ -83,8 +83,7 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
         $coworkersBirthday = $this->em->getRepository('AppBundle:Coworker')->getAllCoworkersBirthdayByMonth($currentDate->format('n'));
         $currentAgesList = $this->em->getRepository('AppBundle:Coworker')->getCurrentCoworkersAgeList();
         $allAgesList = $this->em->getRepository('AppBundle:Coworker')->getAllCoworkersAgeList();
-        $currentCoworkerCategoryHistogram = $this->em->getRepository('AppBundle:Category')->getCurrentCoworkerCategoryHistogram();
-        $allCoworkerCategoryHistogram = $this->em->getRepository('AppBundle:Category')->getAllCoworkerCategoryHistogram();
+        $allCategories = $this->em->getRepository('AppBundle:Category')->getAllCategorySortedByTitle();
 
         return $this->renderResponse(
             $blockContext->getTemplate(),
@@ -125,8 +124,7 @@ class CoworkerIndicatorsBlock extends AbstractBlockService
                 'coworkersBirthday' => $coworkersBirthday,
                 'currentAgesList' => $currentAgesList,
                 'allAgesList' => $allAgesList,
-                'currentCoworkerCategoryHistogram' => $currentCoworkerCategoryHistogram,
-                'allCoworkerCategoryHistogram' => $allCoworkerCategoryHistogram,
+                'allCategories' => $allCategories,
                 'currentDate' => MonthEnum::getTranslatedMonthEnumArray()[intval($currentDate->format('n'))],
             ),
             $response
