@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Category;
+use AppBundle\Model\CategoryHistogramHelperModel;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -43,24 +45,46 @@ class CategoryRepository extends EntityRepository
     }
 
     /**
+     * @param Category $category
+     * @param bool $onlyEnabledFilter
+     *
      * @return QueryBuilder
      */
-    public function getAllCoworkerCategoryHistogramQB()
+    public function getCoworkersAmountByCategoryQB(Category $category, $onlyEnabledFilter = false)
     {
-        $query = $this->createQueryBuilder('category, coworker, coworker.id AS qty')
+        $query = $this->createQueryBuilder('category')
+            ->select('category', 'coworker')
             ->join('category.coworkers', 'coworker')
-            ->groupBy('qty')
-            ->orderBy('category.title', 'ASC');
+            ->where('category.id = :id')
+            ->setParameter('id', $category->getId());
+
+        if ($onlyEnabledFilter) {
+            $query->andWhere('coworker.enabled = :enabled')->setParameter('enabled', true);
+        }
 
         return $query;
     }
 
     /**
+     * @param Category $category
+     * @param bool $onlyEnabledFilter
+     *
      * @return Query
      */
-    public function getAllCoworkerCategoryHistogramQ()
+    public function getCoworkersAmountByCategoryQ(Category $category, $onlyEnabledFilter = false)
     {
-        return $this->getAllEnabledCategorySortedByTitleQB()->getQuery();
+        return $this->getCoworkersAmountByCategoryQB($category, $onlyEnabledFilter)->getQuery();
+    }
+
+    /**
+     * @param Category $category
+     * @param bool $onlyEnabledFilter
+     *
+     * @return int
+     */
+    public function getCoworkersAmountByCategory(Category $category, $onlyEnabledFilter = false)
+    {
+        return count($this->getCoworkersAmountByCategoryQ($category, $onlyEnabledFilter)->getResult());
     }
 
     /**
@@ -68,27 +92,15 @@ class CategoryRepository extends EntityRepository
      */
     public function getAllCoworkerCategoryHistogram()
     {
-        return $this->getAllEnabledCategorySortedByTitleQ()->getResult();
-    }
+        $result = array();
+        $categories = $this->createQueryBuilder('category')->orderBy('category.title', 'ASC')->getQuery()->getResult();
+        /** @var Category $category */
+        foreach ($categories as $category) {
+            $helper = new CategoryHistogramHelperModel($category->getTitle(), $this->getCoworkersAmountByCategory($category, false));
+            $result[] = $helper;
+        }
 
-    /**
-     * @return QueryBuilder
-     */
-    public function getCurrentCoworkerCategoryHistogramQB()
-    {
-        $query = $this->getAllCoworkerCategoryHistogramQB()
-            ->where('coworker.enabled = :enabled')
-            ->setParameter('enabled', true);
-
-        return $query;
-    }
-
-    /**
-     * @return Query
-     */
-    public function getCurrentCoworkerCategoryHistogramQ()
-    {
-        return $this->getCurrentCoworkerCategoryHistogramQB()->getQuery();
+        return $result;
     }
 
     /**
@@ -96,6 +108,14 @@ class CategoryRepository extends EntityRepository
      */
     public function getCurrentCoworkerCategoryHistogram()
     {
-        return $this->getCurrentCoworkerCategoryHistogramQ()->getResult();
+        $result = array();
+        $categories = $this->createQueryBuilder('category')->orderBy('category.title', 'ASC')->getQuery()->getResult();
+        /** @var Category $category */
+        foreach ($categories as $category) {
+            $helper = new CategoryHistogramHelperModel($category->getTitle(), $this->getCoworkersAmountByCategory($category, true));
+            $result[] = $helper;
+        }
+
+        return $result;
     }
 }
