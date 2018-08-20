@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Category;
+use AppBundle\Model\CategoryHistogramHelperModel;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -10,20 +12,43 @@ use Doctrine\ORM\QueryBuilder;
  * Class CategoryRepository
  *
  * @category Repository
- * @package  AppBundle\Repository
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class CategoryRepository extends EntityRepository
 {
     /**
      * @return QueryBuilder
      */
+    public function getAllCategorySortedByTitleQB()
+    {
+        $query = $this->createQueryBuilder('category')->orderBy('category.title', 'ASC');
+
+        return $query;
+    }
+
+    /**
+     * @return Query
+     */
+    public function getAllCategorySortedByTitleQ()
+    {
+        return $this->getAllCategorySortedByTitleQB()->getQuery();
+    }
+
+    /**
+     * @return array
+     */
+    public function getAllCategorySortedByTitle()
+    {
+        return $this->getAllCategorySortedByTitleQ()->getResult();
+    }
+
+    /**
+     * @return QueryBuilder
+     */
     public function getAllEnabledCategorySortedByTitleQB()
     {
-        $query = $this->createQueryBuilder('category')
+        $query = $this->getAllCategorySortedByTitleQB()
             ->where('category.enabled = :enabled')
-            ->setParameter('enabled', true)
-            ->orderBy('category.title', 'ASC');
+            ->setParameter('enabled', true);
 
         return $query;
     }

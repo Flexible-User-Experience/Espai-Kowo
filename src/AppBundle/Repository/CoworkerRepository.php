@@ -2,7 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Category;
 use AppBundle\Enum\GenderEnum;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -323,5 +325,27 @@ class CoworkerRepository extends EntityRepository
             ->setParameter('month', $month);
 
         return count($qb->getQuery()->getResult());
+    }
+
+    /**
+     * @param Category $category
+     * @param bool $onlyEnabled
+     *
+     * @return int
+     */
+    public function getCoworkersAmountByCategoryId(Category $category, $onlyEnabled = false)
+    {
+        $query = $this
+            ->createQueryBuilder('c')
+            ->select('c.id')
+            ->where('c.category = :category')
+            ->setParameter('category', $category)
+        ;
+
+        if ($onlyEnabled) {
+            $query->andWhere('c.enabled = :enabled')->setParameter('enabled', true);
+        }
+
+        return count($query->getQuery()->getResult(AbstractQuery::HYDRATE_SCALAR));
     }
 }

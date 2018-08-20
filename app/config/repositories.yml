@@ -19,6 +19,11 @@ services:
         factory: [ "@doctrine", getRepository ]
         arguments:
             - AppBundle:Customer
+    app.coworker_repository:
+        class: AppBundle\Repository\CoworkerRepository
+        factory: [ "@doctrine", getRepository ]
+        arguments:
+            - AppBundle:Coworker
     app.repositories_manager:
         class: AppBundle\Manager\RepositoriesManager
         arguments:

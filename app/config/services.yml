@@ -42,6 +42,7 @@ services:
 # Twig
     app.twig_extension:
         class: AppBundle\Twig\AppExtension
+        arguments: [ "@app.coworker_repository" ]
         public: false
         tags:
             - { name: twig.extension }
