@@ -1,0 +1,20 @@
+backend:
+    admin:
+        invoice:
+            baseAmount: Tax base
+            pdf:
+                invoice_data: "Provider data"
+                invoice_number: "Invoice number"
+                invoice_date: "Date"
+                customer_data: "Client data"
+                payment_type: "Payment method"
+                account_number: "By bank transfer to the account number:"
+                table_header: "Economic valuation"
+        invoiceLine:
+            invoice: Invoice
+            description: Description
+            units: Units
+            priceUnit: Unit price
+            isReadyToGenerate: Invoicing
+            discount: Discount
+            total: Total

@@ -19,32 +19,27 @@ class InvoiceBuilderPdf
     /**
      * @var TCPDFController
      */
-    protected $tcpdf;
+    private $tcpdf;
 
     /**
      * @var SmartAssetsHelperService
      */
-    protected $sahs;
+    private $sahs;
 
     /**
      * @var Translator
      */
-    protected $ts;
+    private $ts;
 
     /**
      * @var string project web title
      */
-    protected $pwt;
+    private $pwt;
 
     /**
      * @var array fiscal data
      */
-    protected $ekfd;
-
-    /**
-     * @var string default locale useful in CLI
-     */
-    protected $locale;
+    private $ekfd;
 
     /**
      * InvoiceBuilderPdf constructor.
@@ -54,16 +49,14 @@ class InvoiceBuilderPdf
      * @param Translator               $ts
      * @param string                   $pwt
      * @param array                    $ekfd
-     * @param string                   $locale
      */
-    public function __construct(TCPDFController $tcpdf, SmartAssetsHelperService $sahs, Translator $ts, $pwt, $ekfd, $locale)
+    public function __construct(TCPDFController $tcpdf, SmartAssetsHelperService $sahs, Translator $ts, $pwt, $ekfd)
     {
         $this->tcpdf = $tcpdf;
         $this->sahs = $sahs;
         $this->ts = $ts;
         $this->pwt = $pwt;
         $this->ekfd = $ekfd;
-        $this->locale = $locale;
     }
 
     /**
@@ -73,9 +66,7 @@ class InvoiceBuilderPdf
      */
     public function build(Invoice $invoice)
     {
-        if ($this->sahs->isCliContext()) {
-            $this->ts->setLocale($this->locale);
-        }
+        $this->ts->setLocale($invoice->getCustomer()->getInvoicesLanguageLocaleString());
 
         /** @var BasePdf $pdf */
         $pdf = $this->tcpdf->create($this->sahs);

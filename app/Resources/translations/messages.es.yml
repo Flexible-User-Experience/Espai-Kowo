@@ -1,0 +1,20 @@
+backend:
+    admin:
+        invoice:
+            baseAmount: Base imponible
+            pdf:
+                invoice_data: "Datos del proveedor"
+                invoice_number: "Factura número"
+                invoice_date: "Fecha"
+                customer_data: "Datos del cliente"
+                payment_type: "Forma de pago"
+                account_number: "Mediante transferencia bancaria al número de cuenta:"
+                table_header: "Valoración económica"
+        invoiceLine:
+            invoice: Factura
+            description: Descripción
+            units: Unidades
+            priceUnit: Precio unidad
+            isReadyToGenerate: Facturar
+            discount: Descuento
+            total: Total

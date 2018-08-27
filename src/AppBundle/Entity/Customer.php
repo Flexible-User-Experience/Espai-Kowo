@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Enum\LanguageEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -323,6 +324,14 @@ class Customer extends AbstractBase
     public function getInvoicesLanguage()
     {
         return $this->invoicesLanguage;
+    }
+
+    /**
+     * @return int
+     */
+    public function getInvoicesLanguageLocaleString()
+    {
+        return LanguageEnum::getLocalesEnumArray()[$this->invoicesLanguage];
     }
 
     /**

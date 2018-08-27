@@ -24,4 +24,16 @@ class LanguageEnum
             self::EN => 'English',
         );
     }
+
+    /**
+     * @return array
+     */
+    public static function getLocalesEnumArray()
+    {
+        return array(
+            self::CA => 'ca',
+            self::ES => 'es',
+            self::EN => 'en',
+        );
+    }
 }

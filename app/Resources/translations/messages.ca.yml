@@ -170,6 +170,7 @@ backend:
             email: Email
             is_enterprise: És empresa
             coworkers: Coworkers
+            invoices_language: Idioma factura
         invoice:
             customer: Client
             download: Descarregar PDF
@@ -213,12 +214,9 @@ backend:
             invoice: Factura
             description: Descripció
             units: Unitats
-            priceUnit: Preu Unitat
+            priceUnit: Preu unitat
             isReadyToGenerate: Facturar
             isPreviouslyGenerated: Nova
             isPrivateLessonType: Particular
             discount: Descompte
             total: Total
-            generator:
-                group_lessons_line: "Classes en grup realitzades durant el mes de %month% de %year%"
-                private_lessons_line: "Classes particulars realitzades durant el mes de %month% de %year%"
