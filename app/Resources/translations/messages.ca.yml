@@ -73,6 +73,7 @@ backend:
         submit: Enviar
         published_date: Data de publicació
         pictures: Imatges
+        payments: Pagaments
         coworker:
             name: Nom
             surname: Cognom
@@ -172,6 +173,7 @@ backend:
             coworkers: Coworkers
             invoices_language: Idioma factura
             payment_method: Forma de pagament
+            iban_for_bank_draft_payment: Número de compte gir bancari
         invoice:
             customer: Client
             download: Descarregar PDF

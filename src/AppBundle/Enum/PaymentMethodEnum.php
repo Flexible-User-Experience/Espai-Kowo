@@ -21,7 +21,7 @@ class PaymentMethodEnum
         return array(
             self::BANK_DRAFT => 'backend.admin.invoice.pdf.payment_method.bank_draft',
             self::BANK_TRANSFER => 'backend.admin.invoice.pdf.payment_method.bank_transfer',
-            self::CASH => 'backend.admin.invoice.pdf.payment_method.bank_cash',
+            self::CASH => 'backend.admin.invoice.pdf.payment_method.cash',
         );
     }
 }
