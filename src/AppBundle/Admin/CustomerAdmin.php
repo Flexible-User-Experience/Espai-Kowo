@@ -3,6 +3,7 @@
 namespace AppBundle\Admin;
 
 use AppBundle\Enum\LanguageEnum;
+use AppBundle\Enum\PaymentMethodEnum;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -115,6 +116,15 @@ class CustomerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'paymentMethod',
+                ChoiceType::class,
+                array(
+                    'label' => 'backend.admin.customer.payment_method',
+                    'choices' => PaymentMethodEnum::getEnumArray(),
+                    'required' => true,
+                )
+            )
+            ->add(
                 'isEnterprise',
                 CheckboxType::class,
                 array(
@@ -200,6 +210,13 @@ class CustomerAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.customer.invoices_language',
+                )
+            )
+            ->add(
+                'paymentMethod',
+                null,
+                array(
+                    'label' => 'backend.admin.customer.payment_method',
                 )
             )
             ->add(

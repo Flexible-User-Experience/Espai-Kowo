@@ -97,6 +97,13 @@ class Customer extends AbstractBase
     private $paymentMethod;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $ibanForBankDraftPayment;
+
+    /**
      * Methods.
      */
 
@@ -369,6 +376,26 @@ class Customer extends AbstractBase
     public function setPaymentMethod($paymentMethod)
     {
         $this->paymentMethod = $paymentMethod;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIbanForBankDraftPayment()
+    {
+        return $this->ibanForBankDraftPayment;
+    }
+
+    /**
+     * @param string $ibanForBankDraftPayment
+     *
+     * @return $this
+     */
+    public function setIbanForBankDraftPayment($ibanForBankDraftPayment)
+    {
+        $this->ibanForBankDraftPayment = $ibanForBankDraftPayment;
 
         return $this;
     }

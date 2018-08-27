@@ -216,8 +216,6 @@ class InvoiceBuilderPdf
         $pdf->Ln($interliner);
         $pdf->Write(0, $this->ekfd['bank_account'], '', false, 'L', true);
 
-
-
         return $pdf;
     }
 }

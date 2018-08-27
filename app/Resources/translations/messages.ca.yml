@@ -171,6 +171,7 @@ backend:
             is_enterprise: És empresa
             coworkers: Coworkers
             invoices_language: Idioma factura
+            payment_method: Forma de pagament
         invoice:
             customer: Client
             download: Descarregar PDF
