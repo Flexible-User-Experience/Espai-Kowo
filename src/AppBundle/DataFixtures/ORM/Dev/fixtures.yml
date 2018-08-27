@@ -250,4 +250,5 @@ AppBundle\Entity\Customer:
     createdAt: <dateTimeBetween('-2 months', '-1 months')>
     updatedAt: <dateTimeThisMonth()>
     invoicesLanguage: <numberBetween(0, 2)>
+    paymentMethod: <numberBetween(0, 2)>
     enabled: true

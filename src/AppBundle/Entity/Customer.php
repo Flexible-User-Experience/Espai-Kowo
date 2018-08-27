@@ -90,6 +90,13 @@ class Customer extends AbstractBase
     private $invoicesLanguage;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", options={"default"=0})
+     */
+    private $paymentMethod;
+
+    /**
      * Methods.
      */
 
@@ -342,6 +349,26 @@ class Customer extends AbstractBase
     public function setInvoicesLanguage($invoicesLanguage)
     {
         $this->invoicesLanguage = $invoicesLanguage;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPaymentMethod()
+    {
+        return $this->paymentMethod;
+    }
+
+    /**
+     * @param int $paymentMethod
+     *
+     * @return $this
+     */
+    public function setPaymentMethod($paymentMethod)
+    {
+        $this->paymentMethod = $paymentMethod;
 
         return $this;
     }
