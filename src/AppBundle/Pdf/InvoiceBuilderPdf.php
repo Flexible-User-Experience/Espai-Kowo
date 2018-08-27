@@ -80,7 +80,7 @@ class InvoiceBuilderPdf
         $pdf->setFontSubsetting(true);
         // remove default header/footer
         $pdf->setPrintHeader(true);
-        $pdf->setPrintFooter(true);
+        $pdf->setPrintFooter(false);
         // set default monospaced font
         $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
         // set margins
@@ -90,7 +90,7 @@ class InvoiceBuilderPdf
         $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
         // Add start page
         $pdf->AddPage(PDF_PAGE_ORIENTATION, PDF_PAGE_FORMAT, true, true);
-        $pdf->setPrintFooter(true);
+        $pdf->drawFooter($this->ekfd['invoice_footer']);
         $pdf->SetXY(BasePdf::PDF_MARGIN_LEFT, BasePdf::PDF_MARGIN_TOP + BasePdf::MARGIN_VERTICAL_SMALL * 11);
 
         // gaps
@@ -215,6 +215,8 @@ class InvoiceBuilderPdf
         $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.account_number'), '', false, 'L', true);
         $pdf->Ln($interliner);
         $pdf->Write(0, $this->ekfd['bank_account'], '', false, 'L', true);
+
+
 
         return $pdf;
     }

@@ -12,10 +12,11 @@ use AppBundle\Service\SmartAssetsHelperService;
 class BasePdf extends \TCPDF
 {
     const PDF_WIDTH = 210;
+    const PDF_HEIGHT = 297;
     const PDF_MARGIN_LEFT = 20;
     const PDF_MARGIN_RIGHT = 20;
     const PDF_MARGIN_TOP = 20;
-    const PDF_MARGIN_BOTTOM = 20;
+    const PDF_MARGIN_BOTTOM = 0;
     const MARGIN_VERTICAL_SMALL = 3;
     const MARGIN_VERTICAL_BIG = 12;
     const BRAND_COLOR = array(168, 208, 25);
@@ -43,11 +44,23 @@ class BasePdf extends \TCPDF
     /**
      * Page header.
      */
-    public function header()
+    public function Header()
     {
         // logo
         $this->Image($this->sahs->getAbsoluteAssetPathByContext('/bundles/app/img/logo-espai-kowo.png'), self::PDF_MARGIN_LEFT, self::PDF_MARGIN_TOP, 30);
         $this->setFontStyle(null, 'I', 8);
+    }
+
+    /**
+     * Page footer.
+     *
+     * @param string $txt
+     */
+    public function drawFooter($txt)
+    {
+        $this->SetXY(self::PDF_MARGIN_LEFT, self::PDF_HEIGHT - self::PDF_MARGIN_BOTTOM - 8);
+        $this->setFontStyle(null, '', 8);
+        $this->Cell(0, 0, $txt, 0, 0, 'C');
     }
 
     /**
