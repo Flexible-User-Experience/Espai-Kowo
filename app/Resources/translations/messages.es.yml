@@ -10,6 +10,10 @@ backend:
                 payment_type: "Forma de pago"
                 account_number: "Mediante transferencia bancaria al número de cuenta:"
                 table_header: "Valoración económica"
+                payment_method:
+                    bank_draft: Giro bancario
+                    bank_transfer: Transferencia bancaria
+                    cash: En efectivo
         invoiceLine:
             invoice: Factura
             description: Descripción

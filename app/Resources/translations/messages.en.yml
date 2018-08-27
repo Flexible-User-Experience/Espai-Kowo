@@ -10,6 +10,10 @@ backend:
                 payment_type: "Payment method"
                 account_number: "By bank transfer to the account number:"
                 table_header: "Economic valuation"
+                payment_method:
+                    bank_draft: Bank draft
+                    bank_transfer: Bank transfer
+                    cash: Cash
         invoiceLine:
             invoice: Invoice
             description: Description

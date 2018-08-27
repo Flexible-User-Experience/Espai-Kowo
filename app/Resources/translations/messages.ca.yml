@@ -210,6 +210,10 @@ backend:
                 payment_type: "Forma de pagament"
                 account_number: "Mitjançant transferència bancària al número de compte:"
                 table_header: "Valoració econòmica"
+                payment_method:
+                    bank_draft: Gir bancari
+                    bank_transfer: Transferència bancaria
+                    cash: En efectiu
         invoiceLine:
             invoice: Factura
             description: Descripció

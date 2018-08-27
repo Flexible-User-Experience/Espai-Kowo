@@ -3,7 +3,7 @@
 namespace AppBundle\Enum;
 
 /**
- * UserRolesEnum class
+ * UserRolesEnum class.
  *
  * @category Enum
  */
