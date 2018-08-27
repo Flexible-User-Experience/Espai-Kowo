@@ -82,6 +82,13 @@ class Customer extends AbstractBase
     private $coworkers;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", options={"default"=0})
+     */
+    private $invoicesLanguage;
+
+    /**
      * Methods.
      */
 
@@ -306,6 +313,26 @@ class Customer extends AbstractBase
         if ($this->coworkers->contains($coworker)) {
             $this->coworkers->removeElement($coworker);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getInvoicesLanguage()
+    {
+        return $this->invoicesLanguage;
+    }
+
+    /**
+     * @param int $invoicesLanguage
+     *
+     * @return $this
+     */
+    public function setInvoicesLanguage($invoicesLanguage)
+    {
+        $this->invoicesLanguage = $invoicesLanguage;
 
         return $this;
     }
