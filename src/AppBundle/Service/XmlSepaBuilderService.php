@@ -77,10 +77,8 @@ class XmlSepaBuilderService
      */
     public function buildDirectDebitSingleInvoiceXml($paymentId, \DateTime $dueDate, Invoice $invoice)
     {
-        if ($invoice->getPaymentMethod() != PaymentMethodEnum::BANK_DRAFT || !$invoice->getCustomer()->getIbanForBankDraftPayment()) {
-            throw new InvalidPaymentMethodException('Invalid payment method found in invoice ID# '.$invoice->getId());
-        }
-        $directDebit = $this->buildDirectDebit();
+        $this->validateInvoice($invoice);
+        $directDebit = $this->buildDirectDebit($paymentId);
         $this->addPaymentInfo($directDebit, $paymentId, $dueDate);
         $this->addTransfer($directDebit, $paymentId, $invoice);
 
@@ -99,13 +97,11 @@ class XmlSepaBuilderService
      */
     public function buildDirectDebitInvoicesXml($paymentId, \DateTime $dueDate, $invoices)
     {
-        $directDebit = $this->buildDirectDebit();
+        $directDebit = $this->buildDirectDebit($paymentId);
         $this->addPaymentInfo($directDebit, $paymentId, $dueDate);
         /** @var Invoice $invoice */
         foreach ($invoices as $invoice) {
-            if ($invoice->getPaymentMethod() != PaymentMethodEnum::BANK_DRAFT || !$invoice->getCustomer()->getIbanForBankDraftPayment()) {
-                throw new InvalidPaymentMethodException('Invalid payment method found in invoice ID# '.$invoice->getId());
-            }
+            $this->validateInvoice($invoice);
             $this->addTransfer($directDebit, $paymentId, $invoice);
         }
 
@@ -113,13 +109,16 @@ class XmlSepaBuilderService
     }
 
     /**
+     * @param string $paymentId
+     * @param bool   $isTest
+     *
      * @return CustomerDirectDebitFacade
      */
-    private function buildDirectDebit()
+    private function buildDirectDebit($paymentId, $isTest = false)
     {
-        $today = new \DateTime();
-        $header = new GroupHeader($today->format('Y-m-d-H-i-s'), $this->fname);
-        $header->setInitiatingPartyId($this->fic);
+        $msgId = 'MID'.$this->transformInvalidSepaChars($paymentId);
+        $header = new GroupHeader($msgId, $this->fname, $isTest);
+        $header->setInitiatingPartyId($this->transformInvalidSepaChars($this->fic));
 
         return TransferFileFacadeFactory::createDirectDebitWithGroupHeader($header, self::DIRECT_DEBIT_PAIN_CODE);
     }
@@ -183,5 +182,71 @@ class XmlSepaBuilderService
     private function removeSpacesFrom($value)
     {
         return str_replace(' ', '', $value);
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return string
+     */
+    private function transformInvalidSepaChars($value)
+    {
+        $result = str_replace('Ñ', 'N', $value);
+        $result = str_replace('ñ', 'n', $result);
+        $result = str_replace('Ç', 'C', $result);
+        $result = str_replace('ç', 'c', $result);
+        $result = str_replace('_', '-', $result);
+        $result = str_replace('À', 'A', $result);
+        $result = str_replace('Á', 'A', $result);
+        $result = str_replace('Ä', 'A', $result);
+        $result = str_replace('È', 'E', $result);
+        $result = str_replace('É', 'E', $result);
+        $result = str_replace('Ë', 'E', $result);
+        $result = str_replace('Ì', 'I', $result);
+        $result = str_replace('Í', 'I', $result);
+        $result = str_replace('Ï', 'I', $result);
+        $result = str_replace('Ò', 'O', $result);
+        $result = str_replace('Ó', 'O', $result);
+        $result = str_replace('Ö', 'O', $result);
+        $result = str_replace('Ù', 'U', $result);
+        $result = str_replace('Ú', 'U', $result);
+        $result = str_replace('Ü', 'U', $result);
+        $result = str_replace('à', 'a', $result);
+        $result = str_replace('á', 'a', $result);
+        $result = str_replace('ä', 'a', $result);
+        $result = str_replace('è', 'e', $result);
+        $result = str_replace('é', 'e', $result);
+        $result = str_replace('ë', 'e', $result);
+        $result = str_replace('ì', 'i', $result);
+        $result = str_replace('í', 'i', $result);
+        $result = str_replace('ï', 'i', $result);
+        $result = str_replace('ò', 'o', $result);
+        $result = str_replace('ó', 'o', $result);
+        $result = str_replace('ö', 'o', $result);
+        $result = str_replace('ù', 'u', $result);
+        $result = str_replace('ú', 'u', $result);
+        $result = str_replace('ü', 'u', $result);
+        $result = str_replace('&', '&amp;', $result);
+        $result = str_replace('<', '&lt;', $result);
+        $result = str_replace('>', '&gt;;', $result);
+        $result = str_replace('"', '&quot;', $result);
+        $result = str_replace("'", '&apos;', $result);
+
+        return $result;
+    }
+
+    /**
+     * @param Invoice $invoice
+     *
+     * @throws InvalidPaymentMethodException
+     */
+    private function validateInvoice(Invoice $invoice)
+    {
+        if ($invoice->getPaymentMethod() != PaymentMethodEnum::BANK_DRAFT) {
+            throw new InvalidPaymentMethodException('Invalid payment method found in invoice ID# '.$invoice->getId());
+        }
+        if (!$invoice->getCustomer()->getIbanForBankDraftPayment()) {
+            throw new InvalidPaymentMethodException('No IBAN found in customer ID# '.$invoice->getCustomer()->getId());
+        }
     }
 }

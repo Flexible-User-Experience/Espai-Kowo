@@ -7,8 +7,6 @@ use AppBundle\Pdf\InvoiceBuilderPdf;
 use AppBundle\Service\NotificationService;
 use AppBundle\Service\XmlSepaBuilderService;
 use Doctrine\ORM\NonUniqueResultException;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
@@ -105,7 +103,6 @@ class InvoiceAdminController extends BaseAdminController
     /**
      * Generate PDF invoice action.
      *
-     * @param int|string|null $id
      * @param Request         $request
      *
      * @return Response
@@ -113,14 +110,13 @@ class InvoiceAdminController extends BaseAdminController
      * @throws NotFoundHttpException If the object does not exist
      * @throws AccessDeniedException If access is not granted
      */
-    public function pdfAction($id = null, Request $request)
+    public function pdfAction(Request $request)
     {
         $request = $this->resolveRequest($request);
         $id = $request->get($this->admin->getIdParameter());
 
         /** @var Invoice $object */
         $object = $this->admin->getObject($id);
-
         if (!$object) {
             throw $this->createNotFoundException(sprintf('unable to find the object with id : %s', $id));
         }
@@ -135,7 +131,6 @@ class InvoiceAdminController extends BaseAdminController
     /**
      * Send PDF invoice action.
      *
-     * @param int|string|null $id
      * @param Request         $request
      *
      * @return Response
@@ -145,24 +140,22 @@ class InvoiceAdminController extends BaseAdminController
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function sendAction($id = null, Request $request)
+    public function sendAction(Request $request)
     {
         $request = $this->resolveRequest($request);
         $id = $request->get($this->admin->getIdParameter());
 
         /** @var Invoice $object */
         $object = $this->admin->getObject($id);
-
         if (!$object) {
             throw $this->createNotFoundException(sprintf('unable to find the object with id : %s', $id));
         }
 
+        $em = $this->container->get('doctrine')->getManager();
         $object
             ->setIsSended(true)
             ->setSendDate(new \DateTime())
         ;
-
-        $em = $this->container->get('doctrine')->getManager();
         $em->flush();
 
         /** @var InvoiceBuilderPdf $ibp */
@@ -174,10 +167,8 @@ class InvoiceAdminController extends BaseAdminController
         $result = $ns->sendInvoicePdfNotification($object, $pdf);
 
         if (0 === $result) {
-            /* @var Controller $this */
             $this->addFlash('danger', 'S\'ha produït un error durant l\'enviament de la factura núm. '.$object->getInvoiceNumber().'. El client '.$object->getCustomer().' no ha rebut cap missatge a la seva bústia.');
         } else {
-            /* @var Controller $this */
             $this->addFlash('success', 'S\'ha enviat la factura núm. '.$object->getInvoiceNumber().' amb PDF a la bústia '.$object->getCustomer()->getEmail().' del client '.$object->getCustomer());
         }
 
@@ -187,22 +178,20 @@ class InvoiceAdminController extends BaseAdminController
     /**
      * Generate XML SEPA direct debit invoice action.
      *
-     * @param int|string|null $id
      * @param Request $request
      *
-     * @return BinaryFileResponse
+     * @return Response|BinaryFileResponse
      *
      * @throws \Digitick\Sepa\Exception\InvalidArgumentException
      * @throws \Digitick\Sepa\Exception\InvalidPaymentMethodException
      */
-    public function xmlAction($id = null, Request $request)
+    public function xmlAction(Request $request)
     {
         $request = $this->resolveRequest($request);
         $id = $request->get($this->admin->getIdParameter());
 
         /** @var Invoice $object */
         $object = $this->admin->getObject($id);
-
         if (!$object) {
             throw $this->createNotFoundException(sprintf('unable to find the object with id : %s', $id));
         }
@@ -210,10 +199,14 @@ class InvoiceAdminController extends BaseAdminController
         /** @var XmlSepaBuilderService $xsbs */
         $xsbs = $this->container->get('app.direct_debit_builder_xml');
         $paymentUniqueId = uniqid();
-        $xml = $xsbs->buildDirectDebitSingleInvoiceXml($paymentUniqueId, new \DateTime('now + 2 days'), $object);
+        $xml = $xsbs->buildDirectDebitSingleInvoiceXml($paymentUniqueId, new \DateTime('now + 4 days'), $object);
+
+        if ($this->getParameter('kernel.environment') == 'dev') {
+            return new Response($xml, 200, array('Content-type' => 'application/xml'));
+        }
 
         $fileSystem = new Filesystem();
-        $fileNamePath = sys_get_temp_dir().DIRECTORY_SEPARATOR.$paymentUniqueId.'_'.$object->getUnderscoredInvoiceNumber().'.xml';
+        $fileNamePath = sys_get_temp_dir().DIRECTORY_SEPARATOR.$paymentUniqueId.'_F'.$object->getUnderscoredInvoiceNumber().'.xml';
         $fileSystem->touch($fileNamePath);
         $fileSystem->dumpFile($fileNamePath, $xml);
 
@@ -221,6 +214,5 @@ class InvoiceAdminController extends BaseAdminController
         $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT);
 
         return $response;
-//        return new Response($pdf->Output('espai_kowo_invoice_'.$object->getUnderscoredInvoiceNumber().'.pdf', 'I'), 200, array('Content-type' => 'application/pdf'));
     }
 }
