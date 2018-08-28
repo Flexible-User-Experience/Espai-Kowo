@@ -28,6 +28,7 @@ sonata_admin:
         layout: "::Admin/layout.html.twig"
         edit:   "::Admin/edit.html.twig"
         show:   "::Admin/show.html.twig"
+        batch:  "::Admin/batch.html.twig"
     dashboard:
         groups:
             Coworkers:
