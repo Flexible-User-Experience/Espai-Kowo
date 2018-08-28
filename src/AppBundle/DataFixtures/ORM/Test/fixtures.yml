@@ -150,6 +150,8 @@ AppBundle\Entity\Customer:
     isEnterprise: <boolean(70)>
     createdAt: <dateTimeBetween('-2 months', '-1 months')>
     updatedAt: <dateTimeThisMonth()>
+    invoicesLanguage: <numberBetween(0, 2)>
+    paymentMethod: <numberBetween(0, 2)>
     enabled: true
 
 # Invoice
@@ -164,6 +166,7 @@ AppBundle\Entity\Invoice:
     totalAmount: <randomFloat(1, 5)>
     number: <current()>
     year: <year()>
+    paymentMethod: <numberBetween(0, 2)>
 
 # InvoiceLine
 AppBundle\Entity\InvoiceLine:

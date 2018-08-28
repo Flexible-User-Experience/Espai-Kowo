@@ -1,0 +1,7 @@
+{% extends get_admin_template('base_list_field', admin.code) %}
+
+{% block field %}
+    {% if object.paymentMethod == constant('AppBundle\\Enum\\PaymentMethodEnum::BANK_DRAFT') %}
+        <input type="checkbox" name="idx[]" value="{{ admin.id(object) }}" />
+    {% endif %}
+{% endblock %}

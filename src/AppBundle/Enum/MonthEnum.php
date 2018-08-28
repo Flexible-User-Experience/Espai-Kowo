@@ -3,7 +3,7 @@
 namespace AppBundle\Enum;
 
 /**
- * Class MonthEnum
+ * MonthEnum class.
  *
  * @category Enum
  */

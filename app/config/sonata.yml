@@ -26,8 +26,10 @@ sonata_admin:
         handler: sonata.admin.security.handler.role
     templates:
         layout: "::Admin/layout.html.twig"
+        list:   "::Admin/list.html.twig"
         edit:   "::Admin/edit.html.twig"
         show:   "::Admin/show.html.twig"
+        batch:  "::Admin/batch.html.twig"
     dashboard:
         groups:
             Coworkers:
@@ -50,42 +52,6 @@ sonata_admin:
                 settings:
                     content: >
                         <h1 style="margin-top:0">ERP</h1>
-#            -
-#                position: top
-#                type: sonata.admin.block.admin_list
-#                class: col-md-6
-#                settings:
-#                    groups: [ Coworkers ]
-#            -
-#                position: top
-#                type: sonata.admin.block.admin_list
-#                class: col-md-6
-#                settings:
-#                    groups: [ Facturació ]
-#            -
-#                position: top
-#                type: sonata.admin.block.admin_list
-#                class: col-md-6
-#                settings:
-#                    groups: [ Blog ]
-#            -
-#                position: top
-#                type: sonata.admin.block.admin_list
-#                class: col-md-6
-#                settings:
-#                    groups: [ Activitats ]
-#            -
-#                position: top
-#                type: sonata.admin.block.admin_list
-#                class: col-md-6
-#                settings:
-#                    groups: [ Contactes ]
-#            -
-#                position: top
-#                type: sonata.admin.block.admin_list
-#                class: col-md-6
-#                settings:
-#                    groups: [ Usuaris ]
             -
                 position: top
                 type: admin.block.coworker_indicators

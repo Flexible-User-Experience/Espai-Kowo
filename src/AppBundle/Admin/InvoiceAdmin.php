@@ -4,6 +4,7 @@ namespace AppBundle\Admin;
 
 use AppBundle\Entity\Customer;
 use AppBundle\Entity\Invoice;
+use AppBundle\Enum\PaymentMethodEnum;
 use AppBundle\Enum\YearEnum;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -36,11 +37,30 @@ class InvoiceAdmin extends AbstractBaseAdmin
      */
     protected function configureRoutes(RouteCollection $collection)
     {
-        parent::configureRoutes($collection);
         $collection
             ->add('pdf', $this->getRouterIdParameter().'/pdf')
             ->add('send', $this->getRouterIdParameter().'/send')
+            ->add('xml', $this->getRouterIdParameter().'/xml')
+            ->remove('show')
             ->remove('delete');
+    }
+
+    /**
+     * @param array $actions
+     *
+     * @return array
+     */
+    public function configureBatchActions($actions)
+    {
+        if ($this->hasRoute('edit') && $this->hasAccess('edit')) {
+            $actions['generatesepaxmls'] = array(
+                'label' => 'backend.admin.invoice.batch_action',
+                'translation_domain' => 'messages',
+                'ask_confirmation' => false,
+            );
+        }
+
+        return $actions;
     }
 
     /**
@@ -171,8 +191,38 @@ class InvoiceAdmin extends AbstractBaseAdmin
                     'required' => false,
                     'disabled' => false,
                 )
-            )
-            ->end();
+            );
+        if ($this->id($this->getSubject())) { // is edit mode
+            /** @var Customer $customer */
+            $customer = $this->getSubject()->getCustomer();
+            $formMapper
+                ->add(
+                    'paymentMethod',
+                    ChoiceType::class,
+                    array(
+                        'label' => 'backend.admin.customer.payment_method',
+                        'choices' => PaymentMethodEnum::getEnumArray(),
+                        'preferred_choices' => array($customer->getPaymentMethod()),
+                        'required' => true,
+                    )
+                )
+            ;
+        } else {
+            $formMapper
+                ->add(
+                    'paymentMethod',
+                    ChoiceType::class,
+                    array(
+                        'label' => 'backend.admin.customer.payment_method',
+                        'choices' => PaymentMethodEnum::getEnumArray(),
+                        'empty_data' => PaymentMethodEnum::BANK_DRAFT,
+                        'preferred_choices' => array(PaymentMethodEnum::BANK_DRAFT),
+                        'required' => true,
+                    )
+                )
+            ;
+        }
+        $formMapper->end();
         if ($this->id($this->getSubject())) { // is edit mode, disable on new subjetcs
             $formMapper
                 ->with('backend.admin.invoice.lines', $this->getFormMdSuccessBoxArray(12))
@@ -290,6 +340,13 @@ class InvoiceAdmin extends AbstractBaseAdmin
                     'format' => 'd-m-Y',
                 )
             )
+            ->add(
+                'paymentMethod',
+                null,
+                array(
+                    'label' => 'backend.admin.customer.payment_method',
+                )
+            )
         ;
     }
 
@@ -317,18 +374,6 @@ class InvoiceAdmin extends AbstractBaseAdmin
                     'editable' => false,
                 )
             )
-//            ->add(
-//                'receipt',
-//                null,
-//                array(
-//                    'label' => 'backend.admin.invoice.receipt',
-//                    'editable' => false,
-//                    'associated_property' => 'receiptNumber',
-//                    'sortable' => true,
-//                    'sort_field_mapping' => array('fieldName' => 'id'),
-//                    'sort_parent_association_mappings' => array(array('fieldName' => 'receipt')),
-//                )
-//            )
             ->add(
                 'customer',
                 null,
@@ -383,6 +428,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
                         'edit' => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
                         'pdf' => array('template' => '::Admin/Buttons/list__action_invoice_pdf_button.html.twig'),
                         'send' => array('template' => '::Admin/Buttons/list__action_invoice_send_button.html.twig'),
+                        'xml' => array('template' => '::Admin/Buttons/list__action_invoice_xml_button.html.twig'),
                     ),
                     'label' => 'backend.admin.actions',
                 )

@@ -19,32 +19,27 @@ class InvoiceBuilderPdf
     /**
      * @var TCPDFController
      */
-    protected $tcpdf;
+    private $tcpdf;
 
     /**
      * @var SmartAssetsHelperService
      */
-    protected $sahs;
+    private $sahs;
 
     /**
      * @var Translator
      */
-    protected $ts;
+    private $ts;
 
     /**
      * @var string project web title
      */
-    protected $pwt;
+    private $pwt;
 
     /**
      * @var array fiscal data
      */
-    protected $ekfd;
-
-    /**
-     * @var string default locale useful in CLI
-     */
-    protected $locale;
+    private $ekfd;
 
     /**
      * InvoiceBuilderPdf constructor.
@@ -54,16 +49,14 @@ class InvoiceBuilderPdf
      * @param Translator               $ts
      * @param string                   $pwt
      * @param array                    $ekfd
-     * @param string                   $locale
      */
-    public function __construct(TCPDFController $tcpdf, SmartAssetsHelperService $sahs, Translator $ts, $pwt, $ekfd, $locale)
+    public function __construct(TCPDFController $tcpdf, SmartAssetsHelperService $sahs, Translator $ts, $pwt, $ekfd)
     {
         $this->tcpdf = $tcpdf;
         $this->sahs = $sahs;
         $this->ts = $ts;
         $this->pwt = $pwt;
         $this->ekfd = $ekfd;
-        $this->locale = $locale;
     }
 
     /**
@@ -73,9 +66,7 @@ class InvoiceBuilderPdf
      */
     public function build(Invoice $invoice)
     {
-        if ($this->sahs->isCliContext()) {
-            $this->ts->setLocale($this->locale);
-        }
+        $this->ts->setLocale($invoice->getCustomer()->getInvoicesLanguageLocaleString());
 
         /** @var BasePdf $pdf */
         $pdf = $this->tcpdf->create($this->sahs);
@@ -89,7 +80,7 @@ class InvoiceBuilderPdf
         $pdf->setFontSubsetting(true);
         // remove default header/footer
         $pdf->setPrintHeader(true);
-        $pdf->setPrintFooter(true);
+        $pdf->setPrintFooter(false);
         // set default monospaced font
         $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
         // set margins
@@ -99,7 +90,7 @@ class InvoiceBuilderPdf
         $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
         // Add start page
         $pdf->AddPage(PDF_PAGE_ORIENTATION, PDF_PAGE_FORMAT, true, true);
-        $pdf->setPrintFooter(true);
+        $pdf->drawFooter($this->ekfd['invoice_footer']);
         $pdf->SetXY(BasePdf::PDF_MARGIN_LEFT, BasePdf::PDF_MARGIN_TOP + BasePdf::MARGIN_VERTICAL_SMALL * 11);
 
         // gaps

@@ -73,6 +73,7 @@ backend:
         submit: Enviar
         published_date: Data de publicació
         pictures: Imatges
+        payments: Pagaments
         coworker:
             name: Nom
             surname: Cognom
@@ -170,9 +171,14 @@ backend:
             email: Email
             is_enterprise: És empresa
             coworkers: Coworkers
+            invoices_language: Idioma factura
+            payment_method: Forma de pagament
+            iban_for_bank_draft_payment: Número de compte gir bancari
         invoice:
             customer: Client
             download: Descarregar PDF
+            xml: Generar XML SEPA
+            batch_action: Generar XML SEPA
             generate: Generar factures
             items: Ítems
             preview_invoice: Mostrar factures a generar
@@ -209,16 +215,17 @@ backend:
                 payment_type: "Forma de pagament"
                 account_number: "Mitjançant transferència bancària al número de compte:"
                 table_header: "Valoració econòmica"
+                payment_method:
+                    bank_draft: Gir bancari
+                    bank_transfer: Transferència bancaria
+                    cash: En efectiu
         invoiceLine:
             invoice: Factura
             description: Descripció
             units: Unitats
-            priceUnit: Preu Unitat
+            priceUnit: Preu unitat
             isReadyToGenerate: Facturar
             isPreviouslyGenerated: Nova
             isPrivateLessonType: Particular
             discount: Descompte
             total: Total
-            generator:
-                group_lessons_line: "Classes en grup realitzades durant el mes de %month% de %year%"
-                private_lessons_line: "Classes particulars realitzades durant el mes de %month% de %year%"

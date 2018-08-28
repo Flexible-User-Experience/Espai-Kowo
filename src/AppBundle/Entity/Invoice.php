@@ -98,6 +98,13 @@ class Invoice extends AbstractBase
     private $paymentDate;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", options={"default"=0})
+     */
+    private $paymentMethod;
+
+    /**
      * @var bool
      *
      * @ORM\Column(type="boolean", nullable=true)
@@ -483,6 +490,26 @@ class Invoice extends AbstractBase
     }
 
     /**
+     * @return int
+     */
+    public function getPaymentMethod()
+    {
+        return $this->paymentMethod;
+    }
+
+    /**
+     * @param int $paymentMethod
+     *
+     * @return $this
+     */
+    public function setPaymentMethod($paymentMethod)
+    {
+        $this->paymentMethod = $paymentMethod;
+
+        return $this;
+    }
+
+    /**
      * @return bool
      */
     public function isSended()
@@ -521,6 +548,24 @@ class Invoice extends AbstractBase
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getDebtorMandate()
+    {
+        return $this->getCustomer()->getTic().'-'.strtoupper(substr($this->getCustomer()->getName(), 0, 1));
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getDebtorMandateSignDate()
+    {
+        return $this->getCustomer()->getCreatedAt()->format('d-m-Y');
+    }
+
 
     /**
      * @return string

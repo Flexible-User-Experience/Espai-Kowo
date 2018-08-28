@@ -2,11 +2,15 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Enum\LanguageEnum;
+use AppBundle\Enum\PaymentMethodEnum;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
  * Class CustomerAdmin.
@@ -39,7 +43,7 @@ class CustomerAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(6))
+            ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(5))
             ->add(
                 'tic',
                 null,
@@ -94,6 +98,25 @@ class CustomerAdmin extends AbstractBaseAdmin
                 )
             )
             ->end()
+            ->with('backend.admin.payments', $this->getFormMdSuccessBoxArray(4))
+            ->add(
+                'paymentMethod',
+                ChoiceType::class,
+                array(
+                    'label' => 'backend.admin.customer.payment_method',
+                    'choices' => PaymentMethodEnum::getEnumArray(),
+                    'required' => true,
+                )
+            )
+            ->add(
+                'ibanForBankDraftPayment',
+                TextType::class,
+                array(
+                    'label' => 'backend.admin.customer.iban_for_bank_draft_payment',
+                    'required' => false,
+                )
+            )
+            ->end()
             ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(3))
             ->add(
                 'coworkers',
@@ -101,6 +124,15 @@ class CustomerAdmin extends AbstractBaseAdmin
                 array(
                     'label' => 'backend.admin.customer.coworkers',
                     'disabled' => true,
+                )
+            )
+            ->add(
+                'invoicesLanguage',
+                ChoiceType::class,
+                array(
+                    'label' => 'backend.admin.customer.invoices_language',
+                    'choices' => LanguageEnum::getEnumArray(),
+                    'required' => true,
                 )
             )
             ->add(
@@ -182,6 +214,27 @@ class CustomerAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.customer.is_enterprise',
+                )
+            )
+            ->add(
+                'invoicesLanguage',
+                null,
+                array(
+                    'label' => 'backend.admin.customer.invoices_language',
+                )
+            )
+            ->add(
+                'paymentMethod',
+                null,
+                array(
+                    'label' => 'backend.admin.customer.payment_method',
+                )
+            )
+            ->add(
+                'ibanForBankDraftPayment',
+                null,
+                array(
+                    'label' => 'backend.admin.customer.iban_for_bank_draft_payment',
                 )
             )
             ->add(

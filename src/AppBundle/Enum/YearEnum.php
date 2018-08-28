@@ -3,7 +3,7 @@
 namespace AppBundle\Enum;
 
 /**
- * Class ReceiptYearMonthEnum.
+ * YearEnum class.
  *
  * @category Enum
  */

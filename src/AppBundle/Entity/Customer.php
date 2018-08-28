@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Enum\LanguageEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -80,6 +81,27 @@ class Customer extends AbstractBase
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Coworker", mappedBy="customer", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $coworkers;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", options={"default"=0})
+     */
+    private $invoicesLanguage;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", options={"default"=0})
+     */
+    private $paymentMethod;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $ibanForBankDraftPayment;
 
     /**
      * Methods.
@@ -306,6 +328,74 @@ class Customer extends AbstractBase
         if ($this->coworkers->contains($coworker)) {
             $this->coworkers->removeElement($coworker);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getInvoicesLanguage()
+    {
+        return $this->invoicesLanguage;
+    }
+
+    /**
+     * @return int
+     */
+    public function getInvoicesLanguageLocaleString()
+    {
+        return LanguageEnum::getLocalesEnumArray()[$this->invoicesLanguage];
+    }
+
+    /**
+     * @param int $invoicesLanguage
+     *
+     * @return $this
+     */
+    public function setInvoicesLanguage($invoicesLanguage)
+    {
+        $this->invoicesLanguage = $invoicesLanguage;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPaymentMethod()
+    {
+        return $this->paymentMethod;
+    }
+
+    /**
+     * @param int $paymentMethod
+     *
+     * @return $this
+     */
+    public function setPaymentMethod($paymentMethod)
+    {
+        $this->paymentMethod = $paymentMethod;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIbanForBankDraftPayment()
+    {
+        return $this->ibanForBankDraftPayment;
+    }
+
+    /**
+     * @param string $ibanForBankDraftPayment
+     *
+     * @return $this
+     */
+    public function setIbanForBankDraftPayment($ibanForBankDraftPayment)
+    {
+        $this->ibanForBankDraftPayment = $ibanForBankDraftPayment;
 
         return $this;
     }
