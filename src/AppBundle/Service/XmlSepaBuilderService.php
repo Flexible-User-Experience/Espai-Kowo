@@ -11,6 +11,7 @@ use Digitick\Sepa\PaymentInformation;
 use Digitick\Sepa\GroupHeader;
 use Digitick\Sepa\Exception\InvalidArgumentException;
 use Digitick\Sepa\Exception\InvalidPaymentMethodException;
+use Digitick\Sepa\Util\StringHelper;
 
 /**
  * Class XmlSepaBuilderService.
@@ -116,9 +117,9 @@ class XmlSepaBuilderService
      */
     private function buildDirectDebit($paymentId, $isTest = false)
     {
-        $msgId = 'MID'.$this->transformInvalidSepaChars($paymentId);
+        $msgId = 'MID'.StringHelper::sanitizeString($paymentId);
         $header = new GroupHeader($msgId, $this->fname, $isTest);
-        $header->setInitiatingPartyId($this->transformInvalidSepaChars($this->fic));
+        $header->setInitiatingPartyId(StringHelper::sanitizeString('NIF-'.$this->fic));
 
         return TransferFileFacadeFactory::createDirectDebitWithGroupHeader($header, self::DIRECT_DEBIT_PAIN_CODE);
     }
@@ -134,13 +135,13 @@ class XmlSepaBuilderService
     {
         // creates a payment, it's possible to create multiple payments, "$paymentId" is the identifier for the transactions
         $directDebit->addPaymentInfo($paymentId, array(
-            'id' => $paymentId,
-            'dueDate' => $dueDate, // optional. Otherwise default period is used
+            'id' => StringHelper::sanitizeString($paymentId),
+            'dueDate' => $dueDate->format('Y-m-dTH:i'), // optional. Otherwise default period is used
             'creditorName' => $this->fname,
             'creditorAccountIBAN' => $this->iban,
             'creditorAgentBIC' => $this->bic,
             'seqType' => PaymentInformation::S_ONEOFF,
-            'creditorId' => $this->fic,
+            'creditorId' => StringHelper::sanitizeString($this->fic),
             'localInstrumentCode' => 'CORE', // default. optional.
         ));
     }
@@ -163,14 +164,13 @@ class XmlSepaBuilderService
 
         // add a Single Transaction to the named payment
         $directDebit->addTransfer($paymentId, array(
-            'amount' => $invoice->getBaseAmount(),
+            'amount' => $invoice->getTotalAmount(),
             'debtorIban' => $this->removeSpacesFrom($invoice->getCustomer()->getIbanForBankDraftPayment()),
-//            'debtorBic' => $this->removeSpacesFrom($invoice->getMainBank()->getSwiftCode()),
             'debtorName' => $invoice->getCustomer()->getName(),
             'debtorMandate' => $invoice->getDebtorMandate(),
             'debtorMandateSignDate' => $invoice->getDebtorMandateSignDate(),
             'remittanceInformation' => $remitanceInformation,
-            'endToEndId' => 'Factura num. '.$invoice->getInvoiceNumberWithF(), // optional, if you want to provide additional structured info
+            'endToEndId' => StringHelper::sanitizeString($invoice->getInvoiceNumberWithF()), // optional, if you want to provide additional structured info
         ));
     }
 
@@ -182,57 +182,6 @@ class XmlSepaBuilderService
     private function removeSpacesFrom($value)
     {
         return str_replace(' ', '', $value);
-    }
-
-    /**
-     * @param string $value
-     *
-     * @return string
-     */
-    private function transformInvalidSepaChars($value)
-    {
-        $result = str_replace('Ñ', 'N', $value);
-        $result = str_replace('ñ', 'n', $result);
-        $result = str_replace('Ç', 'C', $result);
-        $result = str_replace('ç', 'c', $result);
-        $result = str_replace('_', '-', $result);
-        $result = str_replace('À', 'A', $result);
-        $result = str_replace('Á', 'A', $result);
-        $result = str_replace('Ä', 'A', $result);
-        $result = str_replace('È', 'E', $result);
-        $result = str_replace('É', 'E', $result);
-        $result = str_replace('Ë', 'E', $result);
-        $result = str_replace('Ì', 'I', $result);
-        $result = str_replace('Í', 'I', $result);
-        $result = str_replace('Ï', 'I', $result);
-        $result = str_replace('Ò', 'O', $result);
-        $result = str_replace('Ó', 'O', $result);
-        $result = str_replace('Ö', 'O', $result);
-        $result = str_replace('Ù', 'U', $result);
-        $result = str_replace('Ú', 'U', $result);
-        $result = str_replace('Ü', 'U', $result);
-        $result = str_replace('à', 'a', $result);
-        $result = str_replace('á', 'a', $result);
-        $result = str_replace('ä', 'a', $result);
-        $result = str_replace('è', 'e', $result);
-        $result = str_replace('é', 'e', $result);
-        $result = str_replace('ë', 'e', $result);
-        $result = str_replace('ì', 'i', $result);
-        $result = str_replace('í', 'i', $result);
-        $result = str_replace('ï', 'i', $result);
-        $result = str_replace('ò', 'o', $result);
-        $result = str_replace('ó', 'o', $result);
-        $result = str_replace('ö', 'o', $result);
-        $result = str_replace('ù', 'u', $result);
-        $result = str_replace('ú', 'u', $result);
-        $result = str_replace('ü', 'u', $result);
-        $result = str_replace('&', '&amp;', $result);
-        $result = str_replace('<', '&lt;', $result);
-        $result = str_replace('>', '&gt;;', $result);
-        $result = str_replace('"', '&quot;', $result);
-        $result = str_replace("'", '&apos;', $result);
-
-        return $result;
     }
 
     /**
