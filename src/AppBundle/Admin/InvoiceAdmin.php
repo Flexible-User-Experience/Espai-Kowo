@@ -172,17 +172,38 @@ class InvoiceAdmin extends AbstractBaseAdmin
                     'required' => false,
                     'disabled' => false,
                 )
-            )
-            ->add(
-                'paymentMethod',
-                ChoiceType::class,
-                array(
-                    'label' => 'backend.admin.customer.payment_method',
-                    'choices' => PaymentMethodEnum::getEnumArray(),
-                    'required' => true,
+            );
+        if ($this->id($this->getSubject())) { // is edit mode
+            /** @var Customer $customer */
+            $customer = $this->getSubject()->getCustomer();
+            $formMapper
+                ->add(
+                    'paymentMethod',
+                    ChoiceType::class,
+                    array(
+                        'label' => 'backend.admin.customer.payment_method',
+                        'choices' => PaymentMethodEnum::getEnumArray(),
+                        'preferred_choices' => array($customer->getPaymentMethod()),
+                        'required' => true,
+                    )
                 )
-            )
-            ->end();
+            ;
+        } else {
+            $formMapper
+                ->add(
+                    'paymentMethod',
+                    ChoiceType::class,
+                    array(
+                        'label' => 'backend.admin.customer.payment_method',
+                        'choices' => PaymentMethodEnum::getEnumArray(),
+                        'empty_data' => PaymentMethodEnum::BANK_DRAFT,
+                        'preferred_choices' => array(PaymentMethodEnum::BANK_DRAFT),
+                        'required' => true,
+                    )
+                )
+            ;
+        }
+        $formMapper->end();
         if ($this->id($this->getSubject())) { // is edit mode, disable on new subjetcs
             $formMapper
                 ->with('backend.admin.invoice.lines', $this->getFormMdSuccessBoxArray(12))
