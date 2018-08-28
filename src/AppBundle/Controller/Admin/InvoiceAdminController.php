@@ -5,12 +5,16 @@ namespace AppBundle\Controller\Admin;
 use AppBundle\Entity\Invoice;
 use AppBundle\Pdf\InvoiceBuilderPdf;
 use AppBundle\Service\NotificationService;
+use AppBundle\Service\XmlSepaBuilderService;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -178,5 +182,45 @@ class InvoiceAdminController extends BaseAdminController
         }
 
         return $this->redirectToList();
+    }
+
+    /**
+     * Generate XML SEPA direct debit invoice action.
+     *
+     * @param int|string|null $id
+     * @param Request $request
+     *
+     * @return BinaryFileResponse
+     *
+     * @throws \Digitick\Sepa\Exception\InvalidArgumentException
+     * @throws \Digitick\Sepa\Exception\InvalidPaymentMethodException
+     */
+    public function xmlAction($id = null, Request $request)
+    {
+        $request = $this->resolveRequest($request);
+        $id = $request->get($this->admin->getIdParameter());
+
+        /** @var Invoice $object */
+        $object = $this->admin->getObject($id);
+
+        if (!$object) {
+            throw $this->createNotFoundException(sprintf('unable to find the object with id : %s', $id));
+        }
+
+        /** @var XmlSepaBuilderService $xsbs */
+        $xsbs = $this->container->get('app.direct_debit_builder_xml');
+        $paymentUniqueId = uniqid();
+        $xml = $xsbs->buildDirectDebitSingleInvoiceXml($paymentUniqueId, new \DateTime('now + 2 days'), $object);
+
+        $fileSystem = new Filesystem();
+        $fileNamePath = sys_get_temp_dir().DIRECTORY_SEPARATOR.$paymentUniqueId.'_'.$object->getUnderscoredInvoiceNumber().'.xml';
+        $fileSystem->touch($fileNamePath);
+        $fileSystem->dumpFile($fileNamePath, $xml);
+
+        $response = new BinaryFileResponse($fileNamePath, 200, array('Content-type' => 'application/xml'));
+        $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT);
+
+        return $response;
+//        return new Response($pdf->Output('espai_kowo_invoice_'.$object->getUnderscoredInvoiceNumber().'.pdf', 'I'), 200, array('Content-type' => 'application/pdf'));
     }
 }
