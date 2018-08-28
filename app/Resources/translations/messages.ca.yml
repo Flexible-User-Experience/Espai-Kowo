@@ -177,6 +177,8 @@ backend:
         invoice:
             customer: Client
             download: Descarregar PDF
+            xml: Generar XML SEPA
+            batch_action: Generar XML SEPA
             generate: Generar factures
             items: Ítems
             preview_invoice: Mostrar factures a generar

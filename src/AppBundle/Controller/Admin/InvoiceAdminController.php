@@ -7,9 +7,11 @@ use AppBundle\Pdf\InvoiceBuilderPdf;
 use AppBundle\Service\NotificationService;
 use AppBundle\Service\XmlSepaBuilderService;
 use Doctrine\ORM\NonUniqueResultException;
+use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
@@ -214,5 +216,48 @@ class InvoiceAdminController extends BaseAdminController
         $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT);
 
         return $response;
+    }
+
+    /**
+     * @param ProxyQueryInterface $selectedModelQuery
+     * @param Request             $request
+     *
+     * @return Response|BinaryFileResponse
+     */
+    public function batchActionGeneratesepaxmls(ProxyQueryInterface $selectedModelQuery, Request $request = null)
+    {
+        $this->admin->checkAccess('edit');
+
+        $selectedModels = $selectedModelQuery->execute();
+        try {
+            /** @var XmlSepaBuilderService $xsbs */
+            $xsbs = $this->container->get('app.direct_debit_builder_xml');
+            $paymentUniqueId = uniqid();
+            $xmls = $xsbs->buildDirectDebitInvoicesXml($paymentUniqueId, new \DateTime('now + 4 days'), $selectedModels);
+
+            if ($this->getParameter('kernel.environment') == 'dev') {
+                return new Response($xmls, 200, array('Content-type' => 'application/xml'));
+            }
+
+            $fileSystem = new Filesystem();
+            $fileNamePath = sys_get_temp_dir().DIRECTORY_SEPARATOR.$paymentUniqueId.'.xml';
+            $fileSystem->touch($fileNamePath);
+            $fileSystem->dumpFile($fileNamePath, $xmls);
+
+            $response = new BinaryFileResponse($fileNamePath, 200, array('Content-type' => 'application/xml'));
+            $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT);
+
+            return $response;
+
+        } catch (\Exception $e) {
+            $this->addFlash('error', 'S\'ha produït un error al generar l\'arxiu SEPA amb format XML. Revisa les factures seleccionades.');
+            $this->addFlash('error', $e->getMessage());
+
+            return new RedirectResponse(
+                $this->admin->generateUrl('list', [
+                    'filter' => $this->admin->getFilterParameters()
+                ])
+            );
+        }
     }
 }

@@ -37,12 +37,30 @@ class InvoiceAdmin extends AbstractBaseAdmin
      */
     protected function configureRoutes(RouteCollection $collection)
     {
-        parent::configureRoutes($collection);
         $collection
             ->add('pdf', $this->getRouterIdParameter().'/pdf')
             ->add('send', $this->getRouterIdParameter().'/send')
             ->add('xml', $this->getRouterIdParameter().'/xml')
+            ->remove('show')
             ->remove('delete');
+    }
+
+    /**
+     * @param array $actions
+     *
+     * @return array
+     */
+    public function configureBatchActions($actions)
+    {
+        if ($this->hasRoute('edit') && $this->hasAccess('edit')) {
+            $actions['generatesepaxmls'] = array(
+                'label' => 'backend.admin.invoice.batch_action',
+                'translation_domain' => 'messages',
+                'ask_confirmation' => false,
+            );
+        }
+
+        return $actions;
     }
 
     /**
@@ -356,18 +374,6 @@ class InvoiceAdmin extends AbstractBaseAdmin
                     'editable' => false,
                 )
             )
-//            ->add(
-//                'receipt',
-//                null,
-//                array(
-//                    'label' => 'backend.admin.invoice.receipt',
-//                    'editable' => false,
-//                    'associated_property' => 'receiptNumber',
-//                    'sortable' => true,
-//                    'sort_field_mapping' => array('fieldName' => 'id'),
-//                    'sort_parent_association_mappings' => array(array('fieldName' => 'receipt')),
-//                )
-//            )
             ->add(
                 'customer',
                 null,
