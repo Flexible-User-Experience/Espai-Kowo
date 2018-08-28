@@ -552,6 +552,24 @@ class Invoice extends AbstractBase
     /**
      * @return string
      */
+    public function getDebtorMandate()
+    {
+        return $this->getCustomer()->getTic().'-'.strtoupper(substr($this->getCustomer()->getName(), 0, 1));
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getDebtorMandateSignDate()
+    {
+        return $this->getCustomer()->getCreatedAt()->format('d-m-Y');
+    }
+
+
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->id ? $this->getInvoiceNumber().' · '.$this->getCustomer().' · '.$this->getTotalAmountString() : '---';
