@@ -4,6 +4,7 @@ namespace AppBundle\Admin;
 
 use AppBundle\Entity\Customer;
 use AppBundle\Entity\Invoice;
+use AppBundle\Enum\PaymentMethodEnum;
 use AppBundle\Enum\YearEnum;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -172,6 +173,15 @@ class InvoiceAdmin extends AbstractBaseAdmin
                     'disabled' => false,
                 )
             )
+            ->add(
+                'paymentMethod',
+                ChoiceType::class,
+                array(
+                    'label' => 'backend.admin.customer.payment_method',
+                    'choices' => PaymentMethodEnum::getEnumArray(),
+                    'required' => true,
+                )
+            )
             ->end();
         if ($this->id($this->getSubject())) { // is edit mode, disable on new subjetcs
             $formMapper
@@ -288,6 +298,13 @@ class InvoiceAdmin extends AbstractBaseAdmin
                     'label' => 'backend.admin.invoice.paymentDate',
                     'field_type' => 'sonata_type_date_picker',
                     'format' => 'd-m-Y',
+                )
+            )
+            ->add(
+                'paymentMethod',
+                null,
+                array(
+                    'label' => 'backend.admin.customer.payment_method',
                 )
             )
         ;
