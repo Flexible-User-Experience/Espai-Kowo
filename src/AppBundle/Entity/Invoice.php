@@ -98,6 +98,13 @@ class Invoice extends AbstractBase
     private $paymentDate;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", options={"default"=0})
+     */
+    private $paymentMethod;
+
+    /**
      * @var bool
      *
      * @ORM\Column(type="boolean", nullable=true)
@@ -478,6 +485,26 @@ class Invoice extends AbstractBase
     public function setPaymentDate($paymentDate)
     {
         $this->paymentDate = $paymentDate;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPaymentMethod()
+    {
+        return $this->paymentMethod;
+    }
+
+    /**
+     * @param int $paymentMethod
+     *
+     * @return $this
+     */
+    public function setPaymentMethod($paymentMethod)
+    {
+        $this->paymentMethod = $paymentMethod;
 
         return $this;
     }

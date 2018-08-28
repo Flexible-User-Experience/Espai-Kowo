@@ -166,6 +166,7 @@ AppBundle\Entity\Invoice:
     totalAmount: <randomFloat(1, 5)>
     number: <current()>
     year: <year()>
+    paymentMethod: <numberBetween(0, 2)>
 
 # InvoiceLine
 AppBundle\Entity\InvoiceLine:
