@@ -554,7 +554,7 @@ class Invoice extends AbstractBase
      */
     public function getDebtorMandate()
     {
-        return $this->getCustomer()->getTic().'-'.strtoupper(substr($this->getCustomer()->getName(), 0, 1));
+        return $this->getCustomer()->getTic().'-'.strtoupper(substr($this->getCustomer()->getName(), 0, 1)).'_'.uniqid();
     }
 
 

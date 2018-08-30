@@ -207,8 +207,9 @@ class InvoiceAdminController extends BaseAdminController
             return new Response($xml, 200, array('Content-type' => 'application/xml'));
         }
 
+        $now = new \DateTime();
         $fileSystem = new Filesystem();
-        $fileNamePath = sys_get_temp_dir().DIRECTORY_SEPARATOR.$paymentUniqueId.'_F'.$object->getUnderscoredInvoiceNumber().'.xml';
+        $fileNamePath = sys_get_temp_dir().DIRECTORY_SEPARATOR.'SEPA_invoice_'.$now->format('Y-m-d').'___'.$paymentUniqueId.'.xml';
         $fileSystem->touch($fileNamePath);
         $fileSystem->dumpFile($fileNamePath, $xml);
 
@@ -220,11 +221,10 @@ class InvoiceAdminController extends BaseAdminController
 
     /**
      * @param ProxyQueryInterface $selectedModelQuery
-     * @param Request             $request
      *
      * @return Response|BinaryFileResponse
      */
-    public function batchActionGeneratesepaxmls(ProxyQueryInterface $selectedModelQuery, Request $request = null)
+    public function batchActionGeneratesepaxmls(ProxyQueryInterface $selectedModelQuery)
     {
         $this->admin->checkAccess('edit');
 
@@ -233,14 +233,15 @@ class InvoiceAdminController extends BaseAdminController
             /** @var XmlSepaBuilderService $xsbs */
             $xsbs = $this->container->get('app.direct_debit_builder_xml');
             $paymentUniqueId = uniqid();
-            $xmls = $xsbs->buildDirectDebitInvoicesXml($paymentUniqueId, new \DateTime('now + 4 days'), $selectedModels);
+            $xmls = $xsbs->buildDirectDebitInvoicesXml($paymentUniqueId, new \DateTime('now + 3 days'), $selectedModels);
 
             if ($this->getParameter('kernel.environment') == 'dev') {
                 return new Response($xmls, 200, array('Content-type' => 'application/xml'));
             }
 
+            $now = new \DateTime();
             $fileSystem = new Filesystem();
-            $fileNamePath = sys_get_temp_dir().DIRECTORY_SEPARATOR.$paymentUniqueId.'.xml';
+            $fileNamePath = sys_get_temp_dir().DIRECTORY_SEPARATOR.'SEPA_invoices_'.$now->format('Y-m-d').'___'.$paymentUniqueId.'.xml';
             $fileSystem->touch($fileNamePath);
             $fileSystem->dumpFile($fileNamePath, $xmls);
 
