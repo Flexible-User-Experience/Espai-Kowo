@@ -21,7 +21,13 @@ use Digitick\Sepa\Util\StringHelper;
 class XmlSepaBuilderService
 {
     const DIRECT_DEBIT_PAIN_CODE = 'pain.008.001.02';
+    const DIRECT_DEBIT_LI_CODE = 'CORE';
     const DEFAULT_REMITANCE_INFORMATION = 'Import mensual';
+
+    /**
+     * @var SpanishSepaHelperService
+     */
+    private $sshs;
 
     /**
      * @var array fiscal data array
@@ -55,10 +61,12 @@ class XmlSepaBuilderService
     /**
      * XmlSepaBuilderService constructor.
      *
+     * @param SpanishSepaHelperService $sshs
      * @param array $fda
      */
-    public function __construct($fda)
+    public function __construct(SpanishSepaHelperService $sshs, $fda)
     {
+        $this->sshs = $sshs;
         $this->fda = $fda;
         $this->fname = $fda['company_name'];
         $this->fic = $fda['vat_number'];
@@ -78,9 +86,9 @@ class XmlSepaBuilderService
      */
     public function buildDirectDebitSingleInvoiceXml($paymentId, \DateTime $dueDate, Invoice $invoice)
     {
-        $this->validateInvoice($invoice);
         $directDebit = $this->buildDirectDebit($paymentId);
         $this->addPaymentInfo($directDebit, $paymentId, $dueDate);
+        $this->validateInvoice($invoice);
         $this->addTransfer($directDebit, $paymentId, $invoice);
 
         return $directDebit->asXML();
@@ -119,7 +127,8 @@ class XmlSepaBuilderService
     {
         $msgId = 'MID'.StringHelper::sanitizeString($paymentId);
         $header = new GroupHeader($msgId, $this->fname, $isTest);
-        $header->setInitiatingPartyId(StringHelper::sanitizeString('NIF-'.$this->fic));
+        $header->setCreationDateTimeFormat('Y-m-d\TH:i:s');
+        $header->setInitiatingPartyId($this->sshs->getSpanishCreditorIdFromNif($this->fic));
 
         return TransferFileFacadeFactory::createDirectDebitWithGroupHeader($header, self::DIRECT_DEBIT_PAIN_CODE);
     }
@@ -133,16 +142,15 @@ class XmlSepaBuilderService
      */
     private function addPaymentInfo(CustomerDirectDebitFacade &$directDebit, $paymentId, \DateTime $dueDate)
     {
-        // creates a payment, it's possible to create multiple payments, "$paymentId" is the identifier for the transactions
         $directDebit->addPaymentInfo($paymentId, array(
             'id' => StringHelper::sanitizeString($paymentId),
-            'dueDate' => $dueDate->format('Y-m-dTH:i'), // optional. Otherwise default period is used
-            'creditorName' => $this->fname,
+            'dueDate' => $dueDate,
+            'creditorName' => StringHelper::sanitizeString($this->fname),
             'creditorAccountIBAN' => $this->iban,
             'creditorAgentBIC' => $this->bic,
             'seqType' => PaymentInformation::S_ONEOFF,
-            'creditorId' => StringHelper::sanitizeString($this->fic),
-            'localInstrumentCode' => 'CORE', // default. optional.
+            'creditorId' => $this->sshs->getSpanishCreditorIdFromNif($this->fic),
+            'localInstrumentCode' => self::DIRECT_DEBIT_LI_CODE,
         ));
     }
 
@@ -162,7 +170,6 @@ class XmlSepaBuilderService
             $remitanceInformation = $firstLine->getDescription();
         }
 
-        // add a Single Transaction to the named payment
         $directDebit->addTransfer($paymentId, array(
             'amount' => $invoice->getTotalAmount(),
             'debtorIban' => $this->removeSpacesFrom($invoice->getCustomer()->getIbanForBankDraftPayment()),
@@ -170,7 +177,7 @@ class XmlSepaBuilderService
             'debtorMandate' => $invoice->getDebtorMandate(),
             'debtorMandateSignDate' => $invoice->getDebtorMandateSignDate(),
             'remittanceInformation' => $remitanceInformation,
-            'endToEndId' => StringHelper::sanitizeString($invoice->getInvoiceNumberWithF()), // optional, if you want to provide additional structured info
+            'endToEndId' => StringHelper::sanitizeString($invoice->getInvoiceNumberWithF()),
         ));
     }
 
