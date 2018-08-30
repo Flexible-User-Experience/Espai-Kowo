@@ -34,9 +34,12 @@ services:
             - "%project_web_title%"
             - "%espai_kowo_fiscal_data%"
 # XML Builders
+    app.spanish_sepa_helper:
+        class: AppBundle\Service\SpanishSepaHelperService
     app.direct_debit_builder_xml:
         class: AppBundle\Service\XmlSepaBuilderService
         arguments:
+            - "@app.spanish_sepa_helper"
             - "%espai_kowo_fiscal_data%"
 # Sitemap
     app.sitemap:
