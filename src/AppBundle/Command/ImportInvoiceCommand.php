@@ -91,13 +91,16 @@ class ImportInvoiceCommand extends BaseCommand
                     if ($customer) {
                         $totalCustomersFound++;
                         $output->writeln('<info>OK</info>');
+                        $output->write('seraching invoice by anfix code '.$anfixInvoiceCode.'... ');
                         $searchedPreviouslyInvoice = $this->em->getRepository('AppBundle:Invoice')->findOneBy(array('anfixCode' => $anfixInvoiceCode));
                         if ($searchedPreviouslyInvoice) {
                             // update invoice
+                            $output->writeln('<comment>found</comment>');
                             $updated++;
                             $importedInvoice = $searchedPreviouslyInvoice;
                         } else {
                             // new invoice
+                            $output->writeln('<info>not found</info>');
                             $created++;
                             $importedInvoice = new Invoice();
                         }
@@ -105,11 +108,14 @@ class ImportInvoiceCommand extends BaseCommand
                         $invoiceDateValue = $ws->getCellByColumnAndRow(42, $row->getRowIndex())->getValue();
                         $importedInvoice
                             ->setAnfixCode($anfixInvoiceCode)
-                            ->setCustomer($customer)
                             ->setNumber(intval($ws->getCellByColumnAndRow(5, $row->getRowIndex())->getValue()))
                             ->setYear(intval(substr($ws->getCellByColumnAndRow(24, $row->getRowIndex())->getValue(), 1)))
                             ->setDate(\DateTime::createFromFormat('Y-m-d H:i:s.u', $invoiceDateValue))
+                            ->setCustomer($customer)
+                            ->setTaxPercentage(Invoice::TAX_IVA)
                             ->setIrpfPercentage(Invoice::TAX_IRPF)
+                            ->setBaseAmount(floatval($ws->getCellByColumnAndRow(80, $row->getRowIndex())->getValue()))
+                            ->setTotalAmount(floatval($ws->getCellByColumnAndRow(61, $row->getRowIndex())->getValue()))
                             ->setIsSended(true)
                             ->setIsPayed(true)
                             ->setEnabled(true)
