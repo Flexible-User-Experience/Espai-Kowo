@@ -20,6 +20,13 @@ class Invoice extends AbstractBase
     const TAX_IRPF = 0;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $anfixCode;
+
+    /**
      * @var int
      *
      * @ORM\Column(type="integer", nullable=false)
@@ -128,6 +135,26 @@ class Invoice extends AbstractBase
     public function __construct()
     {
         $this->lines = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function getAnfixCode()
+    {
+        return $this->anfixCode;
+    }
+
+    /**
+     * @param string $anfixCode
+     *
+     * @return $this
+     */
+    public function setAnfixCode($anfixCode)
+    {
+        $this->anfixCode = $anfixCode;
+
+        return $this;
     }
 
     /**
