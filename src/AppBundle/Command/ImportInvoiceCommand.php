@@ -2,7 +2,10 @@
 
 namespace AppBundle\Command;
 
+use PhpOffice\PhpSpreadsheet\Cell\Cell;
 use PhpOffice\PhpSpreadsheet\Reader\Exception as ReaderException;
+use PhpOffice\PhpSpreadsheet\Worksheet\Row;
+use PhpOffice\PhpSpreadsheet\Worksheet\RowIterator;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -68,13 +71,47 @@ class ImportInvoiceCommand extends BaseCommand
             $spreadsheet = $this->ss->loadWorksheetsXlsSpreadsheetReadOnly($filename, array('Lineas_Facturas_Emitidas', 'Facturas_Emitidas'));
             // intialize counters
             $dtStart = new \DateTime();
-            $index = 0;
+            $totalItemsCounter = 0;
+            $totalCustomersFound = 0;
             $created = 0;
-            $worksheetIterator = $spreadsheet->getWorksheetIterator();
-            /** @var Worksheet $worksheet */
-            foreach ($worksheetIterator as $worksheet) {
-                $output->writeln($worksheet->getTitle());
+            /** @var Worksheet $ws */
+            $ws = $spreadsheet->setActiveSheetIndexByName('Facturas_Emitidas');
+            $output->writeln($ws->getTitle());
+            /** @var Row $row */
+            foreach ($ws->getRowIterator() as $row) {
+                $totalItemsCounter++;
+                // search customer
+                $customerId = $ws->getCellByColumnAndRow(77, $row->getRowIndex());
+                $output->write('seraching customer '.$customerId.'... ');
+                if ($customerId) {
+                    $customer = $this->em->getRepository('AppBundle:Customer')->findOneBy(array('tic' => $customerId));
+                    if ($customer) {
+                        $totalCustomersFound++;
+                        $output->writeln('<info>OK</info>');
+                        // build imported invoice
+
+                    } else {
+                        $output->writeln('<error>KO</error>');
+                    }
+                } else {
+                    $output->writeln('<error>KO</error>');
+                }
             }
+
+//            $worksheetIterator = $spreadsheet->getWorksheetIterator();
+//            /** @var Worksheet $worksheet */
+//            foreach ($worksheetIterator as $worksheet) {
+//                $output->writeln($worksheet->getTitle());
+//                /** @var Row $row */
+//                foreach ($worksheet->getRowIterator() as $row) {
+//                    $output->writeln($row->getRowIndex());
+//                    /** @var Cell $cell */
+//                    foreach ($row->getCellIterator() as $cell) {
+//                        $output->write($cell->getValue().' · ');
+//                    }
+//                    $output->writeln('EOL');
+//                }
+//            }
         } catch (ReaderException $e) {
             $output->writeln('<error>XLS Reader Excetion: '.$e->getMessage().'</error>');
         } catch (\Exception $e) {
