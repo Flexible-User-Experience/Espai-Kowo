@@ -3,6 +3,7 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\Invoice;
+use AppBundle\Enum\PaymentMethodEnum;
 use PhpOffice\PhpSpreadsheet\Cell\Cell;
 use PhpOffice\PhpSpreadsheet\Reader\Exception as ReaderException;
 use PhpOffice\PhpSpreadsheet\Worksheet\Row;
@@ -116,6 +117,7 @@ class ImportInvoiceCommand extends BaseCommand
                             ->setIrpfPercentage(Invoice::TAX_IRPF)
                             ->setBaseAmount(floatval($ws->getCellByColumnAndRow(80, $row->getRowIndex())->getValue()))
                             ->setTotalAmount(floatval($ws->getCellByColumnAndRow(61, $row->getRowIndex())->getValue()))
+                            ->setPaymentMethod(PaymentMethodEnum::BANK_DRAFT)
                             ->setIsSended(true)
                             ->setIsPayed(true)
                             ->setEnabled(true)
