@@ -3,11 +3,11 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\Invoice;
+use AppBundle\Entity\InvoiceLine;
 use AppBundle\Enum\PaymentMethodEnum;
 use PhpOffice\PhpSpreadsheet\Cell\Cell;
 use PhpOffice\PhpSpreadsheet\Reader\Exception as ReaderException;
 use PhpOffice\PhpSpreadsheet\Worksheet\Row;
-use PhpOffice\PhpSpreadsheet\Worksheet\RowIterator;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -77,6 +77,9 @@ class ImportInvoiceCommand extends BaseCommand
             $totalCustomersFound = 0;
             $created = 0;
             $updated = 0;
+            $linesCreated = 0;
+            $linesUpdated = 0;
+            // invoices
             /** @var Worksheet $ws */
             $ws = $spreadsheet->setActiveSheetIndexByName('Facturas_Emitidas');
             $output->writeln($ws->getTitle());
@@ -138,30 +141,77 @@ class ImportInvoiceCommand extends BaseCommand
                 }
             }
 
+            // invoices
+            /** @var Worksheet $ws */
+            $ws = $spreadsheet->setActiveSheetIndexByName('Lineas_Facturas_Emitidas');
+            $output->writeln($ws->getTitle());
+            /** @var Row $row */
+            foreach ($ws->getRowIterator() as $row) {
+                // search customer
+                $anfixInvoiceCode = $ws->getCellByColumnAndRow(9, $row->getRowIndex())->getValue();
+                $output->write('seraching previous anfix invoice '.$anfixInvoiceCode.'... ');
+                $searchedPreviouslyInvoice = $this->em->getRepository('AppBundle:Invoice')->findOneBy(array('anfixCode' => $anfixInvoiceCode));
+                if ($searchedPreviouslyInvoice) {
+                    // related invoice found
+                    $output->writeln('<comment>found</comment>');
+                    $anfixInvoiceLineCode = $ws->getCellByColumnAndRow(2, $row->getRowIndex())->getValue();
+                    $searchedPreviouslyInvoiceLine = $this->em->getRepository('AppBundle:InvoiceLine')->findOneBy(array('anfixCode' => $anfixInvoiceLineCode));
+                    if ($searchedPreviouslyInvoiceLine) {
+                        // update invoice line
+                        $output->writeln('<comment>found</comment>');
+                        $linesUpdated++;
+                        $importedInvoiceLine = $searchedPreviouslyInvoiceLine;
+                    } else {
+                        // new invoice line
+                        $output->writeln('<info>not found</info>');
+                        $linesCreated++;
+                        $importedInvoiceLine = new InvoiceLine();
+                    }
+                    // build imported invoice line
+                    $importedInvoiceLine
+                        ->setInvoice($searchedPreviouslyInvoice)
+                        ->setAnfixCode($anfixInvoiceLineCode)
+                        ->setDescription($ws->getCellByColumnAndRow(16, $row->getRowIndex())->getValue())
+                        ->setUnits(floatval($ws->getCellByColumnAndRow(7, $row->getRowIndex())->getValue()))
+                        ->setPriceUnit(floatval($ws->getCellByColumnAndRow(12, $row->getRowIndex())->getValue()))
+                        ->setDiscount(0)
+                        ->setTotal(floatval($ws->getCellByColumnAndRow(22, $row->getRowIndex())->getValue()))
+                        ->setEnabled(true)
+                    ;
+                    if ($input->getOption('force')) {
+                        if ($searchedPreviouslyInvoiceLine) {
+                            $this->em->flush();
+                        } else {
+                            $this->em->persist($importedInvoiceLine);
+                            $this->em->flush();
+                        }
+                    }
+                } else {
+                    // no related invoice found
+                    $output->writeln('<info>not found</info>');
+                }
+
+//                $output->writeln($row->getRowIndex());
+//                /** @var Cell $cell */
+//                foreach ($row->getCellIterator() as $cell) {
+//                    $output->write($cell->getValue().' · ');
+//                }
+//                $output->writeln('EOL');
+            }
+
             // EOF
             $dtEnd = new \DateTime();
             $output->writeln('<info>---------------------------</info>');
             $output->writeln('<info>'.$totalItemsCounter.' items parsed</info>');
-            $output->writeln('<info>'.$created.' new items added</info>');
-            $output->writeln('<info>'.$updated.' items updated</info>');
+            $output->writeln('<info>'.$created.' new invoices added</info>');
+            $output->writeln('<info>'.$updated.' invoices updated</info>');
+            $output->writeln('<info>'.$linesCreated.' new invoice lines added</info>');
+            $output->writeln('<info>'.$linesUpdated.' invoice lines updated</info>');
             $output->writeln('<info>---------------------------</info>');
             $output->writeln('Total ellapsed time: '.$dtStart->diff($dtEnd)->format('%H:%I:%S'));
 
             $this->printEndCommand($output);
-//            $worksheetIterator = $spreadsheet->getWorksheetIterator();
-//            /** @var Worksheet $worksheet */
-//            foreach ($worksheetIterator as $worksheet) {
-//                $output->writeln($worksheet->getTitle());
-//                /** @var Row $row */
-//                foreach ($worksheet->getRowIterator() as $row) {
-//                    $output->writeln($row->getRowIndex());
-//                    /** @var Cell $cell */
-//                    foreach ($row->getCellIterator() as $cell) {
-//                        $output->write($cell->getValue().' · ');
-//                    }
-//                    $output->writeln('EOL');
-//                }
-//            }
+
         } catch (ReaderException $e) {
             $output->writeln('<error>XLS Reader Excetion: '.$e->getMessage().'</error>');
         } catch (\Exception $e) {
