@@ -155,6 +155,7 @@ class ImportInvoiceCommand extends BaseCommand
                     // related invoice found
                     $output->writeln('<comment>found</comment>');
                     $anfixInvoiceLineCode = $ws->getCellByColumnAndRow(2, $row->getRowIndex())->getValue();
+                    $output->write('seraching previous anfix invoice line '.$anfixInvoiceLineCode.'... ');
                     $searchedPreviouslyInvoiceLine = $this->em->getRepository('AppBundle:InvoiceLine')->findOneBy(array('anfixCode' => $anfixInvoiceLineCode));
                     if ($searchedPreviouslyInvoiceLine) {
                         // update invoice line
