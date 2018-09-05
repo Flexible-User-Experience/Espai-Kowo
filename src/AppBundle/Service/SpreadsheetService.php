@@ -2,8 +2,9 @@
 
 namespace AppBundle\Service;
 
-use AppBundle\Xls\ReadFilterXls;
+use AppBundle\Xls\Filter\ReadXlsFilter;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Reader\Exception;
 use PhpOffice\PhpSpreadsheet\Reader\Xls as XlsReader;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
@@ -19,7 +20,7 @@ class SpreadsheetService
      *
      * @return Spreadsheet
      *
-     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     * @throws Exception
      */
     public function loadSpreadsheet($filepath)
     {
@@ -31,13 +32,13 @@ class SpreadsheetService
      *
      * @return Spreadsheet
      *
-     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     * @throws Exception
      */
     public function loadXlsSpreadsheetReadOnly($filepath)
     {
         $reader = new XlsReader();
         $reader->setReadDataOnly(true);
-        $reader->setReadFilter(new ReadFilterXls());
+        $reader->setReadFilter(new ReadXlsFilter());
 
         return $reader->load($filepath);
     }
@@ -48,14 +49,14 @@ class SpreadsheetService
      *
      * @return Spreadsheet
      *
-     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     * @throws Exception
      */
     public function loadWorksheetsXlsSpreadsheetReadOnly($filepath, $worksheets)
     {
         $reader = new XlsReader();
         $reader->setReadDataOnly(true);
         $reader->setLoadSheetsOnly($worksheets);
-        $reader->setReadFilter(new ReadFilterXls());
+        $reader->setReadFilter(new ReadXlsFilter());
 
         return $reader->load($filepath);
     }
