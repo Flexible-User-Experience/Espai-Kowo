@@ -192,6 +192,8 @@ backend:
             isPayed: Pagada
             paymentDate: Data pagament
             isSended: Enviada
+            isSepaXmlGenerated: SEPA
+            sepaXmlGenerationDate: Data SEPA
             sendDate: Data enviament
             baseAmount: Base imposable
             id: Núm. Factura

@@ -20,6 +20,13 @@ class Invoice extends AbstractBase
     const TAX_IRPF = 0;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $anfixCode;
+
+    /**
      * @var int
      *
      * @ORM\Column(type="integer", nullable=false)
@@ -119,6 +126,20 @@ class Invoice extends AbstractBase
     private $sendDate;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isSepaXmlGenerated;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $sepaXmlGenerationDate;
+
+    /**
      * Methods.
      */
 
@@ -128,6 +149,26 @@ class Invoice extends AbstractBase
     public function __construct()
     {
         $this->lines = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function getAnfixCode()
+    {
+        return $this->anfixCode;
+    }
+
+    /**
+     * @param string $anfixCode
+     *
+     * @return $this
+     */
+    public function setAnfixCode($anfixCode)
+    {
+        $this->anfixCode = $anfixCode;
+
+        return $this;
     }
 
     /**
@@ -545,6 +586,46 @@ class Invoice extends AbstractBase
     public function setSendDate($sendDate)
     {
         $this->sendDate = $sendDate;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSepaXmlGenerated()
+    {
+        return $this->isSepaXmlGenerated;
+    }
+
+    /**
+     * @param bool $isSepaXmlGenerated
+     *
+     * @return $this
+     */
+    public function setIsSepaXmlGenerated($isSepaXmlGenerated)
+    {
+        $this->isSepaXmlGenerated = $isSepaXmlGenerated;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getSepaXmlGenerationDate()
+    {
+        return $this->sepaXmlGenerationDate;
+    }
+
+    /**
+     * @param \DateTime $sepaXmlGenerationDate
+     *
+     * @return $this
+     */
+    public function setSepaXmlGenerationDate($sepaXmlGenerationDate)
+    {
+        $this->sepaXmlGenerationDate = $sepaXmlGenerationDate;
 
         return $this;
     }

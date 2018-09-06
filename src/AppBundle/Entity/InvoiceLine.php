@@ -24,6 +24,13 @@ class InvoiceLine extends AbstractBase
     /**
      * @var string
      *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $anfixCode;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $description;
@@ -76,6 +83,26 @@ class InvoiceLine extends AbstractBase
     public function setInvoice(Invoice $invoice)
     {
         $this->invoice = $invoice;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAnfixCode()
+    {
+        return $this->anfixCode;
+    }
+
+    /**
+     * @param string $anfixCode
+     *
+     * @return $this
+     */
+    public function setAnfixCode($anfixCode)
+    {
+        $this->anfixCode = $anfixCode;
 
         return $this;
     }

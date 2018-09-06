@@ -41,6 +41,9 @@ services:
         arguments:
             - "@app.spanish_sepa_helper"
             - "%espai_kowo_fiscal_data%"
+# XLS
+    app.spreadsheet_factory:
+        class: AppBundle\Service\SpreadsheetService
 # Sitemap
     app.sitemap:
         class: AppBundle\Listener\SitemapListener
