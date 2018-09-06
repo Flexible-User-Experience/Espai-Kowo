@@ -38,6 +38,9 @@ Factures: Factures
 "Invoice List": Factures
 "Invoice Create": Crear
 "Invoice Delete": Esborrar
+"Spending Category List": Tipus de Despeses
+"Spending Category Create": Crear
+"Spending Category Delete": Esborrar
 frontend:
     menu:
         blog: BLOG
@@ -232,3 +235,5 @@ backend:
             isPrivateLessonType: Particular
             discount: Descompte
             total: Total
+        spending_category:
+            name: Nom

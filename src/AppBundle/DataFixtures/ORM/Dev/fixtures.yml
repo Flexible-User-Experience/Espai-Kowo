@@ -13,7 +13,7 @@ AppBundle\Entity\ContactMessage:
     updatedAt: <dateTimeThisMonth()>
     enabled: true
 
-## Coworkers
+# Coworkers
 AppBundle\Entity\Coworker:
   coworker1:
     name: <name()>
@@ -104,7 +104,7 @@ AppBundle\Entity\Coworker:
     category: @category<numberBetween(1, 5)>
     customer: @customer<numberBetween(1, 5)>
 
-#Social Network Category
+# Social Network Category
 AppBundle\Entity\SocialNetworkCategory:
   socialnetworkcategory1:
     title: 'facebook'
@@ -127,19 +127,19 @@ AppBundle\Entity\SocialNetworkCategory:
     imageName: 'twitter.png'
     fontAwesomeClass: 'fa-twitter-square'
 
-#Social Network
+# Social Network
 AppBundle\Entity\SocialNetwork:
   socialnetwork{1..5}:
     url: <url()>
     coworker: @coworker*
     category: @socialnetworkcategory*
 
-## Category
+# Category
 AppBundle\Entity\Category:
   category{1..5}:
     title: <sentence()>
 
-## Events
+# Events
 AppBundle\Entity\Event:
   event{1..10}:
     title: <sentence()>
@@ -189,15 +189,6 @@ AppBundle\Entity\User:
         enabled: true
         roles:
             - ROLE_SUPER_ADMIN
-#    editor:
-#        username: <{private_editor_test_user}>
-#        plainPassword: <{private_editor_test_pass}>
-#        email: <safeEmail()>
-#        firstname: <name()>
-#        lastname: <lastname()>
-#        enabled: true
-#        roles:
-#            - ROLE_CMS
     cms{1..4}:
         username: <username()>
         plainPassword: <password()>
@@ -252,3 +243,8 @@ AppBundle\Entity\Customer:
     invoicesLanguage: <numberBetween(0, 2)>
     paymentMethod: <numberBetween(0, 2)>
     enabled: true
+
+# Spending Category
+AppBundle\Entity\SpendingCategory:
+  spendingcategory{1..2}:
+    name: <sentence()>
