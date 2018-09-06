@@ -134,6 +134,10 @@ class InvoiceAdminController extends BaseAdminController
             $number = 1;
             $year++;
         }
+        if ($lastInvoice->getDate()->getTimestamp() > $date->getTimestamp()) {
+            $date = $lastInvoice->getDate();
+            $year = $lastInvoice->getYear();
+        }
 
         $newInvoice = new Invoice();
         $newInvoice

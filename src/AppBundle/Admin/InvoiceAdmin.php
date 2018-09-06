@@ -100,8 +100,8 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 array(
                     'label' => 'backend.admin.invoice.date',
                     'format' => 'd/M/y',
-                    'required' => $this->id($this->getSubject()) ? false : true,
-                    'disabled' => $this->id($this->getSubject()) ? true : false,
+                    'required' => true,
+                    'disabled' => false,
                 )
             )
             ->add(
@@ -407,7 +407,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 array(
                     'label' => 'backend.admin.invoice.date',
                     'template' => '::Admin/Cells/list__cell_invoice_date.html.twig',
-                    'editable' => false,
+                    'editable' => true,
                 )
             )
             ->add(
