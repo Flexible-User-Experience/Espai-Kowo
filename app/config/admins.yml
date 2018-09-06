@@ -64,12 +64,12 @@ services:
         class: AppBundle\Admin\CustomerAdmin
         arguments: [ ~, AppBundle\Entity\Customer, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Clients", group: "Facturació" }
+            - { name: sonata.admin, manager_type: orm, label: "Client", group: "Facturació" }
     admin.invoice:
         class: AppBundle\Admin\InvoiceAdmin
         arguments: [ ~, AppBundle\Entity\Invoice, AppBundle:Admin\InvoiceAdmin, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Factures", group: "Facturació" }
+            - { name: sonata.admin, manager_type: orm, label: "Factura", group: "Facturació" }
     admin.invoice_line:
         class: AppBundle\Admin\InvoiceLineAdmin
         arguments: [ ~, AppBundle\Entity\InvoiceLine, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
@@ -80,3 +80,8 @@ services:
         arguments: [ ~, AppBundle\Entity\SpendingCategory, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Tipus Despesa", group: "Facturació" }
+    admin.provider:
+        class: AppBundle\Admin\ProviderAdmin
+        arguments: [ ~, AppBundle\Entity\Provider, ~, "@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.cache.manager", "@app.repositories_manager" ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Proveïdor", group: "Facturació" }

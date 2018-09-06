@@ -34,6 +34,9 @@ Clients: Clients
 Customer List: Clients
 Customer Create: Crear
 Customer Delete: Esborrar
+Provider List: Proveïdors
+Provider Create: Crear
+Provider Delete: Esborrar
 Factures: Factures
 "Invoice List": Factures
 "Invoice Create": Crear
