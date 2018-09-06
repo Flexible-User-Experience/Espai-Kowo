@@ -37,6 +37,13 @@ class Spending extends AbstractBase
     private $provider;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $description;
+
+    /**
      * @var float
      *
      * @ORM\Column(type="float", nullable=false)
@@ -124,6 +131,26 @@ class Spending extends AbstractBase
     public function setProvider($provider)
     {
         $this->provider = $provider;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     *
+     * @return $this
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
 
         return $this;
     }
