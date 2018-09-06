@@ -4,8 +4,6 @@ namespace AppBundle\Command;
 
 use AppBundle\Entity\Invoice;
 use AppBundle\Entity\InvoiceLine;
-use AppBundle\Enum\PaymentMethodEnum;
-use PhpOffice\PhpSpreadsheet\Cell\Cell;
 use PhpOffice\PhpSpreadsheet\Reader\Exception as ReaderException;
 use PhpOffice\PhpSpreadsheet\Worksheet\Row;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
@@ -33,6 +31,11 @@ class ImportInvoiceCommand extends BaseCommand
                 'filepath',
                 InputArgument::REQUIRED,
                 'The XLS file path to import in database'
+            )
+            ->addArgument(
+                'worksheets',
+                InputArgument::IS_ARRAY | InputArgument::REQUIRED,
+                'The worksheet\'s names to read (separate multiple names with a space)'
             )
             ->addOption(
                 'force',
@@ -70,7 +73,7 @@ class ImportInvoiceCommand extends BaseCommand
         $output->writeln('Loading data, please wait...');
         try {
             // load file
-            $spreadsheet = $this->ss->loadWorksheetsXlsSpreadsheetReadOnly($filename, array('Lineas_Facturas_Emitidas', 'Facturas_Emitidas'));
+            $spreadsheet = $this->ss->loadWorksheetsXlsSpreadsheetReadOnly($filename, $input->getArgument('worksheets'));
             // intialize counters
             $dtStart = new \DateTime();
             $totalItemsCounter = 0;
