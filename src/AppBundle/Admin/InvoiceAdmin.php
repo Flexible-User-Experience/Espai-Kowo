@@ -174,6 +174,25 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'isSepaXmlGenerated',
+                CheckboxType::class,
+                array(
+                    'label' => 'backend.admin.invoice.isSepaXmlGenerated',
+                    'required' => false,
+                    'disabled' => true,
+                )
+            )
+            ->add(
+                'sepaXmlGenerationDate',
+                DatePickerType::class,
+                array(
+                    'label' => 'backend.admin.invoice.sepaXmlGenerationDate',
+                    'format' => 'd/M/y',
+                    'required' => false,
+                    'disabled' => true,
+                )
+            )
+            ->add(
                 'isPayed',
                 CheckboxType::class,
                 array(
@@ -325,6 +344,22 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'isSepaXmlGenerated',
+                null,
+                array(
+                    'label' => 'backend.admin.invoice.isSepaXmlGenerated',
+                )
+            )
+            ->add(
+                'sepaXmlGenerationDate',
+                'doctrine_orm_date',
+                array(
+                    'label' => 'backend.admin.invoice.sepaXmlGenerationDate',
+                    'field_type' => 'sonata_type_date_picker',
+                    'format' => 'd-m-Y',
+                )
+            )
+            ->add(
                 'isPayed',
                 null,
                 array(
@@ -409,6 +444,14 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.invoice.isSended',
+                    'editable' => false,
+                )
+            )
+            ->add(
+                'isSepaXmlGenerated',
+                null,
+                array(
+                    'label' => 'backend.admin.invoice.isSepaXmlGenerated',
                     'editable' => false,
                 )
             )

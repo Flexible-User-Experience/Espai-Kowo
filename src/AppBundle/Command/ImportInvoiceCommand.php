@@ -123,6 +123,7 @@ class ImportInvoiceCommand extends BaseCommand
                             ->setTotalAmount(floatval($ws->getCellByColumnAndRow(61, $row->getRowIndex())->getValue()))
                             ->setPaymentMethod($customer->getPaymentMethod())
                             ->setIsSended(true)
+                            ->setIsSepaXmlGenerated(true)
                             ->setIsPayed(true)
                             ->setEnabled(true)
                         ;
