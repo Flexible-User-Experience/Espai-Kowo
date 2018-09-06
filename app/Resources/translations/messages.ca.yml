@@ -179,6 +179,7 @@ backend:
             download: Descarregar PDF
             xml: Generar XML SEPA
             batch_action: Generar XML SEPA
+            duplicate: Duplicar
             generate: Generar factures
             items: Ítems
             preview_invoice: Mostrar factures a generar

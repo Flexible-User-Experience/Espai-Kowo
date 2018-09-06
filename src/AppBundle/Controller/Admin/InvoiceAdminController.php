@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Invoice;
+use AppBundle\Entity\InvoiceLine;
 use AppBundle\Pdf\InvoiceBuilderPdf;
 use AppBundle\Service\NotificationService;
 use AppBundle\Service\XmlSepaBuilderService;
@@ -94,6 +95,81 @@ class InvoiceAdminController extends BaseAdminController
         } else {
             $this->addFlash('success', 'S\'ha enviat la factura núm. '.$object->getInvoiceNumber().' amb PDF a la bústia '.$object->getCustomer()->getEmail().' del client '.$object->getCustomer());
         }
+
+        return $this->redirectToList();
+    }
+
+    /**
+     * Duplicate an invoice for next month action.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     *
+     * @throws NotFoundHttpException If the object does not exist
+     * @throws \Exception
+     */
+    public function duplicateAction(Request $request)
+    {
+        $request = $this->resolveRequest($request);
+        $id = $request->get($this->admin->getIdParameter());
+
+        /** @var Invoice $object */
+        $object = $this->admin->getObject($id);
+        if (!$object) {
+            throw $this->createNotFoundException(sprintf('unable to find the object with id: %s', $id));
+        }
+
+        $em = $this->container->get('doctrine')->getManager();
+        /** @var Invoice $lastInvoice */
+        $lastInvoice = $em->getRepository('AppBundle:Invoice')->getLastInvoice();
+
+        // new invoice
+        $number = $lastInvoice->getNumber() + 1;
+        $year = $object->getYear();
+        $date = $object->getDate();
+        $date->add(new \DateInterval('P1M'));
+        if (intval($date->format('Y')) == $lastInvoice->getYear() + 1) {
+            // new year step found, try to determine if there are other invoices recorded with this year
+            $number = 1;
+            $year++;
+        }
+
+        $newInvoice = new Invoice();
+        $newInvoice
+            ->setNumber($number)
+            ->setYear($year)
+            ->setDate($date)
+            ->setCustomer($object->getCustomer())
+            ->setTaxPercentage($object->getTaxPercentage())
+            ->setIrpfPercentage($object->getIrpfPercentage())
+            ->setBaseAmount($object->getBaseAmount())
+            ->setTotalAmount($object->getTotalAmount())
+            ->setPaymentMethod($object->getCustomer()->getPaymentMethod())
+            ->setIsSended(false)
+            ->setIsSepaXmlGenerated(false)
+            ->setIsPayed(false)
+        ;
+        $em->persist($newInvoice);
+        $em->flush();
+
+        // new invoice lines
+        /** @var InvoiceLine $objectLine */
+        foreach ($object->getLines() as $objectLine) {
+            $newInvoiceLine = new InvoiceLine();
+            $newInvoiceLine
+                ->setInvoice($newInvoice)
+                ->setDescription($objectLine->getDescription())
+                ->setUnits($objectLine->getUnits())
+                ->setPriceUnit($objectLine->getPriceUnit())
+                ->setDiscount($objectLine->getDiscount())
+                ->setTotal($objectLine->getTotal())
+            ;
+            $em->persist($newInvoiceLine);
+            $em->flush();
+        }
+
+        $this->addFlash('success', 'S\'ha duplicat la factura núm. '.$object->getInvoiceNumber().' amb la factura núm. '.$newInvoice->getInvoiceNumber().' correctament.');
 
         return $this->redirectToList();
     }
@@ -193,7 +269,7 @@ class InvoiceAdminController extends BaseAdminController
 
             return new RedirectResponse(
                 $this->admin->generateUrl('list', [
-                    'filter' => $this->admin->getFilterParameters()
+                    'filter' => $this->admin->getFilterParameters(),
                 ])
             );
         }
