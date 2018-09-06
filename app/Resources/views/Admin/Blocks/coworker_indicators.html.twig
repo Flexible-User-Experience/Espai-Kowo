@@ -44,43 +44,43 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-2">
             <div class="box box-success">
                 <div class="box-header">
-                    <h3 class="box-title">Edat dels {{ currentAgesList | length }} coworkers actuals</h3>
+                    <h3 class="box-title">Dedicació dels {{ allAgesList | length }} coworkers totals</h3>
                 </div>
                 <div class="box-body">
-                    {{ drawAgesList(currentAgesList) | raw }}
+                    {{ drawCategoryProgress(allCategories, allAgesList | length, false) | raw }}
                 </div>
             </div>
         </div>
         <div class="col-md-2">
             <div class="box box-success">
                 <div class="box-header">
-                    <h3 class="box-title">Gènere coworkers actuals</h3>
+                    <h3 class="box-title">Dedicació dels {{ currentAgesList | length }} coworkers actuals</h3>
                 </div>
                 <div class="box-body">
-                    <h6 class="box-title">Home | Dona</h6>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-success progress-bar-striped"
-                             style="width:{{ currentMaleAmount }}%">
-                            {{ currentMaleAmount }}%
-                        </div>
-                        <div class="progress-bar progress-bar-danger progress-bar-striped"
-                             style="width:{{ currentFemaleAmount }}%">
-                            {{ currentFemaleAmount }}%
-                        </div>
-                    </div>
+                    {{ drawCategoryProgress(allCategories, currentAgesList | length, true) | raw }}
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="box box-success">
                 <div class="box-header">
                     <h3 class="box-title">Edat dels {{ allAgesList | length }} coworkers totals</h3>
                 </div>
                 <div class="box-body">
                     {{ drawAgesList(allAgesList) | raw }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="box box-success">
+                <div class="box-header">
+                    <h3 class="box-title">Edat dels {{ currentAgesList | length }} coworkers actuals</h3>
+                </div>
+                <div class="box-body">
+                    {{ drawAgesList(currentAgesList) | raw }}
                 </div>
             </div>
         </div>
@@ -107,20 +107,20 @@
         <div class="col-md-2">
             <div class="box box-success">
                 <div class="box-header">
-                    <h3 class="box-title">Dedicació dels {{ currentAgesList | length }} coworkers actuals</h3>
+                    <h3 class="box-title">Gènere coworkers actuals</h3>
                 </div>
                 <div class="box-body">
-                    {{ drawCategoryProgress(allCategories, currentAgesList | length, true) | raw }}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="box box-success">
-                <div class="box-header">
-                    <h3 class="box-title">Dedicació dels {{ allAgesList | length }} coworkers totals</h3>
-                </div>
-                <div class="box-body">
-                    {{ drawCategoryProgress(allCategories, allAgesList | length, false) | raw }}
+                    <h6 class="box-title">Home | Dona</h6>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped"
+                             style="width:{{ currentMaleAmount }}%">
+                            {{ currentMaleAmount }}%
+                        </div>
+                        <div class="progress-bar progress-bar-danger progress-bar-striped"
+                             style="width:{{ currentFemaleAmount }}%">
+                            {{ currentFemaleAmount }}%
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
