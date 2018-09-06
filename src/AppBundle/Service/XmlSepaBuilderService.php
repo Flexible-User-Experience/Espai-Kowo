@@ -88,7 +88,7 @@ class XmlSepaBuilderService
     {
         $directDebit = $this->buildDirectDebit($paymentId);
         $this->addPaymentInfo($directDebit, $paymentId, $dueDate);
-        $this->validateInvoice($invoice);
+        $this->validate($invoice);
         $this->addTransfer($directDebit, $paymentId, $invoice);
 
         return $directDebit->asXML();
@@ -110,7 +110,7 @@ class XmlSepaBuilderService
         $this->addPaymentInfo($directDebit, $paymentId, $dueDate);
         /** @var Invoice $invoice */
         foreach ($invoices as $invoice) {
-            $this->validateInvoice($invoice);
+            $this->validate($invoice);
             $this->addTransfer($directDebit, $paymentId, $invoice);
         }
 
@@ -126,7 +126,7 @@ class XmlSepaBuilderService
     private function buildDirectDebit($paymentId, $isTest = false)
     {
         $msgId = 'MID'.StringHelper::sanitizeString($paymentId);
-        $header = new GroupHeader($msgId, $this->fname, $isTest);
+        $header = new GroupHeader($msgId, strtoupper(StringHelper::sanitizeString($this->fname)), $isTest);
         $header->setCreationDateTimeFormat('Y-m-d\TH:i:s');
         $header->setInitiatingPartyId($this->sshs->getSpanishCreditorIdFromNif($this->fic));
 
@@ -145,7 +145,7 @@ class XmlSepaBuilderService
         $directDebit->addPaymentInfo($paymentId, array(
             'id' => StringHelper::sanitizeString($paymentId),
             'dueDate' => $dueDate,
-            'creditorName' => StringHelper::sanitizeString($this->fname),
+            'creditorName' => strtoupper(StringHelper::sanitizeString($this->fname)),
             'creditorAccountIBAN' => $this->iban,
             'creditorAgentBIC' => $this->bic,
             'seqType' => PaymentInformation::S_ONEOFF,
@@ -196,7 +196,7 @@ class XmlSepaBuilderService
      *
      * @throws InvalidPaymentMethodException
      */
-    private function validateInvoice(Invoice $invoice)
+    private function validate(Invoice $invoice)
     {
         if ($invoice->getPaymentMethod() != PaymentMethodEnum::BANK_DRAFT) {
             throw new InvalidPaymentMethodException('Invalid payment method found in invoice ID# '.$invoice->getId());
