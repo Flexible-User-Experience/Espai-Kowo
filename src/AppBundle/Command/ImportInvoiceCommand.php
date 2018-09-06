@@ -79,6 +79,7 @@ class ImportInvoiceCommand extends BaseCommand
             $updated = 0;
             $linesCreated = 0;
             $linesUpdated = 0;
+
             // invoices
             /** @var Worksheet $ws */
             $ws = $spreadsheet->setActiveSheetIndexByName('Facturas_Emitidas');
@@ -120,7 +121,7 @@ class ImportInvoiceCommand extends BaseCommand
                             ->setIrpfPercentage(Invoice::TAX_IRPF)
                             ->setBaseAmount(floatval($ws->getCellByColumnAndRow(80, $row->getRowIndex())->getValue()))
                             ->setTotalAmount(floatval($ws->getCellByColumnAndRow(61, $row->getRowIndex())->getValue()))
-                            ->setPaymentMethod(PaymentMethodEnum::BANK_DRAFT)
+                            ->setPaymentMethod($customer->getPaymentMethod())
                             ->setIsSended(true)
                             ->setIsPayed(true)
                             ->setEnabled(true)
@@ -141,7 +142,7 @@ class ImportInvoiceCommand extends BaseCommand
                 }
             }
 
-            // invoices
+            // invoice lines
             /** @var Worksheet $ws */
             $ws = $spreadsheet->setActiveSheetIndexByName('Lineas_Facturas_Emitidas');
             $output->writeln($ws->getTitle());
@@ -188,16 +189,9 @@ class ImportInvoiceCommand extends BaseCommand
                         }
                     }
                 } else {
-                    // no related invoice found
+                    // no related invoice line found
                     $output->writeln('<info>not found</info>');
                 }
-
-//                $output->writeln($row->getRowIndex());
-//                /** @var Cell $cell */
-//                foreach ($row->getCellIterator() as $cell) {
-//                    $output->write($cell->getValue().' · ');
-//                }
-//                $output->writeln('EOL');
             }
 
             // EOF
@@ -210,7 +204,6 @@ class ImportInvoiceCommand extends BaseCommand
             $output->writeln('<info>'.$linesUpdated.' invoice lines updated</info>');
             $output->writeln('<info>---------------------------</info>');
             $output->writeln('Total ellapsed time: '.$dtStart->diff($dtEnd)->format('%H:%I:%S'));
-
             $this->printEndCommand($output);
 
         } catch (ReaderException $e) {
@@ -218,7 +211,5 @@ class ImportInvoiceCommand extends BaseCommand
         } catch (\Exception $e) {
             $output->writeln('<error>Excetion: '.$e->getMessage().'</error>');
         }
-
-
     }
 }
