@@ -107,7 +107,8 @@ class SpendingAdmin extends AbstractBaseAdmin
                     'required' => true,
                 )
             )
-            ->end();
+            ->end()
+        ;
     }
 
     /**
@@ -117,6 +118,29 @@ class SpendingAdmin extends AbstractBaseAdmin
     {
         $datagridMapper
             ->add(
+                'date',
+                null,
+                array(
+                    'label' => 'backend.admin.spending.date',
+                    'format' => 'd/M/y',
+
+                )
+            )
+            ->add(
+                'category',
+                null,
+                array(
+                    'label' => 'backend.admin.spending.category',
+                )
+            )
+            ->add(
+                'provider',
+                null,
+                array(
+                    'label' => 'backend.admin.spending.provider',
+                )
+            )
+            ->add(
                 'description',
                 null,
                 array(
@@ -124,13 +148,34 @@ class SpendingAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
-                'enabled',
+                'baseAmount',
                 null,
                 array(
-                    'label' => 'backend.admin.enabled',
-                    'editable' => true,
+                    'label' => 'backend.admin.invoice.baseAmount',
                 )
-            );
+            )
+            ->add(
+                'isPayed',
+                null,
+                array(
+                    'label' => 'backend.admin.invoice.isPayed',
+                )
+            )
+            ->add(
+                'paymentDate',
+                null,
+                array(
+                    'label' => 'backend.admin.invoice.paymentDate',
+                )
+            )
+            ->add(
+                'paymentMethod',
+                null,
+                array(
+                    'label' => 'backend.admin.customer.payment_method',
+                )
+            )
+        ;
     }
 
     /**
@@ -159,6 +204,34 @@ class SpendingAdmin extends AbstractBaseAdmin
                     'sortable' => true,
                     'sort_field_mapping' => array('fieldName' => 'name'),
                     'sort_parent_association_mappings' => array(array('fieldName' => 'category')),
+                )
+            )
+            ->add(
+                'provider',
+                null,
+                array(
+                    'label' => 'backend.admin.spending.provider',
+                    'editable' => false,
+                    'associated_property' => 'name',
+                    'sortable' => true,
+                    'sort_field_mapping' => array('fieldName' => 'name'),
+                    'sort_parent_association_mappings' => array(array('fieldName' => 'category')),
+                )
+            )
+            ->add(
+                'description',
+                null,
+                array(
+                    'label' => 'backend.admin.spending.description',
+                    'editable' => true,
+                )
+            )
+            ->add(
+                'isPayed',
+                null,
+                array(
+                    'label' => 'backend.admin.invoice.isPayed',
+                    'editable' => true,
                 )
             )
             ->add(
