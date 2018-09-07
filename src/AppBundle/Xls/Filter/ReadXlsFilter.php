@@ -27,7 +27,7 @@ class ReadXlsFilter implements IReadFilter
      * @param int $startRow
      * @param int $endRow
      */
-    public function __construct($startRow = 2, $endRow = 0)
+    public function __construct($startRow = 3, $endRow = 0)
     {
         $this->startRow = $startRow;
         $this->endRow = $endRow;
