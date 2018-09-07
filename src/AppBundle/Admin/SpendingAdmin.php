@@ -5,6 +5,7 @@ namespace AppBundle\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 /**
  * Class SpendingAdmin.
@@ -38,7 +39,7 @@ class SpendingAdmin extends AbstractBaseAdmin
             ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(3))
             ->add(
                 'enabled',
-                'checkbox',
+                CheckboxType::class,
                 array(
                     'label' => 'backend.admin.enabled',
                     'required' => false,
@@ -78,19 +79,24 @@ class SpendingAdmin extends AbstractBaseAdmin
         unset($this->listModes['mosaic']);
         $listMapper
             ->add(
-                'description',
+                'date',
                 null,
                 array(
-                    'label' => 'backend.admin.spending.description',
+                    'label' => 'backend.admin.spending.date',
+                    'format' => 'd/m/Y',
                     'editable' => true,
                 )
             )
             ->add(
-                'enabled',
+                'category',
                 null,
                 array(
-                    'label' => 'backend.admin.enabled',
-                    'editable' => true,
+                    'label' => 'backend.admin.spending.category',
+                    'editable' => false,
+                    'associated_property' => 'name',
+                    'sortable' => true,
+                    'sort_field_mapping' => array('fieldName' => 'name'),
+                    'sort_parent_association_mappings' => array(array('fieldName' => 'category')),
                 )
             )
             ->add(
@@ -103,6 +109,7 @@ class SpendingAdmin extends AbstractBaseAdmin
                         'delete' => array('template' => '::Admin/Buttons/list__action_delete_button.html.twig'),
                     ),
                 )
-            );
+            )
+        ;
     }
 }

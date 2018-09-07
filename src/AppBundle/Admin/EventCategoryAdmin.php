@@ -2,12 +2,12 @@
 
 namespace AppBundle\Admin;
 
-use Doctrine\ORM\QueryBuilder;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 /**
  * Class EventCategoryAdmin
@@ -34,24 +34,6 @@ class EventCategoryAdmin extends AbstractBaseAdmin
             ->remove('batch');
     }
 
-//    /**
-//     * Override query list to reduce queries amount on list view (apply join strategy)
-//     *
-//     * @param string $context context
-//     *
-//     * @return QueryBuilder
-//     */
-//    public function createQuery($context = 'list')
-//    {
-//        /** @var QueryBuilder $query */
-//        $query = parent::createQuery($context);
-//        $query
-//            ->select($query->getRootAliases()[0] . ', p')
-//            ->leftJoin($query->getRootAliases()[0] . '.posts', 'p');
-//
-//        return $query;
-//    }
-
     /**
      * @param FormMapper $formMapper
      */
@@ -70,7 +52,7 @@ class EventCategoryAdmin extends AbstractBaseAdmin
             ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(6))
             ->add(
                 'enabled',
-                'checkbox',
+                CheckboxType::class,
                 array(
                     'label'    => 'backend.admin.enabled',
                     'required' => false,
@@ -160,14 +142,6 @@ class EventCategoryAdmin extends AbstractBaseAdmin
                     'editable' => true,
                 )
             )
-//            ->add(
-//                'count',
-//                null,
-//                array(
-//                    'label'    => 'backend.admin.tag.posts_amount',
-//                    'template' => '::Admin/Cells/list__cell_posts_amount_field.html.twig',
-//                )
-//            )
             ->add(
                 'enabled',
                 null,

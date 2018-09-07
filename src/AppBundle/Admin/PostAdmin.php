@@ -9,6 +9,9 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\CoreBundle\Form\Type\DatePickerType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 /**
  * Class PostAdmin
@@ -62,7 +65,7 @@ class PostAdmin extends AbstractBaseAdmin
             ->with('backend.admin.post.post', $this->getFormMdSuccessBoxArray(6))
             ->add(
                 'publishedAt',
-                'sonata_type_date_picker',
+                DatePickerType::class,
                 array(
                     'label'    => 'backend.admin.published_date',
                     'format'   => 'd/M/y',
@@ -71,7 +74,7 @@ class PostAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'imageFile',
-                'file',
+                FileType::class,
                 array(
                     'label'    => 'backend.admin.post.image',
                     'help'     => $this->getImageHelperFormMapperWithThumbnail(),
@@ -107,7 +110,7 @@ class PostAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'enabled',
-                'checkbox',
+                CheckboxType::class,
                 array(
                     'label'    => 'backend.admin.enabled',
                     'required' => false,
