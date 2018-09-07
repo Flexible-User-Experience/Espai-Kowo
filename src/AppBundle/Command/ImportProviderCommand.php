@@ -2,7 +2,8 @@
 
 namespace AppBundle\Command;
 
-use AppBundle\Entity\City;
+use AppBundle\Entity\Provider;
+use AppBundle\Enum\PaymentMethodEnum;
 use PhpOffice\PhpSpreadsheet\Reader\Exception as ReaderException;
 use PhpOffice\PhpSpreadsheet\Worksheet\Row;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
@@ -12,11 +13,11 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Class ImportCityCommand.
+ * Class ImportProviderCommand.
  *
  * @category Command
  */
-class ImportCityCommand extends BaseCommand
+class ImportProviderCommand extends BaseCommand
 {
     /**
      * Configure command.
@@ -24,8 +25,8 @@ class ImportCityCommand extends BaseCommand
     protected function configure()
     {
         $this
-            ->setName('app:import:city')
-            ->setDescription('Import a city from XLS file')
+            ->setName('app:import:provider')
+            ->setDescription('Import a provider from XLS file')
             ->addArgument(
                 'filepath',
                 InputArgument::REQUIRED,
@@ -40,7 +41,7 @@ class ImportCityCommand extends BaseCommand
                 'force',
                 null,
                 InputOption::VALUE_NONE,
-                'If set, the task will persist cities into database'
+                'If set, the task will persist providers into database'
             )
         ;
     }
@@ -59,7 +60,7 @@ class ImportCityCommand extends BaseCommand
         $this->setUp();
         $this->printBeginCommand($output);
         if ($input->getOption('force')) {
-            $output->writeln('<comment>--force option enabled (this option persists cities into database)</comment>');
+            $output->writeln('<comment>--force option enabled (this option persists providers into database)</comment>');
         }
 
         // Validate arguments
@@ -79,35 +80,42 @@ class ImportCityCommand extends BaseCommand
             $created = 0;
             $updated = 0;
 
-            // cities
+            // providers
             /** @var Worksheet $ws */
             $ws = $spreadsheet->setActiveSheetIndexByName($input->getArgument('worksheet'));
             $output->writeln($ws->getTitle());
             /** @var Row $row */
             foreach ($ws->getRowIterator() as $row) {
                 $totalItemsCounter++;
-                // search city
-                $cityPostaCode = $ws->getCellByColumnAndRow(3, $row->getRowIndex())->getValue();
-                $output->write('seraching city '.$cityPostaCode.'... ');
-                if ($cityPostaCode) {
-                    $city = $this->em->getRepository('AppBundle:City')->findOneBy(array('postalCode' => $cityPostaCode));
-                    if ($city) {
-                        // update city, don't do anything
+                // search provider
+                $providerTic = $ws->getCellByColumnAndRow(80, $row->getRowIndex())->getValue();
+                $output->write('seraching provider '.$providerTic.'... ');
+                if ($providerTic) {
+                    $searchedProvider = $this->em->getRepository('AppBundle:Provider')->findOneBy(array('tic' => $providerTic));
+                    if ($searchedProvider) {
+                        // update provider
+                        $provider = $searchedProvider;
                         $updated++;
                         $output->writeln('<info>found</info>');
                     } else {
-                        // new city
+                        // new provider
+                        $provider = new Provider();
                         $created++;
                         $output->writeln('<comment>not found</comment>');
-                        $city = new City();
-                        $city
-                            ->setName('UNKNOWN')
-                            ->setPostalCode($cityPostaCode)
-                        ;
-                        if ($input->getOption('force')) {
-                            $this->em->persist($city);
-                            $this->em->flush();
+                    }
+                    $searchedCity = $this->em->getRepository('AppBundle:City')->findOneBy(array('postalCode' => $ws->getCellByColumnAndRow(3, $row->getRowIndex())->getValue()));
+                    $provider
+                        ->setTic($providerTic)
+                        ->setName($ws->getCellByColumnAndRow(79, $row->getRowIndex())->getValue())
+                        ->setAddress($ws->getCellByColumnAndRow(57, $row->getRowIndex())->getValue())
+                        ->setCity($searchedCity)
+                        ->setPaymentMethod(PaymentMethodEnum::BANK_DRAFT)
+                    ;
+                    if ($input->getOption('force')) {
+                        if (!$searchedProvider) {
+                            $this->em->persist($provider);
                         }
+                        $this->em->flush();
                     }
                 }
             }
@@ -116,8 +124,8 @@ class ImportCityCommand extends BaseCommand
             $dtEnd = new \DateTime();
             $output->writeln('<info>---------------------------</info>');
             $output->writeln('<info>'.$totalItemsCounter.' items parsed</info>');
-            $output->writeln('<info>'.$created.' new cities added</info>');
-            $output->writeln('<info>'.$updated.' cities updated</info>');
+            $output->writeln('<info>'.$created.' new providers added</info>');
+            $output->writeln('<info>'.$updated.' providers updated</info>');
             $output->writeln('<info>---------------------------</info>');
             $output->writeln('Total ellapsed time: '.$dtStart->diff($dtEnd)->format('%H:%I:%S'));
             $this->printEndCommand($output);
