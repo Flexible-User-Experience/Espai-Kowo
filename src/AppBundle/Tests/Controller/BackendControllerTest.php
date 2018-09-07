@@ -106,10 +106,10 @@ class BackendControllerTest extends AbstractBaseTest
             array('/admin/purchases/provider/list'),
             array('/admin/purchases/provider/create'),
             array('/admin/purchases/provider/1/edit'),
-            array('/admin/users/list'),
-            array('/admin/users/create'),
-            array('/admin/users/1/edit'),
-            array('/admin/users/1/delete'),
+            array('/admin/configurations/user/list'),
+            array('/admin/configurations/user/create'),
+            array('/admin/configurations/user/1/edit'),
+            array('/admin/configurations/user/1/delete'),
         );
     }
 
@@ -137,10 +137,6 @@ class BackendControllerTest extends AbstractBaseTest
         return array(
             array('/admin/blog/tag/batch'),
             array('/admin/blog/post/batch'),
-            array('/admin/blog/tag/1/show'),
-            array('/admin/blog/post/1/show'),
-            array('/admin/blog/tag/1/delete'),
-            array('/admin/blog/post/1/delete'),
             array('/admin/contacts/message/create'),
             array('/admin/contacts/message/1/edit'),
             array('/admin/contacts/message/batch'),
@@ -169,12 +165,9 @@ class BackendControllerTest extends AbstractBaseTest
             array('/admin/purchases/provider/1/show'),
             array('/admin/purchases/provider/1/delete'),
             array('/admin/activities/activity/batch'),
-            array('/admin/activities/activity/1/delete'),
             array('/admin/activities/category/batch'),
-            array('/admin/activities/category/1/show'),
-            array('/admin/activities/category/1/delete'),
-            array('/admin/users/show'),
-            array('/admin/users/batch'),
+            array('/admin/configurations/user/show'),
+            array('/admin/configurations/user/batch'),
         );
     }
 
@@ -202,6 +195,7 @@ class BackendControllerTest extends AbstractBaseTest
         return array(
             array('/admin/coworkers/coworker/1/show'),
             array('/admin/activitats/activitat/1/show'),
+            array('/admin/activities/category/1/show'),
             array('/admin/blog/post/1/show'),
         );
     }
