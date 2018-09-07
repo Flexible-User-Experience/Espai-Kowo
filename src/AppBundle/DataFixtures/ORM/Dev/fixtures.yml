@@ -249,6 +249,18 @@ AppBundle\Entity\SpendingCategory:
   spendingcategory{1..2}:
     name: <sentence()>
 
+# Spending
+AppBundle\Entity\Spending:
+  spending{1..2}:
+    date: <date()>
+    category: @spendingcategory1
+    provider: @provider1
+    description: <sentence()>
+    baseAmount: <randomFloat(1, 5)>
+    isPayed: <boolean()>
+    paymentDate: <date()>
+    paymentMethod: <numberBetween(0, 2)>
+
 # Provider
 AppBundle\Entity\Provider:
   provider{1..2}:

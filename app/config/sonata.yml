@@ -50,11 +50,12 @@ sonata_admin:
             -
                 position: top
                 type: sonata.block.service.text
-                class: col-md-12
+                class: "col-md-12"
                 settings:
                     content: >
                         <h1 style="margin-top:0">ERP</h1>
             -
                 position: top
                 type: admin.block.coworker_indicators
-                class: col-md-12
+                class: "col-md-12"
+                roles: [ "ROLE_ADMIN" ]

@@ -82,6 +82,10 @@ class BackendControllerTest extends AbstractBaseTest
             array('/admin/purchases/spending-category/create'),
             array('/admin/purchases/spending-category/1/edit'),
             array('/admin/purchases/spending-category/1/delete'),
+            array('/admin/purchases/spending/list'),
+            array('/admin/purchases/spending/create'),
+            array('/admin/purchases/spending/1/edit'),
+            array('/admin/purchases/spending/1/delete'),
             // Blog
             array('/admin/blog/post/list'),
             array('/admin/blog/post/create'),
@@ -164,6 +168,8 @@ class BackendControllerTest extends AbstractBaseTest
             array('/admin/purchases/provider/1/delete'),
             array('/admin/purchases/spending-category/batch'),
             array('/admin/purchases/spending-category/1/show'),
+            array('/admin/purchases/spending/batch'),
+            array('/admin/purchases/spending/1/show'),
             // Blog
             array('/admin/blog/post/batch'),
             array('/admin/blog/tag/batch'),
