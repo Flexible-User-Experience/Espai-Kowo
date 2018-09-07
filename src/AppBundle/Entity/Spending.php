@@ -14,6 +14,13 @@ use Doctrine\ORM\Mapping as ORM;
 class Spending extends AbstractBase
 {
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $anfixCode;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(type="date", nullable=false)
@@ -74,6 +81,26 @@ class Spending extends AbstractBase
     /**
      * Methods.
      */
+
+    /**
+     * @return string
+     */
+    public function getAnfixCode()
+    {
+        return $this->anfixCode;
+    }
+
+    /**
+     * @param string $anfixCode
+     *
+     * @return $this
+     */
+    public function setAnfixCode($anfixCode)
+    {
+        $this->anfixCode = $anfixCode;
+
+        return $this;
+    }
 
     /**
      * @return \DateTime
