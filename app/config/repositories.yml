@@ -19,6 +19,16 @@ services:
         factory: [ "@doctrine", getRepository ]
         arguments:
             - AppBundle:Customer
+    app.provider_repository:
+        class: AppBundle\Repository\ProviderRepository
+        factory: [ "@doctrine", getRepository ]
+        arguments:
+            - AppBundle:Provider
+    app.spending_category_repository:
+        class: AppBundle\Repository\SpendingCategoryRepository
+        factory: [ "@doctrine", getRepository ]
+        arguments:
+            - AppBundle:SpendingCategory
     app.coworker_repository:
         class: AppBundle\Repository\CoworkerRepository
         factory: [ "@doctrine", getRepository ]
@@ -31,3 +41,5 @@ services:
             - "@app.province_repository"
             - "@app.city_repository"
             - "@app.customer_repository"
+            - "@app.provider_repository"
+            - "@app.spending_category_repository"
