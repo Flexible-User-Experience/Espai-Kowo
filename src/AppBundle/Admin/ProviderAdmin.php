@@ -19,7 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 class ProviderAdmin extends AbstractBaseAdmin
 {
     protected $classnameLabel = 'Provider';
-    protected $baseRoutePattern = 'invoicing/provider';
+    protected $baseRoutePattern = 'purchases/provider';
     protected $datagridValues = array(
         '_sort_by' => 'name',
         '_sort_order' => 'asc',

@@ -17,7 +17,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 class EventCategoryAdmin extends AbstractBaseAdmin
 {
     protected $classnameLabel = 'Category';
-    protected $baseRoutePattern = 'activitats/activitat/category';
+    protected $baseRoutePattern = 'activities/category';
     protected $datagridValues = array(
         '_sort_by'    => 'title',
         '_sort_order' => 'asc',

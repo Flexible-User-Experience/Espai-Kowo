@@ -14,7 +14,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 class SpendingCategoryAdmin extends AbstractBaseAdmin
 {
     protected $classnameLabel = 'SpendingCategory';
-    protected $baseRoutePattern = 'invoicing/spending-category';
+    protected $baseRoutePattern = 'purchases/spending-category';
     protected $datagridValues = array(
         '_sort_by' => 'name',
         '_sort_order' => 'asc',
