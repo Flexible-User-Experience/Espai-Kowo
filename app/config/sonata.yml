@@ -34,7 +34,9 @@ sonata_admin:
         groups:
             Coworkers:
                 icon: "<i class='fa fa-users'></i>"
-            Facturació:
+            Vendes:
+                icon: "<i class='fa fa-eur'></i>"
+            Compres:
                 icon: "<i class='fa fa-eur'></i>"
             Blog:
                 icon: "<i class='fa fa-chrome'></i>"
@@ -42,8 +44,8 @@ sonata_admin:
                 icon: "<i class='fa fa-calendar-times-o'></i>"
             Contactes:
                 icon: "<i class='fa fa-envelope'></i>"
-            Usuaris:
-                icon: "<i class='fa fa-user'></i>"
+            Configuracions:
+                icon: "<i class='fa fa-cogs'></i>"
         blocks:
             -
                 position: top

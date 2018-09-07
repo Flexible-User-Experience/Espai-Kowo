@@ -24,7 +24,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 class InvoiceAdmin extends AbstractBaseAdmin
 {
     protected $classnameLabel = 'Invoice';
-    protected $baseRoutePattern = 'invoicing/invoice';
+    protected $baseRoutePattern = 'sales/invoice';
     protected $datagridValues = array(
         '_sort_by' => 'id',
         '_sort_order' => 'desc',

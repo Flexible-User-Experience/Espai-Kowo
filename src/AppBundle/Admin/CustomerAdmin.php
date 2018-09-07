@@ -20,7 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 class CustomerAdmin extends AbstractBaseAdmin
 {
     protected $classnameLabel = 'Customer';
-    protected $baseRoutePattern = 'invoicing/customer';
+    protected $baseRoutePattern = 'sales/customer';
     protected $datagridValues = array(
         '_sort_by' => 'name',
         '_sort_order' => 'asc',
