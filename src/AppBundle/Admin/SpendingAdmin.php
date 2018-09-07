@@ -227,6 +227,15 @@ class SpendingAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
+                'baseAmount',
+                null,
+                array(
+                    'label' => 'backend.admin.invoice.baseAmount',
+                    'template' => '::Admin/Cells/list__cell_invoice_base_amount.html.twig',
+                    'editable' => false,
+                )
+            )
+            ->add(
                 'isPayed',
                 null,
                 array(
