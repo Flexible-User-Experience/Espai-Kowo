@@ -13,7 +13,7 @@ AppBundle\Entity\ContactMessage:
     updatedAt: <dateTimeThisMonth()>
     enabled: true
 
-## Coworkers
+# Coworkers
 AppBundle\Entity\Coworker:
   coworker1:
     position: <numberBetween(1, 2)>
@@ -32,12 +32,12 @@ AppBundle\Entity\Coworker:
     category: @category<numberBetween(1, 2)>
     customer: @customer<numberBetween(1, 2)>
 
-## Category
+# Category
 AppBundle\Entity\Category:
   category{1..2}:
     title: <sentence()>
 
-## Events
+# Events
 AppBundle\Entity\Event:
   event1:
     title: <sentence()>
@@ -85,13 +85,13 @@ AppBundle\Entity\Post:
     enabled: <boolean(70)>
     tags: [ @tag1 ]
 
-#Social Network Category
+# Social Network Category
 AppBundle\Entity\SocialNetworkCategory:
   socialnetworkcategory{1..2}:
     title: <word()>
     fontAwesomeClass: 'fa-instagram'
 
-#Social Network
+# Social Network
 AppBundle\Entity\SocialNetwork:
   socialnetwork{1..2}:
     url: <url()>
@@ -106,7 +106,7 @@ AppBundle\Entity\Tag:
     updatedAt: <dateTimeThisMonth()>
     enabled: <boolean(70)>
 
-## Users
+# Users
 AppBundle\Entity\User:
     admin:
         username: <{private_admin_test_user}>
@@ -177,3 +177,34 @@ AppBundle\Entity\InvoiceLine:
     discount: <randomFloat(1, 5)>
     total: <randomFloat(1, 5)>
     invoice: @invoice<current()>
+
+# Spending Category
+AppBundle\Entity\SpendingCategory:
+  spendingcategory{1..2}:
+    name: <sentence()>
+
+# Spending
+AppBundle\Entity\Spending:
+  spending{1..2}:
+    date: <date()>
+    category: @spendingcategory1
+    provider: @provider1
+    description: <sentence()>
+    baseAmount: <randomFloat(1, 5)>
+    isPayed: <boolean()>
+    paymentDate: <date()>
+    paymentMethod: <numberBetween(0, 2)>
+
+# Provider
+AppBundle\Entity\Provider:
+  provider{1..2}:
+    tic: <word()>
+    name: <word()>
+    address: <word()>
+    city: @city<numberBetween(1, 2)>
+    phone: <word()>
+    email: <safeEmail()>
+    createdAt: <dateTimeBetween('-2 months', '-1 months')>
+    updatedAt: <dateTimeThisMonth()>
+    paymentMethod: <numberBetween(0, 2)>
+    enabled: true

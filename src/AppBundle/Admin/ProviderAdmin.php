@@ -2,7 +2,6 @@
 
 namespace AppBundle\Admin;
 
-use AppBundle\Enum\LanguageEnum;
 use AppBundle\Enum\PaymentMethodEnum;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -13,14 +12,14 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
- * Class CustomerAdmin.
+ * Class ProviderAdmin.
  *
  * @category Admin
  */
-class CustomerAdmin extends AbstractBaseAdmin
+class ProviderAdmin extends AbstractBaseAdmin
 {
-    protected $classnameLabel = 'Customer';
-    protected $baseRoutePattern = 'sales/customer';
+    protected $classnameLabel = 'Provider';
+    protected $baseRoutePattern = 'purchases/provider';
     protected $datagridValues = array(
         '_sort_by' => 'name',
         '_sort_order' => 'asc',
@@ -119,31 +118,6 @@ class CustomerAdmin extends AbstractBaseAdmin
             ->end()
             ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(3))
             ->add(
-                'coworkers',
-                null,
-                array(
-                    'label' => 'backend.admin.customer.coworkers',
-                    'disabled' => true,
-                )
-            )
-            ->add(
-                'invoicesLanguage',
-                ChoiceType::class,
-                array(
-                    'label' => 'backend.admin.customer.invoices_language',
-                    'choices' => LanguageEnum::getEnumArray(),
-                    'required' => true,
-                )
-            )
-            ->add(
-                'isEnterprise',
-                CheckboxType::class,
-                array(
-                    'label' => 'backend.admin.customer.is_enterprise',
-                    'required' => false,
-                )
-            )
-            ->add(
                 'enabled',
                 CheckboxType::class,
                 array(
@@ -210,20 +184,6 @@ class CustomerAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
-                'isEnterprise',
-                null,
-                array(
-                    'label' => 'backend.admin.customer.is_enterprise',
-                )
-            )
-            ->add(
-                'invoicesLanguage',
-                null,
-                array(
-                    'label' => 'backend.admin.customer.invoices_language',
-                )
-            )
-            ->add(
                 'paymentMethod',
                 null,
                 array(
@@ -235,13 +195,6 @@ class CustomerAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.customer.iban_for_bank_draft_payment',
-                )
-            )
-            ->add(
-                'coworkers',
-                null,
-                array(
-                    'label' => 'backend.admin.customer.coworkers',
                 )
             )
             ->add(
@@ -298,14 +251,6 @@ class CustomerAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.customer.email',
-                    'editable' => true,
-                )
-            )
-            ->add(
-                'isEnterprise',
-                null,
-                array(
-                    'label' => 'backend.admin.customer.is_enterprise',
                     'editable' => true,
                 )
             )

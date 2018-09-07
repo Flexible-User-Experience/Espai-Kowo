@@ -34,7 +34,9 @@ sonata_admin:
         groups:
             Coworkers:
                 icon: "<i class='fa fa-users'></i>"
-            Facturació:
+            Vendes:
+                icon: "<i class='fa fa-eur'></i>"
+            Compres:
                 icon: "<i class='fa fa-eur'></i>"
             Blog:
                 icon: "<i class='fa fa-chrome'></i>"
@@ -42,17 +44,18 @@ sonata_admin:
                 icon: "<i class='fa fa-calendar-times-o'></i>"
             Contactes:
                 icon: "<i class='fa fa-envelope'></i>"
-            Usuaris:
-                icon: "<i class='fa fa-user'></i>"
+            Configuracions:
+                icon: "<i class='fa fa-cogs'></i>"
         blocks:
             -
                 position: top
                 type: sonata.block.service.text
-                class: col-md-12
+                class: "col-md-12"
                 settings:
                     content: >
                         <h1 style="margin-top:0">ERP</h1>
             -
                 position: top
                 type: admin.block.coworker_indicators
-                class: col-md-12
+                class: "col-md-12"
+                roles: [ "ROLE_ADMIN" ]

@@ -17,7 +17,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 class TagAdmin extends AbstractBaseAdmin
 {
     protected $classnameLabel = 'Tag';
-    protected $baseRoutePattern = 'web/tag';
+    protected $baseRoutePattern = 'blog/tag';
     protected $datagridValues = array(
         '_sort_by'    => 'title',
         '_sort_order' => 'asc',

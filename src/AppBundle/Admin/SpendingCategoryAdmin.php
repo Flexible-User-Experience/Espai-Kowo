@@ -2,37 +2,23 @@
 
 namespace AppBundle\Admin;
 
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\CountryType;
 
 /**
- * Class ProvinceAdmin.
+ * Class SpendingCategoryAdmin.
  *
  * @category Admin
  */
-class ProvinceAdmin extends AbstractBaseAdmin
+class SpendingCategoryAdmin extends AbstractBaseAdmin
 {
-    protected $classnameLabel = 'Province';
-    protected $baseRoutePattern = 'configurations/province';
+    protected $classnameLabel = 'SpendingCategory';
+    protected $baseRoutePattern = 'purchases/spending-category';
     protected $datagridValues = array(
         '_sort_by' => 'name',
         '_sort_order' => 'asc',
     );
-
-    /**
-     * Configure route collection.
-     *
-     * @param RouteCollection $collection
-     */
-    protected function configureRoutes(RouteCollection $collection)
-    {
-        parent::configureRoutes($collection);
-        $collection->remove('delete');
-    }
 
     /**
      * @param FormMapper $formMapper
@@ -40,41 +26,25 @@ class ProvinceAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(3))
-            ->add(
-                'code',
-                null,
-                array(
-                    'label' => 'backend.admin.province.code',
-                )
-            )
+            ->with('backend.admin.general', $this->getFormMdSuccessBoxArray(5))
             ->add(
                 'name',
                 null,
                 array(
-                    'label' => 'backend.admin.province.name',
-                )
-            )
-            ->add(
-                'country',
-                CountryType::class,
-                array(
-                    'label' => 'backend.admin.province.country',
-                    'preferred_choices' => array('ES'),
+                    'label' => 'backend.admin.spending_category.name',
                 )
             )
             ->end()
             ->with('backend.admin.controls', $this->getFormMdSuccessBoxArray(3))
             ->add(
                 'enabled',
-                CheckboxType::class,
+                'checkbox',
                 array(
                     'label' => 'backend.admin.enabled',
                     'required' => false,
                 )
             )
-            ->end()
-        ;
+            ->end();
     }
 
     /**
@@ -84,17 +54,10 @@ class ProvinceAdmin extends AbstractBaseAdmin
     {
         $datagridMapper
             ->add(
-                'code',
-                null,
-                array(
-                    'label' => 'backend.admin.province.code',
-                )
-            )
-            ->add(
                 'name',
                 null,
                 array(
-                    'label' => 'backend.admin.province.name',
+                    'label' => 'backend.admin.spending_category.name',
                 )
             )
             ->add(
@@ -102,9 +65,9 @@ class ProvinceAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.enabled',
+                    'editable' => true,
                 )
-            )
-        ;
+            );
     }
 
     /**
@@ -115,27 +78,11 @@ class ProvinceAdmin extends AbstractBaseAdmin
         unset($this->listModes['mosaic']);
         $listMapper
             ->add(
-                'code',
-                null,
-                array(
-                    'label' => 'backend.admin.province.code',
-                    'editable' => true,
-                )
-            )
-            ->add(
                 'name',
                 null,
                 array(
-                    'label' => 'backend.admin.province.name',
+                    'label' => 'backend.admin.spending_category.name',
                     'editable' => true,
-                )
-            )
-            ->add(
-                'country',
-                null,
-                array(
-                    'label' => 'backend.admin.province.country',
-                    'editable' => false,
                 )
             )
             ->add(
@@ -150,12 +97,12 @@ class ProvinceAdmin extends AbstractBaseAdmin
                 '_action',
                 'actions',
                 array(
+                    'label' => 'backend.admin.actions',
                     'actions' => array(
                         'edit' => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
+                        'delete' => array('template' => '::Admin/Buttons/list__action_delete_button.html.twig'),
                     ),
-                    'label' => 'Accions',
                 )
-            )
-        ;
+            );
     }
 }

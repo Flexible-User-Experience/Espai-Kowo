@@ -638,7 +638,6 @@ class Invoice extends AbstractBase
         return $this->getCustomer()->getTic().'-'.strtoupper(substr($this->getCustomer()->getName(), 0, 1)).'-'.uniqid();
     }
 
-
     /**
      * @return string
      */

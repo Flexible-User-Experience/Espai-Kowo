@@ -13,11 +13,11 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Class ImportInvoiceCommand.
+ * Class ImportSpendingCommand.
  *
  * @category Command
  */
-class ImportInvoiceCommand extends BaseCommand
+class ImportSpendingCommand extends BaseCommand
 {
     /**
      * Configure command.
@@ -25,8 +25,8 @@ class ImportInvoiceCommand extends BaseCommand
     protected function configure()
     {
         $this
-            ->setName('app:import:invoice')
-            ->setDescription('Import an invoice from XLS file')
+            ->setName('app:import:spending')
+            ->setDescription('Import a spending from XLS file')
             ->addArgument(
                 'filepath',
                 InputArgument::REQUIRED,
@@ -41,7 +41,7 @@ class ImportInvoiceCommand extends BaseCommand
                 'force',
                 null,
                 InputOption::VALUE_NONE,
-                'If set, the task will persist invoices into database'
+                'If set, the task will persist spendings into database'
             )
         ;
     }

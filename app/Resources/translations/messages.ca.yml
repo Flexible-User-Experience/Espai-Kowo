@@ -34,10 +34,16 @@ Clients: Clients
 Customer List: Clients
 Customer Create: Crear
 Customer Delete: Esborrar
+Provider List: Proveïdors
+Provider Create: Crear
+Provider Delete: Esborrar
 Factures: Factures
 "Invoice List": Factures
 "Invoice Create": Crear
 "Invoice Delete": Esborrar
+"Spending Category List": Tipus de Despeses
+"Spending Category Create": Crear
+"Spending Category Delete": Esborrar
 frontend:
     menu:
         blog: BLOG
@@ -179,6 +185,7 @@ backend:
             download: Descarregar PDF
             xml: Generar XML SEPA
             batch_action: Generar XML SEPA
+            duplicate: Duplicar
             generate: Generar factures
             items: Ítems
             preview_invoice: Mostrar factures a generar
@@ -231,3 +238,5 @@ backend:
             isPrivateLessonType: Particular
             discount: Descompte
             total: Total
+        spending_category:
+            name: Nom

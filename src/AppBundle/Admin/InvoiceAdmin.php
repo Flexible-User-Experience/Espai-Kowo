@@ -24,7 +24,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 class InvoiceAdmin extends AbstractBaseAdmin
 {
     protected $classnameLabel = 'Invoice';
-    protected $baseRoutePattern = 'invoicing/invoice';
+    protected $baseRoutePattern = 'sales/invoice';
     protected $datagridValues = array(
         '_sort_by' => 'id',
         '_sort_order' => 'desc',
@@ -41,6 +41,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
             ->add('pdf', $this->getRouterIdParameter().'/pdf')
             ->add('send', $this->getRouterIdParameter().'/send')
             ->add('xml', $this->getRouterIdParameter().'/xml')
+            ->add('duplicate', $this->getRouterIdParameter().'/duplicate')
             ->remove('show')
             ->remove('delete');
     }
@@ -99,8 +100,8 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 array(
                     'label' => 'backend.admin.invoice.date',
                     'format' => 'd/M/y',
-                    'required' => $this->id($this->getSubject()) ? false : true,
-                    'disabled' => $this->id($this->getSubject()) ? true : false,
+                    'required' => true,
+                    'disabled' => false,
                 )
             )
             ->add(
@@ -406,7 +407,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 array(
                     'label' => 'backend.admin.invoice.date',
                     'template' => '::Admin/Cells/list__cell_invoice_date.html.twig',
-                    'editable' => false,
+                    'editable' => true,
                 )
             )
             ->add(
@@ -472,6 +473,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
                         'pdf' => array('template' => '::Admin/Buttons/list__action_invoice_pdf_button.html.twig'),
                         'send' => array('template' => '::Admin/Buttons/list__action_invoice_send_button.html.twig'),
                         'xml' => array('template' => '::Admin/Buttons/list__action_invoice_xml_button.html.twig'),
+                        'duplicate' => array('template' => '::Admin/Buttons/list__action_invoice_duplicate_button.html.twig'),
                     ),
                     'label' => 'backend.admin.actions',
                 )

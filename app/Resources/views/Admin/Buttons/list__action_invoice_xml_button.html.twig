@@ -1,4 +1,4 @@
-{% if object.paymentMethod == constant('AppBundle\\Enum\\PaymentMethodEnum::BANK_DRAFT') %}
+{% if app.environment == 'dev' and object.paymentMethod == constant('AppBundle\\Enum\\PaymentMethodEnum::BANK_DRAFT') %}
     <a class="btn btn-sm btn-default" href="{{ admin.generateObjectUrl('xml', object) }}" title="{{ 'backend.admin.invoice.xml' | trans }}">
         <i class="fa fa-file-excel-o"></i>
     </a>

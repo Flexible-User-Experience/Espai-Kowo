@@ -69,7 +69,8 @@ abstract class AbstractBaseAdmin extends AbstractAdmin
     {
         $collection
             ->remove('show')
-            ->remove('batch');
+            ->remove('batch')
+        ;
     }
 
     /**
