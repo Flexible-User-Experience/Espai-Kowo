@@ -32,8 +32,8 @@ class ImportSpendingCommand extends BaseCommand
                 'The XLS file path to import in database'
             )
             ->addArgument(
-                'worksheets',
-                InputArgument::IS_ARRAY | InputArgument::REQUIRED,
+                'worksheet',
+                InputArgument::REQUIRED,
                 'The worksheet\'s names to read (separate multiple names with a space)'
             )
             ->addOption(
@@ -72,7 +72,7 @@ class ImportSpendingCommand extends BaseCommand
         $output->writeln('Loading data, please wait...');
         try {
             // load file
-            $spreadsheet = $this->ss->loadWorksheetsXlsSpreadsheetReadOnly($filename, $input->getArgument('worksheets'));
+            $spreadsheet = $this->ss->loadWorksheetsXlsSpreadsheetReadOnly($filename, $input->getArgument('worksheet'));
             // intialize counters
             $dtStart = new \DateTime();
             $totalItemsCounter = 0;
@@ -82,7 +82,7 @@ class ImportSpendingCommand extends BaseCommand
 
             // spendings
             /** @var Worksheet $ws */
-            $ws = $spreadsheet->setActiveSheetIndexByName('Facturas_Recibidas');
+            $ws = $spreadsheet->setActiveSheetIndexByName($input->getArgument('worksheet'));
             $output->writeln($ws->getTitle());
             /** @var Row $row */
             foreach ($ws->getRowIterator() as $row) {
@@ -115,8 +115,7 @@ class ImportSpendingCommand extends BaseCommand
                             ->setAnfixCode($anfixInvoiceCode)
                             ->setDate(\DateTime::createFromFormat('Y-m-d H:i:s.u', $spendingDateValue))
                             ->setProvider($provider)
-                            ->setBaseAmount(floatval($ws->getCellByColumnAndRow(80, $row->getRowIndex())->getValue()))
-                            ->setTotalAmount(floatval($ws->getCellByColumnAndRow(61, $row->getRowIndex())->getValue()))
+                            ->setBaseAmount(floatval($ws->getCellByColumnAndRow(55, $row->getRowIndex())->getValue()))
                             ->setPaymentMethod($provider->getPaymentMethod())
                             ->setIsPayed(true)
                             ->setEnabled(true)
@@ -139,6 +138,7 @@ class ImportSpendingCommand extends BaseCommand
             $dtEnd = new \DateTime();
             $output->writeln('<info>---------------------------</info>');
             $output->writeln('<info>'.$totalItemsCounter.' items parsed</info>');
+            $output->writeln('<info>'.($totalItemsCounter - $totalProvidersFound).' providers not found</info>');
             $output->writeln('<info>'.$created.' new spendings added</info>');
             $output->writeln('<info>'.$updated.' spendings updated</info>');
             $output->writeln('<info>---------------------------</info>');
