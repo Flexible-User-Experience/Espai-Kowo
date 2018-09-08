@@ -2,8 +2,7 @@
 
 namespace AppBundle\Command;
 
-use AppBundle\Entity\Invoice;
-use AppBundle\Entity\InvoiceLine;
+use AppBundle\Entity\Spending;
 use PhpOffice\PhpSpreadsheet\Reader\Exception as ReaderException;
 use PhpOffice\PhpSpreadsheet\Worksheet\Row;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
@@ -33,8 +32,8 @@ class ImportSpendingCommand extends BaseCommand
                 'The XLS file path to import in database'
             )
             ->addArgument(
-                'worksheets',
-                InputArgument::IS_ARRAY | InputArgument::REQUIRED,
+                'worksheet',
+                InputArgument::REQUIRED,
                 'The worksheet\'s names to read (separate multiple names with a space)'
             )
             ->addOption(
@@ -60,7 +59,7 @@ class ImportSpendingCommand extends BaseCommand
         $this->setUp();
         $this->printBeginCommand($output);
         if ($input->getOption('force')) {
-            $output->writeln('<comment>--force option enabled (this option persists invoices into database)</comment>');
+            $output->writeln('<comment>--force option enabled (this option persists spendings into database)</comment>');
         }
 
         // Validate arguments
@@ -73,70 +72,59 @@ class ImportSpendingCommand extends BaseCommand
         $output->writeln('Loading data, please wait...');
         try {
             // load file
-            $spreadsheet = $this->ss->loadWorksheetsXlsSpreadsheetReadOnly($filename, $input->getArgument('worksheets'));
+            $spreadsheet = $this->ss->loadWorksheetsXlsSpreadsheetReadOnly($filename, $input->getArgument('worksheet'));
             // intialize counters
             $dtStart = new \DateTime();
             $totalItemsCounter = 0;
-            $totalCustomersFound = 0;
+            $totalProvidersFound = 0;
             $created = 0;
             $updated = 0;
-            $linesCreated = 0;
-            $linesUpdated = 0;
 
-            // invoices
+            // spendings
             /** @var Worksheet $ws */
-            $ws = $spreadsheet->setActiveSheetIndexByName('Facturas_Emitidas');
+            $ws = $spreadsheet->setActiveSheetIndexByName($input->getArgument('worksheet'));
             $output->writeln($ws->getTitle());
             /** @var Row $row */
             foreach ($ws->getRowIterator() as $row) {
                 $totalItemsCounter++;
-                // search customer
-                $customerId = $ws->getCellByColumnAndRow(77, $row->getRowIndex())->getValue();
-                $anfixInvoiceCode = $ws->getCellByColumnAndRow(8, $row->getRowIndex())->getValue();
-                $output->write('seraching customer '.$customerId.'... ');
-                if ($customerId) {
-                    $customer = $this->em->getRepository('AppBundle:Customer')->findOneBy(array('tic' => $customerId));
-                    if ($customer) {
-                        $totalCustomersFound++;
+                // search provider
+                $providerId = $ws->getCellByColumnAndRow(8, $row->getRowIndex())->getValue();
+                $anfixInvoiceCode = $ws->getCellByColumnAndRow(63, $row->getRowIndex())->getValue();
+                $output->write('seraching provider '.$providerId.'... ');
+                if ($providerId) {
+                    $provider = $this->em->getRepository('AppBundle:Provider')->findOneBy(array('tic' => $providerId));
+                    if ($provider) {
+                        $totalProvidersFound++;
                         $output->writeln('<info>OK</info>');
-                        $output->write('seraching invoice by anfix code '.$anfixInvoiceCode.'... ');
-                        $searchedPreviouslyInvoice = $this->em->getRepository('AppBundle:Invoice')->findOneBy(array('anfixCode' => $anfixInvoiceCode));
-                        if ($searchedPreviouslyInvoice) {
-                            // update invoice
+                        $output->write('seraching spending by anfix code '.$anfixInvoiceCode.'... ');
+                        $searchedPreviouslySpending = $this->em->getRepository('AppBundle:Spending')->findOneBy(array('anfixCode' => $anfixInvoiceCode));
+                        if ($searchedPreviouslySpending) {
+                            // update spending
                             $output->writeln('<comment>found</comment>');
                             $updated++;
-                            $importedInvoice = $searchedPreviouslyInvoice;
+                            $importedSpending = $searchedPreviouslySpending;
                         } else {
-                            // new invoice
+                            // new spending
                             $output->writeln('<info>not found</info>');
                             $created++;
-                            $importedInvoice = new Invoice();
+                            $importedSpending = new Spending();
                         }
-                        // build imported invoice
-                        $invoiceDateValue = $ws->getCellByColumnAndRow(42, $row->getRowIndex())->getValue();
-                        $importedInvoice
+                        // build imported spending
+                        $spendingDateValue = $ws->getCellByColumnAndRow(14, $row->getRowIndex())->getValue();
+                        $importedSpending
                             ->setAnfixCode($anfixInvoiceCode)
-                            ->setNumber(intval($ws->getCellByColumnAndRow(5, $row->getRowIndex())->getValue()))
-                            ->setYear(intval(substr($ws->getCellByColumnAndRow(24, $row->getRowIndex())->getValue(), 1)))
-                            ->setDate(\DateTime::createFromFormat('Y-m-d H:i:s.u', $invoiceDateValue))
-                            ->setCustomer($customer)
-                            ->setTaxPercentage(Invoice::TAX_IVA)
-                            ->setIrpfPercentage(Invoice::TAX_IRPF)
-                            ->setBaseAmount(floatval($ws->getCellByColumnAndRow(80, $row->getRowIndex())->getValue()))
-                            ->setTotalAmount(floatval($ws->getCellByColumnAndRow(61, $row->getRowIndex())->getValue()))
-                            ->setPaymentMethod($customer->getPaymentMethod())
-                            ->setIsSended(true)
-                            ->setIsSepaXmlGenerated(true)
+                            ->setDate(\DateTime::createFromFormat('Y-m-d H:i:s.u', $spendingDateValue))
+                            ->setProvider($provider)
+                            ->setBaseAmount(floatval($ws->getCellByColumnAndRow(55, $row->getRowIndex())->getValue()))
+                            ->setPaymentMethod($provider->getPaymentMethod())
                             ->setIsPayed(true)
                             ->setEnabled(true)
                         ;
                         if ($input->getOption('force')) {
-                            if ($searchedPreviouslyInvoice) {
-                                $this->em->flush();
-                            } else {
-                                $this->em->persist($importedInvoice);
-                                $this->em->flush();
+                            if (!$searchedPreviouslySpending) {
+                                $this->em->persist($importedSpending);
                             }
+                            $this->em->flush();
                         }
                     } else {
                         $output->writeln('<error>KO</error>');
@@ -146,66 +134,13 @@ class ImportSpendingCommand extends BaseCommand
                 }
             }
 
-            // invoice lines
-            /** @var Worksheet $ws */
-            $ws = $spreadsheet->setActiveSheetIndexByName('Lineas_Facturas_Emitidas');
-            $output->writeln($ws->getTitle());
-            /** @var Row $row */
-            foreach ($ws->getRowIterator() as $row) {
-                // search customer
-                $anfixInvoiceCode = $ws->getCellByColumnAndRow(9, $row->getRowIndex())->getValue();
-                $output->write('seraching previous anfix invoice '.$anfixInvoiceCode.'... ');
-                $searchedPreviouslyInvoice = $this->em->getRepository('AppBundle:Invoice')->findOneBy(array('anfixCode' => $anfixInvoiceCode));
-                if ($searchedPreviouslyInvoice) {
-                    // related invoice found
-                    $output->writeln('<comment>found</comment>');
-                    $anfixInvoiceLineCode = $ws->getCellByColumnAndRow(2, $row->getRowIndex())->getValue();
-                    $output->write('seraching previous anfix invoice line '.$anfixInvoiceLineCode.'... ');
-                    $searchedPreviouslyInvoiceLine = $this->em->getRepository('AppBundle:InvoiceLine')->findOneBy(array('anfixCode' => $anfixInvoiceLineCode));
-                    if ($searchedPreviouslyInvoiceLine) {
-                        // update invoice line
-                        $output->writeln('<comment>found</comment>');
-                        $linesUpdated++;
-                        $importedInvoiceLine = $searchedPreviouslyInvoiceLine;
-                    } else {
-                        // new invoice line
-                        $output->writeln('<info>not found</info>');
-                        $linesCreated++;
-                        $importedInvoiceLine = new InvoiceLine();
-                    }
-                    // build imported invoice line
-                    $importedInvoiceLine
-                        ->setInvoice($searchedPreviouslyInvoice)
-                        ->setAnfixCode($anfixInvoiceLineCode)
-                        ->setDescription($ws->getCellByColumnAndRow(16, $row->getRowIndex())->getValue())
-                        ->setUnits(floatval($ws->getCellByColumnAndRow(7, $row->getRowIndex())->getValue()))
-                        ->setPriceUnit(floatval($ws->getCellByColumnAndRow(12, $row->getRowIndex())->getValue()))
-                        ->setDiscount(0)
-                        ->setTotal(floatval($ws->getCellByColumnAndRow(22, $row->getRowIndex())->getValue()))
-                        ->setEnabled(true)
-                    ;
-                    if ($input->getOption('force')) {
-                        if ($searchedPreviouslyInvoiceLine) {
-                            $this->em->flush();
-                        } else {
-                            $this->em->persist($importedInvoiceLine);
-                            $this->em->flush();
-                        }
-                    }
-                } else {
-                    // no related invoice line found
-                    $output->writeln('<info>not found</info>');
-                }
-            }
-
             // EOF
             $dtEnd = new \DateTime();
             $output->writeln('<info>---------------------------</info>');
             $output->writeln('<info>'.$totalItemsCounter.' items parsed</info>');
-            $output->writeln('<info>'.$created.' new invoices added</info>');
-            $output->writeln('<info>'.$updated.' invoices updated</info>');
-            $output->writeln('<info>'.$linesCreated.' new invoice lines added</info>');
-            $output->writeln('<info>'.$linesUpdated.' invoice lines updated</info>');
+            $output->writeln('<info>'.($totalItemsCounter - $totalProvidersFound).' providers not found</info>');
+            $output->writeln('<info>'.$created.' new spendings added</info>');
+            $output->writeln('<info>'.$updated.' spendings updated</info>');
             $output->writeln('<info>---------------------------</info>');
             $output->writeln('Total ellapsed time: '.$dtStart->diff($dtEnd)->format('%H:%I:%S'));
             $this->printEndCommand($output);

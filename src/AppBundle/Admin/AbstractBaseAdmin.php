@@ -109,8 +109,8 @@ abstract class AbstractBaseAdmin extends AbstractAdmin
     protected function getDefaultFormBoxArray($bootstrapGrid = 'md', $bootstrapSize = '6', $boxClass = 'primary')
     {
         return array(
-            'class'     => 'col-' . $bootstrapGrid . '-' . $bootstrapSize,
-            'box_class' => 'box box-' . $boxClass,
+            'class' => 'col-'.$bootstrapGrid.'-'.$bootstrapSize,
+            'box_class' => 'box box-'.$boxClass,
         );
     }
 

@@ -131,12 +131,10 @@ class ImportInvoiceCommand extends BaseCommand
                             ->setEnabled(true)
                         ;
                         if ($input->getOption('force')) {
-                            if ($searchedPreviouslyInvoice) {
-                                $this->em->flush();
-                            } else {
+                            if (!$searchedPreviouslyInvoice) {
                                 $this->em->persist($importedInvoice);
-                                $this->em->flush();
                             }
+                            $this->em->flush();
                         }
                     } else {
                         $output->writeln('<error>KO</error>');
@@ -185,12 +183,10 @@ class ImportInvoiceCommand extends BaseCommand
                         ->setEnabled(true)
                     ;
                     if ($input->getOption('force')) {
-                        if ($searchedPreviouslyInvoiceLine) {
-                            $this->em->flush();
-                        } else {
+                        if (!$searchedPreviouslyInvoiceLine) {
                             $this->em->persist($importedInvoiceLine);
-                            $this->em->flush();
                         }
+                        $this->em->flush();
                     }
                 } else {
                     // no related invoice line found

@@ -231,18 +231,18 @@ class ProviderAdmin extends AbstractBaseAdmin
                 )
             )
             ->add(
-                'city',
+                'alias',
                 null,
                 array(
-                    'label' => 'backend.admin.customer.city',
+                    'label' => 'backend.admin.customer.alias',
                     'editable' => true,
                 )
             )
             ->add(
-                'phone',
+                'city',
                 null,
                 array(
-                    'label' => 'backend.admin.customer.phone',
+                    'label' => 'backend.admin.customer.city',
                     'editable' => true,
                 )
             )

@@ -3,10 +3,14 @@
 namespace AppBundle\Admin;
 
 use AppBundle\Repository\EventCategoryRepository;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\CoreBundle\Form\Type\DatePickerType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 /**
  * Class EventAdmin.
@@ -56,7 +60,7 @@ class EventAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'description',
-                'ckeditor',
+                CKEditorType::class,
                     array(
                         'label' => 'backend.admin.event.description',
                         'config_name' => 'my_config',
@@ -65,7 +69,7 @@ class EventAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'imageFile',
-                'file',
+                FileType::class,
                 array(
                     'label' => 'backend.admin.event.image',
                     'help' => $this->getImageHelperFormMapperWithThumbnail(),
@@ -86,7 +90,7 @@ class EventAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'date',
-                'sonata_type_date_picker',
+                DatePickerType::class,
                 array(
                     'label' => 'backend.admin.event.date',
                     'format' => 'd/M/y',
@@ -95,7 +99,7 @@ class EventAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'enabled',
-                'checkbox',
+                CheckboxType::class,
                 array(
                     'label' => 'backend.admin.enabled',
                     'required' => false,

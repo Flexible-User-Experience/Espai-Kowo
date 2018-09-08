@@ -44,6 +44,9 @@ Factures: Factures
 "Spending Category List": Tipus de Despeses
 "Spending Category Create": Crear
 "Spending Category Delete": Esborrar
+"Spending List": Despeses
+"Spending Create": Crear
+"Spending Delete": Esborrar
 frontend:
     menu:
         blog: BLOG
@@ -240,3 +243,8 @@ backend:
             total: Total
         spending_category:
             name: Nom
+        spending:
+            date: Data
+            category: Categoria
+            provider: Proveïdor
+            description: Descripció

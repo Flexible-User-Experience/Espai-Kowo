@@ -5,7 +5,9 @@ namespace AppBundle\Manager;
 use AppBundle\Repository\CategoryRepository;
 use AppBundle\Repository\CityRepository;
 use AppBundle\Repository\CustomerRepository;
+use AppBundle\Repository\ProviderRepository;
 use AppBundle\Repository\ProvinceRepository;
+use AppBundle\Repository\SpendingCategoryRepository;
 
 /**
  * Class RepositoriesManager
@@ -35,6 +37,16 @@ class RepositoriesManager
     private $customerRepository;
 
     /**
+     * @var ProviderRepository
+     */
+    private $providerRepository;
+
+    /**
+     * @var SpendingCategoryRepository
+     */
+    private $spendingCategoryRepository;
+
+    /**
      * Methods
      */
 
@@ -45,13 +57,17 @@ class RepositoriesManager
      * @param ProvinceRepository $provinceRepository
      * @param CityRepository     $cityRepository
      * @param CustomerRepository $customerRepository
+     * @param ProviderRepository $providerRepository
+     * @param SpendingCategoryRepository $spendingCategoryRepository
      */
-    public function __construct(CategoryRepository $categoryRepository, ProvinceRepository $provinceRepository, CityRepository $cityRepository, CustomerRepository $customerRepository)
+    public function __construct(CategoryRepository $categoryRepository, ProvinceRepository $provinceRepository, CityRepository $cityRepository, CustomerRepository $customerRepository, ProviderRepository $providerRepository, SpendingCategoryRepository $spendingCategoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
         $this->provinceRepository = $provinceRepository;
         $this->cityRepository = $cityRepository;
         $this->customerRepository = $customerRepository;
+        $this->providerRepository = $providerRepository;
+        $this->spendingCategoryRepository = $spendingCategoryRepository;
     }
 
     /**
@@ -84,5 +100,21 @@ class RepositoriesManager
     public function getCustomerRepository()
     {
         return $this->customerRepository;
+    }
+
+    /**
+     * @return ProviderRepository
+     */
+    public function getProviderRepository()
+    {
+        return $this->providerRepository;
+    }
+
+    /**
+     * @return SpendingCategoryRepository
+     */
+    public function getSpendingCategoryRepository()
+    {
+        return $this->spendingCategoryRepository;
     }
 }
