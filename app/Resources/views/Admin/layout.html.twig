@@ -18,3 +18,10 @@
         </ul>
     </div>
 {% endblock %}
+
+{# override javascript includes #}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/app/js/pdf.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/js/pdf.worker.js') }}"></script>
+{% endblock %}
