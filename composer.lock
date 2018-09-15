@@ -2547,16 +2547,16 @@
         },
         {
             "name": "knplabs/knp-components",
-            "version": "v1.3.9",
+            "version": "v1.3.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/knp-components.git",
-                "reference": "f0f830361ff0ee83ea5c5ffe49b429d2b0ff4266"
+                "reference": "fc1755ba2b77f83a3d3c99e21f3026ba2a1429be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/knp-components/zipball/f0f830361ff0ee83ea5c5ffe49b429d2b0ff4266",
-                "reference": "f0f830361ff0ee83ea5c5ffe49b429d2b0ff4266",
+                "url": "https://api.github.com/repos/KnpLabs/knp-components/zipball/fc1755ba2b77f83a3d3c99e21f3026ba2a1429be",
+                "reference": "fc1755ba2b77f83a3d3c99e21f3026ba2a1429be",
                 "shasum": ""
             },
             "require": {
@@ -2609,7 +2609,7 @@
                 "pager",
                 "paginator"
             ],
-            "time": "2018-08-03T08:37:27+00:00"
+            "time": "2018-09-11T07:54:48+00:00"
         },
         {
             "name": "knplabs/knp-disqus-bundle",
@@ -4115,16 +4115,16 @@
         },
         {
             "name": "sonata-project/admin-bundle",
-            "version": "3.38.3",
+            "version": "3.39.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "871dd6446c53c6204910764679a4396596d141ab"
+                "reference": "09711748fc1c85132ce21b4df4e8d491412314b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/871dd6446c53c6204910764679a4396596d141ab",
-                "reference": "871dd6446c53c6204910764679a4396596d141ab",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/09711748fc1c85132ce21b4df4e8d491412314b3",
+                "reference": "09711748fc1c85132ce21b4df4e8d491412314b3",
                 "shasum": ""
             },
             "require": {
@@ -4136,7 +4136,6 @@
                 "sonata-project/core-bundle": "^3.9",
                 "sonata-project/exporter": "^1.8",
                 "symfony/asset": "^2.8 || ^3.2 || ^4.0",
-                "symfony/class-loader": "^2.8 || ^3.2",
                 "symfony/config": "^2.8 || ^3.2 || ^4.0",
                 "symfony/console": "^2.8 || ^3.2 || ^4.0",
                 "symfony/dependency-injection": "^2.8 || ^3.2 || ^4.0",
@@ -4172,6 +4171,7 @@
                 "matthiasnoback/symfony-dependency-injection-test": "^1.1",
                 "sensio/generator-bundle": "^3.1",
                 "sonata-project/intl-bundle": "^2.4",
+                "symfony/class-loader": "^2.8 || ^3.2",
                 "symfony/filesystem": "^2.8 || ^3.2 || ^4.0",
                 "symfony/phpunit-bridge": "^4.0",
                 "symfony/yaml": "^2.8 || ^3.2 || ^4.0"
@@ -4216,7 +4216,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2018-08-21T17:48:44+00:00"
+            "time": "2018-09-09T08:11:09+00:00"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -5941,16 +5941,16 @@
         },
         {
             "name": "tecnickcom/tcpdf",
-            "version": "6.2.17",
+            "version": "6.2.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/TCPDF.git",
-                "reference": "64fc19439863e1b1314487a72a74d9bfd0b55a53"
+                "reference": "ac6e92fccc7d9383dfd787056831349621b1aca2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/64fc19439863e1b1314487a72a74d9bfd0b55a53",
-                "reference": "64fc19439863e1b1314487a72a74d9bfd0b55a53",
+                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/ac6e92fccc7d9383dfd787056831349621b1aca2",
+                "reference": "ac6e92fccc7d9383dfd787056831349621b1aca2",
                 "shasum": ""
             },
             "require": {
@@ -5999,7 +5999,7 @@
                 "pdf417",
                 "qrcode"
             ],
-            "time": "2018-02-24T11:48:20+00:00"
+            "time": "2018-09-14T15:26:29+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -6463,7 +6463,7 @@
     "packages-dev": [
         {
             "name": "cypresslab/gitelephant",
-            "version": "v2.1.1",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matteosister/GitElephant.git",
