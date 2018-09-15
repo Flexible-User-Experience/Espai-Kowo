@@ -12,6 +12,7 @@ use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 /**
  * Class SpendingAdmin.
@@ -41,7 +42,6 @@ class SpendingAdmin extends AbstractBaseAdmin
                     'label' => 'backend.admin.spending.date',
                     'format' => 'd/M/y',
                     'required' => true,
-
                 )
             )
             ->add(
@@ -69,6 +69,14 @@ class SpendingAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.spending.description',
+                    'required' => false,
+                )
+            )
+            ->add(
+                'documentFile',
+                FileType::class,
+                array(
+                    'label' => 'backend.admin.spending.document',
                     'required' => false,
                 )
             )

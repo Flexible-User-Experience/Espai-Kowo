@@ -248,3 +248,4 @@ backend:
             category: Categoria
             provider: Proveïdor
             description: Descripció
+            document: Document
