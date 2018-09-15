@@ -30,6 +30,7 @@ class SpendingAdmin extends AbstractBaseAdmin
 
     /**
      * @param FormMapper $formMapper
+     * @throws \Twig\Error\Error
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -79,7 +80,7 @@ class SpendingAdmin extends AbstractBaseAdmin
                 FileType::class,
                 array(
                     'label' => 'backend.admin.spending.document',
-                    'help' => $this->getDocumentHelperFormMapperWithThumbnail(),
+                    'help' => $this->getSmartHelper('getDocument', 'documentFile'),
                     'required' => false,
                 )
             )
