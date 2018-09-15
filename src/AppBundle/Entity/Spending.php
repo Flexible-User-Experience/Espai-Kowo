@@ -3,6 +3,10 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Class Spending.
@@ -10,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @category Entity
  *
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SpendingRepository")
+ * @Vich\Uploadable
  */
 class Spending extends AbstractBase
 {
@@ -77,6 +82,24 @@ class Spending extends AbstractBase
      * @ORM\Column(type="integer", options={"default"=0})
      */
     private $paymentMethod;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="spending", fileNameProperty="document")
+     * @Assert\File(
+     *     maxSize="10M",
+     *     mimeTypes={"image/jpg", "image/jpeg", "image/png", "image/gif", "application/pdf", "application/x-pdf"}
+     * )
+     */
+    private $documentFile;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $document;
 
     /**
      * Methods.
@@ -266,6 +289,51 @@ class Spending extends AbstractBase
     public function setPaymentMethod($paymentMethod)
     {
         $this->paymentMethod = $paymentMethod;
+
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getDocumentFile()
+    {
+        return $this->documentFile;
+    }
+
+    /**
+     * @param File|UploadedFile $documentFile
+     *
+     * @return $this
+     */
+    public function setDocumentFile(File $documentFile = null)
+    {
+        $this->documentFile = $documentFile;
+        if ($documentFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDocument()
+    {
+        return $this->document;
+    }
+
+    /**
+     * @param string $document
+     *
+     * @return $this
+     */
+    public function setDocument($document)
+    {
+        $this->document = $document;
 
         return $this;
     }
