@@ -160,4 +160,15 @@ abstract class AbstractBaseAdmin extends AbstractAdmin
                 '480xY'
             ) . '" class="admin-preview img-responsive" alt="thumbnail"/>' : '' : '') . '<span style="width:100%;display:block;">mida 780x1168px (màx. 10MB amb GIF)</span>';
     }
+
+    /**
+     * @return string
+     */
+    protected function getDocumentHelperFormMapperWithThumbnail()
+    {
+        return ($this->getSubject() ? $this->getSubject()->getDocument() ? '<img src="' . $this->lis->getBrowserPath(
+                $this->vus->asset($this->getSubject(), 'documentFile'),
+                '480xY'
+            ) . '" class="admin-preview img-responsive" alt="thumbnail"/>' : '' : '') . '<span style="width:100%;display:block;">document PDF o imatge (màx. 10MB)</span>';
+    }
 }

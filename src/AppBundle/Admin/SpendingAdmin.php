@@ -72,11 +72,14 @@ class SpendingAdmin extends AbstractBaseAdmin
                     'required' => false,
                 )
             )
+            ->end()
+            ->with('backend.admin.documents', $this->getFormMdSuccessBoxArray(4))
             ->add(
                 'documentFile',
                 FileType::class,
                 array(
                     'label' => 'backend.admin.spending.document',
+                    'help' => $this->getDocumentHelperFormMapperWithThumbnail(),
                     'required' => false,
                 )
             )

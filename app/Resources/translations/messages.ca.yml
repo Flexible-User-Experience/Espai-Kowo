@@ -83,6 +83,7 @@ backend:
         published_date: Data de publicació
         pictures: Imatges
         payments: Pagaments
+        documents: Documents
         coworker:
             name: Nom
             surname: Cognom
