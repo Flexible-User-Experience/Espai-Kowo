@@ -23,8 +23,8 @@ class SpendingAdmin extends AbstractBaseAdmin
     protected $classnameLabel = 'Spending';
     protected $baseRoutePattern = 'purchases/spending';
     protected $datagridValues = array(
-        '_sort_by' => 'name',
-        '_sort_order' => 'asc',
+        '_sort_by' => 'date',
+        '_sort_order' => 'desc',
     );
 
     /**
