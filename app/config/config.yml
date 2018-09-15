@@ -22,8 +22,8 @@ framework:
     templating:
         engines: [ "twig" ]
     session:
-        name:        EKSESSID
-        handler_id:  ~
+        name:       EKSESSID
+        handler_id: ~
     http_method_override: true
 
 # Twig
