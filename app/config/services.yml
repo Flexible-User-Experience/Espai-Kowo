@@ -71,3 +71,7 @@ services:
         tags:
             - { name: sonata.block }
         arguments: [ "admin.block.coworker_indicators", "@templating", "@doctrine.orm.entity_manager" ]
+    # File
+    app.file_service:
+        class: AppBundle\Service\FileService
+        arguments: [ "@vich_uploader.templating.helper.uploader_helper", "%kernel.root_dir%" ]

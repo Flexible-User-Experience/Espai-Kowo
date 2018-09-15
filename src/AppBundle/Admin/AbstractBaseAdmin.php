@@ -3,10 +3,12 @@
 namespace AppBundle\Admin;
 
 use AppBundle\Manager\RepositoriesManager;
+use AppBundle\Service\FileService;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
+use Symfony\Bundle\TwigBundle\TwigEngine;
 
 /**
  * Class BaseAdmin
@@ -31,6 +33,16 @@ abstract class AbstractBaseAdmin extends AbstractAdmin
     protected $rm;
 
     /**
+     * @var TwigEngine
+     */
+    protected $tes;
+
+    /**
+     * @var FileService
+     */
+    protected $fs;
+
+    /**
      * Methods
      */
 
@@ -41,13 +53,17 @@ abstract class AbstractBaseAdmin extends AbstractAdmin
      * @param UploaderHelper      $vus
      * @param CacheManager        $lis
      * @param RepositoriesManager $rm
+     * @param TwigEngine          $tes
+     * @param FileService         $fs
      */
-    public function __construct($code, $class, $baseControllerName, UploaderHelper $vus, CacheManager $lis, RepositoriesManager $rm)
+    public function __construct($code, $class, $baseControllerName, UploaderHelper $vus, CacheManager $lis, RepositoriesManager $rm, TwigEngine $tes, FileService $fs)
     {
         parent::__construct($code, $class, $baseControllerName);
         $this->vus = $vus;
         $this->lis = $lis;
         $this->rm = $rm;
+        $this->tes = $tes;
+        $this->fs = $fs;
     }
 
     /**
@@ -170,5 +186,38 @@ abstract class AbstractBaseAdmin extends AbstractAdmin
                 $this->vus->asset($this->getSubject(), 'documentFile'),
                 '480xY'
             ) . '" class="admin-preview img-responsive" alt="thumbnail"/>' : '' : '') . '<span style="width:100%;display:block;">document PDF o imatge (màx. 10MB)</span>';
+    }
+
+    /**
+     * Get image helper form mapper with thumbnail.
+     *
+     * @param string $attribute
+     * @param string $uploaderMapping
+     *
+     * @return string
+     * @throws \Twig\Error\Error
+     */
+    protected function getSmartHelper($attribute, $uploaderMapping)
+    {
+        if ($this->getSubject() && $this->getSubject()->$attribute()) {
+            if ($this->fs->isPdf($this->getSubject(), $uploaderMapping)) {
+                // PDF case
+                return $this->tes->render(':Admin/Helpers:pdf.html.twig', [
+                    'attribute' => $this->getSubject()->$attribute(),
+                    'subject' => $this->getSubject(),
+                    'uploaderMapping' => $uploaderMapping,
+                ]);
+            } else {
+                // Image case
+                return $this->tes->render(':Admin/Helpers:image.html.twig', [
+                    'attribute' => $this->getSubject()->$attribute(),
+                    'subject' => $this->getSubject(),
+                    'uploaderMapping' => $uploaderMapping,
+                ]);
+            }
+        } else {
+            // Undefined case
+            return '<span style="width:100%;display:block;">Pots adjuntar un PDF o una imatge. Pes màxim 10MB.</span>';
+        }
     }
 }
