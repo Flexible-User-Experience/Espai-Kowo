@@ -138,7 +138,7 @@ class Spending extends AbstractBase
      *
      * @return $this
      */
-    public function setDate($date)
+    public function setDate(\DateTime $date)
     {
         $this->date = $date;
 
@@ -266,7 +266,7 @@ class Spending extends AbstractBase
      *
      * @return $this
      */
-    public function setPaymentDate($paymentDate)
+    public function setPaymentDate(\DateTime $paymentDate)
     {
         $this->paymentDate = $paymentDate;
 
