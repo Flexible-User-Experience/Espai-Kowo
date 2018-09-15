@@ -12,6 +12,7 @@ use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 /**
  * Class SpendingAdmin.
@@ -23,12 +24,13 @@ class SpendingAdmin extends AbstractBaseAdmin
     protected $classnameLabel = 'Spending';
     protected $baseRoutePattern = 'purchases/spending';
     protected $datagridValues = array(
-        '_sort_by' => 'name',
-        '_sort_order' => 'asc',
+        '_sort_by' => 'date',
+        '_sort_order' => 'desc',
     );
 
     /**
      * @param FormMapper $formMapper
+     * @throws \Twig\Error\Error
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -41,7 +43,6 @@ class SpendingAdmin extends AbstractBaseAdmin
                     'label' => 'backend.admin.spending.date',
                     'format' => 'd/M/y',
                     'required' => true,
-
                 )
             )
             ->add(
@@ -69,6 +70,17 @@ class SpendingAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.spending.description',
+                    'required' => false,
+                )
+            )
+            ->end()
+            ->with('backend.admin.documents', $this->getFormMdSuccessBoxArray(4))
+            ->add(
+                'documentFile',
+                FileType::class,
+                array(
+                    'label' => 'backend.admin.spending.document',
+                    'help' => $this->getSmartHelper('getDocument', 'documentFile'),
                     'required' => false,
                 )
             )
@@ -250,6 +262,7 @@ class SpendingAdmin extends AbstractBaseAdmin
                     'label' => 'backend.admin.actions',
                     'actions' => array(
                         'edit' => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
+                        'document' => array('template' => '::Admin/Buttons/list__action_spending_document_button.html.twig'),
                         'delete' => array('template' => '::Admin/Buttons/list__action_delete_button.html.twig'),
                     ),
                 )

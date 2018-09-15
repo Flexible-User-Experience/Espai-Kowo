@@ -144,3 +144,7 @@ vich_uploader:
             uri_prefix:         /uploads/images/event
             upload_destination: "%kernel.root_dir%/../web/uploads/images/event"
             namer:              vich_uploader.namer_uniqid
+        spending:
+            uri_prefix:         /uploads/documents/spending
+            upload_destination: "%kernel.root_dir%/../web/uploads/documents/spending"
+            namer:              vich_uploader.namer_uniqid
