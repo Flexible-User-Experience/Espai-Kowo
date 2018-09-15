@@ -8,6 +8,7 @@ use AppBundle\Enum\PaymentMethodEnum;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -27,6 +28,17 @@ class SpendingAdmin extends AbstractBaseAdmin
         '_sort_by' => 'date',
         '_sort_order' => 'desc',
     );
+
+    /**
+     * Configure route collection.
+     *
+     * @param RouteCollection $collection
+     */
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        parent::configureRoutes($collection);
+        $collection->add('duplicate', $this->getRouterIdParameter().'/duplicate');
+    }
 
     /**
      * @param FormMapper $formMapper
@@ -263,6 +275,7 @@ class SpendingAdmin extends AbstractBaseAdmin
                     'actions' => array(
                         'edit' => array('template' => '::Admin/Buttons/list__action_edit_button.html.twig'),
                         'document' => array('template' => '::Admin/Buttons/list__action_spending_document_button.html.twig'),
+                        'duplicate' => array('template' => '::Admin/Buttons/list__action_invoice_duplicate_button.html.twig'),
                         'delete' => array('template' => '::Admin/Buttons/list__action_delete_button.html.twig'),
                     ),
                 )
