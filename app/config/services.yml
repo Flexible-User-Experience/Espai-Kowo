@@ -94,7 +94,7 @@ services:
             - "@doctrine.orm.entity_manager"
         tags:
             - { name: sonata.block }
-    app.block.charts:
+    admin.block.charts:
         class: AppBundle\Admin\Block\ChartsBlock
         arguments:
             - "app.block.charts"
