@@ -2,6 +2,7 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Enum\MonthEnum;
 use AppBundle\Repository\InvoiceRepository;
 use SaadTazi\GChartBundle\DataTable\DataRow;
 use SaadTazi\GChartBundle\DataTable\DataCell;
@@ -60,7 +61,7 @@ class ChartsFactoryService
         $interval = new \DateInterval('P1M');
         for ($i = 0; $i <= 12; ++$i) {
             $invoices = $this->ir->getMonthlyIncomingsAmountForDate($date);
-            $dt->addRowObject($this->buildIncomingCellsRow($date->format('m/y'), $invoices));
+            $dt->addRowObject($this->buildIncomingCellsRow($date, $invoices));
             $date->add($interval);
         }
 
@@ -68,13 +69,13 @@ class ChartsFactoryService
     }
 
     /**
-     * @param string    $key
+     * @param \DateTime $key
      * @param float|int $value
      *
      * @return DataRow
      */
     private function buildIncomingCellsRow($key, $value)
     {
-        return new DataRow(array(new DataCell($key), new DataCell($value)));
+        return new DataRow(array(new DataCell($key->format('U'), MonthEnum::getTranslatedMonthEnumArray()[intval($key->format('n'))].'\''.$key->format('y')), new DataCell($value, number_format($value, 0, ',', '.').' €')));
     }
 }
