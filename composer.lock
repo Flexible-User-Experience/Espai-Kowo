@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "603a1ab5b762261cf136c3eb1e2155cd",
+    "content-hash": "f0ecf7e54dc64ca6c3c59e69a0163811",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -3945,6 +3945,46 @@
                 "simple-cache"
             ],
             "time": "2017-10-23T01:57:42+00:00"
+        },
+        {
+            "name": "saad-tazi/g-chart-bundle",
+            "version": "v1.5.0",
+            "target-dir": "SaadTazi/GChartBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/saadtazi/SaadTaziGChartBundle.git",
+                "reference": "14777ee75011c387d3cf91fa9788345182a324e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/saadtazi/SaadTaziGChartBundle/zipball/14777ee75011c387d3cf91fa9788345182a324e1",
+                "reference": "14777ee75011c387d3cf91fa9788345182a324e1",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/framework-bundle": "2.*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "SaadTazi\\GChartBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Saad Tazi"
+                }
+            ],
+            "description": "A super simple Bundle that facilitate the usage of Google Chart Tool, Google Chart Image API and Google Infographics.",
+            "keywords": [
+                "chart",
+                "google"
+            ],
+            "time": "2016-07-05T01:10:16+00:00"
         },
         {
             "name": "sensio/distribution-bundle",
