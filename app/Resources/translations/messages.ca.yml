@@ -250,3 +250,6 @@ backend:
             provider: Proveïdor
             description: Descripció
             document: Document
+        block:
+            charts:
+                incomings: Vendes últims 12 mesos

@@ -6,18 +6,27 @@ services:
 # Messaging
     app.courier:
         class: AppBundle\Service\CourierService
-        arguments: [ "@swiftmailer.mailer" ]
+        arguments:
+            - "@swiftmailer.mailer"
     app.notification:
         class: AppBundle\Service\NotificationService
-        arguments: [ "@app.courier", "@twig", "%mailer_destination%", "%mailer_url_base%" ]
+        arguments:
+            - "@app.courier"
+            - "@twig"
+            - "%mailer_destination%"
+            - "%mailer_url_base%"
 # Menu
     app.frontend_menu_builder:
         class: AppBundle\Menu\FrontendMenuBuilder
-        arguments: [ "@knp_menu.factory", "@security.authorization_checker", "@security.token_storage" ]
+        arguments:
+            - "@knp_menu.factory"
+            - "@security.authorization_checker"
+            - "@security.token_storage"
     app.frontend_top_menu:
         class: Knp\Menu\MenuItem
         factory: [ "@app.frontend_menu_builder", createTopMenu ]
-        arguments: [ "@request_stack" ]
+        arguments:
+            - "@request_stack"
         tags:
             - { name: knp_menu.menu, alias: top }
 # PDF Builders
@@ -41,18 +50,27 @@ services:
         arguments:
             - "@app.spanish_sepa_helper"
             - "%espai_kowo_fiscal_data%"
-# XLS
+# Factories
     app.spreadsheet_factory:
         class: AppBundle\Service\SpreadsheetService
+    app.charts_factory_service:
+        class: AppBundle\Service\ChartsFactoryService
+        arguments:
+            - "@translator"
+            - "@app.invoice_repository"
 # Sitemap
     app.sitemap:
         class: AppBundle\Listener\SitemapListener
-        arguments: [ "@router", "@doctrine.orm.entity_manager" ]
-        tags: [ { name: "presta.sitemap.listener" } ]
+        arguments:
+            - "@router"
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: "presta.sitemap.listener" }
 # Twig
     app.twig_extension:
         class: AppBundle\Twig\AppExtension
-        arguments: [ "@app.coworker_repository" ]
+        arguments:
+            - "@app.coworker_repository"
         public: false
         tags:
             - { name: twig.extension }
@@ -64,14 +82,29 @@ services:
 # Mailchimp Manager
     app.mailchimp_manager:
         class: AppBundle\Manager\MailchimpManager
-        arguments: [ "@app.notification", "%mailchimp_api_key%" ]
+        arguments:
+            - "@app.notification"
+            - "%mailchimp_api_key%"
 # Sonata Blocks
     admin.block.coworker_indicators:
         class: AppBundle\Admin\Block\CoworkerIndicatorsBlock
+        arguments:
+            - "admin.block.coworker_indicators"
+            - "@templating"
+            - "@doctrine.orm.entity_manager"
         tags:
             - { name: sonata.block }
-        arguments: [ "admin.block.coworker_indicators", "@templating", "@doctrine.orm.entity_manager" ]
-    # File
+    admin.block.charts:
+        class: AppBundle\Admin\Block\ChartsBlock
+        arguments:
+            - "app.block.charts"
+            - "@templating"
+            - "@app.charts_factory_service"
+        tags:
+            - { name: sonata.block }
+# File
     app.file_service:
         class: AppBundle\Service\FileService
-        arguments: [ "@vich_uploader.templating.helper.uploader_helper", "%kernel.root_dir%" ]
+        arguments:
+            - "@vich_uploader.templating.helper.uploader_helper"
+            - "%kernel.root_dir%"

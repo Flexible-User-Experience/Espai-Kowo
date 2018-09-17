@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Invoice;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Query;
@@ -45,5 +46,30 @@ class InvoiceRepository extends EntityRepository
     public function getLastInvoice()
     {
         return $this->getLastInvoiceQ()->getOneOrNullResult();
+    }
+
+    /**
+     * @param \DateTime $date
+     *
+     * @return int
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getMonthlyIncomingsAmountForDate(\DateTime $date)
+    {
+        $begin = clone $date;
+        $end = clone $date;
+        $begin->modify('first day of this month');
+        $end->modify('last day of this month');
+        $query = $this->createQueryBuilder('i')
+            ->select('SUM(i.baseAmount) as amount')
+            ->where('i.date >= :begin')
+            ->andWhere('i.date <= :end')
+            ->setParameter('begin', $begin->format('Y-m-d'))
+            ->setParameter('end', $end->format('Y-m-d'))
+            ->getQuery()
+        ;
+
+        return is_null($query->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR)) ? 0 : floatval($query->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR));
     }
 }

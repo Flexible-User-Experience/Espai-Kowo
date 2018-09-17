@@ -6,6 +6,7 @@ sonata_block:
         sonata.user.block.menu:          ~
         sonata.block.service.text:       ~
         admin.block.coworker_indicators: ~
+        admin.block.charts:              ~
 
 # Sonata User
 sonata_user:
@@ -57,5 +58,10 @@ sonata_admin:
             -
                 position: top
                 type: admin.block.coworker_indicators
+                class: "col-md-12"
+                roles: [ "ROLE_ADMIN" ]
+            -
+                position: top
+                type: admin.block.charts
                 class: "col-md-12"
                 roles: [ "ROLE_ADMIN" ]
