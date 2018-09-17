@@ -49,7 +49,7 @@ class ChartsFactoryService
      * @throws \SaadTazi\GChartBundle\DataTable\Exception\InvalidColumnTypeException
      * @throws \Exception
      */
-    public function buildLastYearIncomingsChart()
+    public function buildLastYearBalanceChart()
     {
         $dt = new DataTable();
         $dt->addColumnObject(new DataColumn('id1', 'title', 'string'));
