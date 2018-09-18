@@ -119,6 +119,7 @@ class SpendingAdmin extends AbstractBaseAdmin
                 DatePickerType::class,
                 array(
                     'label' => 'backend.admin.invoice.paymentDate',
+                    'format' => 'd/M/y',
                     'required' => false,
                 )
             )
@@ -147,7 +148,6 @@ class SpendingAdmin extends AbstractBaseAdmin
                 array(
                     'label' => 'backend.admin.spending.date',
                     'format' => 'd/M/y',
-
                 )
             )
             ->add(

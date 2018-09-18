@@ -269,6 +269,6 @@ class Provider extends AbstractBase
      */
     public function __toString()
     {
-        return $this->id ? ($this->alias ? $this->getAlias() : $this->getTic().' · '.$this->getName()) : '---';
+        return $this->id ? ($this->alias ? $this->getName().' · '.$this->getAlias().' · '.$this->getTic() : $this->getName().' · '.$this->getTic()) : '---';
     }
 }
