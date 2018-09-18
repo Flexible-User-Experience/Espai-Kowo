@@ -4,6 +4,7 @@ namespace AppBundle\Service;
 
 use AppBundle\Enum\MonthEnum;
 use AppBundle\Repository\InvoiceRepository;
+use AppBundle\Repository\SpendingRepository;
 use SaadTazi\GChartBundle\DataTable\DataRow;
 use SaadTazi\GChartBundle\DataTable\DataCell;
 use SaadTazi\GChartBundle\DataTable\DataTable;
@@ -29,6 +30,11 @@ class ChartsFactoryService
     private $ir;
 
     /**
+     * @var SpendingRepository
+     */
+    private $sr;
+
+    /**
      * Methods.
      */
 
@@ -37,11 +43,13 @@ class ChartsFactoryService
      *
      * @param TranslatorInterface $ts
      * @param InvoiceRepository   $ir
+     * @param SpendingRepository  $sr
      */
-    public function __construct(TranslatorInterface $ts, InvoiceRepository $ir)
+    public function __construct(TranslatorInterface $ts, InvoiceRepository $ir, SpendingRepository $sr)
     {
         $this->ts = $ts;
         $this->ir = $ir;
+        $this->sr = $sr;
     }
 
     /**
@@ -62,7 +70,8 @@ class ChartsFactoryService
         $interval = new \DateInterval('P1M');
         for ($i = 0; $i <= 12; ++$i) {
             $sales = $this->ir->getMonthlySalesAmountForDate($date);
-            $dt->addRowObject($this->buildIncomingCellsRow($date, $sales));
+            $expenses = $this->sr->getMonthlyExpensesAmountForDate($date);
+            $dt->addRowObject($this->buildIncomingCellsRow($date, $sales, $expenses));
             $date->add($interval);
         }
 
@@ -76,7 +85,7 @@ class ChartsFactoryService
      *
      * @return DataRow
      */
-    private function buildIncomingCellsRow($key, $sales, $expenses = 0)
+    private function buildIncomingCellsRow($key, $sales, $expenses)
     {
         return new DataRow(array(
                 new DataCell(MonthEnum::getShortTranslatedMonthEnumArray()[intval($key->format('n'))].'. '.$key->format('y')),
