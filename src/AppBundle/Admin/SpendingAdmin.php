@@ -119,6 +119,7 @@ class SpendingAdmin extends AbstractBaseAdmin
                 DatePickerType::class,
                 array(
                     'label' => 'backend.admin.invoice.paymentDate',
+                    'format' => 'd/M/y',
                     'required' => false,
                 )
             )
@@ -143,11 +144,16 @@ class SpendingAdmin extends AbstractBaseAdmin
         $datagridMapper
             ->add(
                 'date',
-                null,
+                'doctrine_orm_date',
                 array(
                     'label' => 'backend.admin.spending.date',
-                    'format' => 'd/M/y',
-
+                    'field_type' => 'sonata_type_date_picker',
+                    'format' => 'd-m-Y',
+                ),
+                null,
+                array(
+                    'widget' => 'single_text',
+                    'format' => 'dd-MM-yyyy',
                 )
             )
             ->add(
@@ -155,6 +161,13 @@ class SpendingAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.spending.category',
+                ),
+                EntityType::class,
+                array(
+                    'expanded' => false,
+                    'multiple' => false,
+                    'class' => SpendingCategory::class,
+                    'query_builder' => $this->rm->getSpendingCategoryRepository()->getEnabledSortedByNameQB(),
                 )
             )
             ->add(
@@ -162,6 +175,13 @@ class SpendingAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.spending.provider',
+                ),
+                EntityType::class,
+                array(
+                    'expanded' => false,
+                    'multiple' => false,
+                    'class' => Provider::class,
+                    'query_builder' => $this->rm->getProviderRepository()->getEnabledSortedByNameQB(),
                 )
             )
             ->add(
@@ -187,9 +207,16 @@ class SpendingAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'paymentDate',
-                null,
+                'doctrine_orm_date',
                 array(
                     'label' => 'backend.admin.invoice.paymentDate',
+                    'field_type' => 'sonata_type_date_picker',
+                    'format' => 'd-m-Y',
+                ),
+                null,
+                array(
+                    'widget' => 'single_text',
+                    'format' => 'dd-MM-yyyy',
                 )
             )
             ->add(
@@ -197,6 +224,12 @@ class SpendingAdmin extends AbstractBaseAdmin
                 null,
                 array(
                     'label' => 'backend.admin.customer.payment_method',
+                ),
+                ChoiceType::class,
+                array(
+                    'label' => 'backend.admin.customer.payment_method',
+                    'choices' => PaymentMethodEnum::getEnumArray(),
+                    'required' => true,
                 )
             )
         ;

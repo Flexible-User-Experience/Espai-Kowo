@@ -26,11 +26,12 @@ sonata_admin:
     security:
         handler: sonata.admin.security.handler.role
     templates:
-        layout: "::Admin/layout.html.twig"
-        list:   "::Admin/list.html.twig"
-        edit:   "::Admin/edit.html.twig"
-        show:   "::Admin/show.html.twig"
-        batch:  "::Admin/batch.html.twig"
+        layout:    "::Admin/layout.html.twig"
+        dashboard: "::Admin/dashboard.html.twig"
+        list:      "::Admin/list.html.twig"
+        edit:      "::Admin/edit.html.twig"
+        show:      "::Admin/show.html.twig"
+        batch:     "::Admin/batch.html.twig"
     dashboard:
         groups:
             Coworkers:
