@@ -57,11 +57,11 @@ sonata_admin:
                         <h1 style="margin-top:0">ERP</h1>
             -
                 position: top
-                type: admin.block.coworker_indicators
+                type: admin.block.charts
                 class: "col-md-12"
                 roles: [ "ROLE_ADMIN" ]
             -
                 position: top
-                type: admin.block.charts
+                type: admin.block.coworker_indicators
                 class: "col-md-12"
                 roles: [ "ROLE_ADMIN" ]
