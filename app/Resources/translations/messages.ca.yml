@@ -252,5 +252,6 @@ backend:
             document: Document
         block:
             charts:
-                incomings: Vendes
+                sales: Vendes
                 expenses: Despeses
+                results: Resultats
