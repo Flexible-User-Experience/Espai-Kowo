@@ -47,7 +47,7 @@ class BasePdf extends \TCPDF
     public function Header()
     {
         // logo
-        $this->Image($this->sahs->getAbsoluteAssetPathByContext('/bundles/app/img/logo-espai-kowo.png'), self::PDF_MARGIN_LEFT, self::PDF_MARGIN_TOP, 30);
+        $this->Image($this->sahs->getAbsoluteAssetFilePath('/bundles/app/img/logo-espai-kowo.png'), self::PDF_MARGIN_LEFT, self::PDF_MARGIN_TOP, 30);
         $this->setFontStyle(null, 'I', 8);
     }
 
