@@ -94,7 +94,7 @@ class InvoiceBuilderPdf
         $pdf->SetXY(BasePdf::PDF_MARGIN_LEFT, BasePdf::PDF_MARGIN_TOP + BasePdf::MARGIN_VERTICAL_SMALL * 11);
 
         // gaps
-        $column2Gap = 114;
+        $column2Gap = 94;
         $interliner = 1;
         $verticalTableGapSmall = 5.5;
         $pdf->setBrandColor();
