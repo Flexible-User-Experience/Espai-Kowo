@@ -80,8 +80,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
                 array(
                     'label' => 'backend.admin.invoice.number',
                     'required' => $this->id($this->getSubject()) ? false : true,
-                    // TODO 'disabled' => $this->id($this->getSubject()) ? true : false,
-                    'disabled' => false,
+                    'disabled' => $this->id($this->getSubject()) ? true : false,
                 )
             )
             ->add(
