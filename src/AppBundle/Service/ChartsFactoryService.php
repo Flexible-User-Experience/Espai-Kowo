@@ -55,13 +55,14 @@ class ChartsFactoryService
         $dt = new DataTable();
         $dt->addColumnObject(new DataColumn('id1', 'title', 'string'));
         $dt->addColumnObject(new DataColumn('id2', $this->ts->trans('backend.admin.block.charts.incomings', array(), 'messages'), 'number'));
+        $dt->addColumnObject(new DataColumn('id3', $this->ts->trans('backend.admin.block.charts.expenses', array(), 'messages'), 'number'));
 
         $date = new \DateTime();
         $date->sub(new \DateInterval('P12M'));
         $interval = new \DateInterval('P1M');
         for ($i = 0; $i <= 12; ++$i) {
-            $invoices = $this->ir->getMonthlyIncomingsAmountForDate($date);
-            $dt->addRowObject($this->buildIncomingCellsRow($date, $invoices));
+            $sales = $this->ir->getMonthlySalesAmountForDate($date);
+            $dt->addRowObject($this->buildIncomingCellsRow($date, $sales));
             $date->add($interval);
         }
 
@@ -70,12 +71,18 @@ class ChartsFactoryService
 
     /**
      * @param \DateTime $key
-     * @param float|int $value
+     * @param float|int $sales
+     * @param float|int $expenses
      *
      * @return DataRow
      */
-    private function buildIncomingCellsRow($key, $value)
+    private function buildIncomingCellsRow($key, $sales, $expenses = 0)
     {
-        return new DataRow(array(new DataCell($key->format('U'), MonthEnum::getTranslatedMonthEnumArray()[intval($key->format('n'))].'\''.$key->format('y')), new DataCell($value, number_format($value, 0, ',', '.').' €')));
+        return new DataRow(array(
+                new DataCell(MonthEnum::getShortTranslatedMonthEnumArray()[intval($key->format('n'))].'. '.$key->format('y')),
+                new DataCell($sales, number_format($sales, 0, ',', '.').'€'),
+                new DataCell($expenses, number_format($expenses, 0, ',', '.').'€'),
+            )
+        );
     }
 }
