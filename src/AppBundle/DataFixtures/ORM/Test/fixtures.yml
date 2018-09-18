@@ -192,7 +192,6 @@ AppBundle\Entity\Spending:
     description: <sentence()>
     baseAmount: <randomFloat(1, 5)>
     isPayed: <boolean()>
-    paymentDate: <date()>
     paymentMethod: <numberBetween(0, 2)>
 
 # Provider
