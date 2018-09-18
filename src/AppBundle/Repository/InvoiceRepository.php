@@ -55,7 +55,7 @@ class InvoiceRepository extends EntityRepository
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function getMonthlyIncomingsAmountForDate(\DateTime $date)
+    public function getMonthlySalesAmountForDate(\DateTime $date)
     {
         $begin = clone $date;
         $end = clone $date;

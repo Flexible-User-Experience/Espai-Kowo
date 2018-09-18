@@ -58,6 +58,7 @@ services:
         arguments:
             - "@translator"
             - "@app.invoice_repository"
+            - "@app.spending_repository"
 # Sitemap
     app.sitemap:
         class: AppBundle\Listener\SitemapListener
