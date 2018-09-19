@@ -29,23 +29,65 @@ class CourierService
     }
 
     /**
-     * Send an email
+     * Send an email.
+     *
+     * @param string      $from
+     * @param string      $toEmail
+     * @param string      $subject
+     * @param string      $body
+     * @param string|null $replyAddress
+     * @param string|null $toName
+     *
+     * @return int
+     */
+    public function sendEmail($from, $toEmail, $subject, $body, $replyAddress = null, $toName = null)
+    {
+        $message = $this->buildSwiftMesage($from, $toEmail, $subject, $body, $replyAddress, $toName);
+
+        return $this->mailer->send($message);
+    }
+
+    /**
+     * Send an email with an attatchment PDF.
      *
      * @param string $from
-     * @param string $to
+     * @param string $toEmail
+     * @param string $toName
      * @param string $subject
      * @param string $body
+     * @param string $pdfFilename
+     * @param \TCPDF $pdf
+     *
+     * @return int
+     */
+    public function sendEmailWithPdfAttached($from, $toEmail, $toName, $subject, $body, $pdfFilename, \TCPDF $pdf)
+    {
+        $swiftAttatchment = new \Swift_Attachment($pdf->Output($pdfFilename, 'S'), $pdfFilename, 'application/pdf');
+        $message = $this->buildSwiftMesage($from, $toEmail, $subject, $body, null, $toName);
+        $message->attach($swiftAttatchment);
+
+        return $this->mailer->send($message);
+    }
+
+    /**
+     * Build an email.
+     *
+     * @param string      $from
+     * @param string      $toEmail
+     * @param string      $subject
+     * @param string      $body
      * @param string|null $replyAddress
+     * @param string|null $toName
      *
      * @return \Swift_Message
      */
-    private function buildEmailMessage($from, $to, $subject, $body, $replyAddress = null)
+    private function buildSwiftMesage($from, $toEmail, $subject, $body, $replyAddress = null, $toName = null)
     {
         $message = new \Swift_Message();
         $message
             ->setSubject($subject)
             ->setFrom($from)
-            ->setTo($to)
+            ->setTo($toEmail, $toName)
             ->setBody($body)
             ->setCharset('UTF-8')
             ->setContentType('text/html');
@@ -54,43 +96,5 @@ class CourierService
         }
 
         return $message;
-    }
-
-    /**
-     * Send an email
-     *
-     * @param string $from
-     * @param string $to
-     * @param string $subject
-     * @param string $body
-     * @param string|null $replyAddress
-     *
-     * @return int messages delivered amount | 0 if failure
-     */
-    public function sendEmail($from, $to, $subject, $body, $replyAddress = null)
-    {
-        return $this->mailer->send($this->buildEmailMessage($from, $to, $subject, $body, $replyAddress));
-    }
-
-    /**
-     * Send an email with an attachment
-     *
-     * @param string $from
-     * @param string $to
-     * @param string $subject
-     * @param string $body
-     * @param string|null $replyAddress
-     * @param string|null $attatchment
-     *
-     * @return int messages delivered amount | 0 if failure
-     */
-    public function sendEmailWithAttatchment($from, $to, $subject, $body, $replyAddress = null, $attatchment = null)
-    {
-        $message = $this->buildEmailMessage($from, $to, $subject, $body, $replyAddress);
-        if (!is_null($attatchment)) {
-            // TODO fetch attatchment
-        }
-
-        return $this->mailer->send($message);
     }
 }

@@ -315,14 +315,16 @@ class NotificationService
      */
     public function sendInvoicePdfNotification(Invoice $invoice, \TCPDF $pdf)
     {
-        return $this->messenger->sendEmailWithAttatchment(
+
+        return $this->messenger->sendEmailWithPdfAttached(
             $this->amd,
             $invoice->getCustomer()->getEmail(),
+            $invoice->getCustomer()->getName(),
             'Factura '.$invoice->getInvoiceNumberWithF(),
             $this->twig->render(':Mails:customer_invoice_notification.html.twig', array(
                 'invoice' => $invoice,
             )),
-            null,
+            'factura_'.$invoice->getUnderscoredInvoiceNumber().'.pdf',
             $pdf
         );
     }
