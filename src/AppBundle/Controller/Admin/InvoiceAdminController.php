@@ -248,7 +248,7 @@ class InvoiceAdminController extends BaseAdminController
             foreach ($selectedModels as $selectedModel) {
                 $selectedModel
                     ->setIsSepaXmlGenerated(true)
-                    ->setSepaXmlGeneratedDate(new \DateTime())
+                    ->setSepaXmlGenerationDate(new \DateTime())
                 ;
             }
             $em->flush();
