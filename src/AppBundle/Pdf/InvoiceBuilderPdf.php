@@ -213,11 +213,11 @@ class InvoiceBuilderPdf
         // payment method
         $pdf->setFontStyle(null, '', 9);
         $pdf->setBlackColor();
-        $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.account_number'), '', false, 'L', true);
+        $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.payment_type').' '.strtoupper($this->ts->trans(PaymentMethodEnum::getEnumArray()[$invoice->getPaymentMethod()])), '', false, 'L', true);
         $pdf->Ln($interliner);
         if (PaymentMethodEnum::BANK_DRAFT == $invoice->getPaymentMethod()) {
             // SEPA direct debit
-            $pdf->Write(7, $this->ts->trans('backend.admin.invoice.pdf.payment.account_number').' '.$invoice->getCustomer()->getIbanForBankDraftPayment(), '', false, 'L', true);
+            $pdf->Write(7, $this->ts->trans('backend.admin.invoice.pdf.payment.account_number').' '.$invoice->getCustomer()->getIbanForBankDraftPaymentString(), '', false, 'L', true);
         } elseif (PaymentMethodEnum::CASH == $invoice->getPaymentMethod()) {
             // cash
             $pdf->Write(7, $this->ts->trans('backend.admin.invoice.pdf.payment.cash'), '', false, 'L', true);
