@@ -140,7 +140,7 @@ class InvoiceBuilderPdf
         $pdf->Write(0, $invoice->getCustomer()->getCity()->getCanonicalPostalString(), '', false, 'L', true);
         $pdf->Ln($interliner);
 
-        $pdf->Write(0, $this->ekfd['province'], '', false, 'L', false);
+        $pdf->Write(0, '('.$this->ekfd['province'].')', '', false, 'L', false);
         $pdf->SetX($column2Gap);
         $pdf->Write(0, $invoice->getCustomer()->getCity()->getProvince()->getSurroundedName(), '', false, 'L', true);
         $pdf->Ln($interliner);
@@ -173,9 +173,9 @@ class InvoiceBuilderPdf
         foreach ($invoice->getLines() as $line) {
             // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
             $pdf->MultiCell(110, $verticalTableGapSmall, $line->getDescription(), 0, 'L', 0, 0, '', '', true, 0, false, true, 0, 'M');
-            $pdf->MultiCell(15, $verticalTableGapSmall, ($line->getUnits() ? $pdf->floatStringFormat($line->getUnits()) : ''), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
-            $pdf->MultiCell(25, $verticalTableGapSmall, ($line->getUnits() ? $pdf->floatMoneyFormat($line->getPriceUnit()) : ''), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
-            $pdf->MultiCell(20, $verticalTableGapSmall, ($line->getUnits() ? $pdf->floatMoneyFormat($line->calculateBaseAmount()) : ''), 0, 'R', 0, 1, '', '', true, 0, false, true, 0, 'M');
+            $pdf->MultiCell(15, $verticalTableGapSmall, $pdf->floatStringFormat($line->getUnits()), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
+            $pdf->MultiCell(25, $verticalTableGapSmall, $pdf->floatMoneyFormat($line->getPriceUnit()), 0, 'R', 0, 0, '', '', true, 0, false, true, 0, 'M');
+            $pdf->MultiCell(20, $verticalTableGapSmall, $pdf->floatMoneyFormat($line->calculateBaseAmount()), 0, 'R', 0, 1, '', '', true, 0, false, true, 0, 'M');
         }
 
         // horitzonal divider
