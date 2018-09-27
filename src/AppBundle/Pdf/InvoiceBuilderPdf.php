@@ -221,7 +221,7 @@ class InvoiceBuilderPdf
         } elseif (PaymentMethodEnum::CASH == $invoice->getPaymentMethod()) {
             // cash
             $pdf->Write(7, $this->ts->trans('backend.admin.invoice.pdf.payment.cash'), '', false, 'L', true);
-        } elseif (PaymentMethodEnum::CASH == $invoice->getPaymentMethod()) {
+        } elseif (PaymentMethodEnum::BANK_TRANSFER == $invoice->getPaymentMethod()) {
             // bank transfer
             $pdf->Write(7, $this->ts->trans('backend.admin.invoice.pdf.payment.bank_transfer').' '.$this->ekfd['bank_account'], '', false, 'L', true);
         }
