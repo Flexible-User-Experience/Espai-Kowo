@@ -7,13 +7,17 @@ backend:
                 invoice_number: "Factura número"
                 invoice_date: "Fecha"
                 customer_data: "Datos del cliente"
-                payment_type: "Forma de pago"
-                account_number: "Mediante transferencia bancaria al número de cuenta:"
                 table_header: "Valoración económica"
                 payment_method:
                     bank_draft: Giro bancario
                     bank_transfer: Transferencia bancaria
                     cash: En efectivo
+                payment_type: "Modalidad de pago:"
+                account_number: "Número de cuenta:"
+                payment:
+                    account_number: "Durante los próximos días se efectuará un cargo en la cuenta:"
+                    cash: "Durante los próximos días deberás pagar el recibo en efectivo."
+                    bank_transfer: "Durante los próximos días deberás efectuar una transferencia al número de cuenta:"
         invoiceLine:
             invoice: Factura
             description: Descripción

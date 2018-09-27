@@ -225,13 +225,17 @@ backend:
                 invoice_number: "Factura núm."
                 invoice_date: "Data"
                 customer_data: "Dades del client"
-                payment_type: "Forma de pagament"
-                account_number: "Mitjançant transferència bancària al número de compte:"
                 table_header: "Valoració econòmica"
                 payment_method:
                     bank_draft: Gir bancari
                     bank_transfer: Transferència bancaria
                     cash: En efectiu
+                payment_type: "Modalitat de pagament:"
+                account_number: "Número de compte:"
+                payment:
+                    account_number: "Durant els pròxims dies s'efectuarà un càrrec al número de compte:"
+                    cash: "Durant els pròxims dies hauràs pagar el rebut en efectiu."
+                    bank_transfer: "Durant els pròxims dies hauràs de efectuar una transferència al número de compte:"
         invoiceLine:
             invoice: Factura
             description: Descripció

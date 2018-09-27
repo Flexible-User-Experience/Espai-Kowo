@@ -19,6 +19,12 @@
     </div>
 {% endblock %}
 
+{# override css includes #}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}"/>
+{% endblock %}
+
 {# override javascript includes #}
 {% block javascripts %}
     {{ parent() }}

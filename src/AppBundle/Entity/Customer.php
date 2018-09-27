@@ -389,6 +389,19 @@ class Customer extends AbstractBase
     }
 
     /**
+     * @return string
+     */
+    public function getIbanForBankDraftPaymentString()
+    {
+        $result = $this->getIbanForBankDraftPayment();
+        if (strlen($this->getIbanForBankDraftPayment()) == 24) {
+            $result = substr($result, 0, 4).' '.substr($result, 4, 4).' '.substr($result, 8, 4).' '.substr($result, 12, 4).' '.substr($result, 16, 4).' '.substr($result, 20, 4);
+        }
+
+        return $result;
+    }
+
+    /**
      * @param string $ibanForBankDraftPayment
      *
      * @return $this
