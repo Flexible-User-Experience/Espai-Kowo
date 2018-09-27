@@ -7,13 +7,17 @@ backend:
                 invoice_number: "Invoice number"
                 invoice_date: "Date"
                 customer_data: "Client data"
-                payment_type: "Payment method"
-                account_number: "By bank transfer to the account number:"
                 table_header: "Economic valuation"
                 payment_method:
                     bank_draft: Bank draft
                     bank_transfer: Bank transfer
                     cash: Cash
+                payment_type: "Payment method:"
+                account_number: "Account number:"
+                payment:
+                    account_number: "In the next few days a charge will be made to the account number:"
+                    cash: "During the next few days you will have to pay the receipt in cash."
+                    bank_transfer: "During the next days you will have to make a transfer to the account number:"
         invoiceLine:
             invoice: Invoice
             description: Description
