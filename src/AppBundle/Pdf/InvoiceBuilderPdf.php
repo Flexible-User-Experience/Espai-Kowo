@@ -5,6 +5,7 @@ namespace AppBundle\Pdf;
 use AppBundle\Entity\Invoice;
 use AppBundle\Entity\InvoiceLine;
 use AppBundle\Enum\LanguageEnum;
+use AppBundle\Enum\PaymentMethodEnum;
 use AppBundle\Service\SmartAssetsHelperService;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use WhiteOctober\TCPDFBundle\Controller\TCPDFController;
@@ -214,7 +215,16 @@ class InvoiceBuilderPdf
         $pdf->setBlackColor();
         $pdf->Write(0, $this->ts->trans('backend.admin.invoice.pdf.account_number'), '', false, 'L', true);
         $pdf->Ln($interliner);
-        $pdf->Write(0, $this->ekfd['bank_account'], '', false, 'L', true);
+        if (PaymentMethodEnum::BANK_DRAFT == $invoice->getPaymentMethod()) {
+            // SEPA direct debit
+            $pdf->Write(7, $this->ts->trans('backend.admin.invoice.pdf.payment.account_number').' '.$invoice->getCustomer()->getIbanForBankDraftPayment(), '', false, 'L', true);
+        } elseif (PaymentMethodEnum::CASH == $invoice->getPaymentMethod()) {
+            // cash
+            $pdf->Write(7, $this->ts->trans('backend.admin.invoice.pdf.payment.cash'), '', false, 'L', true);
+        } elseif (PaymentMethodEnum::CASH == $invoice->getPaymentMethod()) {
+            // bank transfer
+            $pdf->Write(7, $this->ts->trans('backend.admin.invoice.pdf.payment.bank_transfer').' '.$this->ekfd['bank_account'], '', false, 'L', true);
+        }
 
         return $pdf;
     }
