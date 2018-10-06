@@ -62,6 +62,8 @@ services:
             - "@app.spanish_sepa_helper"
             - "%espai_kowo_fiscal_data%"
 # Factories
+    app.accounting_calendar_service:
+        class: AppBundle\Service\AccountingCalendarService
     app.spreadsheet_factory:
         class: AppBundle\Service\SpreadsheetService
     app.charts_factory_service:
