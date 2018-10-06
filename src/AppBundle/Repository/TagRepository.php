@@ -10,8 +10,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Class TagRepository
  *
  * @category Repository
- * @package  AppBundle\Repository
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class TagRepository extends EntityRepository
 {
@@ -25,7 +23,7 @@ class TagRepository extends EntityRepository
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|array
      */
     public function getAllEnabledSortedByTitle()
     {
@@ -39,7 +37,7 @@ class TagRepository extends EntityRepository
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|array
      */
     public function getAllEnabledSortedByTitleWithJoin()
     {

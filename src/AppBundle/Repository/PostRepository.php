@@ -10,13 +10,11 @@ use Doctrine\ORM\EntityRepository;
  * Class PostRepository
  *
  * @category Repository
- * @package  AppBundle\Repository
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class PostRepository extends EntityRepository
 {
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|array
      */
     public function getAllEnabledSortedByPublishedDate()
     {
@@ -31,7 +29,7 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|array
      */
     public function getAllEnabledSortedByPublishedDateWithJoin()
     {
@@ -48,7 +46,7 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|array
      */
     public function getAllEnabledSortedByPublishedDateWithJoinUntilNow()
     {
@@ -70,7 +68,7 @@ class PostRepository extends EntityRepository
     /**
      * @param Tag $tag
      *
-     * @return ArrayCollection
+     * @return ArrayCollection|array
      */
     public function getPostsByTagEnabledSortedByPublishedDate(Tag $tag)
     {
@@ -90,7 +88,8 @@ class PostRepository extends EntityRepository
 
     /**
      * @param Tag $tag
-     * @return ArrayCollection
+     *
+     * @return ArrayCollection|array
      */
     public function getPostsByTagEnabledSortedByPublishedDateWithJoin(Tag $tag)
     {
@@ -110,7 +109,8 @@ class PostRepository extends EntityRepository
 
     /**
      * @param Tag $tag
-     * @return ArrayCollection
+     *
+     * @return ArrayCollection|array
      */
     public function getPostsByTagEnabledSortedByPublishedDateWithJoinUntilNow(Tag $tag)
     {

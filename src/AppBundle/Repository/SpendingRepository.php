@@ -16,7 +16,6 @@ class SpendingRepository extends EntityRepository
      * @param \DateTime $date
      *
      * @return int
-     *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function getMonthlyExpensesAmountForDate(\DateTime $date)
