@@ -4,6 +4,8 @@ namespace AppBundle\Repository;
 
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * Class SpendingRepository.
@@ -13,10 +15,59 @@ use Doctrine\ORM\EntityRepository;
 class SpendingRepository extends EntityRepository
 {
     /**
+     * @param \DateTime $begin
+     * @param \DateTime $end
+     *
+     * @return QueryBuilder
+     */
+    public function getExpensesForIntervalQB(\DateTime $begin, \DateTime $end) {
+        $query = $this->createQueryBuilder('s')
+            ->select('SUM(s.baseAmount) as amount')
+            ->where('s.date >= :begin')
+            ->andWhere('s.date <= :end')
+            ->setParameter('begin', $begin->format('Y-m-d'))
+            ->setParameter('end', $end->format('Y-m-d'))
+        ;
+
+        return $query;
+    }
+
+    /**
+     * @param \DateTime $begin
+     * @param \DateTime $end
+     *
+     * @return Query
+     */
+    public function getExpensesForIntervalQ(\DateTime $begin, \DateTime $end) {
+        return $this->getExpensesForIntervalQB($begin, $end)->getQuery();
+    }
+
+    /**
+     * @param \DateTime $begin
+     * @param \DateTime $end
+     *
+     * @return null|array|int
+     */
+    public function getExpensesForInterval(\DateTime $begin, \DateTime $end) {
+        return $this->getExpensesForIntervalQ($begin, $end)->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR);
+    }
+
+    /**
+     * @param \DateTime $begin
+     * @param \DateTime $end
+     *
+     * @return float
+     */
+    public function getExpensesAmountForInterval(\DateTime $begin, \DateTime $end) {
+        $result = $this->getExpensesForInterval($begin, $end);
+
+        return is_null($result) ? 0 : floatval($result);
+    }
+
+    /**
      * @param \DateTime $date
      *
-     * @return int
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @return float
      */
     public function getMonthlyExpensesAmountForDate(\DateTime $date)
     {
@@ -24,15 +75,7 @@ class SpendingRepository extends EntityRepository
         $end = clone $date;
         $begin->modify('first day of this month');
         $end->modify('last day of this month');
-        $query = $this->createQueryBuilder('i')
-            ->select('SUM(i.baseAmount) as amount')
-            ->where('i.date >= :begin')
-            ->andWhere('i.date <= :end')
-            ->setParameter('begin', $begin->format('Y-m-d'))
-            ->setParameter('end', $end->format('Y-m-d'))
-            ->getQuery()
-        ;
 
-        return is_null($query->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR)) ? 0 : floatval($query->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR));
+        return $this->getExpensesAmountForInterval($begin, $end);
     }
 }
