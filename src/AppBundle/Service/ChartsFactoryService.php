@@ -3,8 +3,6 @@
 namespace AppBundle\Service;
 
 use AppBundle\Enum\MonthEnum;
-use AppBundle\Repository\InvoiceRepository;
-use AppBundle\Repository\SpendingRepository;
 use SaadTazi\GChartBundle\DataTable\DataRow;
 use SaadTazi\GChartBundle\DataTable\DataCell;
 use SaadTazi\GChartBundle\DataTable\DataTable;
@@ -25,14 +23,9 @@ class ChartsFactoryService
     private $ts;
 
     /**
-     * @var InvoiceRepository
+     * @var AccountingService
      */
-    private $ir;
-
-    /**
-     * @var SpendingRepository
-     */
-    private $sr;
+    private $as;
 
     /**
      * Methods.
@@ -42,14 +35,12 @@ class ChartsFactoryService
      * ChartsFactoryService constructor.
      *
      * @param TranslatorInterface $ts
-     * @param InvoiceRepository   $ir
-     * @param SpendingRepository  $sr
+     * @param AccountingService   $as
      */
-    public function __construct(TranslatorInterface $ts, InvoiceRepository $ir, SpendingRepository $sr)
+    public function __construct(TranslatorInterface $ts, AccountingService $as)
     {
         $this->ts = $ts;
-        $this->ir = $ir;
-        $this->sr = $sr;
+        $this->as = $as;
     }
 
     /**
@@ -70,8 +61,8 @@ class ChartsFactoryService
         $date->sub(new \DateInterval('P12M'));
         $interval = new \DateInterval('P1M');
         for ($i = 0; $i <= 12; ++$i) {
-            $sales = $this->ir->getMonthlySalesAmountForDate($date);
-            $expenses = $this->sr->getMonthlyExpensesAmountForDate($date);
+            $sales = $this->as->getMonthlySalesAmountForDate($date);
+            $expenses = $this->as->getMonthlyExpensesAmountForDate($date);
             $results = $sales - $expenses;
             $dt->addRowObject($this->buildIncomingCellsRow($date, $sales, $expenses, $results));
             $date->add($interval);

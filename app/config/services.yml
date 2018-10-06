@@ -77,8 +77,7 @@ services:
         class: AppBundle\Service\ChartsFactoryService
         arguments:
             - "@translator"
-            - "@app.invoice_repository"
-            - "@app.spending_repository"
+            - "@app.accounting_service"
 # Sitemap
     app.sitemap:
         class: AppBundle\Listener\SitemapListener
