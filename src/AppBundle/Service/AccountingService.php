@@ -48,6 +48,14 @@ class AccountingService
     }
 
     /**
+     * @return int
+     */
+    public function getCurrentQuarterForLocalGovernmentAccounting()
+    {
+        return $this->acs->getCurrentQuarterForLocalGovernmentAccounting();
+    }
+
+    /**
      * @param \DateTime $date
      *
      * @return int

@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Enum\MonthEnum;
+use AppBundle\Model\EstimatedQuarterTax;
 use SaadTazi\GChartBundle\DataTable\DataRow;
 use SaadTazi\GChartBundle\DataTable\DataCell;
 use SaadTazi\GChartBundle\DataTable\DataTable;
@@ -41,6 +42,20 @@ class ChartsFactoryService
     {
         $this->ts = $ts;
         $this->as = $as;
+    }
+
+    /**
+     * @return EstimatedQuarterTax
+     */
+    public function getEstimatedQuarterTaxes()
+    {
+        $result = new EstimatedQuarterTax(
+            $this->as->getCurrentQuarterForLocalGovernmentAccounting(),
+            $this->as->getEstimatedQuarterSalesTaxPortion(),
+            $this->as->getEstimatedQuarterExpensesTaxPortion()
+        );
+
+        return $result;
     }
 
     /**
