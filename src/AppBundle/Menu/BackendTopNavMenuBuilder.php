@@ -59,7 +59,7 @@ class BackendTopNavMenuBuilder
                 'homepage',
                 array(
                     'label' => '<i class="fa fa-globe"></i>',
-                    'route' => 'app_homepage',
+                    'route' => 'front_homepage',
                 )
             )
             ->setExtras(
