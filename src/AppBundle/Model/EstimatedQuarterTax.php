@@ -71,6 +71,14 @@ class EstimatedQuarterTax
     }
 
     /**
+     * @return string
+     */
+    public function getSalesTaxPortionString()
+    {
+        return number_format($this->getSalesTaxPortion(), 2, '\'', '.');
+    }
+
+    /**
      * @param float $salesTaxPortion
      *
      * @return $this
@@ -91,6 +99,14 @@ class EstimatedQuarterTax
     }
 
     /**
+     * @return string
+     */
+    public function getExpensesTaxPortionString()
+    {
+        return number_format($this->getExpensesTaxPortion(), 2, '\'', '.');
+    }
+
+    /**
      * @param float $expensesTaxPortion
      *
      * @return $this
@@ -100,5 +116,21 @@ class EstimatedQuarterTax
         $this->expensesTaxPortion = $expensesTaxPortion;
 
         return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getResultTaxPortion()
+    {
+        return $this->getSalesTaxPortion() - $this->getExpensesTaxPortion();
+    }
+
+    /**
+     * @return string
+     */
+    public function getResultTaxPortionString()
+    {
+        return number_format($this->getResultTaxPortion() * -1, 2, '\'', '.');
     }
 }

@@ -12,7 +12,7 @@ use AppBundle\Repository\SpendingRepository;
  */
 class AccountingService
 {
-    const LOCAL_GOVERNMENT_TAX = 1.21;
+    const LOCAL_GOVERNMENT_TAX = 0.21;
 
     /**
      * @var AccountingCalendarService
@@ -122,11 +122,6 @@ class AccountingService
      */
     private function calculateTaxPortionOfValue($value)
     {
-        $result = 0.0;
-        if ($value > 0) {
-            $result = $value / self::LOCAL_GOVERNMENT_TAX;
-        }
-
-        return $result;
+        return $value * self::LOCAL_GOVERNMENT_TAX;
     }
 }

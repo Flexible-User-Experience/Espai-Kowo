@@ -15,4 +15,37 @@
             </div>
         </div>
     </div>
+    <div class="box box-primary">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-xs-5">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Quarter</th>
+                            <th>Sales</th>
+                            <th>Expenses</th>
+                            <th>Result</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ eqt.quarter }}</td>
+                            <td>{{ eqt.salesTaxPortionString }} €</td>
+                            <td>{{ eqt.expensesTaxPortionString }} €</td>
+                            <td>
+                                {% if eqt.resultTaxPortion > 0 %}
+                                    <strong><span class="text-danger">{{ eqt.resultTaxPortionString }} €</span></strong>
+                                {% else %}
+                                    <strong><span class="text-success">+{{ eqt.resultTaxPortionString }} €</span></strong>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-xs-8"></div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
