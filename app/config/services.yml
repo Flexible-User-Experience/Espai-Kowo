@@ -61,9 +61,16 @@ services:
         arguments:
             - "@app.spanish_sepa_helper"
             - "%espai_kowo_fiscal_data%"
-# Factories
+# Accounting
     app.accounting_calendar_service:
         class: AppBundle\Service\AccountingCalendarService
+    app.accounting_service:
+        class: AppBundle\Service\AccountingService
+        arguments:
+            - "@app.accounting_calendar_service"
+            - "@app.invoice_repository"
+            - "@app.spending_repository"
+# Factories
     app.spreadsheet_factory:
         class: AppBundle\Service\SpreadsheetService
     app.charts_factory_service:
