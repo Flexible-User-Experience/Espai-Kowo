@@ -49,6 +49,56 @@ class InvoiceRepository extends EntityRepository
     }
 
     /**
+     * @param \DateTime $begin
+     * @param \DateTime $end
+     *
+     * @return QueryBuilder
+     */
+    public function getSalesForIntervalQB(\DateTime $begin, \DateTime $end) {
+        $query = $this->createQueryBuilder('i')
+            ->select('SUM(i.baseAmount) as amount')
+            ->where('i.date >= :begin')
+            ->andWhere('i.date <= :end')
+            ->setParameter('begin', $begin->format('Y-m-d'))
+            ->setParameter('end', $end->format('Y-m-d'))
+        ;
+
+        return $query;
+    }
+
+    /**
+     * @param \DateTime $begin
+     * @param \DateTime $end
+     *
+     * @return Query
+     */
+    public function getSalesForIntervalQ(\DateTime $begin, \DateTime $end) {
+        return $this->getSalesForIntervalQB($begin, $end)->getQuery();
+    }
+
+    /**
+     * @param \DateTime $begin
+     * @param \DateTime $end
+     *
+     * @return null|array|int
+     */
+    public function getSalesForInterval(\DateTime $begin, \DateTime $end) {
+        return $this->getSalesForIntervalQ($begin, $end)->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR);
+    }
+
+    /**
+     * @param \DateTime $begin
+     * @param \DateTime $end
+     *
+     * @return float
+     */
+    public function getSalesAmountForInterval(\DateTime $begin, \DateTime $end) {
+        $result = $this->getSalesForInterval($begin, $end);
+
+        return is_null($result) ? 0 : floatval($result);
+    }
+
+    /**
      * @param \DateTime $date
      *
      * @return int
@@ -61,15 +111,7 @@ class InvoiceRepository extends EntityRepository
         $end = clone $date;
         $begin->modify('first day of this month');
         $end->modify('last day of this month');
-        $query = $this->createQueryBuilder('i')
-            ->select('SUM(i.baseAmount) as amount')
-            ->where('i.date >= :begin')
-            ->andWhere('i.date <= :end')
-            ->setParameter('begin', $begin->format('Y-m-d'))
-            ->setParameter('end', $end->format('Y-m-d'))
-            ->getQuery()
-        ;
 
-        return is_null($query->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR)) ? 0 : floatval($query->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR));
+        return $this->getSalesAmountForInterval($begin, $end);
     }
 }

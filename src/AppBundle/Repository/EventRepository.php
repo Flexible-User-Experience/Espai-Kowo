@@ -3,18 +3,18 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\EventCategory;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
 
 /**
  * Class EventRepository
  *
  * @category Repository
- * @package  AppBundle\Repository
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class EventRepository extends EntityRepository
 {
+    /**
+     * @return array
+     */
     public function findAllEnabledSortedByDate()
     {
         $query = $this->createQueryBuilder('e')
@@ -27,7 +27,8 @@ class EventRepository extends EntityRepository
 
     /**
      * @param EventCategory $category
-     * @return ArrayCollection
+     *
+     * @return array
      */
     public function getEventsByCategoryEnabledSortedByDateWithJoin(EventCategory $category)
     {

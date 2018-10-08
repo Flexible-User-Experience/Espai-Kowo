@@ -255,6 +255,11 @@ backend:
             description: Descripció
             document: Document
         block:
+            table:
+                quarter: Trimestre
+                sales: IVA repercutit
+                expenses: IVA suportat
+                result: Resultat
             charts:
                 sales: Vendes
                 expenses: Despeses

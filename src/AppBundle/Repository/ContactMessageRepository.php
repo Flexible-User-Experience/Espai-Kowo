@@ -8,10 +8,18 @@ use Doctrine\ORM\EntityRepository;
  * Class ContactMessageRepository
  *
  * @category Repository
- * @package  AppBundle\Repository
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class ContactMessageRepository extends EntityRepository
 {
+    /**
+     * @return int
+     */
+    public function getNotReadMessagesAmount()
+    {
+        $qb = $this->createQueryBuilder('cm')
+            ->where('cm.checked = :checked')
+            ->setParameter('checked', false);
 
+        return count($qb->getQuery()->getArrayResult());
+    }
 }

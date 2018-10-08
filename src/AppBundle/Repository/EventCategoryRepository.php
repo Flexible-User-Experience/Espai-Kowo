@@ -4,14 +4,11 @@ namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class EventCategoryRepository
  *
  * @category Repository
- * @package  AppBundle\Repository
- * @author   Anton Serra <aserratorta@gmail.com>
  */
 class EventCategoryRepository extends EntityRepository
 {
@@ -25,7 +22,7 @@ class EventCategoryRepository extends EntityRepository
     }
 
     /**
-     * @return ArrayCollection
+     * @return array
      */
     public function getAllEnabledSortedByTitle()
     {
@@ -39,7 +36,7 @@ class EventCategoryRepository extends EntityRepository
     }
 
     /**
-     * @return ArrayCollection
+     * @return array
      */
     public function getAllEnabledSortedByTitleWithJoin()
     {

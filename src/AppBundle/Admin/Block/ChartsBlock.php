@@ -56,6 +56,7 @@ class ChartsBlock extends AbstractBlockService
                 'settings' => $settings,
                 'title' => 'Charts',
                 'dt' => $this->cfs->buildLastYearBalanceChart()->toArray(),
+                'eqt' => $this->cfs->getEstimatedQuarterTaxes(),
             ),
             $response
         );

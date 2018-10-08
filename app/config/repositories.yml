@@ -44,6 +44,11 @@ services:
         factory: [ "@doctrine", getRepository ]
         arguments:
             - AppBundle:Coworker
+    app.contact_message_repository:
+        class: AppBundle\Repository\ContactMessageRepository
+        factory: [ "@doctrine", getRepository ]
+        arguments:
+            - AppBundle:ContactMessage
     app.repositories_manager:
         class: AppBundle\Manager\RepositoriesManager
         arguments:
