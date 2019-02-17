@@ -171,13 +171,9 @@
     <script type="text/javascript">
         jQuery(document).ready(function() {
             jQuery('.carousel').carousel({interval: 3500});
+            {% if not formHomepage.vars.valid %}
+                jQuery('#form_modal').modal('show');
+            {% endif %}
         });
     </script>
-    {% if not formHomepage.vars.valid %}
-        <script type="text/javascript">
-            jQuery(document).ready(function() {
-                jQuery('#form_modal').modal('show');
-            });
-        </script>
-    {% endif %}
 {% endblock %}
