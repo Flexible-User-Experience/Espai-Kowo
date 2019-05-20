@@ -10,12 +10,13 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
-use Sonata\Form\Type\CollectionType;
-use Sonata\Form\Type\DatePickerType;
+use Sonata\CoreBundle\Form\Type\DatePickerType;
+use Sonata\AdminBundle\Form\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 /**
  * Class InvoiceAdmin.
@@ -121,7 +122,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
             ->with('backend.admin.invoice.detail', $this->getFormMdSuccessBoxArray(3))
             ->add(
                 'taxPercentage',
-                null,
+                NumberType::class,
                 array(
                     'label' => 'backend.admin.invoice.taxPercentage',
                     'required' => false,
@@ -130,7 +131,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'irpfPercentage',
-                null,
+                NumberType::class,
                 array(
                     'label' => 'backend.admin.invoice.irpfPercentage',
                     'required' => false,
@@ -139,7 +140,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'baseAmount',
-                null,
+                NumberType::class,
                 array(
                     'label' => 'backend.admin.invoice.baseAmount',
                     'required' => false,
@@ -148,7 +149,7 @@ class InvoiceAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'totalAmount',
-                null,
+                NumberType::class,
                 array(
                     'label' => 'backend.admin.invoice.totalAmount',
                     'required' => false,
