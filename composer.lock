@@ -1965,25 +1965,25 @@
         },
         {
             "name": "google/recaptcha",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/google/recaptcha.git",
-                "reference": "e7add3be59211482ecdb942288f52da64a35f61a"
+                "reference": "c4a17d6af648d4f3814430cd103cba50b75b571c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google/recaptcha/zipball/e7add3be59211482ecdb942288f52da64a35f61a",
-                "reference": "e7add3be59211482ecdb942288f52da64a35f61a",
+                "url": "https://api.github.com/repos/google/recaptcha/zipball/c4a17d6af648d4f3814430cd103cba50b75b571c",
+                "reference": "c4a17d6af648d4f3814430cd103cba50b75b571c",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.2.20|^2.12",
+                "friendsofphp/php-cs-fixer": "^2.2.20|^2.15",
                 "php-coveralls/php-coveralls": "^2.1",
-                "phpunit/phpunit": "^4.8.36|^5.7.27|^6.59|^7"
+                "phpunit/phpunit": "^4.8.36|^5.7.27|^6.59|^7.5.11"
             },
             "type": "library",
             "extra": {
@@ -2008,7 +2008,7 @@
                 "recaptcha",
                 "spam"
             ],
-            "time": "2018-08-05T09:31:53+00:00"
+            "time": "2019-05-24T12:44:03+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -3738,16 +3738,16 @@
         },
         {
             "name": "phpoffice/phpspreadsheet",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-                "reference": "bf00f0cc5f55c354018f9a9ef15e6e3e1a229051"
+                "reference": "84e09df79855ed3da84e2eab6850eb7741d8cbda"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/bf00f0cc5f55c354018f9a9ef15e6e3e1a229051",
-                "reference": "bf00f0cc5f55c354018f9a9ef15e6e3e1a229051",
+                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/84e09df79855ed3da84e2eab6850eb7741d8cbda",
+                "reference": "84e09df79855ed3da84e2eab6850eb7741d8cbda",
                 "shasum": ""
             },
             "require": {
@@ -3828,20 +3828,20 @@
                 "xls",
                 "xlsx"
             ],
-            "time": "2019-01-02T04:42:54+00:00"
+            "time": "2019-05-26T02:50:36+00:00"
         },
         {
             "name": "presta/sitemap-bundle",
-            "version": "v1.6.0",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/prestaconcept/PrestaSitemapBundle.git",
-                "reference": "903d142b83accf9965f708f26fe56314aa154d1a"
+                "reference": "5ec8028a16c63c97ab328f7acf456eac571916bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/prestaconcept/PrestaSitemapBundle/zipball/903d142b83accf9965f708f26fe56314aa154d1a",
-                "reference": "903d142b83accf9965f708f26fe56314aa154d1a",
+                "url": "https://api.github.com/repos/prestaconcept/PrestaSitemapBundle/zipball/5ec8028a16c63c97ab328f7acf456eac571916bc",
+                "reference": "5ec8028a16c63c97ab328f7acf456eac571916bc",
                 "shasum": ""
             },
             "require": {
@@ -3891,7 +3891,7 @@
                 "symfony",
                 "xml"
             ],
-            "time": "2019-04-01T07:37:29+00:00"
+            "time": "2019-05-27T11:30:39+00:00"
         },
         {
             "name": "psr/http-message",
@@ -4288,16 +4288,16 @@
         },
         {
             "name": "sonata-project/admin-bundle",
-            "version": "3.48.2",
+            "version": "3.48.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "d83ce5aba749fb54d91ab1ca9c64f13f0fbc045a"
+                "reference": "f521289aa2b1a0937e167c057d309ef7646604b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/d83ce5aba749fb54d91ab1ca9c64f13f0fbc045a",
-                "reference": "d83ce5aba749fb54d91ab1ca9c64f13f0fbc045a",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/f521289aa2b1a0937e167c057d309ef7646604b8",
+                "reference": "f521289aa2b1a0937e167c057d309ef7646604b8",
                 "shasum": ""
             },
             "require": {
@@ -4389,7 +4389,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2019-05-16T05:50:14+00:00"
+            "time": "2019-05-21T18:00:30+00:00"
         },
         {
             "name": "sonata-project/block-bundle",
