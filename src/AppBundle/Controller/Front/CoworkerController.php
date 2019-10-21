@@ -14,6 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class CoworkerController
@@ -86,14 +87,19 @@ class CoworkerController extends Controller
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
+     * @throws NotFoundHttpException
      */
     public function detailAction(Request $request, $slug)
     {
+        /** @var Coworker $coworker */
         $coworker = $this->getDoctrine()->getRepository('AppBundle:Coworker')->findOneBy(
             array(
                 'slug' => $slug,
             )
         );
+        if (!$coworker->getEnabled()) {
+            throw new NotFoundHttpException();
+        }
         $socialNetworks = $this->getDoctrine()->getRepository('AppBundle:SocialNetwork')->getCoworkerSocialNetworksSortedByTitle($coworker);
         $coworker->setSocialNetworks($socialNetworks);
 
