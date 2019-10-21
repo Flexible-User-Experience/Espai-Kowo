@@ -89,7 +89,7 @@ class BlogController extends Controller
             )
         );
 
-        if (!$post) {
+        if (!$post || ($post && !$post->getEnabled())) {
             throw new EntityNotFoundException();
         }
 
