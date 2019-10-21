@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class EventController
@@ -83,14 +84,19 @@ class EventController extends Controller
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
+     * @throws NotFoundHttpException
      */
     public function detailAction(Request $request, $slug)
     {
+        /** @var Event $event */
         $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findOneBy(
             array(
                 'slug' => $slug,
             )
         );
+        if (!$event->getEnabled()) {
+            throw new NotFoundHttpException();
+        }
         $categories = $this->getDoctrine()->getRepository('AppBundle:EventCategory')->getAllEnabledSortedByTitle();
 
         $contact = new ContactMessage();
