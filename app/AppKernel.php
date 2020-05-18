@@ -30,7 +30,7 @@ class AppKernel extends Kernel
             new Apoutchika\LoremIpsumBundle\ApoutchikaLoremIpsumBundle(),
             new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Hampe\Bundle\ZurbInkBundle\HampeZurbInkBundle(),
+            new Gremo\ZurbInkBundle\GremoZurbInkBundle(),
             new Hautelook\AliceBundle\HautelookAliceBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Knp\Bundle\DisqusBundle\KnpDisqusBundle(),
