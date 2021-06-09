@@ -21,8 +21,8 @@ parameters:
 
     locale: ca
 
-    google_analytics_enabled: false
-    google_analytics_account: "UA-fake..."
+    google_tag_manager_enabled: false
+    google_tag_manager_account: 'GTM-fake...'
 
     path_java:         /usr/bin/java
     path_node:         /usr/bin/nodejs
