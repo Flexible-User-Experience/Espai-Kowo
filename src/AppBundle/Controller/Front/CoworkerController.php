@@ -24,7 +24,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class CoworkerController extends Controller
 {
     /**
-     * @Route("/coworkers", name="front_coworkers_list")
+     * @Route("/coworkers", name="front_coworkers_list", options={"i18n"=false})
      *
      * @param Request $request
      *
@@ -78,7 +78,7 @@ class CoworkerController extends Controller
     }
 
     /**
-     * @Route("/coworker/{slug}", name="front_coworker_detail")
+     * @Route("/coworker/{slug}", name="front_coworker_detail", options={"i18n"=false})
      *
      * @param Request $request
      * @param string $slug
@@ -138,7 +138,7 @@ class CoworkerController extends Controller
     }
 
     /**
-     * @Route("/registre/{token}", name="front_coworker_register")
+     * @Route("/registre/{token}", name="front_coworker_register", options={"i18n"=false})
      *
      * @param Request $request
      * @param Coworker $token

@@ -122,6 +122,12 @@ fos_user:
     service:
         user_manager: sonata.user.orm.user_manager
 
+# JMS Routing
+jms_i18n_routing:
+    default_locale: 'ca'
+    locales:        [ 'ca', 'es', 'en' ]
+    strategy:       prefix_except_default
+
 # CKEditor
 ivory_ck_editor:
     inline: false
