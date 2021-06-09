@@ -30,6 +30,7 @@
     ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/hooks/after-symlink-tasks.yml"
     ansistrano_after_cleanup_tasks_file: "{{ playbook_dir }}/hooks/after-cleanup-tasks.yml"
     # symfony config
+    symfony_php_path: "/usr/bin/php{{ vhost_php_version}}"
     symfony_console_path: "app/console"
     symfony_run_composer: true
     symfony_composer_path: "{{ ansistrano_deploy_to }}/composer.phar"
