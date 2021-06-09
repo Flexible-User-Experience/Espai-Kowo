@@ -38,9 +38,3 @@ assetic:
 
 swiftmailer:
     delivery_address: "%mailer_destination%"
-
-cypress_git_elephant:
-    enable_profiler: false
-    profiler_repository_path: "%kernel.root_dir%/../"
-    repositories:
-        "EspaiKowo": "%kernel.root_dir%/../"
