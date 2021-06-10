@@ -44,6 +44,11 @@ frontend:
             sunligth_space: '130m<sup>2</sup> con luz natural'
             internet_access: 'Fibra óptica a 600Mbps'
             renewal_energy: 'Energía 100% renovable'
+        final_highlights_section:
+            coworking_space: 'coworking room'
+            activities_and_events: 'activities'
+            meeting_zone: 'meeting zone'
+            stress_less_space: 'stress-less space'
     pricing:
         flex_main_title: 'Tarifa mesa <em>flex</em>'
         fix_main_title: 'Tarifa mesa fija'
@@ -62,6 +67,9 @@ frontend:
         meeting_room_availability: 'Disponibilidad sala reuniones limitada'
         meeting_room_availability_always: 'Sala de reuniones siempre disponible'
         per_month: 'al mes'
+    footer:
+        privacy: 'privacy'
+        credits: 'credits'
 
 backend:
     admin:

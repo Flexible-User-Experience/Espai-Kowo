@@ -94,6 +94,11 @@ frontend:
             sunligth_space: '130m<sup>2</sup> amb llum natural'
             internet_access: 'Fibra òptica a 600Mbps'
             renewal_energy: 'Energia 100% renovable'
+        final_highlights_section:
+            coworking_space: 'sala coworking'
+            activities_and_events: 'activitats i formació'
+            meeting_zone: 'zona de reunió'
+            stress_less_space: 'àrea stress-less'
     pricing:
         flex_main_title: 'Tarifa taula <em>flex</em>'
         fix_main_title: 'Tarifa taula fixa'
@@ -112,6 +117,9 @@ frontend:
         meeting_room_availability: 'Disponibilitat sala reunions limitada'
         meeting_room_availability_always: 'Sala de reunions sempre disponible'
         per_month: 'al mes'
+    footer:
+        privacy: 'privacitat'
+        credits: 'crèdits'
 
 backend:
     admin:
