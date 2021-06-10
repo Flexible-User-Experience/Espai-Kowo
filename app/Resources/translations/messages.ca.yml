@@ -82,6 +82,31 @@ frontend:
         main_claim: 'Molt més que compartir un espai de treball'
         cta_button: 'Prova-ho gratis 3 dies'
         cta_modal_title: 'Deixa''ns les teves dades i t''ho explicarem tot amb més detall'
+        subhero_section:
+            p1: 'Si t''agrada el contacte amb la natura, vine a treballar a Espai Kowo. Estem situats a tocar del Parc Natural del Delta de L''Ebre i el Parc Natural dels Ports, la perfecta combinació per gaudir dels esports i les activitats a l''aire lliure entre el mar i la muntanya. Tot un paradís i un espectacular paisatge a mig camí entre Barcelona i València.'
+            p2: 'Disposem d''un espai de treball lluminós equipat amb 12 taules de treball, un <em>team room</em> per a 5 persones, una sala polivalent (reunió, activitats i esdeveniments) i una àrea <em>stress-less</em>. Tenim accés a Internet mitjançant fibra òptica simètrica de 600 MB, servei de cafeteria, armariets individuals i clau per poder accedir 24h al dia.'
+            p3: 'Vine a treballar amb nosaltres durant 3 dies gratis, t''oferim la possibilitat de provar els nostres serveis i l''ambient de treball sense cap compromís. I després, decideix si vols formar part de la nostra comunitat de coworkers.'
+            image_claim1: 'Una nova manera de treballar'
+            image_claim2: 'Suma''t a la comunitat de coworkers'
+            image_claim3: 'Compartim coneixement'
+    pricing:
+        flex_main_title: 'Tarifa taula <em>flex</em>'
+        fix_main_title: 'Tarifa taula fixa'
+        days_per_week1: '1 dia/setmana'
+        days_per_week2: '2 dies/setmana'
+        days_per_week3: '3 dies/setmana'
+        days_per_week7: '7 dies/setmana'
+        office_workplaces5: 'Oficina 5 llocs de treball'
+        full_time: 'Jornada completa'
+        half_time: 'Mitja jornada'
+        variable_table: 'Taula variable'
+        fix_table: 'Taula fixa'
+        private_cloud100: '100 GB núvol privat'
+        private_cloud250: '250 GB núvol privat'
+        private_cloud2000: '2 TB núvol privat'
+        meeting_room_availability: 'Disponibilitat sala reunions limitada'
+        meeting_room_availability_always: 'Sala de reunions sempre disponible'
+        per_month: 'al mes'
 
 backend:
     admin:
