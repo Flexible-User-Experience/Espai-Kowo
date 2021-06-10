@@ -86,6 +86,9 @@ frontend:
         meeting_room_pricing6: 'by hour'
         stress_less_zone_title: '<em>Stress-less</em> zone'
         stress_less_zone_p1: 'Finally, we find a <strong>20m<sup>2</sup></strong> play area open to everyone where you can have a coffee, rest or attend a more informal meeting. The office is equipped with a refrigerator, coffee machine, microwave, table, 6 chairs and 2 comfortable armchairs. We also have a dart board, a chessboard and a <em>retro</em> video games aracade machine.'
+    contact:
+        form_title: 'Contact form'
+        map_title: 'Location map'
     footer:
         privacy: 'privacy'
         credits: 'credits'

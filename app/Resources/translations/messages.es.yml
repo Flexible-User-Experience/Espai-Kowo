@@ -86,6 +86,9 @@ frontend:
         meeting_room_pricing6: 'por hora'
         stress_less_zone_title: 'Área <em>stress-less</em>'
         stress_less_zone_p1: 'Finalmente, encontramos un <strong>espacio lúdico de 20m<sup>2</sup></strong> abierto a todos donde tomar un café, descansar o atender una reunión de carácter más informal. El office está equipado con nevera, máquina de café, microondas, mesa, 6 sillas y 2 sillones cómodos. También tenemos una diana para jugar a los dardos, un tablero de ajedrez y una máquina recreativa de videojuegos <em>retro</em>.'
+    contact:
+        form_title: 'Formulario de contacto'
+        map_title: 'Plano de situación'
     footer:
         privacy: 'privacidad'
         credits: 'créditos'
