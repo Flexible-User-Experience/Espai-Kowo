@@ -1,3 +1,38 @@
+common:
+    close: 'cerrar'
+
+frontend:
+    menu:
+        blog: 'BLOG'
+        coworkers: 'COWORKERS'
+        services: 'SERVICIOS'
+        events: 'ACTIVIDADES'
+        contact: 'CONTACTO'
+        cms: '[ CMS ]'
+    forms:
+        name: 'Nombre *'
+        phone: 'Teléfono'
+        email: 'Email *'
+        message: 'Mensaje *'
+        privacy: 'Acepto la política de privacidad'
+        privacy_1: 'Acepto la'
+        privacy_2: 'política de privacidad'
+        send: 'Enviar'
+        news: 'Suscribirse al newsletter'
+        category: 'Dedicación'
+        socialnetwork: 'Red social'
+        printercode: 'Código impressora'
+        birthdate: 'Fecha nacimineto'
+        description: 'Descripción'
+        url: 'URL'
+    pagination:
+        previous: 'anterior'
+        next: 'siguiente'
+    homepage:
+        main_claim: 'Mucho más que compartir un espacio de trabajo'
+        cta_button: 'Pruébalo gratis 3 días'
+        cta_modal_title: 'Déjanos tus datos y te lo explicaremos todo con más detalle'
+
 backend:
     admin:
         invoice:

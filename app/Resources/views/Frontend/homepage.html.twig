@@ -6,7 +6,7 @@
     <div class="checkbox ">
         <input type="checkbox" id="privacy_checkbox" {{ block('widget_attributes') }} />
         <label class="control-label my-privacy-label" for="privacy_checkbox">
-            Accepto la <a style="text-decoration:underline;" href="{{ path('front_privacy_policy')}}">política de privacitat</a>
+            {{ 'frontend.forms.privacy_1' | trans }} <a style="text-decoration:underline;" href="{{ path('front_privacy_policy')}}">{{ 'frontend.forms.privacy_2' | trans }}</a>
         </label>
     </div>
 {% endblock %}
@@ -44,22 +44,22 @@
         {#<!-- Controls -->#}
         <a class="left carousel-control" href="#header-homepage-carousel" role="button" data-slide="prev">
             <i class="fa fa-2x fa-angle-left" aria-hidden="true"></i>
-            <span class="sr-only">Previous</span>
+            <span class="sr-only">{{ 'frontend.pagination.previous' | trans }}</span>
         </a>
         <a class="right carousel-control" href="#header-homepage-carousel" role="button" data-slide="next">
             <i class="fa fa-2x fa-angle-right" aria-hidden="true"></i>
-            <span class="sr-only">Next</span>
+            <span class="sr-only">{{ 'frontend.pagination.next' | trans }}</span>
         </a>
         <div class="subtitle-background">
             <div class="container">
-                <h2>Molt més que compartir un espai de treball</h2>
+                <h2>{{ 'frontend.homepage.main_claim' | trans }}</h2>
                 {#<!-- Button trigger modal -->#}
                 <p>
                     <button type="button" class="btn btn-kowo-orange btn-sm visible-xs" data-toggle="modal" data-target="#form_modal">
-                        <i class="fa fa-heart" aria-hidden="true"></i> Prova-ho gratis 3 dies
+                        <i class="fa fa-heart" aria-hidden="true"></i> {{ 'frontend.homepage.cta_button' | trans }}
                     </button>
                     <button type="button" class="btn btn-kowo-orange btn-lg hidden-xs" data-toggle="modal" data-target="#form_modal">
-                        <i class="fa fa-heart" aria-hidden="true"></i> Prova-ho gratis 3 dies
+                        <i class="fa fa-heart" aria-hidden="true"></i> {{ 'frontend.homepage.cta_button' | trans }}
                     </button>
                 </p>
             </div>
@@ -70,8 +70,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content text-left">
                 <div class="modal-header green-background-light">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Deixa'ns les teves dades i t'ho explicarem tot amb més detall</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ 'common.close' | trans | capitalize }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ 'frontend.homepage.cta_modal_title' | trans }}</h4>
                 </div>
                 <div class="modal-body">
                     {{ form_start(formHomepage) }}

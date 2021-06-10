@@ -47,31 +47,42 @@ Factures: Factures
 "Spending List": Despeses
 "Spending Create": Crear
 "Spending Delete": Esborrar
+
+common:
+    close: 'tancar'
+
 frontend:
     menu:
-        blog: BLOG
-        coworkers: COWORKERS
-        services: SERVEIS
-        events: ACTIVITATS
-        contact: CONTACTE
-        cms: "[ CMS ]"
+        blog: 'BLOG'
+        coworkers: 'COWORKERS'
+        services: 'SERVEIS'
+        events: 'ACTIVITATS'
+        contact: 'CONTACTE'
+        cms: '[ CMS ]'
     forms:
-        name: "Nom *"
-        phone: Telèfon
-        email: "Email *"
-        message: "Missatge *"
-        privacy: Accepto la política de privacitat
-        send: Enviar
+        name: 'Nom *'
+        phone: 'Telèfon'
+        email: 'Email *'
+        message: 'Missatge *'
+        privacy: 'Accepto la política de privacitat'
+        privacy_1: 'Accepto la'
+        privacy_2: 'política de privacitat'
+        send: 'Enviar'
         news: 'Subscriu-me al newsletter'
-        category: Dedicació
-        socialnetwork: Xarxa social
-        printercode: Codi impressora
-        birthdate: Data naixement
-        description: Descripció
-        url: URL
+        category: 'Dedicació'
+        socialnetwork: 'Xarxa social'
+        printercode: 'Codi impressora'
+        birthdate: 'Data naixement'
+        description: 'Descripció'
+        url: 'URL'
     pagination:
-        previous: anterior
-        next: següent
+        previous: 'anterior'
+        next: 'següent'
+    homepage:
+        main_claim: 'Molt més que compartir un espai de treball'
+        cta_button: 'Prova-ho gratis 3 dies'
+        cta_modal_title: 'Deixa''ns les teves dades i t''ho explicarem tot amb més detall'
+
 backend:
     admin:
         actions: Accions
