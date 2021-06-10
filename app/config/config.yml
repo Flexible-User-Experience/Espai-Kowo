@@ -39,7 +39,7 @@ twig:
         facebook_pixel_enabled:     "%facebook_pixel_enabled%"
         facebook_pixel_id:          "%facebook_pixel_id%"
         main_brand_title:           "%project_web_title%"
-        admin_tag_version:          "v1.2.36"
+        admin_tag_version:          "v1.2.37"
 
 # Assetic
 assetic:
@@ -122,6 +122,12 @@ fos_user:
     service:
         user_manager: sonata.user.orm.user_manager
 
+# JMS Routing
+jms_i18n_routing:
+    default_locale: 'ca'
+    locales:        [ 'ca', 'es', 'en' ]
+    strategy:       prefix_except_default
+
 # CKEditor
 ivory_ck_editor:
     inline: false
@@ -131,11 +137,11 @@ ivory_ck_editor:
 
 # EWZ Google Recaptcha
 ewz_recaptcha:
-    public_key:  "%recaptcha_public_key%"
-    private_key: "%recaptcha_private_key%"
-    locale_key:  "%locale%"
-    enabled:     true
-    ajax:        false
+    public_key:          "%recaptcha_public_key%"
+    private_key:         "%recaptcha_private_key%"
+    locale_from_request: true
+    enabled:             true
+    ajax:                false
 
 # KNP Paginator
 knp_paginator:

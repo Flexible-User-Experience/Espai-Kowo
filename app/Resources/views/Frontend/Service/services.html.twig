@@ -3,10 +3,10 @@
 {% form_theme form _self %}
 
 {% block _contact_homepage_privacy_widget %}
-    <div class="checkbox ">
+    <div class="checkbox">
         <input type="checkbox" id="privacy_checkbox" {{ block('widget_attributes') }} />
         <label class="control-label my-privacy-label" for="privacy_checkbox">
-            Accepto la <a style="text-decoration:underline;" href="{{ path('front_privacy_policy')}}">política de privacitat</a>
+            {{ 'frontend.forms.privacy_1' | trans }} <a style="text-decoration:underline;" href="{{ path('front_privacy_policy') }}">{{ 'frontend.forms.privacy_2' | trans }}</a>
         </label>
     </div>
 {% endblock %}
@@ -19,11 +19,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <h2 class="no-m-top">Espai Kowo, la teva sala de coworking a les Terres de l'Ebre</h2>
-                    <p>Un espai de coworking és una oficina de treball pensada per a petites empreses, treballadors autònoms i emprenedors. L'objectiu principal és compartir un espai de treball obert per a crear sinergies entre els usuaris o <em>coworkers</em>.</p>
+                    <h2 class="no-m-top">{{ 'frontend.services.main_title' | trans }}</h2>
+                    <p>{{ 'frontend.services.main_claim_text' | trans | raw }}</p>
                     {#<!-- Button trigger modal -->#}
                     <button type="button" class="btn btn-kowo-orange btn-lg" data-toggle="modal" data-target="#form_modal">
-                        <i class="fa fa-check-circle" aria-hidden="true"></i> M'agradaria provar aquest servei
+                        <i class="fa fa-check-circle" aria-hidden="true"></i> {{ 'frontend.services.main_claim_button' | trans }}
                     </button>
                 </div>
             </div>
@@ -34,7 +34,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content text-left">
                 <div class="modal-header green-background-light">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ 'common.close' | trans }}"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Deixa'ns les teves dades i t'ho explicarem tot amb més detall</h4>
                 </div>
                 <div class="modal-body">
@@ -55,11 +55,11 @@
         <div class="row">
             <div class="col-xs-12">
                 {% include ':Frontend/includes:notice_flash.html.twig' %}
-                <h4 class="text-muted no-m-top">Taules de treball</h4>
-                <img class="img-responsive normal-m-bottom" src="{{ asset('bundles/app/img/services_working_tables_room.jpg') | imagine_filter('2400x1000') }}" alt="Taules de treball">
-                <p class="small-m-top">Espai Kowo disposa de <strong>13 taules de treball de 180x80 cm</strong> amb accés a Internet amb fibra òptica d'alta velocitat (600Mbps). Cada coworker disposa d'una calaixera, d'un armariet privat i d'una clau d'accés individual al local que li permet establir el seu propi horari de treball. Hi ha un servei de <u>núvol privat amb 250 GB gratis</u> per emmagatzemar i compartir arxius.</p>
-                <p>Només cal portar l'ordinador personal i començar a treballar. A més, la sala disposa d'una impressora multifunció a color connectada a la xarxa capaç d'imprimir fins a mida de paper A3.</p>
-                <p class="no-m-bottom">La tarifa del servei és una quota plana mensual que inclou totes les despeses de subministraments: Internet, aigua, llum, neteja, etc. Tot el subministrament elèctric s'alimenta d'energia 100% renovable, contribuint així a reduir les emissions de carboni a l'atmosfera.</p>
+                <h4 class="text-muted no-m-top">{{ 'frontend.services.worktables_title' | trans }}</h4>
+                <img class="img-responsive normal-m-bottom" src="{{ asset('bundles/app/img/services_working_tables_room.jpg') | imagine_filter('2400x1000') }}" alt="{{ 'frontend.services.wortables_title' | trans }}">
+                <p class="small-m-top">{{ 'frontend.services.worktables_p1' | trans | raw }}</p>
+                <p>{{ 'frontend.services.worktables_p2' | trans }}</p>
+                <p class="no-m-bottom">{{ 'frontend.services.worktables_p3' | trans }}</p>
             </div>
         </div>
     </div>
@@ -68,10 +68,10 @@
     <div class="container container-main">
         <div class="row">
             <div class="col-xs-12">
-                <h4 class="text-muted no-m-top">Sala de reunions</h4>
-                <img class="img-responsive normal-m-bottom" src="{{ asset('bundles/app/img/services_meeting_room_v1.jpg') | imagine_filter('2400x1000') }}" alt="Sala de reunions">
-                <p class="small-m-top">L'espai disposa d'una <strong>sala polivalent de 25m<sup>2</sup></strong> dissenyada per atendre reunions amb clients, realitzar activitats de formació, esdeveniments i videoconferències. Aquesta està equipada amb un petit equip de so, una pantalla LCD de 55" amb resolució 4K i té un aforament màxim de 30 persones.</p>
-                <p class="no-m-bottom">Tots els coworkers poden reservar la sala sense cap mena de cost addicional. Qualsevol persona o empresa que no sigui coworker també pot llogar-la per hores.</p>
+                <h4 class="text-muted no-m-top">{{ 'frontend.services.meeting_room_title' | trans }}</h4>
+                <img class="img-responsive normal-m-bottom" src="{{ asset('bundles/app/img/services_meeting_room_v1.jpg') | imagine_filter('2400x1000') }}" alt="{{ 'frontend.services.meeting_room_title' | trans }}">
+                <p class="small-m-top">{{ 'frontend.services.meeting_room_p1' | trans | raw }}</p>
+                <p class="no-m-bottom">{{ 'frontend.services.meeting_room_p2' | trans }}</p>
             </div>
         </div>
     </div>
@@ -83,16 +83,16 @@
                     <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4">
                         <ul class="pricing p-yel white-background no-m-bottom">
                             <li class="orange-background">
-                                <i class="fa fa-5x fa-comments c-white" aria-hidden="true"></i><br>
-                                <h4 class="no-m-bottom c-white">Esdeveniments</h4>
+                                <i class="fa fa-5x fa-street-view c-white" aria-hidden="true"></i><br>
+                                <h4 class="no-m-bottom c-white">{{ 'frontend.services.meeting_room_pricing1' | trans }}</h4>
                             </li>
-                            <li><strong><i class="fa fa-check-circle" aria-hidden="true"></i> Gratuït per als coworkers</strong></li>
-                            <li>Aforament màxim 20 persones</li>
-                            <li>Pantalla LCD 55" 4K</li>
-                            <li>Equip de so</li>
+                            <li><strong><i class="fa fa-check-circle" aria-hidden="true"></i> {{ 'frontend.services.meeting_room_pricing2' | trans }}</strong></li>
+                            <li>{{ 'frontend.services.meeting_room_pricing3' | trans }}</li>
+                            <li>{{ 'frontend.services.meeting_room_pricing4' | trans }}</li>
+                            <li>{{ 'frontend.services.meeting_room_pricing5' | trans }}</li>
                             <li class="orange-background-dark">
                                 <h3 class="no-m-top">18 <i class="fa fa-euro"></i></h3>
-                                <span>per hora</span>
+                                <span>{{ 'frontend.services.meeting_room_pricing6' | trans }}</span>
                             </li>
                         </ul>
                     </div>
@@ -104,9 +104,9 @@
     <div class="container container-main">
         <div class="row">
             <div class="col-xs-12">
-                <h4 class="text-muted no-m-top">Àrea <em>stress-less</em></h4>
-                <img class="img-responsive normal-m-bottom" src="{{ asset('bundles/app/img/services_stress_less_area.jpg') | imagine_filter('2400x1000') }}" alt="Àrea stress-less">
-                <p class="small-m-top no-m-bottom">Finalment, trobem un <strong>espai lúdic de 20m<sup>2</sup></strong> obert a tothom on prendre un cafè, descansar o atendre una reunió de caràcter més informal. L'office està equipat amb nevera, màquina de cafè, microones, taula, 6 cadires i 2 butaques còmodes. També tenim una diana per jugar a dards, un tauler d'escacs i una màquina recreativa de videojocs <em>retro</em>.</p>
+                <h4 class="text-muted no-m-top">{{ 'frontend.services.stress_less_zone_title' | trans | raw }}</h4>
+                <img class="img-responsive normal-m-bottom" src="{{ asset('bundles/app/img/services_stress_less_area.jpg') | imagine_filter('2400x1000') }}" alt="{{ 'frontend.services.stress_less_zone_title' | trans | raw }}">
+                <p class="small-m-top no-m-bottom">{{ 'frontend.services.stress_less_zone_p1' | trans | raw }}</p>
             </div>
         </div>
     </div>

@@ -33,6 +33,7 @@ class AppKernel extends Kernel
             new Gremo\ZurbInkBundle\GremoZurbInkBundle(),
             new Hautelook\AliceBundle\HautelookAliceBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new Knp\Bundle\DisqusBundle\KnpDisqusBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),

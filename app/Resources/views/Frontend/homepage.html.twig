@@ -6,7 +6,7 @@
     <div class="checkbox ">
         <input type="checkbox" id="privacy_checkbox" {{ block('widget_attributes') }} />
         <label class="control-label my-privacy-label" for="privacy_checkbox">
-            Accepto la <a style="text-decoration:underline;" href="{{ path('front_privacy_policy')}}">política de privacitat</a>
+            {{ 'frontend.forms.privacy_1' | trans }} <a style="text-decoration:underline;" href="{{ path('front_privacy_policy') }}">{{ 'frontend.forms.privacy_2' | trans }}</a>
         </label>
     </div>
 {% endblock %}
@@ -44,20 +44,22 @@
         {#<!-- Controls -->#}
         <a class="left carousel-control" href="#header-homepage-carousel" role="button" data-slide="prev">
             <i class="fa fa-2x fa-angle-left" aria-hidden="true"></i>
-            <span class="sr-only">Previous</span>
+            <span class="sr-only">{{ 'frontend.pagination.previous' | trans }}</span>
         </a>
         <a class="right carousel-control" href="#header-homepage-carousel" role="button" data-slide="next">
             <i class="fa fa-2x fa-angle-right" aria-hidden="true"></i>
-            <span class="sr-only">Next</span>
+            <span class="sr-only">{{ 'frontend.pagination.next' | trans }}</span>
         </a>
-        {# Call to action #}
         <div class="subtitle-background">
             <div class="container">
-                <h2>Molt més que compartir un espai de treball</h2>
+                <h2>{{ 'frontend.homepage.main_claim' | trans }}</h2>
                 {#<!-- Button trigger modal -->#}
                 <p>
-                    <button type="button" class="btn btn-kowo-orange btn-lg" data-toggle="modal" data-target="#form_modal">
-                        <i class="fa fa-heart" aria-hidden="true"></i> Prova-ho gratis 3 dies
+                    <button type="button" class="btn btn-kowo-orange btn-sm visible-xs" data-toggle="modal" data-target="#form_modal">
+                        <i class="fa fa-heart" aria-hidden="true"></i> {{ 'frontend.homepage.cta_button' | trans }}
+                    </button>
+                    <button type="button" class="btn btn-kowo-orange btn-lg hidden-xs" data-toggle="modal" data-target="#form_modal">
+                        <i class="fa fa-heart" aria-hidden="true"></i> {{ 'frontend.homepage.cta_button' | trans }}
                     </button>
                 </p>
             </div>
@@ -68,8 +70,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content text-left">
                 <div class="modal-header green-background-light">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Deixa'ns les teves dades i t'ho explicarem tot amb més detall</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ 'common.close' | trans | capitalize }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ 'frontend.homepage.cta_modal_title' | trans }}</h4>
                 </div>
                 <div class="modal-body">
                     {{ form_start(formHomepage) }}
@@ -93,34 +95,27 @@
                 </div>
             </div>
             <div class="row small-m-top values">
-                <div class="col-xs-12 col-sm-12">
-                    <p>
-                        Si t'agrada el contacte amb la natura, vine a treballar a Espai Kowo. Estem situats a tocar del Parc Natural del Delta de L'Ebre i el Parc Natural dels Ports, la perfecta combinació per gaudir dels esports i les activitats a l'aire lliure entre el mar i la muntanya. Tot un paradís i un espectacular paisatge a mig camí entre Barcelona i València.
-                    </p>
-                    <p>
-                        Disposem d'un espai de treball lluminós equipat amb 13 taules de treball, un <em>team room</em> per a 5 persones, una sala polivalent (reunió, activitats i esdeveniments) i una àrea <em>stress-less</em>. Tenim accés a Internet mitjançant fibra òptica simètrica de 600mb, servei de cafeteria, armariets individuals i clau per poder accedir 24h al dia.
-                    </p>
-                    <p>
-                        Vine a treballar amb nosaltres durant 3 dies gratis, t'oferim la possibilitat de provar els nostres serveis i l'ambient de treball sense cap compromís. I després, decideix si vols formar part de la nostra comunitat de coworkers.
-                    </p>
-                    <br>
+                <div class="col-xs-12">
+                    <p>{{ 'frontend.homepage.subhero_section.p1' | trans | raw }}</p>
+                    <p>{{ 'frontend.homepage.subhero_section.p2' | trans | raw }}</p>
+                    <p class="extra-m-bottom">{{ 'frontend.homepage.subhero_section.p3' | trans | raw }}</p>
                 </div>
                 <div class="col-xs-12 col-sm-4">
-                    <img src="{{ asset('bundles/app/img/photo-home-mini-1.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="Una nova manera de treballar">
+                    <img src="{{ asset('bundles/app/img/photo-home-mini-1.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="{{ 'frontend.homepage.subhero_section.image_claim1' | trans }}">
                     <div class="caption">
-                        <h4 class="text-muted">Una nova manera de treballar</h4>
+                        <h4 class="text-muted">{{ 'frontend.homepage.subhero_section.image_claim1' | trans }}</h4>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-4">
-                    <img src="{{ asset('bundles/app/img/photo-home-mini-2.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="Suma't a la comunitat de coworkers">
+                    <img src="{{ asset('bundles/app/img/photo-home-mini-2.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="{{ 'frontend.homepage.subhero_section.image_claim2' | trans }}">
                     <div class="caption">
-                        <h4 class="text-muted">Suma't a la comunitat de coworkers</h4>
+                        <h4 class="text-muted">{{ 'frontend.homepage.subhero_section.image_claim2' | trans }}</h4>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-4">
-                    <img src="{{ asset('bundles/app/img/photo-home-mini-3.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="Compartim coneixement">
+                    <img src="{{ asset('bundles/app/img/photo-home-mini-3.jpg') | imagine_filter('360x185') }}" class="img-responsive" alt="{{ 'frontend.homepage.subhero_section.image_claim3' | trans }}">
                     <div class="caption">
-                        <h4 class="text-muted">Compartim coneixement</h4>
+                        <h4 class="text-muted">{{ 'frontend.homepage.subhero_section.image_claim3' | trans }}</h4>
                     </div>
                 </div>
             </div>
@@ -131,21 +126,21 @@
     {# Detail section #}
     <div class="p-vertical container">
         <div class="row">
-            <div class="col-xs-3 text-center">
+            <div class="col-xs-6 col-sm-3 text-center">
                 <i class="small-m-bottom c-green fa fa-universal-access fa-3x" aria-hidden="true"></i>
-                <p class="no-m-bottom text-muted">13 taules de treball</p>
+                <p class="text-muted">{{ 'frontend.homepage.detail_section.wortables_amount' | trans }}</p>
             </div>
-            <div class="col-xs-3 text-center">
+            <div class="col-xs-6 col-sm-3 text-center">
                 <i class="small-m-bottom c-green fa fa-sun-o fa-3x" aria-hidden="true"></i>
-                <p class="no-m-bottom text-muted">130m<sup>2</sup> amb llum natural</p>
+                <p class="text-muted">{{ 'frontend.homepage.detail_section.sunligth_space' | trans | raw }}</p>
             </div>
-            <div class="col-xs-3 text-center">
+            <div class="col-xs-6 col-sm-3 text-center">
                 <i class="small-m-bottom c-green fa fa-wifi fa-3x" aria-hidden="true"></i>
-                <p class="no-m-bottom text-muted">Fibra òptica a 600Mbps</p>
+                <p class="no-m-bottom text-muted">{{ 'frontend.homepage.detail_section.internet_access' | trans }}</p>
             </div>
-            <div class="col-xs-3 text-center">
+            <div class="col-xs-6 col-sm-3 text-center">
                 <i class="small-m-bottom c-green fa fa-battery-full fa-3x" aria-hidden="true"></i>
-                <p class="no-m-bottom text-muted">Energia 100% renovable</p>
+                <p class="no-m-bottom text-muted">{{ 'frontend.homepage.detail_section.renewal_energy' | trans }}</p>
             </div>
         </div>
     </div>
@@ -153,24 +148,24 @@
     <div class="p-vertical green-background-light">
         <div class="container text-center">
             <div class="row normal-m-top">
-                <div class="col-md-3 col-sm-4 col-xs-6">
+                <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="alert alert-magenta" role="alert">
-                        <h4 class="no-m text-center"><i class="fa fa-gear fa-spin"></i><br>sala coworking</h4>
+                        <h4 class="no-m text-center"><i class="fa fa-gear fa-spin"></i><br>{{ 'frontend.homepage.final_highlights_section.coworking_space' | trans }}</h4>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
+                <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="alert alert-dark-cyan" role="alert">
-                        <h4 class="no-m text-center"><i class="fa fa-calendar-check-o"></i><br>activitats i formació</h4>
+                        <h4 class="no-m text-center"><i class="fa fa-calendar-check-o"></i><br>{{ 'frontend.homepage.final_highlights_section.activities_and_events' | trans }}</h4>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
+                <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="alert alert-violet" role="alert">
-                        <h4 class="no-m text-center"><i class="fa fa-street-view"></i><br>zona de reunió</h4>
+                        <h4 class="no-m text-center"><i class="fa fa-street-view"></i><br>{{ 'frontend.homepage.final_highlights_section.meeting_zone' | trans }}</h4>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
+                <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="alert alert-orange" role="alert">
-                        <h4 class="no-m text-center"><i class="fa fa-rocket"></i><br>àrea stress-less</h4>
+                        <h4 class="no-m text-center"><i class="fa fa-rocket"></i><br>{{ 'frontend.homepage.final_highlights_section.stress_less_space' | trans }}</h4>
                     </div>
                 </div>
             </div>

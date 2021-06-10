@@ -111,7 +111,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/politica-de-privacitat", name="front_privacy_policy")
+     * @Route("/politica-de-privacitat", name="front_privacy_policy", options={"i18n"=false})
      *
      * @return Response
      */
@@ -121,7 +121,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/credits", name="front_credits")
+     * @Route("/credits", name="front_credits", options={"i18n"=false})
      *
      * @return Response
      */
@@ -131,7 +131,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/test-email", name="front_test_email")
+     * @Route("/test-email", name="front_test_email", options={"i18n"=false})
      *
      * @return Response
      *
@@ -139,7 +139,7 @@ class DefaultController extends Controller
      */
     public function testEmailAction()
     {
-        if ($this->container->get('kernel')->getEnvironment() == 'prod') {
+        if ($this->container->get('kernel')->getEnvironment() === 'prod') {
             throw new NotFoundHttpException();
         }
 

@@ -5,31 +5,39 @@ app_frontend:
 sonata:
     resource: "@SonataAdminBundle/Resources/config/routing/sonata_admin.xml"
     prefix:   /admin
+    options: { i18n: false }
 
 _sonata_admin:
     resource: .
     type:     sonata_admin
     prefix:   /admin
+    options: { i18n: false }
 
 sonata_user_admin_security:
     resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
     prefix:   /admin
+    options: { i18n: false }
 
 sonata_user_admin_resetting:
     resource: '@SonataUserBundle/Resources/config/routing/admin_resetting.xml'
     prefix:   /admin/resetting
+    options: { i18n: false }
 
 app_backend:
     resource: "@AppBundle/Controller/Admin"
     type:     annotation
+    options: { i18n: false }
 
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
+    options: { i18n: false }
 
 _presta_sitemap:
     resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
     prefix:   /sitemap
+    options: { i18n: false }
 
 _redirecting_trailing_slashes:
     resource: "@AppBundle/Controller/RedirectingController.php"
     type:     annotation
+    options: { i18n: false }

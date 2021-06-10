@@ -22,7 +22,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class EventController extends Controller
 {
     /**
-     * @Route("/activitats/{pagina}", name="front_events_list")
+     * @Route("/activitats/{pagina}", name="front_events_list", options={"i18n"=false})
      *
      * @param Request $request
      * @param int $pagina
@@ -75,7 +75,7 @@ class EventController extends Controller
     }
 
     /**
-     * @Route("/activitat/{slug}", name="front_event_detail")
+     * @Route("/activitat/{slug}", name="front_event_detail", options={"i18n"=false})
      *
      * @param Request $request
      * @param string $slug
@@ -120,7 +120,7 @@ class EventController extends Controller
     }
 
     /**
-     * @Route("/activitat/categoria/{slug}/{pagina}", name="front_category_event")
+     * @Route("/activitat/categoria/{slug}/{pagina}", name="front_category_event", options={"i18n"=false})
      *
      * @param Request $request
      * @param string $slug

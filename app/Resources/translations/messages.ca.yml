@@ -47,31 +47,110 @@ Factures: Factures
 "Spending List": Despeses
 "Spending Create": Crear
 "Spending Delete": Esborrar
+
+common:
+    close: 'tancar'
+
 frontend:
     menu:
-        blog: BLOG
-        coworkers: COWORKERS
-        services: SERVEIS
-        events: ACTIVITATS
-        contact: CONTACTE
-        cms: "[ CMS ]"
+        blog: 'BLOG'
+        coworkers: 'COWORKERS'
+        services: 'SERVEIS'
+        events: 'ACTIVITATS'
+        contact: 'CONTACTE'
+        cms: '[ CMS ]'
     forms:
-        name: "Nom *"
-        phone: Telèfon
-        email: "Email *"
-        message: "Missatge *"
-        privacy: Accepto la política de privacitat
-        send: Enviar
+        name: 'Nom *'
+        phone: 'Telèfon'
+        email: 'Email *'
+        message: 'Missatge *'
+        privacy: 'Accepto la política de privacitat'
+        privacy_1: 'Accepto la'
+        privacy_2: 'política de privacitat'
+        send: 'Enviar'
         news: 'Subscriu-me al newsletter'
-        category: Dedicació
-        socialnetwork: Xarxa social
-        printercode: Codi impressora
-        birthdate: Data naixement
-        description: Descripció
-        url: URL
+        category: 'Dedicació'
+        socialnetwork: 'Xarxa social'
+        printercode: 'Codi impressora'
+        birthdate: 'Data naixement'
+        description: 'Descripció'
+        url: 'URL'
     pagination:
-        previous: anterior
-        next: següent
+        previous: 'anterior'
+        next: 'següent'
+    homepage:
+        main_claim: 'Molt més que compartir un espai de treball'
+        cta_button: 'Prova-ho gratis 3 dies'
+        cta_modal_title: 'Deixa''ns les teves dades i t''ho explicarem tot amb més detall'
+        subhero_section:
+            p1: 'Si t''agrada el contacte amb la natura, vine a treballar a Espai Kowo. Estem situats a tocar del Parc Natural del Delta de L''Ebre i el Parc Natural dels Ports, la perfecta combinació per gaudir dels esports i les activitats a l''aire lliure entre el mar i la muntanya. Tot un paradís i un espectacular paisatge a mig camí entre Barcelona i València.'
+            p2: 'Disposem d''un espai de treball lluminós equipat amb 12 taules de treball, un <em>team room</em> per a 5 persones, una sala polivalent (reunió, activitats i esdeveniments) i una àrea <em>stress-less</em>. Tenim accés a Internet mitjançant fibra òptica simètrica de 600 MB, servei de cafeteria, armariets individuals i clau per poder accedir 24h al dia.'
+            p3: 'Vine a treballar amb nosaltres durant 3 dies gratis, t''oferim la possibilitat de provar els nostres serveis i l''ambient de treball sense cap compromís. I després, decideix si vols formar part de la nostra comunitat de coworkers.'
+            image_claim1: 'Una nova manera de treballar'
+            image_claim2: 'Suma''t a la comunitat de coworkers'
+            image_claim3: 'Compartim coneixement'
+        detail_section:
+            wortables_amount: '12 taules de treball'
+            sunligth_space: '130m<sup>2</sup> amb llum natural'
+            internet_access: 'Fibra òptica a 600Mbps'
+            renewal_energy: 'Energia 100% renovable'
+        final_highlights_section:
+            coworking_space: 'sala coworking'
+            activities_and_events: 'activitats i formació'
+            meeting_zone: 'zona de reunió'
+            stress_less_space: 'àrea stress-less'
+    pricing:
+        more_info: 'més informació'
+        ullal: 'ullal'
+        llacuna: 'llacuna'
+        riu: 'riu'
+        badia: 'badia'
+        delta: 'delta'
+        team_room: 'team room'
+        flex_main_title: 'Tarifa taula <em>flex</em>'
+        fix_main_title: 'Tarifa taula fixa'
+        days_per_week1: '1 dia/setmana'
+        days_per_week2: '2 dies/setmana'
+        days_per_week3: '3 dies/setmana'
+        days_per_week7: '7 dies/setmana'
+        office_workplaces5: 'Oficina 5 llocs de treball'
+        full_time: 'Jornada completa'
+        half_time: 'Mitja jornada'
+        variable_table: 'Taula variable'
+        fix_table: 'Taula fixa'
+        private_cloud100: '100 GB núvol privat'
+        private_cloud250: '250 GB núvol privat'
+        private_cloud2000: '2 TB núvol privat'
+        meeting_room_availability: 'Disponibilitat sala reunions limitada'
+        meeting_room_availability_always: 'Sala de reunions sempre disponible'
+        per_month: 'al mes'
+    services:
+        main_title: 'Espai Kowo, la teva sala de coworking a les Terres de l''Ebre'
+        main_claim_text: 'Un espai de coworking és una oficina de treball pensada per a petites empreses, treballadors autònoms i emprenedors. L''objectiu principal és compartir un espai de treball obert per a crear sinergies entre els usuaris o <em>coworkers</em>.'
+        main_claim_button: 'Estic interessat en provar-ho'
+        worktables_title: 'Taules de treball'
+        worktables_p1: 'Espai Kowo disposa de <strong>12 taules de treball de 180x80 cm</strong> amb accés a Internet amb fibra òptica d''alta velocitat (600Mbps). Cada coworker disposa d''una calaixera, d''un armariet privat i d''una clau d''accés individual al local que li permet establir el seu propi horari de treball. Hi ha un servei de <u>núvol privat amb 250 GB gratis</u> per emmagatzemar i compartir arxius.'
+        worktables_p2: 'Només cal portar l''ordinador personal i començar a treballar. A més, la sala disposa d''una impressora multifunció a color connectada a la xarxa capaç d''imprimir fins a mida de paper A3.'
+        worktables_p3: 'La tarifa del servei és una quota plana mensual que inclou totes les despeses de subministraments: Internet, aigua, llum, neteja, etc. Tot el subministrament elèctric s''alimenta d''energia 100% renovable, contribuint així a reduir les emissions de carboni a l''atmosfera.'
+        meeting_room_title: 'Sala de reunions'
+        meeting_room_p1: 'L''espai disposa d''una <strong>sala polivalent de 25m<sup>2</sup></strong> dissenyada per atendre reunions amb clients, realitzar activitats de formació, esdeveniments i videoconferències. Aquesta està equipada amb un petit equip de so, una pantalla LCD de 55" amb resolució 4K i té un aforament màxim de 20 persones.'
+        meeting_room_p2: 'Tots els coworkers poden reservar la sala sense cap mena de cost addicional. Qualsevol persona o empresa que no sigui coworker també pot llogar-la per hores.'
+        meeting_room_pricing1: 'Lloguer sala reunions'
+        meeting_room_pricing2: 'Gratuït per als coworkers'
+        meeting_room_pricing3: 'Aforament màxim 20 persones'
+        meeting_room_pricing4: 'Pantalla LCD 55" 4K'
+        meeting_room_pricing5: 'Equip de so'
+        meeting_room_pricing6: 'per hora'
+        stress_less_zone_title: 'Àrea <em>stress-less</em>'
+        stress_less_zone_p1: 'Finalment, trobem un <strong>espai lúdic de 20m<sup>2</sup></strong> obert a tothom on prendre un cafè, descansar o atendre una reunió de caràcter més informal. L''office està equipat amb nevera, màquina de cafè, microones, taula, 6 cadires i 2 butaques còmodes. També tenim una diana per jugar a dards, un tauler d''escacs i una màquina recreativa de videojocs <em>retro</em>.'
+    contact:
+        form_title: 'Formulari de contacte'
+        map_title: 'Plànol de situació'
+        more_info_js_text_prefix: 'Estic interessat en rebre més informació sobre la tarifa'
+    footer:
+        privacy: 'privacitat'
+        credits: 'crèdits'
+
 backend:
     admin:
         actions: Accions
