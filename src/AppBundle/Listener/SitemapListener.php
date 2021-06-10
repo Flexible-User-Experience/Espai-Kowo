@@ -5,6 +5,8 @@ namespace AppBundle\Listener;
 use AppBundle\Entity\Coworker;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Event;
+use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Presta\SitemapBundle\Service\SitemapListenerInterface;
@@ -26,9 +28,9 @@ class SitemapListener implements SitemapListenerInterface
     private $router;
 
     /**
-     * @var EntityManager
+     * @var array
      */
-    private $em;
+    private $locales;
 
     /**
      * @var ArrayCollection
@@ -53,15 +55,16 @@ class SitemapListener implements SitemapListenerInterface
      * SitemapListener constructor
      *
      * @param RouterInterface $router
-     * @param EntityManager $em
+     * @param EntityManager   $em
+     * @param array           $locales
      */
-    public function __construct(RouterInterface $router, EntityManager $em)
+    public function __construct(RouterInterface $router, EntityManager $em, array $locales)
     {
         $this->router = $router;
-        $this->em = $em;
-        $this->coworkers = $this->em->getRepository('AppBundle:Coworker')->findAllEnabledSortedBySurname();
-        $this->posts = $this->em->getRepository('AppBundle:Post')->getAllEnabledSortedByPublishedDateWithJoin();
-        $this->events = $this->em->getRepository('AppBundle:Event')->findAllEnabledSortedByDate();
+        $this->coworkers = $em->getRepository('AppBundle:Coworker')->findAllEnabledSortedBySurname();
+        $this->posts = $em->getRepository('AppBundle:Post')->getAllEnabledSortedByPublishedDateWithJoin();
+        $this->events = $em->getRepository('AppBundle:Event')->findAllEnabledSortedByDate();
+        $this->locales = $locales;
     }
 
     /**
@@ -70,17 +73,29 @@ class SitemapListener implements SitemapListenerInterface
     public function populateSitemap(SitemapPopulateEvent $event)
     {
         $section = $event->getSection();
-        if (is_null($section) || $section == 'default') {
-            // Homepage
-            $url = $this->makeUrl('front_homepage');
-            $event
-                ->getUrlContainer()
-                ->addUrl($this->makeUrlConcrete($url), 'default');
-            // Services
-            $url = $this->makeUrl('front_services');
-            $event
-                ->getUrlContainer()
-                ->addUrl($this->makeUrlConcrete($url), 'default');
+        if (is_null($section) || $section === 'default') {
+            // By locale
+            /** @var string $locale */
+            foreach ($this->locales as $locale) {
+                // Homepage
+                $url = $this->makeUrl('front_homepage', ['_locale' => $locale]);
+                $event
+                    ->getUrlContainer()
+                    ->addUrl($this->makeUrlConcrete($url), 'default')
+                ;
+                // Services
+                $url = $this->makeUrl('front_services', ['_locale' => $locale]);
+                $event
+                    ->getUrlContainer()
+                    ->addUrl($this->makeUrlConcrete($url), 'default')
+                ;
+                // Contact
+                $url = $this->makeUrl('front_contact', ['_locale' => $locale]);
+                $event
+                    ->getUrlContainer()
+                    ->addUrl($this->makeUrlConcrete($url, 0.5), 'default')
+                ;
+            }
             // Coworkers detail view list
             $lastUpdatedAtDate = \DateTime::createFromFormat('d-m-Y', '01-01-2000');
             /** @var Coworker $coworker */
@@ -152,11 +167,6 @@ class SitemapListener implements SitemapListenerInterface
             $event
                 ->getUrlContainer()
                 ->addUrl($this->makeUrlConcrete($url, 1, $lastUpdatedAtDate), 'default');
-            // Contact view
-            $url = $this->makeUrl('front_contact');
-            $event
-                ->getUrlContainer()
-                ->addUrl($this->makeUrlConcrete($url, 0.5), 'default');
             // Privacy Policy view
             $url = $this->makeUrl('front_privacy_policy');
             $event
@@ -171,29 +181,30 @@ class SitemapListener implements SitemapListenerInterface
     }
 
     /**
-     * @param string $routeName
+     * @param string     $routeName
+     * @param array|null $parameters
      *
      * @return string
      */
-    private function makeUrl($routeName)
+    private function makeUrl(string $routeName, ?array $parameters = null): string
     {
         return $this->router->generate(
-            $routeName, array(), UrlGeneratorInterface::ABSOLUTE_URL
+            $routeName, $parameters ?: [], UrlGeneratorInterface::ABSOLUTE_URL
         );
     }
 
     /**
-     * @param string         $url
-     * @param int            $priority
-     * @param \DateTime|null $date
+     * @param string        $url
+     * @param int           $priority
+     * @param DateTime|null $date
      *
      * @return UrlConcrete
      */
-    private function makeUrlConcrete($url, $priority = 1, $date = null)
+    private function makeUrlConcrete(string $url, int $priority = 1, ?DateTimeInterface $date = null): UrlConcrete
     {
         return new UrlConcrete(
             $url,
-            $date === null ? new \DateTime() : $date,
+            $date ?? new DateTime(),
             UrlConcrete::CHANGEFREQ_WEEKLY,
             $priority
         );
