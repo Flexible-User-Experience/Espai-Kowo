@@ -134,8 +134,8 @@ frontend:
         meeting_room_pricing4: 'Pantalla LCD 55" 4K'
         meeting_room_pricing5: 'Equip de so'
         meeting_room_pricing6: 'per hora'
-        stress_less_zone_title: ''
-        stress_less_zone_p1: ''
+        stress_less_zone_title: 'Àrea <em>stress-less</em>'
+        stress_less_zone_p1: 'Finalment, trobem un <strong>espai lúdic de 20m<sup>2</sup></strong> obert a tothom on prendre un cafè, descansar o atendre una reunió de caràcter més informal. L''office està equipat amb nevera, màquina de cafè, microones, taula, 6 cadires i 2 butaques còmodes. També tenim una diana per jugar a dards, un tauler d''escacs i una màquina recreativa de videojocs <em>retro</em>.'
     footer:
         privacy: 'privacitat'
         credits: 'crèdits'
