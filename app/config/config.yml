@@ -137,11 +137,11 @@ ivory_ck_editor:
 
 # EWZ Google Recaptcha
 ewz_recaptcha:
-    public_key:  "%recaptcha_public_key%"
-    private_key: "%recaptcha_private_key%"
-    locale_key:  "%locale%"
-    enabled:     true
-    ajax:        false
+    public_key:          "%recaptcha_public_key%"
+    private_key:         "%recaptcha_private_key%"
+    locale_from_request: true
+    enabled:             true
+    ajax:                false
 
 # KNP Paginator
 knp_paginator:

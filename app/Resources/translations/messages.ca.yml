@@ -100,6 +100,13 @@ frontend:
             meeting_zone: 'zona de reunió'
             stress_less_space: 'àrea stress-less'
     pricing:
+        more_info: 'més informació'
+        ullal: 'ullal'
+        llacuna: 'llacuna'
+        riu: 'riu'
+        badia: 'badia'
+        delta: 'delta'
+        team_room: 'team room'
         flex_main_title: 'Tarifa taula <em>flex</em>'
         fix_main_title: 'Tarifa taula fixa'
         days_per_week1: '1 dia/setmana'
