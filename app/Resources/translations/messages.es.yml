@@ -96,6 +96,7 @@ frontend:
     contact:
         form_title: 'Formulario de contacto'
         map_title: 'Plano de situación'
+        more_info_js_text_prefix: 'Estoy interesado en recibir más información sobre la tarifa'
     footer:
         privacy: 'privacidad'
         credits: 'créditos'

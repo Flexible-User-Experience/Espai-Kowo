@@ -47,3 +47,20 @@
         </div>
     </div>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            let searchUrlParams = new URLSearchParams(location.search);
+            if (searchUrlParams.has('info')) {
+                let more_info_js_text_prefix = '{{ 'frontend.contact.more_info_js_text_prefix' | trans }}';
+                let messageTextareaNode = jQuery('#{{ formContact.vars.id ~ '_message' }}');
+                messageTextareaNode.val(more_info_js_text_prefix + ' "' + capitalize(searchUrlParams.get('info')) + '".');
+            }
+        });
+        function capitalize(s) {
+            return s && s[0].toUpperCase() + s.slice(1);
+        }
+    </script>
+{% endblock %}
