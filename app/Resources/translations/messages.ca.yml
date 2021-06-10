@@ -146,7 +146,9 @@ frontend:
     contact:
         form_title: 'Formulari de contacte'
         map_title: 'Plànol de situació'
-        more_info_js_text_prefix: 'Estic interessat en rebre més informació sobre la tarifa'
+        whatsapp_cta_button: 'Enviar missatge de Whatsapp'
+        whatsapp_default_message: 'Hola! Estic interessat en rebre més informació sobre Espai Kowo.'
+        more_info_js_text_prefix: 'Hola! Estic interessat en rebre més informació sobre la tarifa'
     footer:
         privacy: 'privacitat'
         credits: 'crèdits'

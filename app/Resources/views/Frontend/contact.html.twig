@@ -46,6 +46,10 @@
             </div>
         </div>
     </div>
+    {# Whatsapp chat button section #}
+    <div class="p-vertical-small green-background-light">
+        {% include ':Frontend/includes:whatsapp_cta_section.html.twig' %}
+    </div>
 {% endblock %}
 
 {% block javascripts %}
@@ -55,8 +59,14 @@
             let searchUrlParams = new URLSearchParams(location.search);
             if (searchUrlParams.has('info')) {
                 let more_info_js_text_prefix = '{{ 'frontend.contact.more_info_js_text_prefix' | trans }}';
+                let more_info_text = more_info_js_text_prefix + ' "' + capitalize(searchUrlParams.get('info')) + '".';
                 let messageTextareaNode = jQuery('#{{ formContact.vars.id ~ '_message' }}');
-                messageTextareaNode.val(more_info_js_text_prefix + ' "' + capitalize(searchUrlParams.get('info')) + '".');
+                let whatsappAnchorNode = jQuery('#whatsapp-href-holder');
+                messageTextareaNode.val(more_info_text);
+                if (whatsappAnchorNode.length > 0) {
+                    whatsappAnchorNode[0].href = 'https://wa.me/34636963301?text=' + more_info_text;
+                    console.log(whatsappAnchorNode[0]);
+                }
             }
         });
         function capitalize(s) {
