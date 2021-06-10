@@ -89,6 +89,11 @@ frontend:
             image_claim1: 'Una nova manera de treballar'
             image_claim2: 'Suma''t a la comunitat de coworkers'
             image_claim3: 'Compartim coneixement'
+        detail_section:
+            wortables_amount: '12 taules de treball'
+            sunligth_space: '130m<sup>2</sup> amb llum natural'
+            internet_access: 'Fibra òptica a 600Mbps'
+            renewal_energy: 'Energia 100% renovable'
     pricing:
         flex_main_title: 'Tarifa taula <em>flex</em>'
         fix_main_title: 'Tarifa taula fixa'

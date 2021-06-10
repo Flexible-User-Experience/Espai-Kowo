@@ -39,6 +39,11 @@ frontend:
             image_claim1: 'Una nueva forma de trabajar'
             image_claim2: 'Súmate a la comunidad de coworkers'
             image_claim3: 'Compartimos conocimiento'
+        detail_section:
+            wortables_amount: '12 mesas de trabajo'
+            sunligth_space: '130m<sup>2</sup> con luz natural'
+            internet_access: 'Fibra óptica a 600Mbps'
+            renewal_energy: 'Energía 100% renovable'
     pricing:
         flex_main_title: 'Tarifa mesa <em>flex</em>'
         fix_main_title: 'Tarifa mesa fija'
