@@ -16,6 +16,9 @@ before_script:
   - php app/console doctrine:schema:create --no-interaction --env=test
   - php app/console hautelook_alice:doctrine:fixtures:load --no-interaction --env=test
 
+before_install:
+  - echo "memory_limit=2G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+
 script:
   - vendor/phpunit/phpunit/phpunit -c app
 
