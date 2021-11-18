@@ -56,7 +56,8 @@
         "twbs/bootstrap": "^3.0",
         "twig/extensions": "^1.3",
         "vich/uploader-bundle": "^1.5",
-        "whiteoctober/tcpdf-bundle": "^1.0"
+        "whiteoctober/tcpdf-bundle": "^1.0",
+        "composer/package-versions-deprecated": "1.11.99.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
