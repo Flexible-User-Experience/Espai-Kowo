@@ -66,10 +66,6 @@
                 "translatable",
                 "translation"
             ],
-            "support": {
-                "issues": "https://github.com/a2lix/TranslationFormBundle/issues",
-                "source": "https://github.com/a2lix/TranslationFormBundle/tree/1.x"
-            },
             "time": "2013-12-17T18:40:49+00:00"
         },
         {
@@ -119,10 +115,6 @@
                 "ipsum",
                 "lorem"
             ],
-            "support": {
-                "issues": "https://github.com/apoutchika/LoremIpsumBundle/issues",
-                "source": "https://github.com/apoutchika/LoremIpsumBundle/tree/master"
-            },
             "time": "2014-10-05T19:11:51+00:00"
         },
         {
@@ -177,9 +169,6 @@
                 "doctrine",
                 "orm"
             ],
-            "support": {
-                "source": "https://github.com/beberlei/DoctrineExtensions/tree/master"
-            },
             "time": "2019-06-24T06:58:56+00:00"
         },
         {
@@ -225,10 +214,6 @@
                 "slug",
                 "transliterator"
             ],
-            "support": {
-                "issues": "https://github.com/Behat/Transliterator/issues",
-                "source": "https://github.com/Behat/Transliterator/tree/v1.3.0"
-            },
             "time": "2020-01-14T16:39:13+00:00"
         },
         {
@@ -294,10 +279,6 @@
                 "slug",
                 "slugify"
             ],
-            "support": {
-                "issues": "https://github.com/cocur/slugify/issues",
-                "source": "https://github.com/cocur/slugify/tree/master"
-            },
             "time": "2019-01-31T20:38:55+00:00"
         },
         {
@@ -333,10 +314,6 @@
                 "OFL-1.1"
             ],
             "description": "The iconic font designed for use with Twitter Bootstrap.",
-            "support": {
-                "issues": "https://github.com/components/font-awesome/issues",
-                "source": "https://github.com/components/font-awesome/tree/master"
-            },
             "time": "2016-10-25T10:56:23+00:00"
         },
         {
@@ -379,13 +356,6 @@
             ],
             "description": "jQuery JavaScript Library",
             "homepage": "http://jquery.com",
-            "support": {
-                "forum": "http://forum.jquery.com",
-                "irc": "irc://irc.freenode.org/jquery",
-                "issues": "http://bugs.jquery.com",
-                "source": "https://github.com/jquery/jquery",
-                "wiki": "http://docs.jquery.com/"
-            },
             "time": "2016-05-25T06:43:59+00:00"
         },
         {
@@ -437,10 +407,6 @@
                 "sepa",
                 "xml"
             ],
-            "support": {
-                "issues": "https://github.com/php-sepa-xml/php-sepa-xml/issues",
-                "source": "https://github.com/php-sepa-xml/php-sepa-xml/tree/1.6.2"
-            },
             "time": "2020-02-13T14:18:47+00:00"
         },
         {
@@ -962,10 +928,6 @@
                 "orm",
                 "persistence"
             ],
-            "support": {
-                "issues": "https://github.com/doctrine/DoctrineBundle/issues",
-                "source": "https://github.com/doctrine/DoctrineBundle/tree/1.10.x"
-            },
             "time": "2019-04-04T08:03:53+00:00"
         },
         {
@@ -1057,10 +1019,6 @@
                 "cache",
                 "caching"
             ],
-            "support": {
-                "issues": "https://github.com/doctrine/DoctrineCacheBundle/issues",
-                "source": "https://github.com/doctrine/DoctrineCacheBundle/tree/1.3"
-            },
             "abandoned": true,
             "time": "2018-11-09T06:25:35+00:00"
         },
@@ -1119,10 +1077,6 @@
                 "Fixture",
                 "persistence"
             ],
-            "support": {
-                "issues": "https://github.com/doctrine/DoctrineFixturesBundle/issues",
-                "source": "https://github.com/doctrine/DoctrineFixturesBundle/tree/master"
-            },
             "time": "2017-10-30T19:26:42+00:00"
         },
         {
@@ -1184,10 +1138,6 @@
                 "migrations",
                 "schema"
             ],
-            "support": {
-                "issues": "https://github.com/doctrine/DoctrineMigrationsBundle/issues",
-                "source": "https://github.com/doctrine/DoctrineMigrationsBundle/tree/1.3"
-            },
             "time": "2018-12-03T11:55:33+00:00"
         },
         {
@@ -1222,8 +1172,8 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Doctrine\\Common\\Inflector\\": "lib/Doctrine/Common/Inflector",
-                    "Doctrine\\Inflector\\": "lib/Doctrine/Inflector"
+                    "Doctrine\\Inflector\\": "lib/Doctrine/Inflector",
+                    "Doctrine\\Common\\Inflector\\": "lib/Doctrine/Common/Inflector"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1495,10 +1445,6 @@
                 "database",
                 "migrations"
             ],
-            "support": {
-                "issues": "https://github.com/doctrine/migrations/issues",
-                "source": "https://github.com/doctrine/migrations/tree/master"
-            },
             "time": "2016-12-25T22:54:00+00:00"
         },
         {
@@ -1619,10 +1565,6 @@
             ],
             "description": "Super-simple, minimum abstraction MailChimp API v3 wrapper",
             "homepage": "https://github.com/drewm/mailchimp-api",
-            "support": {
-                "issues": "https://github.com/drewm/mailchimp-api/issues",
-                "source": "https://github.com/drewm/mailchimp-api/tree/master"
-            },
             "time": "2019-08-06T09:24:58+00:00"
         },
         {
@@ -1681,10 +1623,6 @@
             "keywords": [
                 "CKEditor"
             ],
-            "support": {
-                "issues": "https://github.com/egeloen/IvoryCKEditorBundle/issues",
-                "source": "https://github.com/egeloen/IvoryCKEditorBundle/tree/master"
-            },
             "time": "2016-10-28T16:59:01+00:00"
         },
         {
@@ -1738,10 +1676,6 @@
                 "builder",
                 "json"
             ],
-            "support": {
-                "issues": "https://github.com/egeloen/ivory-json-builder/issues",
-                "source": "https://github.com/egeloen/ivory-json-builder/tree/2.0.1"
-            },
             "time": "2015-12-06T13:20:24+00:00"
         },
         {
@@ -1790,10 +1724,6 @@
                 "validation",
                 "validator"
             ],
-            "support": {
-                "issues": "https://github.com/egulias/EmailValidator/issues",
-                "source": "https://github.com/egulias/EmailValidator/tree/1.2"
-            },
             "time": "2020-04-11T12:59:45+00:00"
         },
         {
@@ -1874,12 +1804,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "HTMLPurifier": "library/"
-                },
                 "files": [
                     "library/HTMLPurifier.composer.php"
                 ],
+                "psr-0": {
+                    "HTMLPurifier": "library/"
+                },
                 "exclude-from-classmap": [
                     "/library/HTMLPurifier/Language/"
                 ]
@@ -1967,11 +1897,6 @@
             "keywords": [
                 "User management"
             ],
-            "support": {
-                "docs": "https://symfony.com/doc/1.3.x/bundles/FOSUserBundle/index.html",
-                "issues": "https://github.com/FriendsOfSymfony/FOSUserBundle/issues",
-                "source": "https://github.com/FriendsOfSymfony/FOSUserBundle/tree/1.3.x"
-            },
             "time": "2016-08-12T09:53:32+00:00"
         },
         {
@@ -2152,11 +2077,6 @@
                 "recaptcha",
                 "spam"
             ],
-            "support": {
-                "forum": "https://groups.google.com/forum/#!forum/recaptcha",
-                "issues": "https://github.com/google/recaptcha/issues",
-                "source": "https://github.com/google/recaptcha"
-            },
             "time": "2020-03-31T17:50:54+00:00"
         },
         {
@@ -2205,24 +2125,20 @@
                 "template",
                 "zurb"
             ],
-            "support": {
-                "issues": "https://github.com/gremo/ZurbInkBundle/issues",
-                "source": "https://github.com/gremo/ZurbInkBundle/tree/v4.1.0"
-            },
             "time": "2019-08-22T23:07:37+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.8.2",
+            "version": "1.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "dc960a912984efb74d0a90222870c72c87f10c91"
+                "reference": "337e3ad8e5716c15f9657bd214d16cc5e69df268"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/dc960a912984efb74d0a90222870c72c87f10c91",
-                "reference": "dc960a912984efb74d0a90222870c72c87f10c91",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/337e3ad8e5716c15f9657bd214d16cc5e69df268",
+                "reference": "337e3ad8e5716c15f9657bd214d16cc5e69df268",
                 "shasum": ""
             },
             "require": {
@@ -2247,12 +2163,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Psr7\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\Psr7\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2260,12 +2176,33 @@
             ],
             "authors": [
                 {
+                    "name": "Graham Campbell",
+                    "email": "hello@gjcampbell.co.uk",
+                    "homepage": "https://github.com/GrahamCampbell"
+                },
+                {
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
                     "homepage": "https://github.com/mtdowling"
                 },
                 {
+                    "name": "George Mponos",
+                    "email": "gmponos@gmail.com",
+                    "homepage": "https://github.com/gmponos"
+                },
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com",
+                    "homepage": "https://github.com/Nyholm"
+                },
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com",
+                    "homepage": "https://github.com/sagikazarmark"
+                },
+                {
                     "name": "Tobias Schultze",
+                    "email": "webmaster@tubo-world.de",
                     "homepage": "https://github.com/Tobion"
                 }
             ],
@@ -2280,19 +2217,33 @@
                 "uri",
                 "url"
             ],
-            "time": "2021-04-26T09:17:50+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/GrahamCampbell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/Nyholm",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/guzzlehttp/psr7",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-03-20T21:51:18+00:00"
         },
         {
             "name": "hautelook/alice-bundle",
             "version": "v1.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/hautelook/AliceBundle.git",
+                "url": "https://github.com/theofidry/AliceBundle.git",
                 "reference": "058925945bccbc8776725fec9e8557aca9666d9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hautelook/AliceBundle/zipball/058925945bccbc8776725fec9e8557aca9666d9c",
+                "url": "https://api.github.com/repos/theofidry/AliceBundle/zipball/058925945bccbc8776725fec9e8557aca9666d9c",
                 "reference": "058925945bccbc8776725fec9e8557aca9666d9c",
                 "shasum": ""
             },
@@ -2359,10 +2310,6 @@
                 "orm",
                 "symfony"
             ],
-            "support": {
-                "issues": "https://github.com/hautelook/AliceBundle/issues",
-                "source": "https://github.com/hautelook/AliceBundle/tree/1.x"
-            },
             "time": "2016-11-04T08:48:00+00:00"
         },
         {
@@ -2370,12 +2317,12 @@
             "version": "v0.7.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/avalanche123/Imagine.git",
+                "url": "https://github.com/php-imagine/Imagine.git",
                 "reference": "a9a702a946073cbca166718f1b02a1e72d742daa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/a9a702a946073cbca166718f1b02a1e72d742daa",
+                "url": "https://api.github.com/repos/php-imagine/Imagine/zipball/a9a702a946073cbca166718f1b02a1e72d742daa",
                 "reference": "a9a702a946073cbca166718f1b02a1e72d742daa",
                 "shasum": ""
             },
@@ -2421,10 +2368,6 @@
                 "image manipulation",
                 "image processing"
             ],
-            "support": {
-                "issues": "https://github.com/avalanche123/Imagine/issues",
-                "source": "https://github.com/avalanche123/Imagine/tree/v0.7.1"
-            },
             "time": "2017-05-16T10:31:22+00:00"
         },
         {
@@ -2476,10 +2419,6 @@
             "keywords": [
                 "parameters management"
             ],
-            "support": {
-                "issues": "https://github.com/Incenteev/ParameterHandler/issues",
-                "source": "https://github.com/Incenteev/ParameterHandler/tree/v2.1.4"
-            },
             "time": "2020-03-17T21:10:00+00:00"
         },
         {
@@ -2522,10 +2461,6 @@
                 "hashing",
                 "password"
             ],
-            "support": {
-                "issues": "https://github.com/ircmaxell/password_compat/issues",
-                "source": "https://github.com/ircmaxell/password_compat/tree/v1.0"
-            },
             "time": "2014-11-20T16:49:30+00:00"
         },
         {
@@ -2576,10 +2511,6 @@
                 "highlight",
                 "sql"
             ],
-            "support": {
-                "issues": "https://github.com/jdorn/sql-formatter/issues",
-                "source": "https://github.com/jdorn/sql-formatter/tree/master"
-            },
             "time": "2014-01-12T16:20:24+00:00"
         },
         {
@@ -2637,10 +2568,6 @@
                 "routing",
                 "translation"
             ],
-            "support": {
-                "issues": "https://github.com/schmittjoh/JMSI18nRoutingBundle/issues",
-                "source": "https://github.com/schmittjoh/JMSI18nRoutingBundle/tree/2.0"
-            },
             "time": "2017-12-06T11:56:15+00:00"
         },
         {
@@ -2696,10 +2623,6 @@
                 "xml",
                 "yaml"
             ],
-            "support": {
-                "issues": "https://github.com/schmittjoh/metadata/issues",
-                "source": "https://github.com/schmittjoh/metadata/tree/1.x"
-            },
             "time": "2018-10-26T12:40:10+00:00"
         },
         {
@@ -2766,10 +2689,6 @@
                 "pager",
                 "paginator"
             ],
-            "support": {
-                "issues": "https://github.com/KnpLabs/knp-components/issues",
-                "source": "https://github.com/KnpLabs/knp-components/tree/master"
-            },
             "time": "2018-09-11T07:54:48+00:00"
         },
         {
@@ -2827,10 +2746,6 @@
                 "disqus",
                 "forum"
             ],
-            "support": {
-                "issues": "https://github.com/KnpLabs/KnpDisqusBundle/issues",
-                "source": "https://github.com/KnpLabs/KnpDisqusBundle/tree/master"
-            },
             "time": "2018-06-07T17:33:07+00:00"
         },
         {
@@ -2957,10 +2872,6 @@
             "keywords": [
                 "menu"
             ],
-            "support": {
-                "issues": "https://github.com/KnpLabs/KnpMenuBundle/issues",
-                "source": "https://github.com/KnpLabs/KnpMenuBundle/tree/master"
-            },
             "time": "2019-06-17T12:58:15+00:00"
         },
         {
@@ -3023,10 +2934,6 @@
                 "paginator",
                 "symfony"
             ],
-            "support": {
-                "issues": "https://github.com/KnpLabs/KnpPaginatorBundle/issues",
-                "source": "https://github.com/KnpLabs/KnpPaginatorBundle/tree/master"
-            },
             "time": "2018-05-16T12:15:58+00:00"
         },
         {
@@ -3079,12 +2986,12 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Assetic": "src/"
-                },
                 "files": [
                     "src/functions.php"
-                ]
+                ],
+                "psr-0": {
+                    "Assetic": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3104,10 +3011,6 @@
                 "compression",
                 "minification"
             ],
-            "support": {
-                "issues": "https://github.com/kriswallsmith/assetic/issues",
-                "source": "https://github.com/kriswallsmith/assetic/tree/master"
-            },
             "time": "2016-11-11T18:43:20+00:00"
         },
         {
@@ -3158,10 +3061,6 @@
                 "curl",
                 "http client"
             ],
-            "support": {
-                "issues": "https://github.com/kriswallsmith/Buzz/issues",
-                "source": "https://github.com/kriswallsmith/Buzz/tree/master"
-            },
             "time": "2018-02-03T19:40:45+00:00"
         },
         {
@@ -3414,10 +3313,6 @@
             "keywords": [
                 "Symfony2"
             ],
-            "support": {
-                "issues": "https://github.com/liip/LiipFunctionalTestBundle/issues",
-                "source": "https://github.com/liip/LiipFunctionalTestBundle/tree/1.11.0"
-            },
             "time": "2019-05-13T20:55:38+00:00"
         },
         {
@@ -3519,10 +3414,6 @@
                 "symfony",
                 "transformation"
             ],
-            "support": {
-                "issues": "https://github.com/liip/LiipImagineBundle/issues",
-                "source": "https://github.com/liip/LiipImagineBundle/tree/1.0"
-            },
             "time": "2017-09-09T03:53:30+00:00"
         },
         {
@@ -3570,10 +3461,6 @@
                 "template",
                 "zurb"
             ],
-            "support": {
-                "issues": "https://github.com/lorenzo/pinky/issues",
-                "source": "https://github.com/lorenzo/pinky/tree/1.0.5"
-            },
             "time": "2019-09-16T21:23:31+00:00"
         },
         {
@@ -3668,9 +3555,6 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Complex\\": "classes/src/"
-                },
                 "files": [
                     "classes/src/functions/abs.php",
                     "classes/src/functions/acos.php",
@@ -3714,7 +3598,10 @@
                     "classes/src/operations/multiply.php",
                     "classes/src/operations/divideby.php",
                     "classes/src/operations/divideinto.php"
-                ]
+                ],
+                "psr-4": {
+                    "Complex\\": "classes/src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3763,9 +3650,6 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Matrix\\": "classes/src/"
-                },
                 "files": [
                     "classes/src/Functions/adjoint.php",
                     "classes/src/Functions/antidiagonal.php",
@@ -3783,7 +3667,10 @@
                     "classes/src/Operations/multiply.php",
                     "classes/src/Operations/divideby.php",
                     "classes/src/Operations/divideinto.php"
-                ]
+                ],
+                "psr-4": {
+                    "Matrix\\": "classes/src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -4125,10 +4012,6 @@
                 "proxy pattern",
                 "service proxies"
             ],
-            "support": {
-                "issues": "https://github.com/Ocramius/ProxyManager/issues",
-                "source": "https://github.com/Ocramius/ProxyManager/tree/2.2.x"
-            },
             "time": "2019-08-10T08:37:15+00:00"
         },
         {
@@ -4339,9 +4222,6 @@
                 "psr",
                 "psr-6"
             ],
-            "support": {
-                "source": "https://github.com/php-fig/cache/tree/master"
-            },
             "time": "2016-08-06T20:24:11+00:00"
         },
         {
@@ -4537,9 +4417,6 @@
                 "request",
                 "response"
             ],
-            "support": {
-                "source": "https://github.com/php-fig/http-message/tree/master"
-            },
             "time": "2016-08-06T14:39:51+00:00"
         },
         {
@@ -4635,9 +4512,6 @@
                 "psr-16",
                 "simple-cache"
             ],
-            "support": {
-                "source": "https://github.com/php-fig/simple-cache/tree/master"
-            },
             "time": "2017-10-23T01:57:42+00:00"
         },
         {
@@ -4678,10 +4552,6 @@
                 }
             ],
             "description": "A polyfill for getallheaders.",
-            "support": {
-                "issues": "https://github.com/ralouphie/getallheaders/issues",
-                "source": "https://github.com/ralouphie/getallheaders/tree/develop"
-            },
             "time": "2019-03-08T08:55:37+00:00"
         },
         {
@@ -4722,10 +4592,6 @@
                 "chart",
                 "google"
             ],
-            "support": {
-                "issues": "https://github.com/saadtazi/SaadTaziGChartBundle/issues",
-                "source": "https://github.com/saadtazi/SaadTaziGChartBundle/tree/master"
-            },
             "time": "2016-07-05T01:10:16+00:00"
         },
         {
@@ -4778,10 +4644,6 @@
                 "configuration",
                 "distribution"
             ],
-            "support": {
-                "issues": "https://github.com/sensiolabs/SensioDistributionBundle/issues",
-                "source": "https://github.com/sensiolabs/SensioDistributionBundle/tree/master"
-            },
             "abandoned": true,
             "time": "2019-06-18T15:43:58+00:00"
         },
@@ -4853,10 +4715,6 @@
                 "annotations",
                 "controllers"
             ],
-            "support": {
-                "issues": "https://github.com/sensiolabs/SensioFrameworkExtraBundle/issues",
-                "source": "https://github.com/sensiolabs/SensioFrameworkExtraBundle/tree/3.0"
-            },
             "time": "2017-12-14T19:03:23+00:00"
         },
         {
@@ -4905,10 +4763,6 @@
                 }
             ],
             "description": "A security checker for your composer.lock",
-            "support": {
-                "issues": "https://github.com/sensiolabs/security-checker/issues",
-                "source": "https://github.com/sensiolabs/security-checker/tree/master"
-            },
             "abandoned": "https://github.com/fabpot/local-php-security-checker",
             "time": "2019-11-01T13:20:14+00:00"
         },
@@ -5078,12 +4932,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Sonata\\BlockBundle\\": "src/"
-                },
                 "files": [
                     "src/Resources/stubs/symfony2.php"
-                ]
+                ],
+                "psr-4": {
+                    "Sonata\\BlockBundle\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -5175,10 +5029,7 @@
                 "mongodb",
                 "redis"
             ],
-            "support": {
-                "issues": "https://github.com/sonata-project/cache/issues",
-                "source": "https://github.com/sonata-project/cache/tree/2.x"
-            },
+            "abandoned": true,
             "time": "2017-12-08T09:22:44+00:00"
         },
         {
@@ -5323,10 +5174,7 @@
                 "datagrid",
                 "sonata"
             ],
-            "support": {
-                "issues": "https://github.com/sonata-project/SonataDatagridBundle/issues",
-                "source": "https://github.com/sonata-project/SonataDatagridBundle/tree/2.4.0"
-            },
+            "abandoned": true,
             "time": "2018-10-09T20:50:18+00:00"
         },
         {
@@ -5540,10 +5388,7 @@
                 "Easy Extends",
                 "sonata"
             ],
-            "support": {
-                "issues": "https://github.com/sonata-project/SonataEasyExtendsBundle/issues",
-                "source": "https://github.com/sonata-project/SonataEasyExtendsBundle/tree/2.x"
-            },
+            "abandoned": true,
             "time": "2018-02-11T12:21:41+00:00"
         },
         {
@@ -5691,10 +5536,7 @@
             "keywords": [
                 "google authenticator"
             ],
-            "support": {
-                "issues": "https://github.com/sonata-project/GoogleAuthenticator/issues",
-                "source": "https://github.com/sonata-project/GoogleAuthenticator/tree/2.2.0"
-            },
+            "abandoned": true,
             "time": "2018-07-18T22:08:02+00:00"
         },
         {
@@ -5785,10 +5627,6 @@
                 "sonata",
                 "user"
             ],
-            "support": {
-                "issues": "https://github.com/sonata-project/SonataUserBundle/issues",
-                "source": "https://github.com/sonata-project/SonataUserBundle/tree/3.x"
-            },
             "time": "2017-12-04T11:35:44+00:00"
         },
         {
@@ -5854,10 +5692,6 @@
                 "translatable",
                 "tree"
             ],
-            "support": {
-                "issues": "https://github.com/stof/StofDoctrineExtensionsBundle/issues",
-                "source": "https://github.com/stof/StofDoctrineExtensionsBundle/tree/v1.3.0"
-            },
             "time": "2017-12-24T16:06:50+00:00"
         },
         {
@@ -5912,10 +5746,7 @@
                 "mail",
                 "mailer"
             ],
-            "support": {
-                "issues": "https://github.com/swiftmailer/swiftmailer/issues",
-                "source": "https://github.com/swiftmailer/swiftmailer/tree/v5.4.12"
-            },
+            "abandoned": "symfony/mailer",
             "time": "2018-07-31T09:26:32+00:00"
         },
         {
@@ -5986,10 +5817,6 @@
                 "compression",
                 "minification"
             ],
-            "support": {
-                "issues": "https://github.com/symfony/assetic-bundle/issues",
-                "source": "https://github.com/symfony/assetic-bundle/tree/master"
-            },
             "abandoned": "symfony/webpack-encore-pack",
             "time": "2017-07-14T07:26:46+00:00"
         },
@@ -6354,10 +6181,6 @@
                 "log",
                 "logging"
             ],
-            "support": {
-                "issues": "https://github.com/symfony/monolog-bundle/issues",
-                "source": "https://github.com/symfony/monolog-bundle/tree/2.x"
-            },
             "time": "2017-01-02T19:04:26+00:00"
         },
         {
@@ -6388,12 +6211,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Apcu\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Apcu\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -6465,12 +6288,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Ctype\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -6627,12 +6450,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Intl\\Idn\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Intl\\Idn\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -6709,12 +6532,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Intl\\Normalizer\\": ""
-                },
                 "files": [
                     "bootstrap.php"
                 ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Intl\\Normalizer\\": ""
+                },
                 "classmap": [
                     "Resources/stubs"
                 ]
@@ -6790,12 +6613,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Mbstring\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -7124,12 +6947,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php72\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php72\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -7197,12 +7020,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php73\\": ""
-                },
                 "files": [
                     "bootstrap.php"
                 ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php73\\": ""
+                },
                 "classmap": [
                     "Resources/stubs"
                 ]
@@ -7273,12 +7096,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php80\\": ""
-                },
                 "files": [
                     "bootstrap.php"
                 ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php80\\": ""
+                },
                 "classmap": [
                     "Resources/stubs"
                 ]
@@ -7454,10 +7277,6 @@
             ],
             "description": "Symfony Security Component - ACL (Access Control List)",
             "homepage": "https://symfony.com",
-            "support": {
-                "issues": "https://github.com/symfony/security-acl/issues",
-                "source": "https://github.com/symfony/security-acl/tree/master"
-            },
             "time": "2019-12-12T09:55:57+00:00"
         },
         {
@@ -7593,10 +7412,7 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "support": {
-                "issues": "https://github.com/symfony/swiftmailer-bundle/issues",
-                "source": "https://github.com/symfony/swiftmailer-bundle/tree/2.6"
-            },
+            "abandoned": "symfony/mailer",
             "time": "2017-10-19T01:06:41+00:00"
         },
         {
@@ -7703,13 +7519,13 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Symfony\\Bridge\\Doctrine\\": "src/Symfony/Bridge/Doctrine/",
-                    "Symfony\\Bridge\\Monolog\\": "src/Symfony/Bridge/Monolog/",
-                    "Symfony\\Bridge\\ProxyManager\\": "src/Symfony/Bridge/ProxyManager/",
-                    "Symfony\\Bridge\\Swiftmailer\\": "src/Symfony/Bridge/Swiftmailer/",
-                    "Symfony\\Bridge\\Twig\\": "src/Symfony/Bridge/Twig/",
                     "Symfony\\Bundle\\": "src/Symfony/Bundle/",
-                    "Symfony\\Component\\": "src/Symfony/Component/"
+                    "Symfony\\Component\\": "src/Symfony/Component/",
+                    "Symfony\\Bridge\\Twig\\": "src/Symfony/Bridge/Twig/",
+                    "Symfony\\Bridge\\Monolog\\": "src/Symfony/Bridge/Monolog/",
+                    "Symfony\\Bridge\\Doctrine\\": "src/Symfony/Bridge/Doctrine/",
+                    "Symfony\\Bridge\\Swiftmailer\\": "src/Symfony/Bridge/Swiftmailer/",
+                    "Symfony\\Bridge\\ProxyManager\\": "src/Symfony/Bridge/ProxyManager/"
                 },
                 "classmap": [
                     "src/Symfony/Component/Intl/Resources/stubs"
@@ -7737,10 +7553,6 @@
             "keywords": [
                 "framework"
             ],
-            "support": {
-                "issues": "https://github.com/symfony/symfony/issues",
-                "source": "https://github.com/symfony/symfony/tree/v2.8.52"
-            },
             "time": "2019-11-13T08:36:42+00:00"
         },
         {
@@ -7909,10 +7721,6 @@
                 "responsive",
                 "web"
             ],
-            "support": {
-                "issues": "https://github.com/twbs/bootstrap/issues",
-                "source": "https://github.com/twbs/bootstrap/tree/v3.4.1"
-            },
             "time": "2019-02-13T15:55:38+00:00"
         },
         {
@@ -7968,10 +7776,6 @@
                 "i18n",
                 "text"
             ],
-            "support": {
-                "issues": "https://github.com/twigphp/Twig-extensions/issues",
-                "source": "https://github.com/twigphp/Twig-extensions/tree/master"
-            },
             "abandoned": true,
             "time": "2018-12-05T18:34:18+00:00"
         },
@@ -8135,10 +7939,6 @@
                 "file uploads",
                 "upload"
             ],
-            "support": {
-                "issues": "https://github.com/dustin10/VichUploaderBundle/issues",
-                "source": "https://github.com/dustin10/VichUploaderBundle/tree/master"
-            },
             "time": "2017-12-09T13:34:29+00:00"
         },
         {
@@ -8182,10 +7982,6 @@
                 "TCPDF",
                 "pdf"
             ],
-            "support": {
-                "issues": "https://github.com/sampart/WhiteOctoberTCPDFBundle/issues",
-                "source": "https://github.com/sampart/WhiteOctoberTCPDFBundle/tree/1.1.2"
-            },
             "abandoned": "qipsius/tcpdf-bundle",
             "time": "2019-01-14T13:51:20+00:00"
         }
@@ -8218,12 +8014,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "DeepCopy\\": "src/DeepCopy/"
-                },
                 "files": [
                     "src/DeepCopy/deep_copy.php"
-                ]
+                ],
+                "psr-4": {
+                    "DeepCopy\\": "src/DeepCopy/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -8452,10 +8248,6 @@
                 "spy",
                 "stub"
             ],
-            "support": {
-                "issues": "https://github.com/phpspec/prophecy/issues",
-                "source": "https://github.com/phpspec/prophecy/tree/v1.10.3"
-            },
             "time": "2020-03-05T15:02:03+00:00"
         },
         {
@@ -8519,11 +8311,6 @@
                 "testing",
                 "xunit"
             ],
-            "support": {
-                "irc": "irc://irc.freenode.net/phpunit",
-                "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/4.0"
-            },
             "time": "2017-04-02T07:44:40+00:00"
         },
         {
@@ -8571,11 +8358,6 @@
                 "filesystem",
                 "iterator"
             ],
-            "support": {
-                "irc": "irc://irc.freenode.net/phpunit",
-                "issues": "https://github.com/sebastianbergmann/php-file-iterator/issues",
-                "source": "https://github.com/sebastianbergmann/php-file-iterator/tree/1.4.5"
-            },
             "time": "2017-11-27T13:52:08+00:00"
         },
         {
@@ -8617,10 +8399,6 @@
             "keywords": [
                 "template"
             ],
-            "support": {
-                "issues": "https://github.com/sebastianbergmann/php-text-template/issues",
-                "source": "https://github.com/sebastianbergmann/php-text-template/tree/1.2.1"
-            },
             "time": "2015-06-21T13:50:34+00:00"
         },
         {
@@ -8670,10 +8448,6 @@
             "keywords": [
                 "timer"
             ],
-            "support": {
-                "issues": "https://github.com/sebastianbergmann/php-timer/issues",
-                "source": "https://github.com/sebastianbergmann/php-timer/tree/master"
-            },
             "time": "2017-02-26T11:10:40+00:00"
         },
         {
@@ -8723,10 +8497,6 @@
             "keywords": [
                 "tokenizer"
             ],
-            "support": {
-                "issues": "https://github.com/sebastianbergmann/php-token-stream/issues",
-                "source": "https://github.com/sebastianbergmann/php-token-stream/tree/master"
-            },
             "abandoned": true,
             "time": "2017-11-27T05:48:46+00:00"
         },
@@ -8810,10 +8580,6 @@
                 "testing",
                 "xunit"
             ],
-            "support": {
-                "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/5.7.27"
-            },
             "time": "2018-02-01T05:50:59+00:00"
         },
         {
@@ -8873,11 +8639,6 @@
                 "mock",
                 "xunit"
             ],
-            "support": {
-                "irc": "irc://irc.freenode.net/phpunit",
-                "issues": "https://github.com/sebastianbergmann/phpunit-mock-objects/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit-mock-objects/tree/3.4"
-            },
             "abandoned": true,
             "time": "2017-06-30T09:13:00+00:00"
         },
@@ -8994,10 +8755,6 @@
                 "compare",
                 "equality"
             ],
-            "support": {
-                "issues": "https://github.com/sebastianbergmann/comparator/issues",
-                "source": "https://github.com/sebastianbergmann/comparator/tree/1.2"
-            },
             "time": "2017-01-29T09:50:25+00:00"
         },
         {
@@ -9050,10 +8807,6 @@
             "keywords": [
                 "diff"
             ],
-            "support": {
-                "issues": "https://github.com/sebastianbergmann/diff/issues",
-                "source": "https://github.com/sebastianbergmann/diff/tree/1.4"
-            },
             "time": "2017-05-22T07:24:03+00:00"
         },
         {
@@ -9104,10 +8857,6 @@
                 "environment",
                 "hhvm"
             ],
-            "support": {
-                "issues": "https://github.com/sebastianbergmann/environment/issues",
-                "source": "https://github.com/sebastianbergmann/environment/tree/master"
-            },
             "time": "2016-11-26T07:53:53+00:00"
         },
         {
@@ -9175,10 +8924,6 @@
                 "export",
                 "exporter"
             ],
-            "support": {
-                "issues": "https://github.com/sebastianbergmann/exporter/issues",
-                "source": "https://github.com/sebastianbergmann/exporter/tree/master"
-            },
             "time": "2016-11-19T08:54:04+00:00"
         },
         {
@@ -9230,10 +8975,6 @@
             "keywords": [
                 "global state"
             ],
-            "support": {
-                "issues": "https://github.com/sebastianbergmann/global-state/issues",
-                "source": "https://github.com/sebastianbergmann/global-state/tree/1.1.1"
-            },
             "time": "2015-10-12T03:26:01+00:00"
         },
         {
@@ -9280,10 +9021,6 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
-            "support": {
-                "issues": "https://github.com/sebastianbergmann/object-enumerator/issues",
-                "source": "https://github.com/sebastianbergmann/object-enumerator/tree/master"
-            },
             "time": "2017-02-18T15:18:39+00:00"
         },
         {
@@ -9337,10 +9074,6 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
-            "support": {
-                "issues": "https://github.com/sebastianbergmann/recursion-context/issues",
-                "source": "https://github.com/sebastianbergmann/recursion-context/tree/master"
-            },
             "time": "2016-11-19T07:33:16+00:00"
         },
         {
@@ -9383,10 +9116,6 @@
             ],
             "description": "Provides a list of PHP built-in functions that operate on resources",
             "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
-            "support": {
-                "issues": "https://github.com/sebastianbergmann/resource-operations/issues",
-                "source": "https://github.com/sebastianbergmann/resource-operations/tree/master"
-            },
             "time": "2015-07-28T20:34:47+00:00"
         },
         {
@@ -9430,10 +9159,6 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
-            "support": {
-                "issues": "https://github.com/sebastianbergmann/version/issues",
-                "source": "https://github.com/sebastianbergmann/version/tree/master"
-            },
             "time": "2016-10-03T07:35:21+00:00"
         },
         {
@@ -9488,10 +9213,6 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "support": {
-                "issues": "https://github.com/sensiolabs/SensioGeneratorBundle/issues",
-                "source": "https://github.com/sensiolabs/SensioGeneratorBundle/tree/master"
-            },
             "abandoned": "symfony/maker-bundle",
             "time": "2017-12-07T15:36:41+00:00"
         },
